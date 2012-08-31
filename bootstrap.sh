@@ -14,6 +14,8 @@ function ensure_absolute_link {
     test -L "$HOME/$2" || ln -s "$1" "$HOME/$2"
 }
 
+cd "$HOME"
+
 #mkdir -p ~/.config/fish
 #mkdir -p ~/lib/hg
 #mkdir -p ~/lib/virtualenvs
@@ -30,6 +32,8 @@ mkdir -p ~/src
 
 ensure_absolute_link "/cygdrive/c/Users/root/Desktop/Dropbox/ssh"       ".ssh"
 ensure_absolute_link "/cygdrive/c/Users/root/Desktop/Dropbox/gnupg"     ".gnupg"
+
+ensure_link "lib/dot/bin/cyg-wrapper.sh"    "bin/cyg-wrapper.sh"
 
 ensure_link "lib/dot/minttyrc"       ".minttyrc"
 
