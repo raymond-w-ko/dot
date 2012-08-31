@@ -1,0 +1,11 @@
+[ui]
+username = Raymond W. Ko <raymond.w.ko@gmail.com>
+[pager]
+pager = LESS='FSRX' less
+[extensions]
+rebase =
+pager =
+hgext.purge =
+color =
+[diff]
+#ignorews=True
