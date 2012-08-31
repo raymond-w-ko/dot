@@ -25,9 +25,9 @@ cd "$HOME"
 mkdir -p ~/bin
 mkdir -p ~/src
 
-mkdir ~/vimbackup
-mkdir ~/vimtmp
-mkdir ~/vimundo
+mkdir -p ~/vimbackup
+mkdir -p ~/vimtmp
+mkdir -p ~/vimundo
 
 #test -d ~/.hg-git/    || hg clone "bb://durin42/hg-git/" "$HOME/.hg-git"
 #test -d ~/lib/dulwich || git clone "git://github.com/jelmer/dulwich.git" "$HOME/lib/dulwich"
