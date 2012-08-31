@@ -10,6 +10,10 @@ function ensure_link {
     test -L "$HOME/$2" || ln -s "$HOME/$1" "$HOME/$2"
 }
 
+function ensure_absolute_link {
+    test -L "$HOME/$2" || ln -s "$1" "$HOME/$2"
+}
+
 #mkdir -p ~/.config/fish
 #mkdir -p ~/lib/hg
 #mkdir -p ~/lib/virtualenvs
@@ -23,6 +27,9 @@ mkdir -p ~/src
 #ensure_link "lib/dulwich/dulwich" "lib/hg/hg/dulwich"
 
 #test -d ~/lib/dot || hg clone http://bitbucket.org/sjl/dot ~/lib/dot
+
+ensure_absolute_link "/cygdrive/c/Users/root/Desktop/Dropbox/ssh"       ".ssh"
+ensure_absolute_link "/cygdrive/c/Users/root/Desktop/Dropbox/gnupg"     ".gnupg"
 
 ensure_link "lib/dot/minttyrc"       ".minttyrc"
 
