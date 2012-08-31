@@ -4,7 +4,7 @@
 export HISTSIZE=32768
 export HISTCONTROL=ignoreboth
 
-export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/aws/bin:/opt/mono/bin"
+export PATH="$HOME/bin:/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/aws/bin:/opt/mono/bin"
 export TMP='/tmp'
 export TEMP='/tmp'
 
@@ -34,7 +34,8 @@ alias .....='cd ../../../..'
 #export HGEDITOR='PYTHONHOME="C:/Python27/App" HOME="C:\Users\root" cyg-wrapper.sh "C:/Program Files (x86)/Vim/vim73/gvim.exe"'
 
 # aliases
-alias svnlog="svn log -l 32 -v | less"
+alias sdr='screen -D -R'
+alias svnlog='svn log -l 32 -v | less'
 
 alias gs='git status'
 alias gc='git commit'
