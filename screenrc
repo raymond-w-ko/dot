@@ -1,0 +1,3 @@
+startup_message off
+hardstatus
+hardstatus alwayslastline "%{rw}%H%{wk}|%{wr}%c%{wk}|%d%M|%?%-Lw%?%{wb}%n*%f%t%?(%u)%?%{wk}%?%+Lw%?"

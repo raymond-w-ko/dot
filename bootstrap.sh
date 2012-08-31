@@ -10,7 +10,10 @@ function ensure_link {
     test -L "$HOME/$2" || ln -s "$HOME/$1" "$HOME/$2"
 }
 
-function ensure_absolute_link {
+function ensure_sensitive_absolute_link {
+    if [ ! -d "$1" ]; then
+        return
+    fi
     test -L "$HOME/$2" || ln -s "$1" "$HOME/$2"
 }
 
@@ -22,6 +25,9 @@ cd "$HOME"
 mkdir -p ~/bin
 mkdir -p ~/src
 
+mkdir ~/vimbackup
+mkdir ~/vimtmp
+mkdir ~/vimundo
 
 #test -d ~/.hg-git/    || hg clone "bb://durin42/hg-git/" "$HOME/.hg-git"
 #test -d ~/lib/dulwich || git clone "git://github.com/jelmer/dulwich.git" "$HOME/lib/dulwich"
@@ -30,8 +36,8 @@ mkdir -p ~/src
 
 #test -d ~/lib/dot || hg clone http://bitbucket.org/sjl/dot ~/lib/dot
 
-ensure_absolute_link "/cygdrive/c/Users/root/Desktop/Dropbox/ssh"       ".ssh"
-ensure_absolute_link "/cygdrive/c/Users/root/Desktop/Dropbox/gnupg"     ".gnupg"
+ensure_sensitive_absolute_link "/cygdrive/c/Users/root/Desktop/Dropbox/ssh"       ".ssh"
+ensure_sensitive_absolute_link "/cygdrive/c/Users/root/Desktop/Dropbox/gnupg"     ".gnupg"
 
 ensure_link "lib/dot/bin/cyg-wrapper.sh"    "bin/cyg-wrapper.sh"
 
@@ -45,6 +51,8 @@ ensure_link "lib/dot/bashrc"         ".bashrc"
 ensure_link "lib/dot/gitconfig"      ".gitconfig"
 ensure_link "lib/dot/gitignore"      ".gitignore"
 ensure_link "lib/dot/hgrc"           ".hgrc"
+
+ensure_link "lib/dot/screenrc"       ".screenrc"
 
 echo completed
 exit
