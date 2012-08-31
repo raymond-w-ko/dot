@@ -4,7 +4,7 @@
 export HISTSIZE=32768
 export HISTCONTROL=ignoreboth
 
-export PATH="$HOME/bin:/usr/local/bin:/usr/bin"
+export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/aws/bin:/opt/mono/bin"
 export TMP='/tmp'
 export TEMP='/tmp'
 
