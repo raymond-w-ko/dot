@@ -1,7 +1,7 @@
 [core]
 	autocrlf = false
 	eol = lf
-	excludesfile = /cygdrive/c/Users/root/Desktop/Dropbox/cygwin/.gitignore
+	excludesfile = ~/.gitignore
 [user]
 	name = Raymond W. Ko
 	email = raymond.w.ko@gmail.com

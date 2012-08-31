@@ -36,6 +36,7 @@ ensure_absolute_link "/cygdrive/c/Users/root/Desktop/Dropbox/gnupg"     ".gnupg"
 ensure_link "lib/dot/bin/cyg-wrapper.sh"    "bin/cyg-wrapper.sh"
 
 ensure_link "lib/dot/minttyrc"       ".minttyrc"
+ensure_link "lib/dot/inputrc"        ".inputrc"
 
 ensure_link "lib/dot/profile"        ".profile"
 ensure_link "lib/dot/bash_profile"   ".bash_profile"
