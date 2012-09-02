@@ -29,6 +29,8 @@ alias .....='cd ../../../..'
   #PYTHONHOME="C:/Python27/App" HOME="C:/Users/root" cyg-wrapper.sh "C:/Program Files (x86)/Vim/vim73/gvim.exe" "$@"
 #}
 
+alias v=vim
+
 export SVN_EDITOR=vim
 export GIT_EDITOR=vim
 export HGEDITOR=vim
