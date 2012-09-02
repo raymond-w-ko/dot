@@ -19,12 +19,12 @@ else
         set t_Co=256
         set mouse=
 
-        nmap \et <M-t>
-        nmap \e1 <M-1>
-        nmap \e2 <M-2>
-        nmap \e3 <M-3>
-        nmap \e4 <M-4>
-        nmap \e5 <M-5>
+        nmap <ESC>t <M-t>
+        nmap <ESC>1 <M-1>
+        nmap <ESC>2 <M-2>
+        nmap <ESC>3 <M-3>
+        nmap <ESC>4 <M-4>
+        nmap <ESC>5 <M-5>
 
         "for i in range(65,90) + range(97,122)
             "let c = nr2char(i)
@@ -91,7 +91,7 @@ set notimeout
 set nottimeout
 set autoread
 set autowriteall
-set title
+set notitle
 set showtabline=2
 set cmdheight=2
 set complete=.,w,b,u,t
@@ -104,7 +104,7 @@ set winwidth=80
 " Prevent Vim from clobbering the scrollback buffer. See
 " http://www.shallowsky.com/linux/noaltscreen.html
 set t_ti= t_te=
-set noesckeys
+set esckeys
 set maxmempattern=4096
 " }}}
 " Automatic Commands {{{
