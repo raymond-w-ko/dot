@@ -1,9 +1,9 @@
 " disable crazy keys
 nnoremap K <Nop>
 vnoremap K <Nop>
-inoremap <F1> <Nop>
-nnoremap <F1> <Nop>
-vnoremap <F1> <Nop>
+"inoremap <F1> <Nop>
+"nnoremap <F1> <Nop>
+"vnoremap <F1> <Nop>
 nnoremap ZZ <Nop>
 nnoremap ZQ <Nop>
 
@@ -14,7 +14,7 @@ vnoremap Q gq
 nnoremap ' `
 nnoremap ` '
 
-nnoremap <C-Del> :BD<CR>
+nnoremap <C-F12> :BD<CR>
 
 " General {{{
 " Substitute
