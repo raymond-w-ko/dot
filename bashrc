@@ -16,6 +16,7 @@ alias ls='ls --color -F'
 alias l='ls --color -F'
 alias ll='ls --color -lF'
 
+alias dot='cd ~/lib/dot'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
