@@ -29,9 +29,9 @@ alias .....='cd ../../../..'
   #PYTHONHOME="C:/Python27/App" HOME="C:/Users/root" cyg-wrapper.sh "C:/Program Files (x86)/Vim/vim73/gvim.exe" "$@"
 #}
 
-#export SVN_EDITOR='PYTHONHOME="C:/Python27/App" HOME="C:\Users\root" cyg-wrapper.sh "C:/Program Files (x86)/Vim/vim73/gvim.exe"'
-#export GIT_EDITOR='PYTHONHOME="C:/Python27/App" HOME="C:\Users\root" cyg-wrapper.sh "C:/Program Files (x86)/Vim/vim73/gvim.exe"'
-#export HGEDITOR='PYTHONHOME="C:/Python27/App" HOME="C:\Users\root" cyg-wrapper.sh "C:/Program Files (x86)/Vim/vim73/gvim.exe"'
+export SVN_EDITOR=vim
+export GIT_EDITOR=vim
+export HGEDITOR=vim
 
 # aliases
 alias sdr='screen -D -R'

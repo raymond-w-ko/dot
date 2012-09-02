@@ -35,7 +35,7 @@ cnoremap <C-k> <Up>
 
 " Platform specific keybinds
 if has("unix")
-    nnoremap <leader>ev :e ~/vimrc/_vimrc<CR>
+    nnoremap <leader>ev :e ~/lib/dot/vimrc<CR>
     cmap w!! w !sudo tee % >/dev/null
 
     let s:uname = system("uname")
@@ -54,8 +54,8 @@ elseif has("win32")
 endif
 
 function! FindFileInProjectDirectory()
-  echom ':CtrlP ' . EscapePathname(MyGetProjectDirectory())
-  execute ':CtrlP ' . EscapePathname(MyGetProjectDirectory())
+    echom ':CtrlP ' . EscapePathname(MyGetProjectDirectory())
+    execute ':CtrlP ' . EscapePathname(MyGetProjectDirectory())
 endfunction
 nnoremap <leader>t :call FindFileInProjectDirectory()<CR>
 
