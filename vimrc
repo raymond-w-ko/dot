@@ -18,12 +18,20 @@ else
     if !has("gui_running")
         set t_Co=256
         set mouse=
+
+        nmap \et <M-t>
+        nmap \e1 <M-1>
+        nmap \e2 <M-2>
+        nmap \e3 <M-3>
+        nmap \e4 <M-4>
+        nmap \e5 <M-5>
+
+        "for i in range(65,90) + range(97,122)
+            "let c = nr2char(i)
+            "exec "map \e" . c . " <M-" . c . ">"
+            "exec "map! \e" . c . " <M-" . c . ">"
+        "endfor
     endif
-    for i in range(65,90) + range(97,122)
-        let c = nr2char(i)
-        exec "map \e" . c . " <M-" . c . ">"
-        exec "map! \e" . c . " <M-" . c . ">"
-    endfor
 endif
 
 " pathogen {{{
@@ -95,8 +103,8 @@ set listchars=tab:▸\ ,eol:¬
 set winwidth=80
 " Prevent Vim from clobbering the scrollback buffer. See
 " http://www.shallowsky.com/linux/noaltscreen.html
-"set t_ti= t_te=
-"set noesckeys
+set t_ti= t_te=
+set noesckeys
 set maxmempattern=4096
 " }}}
 " Automatic Commands {{{
