@@ -54,12 +54,20 @@ ensure_link "lib/dot/hgrc"           ".hgrc"
 
 ensure_link "lib/dot/screenrc"       ".screenrc"
 
+ensure_link "vim/bin/ex"             "bin/ex"
+ensure_link "vim/bin/rview"          "bin/rview"
+ensure_link "vim/bin/rvim"           "bin/rvim"
+ensure_link "vim/bin/vim"            "bin/vim"
+ensure_link "vim/bin/vimtutor"       "bin/vimtutor"
+ensure_link "vim/bin/xxd"            "bin/xdd"
+
+ensure_link "lib/dot/vim"            ".vim"
+ensure_link "lib/dot/vimrc"          ".vimrc"
+
 echo completed
 exit
 
 ensure_link "lib/dot/tmux/tmux.conf" ".tmux.conf"
-ensure_link "lib/dot/vim"            ".vim"
-ensure_link "lib/dot/vim/vimrc"      ".vimrc"
 ensure_link "lib/dot/ackrc"          ".ackrc"
 ensure_link "lib/dot/weechat"        ".weechat"
 ensure_link "lib/dot/urlview"        ".urlview"
