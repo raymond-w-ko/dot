@@ -69,7 +69,7 @@ augroup vimrc
     au BufWritePost .vimrc source $MYVIMRC
     au BufWritePost ~/.vim/* source $MYVIMRC
 
-    au BufWritePost ~/lib/dot/.vimrc source $MYVIMRC
+    au BufWritePost ~/lib/dot/vimrc source $MYVIMRC
     au BufWritePost ~/lib/dot/vim/* source $MYVIMRC
 augroup END
 " }}}

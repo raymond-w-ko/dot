@@ -56,8 +56,8 @@ let g:Powerline_theme='default'
 let g:Powerline_colorscheme='default'
 
 " UltiSnips
-let g:UltiSnipsExpandTrigger = "<F13>"
-let g:UltiSnipsListSnippets = "<C-F13>"
+let g:UltiSnipsExpandTrigger = "<F1>"
+let g:UltiSnipsListSnippets = "<C-F1>"
 let g:UltiSnipsJumpForwardTrigger = "<C-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 
