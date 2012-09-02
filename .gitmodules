@@ -19,3 +19,12 @@
 [submodule "vim/bundle/ctrlp"]
 	path = vim/bundle/ctrlp
 	url = git://github.com/kien/ctrlp.vim.git
+[submodule "vim/bundle/a.vim"]
+	path = vim/bundle/a.vim
+	url = git@bitbucket.org:rko/a.vim.git
+[submodule "vim/bundle/ack.vim"]
+	path = vim/bundle/ack.vim
+	url = git://github.com/mileszs/ack.vim.git
+[submodule "vim/bundle/bufkill.vim"]
+	path = vim/bundle/bufkill.vim
+	url = git@bitbucket.org:rko/bufkill.vim.git
