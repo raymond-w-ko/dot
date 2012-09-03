@@ -58,6 +58,7 @@ ensure_link "vim/bin/ex"             "bin/ex"
 ensure_link "vim/bin/rview"          "bin/rview"
 ensure_link "vim/bin/rvim"           "bin/rvim"
 ensure_link "vim/bin/vim"            "bin/vim"
+ensure_link "vim/bin/vimdiff"        "bin/vimdiff"
 ensure_link "vim/bin/vimtutor"       "bin/vimtutor"
 ensure_link "vim/bin/xxd"            "bin/xdd"
 
