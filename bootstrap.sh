@@ -19,15 +19,17 @@ function ensure_sensitive_absolute_link {
 
 cd "$HOME"
 
-#mkdir -p ~/.config/fish
 #mkdir -p ~/lib/hg
 #mkdir -p ~/lib/virtualenvs
+
 mkdir -p ~/bin
 mkdir -p ~/src
 
 mkdir -p ~/vimbackup
 mkdir -p ~/vimtmp
 mkdir -p ~/vimundo
+
+mkdir -p ~/.subversion
 
 #test -d ~/.hg-git/    || hg clone "bb://durin42/hg-git/" "$HOME/.hg-git"
 #test -d ~/lib/dulwich || git clone "git://github.com/jelmer/dulwich.git" "$HOME/lib/dulwich"
@@ -42,6 +44,7 @@ ensure_sensitive_absolute_link "/cygdrive/c/Users/root/Desktop/Dropbox/gnupg"   
 ensure_link "lib/dot/bin/colorhelper.py"    "bin/colorhelper.py"
 ensure_link "lib/dot/bin/cyg-wrapper.sh"    "bin/cyg-wrapper.sh"
 
+
 ensure_link "lib/dot/minttyrc"       ".minttyrc"
 ensure_link "lib/dot/inputrc"        ".inputrc"
 
@@ -52,6 +55,7 @@ ensure_link "lib/dot/bashrc"         ".bashrc"
 ensure_link "lib/dot/gitconfig"      ".gitconfig"
 ensure_link "lib/dot/gitignore"      ".gitignore"
 ensure_link "lib/dot/hgrc"           ".hgrc"
+ensure_link "lib/dot/subversion/config"     ".subversion/config"
 
 ensure_link "lib/dot/screenrc"       ".screenrc"
 
