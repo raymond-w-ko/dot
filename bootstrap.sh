@@ -43,7 +43,7 @@ ensure_sensitive_absolute_link "/cygdrive/c/Users/root/Desktop/Dropbox/gnupg"   
 
 ensure_link "lib/dot/bin/colorhelper.py"    "bin/colorhelper.py"
 ensure_link "lib/dot/bin/cyg-wrapper.sh"    "bin/cyg-wrapper.sh"
-
+ensure_link "lib/dot/bin/update-submodules"  "bin/update-submodules"
 
 ensure_link "lib/dot/minttyrc"       ".minttyrc"
 ensure_link "lib/dot/inputrc"        ".inputrc"

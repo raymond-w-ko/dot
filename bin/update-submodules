@@ -1,0 +1,46 @@
+#!/bin/bash
+
+if [ ! -d "$HOME/lib/dot" ]; then
+    echo dot repository does not exist
+    exit 1
+fi
+
+cd "$HOME/lib/dot"
+pwd
+
+cd vim/bundle
+pwd
+
+for dir in * ; do
+    test -d "$dir" || continue
+    cd "$dir"
+    pwd
+    if [ ! -e .git ]; then
+        echo "SKIPPING"
+    else
+        echo "OKAY"
+
+        has_develop=`git branch | grep develop | wc -l`
+        if [ "$has_develop" -gt 0 ]; then
+            CMD="git checkout develop"
+            echo $CMD
+            $CMD
+        else
+            CMD="git checkout master"
+            echo $CMD
+            $CMD
+        fi
+
+        has_upstream=`git remote -v | grep -v ^origin | wc -l`
+        if [ "$has_upstream" -gt 0 ]; then
+            CMD="git pull upstream master"
+            echo $CMD
+            $CMD
+        else
+            CMD="git pull"
+            echo $CMD
+            $CMD
+        fi
+    fi
+    cd ..
+done
