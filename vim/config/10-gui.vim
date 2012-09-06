@@ -10,6 +10,10 @@ if !exists("g:already_set_color_scheme")
     let g:already_set_color_scheme=1
 endif
 
+" pretty vertical Splits
+set fillchars+=vert:│
+"set fillchars=vert:\|,fold:-
+
 if (has("gui_running"))
     " Font
     if has("win32")
@@ -51,8 +55,4 @@ if (has("gui_running"))
 
     " Remove cursor blink
     set guicursor+=a:blinkon0
-
-    " pretty vertical Splits
-    set fillchars+=vert:│
-    "set fillchars=vert:\|,fold:-
 endif
