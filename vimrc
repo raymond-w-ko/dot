@@ -13,11 +13,10 @@ endif
 " paths so that the VIM Ruby interpreter can find its files
 if has("win32")
     let g:ruby_path='C:/Ruby192/bin'
-    set mouse=a
 else
     if !has("gui_running")
         set t_Co=256
-        set mouse=
+        set ttymouse=xterm2
 
         nmap <ESC>t <M-t>
         nmap <ESC>1 <M-1>
@@ -244,6 +243,8 @@ set keymodel=""
 set selection=inclusive
 set mousehide
 set nomousefocus
+set mouse=a
+set clipboard=autoselect
 
 " source all other files in the vimfiles/config directory
 runtime! config/**/*.vim
