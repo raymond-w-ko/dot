@@ -19,6 +19,7 @@ else
         set ttymouse=xterm2
 
         nmap <ESC>t <M-t>
+        nmap <ESC>w <M-w>
         nmap <ESC>1 <M-1>
         nmap <ESC>2 <M-2>
         nmap <ESC>3 <M-3>
