@@ -30,6 +30,7 @@ com! ConnectionTester cd C:/SVN/Syandus_ALIVE3/Groundhog/ConnectionTester
 com! SyRefresh cd C:/SVN/Syandus_ALIVE3/Tools/Source/SyRefresh
 com! SyProjectGenerator cd C:/SVN/Syandus_ALIVE4/Tools/Source/SyProjectGenerator
 com! OgreLair cd C:/SVN/Syandus_Cores/C_Ogre_Lair_01
+com! Ms cd C:/SVN/Syandus_Cores/C_CMSC_MS_01
 
 " Shaders
 function! SetSettingsForShaders()
@@ -328,6 +329,20 @@ augroup OgreLair
         \ 'OgreLair ' .
         \  'C:/SVN/Syandus_Cores/C_Ogre_Lair_01/Source/Scripts/Content/configure.bat',
         \ ''
+        \ )
+augroup END
+" }}}
+" MS {{{
+augroup CMSC_MS
+    autocmd!
+    autocmd BufNewFile,BufRead,BufEnter
+    \ C:/SVN/Syandus_Cores/C_CMSC_MS_01/*
+    \ call SetSettingsForProject(
+        \ 3,
+        \ 'CMSC ' .
+        \ 'C:/SVN/Syandus_Cores/C_CMSC_MS_01/Source/Scripts/Content/configure.bat',
+        \ 'C:/SVN/Syandus_ALIVE3/Frameworks/Carbon/Source/Scripts/tags,' .
+        \ 'C:/SVN/Syandus_ALIVE3/Platform/SDK/Include/tags'
         \ )
 augroup END
 " }}}
