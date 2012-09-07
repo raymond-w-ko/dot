@@ -63,14 +63,15 @@ augroup END
 " vimrc {{{
 augroup vimrc
     au!
-    au BufWritePost _vimrc source $MYVIMRC
-    au BufWritePost */vimfiles/config/* source $MYVIMRC
 
     au BufWritePost .vimrc source $MYVIMRC
     au BufWritePost ~/.vim/* source $MYVIMRC
 
     au BufWritePost ~/lib/dot/vimrc source $MYVIMRC
     au BufWritePost ~/lib/dot/vim/* source $MYVIMRC
+
+    au BufWritePost C:/cygwin/home/root/lib/dot/vimrc source $MYVIMRC
+    au BufWritePost C:/cygwin/home/root/lib/dot/vim/* source $MYVIMRC
 augroup END
 " }}}
 " git {{{

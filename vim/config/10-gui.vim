@@ -12,7 +12,6 @@ endif
 
 " pretty vertical Splits
 set fillchars+=vert:│
-"set fillchars=vert:\|,fold:-
 
 if (has("gui_running"))
     " Font
@@ -34,18 +33,8 @@ if (has("gui_running"))
 
     " Maximize in Windows automatically
     if has("win32")
-        nnoremap <F11> :call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 1)<CR>
-        function! FullScreenVim()
-            if !exists("g:already_fullscreen_vim")
-                "call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 1)
-                "call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 1)
-                "call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 1)
-                let g:already_fullscreen_vim=1
-            endif
-        endfunction
         augroup FullScreenOnStartup
             autocmd!
-            autocmd BufEnter * call FullScreenVim()
             autocmd GUIEnter * simalt ~x
         augroup END
     elseif has("gui_macvim")

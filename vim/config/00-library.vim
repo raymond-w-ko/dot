@@ -47,7 +47,7 @@ endfunction
 
 " executes the specificed autohotkey script
 function! AutoHotkeyMake(makefile)
-  execute ':silent !"/cygdrive/c/Program Files/AutoHotkey/AutoHotkey.exe" ' .
+  execute ':silent !"C:/Program Files/AutoHotkey/AutoHotkey.exe" ' .
         \ '"C:\Users\root\Desktop\Dropbox\make.ahk" ' .
         \ a:makefile
 endfunction

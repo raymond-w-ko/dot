@@ -4,7 +4,7 @@ com! Dropbox cd C:/Users/root/Desktop/Dropbox
 com! OmegaComplete cd ~/lib/dot/vim/bundle/omegacomplete
 
 com! Platform cd C:/SVN/Syandus_ALIVE3/Platform/Source/Code
-com! Platform4 cd /cygdrive/c/SVN/Syandus_ALIVE4/Platform/Source/Code
+com! Platform4 cd C:/SVN/Syandus_ALIVE4/Platform/Source/Code
 
 com! Carbon cd C:/SVN/Syandus_ALIVE3/Frameworks/Carbon
 com! Carbon4 cd C:/SVN/Syandus_ALIVE4/Frameworks/Carbon
@@ -29,7 +29,7 @@ com! GroundhogShared cd C:/SVN/Syandus_ALIVE3/Groundhog/Shared
 com! ConnectionTester cd C:/SVN/Syandus_ALIVE3/Groundhog/ConnectionTester
 com! SyRefresh cd C:/SVN/Syandus_ALIVE3/Tools/Source/SyRefresh
 com! SyProjectGenerator cd C:/SVN/Syandus_ALIVE4/Tools/Source/SyProjectGenerator
-com! OgreLair cd /cygdrive/c/SVN/Syandus_Cores/C_Ogre_Lair_01
+com! OgreLair cd C:/SVN/Syandus_Cores/C_Ogre_Lair_01
 
 " Shaders
 function! SetSettingsForShaders()
@@ -123,11 +123,11 @@ augroup END
 augroup Platform4
     autocmd!
     autocmd BufNewFile,BufRead,BufEnter
-    \ /cygdrive/c/SVN/Syandus_ALIVE4/Platform/Source/Code/*
+    \ C:/SVN/Syandus_ALIVE4/Platform/Source/Code/*
     \ call SetSettingsForProject(
         \ 3,
         \ 'SyPlatform4',
-        \ '/cygdrive/c/SVN/Syandus_ALIVE4/Platform/ThirdParty/OGRE/Include/tags'
+        \ 'C:/SVN/Syandus_ALIVE4/Platform/ThirdParty/OGRE/Include/tags'
         \ )
 augroup END
 " }}}
@@ -322,7 +322,7 @@ augroup END
 augroup OgreLair
     autocmd!
     autocmd BufNewFile,BufRead,BufEnter
-    \ /cygdrive/c/SVN/Syandus_Cores/C_Ogre_Lair_01/*
+    \ C:/SVN/Syandus_Cores/C_Ogre_Lair_01/*
     \ call SetSettingsForProject(
         \ 3,
         \ 'OgreLair ' .

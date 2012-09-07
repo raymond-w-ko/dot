@@ -10,40 +10,28 @@ if v:progname =~? "evim"
     finish
 endif
 
-" paths so that the VIM Ruby interpreter can find its files
 if has("win32")
+    " set this so that RUBY omnicompletion works
     let g:ruby_path='C:/Ruby192/bin'
 else
     if !has("gui_running")
         set t_Co=256
         set ttymouse=xterm2
 
-        nmap <ESC>t <M-t>
-        nmap <ESC>w <M-w>
-        nmap <ESC>1 <M-1>
-        nmap <ESC>2 <M-2>
-        nmap <ESC>3 <M-3>
-        nmap <ESC>4 <M-4>
-        nmap <ESC>5 <M-5>
-
-        "for i in range(65,90) + range(97,122)
-            "let c = nr2char(i)
-            "exec "map \e" . c . " <M-" . c . ">"
-            "exec "map! \e" . c . " <M-" . c . ">"
-        "endfor
+        nmap <ESC>t <A-t>
+        nmap <ESC>w <A-w>
+        nmap <ESC>1 <A-1>
+        nmap <ESC>2 <A-2>
+        nmap <ESC>3 <A-3>
+        nmap <ESC>4 <A-4>
+        nmap <ESC>5 <A-5>
     endif
 endif
 
 " pathogen {{{
 let g:pathogen_disabled = []
 call add(g:pathogen_disabled, "ack.vim")
-call add(g:pathogen_disabled, "autocomplpop")
-call add(g:pathogen_disabled, "camelcasemotion")
 call add(g:pathogen_disabled, "cocoa")
-call add(g:pathogen_disabled, "command-t")
-call add(g:pathogen_disabled, "l9")
-call add(g:pathogen_disabled, "tagbar")
-call add(g:pathogen_disabled, "yankring")
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
@@ -249,26 +237,6 @@ set clipboard=autoselect
 
 " source all other files in the vimfiles/config directory
 runtime! config/**/*.vim
-
-set previewheight=1
-
-function! ResizeFixer()
-    if &previewwindow
-        resize 1
-        return
-    endif
-
-    if bufname("%") == '__Scratch__'
-        resize 1
-        return
-    endif
-endfunction
-"augroup ScratchWindowResizer
-    "au!
-    "au WinEnter * call ResizeFixer()
-"augroup END
-
-nmap <F2> :e C:\SVN\Syandus_ALIVE4\Platform\Source\Code\SyCore\FakeGamebryoStubs.cpp<CR>
 
 nmap <leader>1 HWs@param <ESC>elxxj
 nmap <leader>2 HWs@r<ESC>exj

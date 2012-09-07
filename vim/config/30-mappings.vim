@@ -16,6 +16,7 @@ nnoremap ` '
 
 " <Ctrl-Backspace>
 nnoremap  :BD<CR>
+nnoremap <C-BS> :BD<CR>
 
 " General {{{
 " Substitute
@@ -51,9 +52,10 @@ if has("unix")
         " regular UNIX
     endif
 elseif has("win32")
-    nnoremap <leader>ev :e $HOME/Desktop/Dropbox/vim/_vimrc<CR>
+    nnoremap <leader>ev :e C:/cygwin/home/root/lib/dot/vimrc<CR>
+    nnoremap <leader>gc :CtrlP C:/cygwin/home/root/lib/dot/vim/config<CR>
+
     nnoremap <leader>eh :e C:/Windows/system32/drivers/etc/hosts<CR>
-    nnoremap <leader>gc :CtrlP C:/Users/root/Desktop/Dropbox/vim/vimfiles/config<CR>
 endif
 
 function! FindFileInProjectDirectory()
