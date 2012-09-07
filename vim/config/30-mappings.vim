@@ -14,7 +14,8 @@ vnoremap Q gq
 nnoremap ' `
 nnoremap ` '
 
-nnoremap <C-F12> :BD<CR>
+" <Ctrl-Backspace>
+nnoremap  :BD<CR>
 
 " General {{{
 " Substitute
@@ -37,6 +38,7 @@ cnoremap <C-k> <Up>
 if has("unix")
     nnoremap <leader>ev :e ~/lib/dot/vimrc<CR>
     cmap w!! w !sudo tee % >/dev/null
+    nnoremap <leader>gc :CtrlP ~/lib/dot/vim/config<CR>
 
     let s:uname = system("uname")
     if s:uname == "Darwin\n"
@@ -51,6 +53,7 @@ if has("unix")
 elseif has("win32")
     nnoremap <leader>ev :e $HOME/Desktop/Dropbox/vim/_vimrc<CR>
     nnoremap <leader>eh :e C:/Windows/system32/drivers/etc/hosts<CR>
+    nnoremap <leader>gc :CtrlP C:/Users/root/Desktop/Dropbox/vim/vimfiles/config<CR>
 endif
 
 function! FindFileInProjectDirectory()
@@ -73,7 +76,6 @@ endfunction
 nnoremap <leader>a :call MyAlternateFunction()<CR>
 nnoremap <leader>o :ToggleWord<CR>
 
-nnoremap <leader>gc :CtrlP C:/Users/root/Desktop/Dropbox/vim/vimfiles/config<CR>
 
 "nnoremap <leader>C<space> :botright cwindow<CR>
 "nnoremap <leader>Cc :cclose<CR>
