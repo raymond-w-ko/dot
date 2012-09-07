@@ -39,6 +39,7 @@ export HGEDITOR=vim
 # aliases
 alias sdr='screen -D -R'
 alias svnlog='svn log -l 32 -v | less'
+alias myctags='/usr/bin/find . -regex ".*\.\(c\|h\|hpp\|cc\|cpp\)" -print | /usr/bin/ctags --c++-kinds=+px --fields=+aimSz --languages=c++ --sort=yes -L -'
 
 alias gs='git status'
 alias gc='git commit'
