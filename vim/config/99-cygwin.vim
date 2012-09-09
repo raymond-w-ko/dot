@@ -1,3 +1,7 @@
+if !filereadable('/dev/clipboard')
+    finish
+endif
+
 function! SetClipboard(type, ...) range
   let sel_save = &selection
   let &selection = "inclusive"
