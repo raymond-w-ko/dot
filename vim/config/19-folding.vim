@@ -57,7 +57,7 @@ function! MyFoldToggle()
 endfunction
 
 "nmap <Space> :call MyFoldToggle()<CR>
-nnoremap <Space> za
+"nnoremap <Space> za
 "vnoremap <Space> za
 
 " Make zO recursively open whatever top level fold we're in, no matter where the

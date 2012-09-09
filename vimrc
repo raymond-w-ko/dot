@@ -219,8 +219,8 @@ set noswapfile          " computers are pretty reliable nowadays
 " }}}
 
 " Leader
-let mapleader = ","
-let maplocalleader = "\\"
+let mapleader = ' '
+let maplocalleader = '\'
 
 " Mouse & selection Behavior
 behave xterm                " of course xterm is better
