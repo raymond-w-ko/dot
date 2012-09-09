@@ -40,7 +40,7 @@ set sidescrolloff=0
 
 set virtualedit+=block
 
-nnoremap <silent> <leader><Space> :nohlsearch<CR>:let @/=''<CR>
+nnoremap <silent> <leader>l :nohlsearch<CR>:let @/=''<CR>
 
 nmap n nzzzv
 nmap N Nzzzv
