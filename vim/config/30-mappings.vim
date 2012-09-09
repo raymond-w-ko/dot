@@ -1,9 +1,6 @@
 " disable crazy keys
 nnoremap K <Nop>
 vnoremap K <Nop>
-"inoremap <F1> <Nop>
-"nnoremap <F1> <Nop>
-"vnoremap <F1> <Nop>
 nnoremap ZZ <Nop>
 nnoremap ZQ <Nop>
 
@@ -37,8 +34,9 @@ cnoremap <C-k> <Up>
 
 " Platform specific keybinds
 if has("unix")
-    nnoremap <leader>ev :e ~/lib/dot/vimrc<CR>
     cmap w!! w !sudo tee % >/dev/null
+
+    nnoremap <leader>ev :e ~/lib/dot/vimrc<CR>
     nnoremap <leader>gc :CtrlP ~/lib/dot/vim/config<CR>
 
     let s:uname = system("uname")
@@ -78,12 +76,6 @@ endfunction
 nnoremap <leader>a :call MyAlternateFunction()<CR>
 nnoremap <leader>o :ToggleWord<CR>
 
-
-"nnoremap <leader>C<space> :botright cwindow<CR>
-"nnoremap <leader>Cc :cclose<CR>
-"nnoremap <leader>CC :cclose<CR>
-"nnoremap <leader>L<space> :lopen<CR>
-"nnoremap <leader>LL :lclose<CR>
 function! MyPasteToggle()
     if (&paste)
         set nopaste
@@ -302,28 +294,6 @@ nnoremap <A-4> 4gt
 nnoremap <A-5> 5gt
 nnoremap <A-6> 6gt
 nnoremap <A-7> 7gt
-function! CreateScratchAndPreview()
-    1split
-
-    " create preview window
-    set winfixheight
-    silent! vertical pedit!
-    silent! exe "chdir " . current_directory
-
-    wincmd h
-    set winfixheight
-    Scratch
-    setlocal nowrap
-    silent! exe "chdir " . current_directory
-    
-    wincmd l
-    vertical resize 80
-    set winfixwidth
-    edit __Scratch__
-    wincmd h
-
-    wincmd k
-endfunction
 function! CreateScratch()
     1split
 
@@ -415,9 +385,6 @@ nnoremap <leader>fwib :call FindCursorWordInBuffer()<CR>
 nnoremap <leader>fwip :call FindCursorWordInProject()<CR>
 nnoremap <leader>fkip :call FindThisKeywordInProject("")<left><left>
 nnoremap <leader>fl :FufLine<CR>
-
-"nnoremap <C-Space> :FufTagWithCursorWord!<CR>
-
 " }}}
 
 " Fancy Tag Completion {{{
@@ -577,48 +544,48 @@ function! MySuperRightParen()
 endfunction
 
 " <CR> should not autoaccept what the popup menu has selected
-inoremap <expr> <Tab>   omegacomplete#UseFirstEntryOfPopup()
-inoremap <silent> ( (<C-r>=MySuperLeftParen()<CR>
-inoremap <silent> ) )<C-r>=MySuperRightParen()<CR>
+inoremap <expr>     <Tab>   omegacomplete#UseFirstEntryOfPopup()
+inoremap <silent>   (       (<C-r>=MySuperLeftParen()<CR>
+inoremap <silent>   )       )<C-r>=MySuperRightParen()<CR>
 
 function! MyChangeNextArg()
-  " always start out with an ESC to get out of insert mode
-  let change_command = "\<ESC>"
-  " yay for zero indexing
-  let current_pos = col('.') - 2
-  let line = getline('.')
+    " always start out with an ESC to get out of insert mode
+    let change_command = "\<ESC>"
+    " yay for zero indexing
+    let current_pos = col('.') - 2
+    let line = getline('.')
 
-  let char0 = line[current_pos]
-  let char1 = line[current_pos + 1]
+    let char0 = line[current_pos]
+    let char1 = line[current_pos + 1]
 
-  " first case ( arg1, or (arg1,
-  if ((char0 ==# '(') && (char1 !=# ','))
-    let change_command .= 'l'
-  elseif (char1 ==# ')')
-    return ""
-  elseif (char1 ==# ',')
-    let change_command .= 'lll'
-  endif
-
-  let change_command .= "vt"
-
-  "determine if we even have a ',' to move to
-  let ii = 0
-  let found_comma = 0
-  for ii in range(current_pos + 2, len(line))
-    if (line[ii] ==# ',')
-      let found_comma = 1
+    " first case ( arg1, or (arg1,
+    if ((char0 ==# '(') && (char1 !=# ','))
+        let change_command .= 'l'
+    elseif (char1 ==# ')')
+        return ""
+    elseif (char1 ==# ',')
+        let change_command .= 'lll'
     endif
-  endfor
 
-  if (found_comma)
-    let change_command .= ','
-  else
-    let change_command .= ')'
-  endif
+    let change_command .= "vt"
 
-  let change_command .= "\<C-G>"
-  return change_command
+    "determine if we even have a ',' to move to
+    let ii = 0
+    let found_comma = 0
+    for ii in range(current_pos + 2, len(line))
+        if (line[ii] ==# ',')
+        let found_comma = 1
+        endif
+    endfor
+
+    if (found_comma)
+        let change_command .= ','
+    else
+        let change_command .= ')'
+    endif
+
+    let change_command .= "\<C-G>"
+    return change_command
 endfunction
 "inoremap <expr> <S-A-l> MyChangeNextArg()
 " }}}

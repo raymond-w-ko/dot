@@ -1,10 +1,6 @@
 " when re-sourcing with this set, syntax highlighting changes!
 "set nocompatible
 
-" for profiling omegacomplete
-"profile start C:/Users/root/Desktop/oc_profile.txt
-"profile! file C:/Users/root/vimfiles/bundle/omegacomplete/plugin/omegacomplete.vim
-
 " don't customize anything if we are running in evim mode
 if v:progname =~? "evim"
     finish
@@ -16,6 +12,9 @@ if has("win32")
 else
     if !has("gui_running")
         set t_Co=256
+        " Prevent Vim from clobbering the scrollback buffer. See
+        " http://www.shallowsky.com/linux/noaltscreen.html
+        set t_ti= t_te=
         set ttymouse=xterm2
 
         nmap <ESC>t <A-t>
@@ -48,7 +47,7 @@ if !exists("g:already_syntax_on")
     let g:already_syntax_on=1
 endif
 set fileformats=unix,dos,mac        " order of support
-" unfortunately shellslash breaks netrw
+" unfortunately shellslash breaks netrw, but I don't really use it
 set shellslash
 " }}}
 
@@ -89,11 +88,10 @@ set pumheight=16
 set autochdir
 set nolist
 set listchars=tab:▸\ ,eol:¬
+" always try to make the current window 80 columns
 set winwidth=80
-" Prevent Vim from clobbering the scrollback buffer. See
-" http://www.shallowsky.com/linux/noaltscreen.html
-set t_ti= t_te=
-set maxmempattern=4096
+set maxmempattern=2000000
+set maxmemtot=2000000
 " }}}
 " Automatic Commands {{{
 augroup SaveAllBuffersWhenLosingFocus
