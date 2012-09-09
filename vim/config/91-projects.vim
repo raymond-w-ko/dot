@@ -1,7 +1,7 @@
 set tags=
 
 com! Dropbox cd C:/Users/root/Desktop/Dropbox
-com! OmegaComplete cd ~/lib/dot/vim/bundle/omegacomplete
+com! OmegaComplete cd C:/cygwin/home/root/lib/dot/vim/bundle/omegacomplete
 
 com! Platform cd C:/SVN/Syandus_ALIVE3/Platform/Source/Code
 com! Platform4 cd C:/SVN/Syandus_ALIVE4/Platform/Source/Code
@@ -58,10 +58,10 @@ endfunction
 
 " personal projects
 " OmegacompleteServer {{{
-augroup OmegacompleteServer
+augroup OmegaComplete
     autocmd!
     autocmd BufNewFile,BufRead,BufEnter
-    \ C:/Users/root/Desktop/Dropbox/vim/vimfiles/bundle/omegacomplete/*
+    \ C:/cygwin/home/root/lib/dot/vim/bundle/omegacomplete/*
     \ call SetSettingsForProject(
         \ 4,
         \ 'OmegaCompletePythonModule',
