@@ -16,3 +16,10 @@ if [ -d "./bufkill.vim" ]; then
     git remote add upstream git://github.com/vim-scripts/bufkill.vim.git
     cd ..
 fi
+
+if [ -d "./VimClojure" ]; then
+    cd VimClojure
+    pwd
+    git remote add upstream git://github.com/vim-scripts/VimClojure.git
+    cd ..
+fi
