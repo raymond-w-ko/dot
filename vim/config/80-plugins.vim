@@ -65,6 +65,14 @@ let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 nnoremap <F5> :GundoToggle<CR>
 let g:gundo_right=1
 
+let g:vimclojure#FuzzyIndent=1
+let g:vimclojure#HighlightBuiltins=1
+let g:vimclojure#HighlightContrib=1
+let g:vimclojure#DynamicHighlighting=1
+let g:vimclojure#ParenRainbow=0
+let g:vimclojure#WantNailgun = 1
+let g:vimclojure#NailgunClient = $HOME . '\bin\ng.exe'
+
 " omegacomplete
 let g:omegacomplete_normal_hi_cmds=[
     \ "hi Pmenu guifg=#00ff00 guibg=#003300 gui=none ctermbg=022 ctermfg=046 cterm=none",
