@@ -105,14 +105,7 @@ function! MyDoubleBracesExpander()
        \ line[line_len - 1] != '{' )
         return
     endif
-
-	call feedkeys("\<BS>\<BS>{\<CR>\<TAB>X\<CR>", 'n')
-	call feedkeys("\<BS>", 'n')
-	call feedkeys("}\<Up>", 'n')
-	for ii in range(&tabstop)
-	  call feedkeys("\<Right>", 'n')
-	endfor
-	call feedkeys("\<BS>", 'n')
+	call feedkeys("\<BS>\<CR>X\<CR>}\<Up>\<End>\<BS>", 't')
 endfunction
 augroup ExpandDoubleBraces
 	au!
@@ -176,7 +169,7 @@ function! CreateCppMethodImplementation()
         let line_num = line_num - 1
     endwhile
 
-    normal ,a
+    A
     set fo-=r
     set fo-=o
     execute "normal Go\<ESC>G"

@@ -39,7 +39,7 @@ call pathogen#helptags()
 " File Options {{{
 filetype on             " detect and set filetype
 filetype plugin on      " load filetype plugin
-filetype indent off     " as a control freak, don't enable automatic indenting
+filetype indent on      " as a control freak, don't enable automatic indenting
 " without a guard, re-sourcing this file breaks vim-easymotion
 " re-sourcing also breaks vim-powerline
 if !exists("g:already_syntax_on")
@@ -169,8 +169,15 @@ set wildignore+=*.ccv,*.fls,*.pat,*.gsl,*.flt,*.asi
 " }}}
 " Tabs, indents, spaces, wrapping {{{
 set autoindent
-set nocindent
-set nosmartindent
+function! SetMyCino()
+    set cinoptions+=:0
+    set cinoptions+=g0
+    set cinoptions+=N-s
+    set cinoptions+=i0
+    set cinoptions+=(0
+    set cinoptions+=u0
+endfunction
+call SetMyCino()
 
 set expandtab
 set tabstop=4
