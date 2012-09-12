@@ -176,6 +176,7 @@ function! SetMyCino()
     set cinoptions+=i0
     set cinoptions+=(0
     set cinoptions+=u0
+    set cinoptions+=Ws
 endfunction
 call SetMyCino()
 
