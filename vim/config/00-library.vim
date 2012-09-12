@@ -48,7 +48,7 @@ endfunction
 " executes the specificed autohotkey script
 function! AutoHotkeyMake(makefile)
   execute ':!start "C:/Program Files/AutoHotkey/AutoHotkey.exe" ' .
-        \ '"C:\Users\root\Desktop\Dropbox\make.ahk" ' .
+        \ '"C:/Users/root/Desktop/Dropbox/make.ahk" ' .
         \ a:makefile
 endfunction
 

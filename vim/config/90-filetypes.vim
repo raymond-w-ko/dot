@@ -68,10 +68,10 @@ augroup vimrc
     au BufWritePost ~/.vim/* source $MYVIMRC
 
     au BufWritePost ~/lib/dot/vimrc source $MYVIMRC
-    au BufWritePost ~/lib/dot/vim/* source $MYVIMRC
+    au BufWritePost ~/lib/dot/vim/config/* source $MYVIMRC
 
     au BufWritePost C:/cygwin/home/root/lib/dot/vimrc source $MYVIMRC
-    au BufWritePost C:/cygwin/home/root/lib/dot/vim/* source $MYVIMRC
+    au BufWritePost C:/cygwin/home/root/lib/dot/vim/config/* source $MYVIMRC
 augroup END
 " }}}
 " git {{{

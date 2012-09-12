@@ -57,10 +57,10 @@ function! SetSettingsForProject(size_of_tab, autohotkey_file, tags)
 endfunction
 
 " personal projects
-" OmegacompleteServer {{{
-augroup OmegaComplete
-    autocmd!
-    autocmd BufNewFile,BufRead,BufEnter
+" OmegaComplete {{{
+augroup OmegaCompletePythonModule
+    au!
+    au BufNewFile,BufRead,BufEnter
     \ C:/cygwin/home/root/lib/dot/vim/bundle/omegacomplete/*
     \ call SetSettingsForProject(
         \ 4,
