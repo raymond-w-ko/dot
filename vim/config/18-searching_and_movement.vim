@@ -88,7 +88,11 @@ function! MyLeftBrace()
     let temp=@/
     set nohls
     set nowrapscan
-    ?^\s*$
+    try
+        ?^\s*$
+    catch
+        normal gg
+    endtry
     let @/=temp
     set hls
     if (orig_wrapscan)
@@ -102,14 +106,18 @@ function! MyRightBrace()
     let temp=@/
     set nohls
     set nowrapscan
-    /^\s*$
+    try
+        /^\s*$
+    catch
+        normal G
+    endtry
     let @/=temp
     set hls
     if (orig_wrapscan)
         set wrapscan
     endif
 endfunction
-nnoremap <silent> } :silent! call MyRightBrace()<CR>
+nnoremap <silent> } :silent call MyRightBrace()<CR>
 
 function! PushBraceSettings()
     let g:BraceSettingsOrigWrapscan=&wrapscan
@@ -143,10 +151,10 @@ vnoremap <silent> } /<C-r>=PushBraceSettings()<CR>^\s*$<CR><ESC>:<C-r>=PopBraceS
 
 " Visual Mode */# from Scrooloose {{{
 function! s:VisualModeSetSearch()
-  let temp = @@
-  norm! gvy
-  let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
-  let @@ = temp
+    let temp = @@
+    norm! gvy
+    let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
+    let @@ = temp
 endfunction
 
 vnoremap * :<C-u>call <SID>VisualModeSetSearch()<CR>//<CR><c-o>
