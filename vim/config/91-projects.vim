@@ -196,7 +196,7 @@ augroup SyHandleGen
     \ C:/SVN/Syandus_ALIVE3/Tools/Source/SyHandleGen/*
     \ call SetSettingsForProject(
         \ 2,
-        \ 'C:/Users/root/Desktop/Dropbox/make_syhandlegen.ahk',
+        \ 'SyHandleGen',
         \ '')
 augroup END
 augroup SyHandleGen4
