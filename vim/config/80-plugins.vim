@@ -75,6 +75,11 @@ let g:vimclojure#ParenRainbow=0
 let g:vimclojure#WantNailgun = 1
 let g:vimclojure#NailgunClient = $HOME . '\bin\ng.exe'
 
+"NERDCommenter
+let g:NERDCustomDelimiters = {
+    \ 'syxml': { 'left': '//', 'right': ''}
+    \ }
+
 " omegacomplete
 let g:omegacomplete_normal_hi_cmds=[
     \ "hi Pmenu guifg=#00ff00 guibg=#003300 gui=none ctermbg=022 ctermfg=046 cterm=none",

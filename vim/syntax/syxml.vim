@@ -1,6 +1,6 @@
 " Vim syntax file
 " Language:	SyXML
-" Maintainer:   Raymond W. Ko <raymond.ko@syandus.com>
+" Maintainer:	Raymond W. Ko <raymond.ko@syandus.com>
 " Maintainer:	Johannes Zellner <johannes@zellner.org>
 "		Author and previous maintainer:
 "		Paul Siegmann <pauls@euronet.nl>
@@ -128,21 +128,6 @@ syn match   xmlTagName
     \ contains=xmlNamespace,xmlAttribPunct,@xmlTagHook
     \ display
 
-" end tag name
-"
-" PROVIDES: @xmlTagHook
-"
-" EXAMPLE:
-"
-" </tag>
-"   ^^^
-"
-syn match   xmlEndTagName
-    \ +[^ /!?<>"']\++
-    \ contained
-    \ contains=xmlNamespace,xmlAttribPunct
-    \ display
-
 
 if exists('g:xml_syntax_folding')
 
@@ -160,7 +145,7 @@ if exists('g:xml_syntax_folding')
 	\ matchgroup=xmlTag start=+<[^ /!?<>"']\@=+
 	\ matchgroup=xmlTag end=+>+
 	\ contained
-	\ contains=xmlError,xmlTagName,xmlAttrib,xmlEqual,xmlString,@xmlStartTagHook,xmlDoubleForwardSlashComment,xmlCBlockComment
+	\ contains=xmlError,xmlTagName,xmlAttrib,xmlEqual,xmlString,@xmlStartTagHook,xmlCppComment,xmlCBlockComment
 
 
     " highlight the end tag
@@ -176,7 +161,7 @@ if exists('g:xml_syntax_folding')
     syn match   xmlEndTag
 	\ +</[^ /!?<>"']\+>+
 	\ contained
-	\ contains=xmlNamespace,xmlEndTagName,xmlAttribPunct,@xmlTagHook
+	\ contains=xmlNamespace,xmlAttribPunct,@xmlTagHook
 
 
     " tag elements with syntax-folding.
@@ -199,7 +184,7 @@ if exists('g:xml_syntax_folding')
 	\ end=+</\z1\_\s\{-}>+
 	\ matchgroup=xmlEndTag end=+/>+
 	\ fold
-	\ contains=xmlTag,xmlEndTag,xmlCdata,xmlRegion,xmlComment,xmlDoubleForwardSlashComment,xmlCBlockComment,xmlEntity,xmlProcessing,@xmlRegionHook,@Spell
+	\ contains=xmlTag,xmlEndTag,xmlCdata,xmlRegion,xmlComment,xmlCppComment,xmlCBlockComment,xmlEntity,xmlProcessing,@xmlRegionHook,@Spell
 	\ keepend
 	\ extend
 
@@ -212,11 +197,11 @@ else
     syn region   xmlTag
 	\ matchgroup=xmlTag start=+<[^ /!?<>"']\@=+
 	\ matchgroup=xmlTag end=+>+
-	\ contains=xmlError,xmlTagName,xmlAttrib,xmlEqual,xmlString,@xmlStartTagHook,xmlDoubleForwardSlashComment,xmlCBlockComment
+	\ contains=xmlError,xmlTagName,xmlAttrib,xmlEqual,xmlString,@xmlStartTagHook,xmlCppComment,xmlCBlockComment
 
     syn match   xmlEndTag
 	\ +</[^ /!?<>"']\+>+
-	\ contains=xmlNamespace,xmlEndTagName,xmlAttribPunct,@xmlTagHook
+	\ contains=xmlNamespace,xmlAttribPunct,@xmlTagHook
 
 endif
 
@@ -236,15 +221,15 @@ if exists('g:xml_syntax_folding')
 	\ extend
 	\ fold
 
-    syn region xmlDoubleForwardSlashComment
-        \ start=+//+
-        \ end=+$+
-        \ extend
-        \ fold
-        
     syn region xmlCBlockComment
         \ start=+/\*+
         \ end=+\*/+
+        \ extend
+        \ fold
+
+    syn region xmlCppComment
+        \ start=+//+
+        \ end=+$+
         \ extend
         \ fold
 
@@ -259,15 +244,15 @@ else
 	\ contains=xmlCommentStart,xmlCommentError
 	\ extend
 
-    syn region xmlDoubleForwardSlashComment
-        \ start=+//+
-        \ end=+$+
-        \ keepend
-
     syn region xmlCBlockComment
         \ start=+/\*+
         \ end=+\*/+
         \ extend
+
+    syn region xmlCppComment
+        \ start=+//+
+        \ end=+$+
+        \ keepend
 
 endif
 
@@ -346,9 +331,8 @@ syn sync minlines=100
 " The default highlighting.
 hi def link xmlTodo		Todo
 hi def link xmlTag		Function
-hi def link xmlTagName		Keyword
-hi def link xmlEndTag		Function
-hi def link xmlEndTagName	Keyword
+hi def link xmlTagName		Function
+hi def link xmlEndTag		Identifier
 if !exists("g:xml_namespace_transparent")
     hi def link xmlNamespace	Tag
 endif
@@ -360,7 +344,7 @@ hi def link xmlAttrib		Type
 
 hi def link xmlString		String
 hi def link xmlComment		Comment
-hi def link xmlDoubleForwardSlashComment Comment
+hi def link xmlCppComment	Comment
 hi def link xmlCBlockComment    Comment
 hi def link xmlCommentStart	xmlComment
 hi def link xmlCommentPart	Comment
