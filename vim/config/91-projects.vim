@@ -7,6 +7,7 @@ com! Platform cd C:/SVN/Syandus_ALIVE3/Platform/Source/Code
 com! Platform4 cd C:/SVN/Syandus_ALIVE4/Platform/Source/Code
 
 com! Carbon cd C:/SVN/Syandus_ALIVE3/Frameworks/Carbon
+com! CarbonCME cd C:/SVN/Syandus_ALIVE3/Frameworks/CarbonCME
 com! Carbon4 cd C:/SVN/Syandus_ALIVE4/Frameworks/Carbon
 com! Oxygen cd C:/SVN/Syandus_ALIVE3/Frameworks/Oxygen
 
@@ -249,6 +250,16 @@ augroup Carbon
     autocmd!
     autocmd BufNewFile,BufRead,BufEnter
     \ C:/SVN/Syandus_ALIVE3/Frameworks/Carbon/*
+    \ call SetSettingsForProject(
+        \ 3,
+        \ 'C:/Users/root/Desktop/Dropbox/make_carbon.ahk',
+        \ 'C:/SVN/Syandus_ALIVE3/Frameworks/Carbon/Source/Scripts/tags,' .
+        \ 'C:/SVN/Syandus_ALIVE3/Platform/SDK/Include/tags')
+augroup END
+augroup CarbonCME
+    autocmd!
+    autocmd BufNewFile,BufRead,BufEnter
+    \ C:/SVN/Syandus_ALIVE3/Frameworks/CarbonCME/*
     \ call SetSettingsForProject(
         \ 3,
         \ 'C:/Users/root/Desktop/Dropbox/make_carbon.ahk',
