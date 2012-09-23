@@ -1,0 +1,26 @@
+snippet panel
+<panel name="panel_name">
+	<bounds />
+
+	<frame draw_first="true"><control_list>
+	</control_list></frame>
+
+	<view><control_list>
+	</control_list></view>
+</panel>
+endsnippet
+
+snippet push_button
+<push_button name="${0}" TLINK=">buttons>push">
+	<bounds left="^,left,0" top="^,top,0" width="100"/>
+	<label text_name="" text_style="Default"/>
+</push_button>
+endsnippet
+
+snippet inset
+<layer name="ignore1">
+	<bounds left="^,left,0" right="^,right,0"
+	        top="^,top,0" bottom="^,bottom,0"/>
+	<control_list TLINK=">layers>light_inset_control_list"/>
+</layer>
+endsnippet
