@@ -33,17 +33,6 @@ com! SyProjectGenerator cd C:/SVN/Syandus_ALIVE4/Tools/Source/SyProjectGenerator
 com! OgreLair cd C:/SVN/Syandus_Cores/C_Ogre_Lair_01
 com! Ms cd C:/SVN/Syandus_Cores/C_CMSC_MS_01
 
-" Shaders
-function! SetSettingsForShaders()
-    setlocal tabstop=4 shiftwidth=4 softtabstop=4
-    nnoremap <buffer> <leader>m :update<CR>:!start .\install.bat<CR>
-    setlocal tags=
-endfunction
-augroup Shaders
-    autocmd!
-    autocmd BufNewFile,BufRead,BufEnter *.fx call SetSettingsForShaders()
-augroup END
-
 function! SetSettingsForProject(size_of_tab, autohotkey_file, tags)
 	execute 'setlocal tabstop=' . a:size_of_tab
 	execute 'setlocal shiftwidth=' . a:size_of_tab 
@@ -373,4 +362,16 @@ augroup ImmunoSim
         \ )
 augroup END
 " }}}
+
+" Shaders
+function! SetSettingsForShaders()
+    setlocal tabstop=4 shiftwidth=4 softtabstop=4
+    nnoremap <buffer> <leader>m :update<CR>:!start .\install.bat<CR>
+    setlocal tags=
+endfunction
+augroup Shaders
+    autocmd!
+    autocmd BufNewFile,BufRead,BufEnter *.fx call SetSettingsForShaders()
+augroup END
+
 " vim:fdm=marker:foldlevel=0
