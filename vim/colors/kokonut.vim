@@ -16,7 +16,6 @@ endif
 let g:colors_name="kokonut"
 
 hi Normal         guifg=Black       guibg=#EEEEEE       gui=none
-hi Normal         guifg=White     guibg=Black       gui=none
 "hi CursorLine     guifg=Black                           gui=none
 "hi Visual         guifg=Black       guibg=#CEFF84       gui=none
 hi Visual         guifg=Black       guibg=#E1F5C4       gui=none
