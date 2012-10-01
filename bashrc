@@ -53,3 +53,5 @@ alias hu='hg update'
 alias hc='hg commit'
 alias hd='hg diff'
 alias hpa='hg purge --all'
+
+alias fix_dot_permissions="find . -iname '*.vim' -type f -exec chmod -x {} \;"
