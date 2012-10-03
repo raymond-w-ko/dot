@@ -21,6 +21,13 @@ snippet pb
 </push_button>
 endsnippet
 
+snippet radio
+<radio_button name="${1}" TLINK=">buttons>radio" outline="false">
+	<bounds left="^,left,0" top="^,top,0" width="100"/>
+	<label text_name="" text_style="Default"/>
+</radio_button>
+endsnippet
+
 snippet pbled
 <push_button name="${1}" TLINK=">buttons>push_right_led" outline="false">
 	<bounds left="^,left,0" top="^,top,0" width="100"/>
@@ -49,7 +56,7 @@ snippet doc_view
 endsnippet
 
 snippet picture
-<picture name="${1}" image="${2}" use_image_dim="true">
+<picture name="${1}" image="${2}" use_image_dim="true" outline="true">
 	<bounds left="^,left,0" top="^,top,0"/>
 </picture>
 endsnippet
