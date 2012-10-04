@@ -139,13 +139,14 @@ set wildignore+=*.exe,*.dll
 
 " media files in a binary format
 set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.bmp,*.tga,*.mp3,*.ico,*.wav
-set wildignore+=*.bik,*.ani,*.mask
+set wildignore+=*.bik,*.ani,*.mask,*.dss
 
 " version control directories
 set wildignore+=.hg,.git,.svn
 
 " Visual Studio files
-set wildignore+=*.ncb,*.suo,*.user,*.vcproj,*.vcxproj,*.out,*.sln,*.pdb,*.manifest,*.dep,*.idb,*.ipch,*.o,*.obj
+set wildignore+=*.ncb,*.suo,*.user,*.vcproj,*.vcxproj,*.out,*.sln,*.pdb
+set wildignore+=*.manifest,*.dep,*.idb,*.ipch,*.o,*.obj
 set wildignore+=Debug,Release
 
 " Gamebryo Binaries
