@@ -267,6 +267,9 @@ syn match cBraces display "[{}]"
 " Booleans
 syn keyword cBoolean true false TRUE FALSE
 
+" C++11
+syn keyword cConstant nullptr
+
 " Syandus C Types
 syn keyword syTypes bool8 int32 int64 float32 double64 char8 uchar8 uint32 uint64 ushort16 short16
 
