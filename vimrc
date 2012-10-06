@@ -139,7 +139,7 @@ set wildignore+=*.exe,*.dll
 
 " media files in a binary format
 set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.bmp,*.tga,*.mp3,*.ico,*.wav
-set wildignore+=*.bik,*.ani,*.mask,*.dss
+set wildignore+=*.bik,*.ani,*.mask,*.dds
 
 " version control directories
 set wildignore+=.hg,.git,.svn
