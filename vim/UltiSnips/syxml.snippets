@@ -36,7 +36,7 @@ snippet pbled
 endsnippet
 
 snippet inset
-<layer name="ignore1">
+<layer name="div0">
 	<bounds left="^,left,6" right="^,right,-6"
 	        top="^,top,0" bottom="^,bottom,0"/>
 	<control_list TLINK=">layers>light_inset_control_list"/>
@@ -50,20 +50,21 @@ snippet tsl
 endsnippet
 
 snippet doc_view
-<doc_view name="${1}" page="" outline="true">
+<doc_view name="${1}" ignore_in_use="true" outline="true">
 	<bounds left="^,left,0" top="^,top,0" width="100" height="50"/>
 </doc_view>
 endsnippet
 
 snippet picture
-<picture name="${1}" image="${2}" use_image_dim="true" outline="true">
+<picture name="${1}" image="${2}" use_image_dim="true"
+         outline="true">
 	<bounds left="^,left,0" top="^,top,0"/>
 </picture>
 endsnippet
 
 snippet label
-<label name="${1}" text_name="${2}" text_style="Default"
-       outline="true">
+<label name="${1}" text_name="${2}"
+       text_style="Default" outline="true">
 	<bounds left="^,left,0" top="^,top,0" width="100" height="24"/>
 </label>
 endsnippet
