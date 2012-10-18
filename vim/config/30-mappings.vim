@@ -331,7 +331,7 @@ function! CreateAndSetupVsplits()
         wincmd h
     endfor
 
-    if (num_vsplits > 2)
+    if (num_vsplits >= 2)
         wincmd l
     endif
 
