@@ -15,6 +15,9 @@ nnoremap ` '
 nnoremap  :BD<CR>
 nnoremap <C-BS> :BD<CR>
 
+" Press F12 to switch to UTF-8 encoding
+nnoremap <F12> :e ++enc=latin1<CR>
+
 " General {{{
 " Substitute
 nnoremap <leader>s :%s///c<left><left>
@@ -328,7 +331,9 @@ function! CreateAndSetupVsplits()
         wincmd h
     endfor
 
-    wincmd l
+    if (num_vsplits > 2)
+        wincmd l
+    endif
 
     wincmd =
     
