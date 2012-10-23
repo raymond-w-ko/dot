@@ -171,10 +171,10 @@ set wildignore+=*.ccv,*.fls,*.pat,*.gsl,*.flt,*.asi
 " Tabs, indents, spaces, wrapping {{{
 set autoindent
 function! SetMyCino()
+    set cinoptions=
     set cinoptions+=:0
     set cinoptions+=g0
     set cinoptions+=N-s
-    set cinoptions+=i0
     set cinoptions+=(0
     set cinoptions+=u0
     set cinoptions+=Ws
