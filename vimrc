@@ -259,4 +259,10 @@ function! MakeSyDllFuncsH()
 endfunction
 nnoremap <leader>0 :call MakeSyDllFuncsH()<ESC>
 
+function! FilterSmartQuotes()
+    %s/’/\'/
+endfunction
+command! FilterSmartQuotes silent! call FilterSmartQuotes()
+
+
 " vim:fdm=marker:foldlevel=0
