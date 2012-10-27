@@ -47,6 +47,8 @@ alias gs='git status'
 alias gc='git commit'
 alias gca='git commit -a'
 alias gd='git diff'
+alias gpush='git push'
+alias gpull='git pull'
 
 alias hs='hg status'
 alias hm='hg merge'
@@ -54,5 +56,7 @@ alias hu='hg update'
 alias hc='hg commit'
 alias hd='hg diff'
 alias hpa='hg purge --all'
+alias hpush='hg push'
+alias hpull='hg pull'
 
 alias fix_permissions="find . -regex '.*\.\(vim\|h\|hpp\|cpp\|cpp\)' -type f -exec chmod -x {} \;"
