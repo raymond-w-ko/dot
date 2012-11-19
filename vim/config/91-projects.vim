@@ -241,7 +241,7 @@ augroup Carbon
     \ C:/SVN/Syandus_ALIVE3/Frameworks/Carbon/*
     \ call SetSettingsForProject(
         \ 3,
-        \ 'C:/Users/root/Desktop/Dropbox/make_carbon.ahk',
+        \ 'Carbon',
         \ 'C:/SVN/Syandus_ALIVE3/Frameworks/Carbon/Source/Scripts/tags,' .
         \ 'C:/SVN/Syandus_ALIVE3/Platform/SDK/Include/tags')
 augroup END
@@ -251,7 +251,7 @@ augroup CarbonCME
     \ C:/SVN/Syandus_ALIVE3/Frameworks/CarbonCME/*
     \ call SetSettingsForProject(
         \ 3,
-        \ 'C:/Users/root/Desktop/Dropbox/make_carbon.ahk',
+        \ 'CarbonCME',
         \ 'C:/SVN/Syandus_ALIVE3/Frameworks/Carbon/Source/Scripts/tags,' .
         \ 'C:/SVN/Syandus_ALIVE3/Platform/SDK/Include/tags')
 augroup END

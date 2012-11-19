@@ -260,7 +260,7 @@ endfunction
 nnoremap <leader>0 :call MakeSyDllFuncsH()<ESC>
 
 function! FilterSmartQuotes()
-    %s/’/\'/
+    %s/\v‘|’/\'/
 endfunction
 command! FilterSmartQuotes silent! call FilterSmartQuotes()
 
