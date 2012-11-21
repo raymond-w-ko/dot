@@ -7,3 +7,5 @@
 	email = raymond.w.ko@gmail.com
 [color]
 	diff = always
+[push]
+	default = matching
