@@ -1,3 +1,12 @@
+let s:uname = "win32"
+if has("unix")
+    let s:uname = system("uname")
+endif
+
+if (s:uname == "Darwin\n")
+    set macmeta
+endif
+
 " disable crazy keys
 nnoremap K <Nop>
 vnoremap K <Nop>
@@ -283,13 +292,24 @@ nnoremap <silent> <Left> :call MarkWindowSwap()<CR><C-w>h:call DoWindowSwap()<CR
 nnoremap <silent> <Right> :call MarkWindowSwap()<CR><C-w>l:call DoWindowSwap()<CR>
 " }}}
 " Tabs {{{
-nnoremap <A-1> 1gt
-nnoremap <A-2> 2gt
-nnoremap <A-3> 3gt
-nnoremap <A-4> 4gt
-nnoremap <A-5> 5gt
-nnoremap <A-6> 6gt
-nnoremap <A-7> 7gt
+if (s:uname == "Darwin\n")
+    nnoremap <M-1> 1gt
+    nnoremap <M-2> 2gt
+    nnoremap <M-3> 3gt
+    nnoremap <M-4> 4gt
+    nnoremap <M-5> 5gt
+    nnoremap <M-6> 6gt
+    nnoremap <M-7> 7gt
+else
+    nnoremap <A-1> 1gt
+    nnoremap <A-2> 2gt
+    nnoremap <A-3> 3gt
+    nnoremap <A-4> 4gt
+    nnoremap <A-5> 5gt
+    nnoremap <A-6> 6gt
+    nnoremap <A-7> 7gt
+endif
+
 function! CreateScratch()
     1split
 
@@ -340,8 +360,13 @@ function! CreateAndSetupVsplits()
     let g:num_tabs = g:num_tabs + 1
     return
 endfunction
-nnoremap <A-t> :call CreateAndSetupVsplits()<CR>
-nnoremap <A-w> <ESC>:tabclose<CR>
+if (s:uname == "Darwin\n")
+    nnoremap <M-t> :call CreateAndSetupVsplits()<CR>
+    nnoremap <M-w> :tabclose<CR>
+else
+    nnoremap <A-t> :call CreateAndSetupVsplits()<CR>
+    nnoremap <A-w> :tabclose<CR>
+endif
 
 " }}}
 " Finding stuff {{{

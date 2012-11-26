@@ -4,7 +4,7 @@
 export HISTSIZE=32768
 export HISTCONTROL=ignoreboth
 
-export PATH="$HOME/bin:/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/aws/bin:/opt/mono/bin"
+export PATH="/opt/local/bin:$HOME/bin:/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/aws/bin:/opt/mono/bin"
 export TMP='/tmp'
 export TEMP='/tmp'
 
@@ -12,9 +12,18 @@ export PS1="\n\[\e[32;1m\](\[\e[37;1m\]\h\[\e[32;1m\])-(\[\e[37;1m\]jobs:\j\[\e[
 
 unset PYTHONHOME
 
-alias ls='ls --color -F'
-alias l='ls --color -F'
-alias ll='ls --color -lF'
+unamestr=`uname -s`
+if [[ "$unamestr" == 'Darwin' ]]; then
+    alias ls='ls -FG'
+    alias l='ls -FG'
+    alias ll='ls -lFG'
+
+    alias vim='mvim'
+else
+    alias ls='ls --color -F'
+    alias l='ls --color -F'
+    alias ll='ls --color -lF'
+fi
 
 alias dot='cd ~/lib/dot'
 alias ..='cd ..'
