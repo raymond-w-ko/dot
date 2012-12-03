@@ -341,7 +341,7 @@ augroup CMSC_MS
         \ 3,
         \ 'CMSC ' .
         \ 'C:/SVN/Syandus_Cores/C_CMSC_MS_01/Source/Scripts/Content/configure.bat',
-        \ 'C:/SVN/Syandus_ALIVE3/Frameworks/Carbon/Source/Scripts/tags,' .
+        \ 'C:/SVN/Syandus_ALIVE3/Frameworks/CarbonCME/Source/Scripts/tags,' .
         \ 'C:/SVN/Syandus_ALIVE3/Platform/SDK/Include/tags'
         \ )
 augroup END
