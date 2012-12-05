@@ -153,7 +153,7 @@ set wildignore+=Debug,Release
 set wildignore+=*.nif,*.kf,*.kfm,*.NSB
 
 " compiled cached bytecodes
-set wildignore+=*.pyc,*.luac
+set wildignore+=*.pyc,*.luac,*.luc
 
 " binary document formats
 set wildignore+=*.pdf,*.doc,*.docx,*.xls,*.xlsx
