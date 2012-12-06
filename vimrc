@@ -48,7 +48,7 @@ if !exists("g:already_syntax_on")
 endif
 set fileformats=unix,dos,mac        " order of support
 " unfortunately shellslash breaks netrw, but I don't really use it
-set shellslash
+"set shellslash
 " }}}
 
 " General {{{
