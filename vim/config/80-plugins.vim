@@ -95,4 +95,7 @@ let g:omegacomplete_corrections_hi_cmds=[
                 \ "ctermbg=011 ctermfg=058 cterm=none",
     \ ]
 
+" syntastic
+let g:syntastic_enable_highlighting = 0
+
 " vim:fdm=marker:foldlevel=9001
