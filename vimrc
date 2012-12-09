@@ -119,15 +119,21 @@ function! StripTrailingWhitespace()
 endfunction
 augroup StripTrailingWhitespaceOnSave
     au!
-    "au BufWritePre C:/SVN/* call StripTrailingWhitespace()
-    "au BufWritePre *.h,*.hpp,*.c,*.cc,*.cpp call StripTrailingWhitespace()
-    "au BufWritePre *.py call StripTrailingWhitespace()
+    "Syandus
+    au BufWritePre C:/SVN/* call StripTrailingWhitespace()
+
+    " C / C++
+    au BufWritePre *.h,*.hpp,*.c,*.cc,*.cpp call StripTrailingWhitespace()
+    " Python
+    au BufWritePre *.py call StripTrailingWhitespace()
+    " Lua
+    au BufWritePre *.lua call StripTrailingWhitespace()
 augroup END
-augroup SaveAndRestoreFolds
-    au!
+"augroup SaveAndRestoreFolds
+    "au!
     "au BufWinLeave * silent! mkview
     "au BufWinEnter * silent! loadview
-augroup END
+"augroup END
 " }}}
 " wildmenu completion {{{
 set wildmenu

@@ -84,40 +84,62 @@ nnoremap <C-l>  <C-w>l
 
 " treat leading whitespace as though it was not there
 function! MyLeftBrace()
-    let orig_wrapscan=&wrapscan
-    let temp=@/
-    set nohls
-    set nowrapscan
-    try
-        ?^\s*$
-    catch
-        normal gg
-    endtry
-    let @/=temp
-    set hls
-    if (orig_wrapscan)
-        set wrapscan
+    let counter = 0
+    let line_number = line('.')
+    let starting_line_number = line_number
+    let line_number -= 1
+
+    while (line_number >= 1)
+        let line = getline(line_number)
+        if (match(line, '^\s*$') != -1)
+            break
+        endif
+        let line_number -= 1
+    endwhile
+
+    if (line_number != starting_line_number && line_number != 0)
+        exe 'normal! ' . line_number . 'G'
+    elseif (line_number == 0)
+        normal! 1G
+    else
+        return
     endif
+
+    normal! 0
+
+    return
 endfunction
-nnoremap <silent> { :silent! call MyLeftBrace()<CR>
+nnoremap <silent> { :call MyLeftBrace()<CR>
 
 function! MyRightBrace()
-    let orig_wrapscan=&wrapscan
-    let temp=@/
-    set nohls
-    set nowrapscan
-    try
-        /^\s*$
-    catch
-        normal G
-    endtry
-    let @/=temp
-    set hls
-    if (orig_wrapscan)
-        set wrapscan
+    let counter = 0
+    let line_number = line('.')
+    let starting_line_number = line_number
+    let line_number += 1
+    
+    let max_bounds = line('$')
+
+    while (line_number <= max_bounds)
+        let line = getline(line_number)
+        if (match(line, '^\s*$') != -1)
+            break
+        endif
+        let line_number += 1
+    endwhile
+
+    if (line_number != starting_line_number && line_number <= max_bounds)
+        exe 'normal! ' . line_number . 'G'
+    elseif (line_number > max_bounds)
+        normal! G
+    else
+        return
     endif
+
+    normal! 0
+
+    return
 endfunction
-nnoremap <silent> } :silent call MyRightBrace()<CR>
+nnoremap <silent> } :call MyRightBrace()<CR>
 
 function! PushBraceSettings()
     let g:BraceSettingsOrigWrapscan=&wrapscan
@@ -138,9 +160,8 @@ function! PopBraceSettings()
 
     return ''
 endfunction
-
-vnoremap <silent> { ?<C-r>=PushBraceSettings()<CR>^\s*$<CR><ESC>:<C-r>=PopBraceSettings()<CR><ESC>gv
-vnoremap <silent> } /<C-r>=PushBraceSettings()<CR>^\s*$<CR><ESC>:<C-r>=PopBraceSettings()<CR><ESC>gv
+"vnoremap <silent> { ?<C-r>=PushBraceSettings()<CR>^\s*$<CR><ESC>:<C-r>=PopBraceSettings()<CR><ESC>gv
+"vnoremap <silent> } /<C-r>=PushBraceSettings()<CR>^\s*$<CR><ESC>:<C-r>=PopBraceSettings()<CR><ESC>gv
 
 " Highlight word {{{
 "nnoremap <silent> <leader>hh :execute 'match InterestingWord1 /\<<c-r><c-w>\>/'<cr>
