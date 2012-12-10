@@ -19,6 +19,8 @@ if [[ "$unamestr" == 'Darwin' ]]; then
     alias ll='ls -lFG'
 
     alias vim='mvim'
+
+    export DYLD_LIBRARY_PATH=~/boost/stage/lib
 else
     alias ls='ls --color -F'
     alias l='ls --color -F'
