@@ -44,4 +44,9 @@ if (has("gui_running"))
 
     " Remove cursor blink
     set guicursor+=a:blinkon0
+
+    if has('mac')
+        set lines=9999
+        set columns=9999
+    endif
 endif

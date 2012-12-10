@@ -59,6 +59,10 @@ set showcmd
 set hidden
 set novisualbell
 set noerrorbells
+" WTF, setting visual bell means NO visual bell and NO audio bell in MacVIM
+if has('mac')
+    set vb
+endif
 set nocursorcolumn
 set ruler
 set backspace=indent,eol,start
