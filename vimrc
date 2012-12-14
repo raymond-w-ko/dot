@@ -128,6 +128,8 @@ augroup StripTrailingWhitespaceOnSave
 
     " C / C++
     au BufWritePre *.h,*.hpp,*.c,*.cc,*.cpp call StripTrailingWhitespace()
+    " Java
+    au BufWritePre *.java call StripTrailingWhitespace()
     " Python
     au BufWritePre *.py call StripTrailingWhitespace()
     " Lua
