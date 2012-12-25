@@ -165,7 +165,7 @@ set wildignore+=Debug,Release
 set wildignore+=*.nif,*.kf,*.kfm,*.NSB
 
 " compiled cached bytecodes
-set wildignore+=*.pyc,*.luac,*.luc
+set wildignore+=*.pyc,*.luac,*.luc,*.class
 
 " binary document formats
 set wildignore+=*.pdf,*.doc,*.docx,*.xls,*.xlsx
@@ -191,6 +191,7 @@ function! SetMyCino()
     set cinoptions+=u0
     set cinoptions+=Ws
     set cinoptions+=l1
+    set cinoptions+=j1
 endfunction
 call SetMyCino()
 
@@ -276,5 +277,10 @@ function! FilterSmartQuotes()
 endfunction
 command! FilterSmartQuotes silent! call FilterSmartQuotes()
 
+if has('java')
+    "set javacp=C:/cygwin/home/root/src/vim/src/java/clojure-1.4.0.jar;C:/cygwin/home/root/src/vim/src/java/groovy-all-2.0.5-indy.jar;C:/cygwin/home/root/src/vim/src/java/vim.jar
+    set javacp=C:/cygwin/home/root/src/vim/src/java/clojure-1.4.0.jar;C:/cygwin/home/root/src/vim/src/java/groovy-all-2.0.5-indy.jar;C:/cygwin/home/root/src/vim/src/java/vim.jar
+    javashell clojure
+endif
 
 " vim:fdm=marker:foldlevel=0

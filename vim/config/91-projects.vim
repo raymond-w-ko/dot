@@ -46,6 +46,11 @@ function! SetSettingsForProject(size_of_tab, autohotkey_file, tags)
 	execute 'setlocal tags=' . a:tags
 endfunction
 
+function! SetSpaceM(console_name, cmd)
+    execute "nnoremap <silent><buffer> <leader>m :update<CR>:call AutoHotkeyConsole2Make('" .
+        \ a:console_name . "', '" . a:cmd . "')<CR>"
+endfunction
+
 " personal projects
 " OmegaComplete {{{
 augroup OmegaCompletePythonModule
@@ -58,6 +63,20 @@ augroup OmegaCompletePythonModule
         \ '')
 augroup END
 " }}}
+augroup VimSourceCode
+    au!
+    au BufNewFile,BufRead,BufEnter
+    \ C:/cygwin/home/root/src/vim/src/*
+    \ call SetSpaceM('Vim', '_compile.bat{Enter}')
+augroup END
+
+augroup VimJava
+    au!
+    au BufNewFile,BufRead,BufEnter
+    \ C:/cygwin/home/root/src/vim/src/java/*
+    \ call SetSpaceM('VimJava', 'make.bat{Enter}')
+augroup END
+
 
 " platform level
 " OGRE {{{

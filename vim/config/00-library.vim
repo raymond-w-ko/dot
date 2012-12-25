@@ -47,9 +47,15 @@ endfunction
 
 " executes the specificed autohotkey script
 function! AutoHotkeyMake(makefile)
-  execute ':!start "C:/Program Files/AutoHotkey/AutoHotkey.exe" ' .
+  silent! execute ':!start "C:/Program Files/AutoHotkey/AutoHotkey.exe" ' .
         \ '"C:/Users/root/Desktop/Dropbox/make.ahk" ' .
         \ a:makefile
+endfunction
+
+function! AutoHotkeyConsole2Make(console_name, cmd)
+  silent! execute ':!start "C:/Program Files/AutoHotkey/AutoHotkey.exe" ' .
+        \ '"C:/Users/root/Desktop/Dropbox/console2_make.ahk" ' .
+        \ a:console_name . ' ' . a:cmd
 endfunction
 
 " ex command for toggling hex mode - define mapping if desired
