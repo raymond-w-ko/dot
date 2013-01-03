@@ -1,3 +1,5 @@
+" vim:fdm=marker:foldlevel=0
+
 " when re-sourcing with this set, syntax highlighting changes!
 "set nocompatible
 
@@ -278,9 +280,13 @@ endfunction
 command! FilterSmartQuotes silent! call FilterSmartQuotes()
 
 if has('java')
-    "set javacp=C:/cygwin/home/root/src/vim/src/java/clojure-1.4.0.jar;C:/cygwin/home/root/src/vim/src/java/groovy-all-2.0.5-indy.jar;C:/cygwin/home/root/src/vim/src/java/vim.jar
-    set javacp=C:/cygwin/home/root/src/vim/src/java/clojure-1.4.0.jar;C:/cygwin/home/root/src/vim/src/java/groovy-all-2.0.5-indy.jar;C:/cygwin/home/root/src/vim/src/java/vim.jar
+    let jar_list = [
+                \ 'C:/cygwin/home/root/src/vim/src/java/vim.jar',
+                \ expand("$HOME") . "/java/clojure-1.5.0-RC1.jar",
+                \ expand("$HOME") . "/java/groovy-all-2.0.5-indy.jar"
+                \ ]
+    let jars = substitute(join(jar_list, ';'), '\\', '/', 'g')
+    exe "set javacp=" . jars
+
     javashell clojure
 endif
-
-" vim:fdm=marker:foldlevel=0

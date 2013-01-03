@@ -67,12 +67,12 @@ let g:gundo_right=1
 
 let g:vimclojure#SplitPos = "bottom"
 let g:vimclojure#SplitSize = 16
-let g:vimclojure#FuzzyIndent=1
-let g:vimclojure#HighlightBuiltins=1
-let g:vimclojure#HighlightContrib=1
-let g:vimclojure#DynamicHighlighting=1
-let g:vimclojure#ParenRainbow=0
-let g:vimclojure#WantNailgun = 1
+let g:vimclojure#FuzzyIndent = 1
+let g:vimclojure#HighlightBuiltins = 1
+let g:vimclojure#HighlightContrib = 1
+let g:vimclojure#DynamicHighlighting = 1
+let g:vimclojure#ParenRainbow = 0
+let g:vimclojure#WantNailgun = 0
 let g:vimclojure#NailgunClient = $HOME . '\bin\ng.exe'
 
 "NERDCommenter
@@ -97,5 +97,9 @@ let g:omegacomplete_corrections_hi_cmds=[
 
 " syntastic
 let g:syntastic_enable_highlighting = 0
+let g:syntastic_mode_map = {
+            \ 'mode': 'active',
+            \ 'active_filetypes': ['ruby', 'php'],
+            \ 'passive_filetypes': ['java'] }
 
 " vim:fdm=marker:foldlevel=9001
