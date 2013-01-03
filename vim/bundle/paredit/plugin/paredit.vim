@@ -864,15 +864,16 @@ endfunction
 
 " Handle <BS> keypress
 function! PareditBackspace( repl_mode )
+    let suffix = "\<C-R>=omegacomplete#FeedPopup()\<CR>"
     let [lp, cp] = s:GetReplPromptPos()
     if a:repl_mode && line( "." ) == lp && col( "." ) <= cp
         " No BS allowed before the previous EOF mark in the REPL
         " i.e. don't delete Lisp prompt
-        return ""
+        return "" . suffix
     endif
 
     if !g:paredit_mode || s:InsideComment()
-        return "\<BS>"
+        return "\<BS>" . suffix
     endif
 
     let line = getline( '.' )
@@ -880,27 +881,27 @@ function! PareditBackspace( repl_mode )
 
     if pos == 0
         " We are at the beginning of the line
-        return "\<BS>"
+        return "\<BS>" . suffix
     elseif s:InsideString() && line[pos-1] =~ b:any_openclose_char
         " Deleting a paren inside a string
-        return "\<BS>"
+        return "\<BS>" . suffix
     elseif pos > 1 && line[pos-1] =~ b:any_matched_char && line[pos-2] == '\' && (pos < 3 || line[pos-3] != '\')
         " Deleting an escaped matched character
-        return "\<BS>\<BS>"
+        return "\<BS>\<BS>" . suffix
     elseif line[pos-1] !~ b:any_matched_char
         " Deleting a non-special character
-        return "\<BS>"
+        return "\<BS>" . suffix
     elseif line[pos-1] != '"' && !s:IsBalanced()
         " Current top-form is unbalanced, can't retain paredit mode
-        return "\<BS>"
+        return "\<BS>" . suffix
     endif
 
     if line[pos-1:pos] =~ b:any_matched_pair
         " Deleting an empty character-pair
-        return "\<Right>\<BS>\<BS>"
+        return "\<Right>\<BS>\<BS>" . suffix
     else
         " Character-pair is not empty, don't delete just move inside
-        return "\<Left>"
+        return "\<Left>" . suffix
     endif
 endfunction
 

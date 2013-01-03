@@ -102,4 +102,8 @@ let g:syntastic_mode_map = {
             \ 'active_filetypes': ['ruby', 'php'],
             \ 'passive_filetypes': ['java'] }
 
+" paredit
+let g:paredit_leader = ','
+let g:paredit_shortmaps = 0
+
 " vim:fdm=marker:foldlevel=9001
