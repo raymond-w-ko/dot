@@ -34,16 +34,25 @@ com! SyProjectGenerator cd C:/SVN/Syandus_ALIVE4/Tools/Source/SyProjectGenerator
 com! OgreLair cd C:/SVN/Syandus_Cores/C_Ogre_Lair_01
 com! Ms cd C:/SVN/Syandus_Cores/C_CMSC_MS_01
 
-function! SetSettingsForProject(size_of_tab, autohotkey_file, tags)
+function! SetSettingsForProject(size_of_tab, arg0, tags)
 	execute 'setlocal tabstop=' . a:size_of_tab
 	execute 'setlocal shiftwidth=' . a:size_of_tab 
 	execute 'setlocal softtabstop=' . a:size_of_tab
-    if (len(a:autohotkey_file) == 0)
+    if (len(a:arg0) == 0)
         execute "nnoremap <buffer> <leader>m <nop>"
     else
         execute "nnoremap <buffer> <leader>m :call AutoHotkeyMake('" .
-               \ a:autohotkey_file . "')\<CR>"
+               \ a:arg0 . "')\<CR>"
     endif
+	execute 'setlocal tags=' . a:tags
+endfunction
+
+function! SetSettingsForProject2(size_of_tab, arg0, tags)
+	execute 'setlocal tabstop=' . a:size_of_tab
+	execute 'setlocal shiftwidth=' . a:size_of_tab 
+	execute 'setlocal softtabstop=' . a:size_of_tab
+    execute "nnoremap <buffer> <leader>m :call AutoHotkeyWinSCP('" .
+            \ a:arg0 . "')\<CR>"
 	execute 'setlocal tags=' . a:tags
 endfunction
 
@@ -160,7 +169,7 @@ augroup HubWeb
     autocmd!
     autocmd BufNewFile,BufRead,BufEnter
     \ C:/SVN/Syandus_ALIVE3/Hub/Web/*
-    \ call SetSettingsForProject(
+    \ call SetSettingsForProject2(
         \ 4,
         \ '',
         \ '')

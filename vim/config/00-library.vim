@@ -46,16 +46,22 @@ function! EscapePathname(pathname)
 endfunction
 
 " executes the specificed autohotkey script
-function! AutoHotkeyMake(makefile)
+function! AutoHotkeyMake(arg0)
   silent! execute ':!start "C:/Program Files/AutoHotkey/AutoHotkey.exe" ' .
         \ '"C:/Users/root/Desktop/Dropbox/make.ahk" ' .
-        \ a:makefile
+        \ a:arg0
 endfunction
 
 function! AutoHotkeyConsole2Make(console_name, cmd)
   silent! execute ':!start "C:/Program Files/AutoHotkey/AutoHotkey.exe" ' .
         \ '"C:/Users/root/Desktop/Dropbox/console2_make.ahk" ' .
         \ a:console_name . ' ' . a:cmd
+endfunction
+
+function! AutoHotkeyWinSCP(arg0)
+  silent! execute ':!start "C:/Program Files/AutoHotkey/AutoHotkey.exe" ' .
+        \ '"C:/Users/root/Desktop/Dropbox/winscp_sync.ahk" ' .
+        \ a:arg0
 endfunction
 
 " ex command for toggling hex mode - define mapping if desired
