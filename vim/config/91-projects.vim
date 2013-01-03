@@ -2,6 +2,7 @@ set tags=
 
 com! Dropbox cd C:/Users/root/Desktop/Dropbox
 com! OmegaComplete cd C:/cygwin/home/root/lib/dot/vim/bundle/omegacomplete
+com! Vim cd C:/cygwin/home/root/src/vim
 
 com! Platform cd C:/SVN/Syandus_ALIVE3/Platform/Source/Code
 com! Platform4 cd C:/SVN/Syandus_ALIVE4/Platform/Source/Code
@@ -397,7 +398,7 @@ function! SetSettingsForClojure()
     setlocal tabstop=2 shiftwidth=2 softtabstop=2
     setlocal tags=
 endfunction
-augroup VimJava
+augroup ForceClojureIndentation
     au!
     autocmd BufNewFile,BufRead,BufEnter *.clj call SetSettingsForClojure()
     autocmd BufNewFile,BufRead,BufEnter *.cljs call SetSettingsForClojure()
