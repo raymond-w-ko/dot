@@ -393,4 +393,14 @@ augroup Shaders
     autocmd BufNewFile,BufRead,BufEnter *.fx call SetSettingsForShaders()
 augroup END
 
+function! SetSettingsForClojure()
+    setlocal tabstop=2 shiftwidth=2 softtabstop=2
+    setlocal tags=
+endfunction
+augroup VimJava
+    au!
+    autocmd BufNewFile,BufRead,BufEnter *.clj call SetSettingsForClojure()
+    autocmd BufNewFile,BufRead,BufEnter *.cljs call SetSettingsForClojure()
+augroup END
+
 " vim:fdm=marker:foldlevel=0
