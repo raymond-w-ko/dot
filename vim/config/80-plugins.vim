@@ -73,6 +73,17 @@ let g:vimclojure#DynamicHighlighting = 0
 let g:vimclojure#ParenRainbow = 1
 let g:vimclojure#WantNailgun = 1
 let g:vimclojure#NailgunClient = $HOME . '\bin\ng.exe'
+let g:vimclojure#ParenRainbowColorsDark = {
+            \ '1': 'ctermfg=red         guifg=red1',
+            \ '2': 'ctermfg=yellow      guifg=orange1',
+            \ '3': 'ctermfg=green       guifg=yellow1',
+            \ '4': 'ctermfg=cyan        guifg=cyan1',
+            \ '5': 'ctermfg=magenta     guifg=slateblue1',
+            \ '6': 'ctermfg=red         guifg=magenta1',
+            \ '7': 'ctermfg=magenta     guifg=brown',
+            \ '8': 'ctermfg=red         guifg=red1',
+            \ '9': 'ctermfg=red         guifg=orange1'
+            \ }
 
 "NERDCommenter
 let g:NERDCustomDelimiters = {
