@@ -65,14 +65,14 @@ let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 nnoremap <F5> :GundoToggle<CR>
 let g:gundo_right=1
 
-let g:vimclojure#SplitPos = "bottom"
-let g:vimclojure#SplitSize = 16
+let g:vimclojure#SplitPos = "left"
+let g:vimclojure#SplitSize = 80
 let g:vimclojure#FuzzyIndent = 1
 let g:vimclojure#HighlightBuiltins = 1
 let g:vimclojure#HighlightContrib = 1
 let g:vimclojure#DynamicHighlighting = 1
 let g:vimclojure#ParenRainbow = 0
-let g:vimclojure#WantNailgun = 0
+let g:vimclojure#WantNailgun = 1
 let g:vimclojure#NailgunClient = $HOME . '\bin\ng.exe'
 
 "NERDCommenter
