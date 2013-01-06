@@ -35,6 +35,7 @@ call add(g:pathogen_disabled, "ack.vim")
 call add(g:pathogen_disabled, "cocoa")
 call add(g:pathogen_disabled, "YankRing")
 call add(g:pathogen_disabled, "vim-easymotion")
+call add(g:pathogen_disabled, "VimClojure")
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()

@@ -65,25 +65,59 @@ let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 nnoremap <F5> :GundoToggle<CR>
 let g:gundo_right=1
 
-let g:vimclojure#SplitPos = "left"
-let g:vimclojure#SplitSize = 80
-let g:vimclojure#FuzzyIndent = 1
-let g:vimclojure#HighlightBuiltins = 1
-let g:vimclojure#DynamicHighlighting = 0
-let g:vimclojure#ParenRainbow = 1
-let g:vimclojure#WantNailgun = 1
-let g:vimclojure#NailgunClient = $HOME . '\bin\ng.exe'
-let g:vimclojure#ParenRainbowColorsDark = {
-            \ '1': 'ctermfg=red         guifg=red1',
-            \ '2': 'ctermfg=yellow      guifg=orange1',
-            \ '3': 'ctermfg=green       guifg=yellow1',
-            \ '4': 'ctermfg=cyan        guifg=cyan1',
-            \ '5': 'ctermfg=magenta     guifg=slateblue1',
-            \ '6': 'ctermfg=red         guifg=magenta1',
-            \ '7': 'ctermfg=magenta     guifg=brown',
-            \ '8': 'ctermfg=red         guifg=red1',
-            \ '9': 'ctermfg=red         guifg=orange1'
-            \ }
+" VimClojure (obsolete)
+"let g:vimclojure#SplitPos = "left"
+"let g:vimclojure#SplitSize = 80
+"let g:vimclojure#FuzzyIndent = 1
+"let g:vimclojure#HighlightBuiltins = 1
+"let g:vimclojure#DynamicHighlighting = 0
+"let g:vimclojure#ParenRainbow = 1
+"let g:vimclojure#WantNailgun = 1
+"let g:vimclojure#NailgunClient = $HOME . '\bin\ng.exe'
+"let g:vimclojure#ParenRainbowColorsDark = {
+            "\ '1': 'ctermfg=red         guifg=red1',
+            "\ '2': 'ctermfg=yellow      guifg=orange1',
+            "\ '3': 'ctermfg=green       guifg=yellow1',
+            "\ '4': 'ctermfg=cyan        guifg=cyan1',
+            "\ '5': 'ctermfg=magenta     guifg=slateblue1',
+            "\ '6': 'ctermfg=red         guifg=magenta1',
+            "\ '7': 'ctermfg=magenta     guifg=brown',
+            "\ '8': 'ctermfg=red         guifg=red1',
+            "\ '9': 'ctermfg=red         guifg=orange1'
+            "\ }
+
+" vim-clojure-static
+let g:clojure_maxlines = 128
+let g:clojure_fuzzy_indent = 1
+let g:clojure_fuzzy_indent_patterns = "with.*,def.*,let.*"
+let g:clojure_align_multiline_strings = 1
+
+" rainbow_parentheses
+let g:rbpt_colorpairs = [
+            \ ['brown',       'cyan1'],
+            \ ['Darkblue',    'darkgreen'],
+            \ ['darkgray',    'yellow1'],
+            \ ['darkgreen',   'orange1'],
+            \ ['darkcyan',    'red1'],
+            \ ['darkred',     'white'],
+            \ ['darkmagenta', 'pink'],
+            \ ['brown',       'brown'],
+            \ ['gray',        'purple1'],
+            \ ['black',       'blue1'],
+            \ ['darkmagenta', 'cyan1'],
+            \ ['Darkblue',    'darkgreen'],
+            \ ['darkgreen',   'yellow1'],
+            \ ['darkcyan',    'orange1'],
+            \ ['darkred',     'red1'],
+            \ ['red',         'white'],
+            \ ]
+augroup EnableRainbowParentheses
+    au!
+    au VimEnter * RainbowParenthesesToggle
+    au Syntax * RainbowParenthesesLoadRound
+    au Syntax * RainbowParenthesesLoadSquare
+    au Syntax * RainbowParenthesesLoadBraces
+augroup END
 
 "NERDCommenter
 let g:NERDCustomDelimiters = {
