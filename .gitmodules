@@ -52,3 +52,12 @@
 [submodule "vim/bundle/syntastic"]
 	path = vim/bundle/syntastic
 	url = git://github.com/scrooloose/syntastic.git
+[submodule "vim/bundle/vim-clojure-static"]
+	path = vim/bundle/vim-clojure-static
+	url = git://github.com/guns/vim-clojure-static.git
+[submodule "vim/bundle/rainbow_parentheses"]
+	path = vim/bundle/rainbow_parentheses
+	url = git://github.com/kien/rainbow_parentheses.vim.git
+[submodule "vim/bundle/foreplay"]
+	path = vim/bundle/foreplay
+	url = git://github.com/tpope/vim-foreplay.git
