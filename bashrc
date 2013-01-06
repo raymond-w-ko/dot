@@ -60,6 +60,7 @@ alias gca='git commit -a'
 alias gd='git diff'
 alias gpush='git push'
 alias gpull='git pull'
+alias gpum='git pull upstream master'
 
 alias hs='hg status'
 alias hm='hg merge'

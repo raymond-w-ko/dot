@@ -23,3 +23,10 @@ if [ -d "./VimClojure" ]; then
     git remote add upstream git://github.com/vim-scripts/VimClojure.git
     cd ..
 fi
+
+if [ -d "./foreplay" ]; then
+    cd foreplay
+    pwd
+    git remote add upstream git://github.com/tpope/vim-foreplay.git
+    cd ..
+fi

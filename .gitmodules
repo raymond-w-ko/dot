@@ -60,4 +60,4 @@
 	url = git://github.com/kien/rainbow_parentheses.vim.git
 [submodule "vim/bundle/foreplay"]
 	path = vim/bundle/foreplay
-	url = git://github.com/tpope/vim-foreplay.git
+	url = git@github.com:raymond-w-ko/vim-foreplay.git
