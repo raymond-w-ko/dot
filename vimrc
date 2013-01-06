@@ -10,7 +10,7 @@ endif
 
 if has("win32")
     " set this so that RUBY omnicompletion works
-    let g:ruby_path='C:/Ruby192/bin'
+    "let g:ruby_path='C:/Ruby192/bin'
 else
     if !has("gui_running")
         set t_Co=256
