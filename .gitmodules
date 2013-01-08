@@ -61,3 +61,6 @@
 [submodule "vim/bundle/foreplay"]
 	path = vim/bundle/foreplay
 	url = git@github.com:raymond-w-ko/vim-foreplay.git
+[submodule "vim/bundle/vim-sensible"]
+	path = vim/bundle/vim-sensible
+	url = git://github.com/tpope/vim-sensible.git
