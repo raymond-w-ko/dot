@@ -338,7 +338,7 @@ function! CreateAndSetupVsplits()
         silent! exe "chdir " . current_directory
     endif
     
-    call CreateScratch()
+    "call CreateScratch()
 
     " create number of vsplits based off of argument passwd
     for ii in range(num_vsplits)
