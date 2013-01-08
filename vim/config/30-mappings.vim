@@ -576,8 +576,8 @@ endfunction
 
 " <CR> should not autoaccept what the popup menu has selected
 inoremap <expr>     <Tab>   omegacomplete#UseFirstEntryOfPopup()
-inoremap <silent>   (       (<C-r>=MySuperLeftParen()<CR>
-inoremap <silent>   )       )<C-r>=MySuperRightParen()<CR>
+"inoremap <silent>   (       (<C-r>=MySuperLeftParen()<CR>
+"inoremap <silent>   )       )<C-r>=MySuperRightParen()<CR>
 
 function! MyChangeNextArg()
     " always start out with an ESC to get out of insert mode
