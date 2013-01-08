@@ -506,6 +506,10 @@ function! GetFunctionSignatures3(keyword)
 endfunction
 
 function! MySuperLeftParen()
+    if (match(&ft, '\v(cpp)') == -1)
+        return ''
+    endif
+
     " get current line up to where cursor is located
     let line = strpart(getline('.'), 0, col('.'))
 
@@ -553,6 +557,10 @@ function! MySuperLeftParen()
 endfunction
 
 function! MySuperRightParen()
+    if (match(&ft, '\v(cpp)') == -1)
+        return ''
+    endif
+
     let cur_win_nr = winnr()
     let scratch_win_nr = bufwinnr('__Scratch__')
     if (scratch_win_nr == -1)

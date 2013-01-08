@@ -265,6 +265,8 @@ set clipboard=autoselect
 " source all other files in the vimfiles/config directory
 runtime! config/**/*.vim
 
+set viminfo^=!
+
 nmap <leader>1 HWs@param <ESC>elxxj
 nmap <leader>2 HWs@r<ESC>exj
 xmap <leader>3 :s@// @/// @<CR>
