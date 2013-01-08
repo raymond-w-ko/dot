@@ -1,5 +1,3 @@
-" vim:fdm=marker:foldlevel=0
-
 " when re-sourcing with this set, syntax highlighting changes!
 "set nocompatible
 
@@ -7,6 +5,20 @@
 if v:progname =~? "evim"
     finish
 endif
+
+" pathogen {{{
+let g:pathogen_disabled = []
+call add(g:pathogen_disabled, "ack.vim")
+call add(g:pathogen_disabled, "cocoa")
+call add(g:pathogen_disabled, "YankRing")
+call add(g:pathogen_disabled, "vim-easymotion")
+call add(g:pathogen_disabled, "VimClojure")
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+call pathogen#infect()
+call pathogen#helptags()
+" }}}
+
+runtime! plugin/sensible.vim
 
 if has("win32")
     " set this so that RUBY omnicompletion works
@@ -29,38 +41,10 @@ else
     endif
 endif
 
-" pathogen {{{
-let g:pathogen_disabled = []
-call add(g:pathogen_disabled, "ack.vim")
-call add(g:pathogen_disabled, "cocoa")
-call add(g:pathogen_disabled, "YankRing")
-call add(g:pathogen_disabled, "vim-easymotion")
-call add(g:pathogen_disabled, "VimClojure")
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect()
-call pathogen#helptags()
-" }}}
-
-" File Options {{{
-filetype on             " detect and set filetype
-filetype plugin on      " load filetype plugin
-filetype indent on      " as a control freak, don't enable automatic indenting
-" without a guard, re-sourcing this file breaks vim-easymotion
-" re-sourcing also breaks vim-powerline
-if !exists("g:already_syntax_on")
-    syntax on
-    let g:already_syntax_on=1
-endif
-set fileformats=unix,dos,mac        " order of support
-" unfortunately shellslash breaks netrw, but I don't really use it
-"set shellslash
-" }}}
-
 " General {{{
 set encoding=utf-8
 set shortmess+=aI    " no intro message
 set showmode
-set showcmd
 set hidden
 set novisualbell
 set noerrorbells
@@ -69,34 +53,23 @@ if has('mac')
     set vb
 endif
 set nocursorcolumn
-set ruler
-set backspace=indent,eol,start
 set nonumber
 if exists('+relativenumber')
     set norelativenumber
 endif
-set laststatus=2
 set history=1024
 set lazyredraw
 set ttyfast
-set showmatch
 set matchtime=0
 set splitbelow
 set splitright
-set noesckeys
-set notimeout
-set nottimeout
-set autoread
-set autowriteall
 set notitle
 set showtabline=2
 set cmdheight=2
-set complete=.,w,b,u,t
 set completeopt=menu,menuone,preview
 set pumheight=16
 set autochdir
 set nolist
-set listchars=tab:▸\ ,eol:¬
 " always try to make the current window 80 columns
 set winwidth=80
 set maxmempattern=2000000
@@ -147,7 +120,6 @@ augroup END
 "augroup END
 " }}}
 " wildmenu completion {{{
-set wildmenu
 set wildmode=longest,list
 set wildchar=<Tab>
 
@@ -186,7 +158,6 @@ set wildignore+=*.ID
 set wildignore+=*.ccv,*.fls,*.pat,*.gsl,*.flt,*.asi
 " }}}
 " Tabs, indents, spaces, wrapping {{{
-set autoindent
 function! SetMyCino()
     set cinoptions=
     set cinoptions+=:0
@@ -206,7 +177,7 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set shiftround
-set nosmarttab
+
 set textwidth=0           " no automatic text wrapping
 set formatoptions=qn1
 function! ApplyMyFormatOptions()
@@ -227,24 +198,7 @@ if exists("&breakindent")
 elseif has("gui_running")
     set showbreak=\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ...
 endif
-" }}}
-" swap, undo, backup {{{
-set directory=~/vimtmp//
-set backupdir=~/vimbackup//
-
-set viewdir=~/vimview//
-set viewoptions=cursor,folds,slash,unix
-
-if exists('+undofile')
-    set undofile
-    set undodir=~/vimundo//
-    set undolevels=8192     " maximum number of changes that can be undone
-    set undoreload=65535    " maximum number lines to save for undo on a buffer reload
-endif
-
-set backup              " might as well, it doesn't really hurt
-
-set noswapfile          " computers are pretty reliable nowadays
+set noswapfile  " computers are pretty reliable nowadays
 " }}}
 
 " Leader
@@ -264,8 +218,6 @@ set clipboard=autoselect
 
 " source all other files in the vimfiles/config directory
 runtime! config/**/*.vim
-
-set viminfo^=!
 
 nmap <leader>1 HWs@param <ESC>elxxj
 nmap <leader>2 HWs@r<ESC>exj
@@ -296,3 +248,5 @@ if has('java')
 
     javashell clojure
 endif
+
+" vim:fdm=marker:foldlevel=0

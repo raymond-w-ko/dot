@@ -29,14 +29,8 @@ nnoremap ? ?\v
 vnoremap ? ?\v
 
 set ignorecase
-set smartcase
 set hlsearch
-set incsearch
 set gdefault            " inverts the meaning of the g-flag in s///g
-
-set scrolloff=0
-set sidescroll=0
-set sidescrolloff=0
 
 set virtualedit+=block
 
