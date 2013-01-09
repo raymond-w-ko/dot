@@ -43,6 +43,7 @@ endif
 
 " General {{{
 set encoding=utf-8
+set autowriteall
 set shortmess+=aI    " no intro message
 set showmode
 set hidden
