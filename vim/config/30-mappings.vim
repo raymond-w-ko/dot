@@ -1,3 +1,5 @@
+nnoremap Y Y
+
 let s:uname = "win32"
 if has("unix")
     let s:uname = system("uname")
