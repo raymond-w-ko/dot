@@ -25,9 +25,9 @@ cd "$HOME"
 mkdir -p ~/bin
 mkdir -p ~/src
 
-mkdir -p ~/vimbackup
-mkdir -p ~/vimtmp
-mkdir -p ~/vimundo
+mkdir -p ~/.cache/backup
+mkdir -p ~/.cache/swap
+mkdir -p ~/.cache/undo
 
 mkdir -p ~/.subversion
 
@@ -43,32 +43,34 @@ ensure_sensitive_absolute_link "/cygdrive/c/Users/root/Desktop/Dropbox/gnupg"   
 
 ensure_link "lib/dot/bin/colorhelper.py"    "bin/colorhelper.py"
 ensure_link "lib/dot/bin/cyg-wrapper.sh"    "bin/cyg-wrapper.sh"
-ensure_link "lib/dot/bin/update-submodules"  "bin/update-submodules"
+ensure_link "lib/dot/bin/update-submodules" "bin/update-submodules"
 
-ensure_link "lib/dot/minttyrc"       ".minttyrc"
-ensure_link "lib/dot/inputrc"        ".inputrc"
+ensure_link "lib/dot/minttyrc"              ".minttyrc"
+ensure_link "lib/dot/inputrc"               ".inputrc"
 
-ensure_link "lib/dot/profile"        ".profile"
-ensure_link "lib/dot/bash_profile"   ".bash_profile"
-ensure_link "lib/dot/bashrc"         ".bashrc"
+ensure_link "lib/dot/profile"               ".profile"
+ensure_link "lib/dot/bash_profile"          ".bash_profile"
+ensure_link "lib/dot/bashrc"                ".bashrc"
 
-ensure_link "lib/dot/gitconfig"      ".gitconfig"
-ensure_link "lib/dot/gitignore"      ".gitignore"
-ensure_link "lib/dot/hgrc"           ".hgrc"
+ensure_link "lib/dot/gitconfig"             ".gitconfig"
+ensure_link "lib/dot/gitignore"             ".gitignore"
+ensure_link "lib/dot/hgrc"                  ".hgrc"
 ensure_link "lib/dot/subversion/config"     ".subversion/config"
 
-ensure_link "lib/dot/screenrc"       ".screenrc"
+ensure_link "lib/dot/screenrc"              ".screenrc"
 
-ensure_link "vim/bin/ex"             "bin/ex"
-ensure_link "vim/bin/rview"          "bin/rview"
-ensure_link "vim/bin/rvim"           "bin/rvim"
-ensure_link "vim/bin/vim"            "bin/vim"
-ensure_link "vim/bin/vimdiff"        "bin/vimdiff"
-ensure_link "vim/bin/vimtutor"       "bin/vimtutor"
-ensure_link "vim/bin/xxd"            "bin/xdd"
+ensure_link "vim/bin/ex"                    "bin/ex"
+ensure_link "vim/bin/rview"                 "bin/rview"
+ensure_link "vim/bin/rvim"                  "bin/rvim"
+ensure_link "vim/bin/vim"                   "bin/vim"
+ensure_link "vim/bin/vimdiff"               "bin/vimdiff"
+ensure_link "vim/bin/vimtutor"              "bin/vimtutor"
+ensure_link "vim/bin/xxd"                   "bin/xdd"
 
-ensure_link "lib/dot/vim"            ".vim"
-ensure_link "lib/dot/vimrc"          ".vimrc"
+ensure_link "lib/dot/vim"                   ".vim"
+ensure_link "lib/dot/vimrc"                 ".vimrc"
+
+ensure_link "lib/dot/lftprc"                ".lftprc"
 
 echo completed
 exit

@@ -1,0 +1,15 @@
+# config from whatbox FAQ
+# https://whatbox.ca/wiki/lftp
+
+set bmk:save-passwords true
+ 
+alias dir !ls -Fsh --group-directories-first
+alias j jobs
+alias jv jobs -v
+alias q queue
+alias qs queue stop
+alias k kill
+alias ka kill all
+alias down lcd /cygdrive/c/download
+alias m mirror -c --use-pget-n=5
+alias p pget -c -n 5
