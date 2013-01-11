@@ -17,13 +17,6 @@ if [ -d "./bufkill.vim" ]; then
     cd ..
 fi
 
-if [ -d "./VimClojure" ]; then
-    cd VimClojure
-    pwd
-    git remote add upstream git://github.com/vim-scripts/VimClojure.git
-    cd ..
-fi
-
 if [ -d "./foreplay" ]; then
     cd foreplay
     pwd
