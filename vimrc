@@ -20,6 +20,8 @@ call pathogen#helptags()
 
 runtime! plugin/sensible.vim
 
+set fileformats=unix,dos,mac
+
 if has("win32")
     " set this so that RUBY omnicompletion works
     "let g:ruby_path='C:/Ruby192/bin'
