@@ -8,7 +8,11 @@ export PATH="/opt/local/bin:$HOME/bin:/bin:/usr/local/bin:/usr/bin:/usr/local/sb
 export TMP='/tmp'
 export TEMP='/tmp'
 
-export PS1="\n\[\e[32;1m\](\[\e[37;1m\]\h\[\e[32;1m\])-(\[\e[37;1m\]jobs:\j\[\e[32;1m\])-(\[\e[37;1m\]\w\[\e[32;1m\])\n(\[\[\e[37;1m\]\u\[\e[32;1m\]) \\$ \[\e[0m\]"
+function parse_git_branch {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+export PS1="\n\[\e[32;1m\](\[\e[37;1m\]\h\[\e[32;1m\])-(\[\e[37;1m\]jobs:\j\[\e[32;1m\])-\$(parse_git_branch)-(\[\e[37;1m\]\w\[\e[32;1m\])\n(\[\[\e[37;1m\]\u\[\e[32;1m\]) \\$ \[\e[0m\]"
 
 unset PYTHONHOME
 
