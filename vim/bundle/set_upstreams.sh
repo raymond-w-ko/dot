@@ -17,8 +17,8 @@ if [ -d "./bufkill.vim" ]; then
     cd ..
 fi
 
-if [ -d "./foreplay" ]; then
-    cd foreplay
+if [ -d "./vim-foreplay" ]; then
+    cd vim-foreplay
     pwd
     git remote add upstream git://github.com/tpope/vim-foreplay.git
     cd ..
