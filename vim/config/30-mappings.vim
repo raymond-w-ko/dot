@@ -220,7 +220,7 @@ nmap <leader>rci :call CreateCppMethodImplementation()<CR>i{{
 
 " lazy .. to ->
 function! MyLazyDotDotToArrow()
-    if (empty(matchstr(&filetype, '\vc|cpp|objc|php|fx|cs|css|javascript')))
+    if (match(&filetype, '\vc$|cpp|objc|php') == -1)
         return
     endif
 
@@ -245,8 +245,8 @@ function! MyLazyDotDotToArrow()
     endif
 endfunction
 augroup ConvertTwoDotsToArrow
-	au!
-	au CursorMovedI * call MyLazyDotDotToArrow()
+    au!
+    au CursorMovedI * call MyLazyDotDotToArrow()
 augroup END
 
 "}}}
