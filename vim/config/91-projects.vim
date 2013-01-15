@@ -56,9 +56,15 @@ function! SetSettingsForProject2(size_of_tab, arg0, tags)
 	execute 'setlocal tags=' . a:tags
 endfunction
 
-function! SetSpaceM(console_name, cmd)
+function! SetConsoleMakeSpaceM(console_name, cmd)
     execute "nnoremap <silent><buffer> <leader>m :update<CR>:call AutoHotkeyConsole2Make('" .
         \ a:console_name . "', '" . a:cmd . "')<CR>"
+endfunction
+
+function! SetSpaceM(cmd)
+    execute "nnoremap <silent><buffer> <leader>m :w!<CR>:update<CR>:!start " .
+                \ a:cmd .
+                \ "<CR>"
 endfunction
 
 " personal projects
@@ -77,14 +83,14 @@ augroup VimSourceCode
     au!
     au BufNewFile,BufRead,BufEnter
     \ C:/cygwin/home/root/src/vim/src/*
-    \ call SetSpaceM('Vim', '_compile.bat{Enter}')
+    \ call SetConsoleMakeSpaceM('Vim', '_compile.bat{Enter}')
 augroup END
 
 augroup VimJava
     au!
     au BufNewFile,BufRead,BufEnter
     \ C:/cygwin/home/root/src/vim/src/java/*
-    \ call SetSpaceM('VimJava', 'make.bat{Enter}')
+    \ call SetConsoleMakeSpaceM('VimJava', 'make.bat{Enter}')
 augroup END
 
 
@@ -391,6 +397,14 @@ augroup ImmunoSim
         \ )
 augroup END
 " }}}
+
+" Merck
+augroup retroSyrus
+    au!
+    autocmd BufNewFile,BufRead,BufEnter
+                \ C:/SVN/Syandus_ALIVE4/Web/Merck/Phase\ 1/PCRD/retroSyrus/*
+                \ call SetSpaceM( "C:/SVN/Syandus_ALIVE4/Web/Merck/Phase 1/PCRD/retroSyrus/make.bat")
+augroup END
 
 " Shaders
 function! SetSettingsForShaders()
