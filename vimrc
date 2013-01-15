@@ -13,7 +13,7 @@ call add(g:pathogen_disabled, "cocoa")
 call add(g:pathogen_disabled, "YankRing")
 call add(g:pathogen_disabled, "vim-easymotion")
 
-call add(g:pathogen_disabled, "foreplay")
+"call add(g:pathogen_disabled, "foreplay")
 
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
@@ -135,6 +135,14 @@ augroup LocationListAutoOpenClose
     " seem to happen.
     "autocmd QuickFixCmdPost [^l]* nested cwindow
     "autocmd QuickFixCmdPost    l* nested lwindow
+augroup END
+
+function! AdjustWindowHeight(minheight, maxheight)
+  exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
+endfunction
+augroup QuickFixAutoSizer
+    au!
+    au FileType qf call AdjustWindowHeight(3, 16)
 augroup END
 " }}}
 " wildmenu completion {{{

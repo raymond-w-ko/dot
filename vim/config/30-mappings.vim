@@ -71,7 +71,6 @@ elseif has("win32")
 endif
 
 function! FindFileInProjectDirectory()
-    echom ':CtrlP ' . EscapePathname(MyGetProjectDirectory())
     execute ':CtrlP ' . EscapePathname(MyGetProjectDirectory())
 endfunction
 nnoremap <leader>t :call FindFileInProjectDirectory()<CR>
