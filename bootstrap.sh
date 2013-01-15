@@ -25,9 +25,9 @@ cd "$HOME"
 mkdir -p ~/bin
 mkdir -p ~/src
 
-mkdir -p ~/.cache/backup
-mkdir -p ~/.cache/swap
-mkdir -p ~/.cache/undo
+mkdir -p ~/.cache/vim/backup
+mkdir -p ~/.cache/vim/swap
+mkdir -p ~/.cache/vim/undo
 
 mkdir -p ~/.subversion
 
