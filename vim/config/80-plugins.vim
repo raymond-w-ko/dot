@@ -144,7 +144,7 @@ let g:syntastic_enable_highlighting = 0
 let g:syntastic_mode_map = {
             \ 'mode': 'active',
             \ 'active_filetypes': ['ruby', 'php'],
-            \ 'passive_filetypes': ['java'] }
+            \ 'passive_filetypes': ['java', 'c', 'cpp', 'objc'] }
 
 " paredit
 let g:paredit_leader = ','

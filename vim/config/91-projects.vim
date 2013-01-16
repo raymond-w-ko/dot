@@ -260,7 +260,7 @@ augroup END
 augroup Mac
     autocmd!
     autocmd BufNewFile,BufRead,BufEnter
-    \ S:/*
+    \ /Users/rko/SVN/Syandus_ALIVE3/Mac/trunk/ALIVE\ Med/*
     \ call SetSettingsForProject(
         \ 2,
         \ '',
