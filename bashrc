@@ -75,4 +75,4 @@ alias hpa='hg purge --all'
 alias hpush='hg push'
 alias hpull='hg pull'
 
-alias fix_permissions="find . -regex '.*\.\(vim\|h\|hpp\|cpp\|cpp\)' -type f -exec chmod -x {} \;"
+alias fix_permissions="find . -regex '.*\.\(vim\|h\|hpp\|c\|cpp\)$' -type f -exec chmod -x {} \;"
