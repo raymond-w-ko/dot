@@ -34,7 +34,7 @@ com! SyProjectGenerator cd C:/SVN/Syandus_ALIVE4/Tools/Source/SyProjectGenerator
 com! OgreLair cd C:/SVN/Syandus_Cores/C_Ogre_Lair_01
 com! Ms cd C:/SVN/Syandus_Cores/C_CMSC_MS_01
 
-function! SetSettingsForProject(size_of_tab, arg0, tags)
+function! SetSettingsForProject(size_of_tab, arg0, tags, ...)
 	execute 'setlocal tabstop=' . a:size_of_tab
 	execute 'setlocal shiftwidth=' . a:size_of_tab 
 	execute 'setlocal softtabstop=' . a:size_of_tab
@@ -45,6 +45,9 @@ function! SetSettingsForProject(size_of_tab, arg0, tags)
                \ a:arg0 . "')\<CR>"
     endif
 	execute 'setlocal tags=' . a:tags
+    if a:0 > 0
+        setlocal noexpandtab
+    endif
 endfunction
 
 function! SetSettingsForProject2(size_of_tab, arg0, tags)
@@ -265,6 +268,18 @@ augroup Mac
         \ 2,
         \ '',
         \ '')
+augroup END
+" }}}
+" SyMetricsWeb {{{
+augroup SyandusDotComHtml5
+    autocmd!
+    autocmd BufNewFile,BufRead,BufEnter
+                \ C:/SVN/Syandus_Company/Web/Syandus.com/main/2012-html/*
+                \ call SetSettingsForProject(
+                \ 2,
+                \ '',
+                \ '',
+                \ "noexpandtab")
 augroup END
 " }}}
 
