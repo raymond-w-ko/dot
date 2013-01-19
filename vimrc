@@ -265,7 +265,7 @@ command! FilterSmartQuotes silent! call FilterSmartQuotes()
 if has('java')
     let jar_list = [
                 \ 'C:/cygwin/home/root/src/vim/src/java/vim.jar',
-                \ expand("$HOME") . "/java/clojure-1.5.0-RC1.jar",
+                \ expand("$HOME") . "/java/clojure-1.5.0-RC2.jar",
                 \ expand("$HOME") . "/java/groovy-all-2.0.6-indy.jar"
                 \ ]
     let jars = substitute(join(jar_list, ';'), '\\', '/', 'g')
