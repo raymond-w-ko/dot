@@ -18,6 +18,9 @@ if (has("gui_running"))
     if has("win32")
         if !exists("g:already_set_font")
             set guifont=Dina_TTF:h8
+            "set guifont=Consolas:h10
+            "set guifont=Ricty_Diminished:h11:cSHIFTJIS
+            set directx
             set linespace=0
 
             let g:already_set_font=1
