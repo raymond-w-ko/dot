@@ -282,6 +282,16 @@ augroup SyandusDotComHtml5
                 \ "noexpandtab")
 augroup END
 " }}}
+" Merck Main Menu {{{
+augroup MerckMainMenu
+    autocmd!
+    autocmd BufNewFile,BufRead,BufEnter
+                \ C:/SVN/Syandus_ALIVE4/Web/Merck/Phase\ 1/MainMenu/*
+                \ call SetSettingsForProject2(
+                \ 4,
+                \ '',
+                \ '')
+augroup END
 
 " framework level
 " Carbon {{{

@@ -20,7 +20,9 @@ if (has("gui_running"))
             set guifont=Dina_TTF:h8
             "set guifont=Consolas:h10
             "set guifont=Ricty_Diminished:h11:cSHIFTJIS
-            set directx
+            if has("directx")
+                set directx
+            endif
             set linespace=0
 
             let g:already_set_font=1
