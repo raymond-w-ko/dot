@@ -20,6 +20,7 @@ if (has("gui_running"))
             set guifont=Dina_TTF:h8
             "set guifont=Consolas:h10
             "set guifont=Ricty_Diminished:h11:cSHIFTJIS
+            "set guifont=Source_Code_Pro:h9:cANSI
             if has("directx")
                 set directx
             endif

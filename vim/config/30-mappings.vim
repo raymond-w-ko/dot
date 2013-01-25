@@ -323,7 +323,7 @@ function! CreateScratch()
     wincmd k
 endfunction
 function! CreateAndSetupVsplits()
-    let num_vsplits = (&columns / 80) - 1
+    let num_vsplits = ((&columns + 1) / 80) - 1
 
     if !exists("g:num_tabs")
         let g:num_tabs = 1
