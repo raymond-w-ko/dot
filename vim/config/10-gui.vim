@@ -18,11 +18,9 @@ if (has("gui_running"))
     if has("win32")
         if !exists("g:already_set_font")
             "set guifont=Dina_TTF:h8
-            set guifont=Consolas:h11
-            "set guifont=Ricty_Diminished:h11:cSHIFTJIS
-            "set guifont=Source_Code_Pro:h9:cANSI
+            set guifont=Consolas:h10
             if has("directx")
-                set directx
+                "set directx
             endif
             set linespace=0
 
