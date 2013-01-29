@@ -3,6 +3,7 @@ set tags=
 com! Dropbox cd C:/Users/root/Desktop/Dropbox
 com! OmegaComplete cd C:/cygwin/home/root/lib/dot/vim/bundle/omegacomplete
 com! Vim cd C:/cygwin/home/root/src/vim
+com! OcularWM cd C:/cygwin/home/root/src/ocularwm
 
 com! Platform cd C:/SVN/Syandus_ALIVE3/Platform/Source/Code
 com! Platform4 cd C:/SVN/Syandus_ALIVE4/Platform/Source/Code
@@ -96,6 +97,15 @@ augroup VimJava
     \ call SetConsoleMakeSpaceM('VimJava', 'make.bat{Enter}')
 augroup END
 
+augroup OcularWM
+    au!
+    au BufNewFile,BufRead,BufEnter
+    \ C:/cygwin/home/root/src/ocularwm/*
+    \ call SetSettingsForProject(
+        \ 4,
+        \ 'OcularWM',
+        \ '')
+augroup END
 
 " platform level
 " OGRE {{{

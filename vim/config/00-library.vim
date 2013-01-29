@@ -1,5 +1,6 @@
 let s:project_directories_list = [
             \ 'C:\cygwin\home\root\src\vim\src',
+            \ 'C:\cygwin\home\root\src\ocularwm',
             \ 'C:\SVN\Syandus_ALIVE3\Frameworks\Carbon',
             \ 'C:\SVN\Syandus_ALIVE3\Frameworks\CarbonCME',
             \ 'C:\SVN\Syandus_ALIVE3\Frameworks\Oxygen',
