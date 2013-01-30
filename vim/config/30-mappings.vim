@@ -155,10 +155,10 @@ function! CreateCppMethodImplementation()
 
     let end_line_num = line_num
     
-    if (exists('g:RefactorCppFunctionDefinition'))
-        unlet g:RefactorCppFunctionDefinition
+    if (exists('s:RefactorCppFunctionDefinition'))
+        unlet s:RefactorCppFunctionDefinition
     endif
-    let g:RefactorCppFunctionDefinition = getline(begin_line_num, end_line_num)
+    let s:RefactorCppFunctionDefinition = getline(begin_line_num, end_line_num)
     
     " determine the class name
     " we will just go up until we see a line begin with 'class'
@@ -188,7 +188,7 @@ function! CreateCppMethodImplementation()
     execute "normal Go\<ESC>G"
     set fo+=r
     set fo+=o
-    call append('$', g:RefactorCppFunctionDefinition)
+    call append('$', s:RefactorCppFunctionDefinition)
     normal j
     normal VVG<
     
@@ -207,10 +207,18 @@ function! CreateCppMethodImplementation()
     "insert class name
     let cur_line = getline(line('.'))
     let words = split(cur_line, '\W\+')
-    "if (cword != g:RefactorCppClassName)
-    if (len(words) > 1)
+    "if (words[0] != g:RefactorCppClassName)
+    "if (len(words) > 1)
+        "normal W
+    "endif
+
+    while 1
+        let word = expand('<cWORD>')
+        if match(word, '(') != -1
+            break
+        endif
         normal W
-    endif
+    endwhile
 
     execute "normal i\<C-r>=g:RefactorCppClassName\<CR>::\<ESC>G$s\<CR>\<ESC>xxxxxxxx"
 endfunction
