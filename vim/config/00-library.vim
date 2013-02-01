@@ -61,6 +61,29 @@ function! MyGetProjectDirectory()
         return directory . '/'
 endfunction
 
+let s:cores_with_lua_shared_framework = [
+    \ 'C:/SVN/Syandus_Cores/C_Ogre_Lair_01/Build/Framework/Shared/Scripts',
+    \]
+
+function! PropagateFrameworkLua()
+    let errors = getloclist(0)
+    if len(errors) > 0
+        " don't copy a syntatically incorrect file!
+        " assumes you have syntastic installed and it can check Lua
+        return
+    endif
+
+    let file = expand('%:p')
+    for dir in s:cores_with_lua_shared_framework
+        if !isdirectory(dir)
+            continue
+        endif
+        if has('win32')
+            exe 'silent !copy "' . file . '" "' . dir . '"'
+        endif
+    endfor
+endfunction
+
 " command to delete all empty buffers in case you have over 9000 of them
 function! DeleteEmptyBuffers()
   let empty = []

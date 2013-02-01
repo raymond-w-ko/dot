@@ -53,7 +53,6 @@ function! SetSettingsForVisualStudioProject(size_of_tab, name, tags, ...)
                \ a:name . "')\<CR>"
     endif
 	execute 'setlocal tags=' . a:tags
-    echom a:tags
     if a:0 > 0
         setlocal noexpandtab
     endif
@@ -74,6 +73,12 @@ function! SetConsoleMakeSpaceM(console_name, cmd)
 endfunction
 
 function! SetSpaceM(cmd)
+    execute "nnoremap <silent><buffer> <leader>m :w!<CR>:update<CR>:" .
+                \ a:cmd .
+                \ "<CR>"
+endfunction
+
+function! SetSpaceMExternalCmd(cmd)
     execute "nnoremap <silent><buffer> <leader>m :w!<CR>:update<CR>:!start " .
                 \ a:cmd .
                 \ "<CR>"
@@ -181,21 +186,12 @@ endfor
 
 exe 'augroup END'
 
-finish
-
-augroup OgreLair
-    autocmd!
-    autocmd BufNewFile,BufRead,BufEnter
-        \ ''
-        \ )
-augroup END
-
 " Merck
 augroup retroSyrus
     au!
     au BufNewFile,BufRead,BufEnter
         \ C:/SVN/Syandus_ALIVE4/Web/Merck/Phase\ 1/PCRD/retroSyrus/*
-        \ call SetSpaceM( "C:/SVN/Syandus_ALIVE4/Web/Merck/Phase 1/PCRD/retroSyrus/make.bat")
+        \ call SetSpaceMExternalCmd("C:/SVN/Syandus_ALIVE4/Web/Merck/Phase 1/PCRD/retroSyrus/make.bat")
 augroup END
 
 " Shaders
@@ -208,6 +204,13 @@ augroup ForceClojureIndentation
     au!
     au BufNewFile,BufRead,BufEnter *.clj call SetSettingsForClojure()
     au BufNewFile,BufRead,BufEnter *.cljs call SetSettingsForClojure()
+augroup END
+
+augroup FrameworkLua
+    au!
+    au BufNewFile,BufRead,BufEnter
+        \ C:/SVN/Syandus_ALIVE4/Frameworks/Carbon/Build/Content/Scripts/*.lua
+        \ call SetSpaceM('call PropagateFrameworkLua()')
 augroup END
 
 " vim:fdm=marker:foldlevel=0
