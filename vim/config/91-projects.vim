@@ -128,7 +128,7 @@ let s:visual_studio_project_settings = [
     \ ''],
     \ 
     \ ['C:/SVN/Syandus_Cores/C_Ogre_Lair_01/*',
-    \  3,
+    \  4,
     \ 'OgreLair' .
     \       ' C:/SVN/Syandus_Cores/C_Ogre_Lair_01/Source/Scripts/Content/configure.bat',
     \ ''],
