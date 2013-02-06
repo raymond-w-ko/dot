@@ -76,7 +76,7 @@ set pumheight=16
 set autochdir
 set nolist
 " always try to make the current window 80 columns
-set winwidth=80
+set winwidth=79
 set maxmempattern=2000000
 set maxmemtot=2000000
 " }}}
@@ -135,6 +135,9 @@ augroup LocationListAutoOpenClose
     " seem to happen.
     "autocmd QuickFixCmdPost [^l]* nested cwindow
     "autocmd QuickFixCmdPost    l* nested lwindow
+augroup END
+augroup AlwaysOpenHelpInTheSameWindow
+    "autocmd FileType help :wincmd H
 augroup END
 
 function! AdjustWindowHeight(minheight, maxheight)
