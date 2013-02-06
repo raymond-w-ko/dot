@@ -13,7 +13,7 @@ call add(g:pathogen_disabled, "cocoa")
 call add(g:pathogen_disabled, "YankRing")
 call add(g:pathogen_disabled, "vim-easymotion")
 
-"call add(g:pathogen_disabled, "foreplay")
+call add(g:pathogen_disabled, "foreplay")
 
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()

@@ -70,7 +70,7 @@ function! PropagateFrameworkLua()
     if len(errors) > 0
         " don't copy a syntatically incorrect file!
         " assumes you have syntastic installed and it can check Lua
-        return
+        "return
     endif
 
     let file = expand('%:p')
