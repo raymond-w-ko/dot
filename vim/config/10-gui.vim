@@ -3,8 +3,8 @@ if !exists("g:already_set_color_scheme")
     let g:lucius_contrast="low"
     let g:lucius_contrast_bg="normal"
     let g:lucius_style="dark"
-    let g:lucius_use_bold=1
-    let g:lucius_use_underline=1
+    let g:lucius_use_bold=0
+    let g:lucius_use_underline=0
     colorscheme lucius
 
     let g:already_set_color_scheme=1
@@ -18,11 +18,12 @@ if (has("gui_running"))
     if has("win32")
         if !exists("g:already_set_font")
             "set guifont=Dina_TTF:h8
-            set guifont=Consolas:h10
+            "set guifont=Consolas:h10
+            set guifont=MS_Gothic:h8:cSHIFTJIS
             if has("directx")
                 "set directx
             endif
-            set linespace=0
+            set linespace=-1
 
             let g:already_set_font=1
         endif
