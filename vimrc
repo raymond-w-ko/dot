@@ -221,7 +221,7 @@ function! ApplyMyFormatOptions()
     endif
 endfunction
 call ApplyMyFormatOptions()
-set wrap
+set nowrap
 set wrapscan
 if exists("&breakindent")
     set breakindent showbreak=....

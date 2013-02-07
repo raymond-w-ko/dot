@@ -5,7 +5,8 @@ if !exists("g:already_set_color_scheme")
     let g:lucius_style="dark"
     let g:lucius_use_bold=0
     let g:lucius_use_underline=0
-    colorscheme lucius
+    "colorscheme lucius
+    colorscheme neon2
 
     let g:already_set_color_scheme=1
 endif
