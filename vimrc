@@ -12,6 +12,8 @@ call add(g:pathogen_disabled, "ack.vim")
 call add(g:pathogen_disabled, "cocoa")
 call add(g:pathogen_disabled, "YankRing")
 call add(g:pathogen_disabled, "vim-easymotion")
+call add(g:pathogen_disabled, "vim-powerline")
+call add(g:pathogen_disabled, "powerline")
 
 call add(g:pathogen_disabled, "foreplay")
 
@@ -19,6 +21,12 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
 " }}}
+
+if has('win32')
+    set rtp+=~/vimfiles/bundle/powerline/powerline/bindings/vim
+else
+    set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+endif
 
 runtime! plugin/sensible.vim
 
