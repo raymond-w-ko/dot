@@ -41,6 +41,8 @@ mkdir -p ~/.subversion
 ensure_sensitive_absolute_link "/cygdrive/c/Users/root/Desktop/Dropbox/ssh"       ".ssh"
 ensure_sensitive_absolute_link "/cygdrive/c/Users/root/Desktop/Dropbox/gnupg"     ".gnupg"
 
+ensure_link "lib/dot/config"                ".config"
+
 ensure_link "lib/dot/bin/colorhelper.py"    "bin/colorhelper.py"
 ensure_link "lib/dot/bin/cyg-wrapper.sh"    "bin/cyg-wrapper.sh"
 ensure_link "lib/dot/bin/update-submodules" "bin/update-submodules"
