@@ -1,14 +1,14 @@
 {
 	"common": {
-		"term_24bit_colors": false,
+		"term_24bit_colors": true,
 		"dividers": {
 			"left": {
-				"hard": "",
-				"soft": ""
+				"hard": "",
+				"soft": ""
 			},
 			"right": {
-				"hard": "",
-				"soft": ""
+				"hard": "",
+				"soft": ""
 			}
 		}
 	},

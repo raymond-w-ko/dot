@@ -11,13 +11,6 @@
 				"priority": 10
 			},
 			{
-				"name": "branch",
-				"exclude_modes": ["nc"],
-				"priority": 60,
-				"before": " ",
-				"divider_highlight_group": "branch:divider"
-			},
-			{
 				"name": "readonly_indicator",
 				"draw_divider": false,
 				"after": " "
@@ -29,10 +22,6 @@
 			},
 			{
 				"name": "file_name",
-				"draw_divider": false
-			},
-			{
-				"name": "file_vcs_status",
 				"draw_divider": false
 			},
 			{
