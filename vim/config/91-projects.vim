@@ -33,6 +33,7 @@ let s:project_directories = [
     \ 'SyProjectGenerator', 'C:/SVN/Syandus_ALIVE4/Tools/Source/SyProjectGenerator',
     \ 'OgreLair',           'C:/SVN/Syandus_Cores/C_Ogre_Lair_01',
     \ 'Ms',                 'C:/SVN/Syandus_Cores/C_CMSC_MS_01',
+    \ 'SyandusHtml5',       'C:/SVN/Syandus_Company/Web/Syandus.com/main/2013-html/html',
     \ ]
 for i in range(len(s:project_directories) / 2)
     let cmd = (i * 2) + 0
@@ -153,6 +154,8 @@ let s:winscp_project_settings = [
     \  4, '', ''],
     \
     \ ['C:/SVN/Syandus_Company/Web/Syandus.com/main/2012-html/*',
+    \  2, '', ''],
+    \ ['C:/SVN/Syandus_Company/Web/Syandus.com/main/2013-html/*',
     \  2, '', ''],
     \
     \ ]

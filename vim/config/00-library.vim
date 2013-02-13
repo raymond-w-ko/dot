@@ -26,6 +26,7 @@ let s:project_directories_list = [
     \ 'C:\SVN\Syandus_ALIVE4\Tools\Source\mercky',
     \ 'C:\SVN\Syandus_ALIVE4\Web\Merck\Phase 1\PCRD\retroSyrus',
     \ 'C:\SVN\Syandus_Company\Web\Syandus.com\main\2012-html',
+    \ 'C:\SVN\Syandus_Company\Web\Syandus.com\main\2013-html\html',
     \ 'C:\SVN\Syandus_Cores\C_CMSC_MS_01',
     \ 'C:\SVN\Syandus_Cores\C_ImmunoSim_01',
     \ 'C:\SVN\Syandus_Cores\C_Mic_HTN_01',
