@@ -71,6 +71,7 @@ ensure_link "vim/bin/xxd"                   "bin/xdd"
 
 ensure_link "lib/dot/vim"                   ".vim"
 ensure_link "lib/dot/vimrc"                 ".vimrc"
+ensure_link "lib/dot/gvimrc"                 ".gvimrc"
 
 ensure_link "lib/dot/lftprc"                ".lftprc"
 

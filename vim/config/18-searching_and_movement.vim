@@ -33,6 +33,8 @@ set hlsearch
 set gdefault            " inverts the meaning of the g-flag in s///g
 
 set virtualedit+=block
+set sidescroll=1
+set sidescrolloff=1
 
 nnoremap <silent> <leader>l :nohlsearch<CR>:let @/=''<CR>
 
