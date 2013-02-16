@@ -121,7 +121,9 @@ augroup END
 
 "NERDCommenter
 let g:NERDCustomDelimiters = {
-    \ 'syxml': { 'left': '//', 'right': ''}
+    \ 'syxml': { 'left': '//', 'right': ''},
+    \ 'ogre': { 'left': '//', 'right': ''},
+    \ 'glsl': { 'left': '//', 'right': ''}
     \ }
 
 " omegacomplete

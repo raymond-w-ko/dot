@@ -85,6 +85,26 @@ function! PropagateFrameworkLua()
     endfor
 endfunction
 
+let s:cores_with_ogre_shared_framework = [
+    \ 'C:/SVN/Syandus_Cores/C_Ogre_Lair_01/Build/Framework/Shared/OGRE',
+    \]
+
+function! PropagateFrameworkOgre()
+    let file = expand('%:p')
+    for dir in s:cores_with_ogre_shared_framework
+        if !isdirectory(dir)
+            continue
+        endif
+        let subdirs = substitute(file, '\', '/', 'g')
+        let subdirs = substitute(subdirs, 'C:/SVN/Syandus_ALIVE4/Frameworks/Carbon/Build/Content/OGRE/',
+            \ '', '')
+        echom subdirs
+        if has('win32')
+            exe 'silent !copy "' . file . '" "' . dir . '/' . subdirs . '"'
+        endif
+    endfor
+endfunction
+
 " command to delete all empty buffers in case you have over 9000 of them
 function! DeleteEmptyBuffers()
   let empty = []

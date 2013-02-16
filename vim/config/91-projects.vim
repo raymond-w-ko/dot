@@ -216,4 +216,11 @@ augroup FrameworkLua
         \ call SetSpaceM('call PropagateFrameworkLua()')
 augroup END
 
+augroup FrameworkOgre
+    au!
+    au BufNewFile,BufRead,BufEnter
+        \ C:/SVN/Syandus_ALIVE4/Frameworks/Carbon/Build/Content/OGRE/*
+        \ call SetSpaceM('call PropagateFrameworkOgre()')
+augroup END
+
 " vim:fdm=marker:foldlevel=0
