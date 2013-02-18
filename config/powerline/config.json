@@ -1,6 +1,6 @@
 {
 	"common": {
-		"term_24bit_colors": true,
+		"term_24bit_colors": false,
 		"dividers": {
 			"left": {
 				"hard": "",
@@ -10,7 +10,8 @@
 				"hard": "",
 				"soft": ""
 			}
-		}
+		},
+		"spaces": 1
 	},
 	"ext": {
 		"ipython": {
