@@ -11,4 +11,4 @@ if !exists("g:already_set_color_scheme")
 endif
 
 " pretty vertical Splits
-set fillchars+=vert:\ 
+set fillchars+=vert:\|

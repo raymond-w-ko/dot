@@ -1,5 +1,6 @@
-colorscheme neon2
+"colorscheme neon2
 
+" set font
 if has("win32")
     if !exists("g:already_set_font")
         "set guifont=Dina_TTF:h8
@@ -18,24 +19,24 @@ elseif has("gui_macvim")
     set linespace=0
 endif
 
-" GUI Configuration
-set guioptions=a          " disable everything except synced clipboard
+" set GUI options
+if has('win32')
+    " disable everything except synced clipboard
+    set guioptions=a
 
-" Maximize in Windows automatically
-if has("win32")
     augroup FullScreenOnStartup
         autocmd!
         autocmd GUIEnter * simalt ~x
     augroup END
 elseif has("gui_macvim")
+    " disable everything except synced clipboard
+    set guioptions=a
+
     " Full screen means FULL screen
     set fuoptions=maxvert,maxhorz
-endif
+    set lines=9999
+    set columns=9999
+end
 
 " Remove cursor blink
 set guicursor+=a:blinkon0
-
-if has('mac')
-    set lines=9999
-    set columns=9999
-endif
