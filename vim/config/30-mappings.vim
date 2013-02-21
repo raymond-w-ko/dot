@@ -9,6 +9,9 @@ if (s:uname == "Darwin\n")
     set macmeta
 endif
 
+"lazy write
+nnoremap <CR> :w<CR>
+
 " disable crazy keys
 nnoremap K <Nop>
 vnoremap K <Nop>
@@ -77,7 +80,6 @@ nnoremap <leader>t :call FindFileInProjectDirectory()<CR>
 
 nnoremap <leader>b :CtrlPBuffer<CR>
 
-"nnoremap <leader>l :LustyJuggler<CR>
 function! MyAlternateFunction()
     let old_buf_nr = bufnr('%')
     A
@@ -159,6 +161,10 @@ function! CreateCppMethodImplementation()
         unlet s:RefactorCppFunctionDefinition
     endif
     let s:RefactorCppFunctionDefinition = getline(begin_line_num, end_line_num)
+    let index = end_line_num - begin_line_num
+    let last_line = s:RefactorCppFunctionDefinition[index]
+    let last_line = substitute( last_line, '\s*=\s*0;', ';', 'g')
+    let s:RefactorCppFunctionDefinition[index] = last_line
     
     " determine the class name
     " we will just go up until we see a line begin with 'class'
