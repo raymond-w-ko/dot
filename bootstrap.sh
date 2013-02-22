@@ -25,11 +25,19 @@ cd "$HOME"
 mkdir -p ~/bin
 mkdir -p ~/src
 
-mkdir -p ~/.local/share/vim/backup
-mkdir -p ~/.local/share/vim/swap
-mkdir -p ~/.local/share/vim/undo
+if [[ `uname` == 'Darwin' ]]; then
+    mkdir -p ~/Library/Vim/backup
+    mkdir -p ~/Library/Vim/swap
+    mkdir -p ~/Library/Vim/undo
+else
+    mkdir -p ~/.local/share/vim/backup
+    mkdir -p ~/.local/share/vim/swap
+    mkdir -p ~/.local/share/vim/undo
+fi
 
 mkdir -p ~/.subversion
+
+mkdir -p ~/.config
 
 #test -d ~/.hg-git/    || hg clone "bb://durin42/hg-git/" "$HOME/.hg-git"
 #test -d ~/lib/dulwich || git clone "git://github.com/jelmer/dulwich.git" "$HOME/lib/dulwich"
@@ -41,7 +49,7 @@ mkdir -p ~/.subversion
 ensure_sensitive_absolute_link "/cygdrive/c/Users/root/Desktop/Dropbox/ssh"       ".ssh"
 ensure_sensitive_absolute_link "/cygdrive/c/Users/root/Desktop/Dropbox/gnupg"     ".gnupg"
 
-ensure_link "lib/dot/config"                ".config"
+ensure_link "lib/dot/config/powerline"      ".config/powerline"
 
 ensure_link "lib/dot/bin/colorhelper.py"    "bin/colorhelper.py"
 ensure_link "lib/dot/bin/cyg-wrapper.sh"    "bin/cyg-wrapper.sh"
