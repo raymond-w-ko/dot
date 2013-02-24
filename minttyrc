@@ -1,14 +1,14 @@
 BoldAsFont=yes
 Transparency=off
 CursorType=block
-Font=ÇlÇr ÉSÉVÉbÉN
+Font=Dina TTF
 FontHeight=8
 Locale=C
 Charset=UTF-8
 Rows=45
 Columns=128
 OpaqueWhenFocused=yes
-FontSmoothing=full
+FontSmoothing=none
 BoldAsColour=yes
 Term=xterm-256color
 FontIsBold=no
