@@ -3,15 +3,16 @@
 		"term_24bit_colors": false,
 		"dividers": {
 			"left": {
-				"hard": " ",
-				"soft": " "
+				"hard": " ",
+				"soft": " "
 			},
 			"right": {
-				"hard": " ",
-				"soft": " "
+				"hard": " ",
+				"soft": " "
 			}
 		},
-		"spaces": 1
+		"spaces": 1,
+		"colors": "default"
 	},
 	"ext": {
 		"ipython": {
