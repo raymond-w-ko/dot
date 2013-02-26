@@ -71,6 +71,7 @@ endif
 
 " General {{{
 set encoding=utf-8
+set autowrite
 set autowriteall
 set shortmess+=aI    " no intro message
 set showmode
