@@ -271,8 +271,7 @@ syn keyword cBoolean true false TRUE FALSE
 syn keyword cConstant nullptr
 
 " Syandus C Types
-syn keyword syTypes bool8 int32 int64 float32 double64 char8 uchar8 uint32 uint64 ushort16 short16
-
+syn keyword syTypes bool8 int32 int64 float32 float64 double64 char8 uchar8 uint32 uint64 ushort16 short16 long64 ulong64
 
 " Links
 hi def link cFunction Function
