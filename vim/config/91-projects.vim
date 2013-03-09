@@ -12,7 +12,7 @@ let s:project_directories = [
     \ 'Carbon',             'C:/SVN/Syandus_ALIVE3/Frameworks/Carbon',
     \ 'CarbonCME',          'C:/SVN/Syandus_ALIVE3/Frameworks/CarbonCME',
     \ 'Carbon4',            'C:/SVN/Syandus_ALIVE4/Frameworks/Carbon',
-    \ 'Oxygen',             'C:/SVN/Syandus_ALIVE3/Frameworks/Oxygen',
+    \ 'Oxygen',             'C:/SVN/Syandus_ALIVE4/Frameworks/Oxygen',
     \ 'Hub',                'C:/SVN/Syandus_ALIVE3/Hub/Source',
     \ 'Metrics',            'C:/SVN/Syandus_ALIVE3/Metrics',
     \ 'Symlin',             'C:/SVN/Syandus_Cores/C_Sym_DM_01',
@@ -127,6 +127,13 @@ let s:visual_studio_project_settings = [
     \ ['C:/SVN/Syandus_ALIVE4/Frameworks/Carbon/*',
     \  3, 'Carbon',
     \ ''],
+    \ ['C:/SVN/Syandus_ALIVE4/Frameworks/Oxygen/*',
+    \  3, 'Oxygen',
+    \ ''],
+    \
+    \ ['C:/SVN/Syandus_Cores/C_ImmunoSim_01/*',
+    \  3, 'ImmunoSim',
+    \ ''],
     \ 
     \ ['C:/SVN/Syandus_Cores/C_Ogre_Lair_01/*',
     \  4,
@@ -209,11 +216,18 @@ augroup ForceClojureIndentation
     au BufNewFile,BufRead,BufEnter *.cljs call SetSettingsForClojure()
 augroup END
 
-augroup FrameworkLua
+augroup FrameworkCarbonLua
     au!
     au BufNewFile,BufRead,BufEnter
         \ C:/SVN/Syandus_ALIVE4/Frameworks/Carbon/Build/Content/Scripts/*.lua
-        \ call SetSpaceM('call PropagateFrameworkLua()')
+        \ call SetSpaceM('call PropagateCarbonFrameworkLua()')
+augroup END
+
+augroup FrameworkOxygenLua
+    au!
+    au BufNewFile,BufRead,BufEnter
+        \ C:/SVN/Syandus_ALIVE4/Frameworks/Oxygen/Build/Content/Scripts/*.lua
+        \ call SetSpaceM('call PropagateOxygenFrameworkLua()')
 augroup END
 
 augroup FrameworkOgre

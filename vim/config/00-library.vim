@@ -21,6 +21,7 @@ let s:project_directories_list = [
     \ 'C:\SVN\Syandus_ALIVE3\Tools\Source\SyHandleGen',
     \ 'C:\SVN\Syandus_ALIVE3\Tools\Source\SyRefresh',
     \ 'C:\SVN\Syandus_ALIVE4\Frameworks\Carbon',
+    \ 'C:\SVN\Syandus_ALIVE4\Frameworks\Oxygen',
     \ 'C:\SVN\Syandus_ALIVE4\Platform\Source\Code',
     \ 'C:\SVN\Syandus_ALIVE4\Tools\Source\SyProjectGenerator',
     \ 'C:\SVN\Syandus_ALIVE4\Tools\Source\mercky',
@@ -62,11 +63,11 @@ function! MyGetProjectDirectory()
         return directory . '/'
 endfunction
 
-let s:cores_with_lua_shared_framework = [
+let s:cores_with_carbon_lua_shared_framework = [
     \ 'C:/SVN/Syandus_Cores/C_Ogre_Lair_01/Build/Framework/Shared/Scripts',
     \]
 
-function! PropagateFrameworkLua()
+function! PropagateCarbonFrameworkLua()
     let errors = getloclist(0)
     if len(errors) > 0
         " don't copy a syntatically incorrect file!
@@ -75,7 +76,30 @@ function! PropagateFrameworkLua()
     endif
 
     let file = expand('%:p')
-    for dir in s:cores_with_lua_shared_framework
+    for dir in s:cores_with_carbon_lua_shared_framework
+        if !isdirectory(dir)
+            continue
+        endif
+        if has('win32')
+            exe 'silent !copy "' . file . '" "' . dir . '"'
+        endif
+    endfor
+endfunction
+
+let s:cores_with_oxygen_lua_shared_framework = [
+    \ 'C:/SVN/Syandus_Cores/C_ImmunoSim_01/Build/Framework/Shared/Scripts',
+    \]
+
+function! PropagateOxygenFrameworkLua()
+    let errors = getloclist(0)
+    if len(errors) > 0
+        " don't copy a syntatically incorrect file!
+        " assumes you have syntastic installed and it can check Lua
+        "return
+    endif
+
+    let file = expand('%:p')
+    for dir in s:cores_with_oxygen_lua_shared_framework
         if !isdirectory(dir)
             continue
         endif
@@ -96,7 +120,9 @@ function! PropagateFrameworkOgre()
             continue
         endif
         let subdirs = substitute(file, '\', '/', 'g')
-        let subdirs = substitute(subdirs, 'C:/SVN/Syandus_ALIVE4/Frameworks/Carbon/Build/Content/OGRE/',
+        let subdirs = substitute(
+            \ subdirs,
+            \ 'C:/SVN/Syandus_ALIVE4/Frameworks/Carbon/Build/Content/OGRE/',
             \ '', '')
         echom subdirs
         if has('win32')
