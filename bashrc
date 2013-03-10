@@ -1,8 +1,6 @@
 # If not running interactively, don't do anything
 [[ "$-" != *i* ]] && return
 
-set -o vi
-
 export HISTSIZE=32768
 export HISTCONTROL=ignoreboth
 
