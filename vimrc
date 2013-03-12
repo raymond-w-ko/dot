@@ -82,6 +82,7 @@ set noerrorbells
 if has('mac')
     set vb
 endif
+set cursorline
 set nocursorcolumn
 set nonumber
 if exists('+relativenumber')
