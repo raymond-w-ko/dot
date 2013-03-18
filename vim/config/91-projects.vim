@@ -230,11 +230,18 @@ augroup FrameworkOxygenLua
         \ call SetSpaceM('call PropagateOxygenFrameworkLua()')
 augroup END
 
-augroup FrameworkOgre
+augroup CarbonFrameworkOgre
     au!
     au BufNewFile,BufRead,BufEnter
         \ C:/SVN/Syandus_ALIVE4/Frameworks/Carbon/Build/Content/OGRE/*
-        \ call SetSpaceM('call PropagateFrameworkOgre()')
+        \ call SetSpaceM('call PropagateCarbonFrameworkOgre()')
+augroup END
+
+augroup OxygenFrameworkOgre
+    au!
+    au BufNewFile,BufRead,BufEnter
+        \ C:/SVN/Syandus_ALIVE4/Frameworks/Oxygen/Build/Content/OGRE/*
+        \ call SetSpaceM('call PropagateOxygenFrameworkOgre()')
 augroup END
 
 " vim:fdm=marker:foldlevel=0
