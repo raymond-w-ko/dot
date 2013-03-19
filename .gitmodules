@@ -61,9 +61,6 @@
 [submodule "vim/bundle/vim-scriptease"]
 	path = vim/bundle/vim-scriptease
 	url = git://github.com/tpope/vim-scriptease.git
-[submodule "vim/bundle/vim-foreplay"]
-	path = vim/bundle/vim-foreplay
-	url = git@github.com:raymond-w-ko/vim-foreplay.git
 [submodule "vim/bundle/PHP-Indenting-for-Vim"]
 	path = vim/bundle/PHP-Indenting-for-Vim
 	url = git://github.com/2072/PHP-Indenting-for-VIm.git
