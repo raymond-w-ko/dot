@@ -73,3 +73,6 @@
 [submodule "vim/bundle/cpp-vim"]
 	path = vim/bundle/cpp-vim
 	url = git://github.com/vim-jp/cpp-vim.git
+[submodule "vim/bundle/vim-fireplace"]
+	path = vim/bundle/vim-fireplace
+	url = git://github.com/tpope/vim-fireplace.git
