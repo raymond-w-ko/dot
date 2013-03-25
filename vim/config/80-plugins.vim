@@ -10,33 +10,32 @@ let g:netrw_silent=1
 " so you can't use it to select stuff (WTF!)
 let g:netrw_mousemaps=0
 let g:netrw_cygwin = 1
-"let g:netrw_scp_cmd = "\"C:\\Program Files (x86)\\PuTTY\\pscp.exe\" -q -agent"
 
-" AutoComplPop {{{
-let g:acp_enableAtStartup = 0
-let g:acp_ignorecaseOption = 0
-let g:acp_completeOption = '.,w,b,u,t'
-let g:acp_behaviorKeywordLength = 2
-let g:acp_completeoptPreview = 1
-let g:acp_behaviorKeywordIgnores = ['Sy', 'sy', 'get', 'set', 'Get', 'Set']
+" AutoComplPop
+"let g:acp_enableAtStartup = 0
+"let g:acp_ignorecaseOption = 0
+"let g:acp_completeOption = '.,w,b,u,t'
+"let g:acp_behaviorKeywordLength = 2
+"let g:acp_completeoptPreview = 1
+"let g:acp_behaviorKeywordIgnores = ['Sy', 'sy', 'get', 'set', 'Get', 'Set']
 
 " Command-T
-let g:CommandTMaxHeight=16
-let g:CommandTMatchWindowAtTop=1
-let g:CommandTMatchWindowReverse=0
+"let g:CommandTMaxHeight=16
+"let g:CommandTMatchWindowAtTop=1
+"let g:CommandTMatchWindowReverse=0
 
 " ack.vim
-let g:ackprg="C:/Perl/site/bin/ack.bat -H --nocolor --nogroup --column"
+"let g:ackprg="C:/Perl/site/bin/ack.bat -H --nocolor --nogroup --column"
 
 " LustyJuggler
-let g:LustyJugglerDefaultMappings=0
+"let g:LustyJugglerDefaultMappings=0
 
 " yankring
-let g:yankring_min_element_length = 2
+"let g:yankring_min_element_length = 2
 
 " tagbar
-let g:tagbar_width = 40
-let g:tagbar_sort = 0
+"let g:tagbar_width = 40
+"let g:tagbar_sort = 0
 
 " CtrlP
 let g:ctrlp_map = '<leader>\'           " set to something that I will never use
@@ -47,7 +46,7 @@ let g:ctrlp_working_path_mode = 0
 let g:ctrlp_switch_buffer = 1
 
 " indent-guides
-let g:indent_guides_enable_on_vim_startup=0
+"let g:indent_guides_enable_on_vim_startup=0
 
 " vim-powerline
 let g:Powerline_symbols='compatible'
@@ -62,29 +61,8 @@ let g:UltiSnipsJumpForwardTrigger = "<C-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 
 " Gundo
-nnoremap <F5> :GundoToggle<CR>
+"nnoremap <F5> :GundoToggle<CR>
 let g:gundo_right=1
-
-" VimClojure (obsolete)
-"let g:vimclojure#SplitPos = "left"
-"let g:vimclojure#SplitSize = 80
-"let g:vimclojure#FuzzyIndent = 1
-"let g:vimclojure#HighlightBuiltins = 1
-"let g:vimclojure#DynamicHighlighting = 0
-"let g:vimclojure#ParenRainbow = 1
-"let g:vimclojure#WantNailgun = 1
-"let g:vimclojure#NailgunClient = $HOME . '\bin\ng.exe'
-"let g:vimclojure#ParenRainbowColorsDark = {
-            "\ '1': 'ctermfg=red         guifg=red1',
-            "\ '2': 'ctermfg=yellow      guifg=orange1',
-            "\ '3': 'ctermfg=green       guifg=yellow1',
-            "\ '4': 'ctermfg=cyan        guifg=cyan1',
-            "\ '5': 'ctermfg=magenta     guifg=slateblue1',
-            "\ '6': 'ctermfg=red         guifg=magenta1',
-            "\ '7': 'ctermfg=magenta     guifg=brown',
-            "\ '8': 'ctermfg=red         guifg=red1',
-            "\ '9': 'ctermfg=red         guifg=orange1'
-            "\ }
 
 " vim-clojure-static
 let g:clojure_maxlines = 128
@@ -143,6 +121,7 @@ let g:omegacomplete_corrections_hi_cmds=[
 
 " syntastic
 let g:syntastic_enable_highlighting = 0
+let g:syntastic_enable_balloons = 0
 let g:syntastic_mode_map = {
             \ 'mode': 'active',
             \ 'active_filetypes': ['ruby', 'php'],
@@ -151,5 +130,3 @@ let g:syntastic_mode_map = {
 " paredit
 let g:paredit_leader = ','
 let g:paredit_shortmaps = 0
-
-" vim:fdm=marker:foldlevel=9001
