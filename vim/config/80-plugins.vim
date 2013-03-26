@@ -65,10 +65,12 @@ let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 let g:gundo_right=1
 
 " vim-clojure-static
-let g:clojure_maxlines = 128
-let g:clojure_fuzzy_indent = 1
-let g:clojure_fuzzy_indent_patterns = "with.*,def.*,let.*"
+let g:clojure_maxlines = 1024
 let g:clojure_align_multiline_strings = 1
+let g:clojure_fuzzy_indent = 1
+let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let']
+let g:clojure_fuzzy_indent_blacklist =
+    \ ['-fn$', '\v^with-%(meta|out-str|loading-context)$']
 
 " rainbow_parentheses
 let g:rbpt_colorpairs = [

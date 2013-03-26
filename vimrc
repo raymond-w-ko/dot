@@ -13,7 +13,7 @@ call add(g:pathogen_disabled, "cocoa")
 call add(g:pathogen_disabled, "YankRing")
 call add(g:pathogen_disabled, "vim-easymotion")
 call add(g:pathogen_disabled, "powerline")
-call add(g:pathogen_disabled, "foreplay")
+call add(g:pathogen_disabled, "vim-fireplace")
 
 " check to see if we can use the new powerline
 let s:use_new_powerline = 0
@@ -35,8 +35,6 @@ call pathogen#infect()
 call pathogen#helptags()
 
 if s:use_new_powerline
-    call add(g:pathogen_disabled, "vim-powerline")
-
     if has('win32')
         set rtp+=~/vimfiles/bundle/powerline/powerline/bindings/vim
     else
