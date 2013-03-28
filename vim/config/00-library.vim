@@ -124,7 +124,6 @@ function! PropagateCarbonFrameworkOgre()
             \ subdirs,
             \ 'C:/SVN/Syandus_ALIVE4/Frameworks/Carbon/Build/Content/OGRE/',
             \ '', '')
-        echom subdirs
         if has('win32')
             exe 'silent !copy "' . file . '" "' . dir . '/' . subdirs . '"'
         endif
@@ -146,7 +145,6 @@ function! PropagateOxygenFrameworkOgre()
             \ subdirs,
             \ 'C:/SVN/Syandus_ALIVE4/Frameworks/Oxygen/Build/Content/OGRE/',
             \ '', '')
-        echom subdirs
         if has('win32')
             exe 'silent !copy "' . file . '" "' . dir . '/' . subdirs . '"'
         endif
