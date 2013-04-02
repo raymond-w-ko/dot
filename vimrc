@@ -14,6 +14,7 @@ call add(g:pathogen_disabled, "YankRing")
 call add(g:pathogen_disabled, "vim-easymotion")
 call add(g:pathogen_disabled, "powerline")
 call add(g:pathogen_disabled, "vim-fireplace")
+call add(g:pathogen_disabled, "omegacomplete")
 
 " check to see if we can use the new powerline
 let s:use_new_powerline = 0
@@ -28,6 +29,18 @@ endif
 
 if s:use_new_powerline
     call add(g:pathogen_disabled, "vim-powerline")
+endif
+
+if has('java')
+    let jar_list = [
+                \ 'C:/cygwin/home/root/src/vim/src/java/vim.jar',
+                \ expand("$HOME") . "/java/clojure-1.5.1.jar",
+                \ expand("$HOME") . "/java/groovy-all-2.1.2-indy.jar"
+                \ ]
+    let jars = substitute(join(jar_list, ';'), '\\', '/', 'g')
+    exe "set javacp=" . jars
+
+    javashell clojure
 endif
 
 runtime bundle/vim-pathogen/autoload/pathogen.vim
@@ -290,17 +303,5 @@ function! FilterSmartQuotes()
     %s/\v‘|’/\'/
 endfunction
 command! FilterSmartQuotes silent! call FilterSmartQuotes()
-
-if has('java')
-    let jar_list = [
-                \ 'C:/cygwin/home/root/src/vim/src/java/vim.jar',
-                \ expand("$HOME") . "/java/clojure-1.5.1.jar",
-                \ expand("$HOME") . "/java/groovy-all-2.1.2-indy.jar"
-                \ ]
-    let jars = substitute(join(jar_list, ';'), '\\', '/', 'g')
-    exe "set javacp=" . jars
-
-    javashell clojure
-endif
 
 " vim:fdm=marker:foldlevel=0
