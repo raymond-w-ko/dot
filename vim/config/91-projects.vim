@@ -9,6 +9,7 @@ let s:project_directories = [
     \
     \ 'Platform',           'C:/SVN/Syandus_ALIVE3/Platform/Source/Code',
     \ 'Platform4',          'C:/SVN/Syandus_ALIVE4/Platform/Source/Code',
+    \ 'Doc4',               'C:/SVN/Syandus_ALIVE4/Documentation',
     \ 'Carbon',             'C:/SVN/Syandus_ALIVE3/Frameworks/Carbon',
     \ 'CarbonCME',          'C:/SVN/Syandus_ALIVE3/Frameworks/CarbonCME',
     \ 'Carbon4',            'C:/SVN/Syandus_ALIVE4/Frameworks/Carbon',
