@@ -27,7 +27,7 @@ if sys.version_info >= (2, 7):
 EOF
 endif
 
-if s:use_new_powerline
+if 0 && s:use_new_powerline
     call add(g:pathogen_disabled, "vim-powerline")
 endif
 
@@ -47,7 +47,7 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
 
-if s:use_new_powerline
+if 0 && s:use_new_powerline
     if has('win32')
         set rtp+=~/vimfiles/bundle/powerline/powerline/bindings/vim
     else
