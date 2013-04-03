@@ -14,7 +14,7 @@ call add(g:pathogen_disabled, "YankRing")
 call add(g:pathogen_disabled, "vim-easymotion")
 call add(g:pathogen_disabled, "powerline")
 call add(g:pathogen_disabled, "vim-fireplace")
-call add(g:pathogen_disabled, "omegacomplete")
+"call add(g:pathogen_disabled, "omegacomplete")
 
 " check to see if we can use the new powerline
 let s:use_new_powerline = 0
