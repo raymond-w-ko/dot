@@ -14,9 +14,9 @@ call add(g:pathogen_disabled, "YankRing")
 call add(g:pathogen_disabled, "vim-easymotion")
 call add(g:pathogen_disabled, "powerline")
 call add(g:pathogen_disabled, "vim-fireplace")
-"call add(g:pathogen_disabled, "omegacomplete")
 
 " check to see if we can use the new powerline
+let g:powerline_debugging_pyeval=1
 let s:use_new_powerline = 0
 if has('python')
     py << EOF
@@ -27,7 +27,7 @@ if sys.version_info >= (2, 7):
 EOF
 endif
 
-if 0 && s:use_new_powerline
+if s:use_new_powerline
     call add(g:pathogen_disabled, "vim-powerline")
 endif
 
@@ -47,7 +47,7 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
 
-if 0 && s:use_new_powerline
+if s:use_new_powerline
     if has('win32')
         set rtp+=~/vimfiles/bundle/powerline/powerline/bindings/vim
     else
