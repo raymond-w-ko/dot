@@ -40,7 +40,7 @@ if has('java')
     let jars = substitute(join(jar_list, ';'), '\\', '/', 'g')
     exe "set javacp=" . jars
 
-    javashell clojure
+    javarepl clojure
 endif
 
 runtime bundle/vim-pathogen/autoload/pathogen.vim
