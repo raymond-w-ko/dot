@@ -32,11 +32,8 @@ if s:use_new_powerline
 endif
 
 if has('java')
-    let jar_list = [
-                \ 'C:/cygwin/home/root/src/vim/src/java/vim.jar',
-                \ expand("$HOME") . "/java/clojure-1.5.1.jar",
-                \ expand("$HOME") . "/java/groovy-all-2.1.2-indy.jar"
-                \ ]
+    let jar_list = split(globpath(expand('$HOME') . '/java', '*.jar'), "\n")
+    call insert(jar_list, 'C:/cygwin/home/root/src/vim/src/java/vim.jar', 0)
     let jars = substitute(join(jar_list, ';'), '\\', '/', 'g')
     exe "set javacp=" . jars
 

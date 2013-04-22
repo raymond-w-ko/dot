@@ -150,7 +150,7 @@ let s:console2_project_settings = [
     \  'Vim', '_compile.bat{Enter}'],
     \
     \ ['C:/cygwin/home/root/src/vim/src/java/*',
-    \  'VimJava', 'make.bat{Enter}'],
+    \  'VimJava', 'nmake{Space}-f{Space}Make_mvc.mak{Enter}'],
     \]
 
 " in the form of [directory, tab width, optional arg, tags]

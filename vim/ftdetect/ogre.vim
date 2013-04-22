@@ -1,1 +1,1 @@
-au BufRead,BufNewFile *.material,*.compositor set filetype=ogre
+au BufRead,BufNewFile *.material,*.compositor,*.particle,*.program set filetype=ogre
