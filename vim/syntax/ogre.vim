@@ -438,7 +438,7 @@ syntax region GpuSharedParamsRef matchgroup=GpuSharedParamsRef start="\<shared_p
 " GPU program block
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-synta keyword GpuProgramType    asm hlsl cg glsl contained
+synta keyword GpuProgramType    asm hlsl cg glsl glsles contained
 syntax region GpuProgram        matchgroup=GpuProgram start="\(\<vertex_program\>\)\|\(\<fragment_program\>\)\|\(\<geometry_program\>\)" end="{"me=e-1 transparent contains=GpuProgramType,Comment nextgroup=GpuProgramBlock
 syntax region GpuProgramBlock   matchgroup=GpuProgram start="{" end="}" transparent contained contains=GpuProgramAttribute,DefaultGPUProgramParams,Comment,MaterialError
 
@@ -464,7 +464,8 @@ syntax keyword GpuProgramSyntax
     \   fp20 
     \   fp30 
     \   fp40 
-    \   gpu_gp gp4_gp 
+    \   gpu_gp gp4_gp
+    \   glsles
 
 
 syntax region GpuProgramAttribute matchgroup=GpuProgramAttribute start="\<profiles\>" end="$" transparent contained contains=GpuProgramSyntax,Comment,MaterialError
