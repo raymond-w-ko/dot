@@ -67,8 +67,8 @@ if has("unix")
         " regular UNIX
     endif
 elseif has("win32")
-    nnoremap <leader>ev :e C:/cygwin/home/root/lib/dot/vimrc<CR>
-    nnoremap <leader>gc :CtrlP C:/cygwin/home/root/lib/dot/vim/config<CR>
+    exe 'nnoremap <leader>ev :e C:/cygwin/home/' . expand('$USERNAME') . '/lib/dot/vimrc<CR>'
+    exe 'nnoremap <leader>gc :CtrlP C:/cygwin/home/' . expand('$USERNAME') . '/lib/dot/vim/config<CR>'
 
     nnoremap <leader>eh :e C:/Windows/system32/drivers/etc/hosts<CR>
 endif
