@@ -2,10 +2,10 @@
 set tags=
 
 let s:project_directories = [
-    \ 'Dropbox',            'C:/Users/root/Desktop/Dropbox',
-    \ 'OmegaComplete',      'C:/cygwin/home/root/lib/dot/vim/bundle/omegacomplete',
-    \ 'Vim',                'C:/cygwin/home/root/src/vim',
-    \ 'OcularWM',           'C:/cygwin/home/root/src/ocularwm',
+    \ 'Dropbox',            'C:/Users/__USERNAME__/Desktop/Dropbox',
+    \ 'OmegaComplete',      'C:/cygwin/home/rko/lib/dot/vim/bundle/omegacomplete',
+    \ 'Vim',                'C:/cygwin/home/rko/src/vim',
+    \ 'OcularWM',           'C:/cygwin/home/rko/src/ocularwm',
     \
     \ 'Platform',           'C:/SVN/Syandus_ALIVE3/Platform/Source/Code',
     \ 'Platform4',          'C:/SVN/Syandus_ALIVE4/Platform/Source/Code',
@@ -36,10 +36,18 @@ let s:project_directories = [
     \ 'Ms',                 'C:/SVN/Syandus_Cores/C_CMSC_MS_01',
     \ 'SyandusHtml5',       'C:/SVN/Syandus_Company/Web/Syandus.com/main/2013-html/html',
     \ ]
+let s:username = expand('$USERNAME')
 for i in range(len(s:project_directories) / 2)
     let cmd = (i * 2) + 0
-    let dir = (i * 2) + 1
-    exe 'com! ' . s:project_directories[cmd] . ' cd ' . s:project_directories[dir]
+    let dir = s:project_directories[(i * 2) + 1]
+    let dir = substitute(dir, '__USERNAME__', s:username, '')
+    let dir = substitute(dir, ' ', '\ ', '')
+    if s:project_directories[cmd] == 'Dropbox'
+        if !isdirectory(dir)
+            let dir = substitute(dir, '/Desktop', '', '')
+        endif
+    endif
+    exe 'com! ' . s:project_directories[cmd] . ' cd ' . dir
 endfor
 
 function! SetSettingsForVisualStudioProject(size_of_tab, name, tags, ...)

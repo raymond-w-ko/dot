@@ -41,7 +41,7 @@ let g:netrw_cygwin = 1
 let g:ctrlp_map = '<leader>\'           " set to something that I will never use
 let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_match_window_bottom = 0
-let g:ctrlp_max_height = 16
+let g:ctrlp_max_height = 4
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_switch_buffer = 1
 

@@ -1,6 +1,8 @@
 let s:project_directories_list = [
     \ 'C:\cygwin\home\root\src\vim\src',
     \ 'C:\cygwin\home\root\src\ocularwm',
+    \ 'C:\cygwin\home\rko\src\vim\src',
+    \ 'C:\cygwin\home\rko\src\ocularwm',
     \ 'C:\SVN\Syandus_ALIVE3\Frameworks\Carbon',
     \ 'C:\SVN\Syandus_ALIVE3\Frameworks\CarbonCME',
     \ 'C:\SVN\Syandus_ALIVE3\Frameworks\Oxygen',
@@ -173,21 +175,43 @@ function! EscapePathname(pathname)
 endfunction
 
 " executes the specificed autohotkey script
+let s:username = expand('$USERNAME')
 function! AutoHotkeyMake(arg0)
-  silent! execute ':!start "C:/Program Files/AutoHotkey/AutoHotkey.exe" ' .
-        \ '"C:/Users/root/Desktop/Dropbox/make.ahk" ' .
+    if filereadable("C:/Users/root/Desktop/Dropbox/make.ahk")
+        let file = "C:/Users/root/Desktop/Dropbox/make.ahk"
+    elseif filereadable("C:/Users/Raymond W. Ko/Dropbox/make.ahk")
+        let file = "C:/Users/Raymond W. Ko/Dropbox/make.ahk"
+    else
+        echom "autohotkey script now found"
+    endif
+    silent! execute ':!start "C:/Program Files/AutoHotkey/AutoHotkey.exe" ' .
+        \ '"' . file . '" ' .
         \ a:arg0
 endfunction
 
 function! AutoHotkeyConsole2Make(console_name, cmd)
-  silent! execute ':!start "C:/Program Files/AutoHotkey/AutoHotkey.exe" ' .
-        \ '"C:/Users/root/Desktop/Dropbox/console2_make.ahk" ' .
+    if filereadable("C:/Users/root/Desktop/Dropbox/console2_make.ahk")
+        let file = "C:/Users/root/Desktop/Dropbox/console2_make.ahk"
+    elseif filereadable("C:/Users/Raymond W. Ko/Dropbox/console2_make.ahk")
+        let file = "C:/Users/Raymond W. Ko/Dropbox/console2_make.ahk"
+    else
+        echom "autohotkey script now found"
+    endif
+    silent! execute ':!start "C:/Program Files/AutoHotkey/AutoHotkey.exe" ' .
+        \ '"' . file . '" ' .
         \ a:console_name . ' ' . a:cmd
 endfunction
 
 function! AutoHotkeyWinSCP(arg0)
+    if filereadable("C:/Users/root/Desktop/Dropbox/winscp_sync.ahk")
+        let file = "C:/Users/root/Desktop/Dropbox/winscp_sync.ahk"
+    elseif filereadable("C:/Users/Raymond W. Ko/Dropbox/winscp_sync.ahk")
+        let file = "C:/Users/Raymond W. Ko/Dropbox/winscp_sync.ahk"
+    else
+        echom "autohotkey script now found"
+    endif
   silent! execute ':!start "C:/Program Files/AutoHotkey/AutoHotkey.exe" ' .
-        \ '"C:/Users/root/Desktop/Dropbox/winscp_sync.ahk" ' .
+        \ '"' . file . '" ' .
         \ a:arg0
 endfunction
 
