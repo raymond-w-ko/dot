@@ -14,6 +14,7 @@ call add(g:pathogen_disabled, "YankRing")
 call add(g:pathogen_disabled, "vim-easymotion")
 call add(g:pathogen_disabled, "powerline")
 call add(g:pathogen_disabled, "vim-fireplace")
+call add(g:pathogen_disabled, "omegacomplete2")
 
 " check to see if we can use the new powerline
 let g:powerline_debugging_pyeval=1
