@@ -8,7 +8,7 @@ if has("win32")
         "set guifont=MS_Gothic:h8:cSHIFTJIS
         set linespace=0
         if has("directx")
-            "set directx
+            "set rop=type:directx
         endif
 
         let g:already_set_font=1
