@@ -10,7 +10,19 @@ if (s:uname == "Darwin\n")
 endif
 
 "lazy write
-nnoremap <CR> :w<CR>
+if (!exists('g:lazy_writing') || g:lazy_writing == 0)
+    function! MyLazyWrite()
+        let g:lazy_writing = 1
+        write
+        let curdir = expand("%:p:h")
+        let makefile = curdir . '/make.bat'
+        if (filereadable(makefile))
+            silent !make.bat
+        endif
+        let g:lazy_writing = 0
+    endfunction
+endif
+nnoremap <CR> :call MyLazyWrite()<CR>
 
 " disable crazy keys
 nnoremap K <Nop>

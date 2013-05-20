@@ -132,6 +132,10 @@ let s:visual_studio_project_settings = [
     \ ['C:/SVN/Syandus_ALIVE4/Tools/Source/SyHandleGen/*',
     \  2, 'SyHandleGen',
     \ ''],
+    \
+    \ ['C:/SVN/Syandus_ALIVE4/Tools/Source/Launcher/*',
+    \  3, 'Launcher',
+    \ ''],
     \ 
     \ ['C:/SVN/Syandus_ALIVE4/Frameworks/Carbon/*',
     \  3, 'Carbon',
