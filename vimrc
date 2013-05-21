@@ -6,6 +6,10 @@ if v:progname =~? "evim"
     finish
 endif
 
+if exists('+regexpengine')
+    set regexpengine=1
+end
+
 " pathogen
 let g:pathogen_disabled = []
 call add(g:pathogen_disabled, "ack.vim")
