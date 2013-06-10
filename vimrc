@@ -7,7 +7,12 @@ if v:progname =~? "evim"
 endif
 
 if exists('+regexpengine')
-    set regexpengine=1
+    " automatic engine selection
+    set regexpengine=0
+    " use old engine
+    "set regexpengine=1
+    " use new engine
+    "set regexpengine=2
 end
 
 " pathogen
