@@ -6,7 +6,9 @@ if has("unix")
 endif
 
 if (s:uname == "Darwin\n")
-    set macmeta
+    if has("+macmeta")
+        set macmeta
+    endif
 endif
 
 "lazy write
