@@ -6,6 +6,8 @@ if v:progname =~? "evim"
     finish
 endif
 
+set encoding=utf-8
+
 if exists('+regexpengine')
     " automatic engine selection
     set regexpengine=0
@@ -92,7 +94,14 @@ else
         " http://www.shallowsky.com/linux/noaltscreen.html
         set t_ti= t_te=
         set ttymouse=xterm2
+    endif
 
+    let s:uname = "win32"
+    if has("unix")
+        let s:uname = system("uname")
+    endif
+
+    if (s:uname == "Darwin\n")
         nmap <ESC>t <A-t>
         nmap <ESC>w <A-w>
         nmap <ESC>1 <A-1>
@@ -104,7 +113,6 @@ else
 endif
 
 " General {{{
-set encoding=utf-8
 set autowrite
 set autowriteall
 set shortmess+=aI    " no intro message
