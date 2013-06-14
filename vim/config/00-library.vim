@@ -182,7 +182,7 @@ function! AutoHotkeyMake(arg0)
     elseif filereadable("C:/Users/Raymond W. Ko/Dropbox/make.ahk")
         let file = "C:/Users/Raymond W. Ko/Dropbox/make.ahk"
     else
-        echom "autohotkey script now found"
+        echom "autohotkey script not found"
     endif
     silent! execute ':!start "C:/Program Files/AutoHotkey/AutoHotkey.exe" ' .
         \ '"' . file . '" ' .
@@ -195,7 +195,7 @@ function! AutoHotkeyConsole2Make(console_name, cmd)
     elseif filereadable("C:/Users/Raymond W. Ko/Dropbox/console2_make.ahk")
         let file = "C:/Users/Raymond W. Ko/Dropbox/console2_make.ahk"
     else
-        echom "autohotkey script now found"
+        echom "autohotkey script not found"
     endif
     silent! execute ':!start "C:/Program Files/AutoHotkey/AutoHotkey.exe" ' .
         \ '"' . file . '" ' .
@@ -208,7 +208,7 @@ function! AutoHotkeyWinSCP(arg0)
     elseif filereadable("C:/Users/Raymond W. Ko/Dropbox/winscp_sync.ahk")
         let file = "C:/Users/Raymond W. Ko/Dropbox/winscp_sync.ahk"
     else
-        echom "autohotkey script now found"
+        echom "autohotkey script not found"
     endif
   silent! execute ':!start "C:/Program Files/AutoHotkey/AutoHotkey.exe" ' .
         \ '"' . file . '" ' .

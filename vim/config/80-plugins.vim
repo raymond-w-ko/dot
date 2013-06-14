@@ -127,7 +127,7 @@ let g:syntastic_enable_balloons = 0
 let g:syntastic_mode_map = {
             \ 'mode': 'active',
             \ 'active_filetypes': ['ruby', 'php'],
-            \ 'passive_filetypes': ['java', 'c', 'cpp', 'objc'] }
+            \ 'passive_filetypes': ['java', 'c', 'cpp', 'objc', 'objcpp'] }
 
 " paredit
 let g:paredit_leader = ','

@@ -93,7 +93,8 @@ else
         " Prevent Vim from clobbering the scrollback buffer. See
         " http://www.shallowsky.com/linux/noaltscreen.html
         set t_ti= t_te=
-        set ttymouse=xterm2
+        "set ttymouse=xterm2
+        set ttymouse=
     endif
 
     let s:uname = "win32"

@@ -24,7 +24,11 @@ if [[ "$unamestr" == 'Darwin' ]]; then
     alias l='ls -FG'
     alias ll='ls -lFG'
 
-    alias vim='mvim'
+    if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+        alias vim="vim"
+    else
+        alias vim='mvim'
+    fi
 
     export DYLD_LIBRARY_PATH=~/boost/stage/lib
 else

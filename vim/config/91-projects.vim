@@ -120,6 +120,9 @@ let s:visual_studio_project_settings = [
     \ ['C:/SVN/Syandus_ALIVE4/Platform/Source/Code/*',
     \  3, 'SyPlatform4',
     \ 'C:/SVN/Syandus_ALIVE4/Platform/ThirdParty/ogre/Include/tags'],
+    \ ['~/SVN/Syandus_ALIVE4/Platform/Source/Code/*',
+    \  3, 'SyPlatform4',
+    \ ''],
     \ 
     \ 
     \ ['C:/cygwin/home/root/src/ocularwm/*',
