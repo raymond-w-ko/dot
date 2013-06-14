@@ -83,8 +83,14 @@ if has("unix")
 elseif has("win32")
     "exe 'nnoremap <leader>ev :e C:/cygwin/home/' . expand('$USERNAME') . '/lib/dot/vimrc<CR>'
     "exe 'nnoremap <leader>gc :CtrlP C:/cygwin/home/' . expand('$USERNAME') . '/lib/dot/vim/config<CR>'
-    exe 'nnoremap <leader>ev :e C:/cygwin/home/rko/lib/dot/vimrc<CR>'
-    exe 'nnoremap <leader>gc :CtrlP C:/cygwin/home/rko/lib/dot/vim/config<CR>'
+    if isdirectory('C:/cygwin/home/rko/lib/dot')
+        exe 'nnoremap <leader>ev :e C:/cygwin/home/rko/lib/dot/vimrc<CR>'
+        exe 'nnoremap <leader>gc :CtrlP C:/cygwin/home/rko/lib/dot/vim/config<CR>'
+    endif
+    if isdirectory('C:/cygwin/home/root/lib/dot')
+        exe 'nnoremap <leader>ev :e C:/cygwin/home/root/lib/dot/vimrc<CR>'
+        exe 'nnoremap <leader>gc :CtrlP C:/cygwin/home/root/lib/dot/vim/config<CR>'
+    endif
 
     nnoremap <leader>eh :e C:/Windows/system32/drivers/etc/hosts<CR>
 endif
