@@ -95,6 +95,14 @@ else
         set t_ti= t_te=
         "set ttymouse=xterm2
         set ttymouse=
+
+        nmap <ESC>t <A-t>
+        nmap <ESC>w <A-w>
+        nmap <ESC>1 <A-1>
+        nmap <ESC>2 <A-2>
+        nmap <ESC>3 <A-3>
+        nmap <ESC>4 <A-4>
+        nmap <ESC>5 <A-5>
     endif
 
     let s:uname = "win32"
@@ -103,13 +111,6 @@ else
     endif
 
     if (s:uname == "Darwin\n")
-        nmap <ESC>t <A-t>
-        nmap <ESC>w <A-w>
-        nmap <ESC>1 <A-1>
-        nmap <ESC>2 <A-2>
-        nmap <ESC>3 <A-3>
-        nmap <ESC>4 <A-4>
-        nmap <ESC>5 <A-5>
     endif
 endif
 
