@@ -93,8 +93,10 @@ else
         " Prevent Vim from clobbering the scrollback buffer. See
         " http://www.shallowsky.com/linux/noaltscreen.html
         set t_ti= t_te=
-        "set ttymouse=xterm2
+
+        set t_RV=
         set ttymouse=
+        "set ttymouse=xterm2
 
         nmap <ESC>t <A-t>
         nmap <ESC>w <A-w>
