@@ -14,6 +14,7 @@ let s:project_directories = [
     \ 'CarbonCME',          'C:/SVN/Syandus_ALIVE3/Frameworks/CarbonCME',
     \ 'Carbon4',            'C:/SVN/Syandus_ALIVE4/Frameworks/Carbon',
     \ 'Oxygen',             'C:/SVN/Syandus_ALIVE4/Frameworks/Oxygen',
+    \ 'Proton',             'C:/SVN/Syandus_ALIVE4/Frameworks/Proton',
     \ 'Hub',                'C:/SVN/Syandus_ALIVE3/Hub/Source',
     \ 'Metrics',            'C:/SVN/Syandus_ALIVE3/Metrics',
     \ 'Symlin',             'C:/SVN/Syandus_Cores/C_Sym_DM_01',
@@ -145,6 +146,9 @@ let s:visual_studio_project_settings = [
     \ ''],
     \ ['C:/SVN/Syandus_ALIVE4/Frameworks/Oxygen/*',
     \  3, 'Oxygen',
+    \ ''],
+    \ ['C:/SVN/Syandus_ALIVE4/Frameworks/Proton/*',
+    \  3, 'Proton',
     \ ''],
     \
     \ ['C:/SVN/Syandus_Cores/C_ImmunoSim_01/*',
