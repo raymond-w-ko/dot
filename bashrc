@@ -31,6 +31,8 @@ if [[ "$unamestr" == 'Darwin' ]]; then
     fi
 
     export DYLD_LIBRARY_PATH=~/boost/stage/lib
+
+    alias Platform4="cd ~/SVN/Syandus_ALIVE4/Platform"
 else
     alias ls='ls --color -F'
     alias l='ls --color -F'
