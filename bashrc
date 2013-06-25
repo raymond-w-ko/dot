@@ -33,6 +33,7 @@ if [[ "$unamestr" == 'Darwin' ]]; then
     export DYLD_LIBRARY_PATH=~/boost/stage/lib
 
     alias Platform4="cd ~/SVN/Syandus_ALIVE4/Platform"
+    alias Immunobiology="cd ~/SVN/Syandus_Cores/C_ImmunoSim_01"
 else
     alias ls='ls --color -F'
     alias l='ls --color -F'
@@ -60,7 +61,7 @@ export GIT_EDITOR=vim
 export HGEDITOR=vim
 
 # aliases
-alias sdr='screen -D -R'
+alias sdr='screen -U -D -R'
 alias svnlog='svn log -l 32 -v | less'
 alias myctags='/usr/bin/find . -regex ".*\.\(c\|h\|hpp\|cc\|cpp\)" -print | /usr/bin/ctags --c++-kinds=+px --fields=+aimSz --languages=c++ --sort=yes -L -'
 alias omegacomplete='cd ~/lib/dot/vim/bundle/omegacomplete'

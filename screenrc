@@ -2,8 +2,6 @@ attrcolor b ".I"
 termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 defbce "on"
 
-defutf8 on
-
 startup_message off
 hardstatus
 hardstatus alwayslastline "%{gk}%H%{wk} | %{gk}%M-%d-%y %c%{wk} | %?%-Lw%?%{wb}%n*%f%t%?(%u)%?%{wk}%?%+Lw%?"
