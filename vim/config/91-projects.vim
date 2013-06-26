@@ -48,6 +48,9 @@ for i in range(len(s:project_directories) / 2)
             let dir = substitute(dir, '/Desktop', '', '')
         endif
     endif
+    if has('mac') || has ('unix')
+        let dir = substitute(dir, 'C:/', '~/', 'g')
+    endif
     exe 'com! ' . s:project_directories[cmd] . ' cd ' . dir
 endfor
 

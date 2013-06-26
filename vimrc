@@ -89,15 +89,19 @@ if has("win32")
     "let g:ruby_path='C:/Ruby192/bin'
 else
     if !has("gui_running")
-        set term=xterm
-        set t_Co=256
-        " Prevent Vim from clobbering the scrollback buffer. See
-        " http://www.shallowsky.com/linux/noaltscreen.html
-        set t_ti= t_te=
+        " need this otherwise colors disappear
+        if !exists('g:has_set_my_console_vim_settings')
+            set term=xterm
+            set t_Co=256
+            " Prevent Vim from clobbering the scrollback buffer. See
+            " http://www.shallowsky.com/linux/noaltscreen.html
+            set t_ti= t_te=
 
-        set t_RV=
-        set ttymouse=
-        "set ttymouse=xterm2
+            set t_RV=
+            set ttymouse=
+            "set ttymouse=xterm2
+            let g:has_set_my_console_vim_settings = 1
+        endif
 
         nmap <ESC>t <A-t>
         nmap <ESC>w <A-w>

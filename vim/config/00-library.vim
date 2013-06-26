@@ -42,6 +42,10 @@ let s:project_directories_list = [
 
 let s:project_directories = {}
 for directory in s:project_directories_list
+    if has('mac') || has ('unix')
+        let directory = substitute(directory, '\\', '/', 'g')
+        let directory = substitute(directory, 'C:/', $HOME . '/', 'g')
+    endif
     let s:project_directories[directory] = 1
 endfor
 
