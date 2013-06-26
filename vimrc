@@ -89,6 +89,7 @@ if has("win32")
     "let g:ruby_path='C:/Ruby192/bin'
 else
     if !has("gui_running")
+        set term=xterm
         set t_Co=256
         " Prevent Vim from clobbering the scrollback buffer. See
         " http://www.shallowsky.com/linux/noaltscreen.html
