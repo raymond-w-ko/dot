@@ -21,8 +21,8 @@ if [[ "$unamestr" == 'Darwin' ]]; then
     export LSCOLORS=GxFxCxDxBxegedabagaced
 
     alias ls='ls -FG'
-    alias l='ls -FG'
-    alias ll='ls -lFG'
+    alias l='ls -FGlh'
+    alias ll='ls -FGlha'
 
     if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
         alias vim="vim"
@@ -36,8 +36,8 @@ if [[ "$unamestr" == 'Darwin' ]]; then
     alias Immunobiology="cd ~/SVN/Syandus_Cores/C_ImmunoSim_01"
 else
     alias ls='ls --color -F'
-    alias l='ls --color -F'
-    alias ll='ls --color -lF'
+    alias l='ls --color -Flh'
+    alias ll='ls --color -Flha'
 fi
 
 alias dot='cd ~/lib/dot'
