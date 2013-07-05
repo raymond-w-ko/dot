@@ -65,11 +65,20 @@ alias sdr='screen -U -D -R'
 alias svnlog='svn log -l 32 -v | less'
 alias myctags='/usr/bin/find . -regex ".*\.\(c\|h\|hpp\|cc\|cpp\)" -print | /usr/bin/ctags --c++-kinds=+px --fields=+aimSz --languages=c++ --sort=yes -L -'
 alias omegacomplete='cd ~/lib/dot/vim/bundle/omegacomplete'
+
 if [ -d "/cygdrive/c/Users/root/Desktop/P2P" ]; then
     alias p2p='cd /cygdrive/c/Users/root/Desktop/P2P'
 fi
 if [ -d "/cygdrive/c/Users/Raymond W. Ko/Desktop/P2P" ]; then
     alias p2p='cd "/cygdrive/c/Users/Raymond W. Ko/Desktop/P2P"'
+fi
+
+if [ -d "/cygdrive/c/Program Files/Vim/vim73/src/src" ]; then
+    alias vimsrc='cd "/cygdrive/c/Program Files/Vim/vim73/src/src"'
+elif [ -d "/cygdrive/c/Program Files (x86)/Vim/vim73/src/src" ]; then
+    alias vimsrc='cd "/cygdrive/c/Program Files (x86)/Vim/vim73/src/src"'
+elif [ -d "~/src/vim" ]; then
+    alias vimsrc="cd ~/src/vim"
 fi
 
 alias gs='git status'
