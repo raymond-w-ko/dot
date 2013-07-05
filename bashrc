@@ -77,8 +77,8 @@ if [ -d "/cygdrive/c/Program Files/Vim/vim73/src/src" ]; then
     alias vimsrc='cd "/cygdrive/c/Program Files/Vim/vim73/src/src"'
 elif [ -d "/cygdrive/c/Program Files (x86)/Vim/vim73/src/src" ]; then
     alias vimsrc='cd "/cygdrive/c/Program Files (x86)/Vim/vim73/src/src"'
-elif [ -d "~/src/vim" ]; then
-    alias vimsrc="cd ~/src/vim"
+elif [ -d "$HOME/src/vim" ]; then
+    alias vimsrc="cd $HOME/src/vim"
 fi
 
 alias gs='git status'
