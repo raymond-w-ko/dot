@@ -8,6 +8,9 @@ hardstatus alwayslastline "%{gk}%H%{wk} | %{gk}%M-%d-%y %c%{wk} | %?%-Lw%?%{wb}%
 vbell_msg "bell: window ~%" # Message for visual bell
 vbellwait 1 # Seconds to pause the screen for visual bell
 vbell off # Turns visual bell off
+defscrollback 8192
 
 screen 1 bash
 screen 2 bash
+screen 3 bash
+screen 4 bash
