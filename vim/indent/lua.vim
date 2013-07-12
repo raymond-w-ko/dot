@@ -15,7 +15,7 @@ setlocal indentexpr=GetLuaIndent()
 
 " To make Vim call GetLuaIndent() when it finds '\s*end' or '\s*until'
 " on the current line ('else' is default and includes 'elseif').
-setlocal indentkeys+=0=end,0=until,0=elseif,0=else
+setlocal indentkeys+=0=end,0=until,0=elseif,0=else,0=:
 
 setlocal autoindent
 
@@ -73,6 +73,13 @@ function! GetLuaIndent()
         return ind
     endif
 
+    let has_function_kw = match(getline(v:lnum - 1), '.*\s*function\s*.*')
+    let has_end_kw = match(getline(v:lnum - 1), '.*\s*function.*end\s*.*')
+    let has_func_opening = 0
+    if has_function_kw != -1 && has_end_kw == -1
+        let has_func_opening = 1
+    endif
+
     " below code tries to find unbalanced parentheses and determine special
     " indenting amounts so argument line up nicely
     let num_parens = 0
@@ -99,10 +106,12 @@ function! GetLuaIndent()
 
     " open left paren
     if num_parens < 0
-        if text_after_paren
-            let ind = after_left_index
-        elseif (GetLuaIndent_IndentingKeywordsIndex(prev_line) == -1) && (GetLuaIndent_BeginningFunctionIndex(prev_line) == -1)
-            let ind += &shiftwidth
+        if !has_func_opening
+            if text_after_paren
+                let ind = after_left_index
+            elseif (GetLuaIndent_IndentingKeywordsIndex(prev_line) == -1) && (GetLuaIndent_BeginningFunctionIndex(prev_line) == -1)
+                let ind += &shiftwidth
+            endif
         endif
         " open right paren
     elseif num_parens > 0
@@ -145,6 +154,16 @@ function! GetLuaIndent()
         let match_index = match(getline(v:lnum), '^\s*\%(end\|else\|until\|}\)')
         if match_index != -1 && synIDattr(synID(v:lnum, match_index + 1, 1), "name") != "luaComment"
             let ind = ind - &shiftwidth
+        endif
+    endif
+
+    if (match(getline(v:lnum), '^\s*:.*') != -1)
+        let prev_line = getline(v:lnum - 1)
+        let colon_loc = match(prev_line, ':')
+        if (colon_loc != -1)
+            let ind = colon_loc
+        else
+            let ind += &shiftwidth
         endif
     endif
 
