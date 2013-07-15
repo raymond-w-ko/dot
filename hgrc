@@ -7,5 +7,6 @@ rebase =
 pager =
 hgext.purge =
 color =
+mq =
 [diff]
 #ignorews=True
