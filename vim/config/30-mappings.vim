@@ -48,8 +48,8 @@ nnoremap <F12> :e ++enc=latin1<CR>
 
 " General {{{
 " Substitute
-nnoremap <leader>s :%s///c<left><left>
-vnoremap <leader>s :s///c<left><left>
+nnoremap <leader>s :%s//
+vnoremap <leader>s :s//
 
 nnoremap <leader>\ :s/\//\\/<CR>:nohlsearch<CR>
 nnoremap <leader>/ :s/\\/\//<CR>:nohlsearch<CR>
