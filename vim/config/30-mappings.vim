@@ -16,7 +16,7 @@ if (!exists('g:lazy_writing') || g:lazy_writing == 0)
         write
         let curdir = expand("%:p:h")
         let makefile = curdir . '/make.bat'
-        if (filereadable(makefile))
+        if (filereadable(makefile)) && match(getcwd(), '\v\CSVN.Syandus_') != -1
             silent !make.bat
         endif
         let g:lazy_writing = 0

@@ -45,8 +45,9 @@ endif
 
 if has('java')
     let jar_list = split(globpath(expand('$HOME') . '/java', '*.jar'), "\n")
-    call insert(jar_list, 'C:/cygwin/home/root/src/vim/src/java/vim.jar', 0)
+    call insert(jar_list, expand('$VIMRUNTIME') . '/vim.jar', 0)
     let jars = substitute(join(jar_list, ';'), '\\', '/', 'g')
+    let jars = substitute(jars, ' ', '\\ ', 'g')
     exe "set javacp=" . jars
 
     javarepl clojure
