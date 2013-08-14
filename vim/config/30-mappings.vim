@@ -92,6 +92,7 @@ elseif has("win32")
 
     nnoremap <leader>eh :e C:/Windows/system32/drivers/etc/hosts<CR>
 endif
+nnoremap <leader>el :e C:/SVN/Syandus_ALIVE4/Platform/Source/Code/SyCore/SyLua.cpp<CR>
 
 function! FindFileInProjectDirectory()
     execute ':CtrlP ' . EscapePathname(MyGetProjectDirectory())
@@ -610,7 +611,11 @@ function! MySuperRightParen()
 endfunction
 
 " <CR> should not autoaccept what the popup menu has selected
-inoremap <expr>     <Tab>   omegacomplete#UseFirstEntryOfPopup()
+if g:omegacomplete_version_preference == 1
+    inoremap <expr> <Tab> omegacomplete#UseFirstEntryOfPopup()
+elseif g:omegacomplete_version_preference == 2
+    inoremap <expr> <Tab> omegacomplete2#UseFirstEntryOfPopup()
+endif
 "inoremap <silent>   (       (<C-r>=MySuperLeftParen()<CR>
 "inoremap <silent>   )       )<C-r>=MySuperRightParen()<CR>
 
