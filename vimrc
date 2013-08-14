@@ -17,6 +17,8 @@ if exists('+regexpengine')
     "set regexpengine=2
 end
 
+let g:omegacomplete_version_preference = 1
+
 " pathogen
 let g:pathogen_disabled = []
 call add(g:pathogen_disabled, "ack.vim")
@@ -25,8 +27,15 @@ call add(g:pathogen_disabled, "YankRing")
 call add(g:pathogen_disabled, "vim-easymotion")
 call add(g:pathogen_disabled, "powerline")
 call add(g:pathogen_disabled, "vim-fireplace")
-"call add(g:pathogen_disabled, "omegacomplete")
-call add(g:pathogen_disabled, "omegacomplete2")
+if g:omegacomplete_version_preference == 2
+    if has('java')
+        call add(g:pathogen_disabled, "omegacomplete")
+    else
+        call add(g:pathogen_disabled, "omegacomplete2")
+    endif
+elseif g:omegacomplete_version_preference == 1
+    call add(g:pathogen_disabled, "omegacomplete2")
+endif
 
 " check to see if we can use the new powerline
 let g:powerline_debugging_pyeval=1
