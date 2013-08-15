@@ -3,9 +3,10 @@ set tags=
 
 let s:project_directories = [
     \ 'Dropbox',            'C:/Users/__USERNAME__/Desktop/Dropbox',
-    \ 'OmegaComplete',      'C:/cygwin/home/rko/lib/dot/vim/bundle/omegacomplete',
-    \ 'Vim',                'C:/cygwin/home/rko/src/vim',
-    \ 'OcularWM',           'C:/cygwin/home/rko/src/ocularwm',
+    \ 'Omegacomplete',      'C:/cygwin/home/__USERNAME__/lib/dot/vim/bundle/omegacomplete',
+    \ 'Omegacomplete2',      'C:/cygwin/home/__USERNAME__/lib/dot/vim/bundle/omegacomplete2',
+    \ 'Vim',                'C:/cygwin/home/__USERNAME__/src/vim',
+    \ 'OcularWM',           'C:/cygwin/home/__USERNAME__/src/ocularwm',
     \
     \ 'Platform',           'C:/SVN/Syandus_ALIVE3/Platform/Source/Code',
     \ 'Platform4',          'C:/SVN/Syandus_ALIVE4/Platform/Source/Code',

@@ -611,10 +611,13 @@ function! MySuperRightParen()
 endfunction
 
 " <CR> should not autoaccept what the popup menu has selected
-if g:omegacomplete_version_preference == 1
-    inoremap <expr> <Tab> omegacomplete#UseFirstEntryOfPopup()
-elseif g:omegacomplete_version_preference == 2
-    inoremap <expr> <Tab> omegacomplete2#UseFirstEntryOfPopup()
+if !exists('g:has_set_my_omegacomplete_tab_binding')
+    if g:omegacomplete_version_preference == 1
+        inoremap <expr> <Tab> omegacomplete#UseFirstEntryOfPopup()
+    elseif g:omegacomplete_version_preference == 2
+        inoremap <expr> <Tab> omegacomplete2#UseFirstEntryOfPopup()
+    endif
+    let g:has_set_my_omegacomplete_tab_binding=1
 endif
 "inoremap <silent>   (       (<C-r>=MySuperLeftParen()<CR>
 "inoremap <silent>   )       )<C-r>=MySuperRightParen()<CR>
