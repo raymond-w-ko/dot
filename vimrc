@@ -17,7 +17,7 @@ if exists('+regexpengine')
     "set regexpengine=2
 end
 
-let g:omegacomplete_version_preference = 2
+let g:omegacomplete_version_preference = 1
 
 " pathogen
 let g:pathogen_disabled = []

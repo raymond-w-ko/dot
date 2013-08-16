@@ -3,10 +3,9 @@ set tags=
 
 let s:project_directories = [
     \ 'Dropbox',            'C:/Users/__USERNAME__/Desktop/Dropbox',
-    \ 'Omegacomplete',      'C:/cygwin/home/__USERNAME__/lib/dot/vim/bundle/omegacomplete',
-    \ 'Omegacomplete2',      'C:/cygwin/home/__USERNAME__/lib/dot/vim/bundle/omegacomplete2',
-    \ 'Vim',                'C:/cygwin/home/__USERNAME__/src/vim',
-    \ 'OcularWM',           'C:/cygwin/home/__USERNAME__/src/ocularwm',
+    \ 'Omegacomplete',      'C:/cygwin/home/__CYGWINUSERNAME__/lib/dot/vim/bundle/omegacomplete',
+    \ 'Omegacomplete2',      'C:/cygwin/home/__CYGWINUSERNAME__/lib/dot/vim/bundle/omegacomplete2',
+    \ 'OcularWM',           'C:/cygwin/home/__CYGWINUSERNAME__/src/ocularwm',
     \
     \ 'Platform',           'C:/SVN/Syandus_ALIVE3/Platform/Source/Code',
     \ 'Platform4',          'C:/SVN/Syandus_ALIVE4/Platform/Source/Code',
@@ -39,10 +38,16 @@ let s:project_directories = [
     \ 'SyandusHtml5',       'C:/SVN/Syandus_Company/Web/Syandus.com/main/2013-html/html',
     \ ]
 let s:username = expand('$USERNAME')
+if s:username == 'Raymond W. Ko'
+    let s:cygwin_username = 'rko'
+else
+    let s:cygwin_username = 'root'
+endif
 for i in range(len(s:project_directories) / 2)
     let cmd = (i * 2) + 0
     let dir = s:project_directories[(i * 2) + 1]
     let dir = substitute(dir, '__USERNAME__', s:username, '')
+    let dir = substitute(dir, '__CYGWINUSERNAME__', s:cygwin_username, '')
     let dir = substitute(dir, ' ', '\ ', '')
     if s:project_directories[cmd] == 'Dropbox'
         if !isdirectory(dir)
