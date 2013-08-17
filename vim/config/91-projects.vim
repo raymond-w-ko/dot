@@ -120,7 +120,7 @@ exe 'au!'
 " follows format of [directory, tab width, VS project name, tags list]
 let s:visual_studio_project_settings = [
     \ ['C:/cygwin/home/root/lib/dot/vim/bundle/omegacomplete/*',
-    \  4, 'OmegaCompletePythonModule', ''],
+    \  2, 'OmegaCompletePythonModule', ''],
     \ 
     \
     \ ['C:/SVN/Syandus_ALIVE3/Platform/Source/Code/*',
