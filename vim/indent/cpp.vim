@@ -21,6 +21,28 @@ if exists("b:did_indent")
 endif
 let b:did_indent = 1
 
+function! GoogleCppIndentFindLineWithOpenLeftBrace()
+  let line_num = line('.') - 1
+  let lcount = 0
+  let rcount = 0
+  while line_num > 0
+    let line = getline(line_num)
+    let ind = len(line) - 1
+    while ind >= 0
+      if line[ind] == '{'
+        let lcount += 1
+        if lcount > rcount
+          return line_num
+        endif
+      elseif line[ind] == '}'
+        let rcount += 1
+      endif
+      let ind -= 1
+    endwhile
+    let line_num -= 1
+  endwhile
+  return 0
+endfunction
 
 function! GoogleCppIndent()
   let l:cline_num = line('.')
@@ -31,7 +53,20 @@ function! GoogleCppIndent()
 
   let l:pline_num = prevnonblank(l:cline_num - 1)
   let l:pline = getline(l:pline_num)
-  if l:pline =~# '^\s*template' | return l:pline_indent | endif
+  let l:ppline = getline(l:pline_num - 1)
+  let l:cline = getline(l:cline_num)
+  if l:pline =~# '^\s*template' 
+    return l:pline_indent 
+  endif
+
+  if l:cline =~ '\s*}\s*'
+    let l:brace_line = GoogleCppIndentFindLineWithOpenLeftBrace()
+    if l:brace_line != 0 && getline(l:brace_line - 1) =~ '.*,\s*'
+      return l:orig_indent - 2 - (2 * &shiftwidth)
+    else
+      return l:orig_indent
+    endif
+  end
 
   " TODO: I don't know to correct it:
   " namespace test {
@@ -54,6 +89,8 @@ function! GoogleCppIndent()
     "       var2(value2)
     if l:pline =~ '^\s\+:.*,\s*$'
       return l:orig_indent + 2
+    elseif l:pline =~ '.*)\s*{\s*' && l:ppline =~ '.*,\s*$'
+      return l:orig_indent - 2 - (2 * &shiftwidth)
     else
       return l:orig_indent
     endif
@@ -63,6 +100,7 @@ function! GoogleCppIndent()
   let l:pline_num = prevnonblank(l:cline_num - 1)
   while l:pline_num > -1
     let l:pline = getline(l:pline_num)
+    let l:ppline = getline(l:pline_num - 1)
     let l:pline_indent = indent(l:pline_num)
 
     if l:in_comment == 0 && l:pline =~ '^.\{-}\(/\*.\{-}\)\@<!\*/'
@@ -75,6 +113,8 @@ function! GoogleCppIndent()
       if l:pline !~# '\(#define\)\|\(^\s*//\)\|\(^\s*{\)'
         if l:pline =~# '^\s*namespace.*'
           return 0
+        elseif l:cline =~ '^\s*:.*$'
+          return l:orig_indent + &shiftwidth
         else
           return l:orig_indent
         endif
@@ -100,6 +140,7 @@ setlocal expandtab
 
 setlocal cindent
 setlocal cinoptions=h1,l1,g1,t0,i4,+4,(0,w1,W4
+setlocal indentkeys=0{,=},:,0#,!^F,o,O,e
 
 setlocal indentexpr=GoogleCppIndent()
 
