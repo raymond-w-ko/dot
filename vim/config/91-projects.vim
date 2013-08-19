@@ -121,6 +121,8 @@ exe 'au!'
 let s:visual_studio_project_settings = [
     \ ['C:/cygwin/home/root/lib/dot/vim/bundle/omegacomplete/*',
     \  2, 'OmegaCompletePythonModule', ''],
+    \ ['C:/cygwin/home/rko/lib/dot/vim/bundle/omegacomplete/*',
+    \  2, 'OmegaCompletePythonModule', ''],
     \ 
     \
     \ ['C:/SVN/Syandus_ALIVE3/Platform/Source/Code/*',

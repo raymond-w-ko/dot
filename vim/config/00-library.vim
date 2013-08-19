@@ -4,6 +4,7 @@ let s:project_directories_list = [
     \ 'C:\cygwin\home\rko\src\vim\src',
     \ 'C:\cygwin\home\rko\src\ocularwm',
     \ 'C:\cygwin\home\root\lib\dot\vim\bundle\omegacomplete',
+    \ 'C:\cygwin\home\rko\lib\dot\vim\bundle\omegacomplete',
     \ 'C:\SVN\Syandus_ALIVE3\Frameworks\Carbon',
     \ 'C:\SVN\Syandus_ALIVE3\Frameworks\CarbonCME',
     \ 'C:\SVN\Syandus_ALIVE3\Frameworks\Oxygen',
