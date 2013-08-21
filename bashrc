@@ -63,7 +63,7 @@ export HGEDITOR=vim
 # aliases
 alias sdr='screen -U -D -R'
 alias svnlog='svn log -l 32 -v | less'
-alias myctags='/usr/bin/find . -regex ".*\.\(c\|h\|hpp\|cc\|cpp\)" -print | /usr/bin/ctags --c++-kinds=+px --fields=+aimSz --languages=c++ --sort=yes -L -'
+alias genctags='/usr/bin/find . -regex ".*\.\(c\|h\|hpp\|cc\|cpp\)" -print | /usr/bin/ctags --c++-kinds=+px --fields=+aimSz --languages=c++ --sort=yes -L -'
 alias omegacomplete='cd ~/lib/dot/vim/bundle/omegacomplete'
 
 if [ -d "/cygdrive/c/Users/root/Desktop/P2P" ]; then
