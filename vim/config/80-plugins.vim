@@ -125,7 +125,7 @@ let g:omegacomplete_corrections_hi_cmds=[
 " syntastic
 let g:syntastic_enable_highlighting = 1
 let g:syntastic_enable_balloons = 1
-let g:syntastic_auto_jump = 1
+let g:syntastic_auto_jump = 0
 let g:syntastic_mode_map = {
             \ 'mode': 'active',
             \ 'active_filetypes': ['ruby', 'php'],
