@@ -45,11 +45,14 @@ function! GoogleCppIndentFindLineWithOpenLeftBrace()
 endfunction
 
 function! GoogleCppIndent()
+  let l:ext = expand('%:e')
   let l:cline_num = line('.')
 
   let l:orig_indent = cindent(l:cline_num)
 
-  if l:orig_indent == 0 | return 0 | endif
+  if l:orig_indent == 0
+    return 0
+  endif
 
   let l:pline_num = prevnonblank(l:cline_num - 1)
   let l:pline = getline(l:pline_num)
@@ -122,6 +125,15 @@ function! GoogleCppIndent()
         return l:orig_indent
       endif
     else
+      if l:ext =~ 'cpp\|cc'
+        if l:cline =~ '^\s*:.*$'
+          while l:pline !~ '^.\+::.\+(.*' && l:pline_num > 0
+            let l:pline_num -= 1
+            let l:pline = getline(l:pline_num)
+          endwhile
+          return cindent(l:pline_num) + (2 * &shiftwidth)
+        endif
+      endif
       return l:orig_indent
     endif
 
