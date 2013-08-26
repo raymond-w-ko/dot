@@ -1,7 +1,7 @@
 {
 	"segment_data": {
 		"branch": {
-			"before": " "
+			"before": ""
 		},
 		"modified_indicator": {
 			"args": { "text": "+" }
@@ -11,7 +11,7 @@
 			"after": "%"
 		},
 		"line_current_symbol": {
-			"contents": " "
+			"contents": ""
 		}
 	},
 	"segments": {
@@ -31,11 +31,6 @@
 				"priority": 10
 			},
 			{
-				"name": "branch",
-				"exclude_modes": ["nc"],
-				"priority": 30
-			},
-			{
 				"name": "readonly_indicator",
 				"draw_soft_divider": false,
 				"after": " "
@@ -47,11 +42,6 @@
 			},
 			{
 				"name": "file_name",
-				"draw_soft_divider": false
-			},
-			{
-				"name": "file_vcs_status",
-				"before": " ",
 				"draw_soft_divider": false
 			},
 			{
