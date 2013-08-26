@@ -32,6 +32,7 @@
 			},
 			{
 				"name": "readonly_indicator",
+				"args": { "text": "RO" },
 				"draw_soft_divider": false,
 				"after": " "
 			},
