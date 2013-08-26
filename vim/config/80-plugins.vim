@@ -107,7 +107,7 @@ let g:NERDCustomDelimiters = {
     \ }
 
 " omegacomplete
-let g:omegacomplete_log_file = "C:\\SVN\\omegacomplete.txt"
+"let g:omegacomplete_log_file = "C:\\SVN\\omegacomplete.txt"
 let g:omegacomplete_normal_hi_cmds=[
     \ "hi Pmenu guifg=#00ff00 guibg=#003300 gui=none " . 
              \ "ctermbg=022 ctermfg=046 cterm=none",
