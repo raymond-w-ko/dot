@@ -195,16 +195,16 @@ endfunction
 augroup StripTrailingWhitespaceOnSave
     au!
     "Syandus
-    au BufWritePre C:/SVN/* call StripTrailingWhitespace()
+    "au BufWritePre C:/SVN/* call StripTrailingWhitespace()
 
     " C / C++
-    au BufWritePre *.h,*.hpp,*.c,*.cc,*.cpp call StripTrailingWhitespace()
+    "au BufWritePre *.h,*.hpp,*.c,*.cc,*.cpp call StripTrailingWhitespace()
     " Java
-    au BufWritePre *.java call StripTrailingWhitespace()
+    "au BufWritePre *.java call StripTrailingWhitespace()
     " Python
-    au BufWritePre *.py call StripTrailingWhitespace()
+    "au BufWritePre *.py call StripTrailingWhitespace()
     " Lua
-    au BufWritePre *.lua call StripTrailingWhitespace()
+    "au BufWritePre *.lua call StripTrailingWhitespace()
 augroup END
 "augroup SaveAndRestoreFolds
     "au!
@@ -273,6 +273,9 @@ set wildignore+=*.lnk
 " Syandus Files
 set wildignore+=*.ID
 set wildignore+=*.ccv,*.fls,*.pat,*.gsl,*.flt,*.asi
+
+" OGRE
+set wildignore+=*.mesh
 " }}}
 " Tabs, indents, spaces, wrapping {{{
 function! SetMyCino()
