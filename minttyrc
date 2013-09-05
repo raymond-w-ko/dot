@@ -1,7 +1,7 @@
 BoldAsFont=yes
 Transparency=off
 CursorType=block
-Font=Consolas
+Font=Lucida Console
 FontHeight=8
 Locale=C
 Charset=UTF-8
