@@ -5,7 +5,7 @@ if has("win32")
     if !exists("g:already_set_font")
         "set guifont=Dina_TTF:h8
         "set guifont=Consolas:h8
-        set guifont=Lucida_Console:h8
+        set guifont=Lucida_Console:h9
         "set guifont=MS_Gothic:h8:cSHIFTJIS
         set linespace=0
         if has("directx")
