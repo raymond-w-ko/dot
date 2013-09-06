@@ -158,7 +158,7 @@ set splitbelow
 set splitright
 set notitle
 set showtabline=2
-set cmdheight=2
+set cmdheight=1
 set completeopt=menu,menuone,preview
 set pumheight=16
 set autochdir
