@@ -64,7 +64,7 @@ function! GoogleCppIndent()
 
   if l:cline =~ '\s*}\s*'
     let l:brace_line = GoogleCppIndentFindLineWithOpenLeftBrace()
-    if l:brace_line != 0 && getline(l:brace_line - 1) =~ '.*),\s*'
+    if l:brace_line != 0 && getline(l:brace_line - 1) =~ '.*),\s*$'
       return l:orig_indent - 2 - (2 * &shiftwidth)
     else
       return l:orig_indent
