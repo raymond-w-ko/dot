@@ -81,6 +81,11 @@ elif [ -d "$HOME/src/vim" ]; then
     alias vimsrc="cd $HOME/src/vim"
 fi
 
+if [ -d "$HOME/android-ndk-r9" ]
+then
+  export NDK_HOME=$HOME/android-ndk-r9
+fi
+
 alias gs='git status'
 alias gc='git commit'
 alias gca='git commit -a'
