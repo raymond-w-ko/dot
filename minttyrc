@@ -1,7 +1,7 @@
 BoldAsFont=yes
 Transparency=off
 CursorType=block
-Font=Lucida Console
+Font=Ubuntu Mono
 FontHeight=9
 Locale=C
 Charset=UTF-8
