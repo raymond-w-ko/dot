@@ -312,12 +312,12 @@ function! ApplyMyFormatOptions()
     endif
 endfunction
 call ApplyMyFormatOptions()
-set nowrap
+set wrap
 set wrapscan
 if exists("&breakindent")
     set breakindent showbreak=....
-elseif has("gui_running")
-    set showbreak=\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ...
+else
+    set showbreak=+++\ 
 endif
 set noswapfile  " computers are pretty reliable nowadays
 " }}}
