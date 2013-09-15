@@ -6,7 +6,7 @@ if has("win32")
         "set guifont=Dina_TTF:h8
         "set guifont=Consolas:h8
         "set guifont=Lucida_Console:h9
-        set guifont=Ubuntu_Mono:h9
+        set guifont=Inconsolata:h9
         set linespace=0
         if has("directx")
             "set rop=type:directx
