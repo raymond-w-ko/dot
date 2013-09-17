@@ -1,8 +1,8 @@
 BoldAsFont=yes
 Transparency=off
 CursorType=block
-Font=Inconsolata
-FontHeight=9
+Font=Dina TTF
+FontHeight=8
 Locale=C
 Charset=UTF-8
 Rows=45
