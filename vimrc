@@ -354,8 +354,17 @@ endfunction
 nnoremap <leader>0 :call MakeSyDllFuncsH()<ESC>
 
 function! FilterSmartQuotes()
-    %s/\v‘|’/\'/
+    %s/\v“|”/\'/
 endfunction
 command! FilterSmartQuotes silent! call FilterSmartQuotes()
+function! FixSmartQuotes()
+    %s/\v/‘/
+    %s/\v/’/
+    %s/\v/“/
+    %s/\v/”/
+endfunction
+command! FixSmartQuotes silent! call FixSmartQuotes()
+
+command! WriteUTF8 write ++enc=utf-8
 
 " vim:fdm=marker:foldlevel=0

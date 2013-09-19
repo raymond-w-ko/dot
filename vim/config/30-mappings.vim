@@ -42,7 +42,8 @@ nnoremap  :BD<CR>
 nnoremap <C-BS> :BD<CR>
 
 " Press F12 to switch to UTF-8 encoding
-nnoremap <F12> :e ++enc=latin1<CR>
+nnoremap <F11> :e ++enc=latin1<CR>
+nnoremap <F12> :e ++enc=utf8<CR>
 
 " General {{{
 " Substitute
@@ -53,7 +54,7 @@ nnoremap <leader>\ :s/\//\\/<CR>:nohlsearch<CR>
 nnoremap <leader>/ :s/\\/\//<CR>:nohlsearch<CR>
 
 " CTRL-V and are Paste
-inoremap <C-V> <C-r>=@+<CR>
+"inoremap <C-v> <C-r>=@+<CR>
 
 " CTRL-hjkl movement while in : command mode
 cnoremap <C-h> <Left>
