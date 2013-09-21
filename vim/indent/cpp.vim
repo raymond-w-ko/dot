@@ -94,6 +94,8 @@ function! GoogleCppIndent()
       return l:orig_indent + 2
     elseif l:pline =~ '.*)\s*{\s*' && l:ppline =~ '.*,\s*$'
       return l:orig_indent - 2 - (2 * &shiftwidth)
+    elseif l:pline =~ '.*)\s*{\s*' && l:ppline =~ '.*::s.*()\s*$'
+      return l:orig_indent - (2 * &shiftwidth)
     else
       return l:orig_indent
     endif
@@ -105,6 +107,7 @@ function! GoogleCppIndent()
     let l:pline = getline(l:pline_num)
     let l:ppline = getline(l:pline_num - 1)
     let l:pline_indent = indent(l:pline_num)
+
 
     if l:in_comment == 0 && l:pline =~ '^.\{-}\(/\*.\{-}\)\@<!\*/'
       let l:in_comment = 1
