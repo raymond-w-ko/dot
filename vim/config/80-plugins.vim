@@ -74,23 +74,23 @@ let g:clojure_fuzzy_indent_blacklist =
 
 " rainbow_parentheses
 let g:rbpt_colorpairs = [
-            \ ['brown',       'cyan1'],
-            \ ['Darkblue',    'darkgreen'],
-            \ ['darkgray',    'yellow1'],
-            \ ['darkgreen',   'orange1'],
-            \ ['darkcyan',    'red1'],
-            \ ['darkred',     'white'],
-            \ ['darkmagenta', 'pink'],
-            \ ['brown',       'brown'],
-            \ ['gray',        'purple1'],
-            \ ['black',       'blue1'],
-            \ ['darkmagenta', 'cyan1'],
-            \ ['Darkblue',    'darkgreen'],
-            \ ['darkgreen',   'yellow1'],
-            \ ['darkcyan',    'orange1'],
-            \ ['darkred',     'red1'],
-            \ ['red',         'white'],
-            \ ]
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
 augroup EnableRainbowParentheses
     au!
     au VimEnter * RainbowParenthesesToggle
