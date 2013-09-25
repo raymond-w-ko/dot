@@ -165,6 +165,7 @@ set autochdir
 set nolist
 " always try to make the current window 80 columns
 set winwidth=79
+set nojoinspaces
 set maxmempattern=2000000
 set maxmemtot=2000000
 " }}}
