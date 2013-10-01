@@ -104,5 +104,6 @@ alias hdw='hg diff -w'
 alias hpa='hg purge --all'
 alias hpush='hg push'
 alias hpull='hg pull'
+alias hcmergewithupstream='hg commit -m "merged with upstream"'
 
 alias fix_permissions="find . -regex '.*\.\(vim\|h\|hpp\|c\|cpp\)$' -type f -exec chmod -x {} \;"
