@@ -278,8 +278,8 @@ function! AutoConfigureSpaceM()
 
     let makefile = current_dir . '/Makefile'
     if filereadable(makefile)
-      execute "nnoremap <buffer> <leader>m :update<CR>:!make -f " . 
-          \ makefile . ' -C ' . current_dir . '<CR>'
+      execute "nnoremap <buffer> <leader>m :update<CR>:!make -f Makefile " .
+          \ '-C ' . current_dir . '<CR>'
     endif
 
     let prev_dir = current_dir
