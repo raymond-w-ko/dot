@@ -4,38 +4,38 @@ set tags=
 let s:project_directories = [
     \ 'Dropbox',            'C:/Users/__USERNAME__/Desktop/Dropbox',
     \ 'Omegacomplete',      'C:/cygwin/home/__CYGWINUSERNAME__/lib/dot/vim/bundle/omegacomplete',
-    \ 'Omegacomplete2',      'C:/cygwin/home/__CYGWINUSERNAME__/lib/dot/vim/bundle/omegacomplete2',
+    \ 'Omegacomplete2',     'C:/cygwin/home/__CYGWINUSERNAME__/lib/dot/vim/bundle/omegacomplete2',
     \ 'OcularWM',           'C:/cygwin/home/__CYGWINUSERNAME__/src/ocularwm',
     \
-    \ 'Platform',           'C:/SVN/Syandus_ALIVE3/Platform/Source/Code',
-    \ 'Platform4',          'C:/SVN/Syandus_ALIVE4/Platform/Source/Code',
-    \ 'Doc4',               'C:/SVN/Syandus_ALIVE4/Documentation',
-    \ 'Carbon',             'C:/SVN/Syandus_ALIVE3/Frameworks/Carbon',
-    \ 'CarbonCME',          'C:/SVN/Syandus_ALIVE3/Frameworks/CarbonCME',
-    \ 'Carbon4',            'C:/SVN/Syandus_ALIVE4/Frameworks/Carbon',
-    \ 'Oxygen',             'C:/SVN/Syandus_ALIVE4/Frameworks/Oxygen',
-    \ 'Proton',             'C:/SVN/Syandus_ALIVE4/Frameworks/Proton',
-    \ 'Hub',                'C:/SVN/Syandus_ALIVE3/Hub/Source',
-    \ 'Metrics',            'C:/SVN/Syandus_ALIVE3/Metrics',
-    \ 'Symlin',             'C:/SVN/Syandus_Cores/C_Sym_DM_01',
-    \ 'Spiriva',            'C:/SVN/Syandus_Cores/C_Spv_COPD_01',
-    \ 'Copd',               'C:/SVN/Syandus_Cores/C_Unb_COPD_01',
-    \ 'Immunobiology',      'C:/SVN/Syandus_Cores/C_ImmunoSim_01',
-    \ 'Sutent',             'C:/SVN/Syandus_Cores/C_Sut_AE_01',
-    \ 'SyMetrics',          'C:/SVN/Syandus_ALIVE3/Metrics/SyMetrics',
-    \ 'SyLogParser',        'C:/SVN/Syandus_ALIVE3/Metrics/SyLoginParser',
-    \ 'SyHandleGen',        'C:/SVN/Syandus_ALIVE3/Tools/Source/SyHandleGen',
-    \ 'SyHandleGen4',       'C:/SVN/Syandus_ALIVE4/Tools/Source/SyHandleGen',
-    \ 'Groundhog',          'C:/SVN/Syandus_ALIVE3/Groundhog',
-    \ 'GroundhogClient',    'C:/SVN/Syandus_ALIVE3/Groundhog/Client',
-    \ 'GroundhogServer',    'C:/SVN/Syandus_ALIVE3/Groundhog/Server',
-    \ 'GroundhogShared',    'C:/SVN/Syandus_ALIVE3/Groundhog/Shared',
-    \ 'ConnectionTester',   'C:/SVN/Syandus_ALIVE3/Groundhog/ConnectionTester',
-    \ 'SyRefresh',          'C:/SVN/Syandus_ALIVE3/Tools/Source/SyRefresh',
-    \ 'SyProjectGenerator', 'C:/SVN/Syandus_ALIVE4/Tools/Source/SyProjectGenerator',
-    \ 'OgreLair',           'C:/SVN/Syandus_Cores/C_Ogre_Lair_01',
-    \ 'Ms',                 'C:/SVN/Syandus_Cores/C_CMSC_MS_01',
-    \ 'SyandusHtml5',       'C:/SVN/Syandus_Company/Web/Syandus.com/main/2013-html/html',
+    \ 'Platform',           '__SVN__/SVN/Syandus_ALIVE3/Platform/Source/Code',
+    \ 'Platform4',          '__SVN__/SVN/Syandus_ALIVE4/Platform/Source/Code',
+    \ 'Doc4',               '__SVN__/SVN/Syandus_ALIVE4/Documentation',
+    \ 'Carbon',             '__SVN__/SVN/Syandus_ALIVE3/Frameworks/Carbon',
+    \ 'CarbonCME',          '__SVN__/SVN/Syandus_ALIVE3/Frameworks/CarbonCME',
+    \ 'Carbon4',            '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Carbon',
+    \ 'Oxygen',             '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Oxygen',
+    \ 'Proton',             '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Proton',
+    \ 'Hub',                '__SVN__/SVN/Syandus_ALIVE3/Hub/Source',
+    \ 'Metrics',            '__SVN__/SVN/Syandus_ALIVE3/Metrics',
+    \ 'Symlin',             '__SVN__/SVN/Syandus_Cores/C_Sym_DM_01',
+    \ 'Spiriva',            '__SVN__/SVN/Syandus_Cores/C_Spv_COPD_01',
+    \ 'Copd',               '__SVN__/SVN/Syandus_Cores/C_Unb_COPD_01',
+    \ 'Immunobiology',      '__SVN__/SVN/Syandus_Cores/C_ImmunoSim_01',
+    \ 'Sutent',             '__SVN__/SVN/Syandus_Cores/C_Sut_AE_01',
+    \ 'SyMetrics',          '__SVN__/SVN/Syandus_ALIVE3/Metrics/SyMetrics',
+    \ 'SyLogParser',        '__SVN__/SVN/Syandus_ALIVE3/Metrics/SyLoginParser',
+    \ 'SyHandleGen',        '__SVN__/SVN/Syandus_ALIVE3/Tools/Source/SyHandleGen',
+    \ 'SyHandleGen4',       '__SVN__/SVN/Syandus_ALIVE4/Tools/Source/SyHandleGen',
+    \ 'Groundhog',          '__SVN__/SVN/Syandus_ALIVE3/Groundhog',
+    \ 'GroundhogClient',    '__SVN__/SVN/Syandus_ALIVE3/Groundhog/Client',
+    \ 'GroundhogServer',    '__SVN__/SVN/Syandus_ALIVE3/Groundhog/Server',
+    \ 'GroundhogShared',    '__SVN__/SVN/Syandus_ALIVE3/Groundhog/Shared',
+    \ 'ConnectionTester',   '__SVN__/SVN/Syandus_ALIVE3/Groundhog/ConnectionTester',
+    \ 'SyRefresh',          '__SVN__/SVN/Syandus_ALIVE3/Tools/Source/SyRefresh',
+    \ 'SyProjectGenerator', '__SVN__/SVN/Syandus_ALIVE4/Tools/Source/SyProjectGenerator',
+    \ 'OgreLair',           '__SVN__/SVN/Syandus_Cores/C_Ogre_Lair_01',
+    \ 'Ms',                 '__SVN__/SVN/Syandus_Cores/C_CMSC_MS_01',
+    \ 'SyandusHtml5',       '__SVN__/SVN/Syandus_Company/Web/Syandus.com/main/2013-html/html',
     \ ]
 let s:username = expand('$USERNAME')
 if s:username == 'Raymond W. Ko'
@@ -46,6 +46,15 @@ endif
 for i in range(len(s:project_directories) / 2)
     let cmd = (i * 2) + 0
     let dir = s:project_directories[(i * 2) + 1]
+
+    if has('win32')
+      let dir = substitute(dir, '__SVN__', 'C:/SVN, '')
+    elseif has('win32unix')
+      let dir = substitute(dir, '__SVN__', '/cygdrive/c/SVN, '')
+    else
+      let dir = substitute(dir, '__SVN__', '~/', 'g')
+    endif
+
     let dir = substitute(dir, '__USERNAME__', s:username, '')
     let dir = substitute(dir, '__CYGWINUSERNAME__', s:cygwin_username, '')
     let dir = substitute(dir, ' ', '\ ', '')
@@ -54,9 +63,7 @@ for i in range(len(s:project_directories) / 2)
             let dir = substitute(dir, '/Desktop', '', '')
         endif
     endif
-    if has('mac') || has ('unix')
-        let dir = substitute(dir, 'C:/', '~/', 'g')
-    endif
+
     exe 'com! ' . s:project_directories[cmd] . ' cd ' . dir
 endfor
 
