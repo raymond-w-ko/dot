@@ -9,9 +9,9 @@ if has('win32')
   let s:unix_home = 'C:/cygwin/home/__CYGWINUSERNAME__'
   let s:unix_home = substitute(s:unix_home, '__CYGWINUSERNAME__', s:cygwin_username, '')
 elseif has('win32unix')
-  let s:unix_home = '~'
+  let s:unix_home = expand('$HOME')
 else
-  let s:unix_home = '~'
+  let s:unix_home = expand('$HOME')
 endif
 
 function! MyTranslateDirectory(dir)
@@ -21,7 +21,7 @@ function! MyTranslateDirectory(dir)
   elseif has('win32unix')
     let dir = substitute(dir, '__SVN__', '/cygdrive/c', '')
   else
-    let dir = substitute(dir, '__SVN__', '~', 'g')
+    let dir = substitute(dir, '__SVN__', s:unix_home, 'g')
   endif
 
   let dir = substitute(dir, '__UNIXHOME__', s:unix_home, 'g')
