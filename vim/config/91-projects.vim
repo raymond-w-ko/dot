@@ -3,9 +3,10 @@ set tags=
 
 let s:project_directories = [
     \ 'Dropbox',            'C:/Users/__USERNAME__/Desktop/Dropbox',
-    \ 'Omegacomplete',      'C:/cygwin/home/__CYGWINUSERNAME__/lib/dot/vim/bundle/omegacomplete',
-    \ 'Omegacomplete2',     'C:/cygwin/home/__CYGWINUSERNAME__/lib/dot/vim/bundle/omegacomplete2',
-    \ 'OcularWM',           'C:/cygwin/home/__CYGWINUSERNAME__/src/ocularwm',
+    \
+    \ 'Omegacomplete',      '__UNIXHOME__/lib/dot/vim/bundle/omegacomplete',
+    \ 'Omegacomplete2',     '__UNIXHOME__/lib/dot/vim/bundle/omegacomplete2',
+    \ 'OcularWM',           '__UNIXHOME__/src/ocularwm',
     \
     \ 'Platform',           '__SVN__/SVN/Syandus_ALIVE3/Platform/Source/Code',
     \ 'Platform4',          '__SVN__/SVN/Syandus_ALIVE4/Platform/Source/Code',
@@ -43,20 +44,31 @@ if s:username == 'Raymond W. Ko'
 else
     let s:cygwin_username = 'root'
 endif
+
+if has('win32')
+  let s:unix_home = 'C:/cygwin/home/__CYGWINUSERNAME__'
+  let s:unix_home = substitute(s:unix_home, '__CYGWINUSERNAME__', s:cygwin_username, '')
+elseif has('win32unix')
+  let s:unix_home = '~'
+else
+  let s:unix_home = '~'
+endif
+
 for i in range(len(s:project_directories) / 2)
     let cmd = (i * 2) + 0
     let dir = s:project_directories[(i * 2) + 1]
 
     if has('win32')
-      let dir = substitute(dir, '__SVN__', 'C:/SVN, '')
+      let dir = substitute(dir, '__SVN__', 'C:', '')
     elseif has('win32unix')
-      let dir = substitute(dir, '__SVN__', '/cygdrive/c/SVN, '')
+      let dir = substitute(dir, '__SVN__', '/cygdrive/c', '')
     else
-      let dir = substitute(dir, '__SVN__', '~/', 'g')
+      let dir = substitute(dir, '__SVN__', '~', 'g')
     endif
 
+    let dir = substitute(dir, '__UNIXHOME__', s:unix_home, 'g')
+
     let dir = substitute(dir, '__USERNAME__', s:username, '')
-    let dir = substitute(dir, '__CYGWINUSERNAME__', s:cygwin_username, '')
     let dir = substitute(dir, ' ', '\ ', '')
     if s:project_directories[cmd] == 'Dropbox'
         if !isdirectory(dir)
