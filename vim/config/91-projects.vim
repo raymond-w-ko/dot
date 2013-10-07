@@ -264,4 +264,41 @@ augroup OxygenFrameworkOgre
         \ call SetSpaceM('call PropagateOxygenFrameworkOgre()')
 augroup END
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" UNIX
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! AutoConfigureSpaceM()
+  let prev_dir = ''
+  let current_dir = expand('%:h')
+
+  let max_search = 5
+
+  while current_dir != prev_dir && current_dir != '/'
+    let max_search += 1
+
+    let makefile = current_dir . '/Makefile'
+    if filereadable(makefile)
+      execute "nnoremap <buffer> <leader>m :update<CR>:!make -f " . 
+          \ makefile . ' -C ' . current_dir . '<CR>'
+    endif
+
+    let prev_dir = current_dir
+    let current_dir = simplify(current_dir . '/..')
+    if max_search == 10
+      break
+    endif
+  endwhile
+
+  return
+endfunction
+
+if has('unix')
+  augroup SyandusUnix
+      au!
+      au BufNewFile,BufRead,BufEnter
+          \ ~/SVN/*
+          \ call AutoConfigureSpaceM()
+  augroup END
+endif
+
 " vim:fdm=marker:foldlevel=0
