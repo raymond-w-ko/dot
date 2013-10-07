@@ -1,7 +1,7 @@
 " no tags by default, omegacomplete is usually enough
 set tags=
 
-let s:project_directories = [
+let s:commands = [
     \ 'Dropbox',            'C:/Users/__USERNAME__/Desktop/Dropbox',
     \
     \ 'Omegacomplete',      '__UNIXHOME__/lib/dot/vim/bundle/omegacomplete',
@@ -38,45 +38,15 @@ let s:project_directories = [
     \ 'Ms',                 '__SVN__/SVN/Syandus_Cores/C_CMSC_MS_01',
     \ 'SyandusHtml5',       '__SVN__/SVN/Syandus_Company/Web/Syandus.com/main/2013-html/html',
     \ ]
-let s:username = expand('$USERNAME')
-if s:username == 'Raymond W. Ko'
-    let s:cygwin_username = 'rko'
-else
-    let s:cygwin_username = 'root'
-endif
-
-if has('win32')
-  let s:unix_home = 'C:/cygwin/home/__CYGWINUSERNAME__'
-  let s:unix_home = substitute(s:unix_home, '__CYGWINUSERNAME__', s:cygwin_username, '')
-elseif has('win32unix')
-  let s:unix_home = '~'
-else
-  let s:unix_home = '~'
-endif
-
-for i in range(len(s:project_directories) / 2)
+for i in range(len(s:commands) / 2)
     let cmd = (i * 2) + 0
-    let dir = s:project_directories[(i * 2) + 1]
 
-    if has('win32')
-      let dir = substitute(dir, '__SVN__', 'C:', '')
-    elseif has('win32unix')
-      let dir = substitute(dir, '__SVN__', '/cygdrive/c', '')
-    else
-      let dir = substitute(dir, '__SVN__', '~', 'g')
-    endif
+    let dir = s:commands[(i * 2) + 1]
+    let dir = MyTranslateDirectory(dir)
 
-    let dir = substitute(dir, '__UNIXHOME__', s:unix_home, 'g')
+    let g:my_project_directories[dir] = 1
 
-    let dir = substitute(dir, '__USERNAME__', s:username, '')
-    let dir = substitute(dir, ' ', '\ ', '')
-    if s:project_directories[cmd] == 'Dropbox'
-        if !isdirectory(dir)
-            let dir = substitute(dir, '/Desktop', '', '')
-        endif
-    endif
-
-    exe 'com! ' . s:project_directories[cmd] . ' cd ' . dir
+    exe 'com! ' . s:commands[cmd] . ' cd ' . dir
 endfor
 
 function! SetSettingsForVisualStudioProject(size_of_tab, name, tags, ...)
