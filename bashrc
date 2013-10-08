@@ -85,6 +85,10 @@ if [ -d "$HOME/android-ndk-r9" ]
 then
   export NDK_HOME=$HOME/android-ndk-r9
 fi
+if [ -d "$HOME/android-sdk-linux" ]
+then
+  export PATH="$PATH:$HOME/android-sdk-linux/tools"
+fi
 
 alias gs='git status'
 alias gc='git commit'
