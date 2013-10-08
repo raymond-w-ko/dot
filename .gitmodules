@@ -79,3 +79,6 @@
 [submodule "vim/bundle/omegacomplete2"]
 	path = vim/bundle/omegacomplete2
 	url = git@github.com:raymond-w-ko/omegacomplete2.git
+[submodule "vim/bundle/detectindent"]
+	path = vim/bundle/detectindent
+	url = git@github.com:raymond-w-ko/detectindent.git
