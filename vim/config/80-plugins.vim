@@ -112,14 +112,14 @@ let g:omegacomplete_normal_hi_cmds=[
     \ "hi Pmenu guifg=#00ff00 guibg=#003300 gui=none " . 
              \ "ctermbg=022 ctermfg=046 cterm=none",
     \ "hi PmenuSel guifg=#003300 guibg=#00ff00 gui=none " .
-                \ "ctermbg=046 ctermfg=022 cterm=none",
+             \ "ctermbg=046 ctermfg=022 cterm=none",
     \ ]
 
 let g:omegacomplete_corrections_hi_cmds=[
     \ "hi Pmenu guifg=#ffff00 guibg=#333300 gui=none " .
               \"ctermbg=058 ctermfg=011 cterm=none",
     \ "hi PmenuSel guifg=#333300 guibg=#ffff00 gui=none " .
-                \ "ctermbg=011 ctermfg=058 cterm=none",
+             \ "ctermbg=011 ctermfg=058 cterm=none",
     \ ]
 
 " syntastic
@@ -134,3 +134,8 @@ let g:syntastic_mode_map = {
 " paredit
 let g:paredit_leader = ','
 let g:paredit_shortmaps = 0
+
+" detectindent
+let g:detectindent_autodetect = 1
+let g:detectindent_preferred_indent = 2
+let g:detectindent_preferred_expandtab = 1

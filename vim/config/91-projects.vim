@@ -51,9 +51,9 @@ endfor
 
 function! SetSettingsForVisualStudioProject(size_of_tab, name, tags, ...)
     if (a:size_of_tab > 0)
-        execute 'setlocal tabstop=' . a:size_of_tab
-        execute 'setlocal shiftwidth=' . a:size_of_tab 
-        execute 'setlocal softtabstop=' . a:size_of_tab
+        "execute 'setlocal tabstop=' . a:size_of_tab
+        "execute 'setlocal shiftwidth=' . a:size_of_tab 
+        "execute 'setlocal softtabstop=' . a:size_of_tab
     endif
     if (len(a:name) == 0)
         execute "nnoremap <buffer> <leader>m <nop>"
@@ -68,9 +68,9 @@ function! SetSettingsForVisualStudioProject(size_of_tab, name, tags, ...)
 endfunction
 
 function! SetSettingsForWinScpProject(size_of_tab, arg0, tags)
-	execute 'setlocal tabstop=' . a:size_of_tab
-	execute 'setlocal shiftwidth=' . a:size_of_tab 
-	execute 'setlocal softtabstop=' . a:size_of_tab
+	"execute 'setlocal tabstop=' . a:size_of_tab
+	"execute 'setlocal shiftwidth=' . a:size_of_tab 
+	"execute 'setlocal softtabstop=' . a:size_of_tab
     execute "nnoremap <buffer> <leader>m :call AutoHotkeyWinSCP('" .
             \ a:arg0 . "')\<CR>"
 	execute 'setlocal tags=' . a:tags
@@ -94,12 +94,12 @@ function! SetSpaceMExternalCmd(cmd)
 endfunction
 
 function! SetSettingsForShaders()
-    setlocal tabstop=4 shiftwidth=4 softtabstop=4
+    "setlocal tabstop=4 shiftwidth=4 softtabstop=4
     nnoremap <buffer> <leader>m :update<CR>:!start .\install.bat<CR>
     setlocal tags=
 endfunction
 function! SetSettingsForClojure()
-    setlocal tabstop=2 shiftwidth=2 softtabstop=2
+    "setlocal tabstop=2 shiftwidth=2 softtabstop=2
     setlocal tags=
 endfunction
 
