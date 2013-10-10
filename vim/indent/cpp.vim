@@ -154,7 +154,11 @@ setlocal expandtab
 "setlocal wrap
 
 setlocal cindent
-setlocal cinoptions=h1,l1,g1,t0,i4,+4,(0,w1,W4
+let s:double_sw = 2 * &shiftwidth
+let s:half_sw = &shiftwidth / 2 
+let s:cmd = printf('setlocal cinoptions=h1,l1,g%d,t0,i%d,+%d,(0,w1,W%d',
+    \ s:half_sw, s:double_sw, s:double_sw, s:double_sw)
+execute cmd
 setlocal indentkeys=0{,=},:,0#,!^F,o,O,e
 
 setlocal indentexpr=GoogleCppIndent()
