@@ -84,6 +84,7 @@ fi
 if [ -d "$HOME/android-ndk-r9" ]
 then
   export NDK_HOME=$HOME/android-ndk-r9
+  export PATH="$PATH:$HOME/android-ndk-r9"
 fi
 if [ -d "$HOME/android-sdk-linux" ]
 then
@@ -109,5 +110,7 @@ alias hpa='hg purge --all'
 alias hpush='hg push'
 alias hpull='hg pull'
 alias hcmergewithupstream='hg commit -m "merged with upstream"'
+
+alias svnadddir='svn add --depth=empty'
 
 alias fix_permissions="find . -regex '.*\.\(vim\|h\|hpp\|c\|cpp\)$' -type f -exec chmod -x {} \;"

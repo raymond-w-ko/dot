@@ -277,6 +277,10 @@ set wildignore+=*.ccv,*.fls,*.pat,*.gsl,*.flt,*.asi
 
 " OGRE
 set wildignore+=*.mesh
+
+" Android Files
+set wildignore+=*.apk,*.ap_
+
 " }}}
 " Tabs, indents, spaces, wrapping {{{
 function! SetMyCino()
