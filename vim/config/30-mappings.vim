@@ -13,7 +13,7 @@ endif
 if (!exists('g:lazy_writing') || g:lazy_writing == 0)
     function! MyLazyWrite()
         let g:lazy_writing = 1
-        write
+        silent wall
         let curdir = expand("%:p:h")
         let makefile = curdir . '/make.bat'
         if (filereadable(makefile)) && match(getcwd(), '\v\CSVN.Syandus_') != -1
