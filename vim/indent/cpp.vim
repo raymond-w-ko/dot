@@ -156,10 +156,9 @@ setlocal expandtab
 setlocal cindent
 let s:double_sw = 2 * &shiftwidth
 let s:half_sw = &shiftwidth / 2 
-let s:cmd = printf('setlocal cinoptions=l1,g1,t0,i%d,+%d,(0,w1,W%d',
+let s:cino_cmd = printf('setlocal cinoptions=l1,g1,t0,i%d,+%d,(0,w1,W%d',
     \ s:double_sw, s:double_sw, s:double_sw)
-echom s:cmd
-execute s:cmd
+execute s:cino_cmd
 setlocal indentkeys=0{,=},:,0#,!^F,o,O,e
 
 setlocal indentexpr=GoogleCppIndent()
