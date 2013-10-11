@@ -152,12 +152,15 @@ endfunction
 setlocal expandtab
 "setlocal textwidth=80
 "setlocal wrap
+"
+DetectIndent
 
 setlocal cindent
 let s:double_sw = 2 * &shiftwidth
 let s:half_sw = &shiftwidth / 2 
-let s:cino_cmd = printf('setlocal cinoptions=l1,g1,t0,i%d,+%d,(0,w1,W%d',
-    \ s:double_sw, s:double_sw, s:double_sw)
+let s:adjusted_sw = &shiftwidth - s:half_sw
+let s:cino_cmd = printf('setlocal cinoptions=l1,g%d,h%d,t0,i%d,+%d,(0,w1,W%d',
+    \ s:half_sw, s:adjusted_sw, s:double_sw, s:double_sw, s:double_sw)
 execute s:cino_cmd
 setlocal indentkeys=0{,=},:,0#,!^F,o,O,e
 
