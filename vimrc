@@ -320,7 +320,7 @@ call ApplyMyFormatOptions()
 set wrap
 set wrapscan
 if exists("&breakindent")
-    set breakindent showbreak=....
+    set breakindent showbreak=+++\ 
 else
     set showbreak=+++\ 
 endif
