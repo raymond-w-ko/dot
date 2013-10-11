@@ -168,6 +168,12 @@ set winwidth=79
 set nojoinspaces
 set maxmempattern=2000000
 set maxmemtot=2000000
+set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+set notimeout
+set timeoutlen=4096
+set ttimeout
+set ttimeoutlen=100
+
 " }}}
 " Automatic Commands {{{
 augroup SaveAllBuffersWhenLosingFocus
