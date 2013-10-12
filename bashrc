@@ -31,9 +31,6 @@ if [[ "$unamestr" == 'Darwin' ]]; then
     fi
 
     export DYLD_LIBRARY_PATH=~/boost/stage/lib
-
-    alias Platform4="cd ~/SVN/Syandus_ALIVE4/Platform"
-    alias Immunobiology="cd ~/SVN/Syandus_Cores/C_ImmunoSim_01"
 else
     alias ls='ls --color -F'
     alias l='ls --color -Flh'
@@ -88,7 +85,7 @@ then
 fi
 if [ -d "$HOME/android-sdk-linux" ]
 then
-  export PATH="$PATH:$HOME/android-sdk-linux/tools"
+  export PATH="$PATH:$HOME/android-sdk-linux/tools:$HOME/android-sdk-linux/platform-tools"
 fi
 
 alias gs='git status'
@@ -117,3 +114,7 @@ svndiff() {
 }
 
 alias fix_permissions="find . -regex '.*\.\(vim\|h\|hpp\|c\|cpp\)$' -type f -exec chmod -x {} \;"
+
+# custom work aliases
+alias Platform4="cd ~/SVN/Syandus_ALIVE4/Platform"
+alias Immunology="cd ~/SVN/Syandus_Cores/C_ImmunoSim_01"
