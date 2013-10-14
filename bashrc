@@ -81,8 +81,15 @@ fi
 if [ -d "$HOME/android-ndk-r9" ]
 then
   export NDK_HOME=$HOME/android-ndk-r9
+  export ANDROID_NDK=$HOME/android-ndk-r9
   export PATH="$PATH:$HOME/android-ndk-r9"
 fi
+
+if [ -d "$HOME/android-sdk-linux" ]
+then
+  export ANDROID_SDK=$HOME/android-sdk-linux
+fi
+
 if [ -d "$HOME/android-sdk-linux" ]
 then
   export PATH="$PATH:$HOME/android-sdk-linux/tools:$HOME/android-sdk-linux/platform-tools"
