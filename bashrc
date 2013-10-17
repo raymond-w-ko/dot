@@ -117,7 +117,7 @@ alias hcmergewithupstream='hg commit -m "merged with upstream"'
 
 alias svnadddir='svn add --depth=empty'
 svndiff() {
-  svn diff "${@}" | colordiff
+  svn diff "${@}" | colordiff | less -R
 }
 
 alias fix_permissions="find . -regex '.*\.\(vim\|h\|hpp\|c\|cpp\)$' -type f -exec chmod -x {} \;"
