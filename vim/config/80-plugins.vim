@@ -141,3 +141,5 @@ let g:detectindent_autodetect = 1
 let g:detectindent_preferred_indent = 2
 let g:detectindent_preferred_expandtab = 1
 let g:detectindent_min_indent = 2
+" hope to $DEITY that no one uses > 4 indents
+let g:detectindent_max_indent = 4
