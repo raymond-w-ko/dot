@@ -2,7 +2,7 @@
 [[ "$-" != *i* ]] && return
 
 export HISTSIZE=32768
-export HISTCONTROL=ignoreboth
+export HISTCONTROL=ignoreboth:erasedups
 
 export PATH="$HOME/bin:/opt/local/bin:/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/aws/bin:/opt/mono/bin"
 export TMP='/tmp'
