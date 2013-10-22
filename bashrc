@@ -113,7 +113,7 @@ alias hdw='hg diff -w'
 alias hpa='hg purge --all'
 alias hpush='hg push'
 alias hpull='hg pull'
-alias hcmergewithupstream='hg commit -m "merged with upstream"'
+alias hcmergedwithupstream='hg commit -m "merged with upstream"'
 
 alias svnadddir='svn add --depth=empty'
 svndiff() {
