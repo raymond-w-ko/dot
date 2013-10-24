@@ -30,7 +30,7 @@ if [[ "$unamestr" == 'Darwin' ]]; then
         alias vim='mvim'
     fi
 
-    export DYLD_LIBRARY_PATH=~/boost/stage/lib
+    #export DYLD_LIBRARY_PATH=~/boost/stage/lib
 else
     alias ls='ls --color -F'
     alias l='ls --color -Flh'
