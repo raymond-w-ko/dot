@@ -64,9 +64,6 @@
 [submodule "vim/bundle/PHP-Indenting-for-Vim"]
 	path = vim/bundle/PHP-Indenting-for-Vim
 	url = git://github.com/2072/PHP-Indenting-for-VIm.git
-[submodule "vim/bundle/neon"]
-	path = vim/bundle/neon
-	url = git://github.com/yuratomo/neon.vim.git
 [submodule "vim/bundle/powerline"]
 	path = vim/bundle/powerline
 	url = https://github.com/Lokaltog/powerline
