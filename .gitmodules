@@ -79,3 +79,6 @@
 [submodule "vim/bundle/detectindent"]
 	path = vim/bundle/detectindent
 	url = git@github.com:raymond-w-ko/detectindent.git
+[submodule "vim/bundle/seoul256.vim"]
+	path = vim/bundle/seoul256.vim
+	url = git@github.com:raymond-w-ko/seoul256.vim.git
