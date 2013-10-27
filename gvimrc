@@ -1,5 +1,3 @@
-"colorscheme neon2
-
 " set font
 if has("win32")
     if 1 || !exists("g:already_set_font")

@@ -102,7 +102,6 @@ else
     if !has("gui_running")
         " need this otherwise colors disappear
         if !exists('g:has_set_my_console_vim_settings')
-            set term=xterm
             set t_Co=256
             " Prevent Vim from clobbering the scrollback buffer. See
             " http://www.shallowsky.com/linux/noaltscreen.html

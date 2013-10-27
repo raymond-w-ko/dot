@@ -1,11 +1,20 @@
 if !exists("g:already_set_color_scheme")
+    "set background=dark
+    "let g:lucius_contrast="low"
+    "let g:lucius_contrast_bg="normal"
+    "let g:lucius_style="dark"
+    "let g:lucius_use_bold=0
+    "let g:lucius_use_underline=0
+    "colorscheme lucius
+    
     set background=dark
-    let g:lucius_contrast="low"
-    let g:lucius_contrast_bg="normal"
-    let g:lucius_style="dark"
-    let g:lucius_use_bold=0
-    let g:lucius_use_underline=0
-    colorscheme lucius
+    " seoul256 (dark):
+    "   Range:   233 (darkest) ~ 239 (lightest)
+    "   Default: 237
+    let g:seoul256_background=234
+    colorscheme seoul256
+    "set background=light
+    "colorscheme seoul256-light
 
     let g:already_set_color_scheme=1
 endif
