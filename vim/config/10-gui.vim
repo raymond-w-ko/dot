@@ -11,7 +11,7 @@ if !exists("g:already_set_color_scheme")
     " seoul256 (dark):
     "   Range:   233 (darkest) ~ 239 (lightest)
     "   Default: 237
-    let g:seoul256_background=234
+    let g:seoul256_background=235
     colorscheme seoul256
     "set background=light
     "colorscheme seoul256-light
