@@ -79,3 +79,6 @@
 [submodule "vim/bundle/seoul256.vim"]
 	path = vim/bundle/seoul256.vim
 	url = git@github.com:raymond-w-ko/seoul256.vim.git
+[submodule "vim/bundle/rainbow_parentheses"]
+	path = vim/bundle/rainbow_parentheses
+	url = git@github.com:raymond-w-ko/rainbow_parentheses.vim.git
