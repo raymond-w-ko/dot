@@ -37,6 +37,7 @@ let s:commands = [
     \ 'OgreLair',           '__SVN__/SVN/Syandus_Cores/C_Ogre_Lair_01',
     \ 'Ms',                 '__SVN__/SVN/Syandus_Cores/C_CMSC_MS_01',
     \ 'SyandusHtml5',       '__SVN__/SVN/Syandus_Company/Web/Syandus.com/main/2013-html/html',
+    \ 'Cellulose',          '__SVN__/SVN/Syandus_ALIVE4/Cellulose',
     \ ]
 for i in range(len(s:commands) / 2)
     let cmd = (i * 2) + 0

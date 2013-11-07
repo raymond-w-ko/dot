@@ -81,6 +81,7 @@ let s:project_directories_list = [
     \ '__SVN__/SVN/Syandus_Cores/C_Sut_AE_01',
     \ '__SVN__/SVN/Syandus_Cores/C_Sym_DM_01',
     \ '__SVN__/SVN/Syandus_Cores/C_Unb_COPD_01',
+    \ '__SVN__/SVN/Syandus_ALIVE4/Cellulose',
     \ ]
 
 let g:my_project_directories = {}
