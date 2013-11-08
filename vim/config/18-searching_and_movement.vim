@@ -37,7 +37,7 @@ set virtualedit+=block
 set sidescroll=1
 set sidescrolloff=1
 
-nnoremap <silent> <leader>l :nohlsearch<CR>:let @/=''<CR>
+nnoremap <silent> <leader>l :nohlsearch<CR>:let @/=''<CR>:call clearmatches()<CR>
 
 nmap n nzzzv
 nmap N Nzzzv
