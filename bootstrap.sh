@@ -54,6 +54,8 @@ ensure_link "lib/dot/config/powerline"      ".config/powerline"
 ensure_link "lib/dot/bin/colorhelper.py"    "bin/colorhelper.py"
 ensure_link "lib/dot/bin/cyg-wrapper.sh"    "bin/cyg-wrapper.sh"
 ensure_link "lib/dot/bin/update-submodules" "bin/update-submodules"
+ensure_link "lib/dot/bin/volume"            "bin/volume"
+ensure_link "lib/dot/bin/myxosd"            "bin/myxosd"
 
 ensure_link "lib/dot/minttyrc"              ".minttyrc"
 ensure_link "lib/dot/inputrc"               ".inputrc"
@@ -88,6 +90,7 @@ ensure_link "lib/dot/Xresources"            ".Xresources"
 ensure_link "lib/dot/xmonad"                ".xmonad"
 ensure_link "lib/dot/xmodmaprc"             ".xmodmaprc"
 ensure_link "lib/dot/xscreensaver"          ".xscreensaver"
+ensure_link "lib/dot/xbindkeysrc"           ".xbindkeysrc"
 
 echo completed
 exit
