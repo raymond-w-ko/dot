@@ -1,7 +1,9 @@
 import XMonad
 
-main = xmonad defaultConfig
-         { modMask = mod4Mask
-         , terminal = "urxvt"
-         , borderWidth = 2
-         }
+main = do
+    spawn "sh ~/lib/dot/xmonad/autostart.sh"
+    xmonad defaultConfig
+           { modMask = mod4Mask
+           , terminal = "urxvt"
+           , borderWidth = 2
+           }
