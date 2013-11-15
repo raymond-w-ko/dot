@@ -12,3 +12,6 @@ XF86MonBrightnessDown
 
 "xbacklight -inc 10"
 XF86MonBrightnessUp
+
+"sudo systemctl hibernate"
+XF86Sleep
