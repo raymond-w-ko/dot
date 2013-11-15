@@ -1,10 +1,10 @@
-"amixer set Master playback 8+"
+"~/bin/volume incr"
 XF86AudioRaiseVolume
 
-"amixer set Master playback 8-"
+"~/bin/volume decr"
 XF86AudioLowerVolume
 
-"amixer set Master toggle"
+"~/bin/volume mute"
 XF86AudioMute
 
 "xbacklight -dec 10"

@@ -45,13 +45,13 @@ show_volume() {
 
 case "$action" in
     incr)
-        delta=1+
+        delta=8+
         set_volume $delta
         show_volume $volume 
         ;;
 
     decr)
-        delta=1-
+        delta=8-
         set_volume $delta
         show_volume $volume 
         ;;
