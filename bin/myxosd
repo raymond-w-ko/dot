@@ -1,0 +1,12 @@
+#!/bin/sh
+exec /usr/bin/osd_cat \
+    --font='-*-dejavu sans-bold-r-*-*-*-*-*-*-*-*-*-*' \
+    --shadow=0 \
+    --outline=1 \
+    --color=green \
+    --shadowcolour=black \
+    --outlinecolour=black \
+    --pos=bottom \
+    --align=center \
+    --delay=2 \
+    ${1+"$@"}

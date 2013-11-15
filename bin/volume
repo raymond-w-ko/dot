@@ -1,0 +1,75 @@
+#!/bin/bash
+
+action=$1; shift
+
+# Unmute the volume and increase/decrease it
+# Arg 1: volume change to set (1+ or 1-)
+set_volume() {
+    amixer set Master unmute &> /dev/null &
+    volume=$(amixer set Master $1 unmute | \
+             grep ": Playback" | \
+             grep -o "\[[0-9]*%\]" | \
+             tr '[%]' ' ')
+}
+
+# Get the current volume %
+# No args
+get_volume() {
+    volume=$(amixer get Master | \
+             grep ": Playback" | \
+             grep -o "\[[0-9]*%\]" | \
+             tr '[%]' ' ')
+}
+
+# Toggle Master volume mute on/off
+# No args
+mute_volume() {
+    status=$(amixer set Master toggle | \
+             grep ": Playback .*dB" | \
+             grep -o "\[on\]\|\[off\]" | \
+             tr '[]' ' ' | \
+             awk '{printf $1}')
+}
+
+# Use xosd to show a volume guage on the screen
+# Arg 1: Current volume as percent of full volume
+# Arg 2: (optional) Text to show above bar
+show_volume() {
+    killall -9 -q osd_cat &>/dev/null
+    killall -9 -q xosd &>/dev/null
+
+    ~/bin/myxosd --text "$( [ "z$2" = "z" ] && echo Volume: $1% || echo $2 )" \
+      --barmode=percentage \
+      --percentage=$1
+}
+
+case "$action" in
+    incr)
+        delta=1+
+        set_volume $delta
+        show_volume $volume 
+        ;;
+
+    decr)
+        delta=1-
+        set_volume $delta
+        show_volume $volume 
+        ;;
+
+    mute)
+        mute_volume
+        echo "'$status'"
+        case "$status" in
+            off)
+                show_volume 0 "Muted"
+                ;;
+            on)
+                get_volume
+                show_volume $volume
+                ;;
+        esac
+        ;;
+    *)
+        echo "Usage: $0 {incr|decr|mute}"
+        ;;
+esac
