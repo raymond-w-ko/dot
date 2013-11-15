@@ -47,6 +47,10 @@ import vim
 if sys.version_info >= (2, 7):
     vim.command('let s:use_new_powerline = 1')
 EOF
+else
+    call add(g:pathogen_disabled, "omegacomplete")
+    call add(g:pathogen_disabled, "omegacomplete2")
+    call add(g:pathogen_disabled, "ultisnips")
 endif
 
 if s:use_new_powerline

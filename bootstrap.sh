@@ -79,9 +79,15 @@ ensure_link "vim/bin/xxd"                   "bin/xdd"
 
 ensure_link "lib/dot/vim"                   ".vim"
 ensure_link "lib/dot/vimrc"                 ".vimrc"
-ensure_link "lib/dot/gvimrc"                 ".gvimrc"
+ensure_link "lib/dot/gvimrc"                ".gvimrc"
 
 ensure_link "lib/dot/lftprc"                ".lftprc"
+
+ensure_link "lib/dot/xinitrc"               ".xinitrc"
+ensure_link "lib/dot/Xresources"            ".Xresources"
+ensure_link "lib/dot/xmonad"                ".xmonad"
+ensure_link "lib/dot/xmodmaprc"             ".xmodmaprc"
+ensure_link "lib/dot/xscreensaver"          ".xscreensaver"
 
 echo completed
 exit

@@ -1,4 +1,4 @@
-if !exists("g:already_set_color_scheme")
+if !exists("g:already_set_color_scheme") && !($TERM == "linux")
     "set background=dark
     "let g:lucius_contrast="low"
     "let g:lucius_contrast_bg="normal"
