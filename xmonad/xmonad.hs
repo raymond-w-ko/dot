@@ -6,4 +6,7 @@ main = do
            { modMask = mod4Mask
            , terminal = "urxvt"
            , borderWidth = 2
+           , focusedBorderColor = myFocusedBorderColor
            }
+
+myFocusedBorderColor = "#00FF00"
