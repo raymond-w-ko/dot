@@ -30,7 +30,7 @@
 	url = git@bitbucket.org:rko/bufkill.vim.git
 [submodule ".vim/bundle/cocoa"]
 	path = .vim/bundle/cocoa
-	url = https://github.com/msanders/cocoa.vim
+	url = https://github.com/msanders/cocoa.vim.git
 [submodule ".vim/bundle/gundo"]
 	path = .vim/bundle/gundo
 	url = git://github.com/sjl/gundo.vim.git
@@ -39,7 +39,7 @@
 	url = git://github.com/Lokaltog/vim-easymotion.git
 [submodule ".vim/bundle/vim-repeat"]
 	path = .vim/bundle/vim-repeat
-	url = https://github.com/tpope/vim-repeat
+	url = https://github.com/tpope/vim-repeat.git
 [submodule ".vim/bundle/vim-surround"]
 	path = .vim/bundle/vim-surround
 	url = git://github.com/tpope/vim-surround.git
@@ -63,7 +63,7 @@
 	url = git://github.com/2072/PHP-Indenting-for-VIm.git
 [submodule ".vim/bundle/powerline"]
 	path = .vim/bundle/powerline
-	url = https://github.com/Lokaltog/powerline
+	url = https://github.com/Lokaltog/powerline.git
 [submodule ".vim/bundle/cpp-vim"]
 	path = .vim/bundle/cpp-vim
 	url = git://github.com/vim-jp/cpp-vim.git
@@ -81,4 +81,91 @@
 	url = git@github.com:raymond-w-ko/seoul256.vim.git
 [submodule ".vim/bundle/rainbow_parentheses"]
 	path = .vim/bundle/rainbow_parentheses
+	url = git@github.com:raymond-w-ko/rainbow_parentheses.vim.git
+[submodule "vim-pathogen"]
+	path = vim-pathogen
+	url = git://github.com/tpope/vim-pathogen.git
+[submodule ".vim/bundle/vim-pathogen.git"]
+	path = .vim/bundle/vim-pathogen.git
+	url = git://github.com/tpope/vim-pathogen.git
+[submodule ".vim/bundle/Lucius.git"]
+	path = .vim/bundle/Lucius.git
+	url = git@github.com:raymond-w-ko/Lucius.git
+[submodule ".vim/bundle/vim-powerline.git"]
+	path = .vim/bundle/vim-powerline.git
+	url = git://github.com/Lokaltog/vim-powerline.git
+[submodule ".vim/bundle/nerdcommenter.git"]
+	path = .vim/bundle/nerdcommenter.git
+	url = git://github.com/scrooloose/nerdcommenter.git
+[submodule ".vim/bundle/ultisnips.git"]
+	path = .vim/bundle/ultisnips.git
+	url = git://github.com/SirVer/ultisnips.git
+[submodule ".vim/bundle/omegacomplete.vim.git"]
+	path = .vim/bundle/omegacomplete.vim.git
+	url = git@github.com:raymond-w-ko/omegacomplete.vim.git
+[submodule ".vim/bundle/ctrlp.vim.git"]
+	path = .vim/bundle/ctrlp.vim.git
+	url = git://github.com/kien/ctrlp.vim.git
+[submodule ".vim/bundle/a.vim.git"]
+	path = .vim/bundle/a.vim.git
+	url = git@bitbucket.org:rko/a.vim.git
+[submodule ".vim/bundle/ack.vim.git"]
+	path = .vim/bundle/ack.vim.git
+	url = git://github.com/mileszs/ack.vim.git
+[submodule ".vim/bundle/bufkill.vim.git"]
+	path = .vim/bundle/bufkill.vim.git
+	url = git@bitbucket.org:rko/bufkill.vim.git
+[submodule ".vim/bundle/cocoa.vim.git"]
+	path = .vim/bundle/cocoa.vim.git
+	url = https://github.com/msanders/cocoa.vim.git
+[submodule ".vim/bundle/gundo.vim.git"]
+	path = .vim/bundle/gundo.vim.git
+	url = git://github.com/sjl/gundo.vim.git
+[submodule ".vim/bundle/vim-easymotion.git"]
+	path = .vim/bundle/vim-easymotion.git
+	url = git://github.com/Lokaltog/vim-easymotion.git
+[submodule ".vim/bundle/vim-repeat.git"]
+	path = .vim/bundle/vim-repeat.git
+	url = https://github.com/tpope/vim-repeat.git
+[submodule ".vim/bundle/vim-surround.git"]
+	path = .vim/bundle/vim-surround.git
+	url = git://github.com/tpope/vim-surround.git
+[submodule ".vim/bundle/YankRing.vim.git"]
+	path = .vim/bundle/YankRing.vim.git
+	url = git://github.com/vim-scripts/YankRing.vim.git
+[submodule ".vim/bundle/syntastic.git"]
+	path = .vim/bundle/syntastic.git
+	url = git://github.com/scrooloose/syntastic.git
+[submodule ".vim/bundle/vim-clojure-static.git"]
+	path = .vim/bundle/vim-clojure-static.git
+	url = git://github.com/guns/vim-clojure-static.git
+[submodule ".vim/bundle/vim-sensible.git"]
+	path = .vim/bundle/vim-sensible.git
+	url = git://github.com/tpope/vim-sensible.git
+[submodule ".vim/bundle/vim-scriptease.git"]
+	path = .vim/bundle/vim-scriptease.git
+	url = git://github.com/tpope/vim-scriptease.git
+[submodule ".vim/bundle/PHP-Indenting-for-VIm.git"]
+	path = .vim/bundle/PHP-Indenting-for-VIm.git
+	url = git://github.com/2072/PHP-Indenting-for-VIm.git
+[submodule ".vim/bundle/powerline.git"]
+	path = .vim/bundle/powerline.git
+	url = https://github.com/Lokaltog/powerline.git
+[submodule ".vim/bundle/cpp-vim.git"]
+	path = .vim/bundle/cpp-vim.git
+	url = git://github.com/vim-jp/cpp-vim.git
+[submodule ".vim/bundle/vim-fireplace.git"]
+	path = .vim/bundle/vim-fireplace.git
+	url = git://github.com/tpope/vim-fireplace.git
+[submodule ".vim/bundle/omegacomplete2.git"]
+	path = .vim/bundle/omegacomplete2.git
+	url = git@github.com:raymond-w-ko/omegacomplete2.git
+[submodule ".vim/bundle/detectindent.git"]
+	path = .vim/bundle/detectindent.git
+	url = git@github.com:raymond-w-ko/detectindent.git
+[submodule ".vim/bundle/seoul256.vim.git"]
+	path = .vim/bundle/seoul256.vim.git
+	url = git@github.com:raymond-w-ko/seoul256.vim.git
+[submodule ".vim/bundle/rainbow_parentheses.vim.git"]
+	path = .vim/bundle/rainbow_parentheses.vim.git
 	url = git@github.com:raymond-w-ko/rainbow_parentheses.vim.git
