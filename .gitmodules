@@ -13,9 +13,6 @@
 [submodule ".vim/bundle/ultisnips"]
 	path = .vim/bundle/ultisnips
 	url = git://github.com/SirVer/ultisnips.git
-[submodule ".vim/bundle/omegacomplete.vim"]
-	path = .vim/bundle/omegacomplete.vim
-	url = git@github.com:raymond-w-ko/omegacomplete.vim.git
 [submodule ".vim/bundle/ctrlp.vim"]
 	path = .vim/bundle/ctrlp.vim
 	url = git://github.com/kien/ctrlp.vim.git
@@ -82,3 +79,6 @@
 [submodule ".vim/bundle/rainbow_parentheses.vim"]
 	path = .vim/bundle/rainbow_parentheses.vim
 	url = git@github.com:raymond-w-ko/rainbow_parentheses.vim.git
+[submodule ".vim/bundle/omegacomplete"]
+	path = .vim/bundle/omegacomplete
+	url = git@github.com:raymond-w-ko/omegacomplete.vim.git
