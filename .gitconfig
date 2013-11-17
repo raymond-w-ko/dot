@@ -1,7 +1,7 @@
 [core]
 	autocrlf = false
 	eol = lf
-	excludesfile = ~/.gitignore
+	excludesfile = ~/.gitignore_global
 [user]
 	name = Raymond W. Ko
 	email = raymond.w.ko@gmail.com

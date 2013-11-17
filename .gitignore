@@ -1,9 +1,5 @@
-*.o
-.DS_Store
 .Xauthority
 .bash_history
 .cache
-.netrwhist
 .ssh
 .viminfo
-tags
