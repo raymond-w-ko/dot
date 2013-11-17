@@ -1,12 +1,19 @@
+/Downloads
+/Wallpapers
 /.Xauthority
 /.bash_history
 /.cache
 /.gem
+/.config/gtk-2.0
 /.gnupg
 /.lesshst
 /.lftp
+/.mozilla
 /.ssh
 /.viminfo
+/.xmonad/xmonad.hi
+/.xmonad/xmonad.errors
+/.xmonad/xmonad-x86_64-linux
 
 ## VIM
 # compiled binaries
@@ -22,7 +29,7 @@ bin/xxd
 # plugin generated
 yankring_history_v2.txt
 # other
-/.local/share/vim
+/.local
 
 # src should come from repos and archives backed up on the Internet
 /src
