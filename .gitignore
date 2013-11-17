@@ -1,5 +1,28 @@
-.Xauthority
-.bash_history
-.cache
-.ssh
-.viminfo
+/.Xauthority
+/.bash_history
+/.cache
+/.gem
+/.gnupg
+/.lesshst
+/.lftp
+/.ssh
+/.viminfo
+
+## VIM
+# compiled binaries
+/vim
+# symlinks created by dot_files_bootstrap.sh
+bin/ex
+bin/rview
+bin/rvim
+bin/vim
+bin/vimdiff
+bin/vimtutor
+bin/xxd
+# plugin generated
+yankring_history_v2.txt
+# other
+/.local/share/vim
+
+# src should come from repos and archives backed up on the Internet
+/src
