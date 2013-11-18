@@ -25,8 +25,16 @@ red="\[\033[01;31m\]"
 dash="-"
 USER_AT_HOST="$(if [[ ${EUID} == 0 ]]; then echo "$red\h"; else echo "$blue\u@\h"; fi)"
 RET_STATUS="exit code: \$(if [[ \$? == 0 ]]; then echo \"$green\$?\"; else echo \"$red\$?\"; fi)"
+function BatteryStatus {
+    if hash acpi 2>/dev/null; then
+      acpi | sed 's/Battery 0: //' | sed 's/ remaining//'
+    else
+      echo "no acpi"
+    fi
+}
+BATTERY="`BatteryStatus`"
 FILE_INFO="\$(ls -1 | wc -l | sed 's: ::g') files, \$(ls -lah | grep -m 1 total | sed 's/total //')b"
-export PS1="\n$white\342\224\214($USER_AT_HOST$white)$dash($RET_STATUS$white)$dash($blue\@ \d$white)\n\342\224\224$dash($green\w$white)$dash($green$FILE_INFO$white)$dash> \[\033[0m\]"
+export PS1="\n$white\342\224\214($USER_AT_HOST$white)$dash($RET_STATUS$white)$dash($blue\@ \d$white)($BATTERY$white)\n\342\224\224$dash($green\w$white)$dash($green$FILE_INFO$white)$dash> \[\033[0m\]"
 
 unset PYTHONHOME
 
