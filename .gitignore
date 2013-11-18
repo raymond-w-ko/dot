@@ -3,7 +3,11 @@
 /.Xauthority
 /.bash_history
 /.cache
+/.config/guvcview
+/.config/htop
+/.config/pulse
 /.gem
+/.ghc
 /.config/gtk-2.0
 /.gnupg
 /.lesshst
