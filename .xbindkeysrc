@@ -15,3 +15,6 @@ XF86MonBrightnessUp
 
 "sudo systemctl hibernate"
 XF86Sleep
+
+"xscreensaver-command -lock"
+Alt + l

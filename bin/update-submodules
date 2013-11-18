@@ -1,11 +1,8 @@
 #!/bin/bash
 
-if [ ! -d "$HOME/lib/dot" ]; then
-    echo dot repository does not exist
-    exit 1
-fi
+set -e
 
-cd "$HOME/lib/dot/vim/bundle"
+cd "$HOME/.vim/bundle"
 pwd
 
 for dir in * ; do

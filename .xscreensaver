@@ -1,11 +1,11 @@
 # XScreenSaver Preferences File
-# Written by xscreensaver-demo 5.22 for rko on Wed Nov 13 19:13:16 2013.
+# Written by xscreensaver-demo 5.22 for rko on Sun Nov 17 00:22:03 2013.
 # http://www.jwz.org/xscreensaver/
 
-timeout:	0:05:00
+timeout:	0:04:00
 cycle:		1:00:00
 lock:		True
-lockTimeout:	0:06:00
+lockTimeout:	0:05:00
 passwdTimeout:	0:00:30
 visualID:	default
 installColormap:    True
@@ -26,9 +26,9 @@ ignoreUninstalledPrograms:False
 font:		*-medium-r-*-140-*-m-*
 dpmsEnabled:	True
 dpmsQuickOff:	False
-dpmsStandby:	0:07:00
-dpmsSuspend:	0:08:00
-dpmsOff:	0:09:00
+dpmsStandby:	0:06:00
+dpmsSuspend:	0:07:00
+dpmsOff:	0:08:00
 grabDesktopImages:  False
 grabVideoFrames:    False
 chooseRandomImages: False

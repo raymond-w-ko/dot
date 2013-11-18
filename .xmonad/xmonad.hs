@@ -5,8 +5,9 @@ main = do
     xmonad defaultConfig
            { modMask = mod4Mask
            , terminal = "urxvt"
-           , borderWidth = 2
+           , borderWidth = myBorderWidth
            , focusedBorderColor = myFocusedBorderColor
            }
 
+myBorderWidth = 1
 myFocusedBorderColor = "#00FF00"
