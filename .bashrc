@@ -22,7 +22,7 @@ red="\[\033[01;31m\]"
 #dash="\342\224\200"
 dash="-"
 USER_AT_HOST="$(if [[ ${EUID} == 0 ]]; then echo "$red\h"; else echo "$blue\u@\h"; fi)"
-RET_STATUS="exit code: \$(if [[ \$? == 0 ]]; then echo \"$green\$?\"; else echo \"$red\$?\"; fi)"
+RET_STATUS="ret: \$(if [[ \$? == 0 ]]; then echo \"$green\$?\"; else echo \"$red\$?\"; fi)"
 function BatteryStatus {
     if hash acpi 2>/dev/null; then
       acpi | sed 's/Battery 0: //' | sed 's/ remaining//'
