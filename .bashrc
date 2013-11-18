@@ -17,10 +17,16 @@ function parse_git_branch {
 #export PS1="\n\[\033[1;37m\]\342\224\214($(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]\h'; else echo '\[\033[01;34m\]\u@\h'; fi)\[\033[1;37m\])\342\224\200(\[\033[1;34m\]\$?\[\033[1;37m\])\342\224\200(\[\033[1;34m\]\@ \d\[\033[1;37m\])\[\033[1;37m\]\n\342\224\224\342\224\200(\[\033[1;32m\]\w\[\033[1;37m\])\342\224\200(\[\033[1;32m\]\$(ls -1 | wc -l | sed 's: ::g') files, \$(ls -lah | grep -m 1 total | sed 's/total //')b\[\033[1;37m\])\342\224\200> \[\033[0m\]"
 
 # http://maketecheasier.com/8-useful-and-interesting-bash-prompts/2009/09/04
-USER_AT_HOST="$(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]\h'; else echo '\[\033[01;34m\]\u@\h'; fi)"
-RET_STATUS="exit code: \$(if [[ \$? == 0 ]]; then echo \"\[\033[01;32m\]\$?\"; else echo \"\[\033[01;31m\]\$?\"; fi)"
+white="\[\033[1;37m\]"
+blue="\[\033[1;34m\]"
+green="\[\033[1;32m\]"
+red="\[\033[01;31m\]"
+#dash="\342\224\200"
+dash="-"
+USER_AT_HOST="$(if [[ ${EUID} == 0 ]]; then echo "$red\h"; else echo "$blue\u@\h"; fi)"
+RET_STATUS="exit code: \$(if [[ \$? == 0 ]]; then echo \"$green\$?\"; else echo \"$red\$?\"; fi)"
 FILE_INFO="\$(ls -1 | wc -l | sed 's: ::g') files, \$(ls -lah | grep -m 1 total | sed 's/total //')b"
-export PS1="\n\[\033[1;37m\]\342\224\214($USER_AT_HOST\[\033[1;37m\])\342\224\200($RET_STATUS\[\033[1;37m\])\342\224\200(\[\033[1;34m\]\@ \d\[\033[1;37m\])\[\033[1;37m\]\n\342\224\224\342\224\200(\[\033[1;32m\]\w\[\033[1;37m\])\342\224\200(\[\033[1;32m\]$FILE_INFO\[\033[1;37m\])\342\224\200> \[\033[0m\]"
+export PS1="\n$white\342\224\214($USER_AT_HOST$white)$dash($RET_STATUS$white)$dash($blue\@ \d$white)\n\342\224\224$dash($green\w$white)$dash($green$FILE_INFO$white)$dash> \[\033[0m\]"
 
 unset PYTHONHOME
 
