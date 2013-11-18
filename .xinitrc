@@ -22,7 +22,8 @@ wmname LG3D
 #xcalib
 xsetroot -cursor_name left_ptr &
 xmodmap ~/.xmodmaprc &
-syndaemon -t -k -i 1 -d &
+# this causes a signficant amount of wakeups in powertop
+#syndaemon -t -k -i 1 -d &
 xscreensaver -no-splash &
 xbindkeys
 
