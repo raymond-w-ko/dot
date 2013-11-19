@@ -19,6 +19,9 @@ white="\[\033[1;37m\]"
 blue="\[\033[1;34m\]"
 green="\[\033[1;32m\]"
 red="\[\033[01;31m\]"
+yellow="\[\033[01;33m\]"
+black="\[\033[01;30m\]"
+cyan="\[\033[01;36m\]"
 #dash="\342\224\200"
 dash="-"
 USER_AT_HOST="$(if [[ ${EUID} == 0 ]]; then echo "$red\h"; else echo "$blue\u@\h"; fi)"
@@ -32,7 +35,7 @@ function BatteryStatus {
 }
 BATTERY="\$(BatteryStatus)"
 FILE_INFO="\$(ls -1 | wc -l | sed 's: ::g') files, \$(ls -lah | grep -m 1 total | sed 's/total //')b"
-export PS1="\n$white\342\224\214($USER_AT_HOST$white)$dash($RET_STATUS$white)$dash($blue\@ \d$white)$dash($BATTERY$white)\n\342\224\224$dash($green\w$white)$dash($green$FILE_INFO$white)$dash> \[\033[0m\]"
+export PS1="\n$white\342\224\214($USER_AT_HOST$white)$dash($RET_STATUS$white)$dash($cyan\@ $white\d)$dash($BATTERY$white)\n\342\224\224$dash($blue$FILE_INFO$white)$dash($yellow\w$white)$dash> \[\033[0m\]"
 
 unset PYTHONHOME
 
