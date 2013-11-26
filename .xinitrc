@@ -15,6 +15,7 @@ xrandr --dpi 156
 
 xset +fp /usr/share/fonts/artwiz-fonts
 xset +fp /usr/share/fonts/local
+xset +fp /usr/share/fonts/misc
 xset fp rehash
 
 [[ -f ~/.Xresources ]] && xrdb ~/.Xresources

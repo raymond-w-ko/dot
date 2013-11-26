@@ -1,4 +1,4 @@
 URxvt.scrollBar: false
 URxvt.background: #262626
 URxvt.foreground: #D0D0D0
-URxvt.font: xft:Inconsolata:size=6
+URxvt.font: -*-gohufont-medium-*-*-*-11-*-*-*-*-*-*-*
