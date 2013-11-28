@@ -1,7 +1,7 @@
 BoldAsFont=yes
 Transparency=off
 CursorType=block
-Font=Dina TTF
+Font=gohufont-11
 FontHeight=8
 Locale=C
 Charset=UTF-8

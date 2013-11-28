@@ -1,7 +1,8 @@
 " set font
 if has("win32")
     if 1 || !exists("g:already_set_font")
-        set guifont=Dina_TTF:h8
+        set guifont=gohufont-11:h8
+        "set guifont=Dina_TTF:h8
         "set guifont=Consolas:h8
         "set guifont=Lucida_Console:h9
         "set guifont=Inconsolata:h9
