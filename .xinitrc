@@ -39,6 +39,6 @@ hsetroot -full ~/Wallpapers/wallpaper &
 DEFAULT_SESSION=xmonad
 case $DEFAULT_SESSION in
   xmonad)
-    exec dbus-launch xmonad
+    exec xmonad
     ;;
 esac

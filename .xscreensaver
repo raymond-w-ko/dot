@@ -1,8 +1,8 @@
 # XScreenSaver Preferences File
-# Written by xscreensaver-demo 5.22 for rko on Sun Nov 17 00:22:03 2013.
+# Written by xscreensaver-demo 5.23 for rko on Wed Nov 27 20:17:09 2013.
 # http://www.jwz.org/xscreensaver/
 
-timeout:	0:04:00
+timeout:	0:01:00
 cycle:		1:00:00
 lock:		True
 lockTimeout:	0:05:00
@@ -25,10 +25,10 @@ captureStderr:	True
 ignoreUninstalledPrograms:False
 font:		*-medium-r-*-140-*-m-*
 dpmsEnabled:	True
-dpmsQuickOff:	False
-dpmsStandby:	0:06:00
-dpmsSuspend:	0:07:00
-dpmsOff:	0:08:00
+dpmsQuickOff:	True
+dpmsStandby:	0:02:00
+dpmsSuspend:	0:02:00
+dpmsOff:	0:02:00
 grabDesktopImages:  False
 grabVideoFrames:    False
 chooseRandomImages: False
@@ -249,6 +249,7 @@ programs:								      \
   GL: 				kaleidocycle -root			    \n\
   GL: 				quasicrystal -root			    \n\
   GL: 				unknownpleasures -root			    \n\
+  GL: 				geodesic -root				    \n\
 
 
 pointerPollTime:    0:00:05

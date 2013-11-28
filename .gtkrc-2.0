@@ -1,12 +1,6 @@
 # -- THEME AUTO-WRITTEN BY gtk-theme-switch2 DO NOT EDIT
 include "/usr/share/themes/Dust/gtk-2.0/gtkrc"
 
-style "user-font"
-{
-  font_name="Sans 6"
-}
-widget_class "*" style "user-font"
-
 include "/home/rko/.gtkrc-2.0.mine"
 
 # -- THEME AUTO-WRITTEN BY gtk-theme-switch2 DO NOT EDIT
