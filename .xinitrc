@@ -29,7 +29,7 @@ xscreensaver -no-splash &
 xbindkeys
 
 xinput set-int-prop "ETPS/2 Elantech Touchpad" "Device Accel Profile" 32 2 
-xinput set-float-prop "ETPS/2 Elantech Touchpad" "Device Accel Constant Deceleration" 8.0
+xinput set-float-prop "ETPS/2 Elantech Touchpad" "Device Accel Constant Deceleration" 10.0
 xinput set-float-prop "ETPS/2 Elantech Touchpad" "Device Accel Adaptive Deceleration" 2.0
 xset r rate 333 25
 
