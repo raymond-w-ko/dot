@@ -15,17 +15,18 @@ function parse_git_branch {
 #export PS1="\n\[\e[32;1m\](\[\e[37;1m\]\h\[\e[32;1m\])-(\[\e[37;1m\]jobs:\j\[\e[32;1m\])-\$(parse_git_branch)-(\[\e[37;1m\]\w\[\e[32;1m\])\n(\[\e[37;1m\]\u\[\e[32;1m\]) \\$ \[\e[0m\]"
 
 # http://maketecheasier.com/8-useful-and-interesting-bash-prompts/2009/09/04
-white="\[\033[1;37m\]"
-blue="\[\033[1;34m\]"
-green="\[\033[1;32m\]"
-red="\[\033[01;31m\]"
-yellow="\[\033[01;33m\]"
-black="\[\033[01;30m\]"
-cyan="\[\033[01;36m\]"
+whiteBold="\[\033[1;37m\]"
+blueBold="\[\033[1;34m\]"
+greenBold="\[\033[1;32m\]"
+redBold="\[\033[01;31m\]"
+yellowBold="\[\033[01;33m\]"
+cyanBold="\[\033[01;36m\]"
+purpleBold="\[\033[01;35m\]"
+normalColor="\[\033[0m\]"
 #dash="\342\224\200"
 dash="-"
-USER_AT_HOST="$(if [[ ${EUID} == 0 ]]; then echo "$red\h"; else echo "$blue\u@\h"; fi)"
-RET_STATUS="ret: \$(if [[ \$? == 0 ]]; then echo \"$green\$?\"; else echo \"$red\$?\"; fi)"
+USER_AT_HOST="$(if [[ ${EUID} == 0 ]]; then echo "$redBold\h"; else echo "$blueBold\u@\h"; fi)"
+RET_STATUS="ret: \$(if [[ \$? == 0 ]]; then echo \"$greenBold\$?\"; else echo \"$redBold\$?\"; fi)"
 function BatteryStatus {
     if hash acpi 2>/dev/null; then
       acpi | sed 's/Battery 0: //' | sed 's/ remaining//'
@@ -35,7 +36,11 @@ function BatteryStatus {
 }
 BATTERY="\$(BatteryStatus)"
 FILE_INFO="\$(ls -1 | wc -l | sed 's: ::g') files, \$(ls -lah | grep -m 1 total | sed 's/total //')b"
-export PS1="\n$white\342\224\214($USER_AT_HOST$white)$dash($RET_STATUS$white)$dash($cyan\@ $white\d)$dash($BATTERY$white)\n\342\224\224$dash($blue$FILE_INFO$white)$dash($yellow\w$white)$dash> \[\033[0m\]"
+LINE1="$whiteBold($cyanBold\@ $whiteBold\d)$dash($BATTERY$whiteBold)"
+LINE2="$whiteBold($USER_AT_HOST$whiteBold)$dash($RET_STATUS$whiteBold)"
+LINE3="($blueBold$FILE_INFO$white)$dash($yellowBold\w$white)"
+LINE4="$LINE2$dash> $normalColor"
+export PS1="\n$LINE1\n$LINE3\n$LINE4"
 
 unset PYTHONHOME
 
