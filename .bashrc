@@ -12,17 +12,20 @@ function parse_git_branch {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
 
-#export PS1="\n\[\e[32;1m\](\[\e[37;1m\]\h\[\e[32;1m\])-(\[\e[37;1m\]jobs:\j\[\e[32;1m\])-\$(parse_git_branch)-(\[\e[37;1m\]\w\[\e[32;1m\])\n(\[\e[37;1m\]\u\[\e[32;1m\]) \\$ \[\e[0m\]"
-
 # http://maketecheasier.com/8-useful-and-interesting-bash-prompts/2009/09/04
-whiteBold="\[\033[1;37m\]"
-blueBold="\[\033[1;34m\]"
-greenBold="\[\033[1;32m\]"
-redBold="\[\033[01;31m\]"
-yellowBold="\[\033[01;33m\]"
-cyanBold="\[\033[01;36m\]"
-purpleBold="\[\033[01;35m\]"
-normalColor="\[\033[0m\]"
+whiteBold="\[\e[1;37m\]"
+white="\[\e[0;37m\]"
+blueBold="\[\e[1;34m\]"
+blue="\[\e[0;34m\]"
+greenBold="\[\e[1;32m\]"
+green="\[\e[0;32m\]"
+redBold="\[\e[1;31m\]"
+yellowBold="\[\e[1;33m\]"
+yellow="\[\e[0;33m\]"
+cyanBold="\[\e[1;36m\]"
+cyan="\[\e[0;36m\]"
+purpleBold="\[\e[1;35m\]"
+normalColor="\[\e[0m\]"
 #dash="\342\224\200"
 dash="-"
 USER_AT_HOST="$(if [[ ${EUID} == 0 ]]; then echo "$redBold\h"; else echo "$blueBold\u@\h"; fi)"
@@ -36,9 +39,9 @@ function BatteryStatus {
 }
 BATTERY="\$(BatteryStatus)"
 FILE_INFO="\$(ls -1 | wc -l | sed 's: ::g') files, \$(ls -lah | grep -m 1 total | sed 's/total //')b"
-LINE1="$whiteBold($cyanBold\@ $whiteBold\d)$dash($BATTERY$whiteBold)"
-LINE2="$whiteBold($USER_AT_HOST$whiteBold)$dash($RET_STATUS$whiteBold)"
-LINE3="($blueBold$FILE_INFO$white)$dash($yellowBold\w$white)"
+LINE1="$whiteBold($cyan\D{%Y %b %e %l:%M:%S %p}$whiteBold)$dash($green$BATTERY$whiteBold)"
+LINE2="$whiteBold($USER_AT_HOST$whiteBold)$dash($white$RET_STATUS$whiteBold)"
+LINE3="($yellow$FILE_INFO$whiteBold)$dash($yellow\w$white$whiteBold)"
 LINE4="$LINE2$dash> $normalColor"
 export PS1="\n$LINE1\n$LINE3\n$LINE4"
 
