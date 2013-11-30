@@ -29,7 +29,7 @@ normalColor="\[\e[0m\]"
 #dash="\342\224\200"
 dash="-"
 USER_AT_HOST="$(if [[ ${EUID} == 0 ]]; then echo "$redBold\h"; else echo "$blueBold\u@\h"; fi)"
-RET_STATUS="ret: \$(if [[ \$? == 0 ]]; then echo \"$greenBold\$?\"; else echo \"$redBold\$?\"; fi)"
+RET_STATUS="\$(if [[ \$? == 0 ]]; then echo \"\[$greenBold\]ret: \$?\"; else echo \"\[$redBold\]ret: \$?\"; fi)"
 function BatteryStatus {
     if hash acpi 2>/dev/null; then
       acpi | sed 's/Battery 0: //' | sed 's/ remaining//'
@@ -40,10 +40,10 @@ function BatteryStatus {
 BATTERY="\$(BatteryStatus)"
 FILE_INFO="\$(ls -1 | wc -l | sed 's: ::g') files, \$(ls -lah | grep -m 1 total | sed 's/total //')b"
 LINE1="$whiteBold($cyan\D{%Y %b %e %l:%M:%S %p}$whiteBold)$dash($green$BATTERY$whiteBold)"
-LINE2="$whiteBold($USER_AT_HOST$whiteBold)$dash($white$RET_STATUS$whiteBold)"
-LINE3="($yellow$FILE_INFO$whiteBold)$dash($yellow\w$white$whiteBold)"
-LINE4="$LINE2$dash> $normalColor"
-export PS1="\n$LINE1\n$LINE3\n$LINE4"
+LINE2="($yellow$FILE_INFO$whiteBold)$dash($yellow\w$white$whiteBold)"
+LINE3="$whiteBold($USER_AT_HOST$whiteBold)$dash($white$RET_STATUS$whiteBold)"
+PROMPT="$dash> $normalColor"
+export PS1="\n$LINE1\n$LINE2\n$LINE3$PROMPT"
 
 unset PYTHONHOME
 
