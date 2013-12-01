@@ -8,42 +8,47 @@ export PATH="$HOME/bin:/opt/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sb
 export TMP='/tmp'
 export TEMP='/tmp'
 
-function parse_git_branch {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-}
+#function parse_git_branch {
+    #git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+#}
 
-# http://maketecheasier.com/8-useful-and-interesting-bash-prompts/2009/09/04
-whiteBold="\[\e[1;37m\]"
-white="\[\e[0;37m\]"
-blueBold="\[\e[1;34m\]"
-blue="\[\e[0;34m\]"
-greenBold="\[\e[1;32m\]"
-green="\[\e[0;32m\]"
-redBold="\[\e[1;31m\]"
-yellowBold="\[\e[1;33m\]"
-yellow="\[\e[0;33m\]"
-cyanBold="\[\e[1;36m\]"
-cyan="\[\e[0;36m\]"
-purpleBold="\[\e[1;35m\]"
-normalColor="\[\e[0m\]"
-#dash="\342\224\200"
-dash="-"
-USER_AT_HOST="$(if [[ ${EUID} == 0 ]]; then echo "$redBold\h"; else echo "$blueBold\u@\h"; fi)"
-RET_STATUS="\$(if [[ \$? == 0 ]]; then echo \"\[$greenBold\]ret: \$?\"; else echo \"\[$redBold\]ret: \$?\"; fi)"
-function BatteryStatus {
-    if hash acpi 2>/dev/null; then
-      acpi | sed 's/Battery 0: //' | sed 's/ remaining//'
-    else
-      echo "no acpi"
-    fi
+function prompt_command {
+  ACTUAL_LAST_RET=$?
+
+  whiteBold="\[\033[1;37m\]"
+  white="\[\033[0;37m\]"
+  blueBold="\[\033[1;34m\]"
+  blue="\[\033[0;34m\]"
+  greenBold="\[\033[1;32m\]"
+  green="\[\033[0;32m\]"
+  redBold="\[\033[1;31m\]"
+  yellowBold="\[\033[1;33m\]"
+  yellow="\[\033[0;33m\]"
+  cyanBold="\[\033[1;36m\]"
+  cyan="\[\033[0;36m\]"
+  purpleBold="\[\033[1;35m\]"
+  normalColor="\[\033[0m\]"
+  #dash="\342\224\200"
+  dash="-"
+
+  RET_STATUS="\$(if [[ $ACTUAL_LAST_RET == 0 ]]; then echo -n \"$greenBold\"; echo ret: $ACTUAL_LAST_RET; else echo -n \"$redBold\"; echo ret: $ACTUAL_LAST_RET; fi)"
+  function BatteryStatus {
+      if hash acpi 2>/dev/null; then
+        acpi | sed 's/Battery 0: //' | sed 's/ remaining//'
+      else
+        echo "no acpi"
+      fi
+  }
+  USER_AT_HOST="$(if [[ ${EUID} == 0 ]]; then echo "$redBold\h"; else echo "$blueBold\u@\h"; fi)"
+  BATTERY="\$(BatteryStatus)"
+  FILE_INFO="\$(ls -1 | wc -l | sed 's: ::g') files, \$(ls -lah | grep -m 1 total | sed 's/total //')b"
+  LINE1="$whiteBold($cyan\D{%Y %b %e %l:%M:%S %p}$whiteBold)$dash($green$BATTERY$whiteBold)"
+  LINE2="($yellow$FILE_INFO$whiteBold)$dash($yellow\w$white$whiteBold)"
+  LINE3="$whiteBold($USER_AT_HOST$whiteBold)$dash($white$RET_STATUS$whiteBold)"
+  PROMPT="$dash> $normalColor"
+  export PS1="\n$LINE1\n$LINE2\n$LINE3$PROMPT`echo $REAL_LAST_RET`"
 }
-BATTERY="\$(BatteryStatus)"
-FILE_INFO="\$(ls -1 | wc -l | sed 's: ::g') files, \$(ls -lah | grep -m 1 total | sed 's/total //')b"
-LINE1="$whiteBold($cyan\D{%Y %b %e %l:%M:%S %p}$whiteBold)$dash($green$BATTERY$whiteBold)"
-LINE2="($yellow$FILE_INFO$whiteBold)$dash($yellow\w$white$whiteBold)"
-LINE3="$whiteBold($USER_AT_HOST$whiteBold)$dash($white$RET_STATUS$whiteBold)"
-PROMPT="$dash> $normalColor"
-export PS1="\n$LINE1\n$LINE2\n$LINE3$PROMPT"
+export PROMPT_COMMAND=prompt_command
 
 unset PYTHONHOME
 
