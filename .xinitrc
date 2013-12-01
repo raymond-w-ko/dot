@@ -34,6 +34,7 @@ xinput set-float-prop "ETPS/2 Elantech Touchpad" "Device Accel Adaptive Decelera
 xset r rate 333 25
 
 hsetroot -full ~/Wallpapers/wallpaper &
+urxvtd -q -f -o
 
 DEFAULT_SESSION=xmonad
 case $DEFAULT_SESSION in
