@@ -21,7 +21,7 @@ xset fp rehash
 [[ -f ~/.Xresources ]] && xrdb ~/.Xresources
 wmname LG3D
 #xcalib
-xsetroot -cursor_name left_ptr &
+#xsetroot -cursor_name left_ptr &
 xmodmap ~/.xmodmaprc &
 # this causes a signficant amount of wakeups in powertop
 #syndaemon -t -k -i 1 -d &
@@ -36,9 +36,4 @@ xset r rate 333 25
 hsetroot -full ~/Wallpapers/wallpaper &
 urxvtd -q -f -o
 
-DEFAULT_SESSION=xmonad
-case $DEFAULT_SESSION in
-  xmonad)
-    exec xmonad
-    ;;
-esac
+exec i3
