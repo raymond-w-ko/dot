@@ -35,5 +35,6 @@ xset r rate 333 25
 
 hsetroot -full ~/Wallpapers/wallpaper &
 urxvtd -q -f -o
+xcape -t 333 -e 'Control_L=Escape;Shift_L=Shift_L|minus'
 
 exec i3
