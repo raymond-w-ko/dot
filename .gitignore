@@ -13,6 +13,7 @@
 /.config/gtk-2.0
 /.gnupg
 /.lesshst
+/.mysql_history
 /.lftp
 /.mozilla
 /.ssh
@@ -25,13 +26,13 @@
 # compiled binaries
 /vim
 # symlinks created by dot_files_bootstrap.sh
-bin/ex
-bin/rview
-bin/rvim
-bin/vim
-bin/vimdiff
-bin/vimtutor
-bin/xxd
+/bin/ex
+/bin/rview
+/bin/rvim
+/bin/vim
+/bin/vimdiff
+/bin/vimtutor
+/bin/xxd
 # plugin generated
 yankring_history_v2.txt
 # other
