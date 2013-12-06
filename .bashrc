@@ -54,7 +54,7 @@ unset PYTHONHOME
 
 unamestr=`uname -s`
 if [[ "$unamestr" == 'Darwin' ]]; then
-    export LSCOLORS=GxFxCxDxBxegedabagaced
+    #export LSCOLORS=GxFxCxDxBxegedabagaced
 
     alias ls='ls -FG'
     alias l='ls -FGlh'
@@ -73,7 +73,6 @@ else
     alias ll='ls --color -Flha'
 fi
 
-alias dot='cd ~/lib/dot'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
