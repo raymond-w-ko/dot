@@ -1,26 +1,27 @@
 # Arch User Repository
-/aur
-/Downloads
-/Wallpapers
 /.Xauthority
 /.bash_history
 /.cache
+/.config/gtk-2.0
 /.config/guvcview
 /.config/htop
 /.config/pulse
 /.gem
 /.ghc
-/.config/gtk-2.0
 /.gnupg
 /.lesshst
-/.mysql_history
 /.lftp
 /.mozilla
+/.mysql_history
+/.pentadactyl
 /.ssh
 /.viminfo
-/.xmonad/xmonad.hi
-/.xmonad/xmonad.errors
 /.xmonad/xmonad-x86_64-linux
+/.xmonad/xmonad.errors
+/.xmonad/xmonad.hi
+/Downloads
+/Wallpapers
+/aur
 
 ## VIM
 # compiled binaries
