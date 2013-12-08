@@ -96,13 +96,17 @@ chatnets = {
     max_whois = "30";
   };
   SILC = { type = "SILC"; };
-  fn = { type = "IRC"; };
+  fn = {
+    type = "IRC";
+    nick = "kokonut";
+  };
 };
 
 channels = (
   { name = "#irssi"; chatnet = "ircnet"; autojoin = "No"; },
   { name = "silc"; chatnet = "silc"; autojoin = "No"; },
-  { name = "#archlinux"; chatnet = "fn"; autojoin = "yes"; }
+  { name = "#archlinux"; chatnet = "fn"; autojoin = "yes"; },
+  { name = "#archlinux-offtopic"; chatnet = "fn"; autojoin = "yes"; }
 );
 
 aliases = {
