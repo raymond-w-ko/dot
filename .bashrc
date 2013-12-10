@@ -8,9 +8,9 @@ export PATH="$HOME/bin:/opt/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sb
 export TMP='/tmp'
 export TEMP='/tmp'
 
-#function parse_git_branch {
-    #git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-#}
+function parse_git_branch {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
 
 function prompt_command {
   ACTUAL_LAST_RET=$?
@@ -26,6 +26,7 @@ function prompt_command {
   yellow="\[\033[0;33m\]"
   cyanBold="\[\033[1;36m\]"
   cyan="\[\033[0;36m\]"
+  purple="\[\033[0;35m\]"
   purpleBold="\[\033[1;35m\]"
   normalColor="\[\033[0m\]"
   #dash="\342\224\200"
@@ -33,17 +34,29 @@ function prompt_command {
 
   RET_STATUS="\$(if [[ $ACTUAL_LAST_RET == 0 ]]; then echo -n \"$greenBold\"; echo ret: $ACTUAL_LAST_RET; else echo -n \"$redBold\"; echo ret: $ACTUAL_LAST_RET; fi)"
   function BatteryStatus {
-      if hash acpi 2>/dev/null; then
-        acpi | sed 's/Battery 0: //' | sed 's/ remaining//'
+    if hash acpi 2>/dev/null; then
+      acpi | sed 's/Battery 0: //' | sed 's/ remaining//'
+    else
+      echo "no acpi"
+    fi
+  }
+  function GitBranch {
+    if hash git 2>/dev/null; then
+      GIT_BRANCH=`git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'`
+      if [[ ! -z "$GIT_BRANCH" ]]; then
+        echo "$GIT_BRANCH"
       else
-        echo "no acpi"
+        echo ""
       fi
+    else
+      echo ""
+    fi
   }
   USER_AT_HOST="$(if [[ ${EUID} == 0 ]]; then echo "$redBold\h"; else echo "$blueBold\u@\h"; fi)"
   BATTERY="\$(BatteryStatus)"
   FILE_INFO="\$(ls -1 | wc -l | sed 's: ::g') files, \$(ls -lah | grep -m 1 total | sed 's/total //')b"
   LINE1="$whiteBold($cyan\D{%Y %b %e %l:%M:%S %p}$whiteBold)$dash($green$BATTERY$whiteBold)"
-  LINE2="($yellow$FILE_INFO$whiteBold)$dash($yellow\w$white$whiteBold)"
+  LINE2="($yellow$FILE_INFO$whiteBold)$dash$green\$(GitBranch)$whiteBold$dash($yellow\w$white$whiteBold)"
   LINE3="$whiteBold($USER_AT_HOST$whiteBold)$dash($white$RET_STATUS$whiteBold)"
   PROMPT="$dash> $normalColor"
   export PS1="\n$LINE1\n$LINE2\n$LINE3$PROMPT`echo $REAL_LAST_RET`"
