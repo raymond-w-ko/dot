@@ -67,7 +67,7 @@ unset PYTHONHOME
 
 unamestr=`uname -s`
 if [[ "$unamestr" == 'Darwin' ]]; then
-    #export LSCOLORS=GxFxCxDxBxegedabagaced
+    export LSCOLORS=ExFxCxDxBxegedabagacad
 
     alias ls='ls -FG'
     alias l='ls -FGlh'
