@@ -10,6 +10,7 @@
 /.gem
 /.ghc
 /.gnupg
+/.gstreamer-0.10
 /.lesshst
 /.lftp
 /.mozilla

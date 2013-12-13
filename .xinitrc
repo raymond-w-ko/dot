@@ -26,7 +26,7 @@ wmname LG3D
 xmodmap ~/.xmodmaprc &
 # this causes a signficant amount of wakeups in powertop
 #syndaemon -t -k -i 1 -d &
-xscreensaver -no-splash &
+#xscreensaver -no-splash &
 xbindkeys
 
 xinput set-int-prop "ETPS/2 Elantech Touchpad" "Device Accel Profile" 32 2 

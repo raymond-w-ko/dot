@@ -16,5 +16,5 @@ XF86MonBrightnessUp
 "sudo systemctl hibernate"
 XF86Sleep
 
-"xscreensaver-command -lock"
+"xset dpms force off; i3lock; sleep 4; xset dpms force off"
 Alt + l
