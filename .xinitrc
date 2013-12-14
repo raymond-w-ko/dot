@@ -9,9 +9,10 @@ fi
 
 $HOME/.xinitrc.extra
 
-xset +fp /usr/share/fonts/artwiz-fonts
-xset +fp /usr/share/fonts/local
-xset +fp /usr/share/fonts/misc
+for d in /usr/share/fonts/*; do
+  xset +fp "$d"
+done
+unset d
 xset fp rehash
 
 [[ -f ~/.Xresources ]] && xrdb ~/.Xresources
