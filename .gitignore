@@ -1,4 +1,4 @@
-# Arch User Repository
+# Linux
 /.Xauthority
 /.bash_history
 /.cache
@@ -25,6 +25,9 @@
 /Downloads
 /Wallpapers
 /aur
+
+# machine specific ln
+.xinitrc.extra
 
 ## VIM
 # compiled binaries

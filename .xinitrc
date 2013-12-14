@@ -1,9 +1,4 @@
 #!/bin/sh
-#
-# ~/.xinitrc
-#
-# Executed by startx (run your window manager from here)
-$HOME/.monicarc   #monitor calibration
 
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
   for f in /etc/X11/xinit/xinitrc.d/*; do
@@ -12,7 +7,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   unset f
 fi
 
-xrandr --dpi 156
+$HOME/.xinitrc.extra
 
 xset +fp /usr/share/fonts/artwiz-fonts
 xset +fp /usr/share/fonts/local
@@ -29,9 +24,6 @@ xmodmap ~/.xmodmaprc &
 #xscreensaver -no-splash &
 xbindkeys
 
-xinput set-int-prop "ETPS/2 Elantech Touchpad" "Device Accel Profile" 32 2 
-xinput set-float-prop "ETPS/2 Elantech Touchpad" "Device Accel Constant Deceleration" 10.0
-xinput set-float-prop "ETPS/2 Elantech Touchpad" "Device Accel Adaptive Deceleration" 2.0
 xset r rate 333 25
 
 hsetroot -full ~/Wallpapers/wallpaper &

@@ -1,4 +1,5 @@
+URxvt.font: -*-gohufont-medium-*-*-*-11-*-*-*-*-*-*-*
 URxvt.scrollBar: false
+
 URxvt.background: #262626
 URxvt.foreground: #D0D0D0
-URxvt.font: -*-gohufont-medium-*-*-*-11-*-*-*-*-*-*-*
