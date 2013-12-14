@@ -28,6 +28,7 @@
 
 # machine specific ln
 .xinitrc.extra
+.i3status.conf
 
 ## VIM
 # compiled binaries

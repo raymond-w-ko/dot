@@ -39,3 +39,4 @@ ensure_link "vim/bin/xxd" "bin/xxd"
 
 # machine specific symbolic links
 ensure_link ".xinitrc.$1" ".xinitrc.extra"
+ensure_link ".i3status.conf.$1" ".i3status.conf"
