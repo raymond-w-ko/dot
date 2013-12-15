@@ -25,7 +25,7 @@ xmodmap ~/.xmodmaprc &
 #xscreensaver -no-splash &
 xbindkeys
 
-xset r rate 333 25
+xset r rate 333 32
 
 hsetroot -full ~/Wallpapers/wallpaper &
 urxvtd -q -f -o
