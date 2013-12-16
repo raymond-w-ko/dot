@@ -16,5 +16,5 @@ XF86MonBrightnessUp
 "sudo systemctl hibernate"
 XF86Sleep
 
-"xset dpms force off; i3lock; sleep 4; xset dpms force off"
+"xset dpms force off; i3lock -i ~/Wallpapers/wallpaper.png; sleep 4; xset dpms force off"
 Alt + l

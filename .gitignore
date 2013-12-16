@@ -13,6 +13,7 @@
 /.gstreamer-0.10
 /.lesshst
 /.lftp
+/.macromedia
 /.mozilla
 /.monicarc
 /.mysql_history
@@ -24,6 +25,7 @@
 /.xmonad/xmonad.errors
 /.xmonad/xmonad.hi
 /Downloads
+/P2P
 /Wallpapers
 /aur
 
