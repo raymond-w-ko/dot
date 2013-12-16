@@ -12,12 +12,13 @@ general {
 }
 
 order += "run_watch DHCP"
-order += "ipv6"
+#order += "ipv6"
 #order += "run_watch VPN"
 #order += "wireless wlp2s0"
 order += "ethernet eno16777736"
 #order += "cpu_temperature 0"
 order += "disk /"
+order += "disk /mnt/hgfs"
 #order += "battery 0"
 order += "load"
 order += "tztime local"
@@ -46,15 +47,19 @@ run_watch VPN {
 }
 
 tztime local {
-        format = "%Y-%m-%d %H:%M:%S"
+        format = "%Y-%m-%d %l:%M:%S %P"
 }
 
 load {
-        format = "%1min"
+        format = "load: %1min"
 }
 
 disk "/" {
-        format = "%free"
+        format = "/: %free"
+}
+
+disk "/mnt/hgfs" {
+        format = "/mnt/hgfs: %free"
 }
 
 cpu_temperature 0 {
