@@ -1,3 +1,14 @@
-# Write your default config options here!
+# disable irrelevant error message
+nolirc=yes
 
+# 3D acceleration FTW
+vo=gl_nosw
 
+ao=alsa
+
+# scale the subtitles to the 3% of the screen size
+subfont-text-scale = 3
+
+# allow to increase the maximal volume
+softvol=1
+softvol-max=600

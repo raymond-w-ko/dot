@@ -1,3 +1,10 @@
+! make Caps Lock == Left Control
 keycode 66 = Control_L
 clear Lock
 add Control = Control_L
+
+! exchange left Alt and left Win
+remove Mod1 = Alt_L
+remove Mod4 = Super_L
+add Mod1 = Super_L
+add Mod4 = Alt_L
