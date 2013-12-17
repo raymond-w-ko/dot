@@ -91,6 +91,10 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
+idleionice() {
+  ionice -c -p $@
+}
+
 # vim
 #vim() {
   #if [ `expr "$*" : '.*tex\>'` -gt 0 ] ; then
