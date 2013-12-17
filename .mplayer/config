@@ -2,7 +2,7 @@
 nolirc=yes
 
 # 3D acceleration FTW
-vo=gl_nosw
+vo=gl_nosw,gl,xv
 
 ao=alsa
 
