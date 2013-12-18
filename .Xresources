@@ -2,13 +2,17 @@ Xcursor.theme: Human
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-URxvt.font: -*-gohufont-medium-*-*-*-11-*-*-*-*-*-*-*
+!URxvt.font: -*-gohufont-medium-*-*-*-11-*-*-*-*-*-*-*
+URxvt.font: -misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1
+
 URxvt.scrollBar: false
+URxvt*saveLines: 10000
 
 URxvt.background: #262626
 URxvt.foreground: #D0D0D0
 
-URxvt*saveLines: 10000
+URxvt.meta8: False
+!URxvt.keysym.C-BackSpace: ^?
  
 ! Tango color palette
 !URxvt*cursorColor: #8ae234

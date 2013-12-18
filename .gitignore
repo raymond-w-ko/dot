@@ -32,6 +32,7 @@
 /P2P
 /Wallpapers
 /aur
+/tmp
 
 # machine specific ln
 .xinitrc.extra
