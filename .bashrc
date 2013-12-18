@@ -92,7 +92,7 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
 idleionice() {
-  ionice -c -p $@
+  ionice -c3 -p $@
 }
 
 # vim
