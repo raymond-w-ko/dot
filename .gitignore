@@ -21,6 +21,7 @@
 /.pentadactyl
 /.purple
 /.ssh
+/.subversion/auth
 /.thunderbird
 /.viminfo
 /.xmonad/xmonad-x86_64-linux
@@ -39,6 +40,7 @@
 ## VIM
 # compiled binaries
 /vim
+/.vim/.netrwhist
 # symlinks created by dot_files_bootstrap.sh
 /bin/ex
 /bin/rview
@@ -54,3 +56,6 @@ yankring_history_v2.txt
 
 # src should come from repos and archives backed up on the Internet
 /src
+
+#work
+/SVN
