@@ -2,7 +2,7 @@
 nolirc=yes
 
 # 3D acceleration FTW
-vo=gl_nosw,gl,xv
+vo=xv
 
 ao=alsa
 
@@ -12,3 +12,7 @@ subfont-text-scale = 3
 # allow to increase the maximal volume
 softvol=1
 softvol-max=600
+
+# subtitles fixes for anime
+ass=true
+embeddedfonts=true
