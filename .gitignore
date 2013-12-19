@@ -1,11 +1,14 @@
-# Linux
+# Linux RC
 /.Xauthority
 /.bash_history
 /.cache
+/.config/Trolltech.conf
+/.config/chromium
 /.config/gtk-2.0
 /.config/guvcview
 /.config/htop
 /.config/pulse
+/.config/vlc
 /.fltk
 /.gem
 /.ghc
@@ -16,10 +19,11 @@
 /.lesshst
 /.lftp
 /.macromedia
-/.mozilla
 /.monicarc
+/.mozilla
 /.mysql_history
 /.pentadactyl
+/.pki
 /.purple
 /.ssh
 /.subversion/auth
@@ -28,6 +32,8 @@
 /.xmonad/xmonad-x86_64-linux
 /.xmonad/xmonad.errors
 /.xmonad/xmonad.hi
+
+# user data
 /Downloads
 /Music
 /P2P
