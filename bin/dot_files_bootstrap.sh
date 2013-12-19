@@ -12,7 +12,8 @@ if [[ -z "$1" ]]; then
 fi
 
 function ensure_link {
-  rm "$HOME/$2" || ln -s "$HOME/$1" "$HOME/$2"
+  rm -f "$HOME/$2"
+  ln -s "$HOME/$1" "$HOME/$2"
 }
 
 cd "$HOME"
