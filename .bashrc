@@ -177,3 +177,8 @@ alias fix_permissions="find . -regex '.*\.\(vim\|h\|hpp\|c\|cpp\)$' -type f -exe
 # custom work aliases
 alias Platform4="cd ~/SVN/Syandus_ALIVE4/Platform"
 alias Immunology="cd ~/SVN/Syandus_Cores/C_ImmunoSim_01"
+
+if hash stty 2>/dev/null; then
+  stty stop undef
+  stty start undef
+fi
