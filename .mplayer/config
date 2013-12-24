@@ -16,3 +16,7 @@ softvol-max=600
 # subtitles fixes for anime
 ass=true
 embeddedfonts=true
+
+# cache
+cache=16384
+cache-min=30
