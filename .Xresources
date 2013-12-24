@@ -1,21 +1,19 @@
-Xcursor.theme: Human
+Xcursor*theme: Human
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-!URxvt.font: -*-gohufont-medium-*-*-*-11-*-*-*-*-*-*-*
-URxvt.font: -misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1
+URxvt*font: -misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1
 
-URxvt.scrollBar: false
+URxvt*scrollBar: false
 URxvt*saveLines: 10000
 
-URxvt.background: #262626
-URxvt.foreground: #D0D0D0
+URxvt*background: #262626
+URxvt*foreground: #D0D0D0
 
-URxvt.meta8: False
-!URxvt.keysym.C-BackSpace: ^?
+URxvt*meta8: False
  
 ! Tango color palette
-!URxvt*cursorColor: #8ae234
+URxvt*cursorColor: #8ae234
 ! foreground color for underline
 URxvt*colorUL: #8ae234
 ! line color for underline
