@@ -20,3 +20,9 @@ embeddedfonts=true
 # cache
 cache=16384
 cache-min=30
+
+# WTF, mplayer you shouldn't remember these settings and change Xorg server
+brightness=0
+contrast=0
+hue=0
+saturation=0
