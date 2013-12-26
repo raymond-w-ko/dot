@@ -82,3 +82,6 @@
 [submodule ".vim/bundle/omegacomplete"]
 	path = .vim/bundle/omegacomplete
 	url = git@github.com:raymond-w-ko/omegacomplete.vim.git
+[submodule ".vim/bundle/vim-colors-solarized"]
+	path = .vim/bundle/vim-colors-solarized
+	url = git@github.com:raymond-w-ko/vim-colors-solarized.git
