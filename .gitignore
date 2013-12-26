@@ -41,6 +41,7 @@
 /Wallpapers
 /aur
 /tmp
+/whatbox
 
 # machine specific ln
 .xinitrc.extra
