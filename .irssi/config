@@ -96,10 +96,7 @@ chatnets = {
     max_whois = "30";
   };
   SILC = { type = "SILC"; };
-  fn = {
-    type = "IRC";
-    nick = "kokonut";
-  };
+  fn = { type = "IRC"; nick = "kokonut"; };
 };
 
 channels = (
@@ -277,4 +274,5 @@ settings = {
     nick = "kokonut";
   };
   "fe-text" = { actlist_sort = "refnum"; };
+  "fe-common/core" = { theme = "solarized-universal"; };
 };
