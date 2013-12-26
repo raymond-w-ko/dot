@@ -24,7 +24,7 @@ font -misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1
 floating_modifier Mod4
 
 # start a terminal
-bindsym Mod4+Return exec urxvtc
+bindsym Mod4+Return exec urxvt
 
 # kill focused window
 bindsym Mod4+Shift+q kill
