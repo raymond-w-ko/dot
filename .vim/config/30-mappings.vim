@@ -66,8 +66,8 @@ cnoremap <C-k> <Up>
 if has("unix")
     cmap w!! w !sudo tee % >/dev/null
 
-    nnoremap <leader>ev :e ~/lib/dot/vimrc<CR>
-    nnoremap <leader>gc :CtrlP ~/lib/dot/vim/config<CR>
+    nnoremap <leader>ev :e ~/.vimrc<CR>
+    nnoremap <leader>gc :CtrlP ~/.vim/config<CR>
 
     let s:uname = system("uname")
     if s:uname == "Darwin\n"

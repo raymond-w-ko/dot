@@ -12,9 +12,11 @@ if !exists("g:already_set_color_scheme") && !($TERM == "linux")
     "   Range:   233 (darkest) ~ 239 (lightest)
     "   Default: 237
     let g:seoul256_background=235
-    colorscheme seoul256
+    "colorscheme seoul256
     "set background=light
     "colorscheme seoul256-light
+    
+    colorscheme solarized 
 
     let g:already_set_color_scheme=1
 endif
