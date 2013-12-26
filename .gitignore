@@ -9,6 +9,8 @@
 /.config/htop
 /.config/pulse
 /.config/vlc
+/.dropbox
+/.dropbox-dist
 /.fltk
 /.gem
 /.ghc
@@ -36,10 +38,12 @@
 
 # user data
 /Downloads
+/Dropbox
 /Music
 /P2P
 /Wallpapers
 /aur
+/p2p
 /tmp
 /whatbox
 
