@@ -31,6 +31,7 @@ hsetroot -full ~/Wallpapers/wallpaper.png &
 #urxvtd -q -f -o
 xcape -t 333 -e 'Control_L=Escape;Shift_L=Shift_L|minus'
 
-dropboxd
+# WM must start this for this to work?
+#dropboxd
 
 exec i3
