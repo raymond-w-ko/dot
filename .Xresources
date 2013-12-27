@@ -2,12 +2,26 @@ Xcursor*theme: Human
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+XTerm*dynamicColors:      true
+XTerm*locale:             true
+XTerm*metaSendsEscape:    true
+!XTerm*font:             -misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1
+XTerm*faceName:           DejaVu Sans Mono
+XTerm*faceNameDoublesize: WenQuanYi Bitmap Song
+XTerm*faceSize:           8
+XTerm*saveLines:          16384
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 URxvt*font: -misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1
 
 URxvt*scrollBar: false
 URxvt*saveLines: 10000
 
 URxvt*meta8: False
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 ! Solarized color scheme for the X Window System
 !
 ! http://ethanschoonover.com/solarized
