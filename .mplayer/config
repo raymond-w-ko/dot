@@ -1,7 +1,6 @@
 # disable irrelevant error message
 nolirc=yes
 
-# 3D acceleration FTW
 vo=xv
 
 ao=alsa
@@ -26,3 +25,10 @@ brightness=0
 contrast=0
 hue=0
 saturation=0
+
+# multithreaded decoding of H264/MPEG-1/2 (valid: 1-8)
+lavdopts=threads=2
+# correct pitch when speed is faster or slower than 1.0
+af=scaletempo
+# allow to seek in a file which is still downloading whilst watching it
+idx=yes
