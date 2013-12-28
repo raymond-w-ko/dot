@@ -2,6 +2,7 @@
 /.Xauthority
 /.bash_history
 /.cache
+/.cgdb
 /.config/autostart
 /.config/Trolltech.conf
 /.config/chromium
@@ -31,6 +32,7 @@
 /.rtorrent
 /.ssh
 /.subversion/auth
+/.tgdb
 /.thunderbird
 /.viminfo
 /.xmonad/xmonad-x86_64-linux
