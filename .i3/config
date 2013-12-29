@@ -160,4 +160,4 @@ bar {
 #######################################################################
 #exec i3-config-wizard
 
-exec dropboxd
+exec dropbox start
