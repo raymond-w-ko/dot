@@ -160,4 +160,6 @@ bar {
 #######################################################################
 #exec i3-config-wizard
 
+new_window 1pixel
+
 exec dropbox start
