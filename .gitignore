@@ -1,5 +1,6 @@
 # Linux RC
 /.Xauthority
+/.adobe/Flash_Player
 /.bash_history
 /.cache
 /.cgdb
