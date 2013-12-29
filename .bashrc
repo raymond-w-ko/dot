@@ -182,3 +182,8 @@ if hash stty 2>/dev/null; then
   stty stop undef
   stty start undef
 fi
+
+# fix ls colors especially for directories and files that are globally readable and writeable
+if [ -r "$HOME/src/dircolors-solarized/dircolors.256dark" ]; then
+  eval `dircolors $HOME/src/dircolors-solarized/dircolors.256dark`
+fi
