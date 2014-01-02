@@ -26,7 +26,7 @@ xbindkeys
 
 xset r rate 333 32
 
-hsetroot -full ~/Wallpapers/wallpaper.png &
+hsetroot -solid #000000
 xcape -t 333 -e 'Control_L=Escape;Shift_L=Shift_L|minus'
 
 # WM must start this for this to work?
