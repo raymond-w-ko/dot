@@ -1,0 +1,12 @@
+[Unit]
+Description=VMware Tools
+After=network.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/etc/init.d/vmware-tools start
+Execstop=/etc/init.d/vmware-tools stop
+
+[Install]
+WantedBy=multi-user.target
