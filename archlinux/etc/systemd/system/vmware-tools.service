@@ -1,12 +1,12 @@
 [Unit]
 Description=VMware Tools
-After=network.target
+After=graphical.target
 
 [Service]
 Type=oneshot
-RemainAfterExit=yes
 ExecStart=/etc/init.d/vmware-tools start
 Execstop=/etc/init.d/vmware-tools stop
+RemainAfterExit=yes
 
 [Install]
 WantedBy=multi-user.target
