@@ -1,17 +1,13 @@
 " set font
 if has("win32")
-    if 1 || !exists("g:already_set_font")
-        set guifont=gohufont-11:h8
-        "set guifont=Dina_TTF:h8
-        "set guifont=Consolas:h8
-        "set guifont=Lucida_Console:h9
-        "set guifont=Inconsolata:h9
-        set linespace=0
-        if has("directx")
-            "set rop=type:directx
-        endif
-
-        let g:already_set_font=1
+    set guifont=fixed613:h8
+    "set guifont=Dina_TTF:h8
+    "set guifont=Consolas:h8
+    "set guifont=Lucida_Console:h9
+    "set guifont=Inconsolata:h9
+    set linespace=0
+    if has("directx")
+        "set rop=type:directx
     endif
 elseif has("gui_macvim")
     set noantialias
