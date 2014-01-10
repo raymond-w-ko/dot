@@ -8,6 +8,7 @@ pager =
 hgext.purge =
 color =
 mq =
+progress =
 [diff]
 #ignorews=True
 [color]
@@ -17,3 +18,5 @@ status.removed = red bold
 status.deleted = cyan bold
 status.unknown = blue bold
 status.ignored = black bold
+[progress]
+delay = 1.5
