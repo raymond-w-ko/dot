@@ -17,7 +17,12 @@
 /.fltk
 /.gem
 /.ghc
-/.gnupg
+/.gnupg/pubring-bak*
+/.gnupg/pubring.bak
+/.gnupg/pubring.gpg~
+/.gnupg/gpg.conf.bak
+/.gnupg/random_seed
+/.gnupg/secring-bak*
 /.gstreamer-0.10
 /.gtkrc-2.0
 /.icons
