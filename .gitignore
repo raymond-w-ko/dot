@@ -23,6 +23,7 @@
 /.gnupg/gpg.conf.bak
 /.gnupg/random_seed
 /.gnupg/secring-bak*
+/.gnupg/*.lock
 /.gstreamer-0.10
 /.gtkrc-2.0
 /.icons
