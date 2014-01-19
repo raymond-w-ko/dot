@@ -4,9 +4,6 @@
 [submodule ".vim/bundle/Lucius"]
 	path = .vim/bundle/Lucius
 	url = git@github.com:raymond-w-ko/Lucius.git
-[submodule ".vim/bundle/vim-powerline"]
-	path = .vim/bundle/vim-powerline
-	url = git://github.com/Lokaltog/vim-powerline.git
 [submodule ".vim/bundle/nerdcommenter"]
 	path = .vim/bundle/nerdcommenter
 	url = git://github.com/scrooloose/nerdcommenter.git
@@ -58,9 +55,6 @@
 [submodule ".vim/bundle/PHP-Indenting-for-VIm"]
 	path = .vim/bundle/PHP-Indenting-for-VIm
 	url = git://github.com/2072/PHP-Indenting-for-VIm.git
-[submodule ".vim/bundle/powerline"]
-	path = .vim/bundle/powerline
-	url = https://github.com/Lokaltog/powerline.git
 [submodule ".vim/bundle/cpp-vim"]
 	path = .vim/bundle/cpp-vim
 	url = git://github.com/vim-jp/cpp-vim.git
