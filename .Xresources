@@ -5,10 +5,8 @@ Xcursor*theme: Human
 XTerm*dynamicColors:      true
 XTerm*locale:             true
 XTerm*metaSendsEscape:    true
-XTerm*faceName:           DejaVu Sans Mono
+XTerm*font:               6x13
 XTerm*faceSize:           8
-!XTerm*faceName:           Inconsolata\\-dz
-!XTerm*faceSize:           9
 XTerm*faceNameDoublesize: WenQuanYi Bitmap Song
 XTerm*saveLines:          16384
 
