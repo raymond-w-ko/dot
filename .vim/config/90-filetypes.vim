@@ -74,6 +74,9 @@ augroup vimrc
     au BufWritePost C:/cygwin/home/rko/.vimrc source $MYVIMRC
     au BufWritePost C:/cygwin/home/rko/.gvimrc source $MYGVIMRC
     au BufWritePost C:/cygwin/home/rko/.vim/config/* source $MYVIMRC
+    au BufWritePost C:/cygwin64/home/rko/.vimrc source $MYVIMRC
+    au BufWritePost C:/cygwin64/home/rko/.gvimrc source $MYGVIMRC
+    au BufWritePost C:/cygwin64/home/rko/.vim/config/* source $MYVIMRC
 augroup END
 " }}}
 " git {{{

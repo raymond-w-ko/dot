@@ -227,6 +227,8 @@ function! AutoHotkeyMake(arg0)
         let file = "C:/Users/root/Desktop/Dropbox/make.ahk"
     elseif filereadable("C:/Users/Raymond W. Ko/Dropbox/make.ahk")
         let file = "C:/Users/Raymond W. Ko/Dropbox/make.ahk"
+    elseif filereadable("C:/Users/rko/Dropbox/make.ahk")
+        let file = "C:/Users/rko/Dropbox/make.ahk"
     else
         echom "autohotkey script not found"
     endif
