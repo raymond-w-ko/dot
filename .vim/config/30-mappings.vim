@@ -205,6 +205,10 @@ function! CreateCppMethodImplementation()
                     break
                 endif
             endif
+            if (words[0] == 'namespace')
+                let g:RefactorCppClassName = words[1]
+                break
+            endif
         endif
         
         let line_num = line_num - 1
