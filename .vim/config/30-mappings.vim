@@ -80,11 +80,13 @@ if has("unix")
         " regular UNIX
     endif
 elseif has("win32")
-    "exe 'nnoremap <leader>ev :e C:/cygwin/home/' . expand('$USERNAME') . '/lib/dot/vimrc<CR>'
-    "exe 'nnoremap <leader>gc :CtrlP C:/cygwin/home/' . expand('$USERNAME') . '/lib/dot/vim/config<CR>'
     if isdirectory('C:/cygwin/home/rko')
         exe 'nnoremap <leader>ev :e C:/cygwin/home/rko/.vimrc<CR>'
         exe 'nnoremap <leader>gc :CtrlP C:/cygwin/home/rko/.vim/config<CR>'
+    endif
+    if isdirectory('C:/cygwin64/home/rko')
+        exe 'nnoremap <leader>ev :e C:/cygwin64/home/rko/.vimrc<CR>'
+        exe 'nnoremap <leader>gc :CtrlP C:/cygwin64/home/rko/.vim/config<CR>'
     endif
     if isdirectory('C:/cygwin/home/root')
         exe 'nnoremap <leader>ev :e C:/cygwin/home/root/.vimrc<CR>'
