@@ -68,12 +68,6 @@ unset PYTHONHOME
 
 unamestr=`uname -s`
 if [[ "$unamestr" == 'Darwin' ]]; then
-    export LSCOLORS=ExFxCxDxBxegedabagacad
-
-    alias ls='ls -FG'
-    alias l='ls -FGlh'
-    alias ll='ls -FGlha'
-
     if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
         alias vim="vim"
     else
@@ -81,10 +75,35 @@ if [[ "$unamestr" == 'Darwin' ]]; then
     fi
 
     #export DYLD_LIBRARY_PATH=~/boost/stage/lib
+
+    if hash gdircolors 2>/dev/null; then
+      if [ -r "$HOME/src/dircolors-solarized/dircolors.256dark" ]; then
+        eval `gdircolors $HOME/src/dircolors-solarized/dircolors.256dark`
+      fi
+    fi
+
+    if hash gls 2>/dev/null; then
+      alias ls='gls --color -F'
+      alias l='gls --color -Flh'
+      alias ll='gls --color -Flha'
+      alias ls='gls --color'
+    else
+      export LSCOLORS=ExFxCxDxBxegedabagacad
+      alias ls='ls -FG'
+      alias l='ls -FGlh'
+      alias ll='ls -FGlha'
+    fi
+
+
 else
     alias ls='ls --color -F'
     alias l='ls --color -Flh'
     alias ll='ls --color -Flha'
+
+    # fix ls colors especially for directories and files that are globally readable and writeable
+    if [ -r "$HOME/src/dircolors-solarized/dircolors.256dark" ]; then
+      eval `dircolors $HOME/src/dircolors-solarized/dircolors.256dark`
+    fi
 fi
 
 alias ..='cd ..'
@@ -181,14 +200,9 @@ alias fix_permissions="find . -regex '.*\.\(vim\|h\|hpp\|c\|cpp\)$' -type f -exe
 
 # custom work aliases
 alias Platform4="cd ~/SVN/Syandus_ALIVE4/Platform"
-alias Immunology="cd ~/SVN/Syandus_Cores/C_ImmunoSim_01"
+alias ImmuneQuest="cd ~/SVN/Syandus_Cores/C_ImmunoSim_01"
 
 if hash stty 2>/dev/null; then
   stty stop undef
   stty start undef
-fi
-
-# fix ls colors especially for directories and files that are globally readable and writeable
-if [ -r "$HOME/src/dircolors-solarized/dircolors.256dark" ]; then
-  eval `dircolors $HOME/src/dircolors-solarized/dircolors.256dark`
 fi
