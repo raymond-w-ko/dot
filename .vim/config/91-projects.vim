@@ -22,7 +22,7 @@ let s:commands = [
     \ 'Symlin',             '__SVN__/SVN/Syandus_Cores/C_Sym_DM_01',
     \ 'Spiriva',            '__SVN__/SVN/Syandus_Cores/C_Spv_COPD_01',
     \ 'Copd',               '__SVN__/SVN/Syandus_Cores/C_Unb_COPD_01',
-    \ 'Immunobiology',      '__SVN__/SVN/Syandus_Cores/C_ImmunoSim_01',
+    \ 'ImmuneQuest',        '__SVN__/SVN/Syandus_Cores/C_ImmunoSim_01',
     \ 'PatientEd',          '__SVN__/SVN/Syandus_Cores/C_MS_PatientEd_01',
     \ 'Sutent',             '__SVN__/SVN/Syandus_Cores/C_Sut_AE_01',
     \ 'SyMetrics',          '__SVN__/SVN/Syandus_ALIVE3/Metrics/SyMetrics',
