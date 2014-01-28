@@ -9,6 +9,7 @@ hgext.purge =
 color =
 mq =
 progress =
+shelve =
 [diff]
 #ignorews=True
 [color]
