@@ -15,6 +15,7 @@
 /.dropbox
 /.dropbox-dist
 /.fltk
+/.gdb_history
 /.gem
 /.ghc
 /.gnupg/pubring-bak*
@@ -47,10 +48,15 @@
 /.xmonad/xmonad.hi
 
 # user data
+/Desktop
+/Documents
 /Downloads
 /Dropbox
+/Library
+/Movies
 /Music
 /P2P
+/Pictures
 /Wallpapers
 /aur
 /p2p
