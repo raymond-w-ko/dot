@@ -8,6 +8,7 @@ let s:commands = [
     \ 'Omegacomplete2',     '__UNIXHOME__/lib/dot/vim/bundle/omegacomplete2',
     \ 'OcularWM',           '__UNIXHOME__/src/ocularwm',
     \
+    \ 'SVN',                '__SVN__/SVN/',
     \ 'Platform',           '__SVN__/SVN/Syandus_ALIVE3/Platform/Source/Code',
     \ 'Platform4',          '__SVN__/SVN/Syandus_ALIVE4/Platform/Source/Code',
     \ 'Doc4',               '__SVN__/SVN/Syandus_ALIVE4/Documentation',

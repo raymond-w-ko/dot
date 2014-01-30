@@ -52,6 +52,10 @@ function! GetLuaIndent()
         endif
     endif
 
+    if prev_line =~# '^\s*end.+$'
+        return ind
+    endif
+
     if match_index != -1
         " Add 'shiftwidth' if what we found previously is not in a comment and
         " an "end" or "until" is not present on the same line.
