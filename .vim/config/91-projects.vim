@@ -4,8 +4,8 @@ set tags=
 let s:commands = [
     \ 'Dropbox',            'C:/Users/__USERNAME__/Desktop/Dropbox',
     \
-    \ 'Omegacomplete',      '__UNIXHOME__/lib/dot/vim/bundle/omegacomplete',
-    \ 'Omegacomplete2',     '__UNIXHOME__/lib/dot/vim/bundle/omegacomplete2',
+    \ 'Omegacomplete',      '__UNIXHOME__/.vim/bundle/omegacomplete',
+    \ 'Omegacomplete2',     '__UNIXHOME__/.vim/bundle/omegacomplete2',
     \ 'OcularWM',           '__UNIXHOME__/src/ocularwm',
     \
     \ 'SVN',                '__SVN__/SVN/',
@@ -24,7 +24,7 @@ let s:commands = [
     \ 'Spiriva',            '__SVN__/SVN/Syandus_Cores/C_Spv_COPD_01',
     \ 'Copd',               '__SVN__/SVN/Syandus_Cores/C_Unb_COPD_01',
     \ 'ImmuneQuest',        '__SVN__/SVN/Syandus_Cores/C_ImmunoSim_01',
-    \ 'PatientEd',          '__SVN__/SVN/Syandus_Cores/C_MS_PatientEd_01',
+    \ 'PatientEducation',   '__SVN__/SVN/Syandus_Cores/C_MS_PatientEd_01',
     \ 'Sutent',             '__SVN__/SVN/Syandus_Cores/C_Sut_AE_01',
     \ 'SyMetrics',          '__SVN__/SVN/Syandus_ALIVE3/Metrics/SyMetrics',
     \ 'SyLogParser',        '__SVN__/SVN/Syandus_ALIVE3/Metrics/SyLoginParser',
