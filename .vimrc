@@ -182,6 +182,7 @@ function! StripTrailingWhitespace()
     silent! %s/\s\+$//
     call winrestview(l:my_saved_winview)
 endfunction
+command! StripTrailingWhitespace call StripTrailingWhitespace()
 augroup StripTrailingWhitespaceOnSave
     au!
     "Syandus
@@ -301,7 +302,7 @@ function! ApplyMyFormatOptions()
     set fo+=c   " auto-wrap comments using textwidth, insert comment leader
     set fo+=q   " allow formatting comments with 'gq'
     set fo+=l   " long lines are not broken in insert mode
-    if v:version > 702 || (v:version == 702 && has('patch541')) 
+    if v:version > 702 || (v:version == 702 && has('patch541'))
         set fo+=j   " remove comment leader when joining lines.
     endif
 endfunction
