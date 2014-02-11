@@ -1,38 +1,40 @@
-let s:username = expand('$USERNAME')
-if s:username == 'Raymond W. Ko'
-  let s:cygwin_username = 'rko'
-else
-  let s:cygwin_username = 'root'
-endif
-
+" Since I keep my projects in the UNIX-ish HOME directory, we have to figure
+" out where it is. The problem is that it is potentially different everywhere.
 if has('win32')
-  let s:unix_home = 'C:/cygwin/home/__CYGWINUSERNAME__'
-  let s:unix_home = substitute(s:unix_home, '__CYGWINUSERNAME__', s:cygwin_username, '')
+  let dir = 'C:/cygwin/home/root'
+  if isdirectory(dir) | let s:unix_home = dir | endif
+  let dir = 'C:/cygwin64/home/root'
+
+  if isdirectory(dir) | let s:unix_home = dir | endif
+  let dir = 'C:/cygwin/home/Raymond W. Ko'
+  if isdirectory(dir) | let s:unix_home = dir | endif
+  let dir = 'C:/cygwin64/home/Raymond W. Ko'
+  if isdirectory(dir) | let s:unix_home = dir | endif
+
+  let dir = 'C:/cygwin/home/rko'
+  if isdirectory(dir) | let s:unix_home = dir | endif
+  let dir = 'C:/cygwin64/home/rko'
+  if isdirectory(dir) | let s:unix_home = dir | endif
 elseif has('win32unix')
   let s:unix_home = expand('$HOME')
 else
   let s:unix_home = expand('$HOME')
 endif
 
+" Figure out where the company SVN directory lives
+if has('win32')
+  let s:svn_home = 'C:'
+elseif has('win32unix')
+  let s:svn_home = '/cygdrive/c'
+else
+  let s:svn_home = expand('$HOME')
+endif
+
 function! MyTranslateDirectory(dir)
   let dir = a:dir
-  if has('win32')
-    let dir = substitute(dir, '__SVN__', 'C:', '')
-  elseif has('win32unix')
-    let dir = substitute(dir, '__SVN__', '/cygdrive/c', '')
-  else
-    let dir = substitute(dir, '__SVN__', s:unix_home, 'g')
-  endif
-
-  let dir = substitute(dir, '__UNIXHOME__', s:unix_home, 'g')
-
-  let dir = substitute(dir, '__USERNAME__', s:username, '')
+  let dir = substitute(dir, '__SVN__', s:svn_home, '')
+  let dir = substitute(dir, '__UNIX_HOME__', s:unix_home, '')
   let dir = substitute(dir, ' ', '\ ', '')
-  if match(dir, 'Dropbox') != -1
-    if !isdirectory(dir)
-      let dir = substitute(dir, '/Desktop', '', '')
-    endif
-  endif
 
   if has('win32')
     let dir = substitute(dir, '/', '\\', 'g')
@@ -42,10 +44,10 @@ function! MyTranslateDirectory(dir)
 endfunction
 
 let s:project_directories_list = [
-    \ '__UNIXHOME__/src/ocularwm',
-    \ '__UNIXHOME__/src/vim/src',
-    \ '__UNIXHOME__/src/ocularwm',
-    \ '__UNIXHOME__/lib/dot/vim/bundle/omegacomplete',
+    \ '__UNIX_HOME__/src/ocularwm',
+    \ '__UNIX_HOME__/src/vim/src',
+    \ '__UNIX_HOME__/src/ocularwm',
+    \ '__UNIX_HOME__/lib/dot/vim/bundle/omegacomplete',
     \ '__SVN__/SVN/Syandus_ALIVE3/Frameworks/Carbon',
     \ '__SVN__/SVN/Syandus_ALIVE3/Frameworks/CarbonCME',
     \ '__SVN__/SVN/Syandus_ALIVE3/Frameworks/Oxygen',
