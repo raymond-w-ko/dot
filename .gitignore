@@ -1,36 +1,54 @@
 # Linux RC
+
+/.ICEauthority
 /.Xauthority
 /.adobe/Flash_Player
+/.android
 /.bash_history
 /.cache
 /.cgdb
-/.config/autostart
+/.cinnamon
 /.config/Trolltech.conf
+/.config/autostart
+/.config/caja
 /.config/chromium
+/.config/dconf
 /.config/gtk-2.0
+/.config/gtk-3.0
 /.config/guvcview
 /.config/htop
+/.config/menus
+/.config/nemo
 /.config/pulse
+/.config/user-dirs.dirs
+/.config/user-dirs.locale
 /.config/vlc
+/.dbus
+/.dmrc
 /.dropbox
 /.dropbox-dist
 /.electrum
 /.fltk
+/.gconf
 /.gdb_history
 /.gem
 /.ghc
+/.gksu.lock
+/.gnome2
+/.gnupg/*.lock
+/.gnupg/gpg.conf.bak
 /.gnupg/pubring-bak*
 /.gnupg/pubring.bak
 /.gnupg/pubring.gpg~
-/.gnupg/gpg.conf.bak
 /.gnupg/random_seed
 /.gnupg/secring-bak*
-/.gnupg/*.lock
 /.gstreamer-0.10
 /.gtkrc-2.0
 /.icons
 /.lesshst
 /.lftp
+/.links2
+/.linuxmint
 /.macromedia
 /.monicarc
 /.mozilla
@@ -43,10 +61,12 @@
 /.subversion/auth
 /.tgdb
 /.thunderbird
+/.vboxclient*
 /.viminfo
 /.xmonad/xmonad-x86_64-linux
 /.xmonad/xmonad.errors
 /.xmonad/xmonad.hi
+/.xsession-errors
 
 # user data
 /Desktop
@@ -63,6 +83,12 @@
 /p2p
 /tmp
 /whatbox
+
+# src repos
+/ogre
+/ogredeps
+/android-sdk*
+/android-ndk*
 
 # machine specific ln
 .xinitrc.extra
