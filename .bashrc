@@ -156,11 +156,11 @@ elif [ -d "$HOME/src/vim" ]; then
     alias vimsrc="cd $HOME/src/vim"
 fi
 
-if [ -d "$HOME/android-ndk-r9" ]
+if [ -d "$HOME/android-ndk-r9c" ]
 then
-  export NDK_HOME=$HOME/android-ndk-r9
-  export ANDROID_NDK=$HOME/android-ndk-r9
-  export PATH="$PATH:$HOME/android-ndk-r9"
+  export NDK_HOME=$HOME/android-ndk-r9c
+  export ANDROID_NDK=$HOME/android-ndk-r9c
+  export PATH="$PATH:$HOME/android-ndk-r9c"
 fi
 
 if [ -d "$HOME/android-sdk-linux" ]
@@ -197,6 +197,7 @@ alias svnadddir='svn add --depth=empty'
 svndiff() {
   svn diff "${@}" | colordiff | less -R
 }
+alias svnignore='svn propedit svn:ignore'
 
 alias fix_permissions="find . -regex '.*\.\(vim\|h\|hpp\|c\|cpp\)$' -type f -exec chmod -x {} \;"
 
