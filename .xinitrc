@@ -21,7 +21,8 @@ xset fp rehash
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 wmname LG3D
 #xsetroot -cursor_name left_ptr &
-xmodmap ~/.xmodmaprc &
+# do this in extra, otherwise in VMs, KoKoKeys or AutoHotkey will interfere with this.
+xmodmap ~/.xmodmaprc
 xbindkeys
 
 xset r rate 333 32
