@@ -98,6 +98,7 @@
 # compiled binaries
 /vim
 /.vim/.netrwhist
+/bin/xcape
 # symlinks created by dot_files_bootstrap.sh
 /bin/ex
 /bin/rview
