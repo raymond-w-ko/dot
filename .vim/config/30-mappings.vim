@@ -292,10 +292,10 @@ augroup END
 
 "}}}
 " Splits {{{
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+nnoremap <C-h> <C-w>h<C-w>=
+nnoremap <C-j> <C-w>j<C-w>=
+nnoremap <C-k> <C-w>k<C-w>=
+nnoremap <C-l> <C-w>l<C-w>=
 
 nnoremap <leader>wv :vsplit<CR>
 nnoremap <leader>wn :split<CR>
