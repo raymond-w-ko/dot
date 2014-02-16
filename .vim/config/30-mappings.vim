@@ -292,10 +292,10 @@ augroup END
 
 "}}}
 " Splits {{{
-nnoremap <C-h> <C-w>h<C-w>=
-nnoremap <C-j> <C-w>j<C-w>=
-nnoremap <C-k> <C-w>k<C-w>=
-nnoremap <C-l> <C-w>l<C-w>=
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 nnoremap <leader>wv :vsplit<CR>
 nnoremap <leader>wn :split<CR>
@@ -365,10 +365,10 @@ function! CreateScratch()
     wincmd k
 endfunction
 function! CreateAndSetupVsplits()
-    let num_vsplits = ((&columns + 1) / 80) - 1
+    let num_vsplits = (&columns / 100) - 1
 
-    if !exists("g:num_tabs")
-        let g:num_tabs = 1
+    if !exists("g:my_current_number_of_tabs")
+        let g:my_current_number_of_tabs = 1
     endif
 
     " get the current directory because we want to replicate this
@@ -376,7 +376,7 @@ function! CreateAndSetupVsplits()
     let current_directory = expand("%:p:h")
 
     " set up our initial tab if this is our first time
-    if g:num_tabs > 1
+    if g:my_current_number_of_tabs > 1
         tabnew
         silent! exe "chdir " . current_directory
     endif
@@ -400,7 +400,7 @@ function! CreateAndSetupVsplits()
 
     wincmd =
     
-    let g:num_tabs = g:num_tabs + 1
+    let g:my_current_number_of_tabs += 1
     return
 endfunction
 if (s:uname == "Darwin\n")
