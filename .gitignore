@@ -29,6 +29,7 @@
 /.dropbox-dist
 /.electrum
 /.fltk
+/.fontconfig
 /.gconf
 /.gdb_history
 /.gem
@@ -61,6 +62,7 @@
 /.subversion/auth
 /.tgdb
 /.thunderbird
+/.wine
 /.vboxclient*
 /.viminfo
 /.xmonad/xmonad-x86_64-linux
@@ -80,9 +82,24 @@
 /Pictures
 /Wallpapers
 /aur
+/boost
+/old
 /p2p
 /tmp
 /whatbox
+
+/user-config.jam
+
+# work
+/.alivemed
+/.alivemedcme
+
+# Mac
+/Applications
+/.Trash
+/Public
+
+/.CFUserTextEncoding
 
 # src repos
 /ogre
