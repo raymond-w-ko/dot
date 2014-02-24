@@ -144,17 +144,17 @@ function! MyDoubleBracesExpander()
        \ line[line_len - 1] != '{' )
         return
     endif
-	call feedkeys("\<BS>\<CR>X\<CR>}\<Up>\<End>\<BS>", 't')
+    call feedkeys("\<BS>\<CR>X\<CR>}\<Up>\<End>\<BS>", 't')
 endfunction
 augroup ExpandDoubleBraces
-	au!
-	au CursorMovedI * call MyDoubleBracesExpander()
+    au!
+    au CursorMovedI * call MyDoubleBracesExpander()
 augroup END
 
 function! CreateCppMethodImplementation()
     " determine the complete function definition
     let line_num = line('.')
-    
+
     " find the line with '(', this marks the beginning
     while (1)
         let cur_line = getline(line_num)
@@ -164,11 +164,11 @@ function! CreateCppMethodImplementation()
 
         let line_num = line_num - 1
     endwhile
-    
+
     let begin_line_num = line_num
     let begin_line = getline(begin_line_num)
     let definition_whitespace = PrecedingWhitespaceCount(begin_line)
-    
+
     " find the line with ')', this marks the end
     while (1)
         let cur_line = getline(line_num)
@@ -180,7 +180,7 @@ function! CreateCppMethodImplementation()
     endwhile
 
     let end_line_num = line_num
-    
+
     if (exists('s:RefactorCppFunctionDefinition'))
         unlet s:RefactorCppFunctionDefinition
     endif
@@ -189,17 +189,17 @@ function! CreateCppMethodImplementation()
     let last_line = s:RefactorCppFunctionDefinition[index]
     let last_line = substitute( last_line, '\s*=\s*0;', ';', 'g')
     let s:RefactorCppFunctionDefinition[index] = last_line
-    
+
     " determine the class name
     " we will just go up until we see a line begin with 'class'
     let line_num = begin_line_num - 1
     while (1)
         let cur_line = getline(line_num)
         let words = split(cur_line, '\W\+')
-        
+
         if (len(words) >= 2)
             if (words[0] == 'class' || words[0] == 'struct')
-                if (PrecedingWhitespaceCount(cur_line) < definition_whitespace) 
+                if (PrecedingWhitespaceCount(cur_line) < definition_whitespace)
                     if (exists('g:RefactorCppClassName'))
                         unlet g:RefactorCppClassName
                     endif
@@ -212,7 +212,7 @@ function! CreateCppMethodImplementation()
                 break
             endif
         endif
-        
+
         let line_num = line_num - 1
     endwhile
 
@@ -225,19 +225,19 @@ function! CreateCppMethodImplementation()
     call append('$', s:RefactorCppFunctionDefinition)
     normal j
     normal VVG<
-    
+
     if (expand('<cword>') == "static")
         normal dw
     endif
-    
-    "check if have virtual keyword, if so delete it since function declarations 
+
+    "check if have virtual keyword, if so delete it since function declarations
     "don't have that, only in the function definition
     if (expand('<cword>') == "virtual")
         normal dw
     endif
 
     " TODO check if we have a constructor or destructor, which has no return type
-    
+
     "insert class name
     let cur_line = getline(line('.'))
     let words = split(cur_line, '\W\+')
@@ -361,7 +361,7 @@ function! CreateScratch()
     Scratch
     setlocal nowrap
     silent! exe "chdir " . current_directory
-    
+
     wincmd k
 endfunction
 function! CreateAndSetupVsplits()
@@ -380,7 +380,7 @@ function! CreateAndSetupVsplits()
         tabnew
         silent! exe "chdir " . current_directory
     endif
-    
+
     "call CreateScratch()
 
     " create number of vsplits based off of argument passwd
@@ -399,7 +399,7 @@ function! CreateAndSetupVsplits()
     endif
 
     wincmd =
-    
+
     let g:my_current_number_of_tabs += 1
     return
 endfunction
@@ -609,7 +609,7 @@ function! MySuperRightParen()
     if (scratch_win_nr == -1)
         return ''
     endif
- 
+
     execute scratch_win_nr . "wincmd w"
     resize 1
     execute cur_win_nr . "wincmd w"

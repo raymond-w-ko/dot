@@ -311,9 +311,9 @@ call ApplyMyFormatOptions()
 set wrap
 set wrapscan
 if exists("&breakindent")
-    set breakindent showbreak=+++\ 
+    exe 'set breakindent showbreak=+++\ '
 else
-    set showbreak=+++\ 
+    exe 'set showbreak=+++\ '
 endif
 set noswapfile  " computers are pretty reliable nowadays
 " }}}
