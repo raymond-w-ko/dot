@@ -119,3 +119,4 @@ let g:detectindent_max_indent = 4
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_theme='powerlineish'
+let g:airline#extensions#whitespace#enabled = 0
