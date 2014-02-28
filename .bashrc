@@ -156,6 +156,8 @@ elif [ -d "$HOME/src/vim" ]; then
     alias vimsrc="cd $HOME/src/vim"
 fi
 
+alias makeinstallvim="vimsrc && hpa && cd src && make && rm -r ~/vim/ && make install"
+
 if [ -d "$HOME/android-ndk-r9c" ]
 then
   export NDK_HOME=$HOME/android-ndk-r9c
