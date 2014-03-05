@@ -93,6 +93,8 @@
 # work
 /.alivemed
 /.alivemedcme
+/Groundhog
+/Metrics
 
 # Mac
 /Applications
