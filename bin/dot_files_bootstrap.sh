@@ -42,3 +42,10 @@ ensure_link "vim/bin/xxd" "bin/xxd"
 ensure_link ".xinitrc.$1" ".xinitrc.extra"
 ensure_link ".i3status.conf.$1" ".i3status.conf"
 ensure_link ".gtkrc-2.0.$1" ".gtkrc-2.0" 
+
+# nice directory colors
+if [[ ! -d "$HOME/src/dircolors-solarized" ]]; then
+  pushd "$HOME/src"
+  git clone https://github.com/seebi/dircolors-solarized.git
+  popd
+fi
