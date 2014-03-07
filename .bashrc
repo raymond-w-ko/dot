@@ -198,11 +198,11 @@ alias hcmergedwithupstream='hg commit -m "merged with upstream"'
 alias svnadddir='svn add --depth=empty'
 if hash colordiff 2>/dev/null; then
   svndiff() {
-    svn diff "${@}" | colordiff | less -R
+    svn diff "${@}" | sed 's///' | colordiff | less -R
   }
 else
   svndiff() {
-    svn diff "${@}" | less -R
+    svn diff "${@}" | sed 's///' | less -R
   }
 fi
 alias svnignore='svn propedit svn:ignore'
