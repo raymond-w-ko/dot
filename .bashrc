@@ -196,9 +196,15 @@ alias hpull='hg pull'
 alias hcmergedwithupstream='hg commit -m "merged with upstream"'
 
 alias svnadddir='svn add --depth=empty'
-svndiff() {
-  svn diff "${@}" | colordiff | less -R
-}
+if hash colordiff 2>/dev/null; then
+  svndiff() {
+    svn diff "${@}" | colordiff | less -R
+  }
+else
+  svndiff() {
+    svn diff "${@}" | less -R
+  }
+fi
 alias svnignore='svn propedit svn:ignore'
 
 alias fix_permissions="find . -regex '.*\.\(vim\|h\|hpp\|c\|cpp\)$' -type f -exec chmod -x {} \;"
