@@ -7,11 +7,11 @@ XF86AudioLowerVolume
 "~/bin/volume mute"
 XF86AudioMute
 
-"xbacklight -dec 10"
-XF86MonBrightnessDown
+#"xbacklight -dec 10"
+#XF86MonBrightnessDown
 
-"xbacklight -inc 10"
-XF86MonBrightnessUp
+#"xbacklight -inc 10"
+#XF86MonBrightnessUp
 
 "sudo systemctl hibernate"
 XF86Sleep

@@ -1,6 +1,6 @@
 #!/bin/sh
 exec /usr/bin/osd_cat \
-    --font='-*-dejavu sans-bold-r-*-*-*-*-*-*-*-*-*-*' \
+    --font='-*-fixed-*-*-*-*-24-*-*-*-*-*-iso8559-1' \
     --shadow=0 \
     --outline=1 \
     --color=green \
