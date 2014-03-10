@@ -247,6 +247,9 @@ set wildignore+=*.ncb,*.suo,*.user,*.vcproj,*.vcxproj,*.out,*.sln,*.pdb
 set wildignore+=*.manifest,*.dep,*.idb,*.ipch,*.o,*.obj
 set wildignore+=Debug,Release
 
+" GCC dependencies
+set wildignore+=*.d
+
 " Gamebryo Binaries
 set wildignore+=*.nif,*.kf,*.kfm,*.NSB
 
@@ -311,9 +314,9 @@ call ApplyMyFormatOptions()
 set wrap
 set wrapscan
 if exists("&breakindent")
-    set breakindent showbreak=+++\ 
+    exe 'set breakindent showbreak=+++\ '
 else
-    set showbreak=+++\ 
+    exe 'set showbreak=+++\ '
 endif
 set noswapfile  " computers are pretty reliable nowadays
 " }}}

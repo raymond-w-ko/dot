@@ -52,7 +52,7 @@ function! GetLuaIndent()
         endif
     endif
 
-    if prev_line =~# '^\s*end.+$'
+    if prev_line =~# '^\s*end.\+$'
         return ind
     endif
 

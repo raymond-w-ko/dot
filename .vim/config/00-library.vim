@@ -45,8 +45,8 @@ endfunction
 
 let s:project_directories_list = [
     \ '__UNIX_HOME__/src/ocularwm',
+    \ '__UNIX_HOME__/src/windmenu',
     \ '__UNIX_HOME__/src/vim/src',
-    \ '__UNIX_HOME__/src/ocularwm',
     \ '__UNIX_HOME__/lib/dot/vim/bundle/omegacomplete',
     \ '__SVN__/SVN/Syandus_ALIVE3/Frameworks/Carbon',
     \ '__SVN__/SVN/Syandus_ALIVE3/Frameworks/CarbonCME',
@@ -70,6 +70,7 @@ let s:project_directories_list = [
     \ '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Carbon',
     \ '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Oxygen',
     \ '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Hydrogen',
+    \ '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Nitrogen',
     \ '__SVN__/SVN/Syandus_ALIVE4/Platform/Source/Code',
     \ '__SVN__/SVN/Syandus_ALIVE4/Tools/Source/SyProjectGenerator',
     \ '__SVN__/SVN/Syandus_ALIVE4/Tools/Source/mercky',
@@ -79,6 +80,7 @@ let s:project_directories_list = [
     \ '__SVN__/SVN/Syandus_Cores/C_CMSC_MS_01',
     \ '__SVN__/SVN/Syandus_Cores/C_ImmunoSim_01',
     \ '__SVN__/SVN/Syandus_Cores/C_MS_PatientEd_01',
+    \ '__SVN__/SVN/Syandus_Cores/C_MS_Treatment_01',
     \ '__SVN__/SVN/Syandus_Cores/C_Mic_HTN_01',
     \ '__SVN__/SVN/Syandus_Cores/C_Ogre_Lair_01',
     \ '__SVN__/SVN/Syandus_Cores/C_Spv_COPD_01',

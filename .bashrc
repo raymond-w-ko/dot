@@ -156,11 +156,13 @@ elif [ -d "$HOME/src/vim" ]; then
     alias vimsrc="cd $HOME/src/vim"
 fi
 
-if [ -d "$HOME/android-ndk-r9c" ]
+alias makeinstallvim="vimsrc && hpa && cd src && make && rm -r ~/vim/ && make install"
+
+if [ -d "$HOME/android-ndk-r9d" ]
 then
-  export NDK_HOME=$HOME/android-ndk-r9c
-  export ANDROID_NDK=$HOME/android-ndk-r9c
-  export PATH="$PATH:$HOME/android-ndk-r9c"
+  export NDK_HOME=$HOME/android-ndk-r9d
+  export ANDROID_NDK=$HOME/android-ndk-r9d
+  export PATH="$PATH:$HOME/android-ndk-r9d"
 fi
 
 if [ -d "$HOME/android-sdk-linux" ]
@@ -194,9 +196,15 @@ alias hpull='hg pull'
 alias hcmergedwithupstream='hg commit -m "merged with upstream"'
 
 alias svnadddir='svn add --depth=empty'
-svndiff() {
-  svn diff "${@}" | colordiff | less -R
-}
+if hash colordiff 2>/dev/null; then
+  svndiff() {
+    svn diff "${@}" | sed 's///' | colordiff | less -R
+  }
+else
+  svndiff() {
+    svn diff "${@}" | sed 's///' | less -R
+  }
+fi
 alias svnignore='svn propedit svn:ignore'
 
 alias fix_permissions="find . -regex '.*\.\(vim\|h\|hpp\|c\|cpp\)$' -type f -exec chmod -x {} \;"
