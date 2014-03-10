@@ -1,0 +1,7 @@
+"hg7035
+
+loadplugins '\.(js|penta)$'
+group user
+set hlfind
+
+" vim: set ft=pentadactyl:
