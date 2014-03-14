@@ -94,8 +94,8 @@ elseif has("win32")
     endif
 
     nnoremap <leader>eh :e C:/Windows/system32/drivers/etc/hosts<CR>
+    nnoremap <leader>el :e C:/SVN/_my_launch.bat<CR>
 endif
-nnoremap <leader>el :e C:/SVN/Syandus_ALIVE4/Platform/Source/Code/SyCore/SyLua.cpp<CR>
 
 function! FindFileInProjectDirectory()
     execute ':CtrlP ' . EscapePathname(MyGetProjectDirectory())

@@ -41,3 +41,5 @@ vnoremap <Space><Space> za
 
 " enable syntax folding for XML (caution, this can be slow)
 let g:xml_syntax_folding=1
+
+set nofoldenable
