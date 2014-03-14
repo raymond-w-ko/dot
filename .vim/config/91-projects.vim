@@ -1,6 +1,11 @@
 " no tags by default, omegacomplete is usually enough
 set tags=
 
+    "\ 'Platform',           '__SVN__/SVN/Syandus_ALIVE3/Platform/Source/Code',
+    "\ 'Carbon',             '__SVN__/SVN/Syandus_ALIVE3/Frameworks/Carbon',
+    "\ 'CarbonCME',          '__SVN__/SVN/Syandus_ALIVE3/Frameworks/CarbonCME',
+    "\ 'Hub',                '__SVN__/SVN/Syandus_ALIVE3/Hub/Source',
+    "\ 'Metrics',            '__SVN__/SVN/Syandus_ALIVE3/Metrics',
 let s:commands = [
     \ 'Omegacomplete',      '__UNIX_HOME__/.vim/bundle/omegacomplete',
     \ 'Omegacomplete2',     '__UNIX_HOME__/.vim/bundle/omegacomplete2',
@@ -8,18 +13,13 @@ let s:commands = [
     \ 'Windmenu',           '__UNIX_HOME__/src/windmenu',
     \
     \ 'SVN',                '__SVN__/SVN/',
-    \ 'Platform',           '__SVN__/SVN/Syandus_ALIVE3/Platform/Source/Code',
     \ 'Platform4',          '__SVN__/SVN/Syandus_ALIVE4/Platform/Source/Code',
     \ 'Doc4',               '__SVN__/SVN/Syandus_ALIVE4/Documentation',
-    \ 'Carbon',             '__SVN__/SVN/Syandus_ALIVE3/Frameworks/Carbon',
-    \ 'CarbonCME',          '__SVN__/SVN/Syandus_ALIVE3/Frameworks/CarbonCME',
     \ 'Carbon4',            '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Carbon',
     \ 'Oxygen',             '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Oxygen',
     \ 'Hydrogen',           '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Hydrogen',
     \ 'Nitrogen',           '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Nitrogen',
     \ 'Proton',             '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Proton',
-    \ 'Hub',                '__SVN__/SVN/Syandus_ALIVE3/Hub/Source',
-    \ 'Metrics',            '__SVN__/SVN/Syandus_ALIVE3/Metrics',
     \ 'Symlin',             '__SVN__/SVN/Syandus_Cores/C_Sym_DM_01',
     \ 'Spiriva',            '__SVN__/SVN/Syandus_Cores/C_Spv_COPD_01',
     \ 'Copd',               '__SVN__/SVN/Syandus_Cores/C_Unb_COPD_01',
