@@ -142,6 +142,7 @@ if __name__ == '__main__':
                     continue
             # finaly check the tarball pkg
             (n,c,m) = checkpkg(pkg)
-            print('%s: %d files, %d changed, %d missing' % (getpkgname(pkg), n, c, m))
+            if c != 0 or m != 0:
+                print('%s: %d files, %d changed, %d missing' % (getpkgname(pkg), n, c, m))
     except KeyboardInterrupt:
         pass
