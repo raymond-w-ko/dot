@@ -21,8 +21,9 @@ xset fp rehash
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 wmname LG3D
 #xsetroot -cursor_name left_ptr &
-# do this in extra, otherwise in VMs, KoKoKeys or AutoHotkey will interfere with this.
-xmodmap ~/.xmodmaprc
+# does not work for hot plugged keyboards (like for my netbook)
+#xmodmap ~/.xmodmaprc
+setxkbmap -option ctrl:nocaps,altwin:swap_alt_win
 xbindkeys
 
 xset r rate 333 32
