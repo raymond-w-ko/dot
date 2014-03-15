@@ -1,5 +1,8 @@
 #!/usr/bin/env python2
 
+# found in https://bbs.archlinux.org/viewtopic.php?id=83839
+# original author is solsTiCe
+
 # verify.py                                          Version 0.2      2009-10-18
 #
 # under the WTFPL. see http://sam.zoy.org/wtfpl/
@@ -108,7 +111,7 @@ def pkgmd5s(pkgfile):
         tf = tarfile.open(pkgfile, 'r')
     md5s = {}
     for ti in tf:
-        if ti.isfile() and ti.name not in ('.PKGINFO', '.INSTALL', '.CHANGELOG'):
+        if ti.isfile() and ti.name not in ('.PKGINFO', '.INSTALL', '.CHANGELOG', '.MTREE'):
             f = tf.extractfile(ti)
             md5s[ti.name] = hashlib.md5(f.read()).hexdigest()
             f.close()
@@ -139,6 +142,6 @@ if __name__ == '__main__':
                     continue
             # finaly check the tarball pkg
             (n,c,m) = checkpkg(pkg)
-            print '%s: %d files, %d changed, %d missing' % (getpkgname(pkg), n, c, m)
+            print('%s: %d files, %d changed, %d missing' % (getpkgname(pkg), n, c, m))
     except KeyboardInterrupt:
         pass
