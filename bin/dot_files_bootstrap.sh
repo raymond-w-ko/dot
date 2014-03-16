@@ -50,3 +50,9 @@ if [[ ! -d "$HOME/src/dircolors-solarized" ]]; then
   git clone https://github.com/seebi/dircolors-solarized.git
   popd
 fi
+
+mkdir -p ~/.ssh
+chmod 700 ~/.ssh
+
+mkdir -p ~/.vnc
+chmod 700 ~/.vnc
