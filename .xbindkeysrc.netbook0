@@ -16,5 +16,5 @@ XF86AudioMute
 "sudo systemctl hibernate"
 XF86Sleep
 
-"xset dpms force off; i3lock -c 000000;  sleep 4; xset dpms force off"
-Alt + l
+"xset dpms force off; i3lock -c 000000; sleep 4; xset dpms force off"
+Mod4 + l
