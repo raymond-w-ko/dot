@@ -96,14 +96,6 @@ else
             "set mouse=
             let g:has_set_my_console_vim_settings = 1
         endif
-
-        nmap <ESC>t <A-t>
-        nmap <ESC>w <A-w>
-        nmap <ESC>1 <A-1>
-        nmap <ESC>2 <A-2>
-        nmap <ESC>3 <A-3>
-        nmap <ESC>4 <A-4>
-        nmap <ESC>5 <A-5>
     endif
 
     let s:uname = "win32"
@@ -339,18 +331,14 @@ set clipboard=autoselect
 " source all other files in the vimfiles/config directory
 runtime! config/**/*.vim
 
-nmap <leader>1 HWs@param <ESC>elxxj
-nmap <leader>2 HWs@r<ESC>exj
-xmap <leader>3 :s@// @/// @<CR>
-nnoremap <leader>4 :normal ciwSetPaintBoxOutlineZOrder<ESC>
-nnoremap <leader>5 :normal ciwSetPaintZOrder<ESC>
-nnoremap <leader>5 :s/if(/if (/e<CR>:s/( /(/e<CR>:s/ )/)/e<CR>:nohlsearch<CR>
-
-nnoremap <leader>8 ggVGD
-nnoremap <leader>9 ggVGY
-function! MakeSyDllFuncsH()
-endfunction
-nnoremap <leader>0 :call MakeSyDllFuncsH()<ESC>
+"nmap <leader>1 HWs@param <ESC>elxxj
+"nmap <leader>2 HWs@r<ESC>exj
+"xmap <leader>3 :s@// @/// @<CR>
+"nnoremap <leader>4 :normal ciwSetPaintBoxOutlineZOrder<ESC>
+"nnoremap <leader>5 :normal ciwSetPaintZOrder<ESC>
+"nnoremap <leader>5 :s/if(/if (/e<CR>:s/( /(/e<CR>:s/ )/)/e<CR>:nohlsearch<CR>
+"nnoremap <leader>8 ggVGD
+"nnoremap <leader>9 ggVGY
 
 function! FilterSmartQuotes()
     %s/\v“|”/\'/

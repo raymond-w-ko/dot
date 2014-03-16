@@ -335,23 +335,13 @@ nnoremap <silent> <Left> :call MarkWindowSwap()<CR><C-w>h:call DoWindowSwap()<CR
 nnoremap <silent> <Right> :call MarkWindowSwap()<CR><C-w>l:call DoWindowSwap()<CR>
 " }}}
 " Tabs {{{
-if (s:uname == "Darwin\n")
-    nnoremap <M-1> 1gt
-    nnoremap <M-2> 2gt
-    nnoremap <M-3> 3gt
-    nnoremap <M-4> 4gt
-    nnoremap <M-5> 5gt
-    nnoremap <M-6> 6gt
-    nnoremap <M-7> 7gt
-else
-    nnoremap <A-1> 1gt
-    nnoremap <A-2> 2gt
-    nnoremap <A-3> 3gt
-    nnoremap <A-4> 4gt
-    nnoremap <A-5> 5gt
-    nnoremap <A-6> 6gt
-    nnoremap <A-7> 7gt
-endif
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+nnoremap <leader>6 6gt
+nnoremap <leader>7 7gt
 
 function! CreateScratch()
     1split
@@ -403,13 +393,8 @@ function! CreateAndSetupVsplits()
     let g:my_current_number_of_tabs += 1
     return
 endfunction
-if (s:uname == "Darwin\n")
-    nnoremap <M-t> :call CreateAndSetupVsplits()<CR>
-    nnoremap <M-w> :tabclose<CR>
-else
-    nnoremap <A-t> :call CreateAndSetupVsplits()<CR>
-    nnoremap <A-w> :tabclose<CR>
-endif
+nnoremap <leader>wt :call CreateAndSetupVsplits()<CR>
+nnoremap <leader>ww :tabclose<CR>
 
 " }}}
 " Finding stuff {{{
