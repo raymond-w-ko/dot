@@ -23,7 +23,8 @@ wmname LG3D
 #xsetroot -cursor_name left_ptr &
 # does not work for hot plugged keyboards (like for my netbook)
 #xmodmap ~/.xmodmaprc
-setxkbmap -option ctrl:nocaps,altwin:swap_alt_win
+#setxkbmap -option ctrl:nocaps,altwin:swap_alt_win
+setxkbmap -option ctrl:nocaps
 xbindkeys
 
 xset r rate 333 32
