@@ -122,4 +122,4 @@ let g:airline_theme='powerlineish'
 let g:airline#extensions#whitespace#enabled = 0
 
 " bufkill.vim
-let g:BufKillCreateMappings = 1
+let g:BufKillCreateMappings = 0
