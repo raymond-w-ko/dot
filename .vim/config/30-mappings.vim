@@ -57,8 +57,9 @@ nnoremap <leader>/ :s/\\/\//<CR>:nohlsearch<CR>
 "inoremap <C-v> <C-r>=@+<CR>
 
 " CTRL-hjkl movement while in : command mode
-cnoremap <C-h> <Left>
-cnoremap <C-l> <Right>
+" <C-h> interferes with <BS> key
+"cnoremap <C-h> <Left>
+"cnoremap <C-l> <Right>
 cnoremap <C-j> <Down>
 cnoremap <C-k> <Up>
 
