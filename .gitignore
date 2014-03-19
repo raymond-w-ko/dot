@@ -25,6 +25,7 @@
 /.config/vlc
 /.dbus
 /.dmrc
+/.dmenu_cache
 /.dropbox
 /.dropbox-dist
 /.electrum
