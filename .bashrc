@@ -128,6 +128,7 @@ alias v=vim
 export SVN_EDITOR=vim
 export GIT_EDITOR=vim
 export HGEDITOR=vim
+export EDITOR=vim
 
 # aliases
 alias sdr='screen -U -D -R'
