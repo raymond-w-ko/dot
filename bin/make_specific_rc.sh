@@ -11,5 +11,5 @@ echo 'gtk-font-name = "DejaVu Sans 8"' >> ~/.gtkrc-2.0.$SUFFIX
 
 cp ~/.i3status.conf.vm0 ~/.i3status.conf.$SUFFIX
 
-echo '#!/bin/sh' > ~/.xinitrc.$SUFFIX
+echo '#!/bin/bash' > ~/.xinitrc.$SUFFIX
 chmod +x ~/.xinitrc.$SUFFIX
