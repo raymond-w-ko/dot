@@ -1,11 +1,17 @@
 "~/bin/volume incr"
-XF86AudioRaiseVolume
+  XF86AudioRaiseVolume
+"~/bin/volume incr"
+  Control+Shift + Up
 
 "~/bin/volume decr"
-XF86AudioLowerVolume
+  XF86AudioLowerVolume
+"~/bin/volume decr"
+  Control+Shift + Down
 
 "~/bin/volume mute"
-XF86AudioMute
+  XF86AudioMute
+"~/bin/volume mute"
+  Control+Shift + Left
 
 #"xbacklight -dec 10"
 #XF86MonBrightnessDown
