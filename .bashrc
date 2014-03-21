@@ -199,11 +199,11 @@ alias hcmergedwithupstream='hg commit -m "merged with upstream"'
 alias svnadddir='svn add --depth=empty'
 if hash colordiff 2>/dev/null; then
   svndiff() {
-    svn diff "${@}" | sed 's///' | colordiff | less -R
+    svn diff -x "-w --ignore-eol-style" "${@}" | sed 's///' | colordiff | less -R
   }
 else
   svndiff() {
-    svn diff "${@}" | sed 's///' | less -R
+    svn diff -x "-w --ignore-eol-style" "${@}" | sed 's///' | less -R
   }
 fi
 alias svnignore='svn propedit svn:ignore'
@@ -213,6 +213,9 @@ alias fix_permissions="find . -regex '.*\.\(vim\|h\|hpp\|c\|cpp\)$' -type f -exe
 # custom work aliases
 alias Platform4="cd ~/SVN/Syandus_ALIVE4/Platform"
 alias ImmuneQuest="cd ~/SVN/Syandus_Cores/C_ImmunoSim_01"
+alias PatientEducation="cd ~/SVN/Syandus_Cores/C_MS_PatientEd_01"
+alias Treatment="cd ~/SVN/Syandus_Cores/C_MS_Treatment_01"
+alias Cellulose="cd ~/SVN/Syandus_ALIVE4/Cellulose"
 
 if hash stty 2>/dev/null; then
   stty stop undef
