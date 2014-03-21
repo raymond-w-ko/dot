@@ -56,6 +56,7 @@
 /.mozilla
 /.mysql_history
 /.nv
+.nvidia-settings-rc
 /.pentadactyl
 /.pki
 /.purple
@@ -100,6 +101,7 @@
 # work
 /.alivemed
 /.alivemedcme
+/.syandus
 /Groundhog
 /Metrics
 /Syandus_Web
