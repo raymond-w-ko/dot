@@ -1,20 +1,18 @@
 "~/bin/volume incr"
-XF86AudioRaiseVolume
-
+  XF86AudioRaiseVolume
 "~/bin/volume decr"
-XF86AudioLowerVolume
-
+  XF86AudioLowerVolume
 "~/bin/volume mute"
-XF86AudioMute
+  XF86AudioMute
 
 #"xbacklight -dec 10"
-#XF86MonBrightnessDown
+  #XF86MonBrightnessDown
 
 #"xbacklight -inc 10"
-#XF86MonBrightnessUp
+  #XF86MonBrightnessUp
 
-"sudo systemctl hibernate"
-XF86Sleep
+"~/bin/hibernate.sh"
+  XF86Sleep
 
 "xset dpms force off; i3lock -c 000000; sleep 4; xset dpms force off"
 Mod4 + l
