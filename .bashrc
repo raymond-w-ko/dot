@@ -134,7 +134,7 @@ export EDITOR=vim
 alias sdr='screen -U -D -R'
 alias ta='tmux attach'
 alias tmux="TERM=screen-256color-bce tmux"
-alias svnlog='svn log -l 32 -v | less'
+alias svnlog='svn log -l 128 -v | less'
 alias genctags='/usr/bin/find . -regex ".*\.\(c\|h\|hpp\|cc\|cpp\)" -print | /usr/bin/ctags --c++-kinds=+px --fields=+aimSz --languages=c++ --sort=yes -L -'
 alias omegacomplete='cd ~/lib/dot/vim/bundle/omegacomplete'
 
