@@ -82,3 +82,9 @@
 [submodule ".vim/bundle/vim-airline"]
 	path = .vim/bundle/vim-airline
 	url = https://github.com/bling/vim-airline.git
+[submodule "src/dircolors-solarized"]
+	path = src/dircolors-solarized
+	url = https://github.com/seebi/dircolors-solarized.git
+[submodule "src/tmux-colors-solarized"]
+	path = src/tmux-colors-solarized
+	url = https://github.com/seebi/tmux-colors-solarized.git
