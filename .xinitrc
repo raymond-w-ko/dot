@@ -19,15 +19,12 @@ unset d
 xset fp rehash
 
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
-wmname LG3D
-#xsetroot -cursor_name left_ptr &
-# does not work for hot plugged keyboards (like for my netbook)
-#xmodmap ~/.xmodmaprc
-#setxkbmap -option -option ctrl:nocaps,altwin:swap_alt_win
-setxkbmap -option -option ctrl:nocaps
-xbindkeys
 
-xset r rate 333 32
+# LOL, let's pretend we are Java Looking Glass 3D WM
+wmname LG3D
+
+xbindkeys
+~/bin/keyboard_settings.sh
 
 hsetroot -solid '#000000'
 xcape -t 333 -e 'Control_L=Escape;Shift_L=Shift_L|minus'
@@ -35,4 +32,13 @@ xcape -t 333 -e 'Control_L=Escape;Shift_L=Shift_L|minus'
 # WM must start this for this to work?
 #dropboxd
 
-exec i3
+# dbus is already launched?
+#if hash dbus-launch 2>/dev/null; then
+  #exec dbus-launch --sh-syntax --exit-with-session i3 -V -d all > ~/.i3/i3log-$(date +'%F-%k-%M-%S') 2>&1
+#else
+  #exec i3 -V -d all > ~/.i3/i3log-$(date +'%F-%k-%M-%S') 2>&1
+#fi
+
+/usr/lib/lxpolkit/lxpolkit &
+
+exec i3 -V > ~/.i3/i3log-$(date +'%F-%k-%M-%S') 2>&1
