@@ -88,7 +88,7 @@ else
             " http://www.shallowsky.com/linux/noaltscreen.html
             "
             " this basically doesn't clear the screen when you close Vim
-            set t_ti= t_te=
+            "set t_ti= t_te=
 
             "set t_RV=
             "set ttymouse=

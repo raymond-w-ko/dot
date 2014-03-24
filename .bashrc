@@ -4,11 +4,14 @@
 export HISTSIZE=32768
 export HISTCONTROL=ignoreboth:erasedups
 
-export PATH="$HOME/bin:/opt/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl:/opt/aws/bin:/opt/mono/bin"
+export PATH="$HOME/bin:/opt/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl:/opt/aws/bin:/opt/mono/bin:/opt/dropbox"
 export TMP='/tmp'
 export TEMP='/tmp'
 export PKG_CONFIG_PATH="/usr/lib/pkgconfig/:/usr/local/lib/pkgconfig/"
 
+################################################################################
+# PS1 prompt
+################################################################################
 function parse_git_branch {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
@@ -184,6 +187,7 @@ alias gd='git diff'
 alias gpush='git push'
 alias gpull='git pull'
 alias gpum='git pull upstream master'
+alias ga='git add'
 
 alias hs='hg status'
 alias hm='hg merge'
@@ -220,4 +224,10 @@ alias Cellulose="cd ~/SVN/Syandus_ALIVE4/Cellulose"
 if hash stty 2>/dev/null; then
   stty stop undef
   stty start undef
+fi
+
+# TMUX
+if which tmux 2>&1 >/dev/null; then
+  #if not inside a tmux session, and if no session is started, start a new session
+  test -z "$TMUX" && (tmux attach || tmux new-session)
 fi
