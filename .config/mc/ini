@@ -91,13 +91,13 @@ menubar_visible=1
 free_space=1
 horizontal_split=0
 vertical_equal=1
-left_panel_size=68
+left_panel_size=159
 horizontal_equal=1
 top_panel_size=1
 
 [Misc]
 timeformat_recent=%b %e %H:%M
-timeformat_old=%b %e  %Y
+timeformat_old=%b %e %Y
 ftp_proxy_host=gate
 ftpfs_password=anonymous@
 display_codepage=UTF-8
@@ -106,8 +106,6 @@ autodetect_codeset=
 clipboard_store=
 clipboard_paste=
 
-[Colors]
-base_color=
 rxvt-unicode-256color=
 color_terminals=
 
@@ -131,6 +129,14 @@ filetype_mode=true
 permission_mode=false
 torben_fj_mode=false
 quick_search_mode=2
+
+xterm=
+color_terminals=
+
+[Colors]
+base_color=lightgray,green:normal=green,default:selected=white,gray:marked=yellow,default:markselect=yellow,gray:directory=blue,default:executable=brightgreen,default:link=cyan,default:device=brightmagenta,default:special=lightgray,default:errors=red,default:reverse=green,default:gauge=green,default:input=white,gray:dnormal=green,gray:dfocus=brightgreen,gray:dhotnormal=cyan,gray:dhotfocus=brightcyan,gray:menu=green,default:menuhot=cyan,default:menusel=green,gray:menuhotsel=cyan,default:helpnormal=cyan,default:editnormal=green,default:editbold=blue,default:editmarked=gray,blue:stalelink=red,default
+xterm=
+color_terminals=
 
 [Panelize]
 Find *.orig after patching=find . -name \\*.orig -print
