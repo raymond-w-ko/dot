@@ -7,3 +7,6 @@
 setxkbmap -option -option ctrl:nocaps
 
 xset r rate 333 32
+
+killall xbindkeys
+xbindkeys
