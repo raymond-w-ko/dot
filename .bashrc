@@ -216,7 +216,8 @@ alias svnignore='svn propedit svn:ignore'
 alias fix_permissions="find . -regex '.*\.\(vim\|h\|hpp\|c\|cpp\)$' -type f -exec chmod -x {} \;"
 
 # custom work aliases
-alias Platform4="cd ~/SVN/Syandus_ALIVE4/Platform"
+alias Platform4="cd ~/SVN/Syandus_ALIVE4/Platform/Source/Code"
+alias ThirdParty4="cd ~/SVN/Syandus_ALIVE4/Platform/ThirdParty/Linux"
 alias ImmuneQuest="cd ~/SVN/Syandus_Cores/C_ImmunoSim_01"
 alias PatientEducation="cd ~/SVN/Syandus_Cores/C_MS_PatientEd_01"
 alias Treatment="cd ~/SVN/Syandus_Cores/C_MS_Treatment_01"
