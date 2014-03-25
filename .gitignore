@@ -40,6 +40,7 @@
 /.gdb_history
 /.gem
 /.ghc
+/.gimp-2.8
 /.gksu.lock
 /.gnome2
 /.gnupg/*.lock
@@ -70,6 +71,7 @@
 /.ssh
 /.subversion/auth
 /.tgdb
+/.thumbnails
 /.thunderbird
 /.vboxclient*
 /.viminfo
