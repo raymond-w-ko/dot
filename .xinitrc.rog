@@ -1,1 +1,5 @@
 #!/bin/bash
+
+# this causes a signficant amount of wakeups in powertop
+# but ma spoon^H^H^H^H^H is too big
+syndaemon -t -k -i 1 -d &
