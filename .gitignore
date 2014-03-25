@@ -73,6 +73,8 @@
 /.thunderbird
 /.vboxclient*
 /.viminfo
+/.viminfo.tmp
+/.viminfz.tmp
 /.vnc
 /.wine
 /.xbindkeysrc
