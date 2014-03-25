@@ -5,6 +5,7 @@ export HISTSIZE=32768
 export HISTCONTROL=ignoreboth:erasedups
 
 export PATH="$HOME/bin:/opt/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl:/opt/aws/bin:/opt/mono/bin:/opt/dropbox"
+export PATH="/usr/lib/ccache/bin:$HOME/bin:/opt/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl:/opt/aws/bin:/opt/mono/bin:/opt/dropbox"
 export TMP='/tmp'
 export TEMP='/tmp'
 export PKG_CONFIG_PATH="/usr/lib/pkgconfig/:/usr/local/lib/pkgconfig/"
@@ -224,10 +225,11 @@ alias Cellulose="cd ~/SVN/Syandus_ALIVE4/Cellulose"
 if hash stty 2>/dev/null; then
   stty stop undef
   stty start undef
+  stty erase 
 fi
 
 # TMUX
-if which tmux 2>&1 >/dev/null; then
-  #if not inside a tmux session, and if no session is started, start a new session
-  test -z "$TMUX" && (tmux attach || tmux new-session)
-fi
+#if which tmux 2>&1 >/dev/null; then
+  ##if not inside a tmux session, and if no session is started, start a new session
+  #test -z "$TMUX" && (tmux attach || tmux new-session)
+#fi
