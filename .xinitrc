@@ -23,7 +23,6 @@ xset fp rehash
 # LOL, let's pretend we are Java Looking Glass 3D WM
 wmname LG3D
 
-xbindkeys
 ~/bin/keyboard_settings.sh
 
 hsetroot -solid '#000000'
@@ -41,4 +40,4 @@ xcape -t 333 -e 'Control_L=Escape;Shift_L=Shift_L|minus'
 
 /usr/lib/lxpolkit/lxpolkit &
 
-exec i3 -V > ~/.i3/i3log-$(date +'%F-%k-%M-%S') 2>&1
+exec i3 -V > ~/.i3/i3log
