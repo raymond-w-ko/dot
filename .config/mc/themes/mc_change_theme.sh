@@ -1,7 +1,7 @@
 #!/bin/bash
 # script from http://www.zagura.ro/
 
-MCINI=~/.mc/ini
+MCINI=~/.config/mc/ini
 TMPINI=/tmp/ini${RANDOM}
 
 if [ "$#" != "1" ]; then
