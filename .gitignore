@@ -9,6 +9,8 @@
 /.cache
 /.cgdb
 /.cinnamon
+/.config/QtProject.conf
+/.config/QtProject
 /.config/Synergy
 /.config/Trolltech.conf
 /.config/VirtualBox
@@ -20,6 +22,7 @@
 /.config/gtk-3.0
 /.config/guvcview
 /.config/htop
+/.config/kupfer
 /.config/libreoffice
 /.config/menus
 /.config/nemo
@@ -84,6 +87,7 @@
 /.xmonad/xmonad.errors
 /.xmonad/xmonad.hi
 /.xsession-errors
+/.xsession-errors.old
 
 # user data
 /Desktop

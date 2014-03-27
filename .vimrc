@@ -136,7 +136,7 @@ set showtabline=2
 set cmdheight=1
 set completeopt=menu,menuone,preview
 set pumheight=16
-"set autochdir
+set autochdir
 set nolist
 " always try to make the current window 80 columns
 set winwidth=100
