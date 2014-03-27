@@ -1,0 +1,125 @@
+#!/usr/bin/env python
+
+import os
+import curses
+import curses.textpad
+import random
+import string
+import threading
+import collections
+import time
+
+DIRS = [
+    os.environ['HOME'] + '/SVN'
+    ]
+
+COMMAND_DISPATCHER = 'i3-msg exec'
+
+EXT_HANDLER = dict()
+EXT_HANDLER['doc'] = 'libreoffice'
+
+DISPATCHER_HIDE_CMD = 'i3-msg scratchpad show >/dev/null'
+
+File = collections.namedtuple('File', ['filename', 'path'])
+
+def GetExtension(filename):
+  return filename[filename.rfind('.') + 1:]
+
+class KoKoSpider:
+  def __init__(self, mainwin):
+    self.edit_win = curses.newwin(1, 0, 0, 0)
+    self.candidate_win = curses.newwin(0, 0, 1, 0)
+
+    self.file_list = []
+
+    t = threading.Thread(None, lambda: self.scan_files())
+    t.start()
+
+  def scan_files(self):
+    self.file_list = []
+
+    file_list = []
+    global DIRS
+    for topdir in DIRS:
+      for root, dirs, files in os.walk(topdir):
+        for file in files:
+          fullpath = os.path.join(root, file)
+          f = File(file.lower(), fullpath)
+          file_list.append(f)
+
+    self.file_list = file_list
+
+  def on_edit(self, ch):
+    self.candidate_win.clear()
+
+    file_list = self.file_list
+
+    command = self.edit_box.gather().strip()
+    if ch in (curses.ascii.BS, curses.KEY_BACKSPACE):
+      command = command[:-1]
+    else:
+      try:
+        command += chr(ch)
+      except:
+        pass
+    command = command.strip().lower()
+
+    self.candidates = []
+    for file in file_list:
+      if command in file.filename:
+        self.candidates.append(file.path)
+
+    height, width = self.candidate_win.getmaxyx()
+    width -= 1
+
+    for y in range(min(height, len(self.candidates))):
+      path = self.candidates[y]
+      if len(path) > width:
+        path = path[len(path) - width:]
+      self.candidate_win.addstr(y, 0, path)
+
+    self.candidate_win.refresh()
+
+    return ch
+
+  def loop(self):
+    while True:
+      self.edit_win.erase()
+      self.candidate_win.erase()
+
+      self.edit_box = curses.textpad.Textbox(self.edit_win)
+      self.edit_box.stripspaces = True
+      command = self.edit_box.edit(lambda ch: self.on_edit(ch))
+      command = command.strip()
+      should_exit = self.do_command(command)
+      if should_exit:
+        break
+
+  def do_command(self, command):
+    global EXT_HANDLER
+    global COMMAND_DISPATCHER
+    global DISPATCHER_HIDE_CMD
+
+    if command in ('exit', 'quit'):
+      return True
+
+    if len(self.candidates) == 0:
+      return False
+
+    candidate = self.candidates[0]
+    ext = GetExtension(candidate)
+    program = ''
+    if ext in EXT_HANDLER:
+      program = EXT_HANDLER[ext]
+
+    finalcmd = COMMAND_DISPATCHER + ' ' + program + ' ' + candidate + ' >/dev/null'
+    os.system(DISPATCHER_HIDE_CMD)
+    os.system(finalcmd)
+
+    return False
+
+def main(stdscr, *args, **kwds):
+  kokospider = KoKoSpider(stdscr)
+  kokospider.loop()
+
+curses.wrapper(main)
