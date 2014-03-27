@@ -156,6 +156,8 @@
 yankring_history_v2.txt
 # other
 /.local
+# bootstrapped symlinks
+/bin/mymonitors.sh
 
 # src should come from repos and archives backed up on the Internet
 /src

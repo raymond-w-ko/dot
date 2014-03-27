@@ -6,10 +6,25 @@ fi
 
 SUFFIX="$1"
 
-echo 'gtk-theme-name = "MediterraneanNightDarkest"' > ~/.gtkrc-2.0.$SUFFIX
-echo 'gtk-font-name = "DejaVu Sans 8"' >> ~/.gtkrc-2.0.$SUFFIX
+FILE=~/.gtkrc-2.0.$SUFFIX
+if [ ! -e "$FILE" ]; then
+  echo 'gtk-theme-name = "MediterraneanNightDarkest"' >> "$FILE"
+  echo 'gtk-font-name = "DejaVu Sans 8"' >> "$FILE"
+fi
 
-cp ~/.i3status.conf.vm0 ~/.i3status.conf.$SUFFIX
+FILE=~/.i3status.conf.$SUFFIX
+if [ ! -e "$FILE" ]; then
+  cp ~/.i3status.conf.vm0 >> "$FILE"
+fi
 
-echo '#!/bin/bash' > ~/.xinitrc.$SUFFIX
-chmod +x ~/.xinitrc.$SUFFIX
+FILE=~/.xinitrc.$SUFFIX
+if [ ! -e "$FILE" ]; then
+  echo '#!/bin/bash' >> "$FILE"
+  chmod +x "$FILE"
+fi
+
+FILE=~/bin/mymonitors.sh.$SUFFIX
+if [ ! -e "$FILE" ]; then
+  echo '#!/bin/bash' > "$FILE"
+  chmod +x "$FILE"
+fi

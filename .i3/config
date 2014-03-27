@@ -120,6 +120,9 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
+bindsym $mod+Shift+minus move scratchpad
+bindsym ctrl+space scratchpad show
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -158,8 +161,8 @@ bar {
   status_command i3status
 }
 
-for_window [title="ImmuneQuest"] floating enable
-for_window [title="MS Patient Education"] floating enable
-for_window [title="MS Treatment"] floating enable
+#for_window [title="ImmuneQuest"] floating enable
+#for_window [title="MS Patient Education"] floating enable
+#for_window [title="MS Treatment"] floating enable
 
 exec /opt/dropbox/dropbox start
