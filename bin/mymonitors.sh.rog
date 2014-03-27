@@ -1,1 +1,12 @@
 #!/bin/bash
+isHdmiConnected=$(xrandr | grep 'HDMI-0 connected' | wc -l)
+
+if [ "$isHdmiConnected" -eq 1 ]; then
+  xrandr \
+    --output LVDS-0 --auto \
+    --output HDMI-0 --auto --primary --right-of LVDS-0
+else
+  xrandr \
+    --output LVDS-0 --auto \
+    --output HDMI-0 --off
+fi
