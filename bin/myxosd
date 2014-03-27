@@ -1,5 +1,5 @@
-#!/bin/sh
-exec /usr/bin/osd_cat \
+#!/bin/bash
+exec osd_cat \
     --font='-*-fixed-*-*-*-*-24-*-*-*-*-*-iso8559-1' \
     --shadow=0 \
     --outline=1 \
