@@ -161,8 +161,8 @@ bar {
   status_command i3status
 }
 
-#for_window [title="ImmuneQuest"] floating enable
-#for_window [title="MS Patient Education"] floating enable
-#for_window [title="MS Treatment"] floating enable
+for_window [title="ImmuneQuest"] floating enable
+for_window [title="MS Patient Education"] floating enable
+for_window [title="MS Treatment"] floating enable
 
 exec /opt/dropbox/dropbox start
