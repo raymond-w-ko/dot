@@ -17,6 +17,9 @@ COMMAND_DISPATCHER = 'i3-msg exec'
 
 EXT_HANDLER = dict()
 EXT_HANDLER['doc'] = 'libreoffice'
+EXT_HANDLER['docx'] = 'libreoffice'
+EXT_HANDLER['xls'] = 'libreoffice'
+EXT_HANDLER['xlsx'] = 'libreoffice'
 
 DISPATCHER_HIDE_CMD = 'i3-msg scratchpad show >/dev/null'
 
