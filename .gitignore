@@ -69,9 +69,11 @@
 /.nvidia-settings-rc
 /.pentadactyl
 /.pki
+/.pulse-cookie
 /.purple
 /.rtorrent
 /.ssh
+/.steam*
 /.subversion/auth
 /.tgdb
 /.thumbnails
