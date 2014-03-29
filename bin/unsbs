@@ -1,8 +1,4 @@
 #!/bin/bash
-mkdir -p ~/mnt/biz
-mkdir -p ~/mnt/art
-mkdir -p ~/mnt/staff
-
 cd ~/mnt
 for d in *; do
   sudo umount "$d"
