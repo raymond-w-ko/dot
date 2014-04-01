@@ -225,6 +225,9 @@ alias ImmuneQuest="cd ~/SVN/Syandus_Cores/C_ImmunoSim_01"
 alias PatientEducation="cd ~/SVN/Syandus_Cores/C_MS_PatientEd_01"
 alias Treatment="cd ~/SVN/Syandus_Cores/C_MS_Treatment_01"
 alias Cellulose="cd ~/SVN/Syandus_ALIVE4/Cellulose"
+alias Hydrogen="cd ~/SVN/Syandus_ALIVE4/Frameworks/Hydrogen/Build/Content"
+alias Oxygen="cd ~/SVN/Syandus_ALIVE4/Frameworks/Oxygen/Build/Content"
+alias Nitrogen="cd ~/SVN/Syandus_ALIVE4/Frameworks/Nitrogen/Build/Content"
 
 if hash stty 2>/dev/null; then
   stty stop undef

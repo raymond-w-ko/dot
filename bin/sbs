@@ -18,6 +18,6 @@ for pair in "${ARRAY[@]}" ; do
   if mount | grep "$SYPATH" > /dev/null; then
     echo "$SYPATH already mounted"
   else
-    sudo mount -t cifs "$SYPATH" "$DIR" -o $OPTIONS
+    sudo mount -t cifs "$SYPATH" "$HOME/mnt/$DIR" -o $OPTIONS
   fi
 done
