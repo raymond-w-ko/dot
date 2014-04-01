@@ -1,0 +1,22 @@
+#!/bin/bash
+
+NUM_SAMPLES=64
+SLEEP_TIME=0.2
+PID=$1
+
+if [ -z "$PID" ]; then
+  echo $0 "[PID]"
+  exit 0
+fi
+
+for x in $(seq 1 $NUM_SAMPLES)
+  do
+    gdb -ex "set pagination 0" -ex "thread apply all bt" -batch -p $PID
+    sleep $SLEEP_TIME
+  done | \
+awk '
+  BEGIN { s = ""; } 
+  /^Thread/ { print s; s = ""; } 
+  /^\#/ { if (s != "" ) { s = s "," $4} else { s = $4 } } 
+  END { print s }' | \
+sort | uniq -c | sort -r -n -k 1,1
