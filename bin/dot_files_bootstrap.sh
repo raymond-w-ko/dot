@@ -44,6 +44,7 @@ ensure_link ".i3status.conf.$1" ".i3status.conf"
 ensure_link ".gtkrc-2.0.$1" ".gtkrc-2.0"
 ensure_link ".xbindkeysrc.$1" ".xbindkeysrc"
 ensure_link "bin/mymonitors.sh.$1" "bin/mymonitors.sh"
+ensure_link "bin/configure_i3_workspaces.sh.$1" "bin/configure_i3_workspaces.sh"
 
 mkdir -p ~/.ssh
 chmod 700 ~/.ssh

@@ -28,3 +28,9 @@ if [ ! -e "$FILE" ]; then
   echo '#!/bin/bash' > "$FILE"
   chmod +x "$FILE"
 fi
+
+FILE=~/bin/configure_i3_workspaces.sh.$SUFFIX
+if [ ! -e "$FILE" ]; then
+  echo '#!/bin/bash' > "$FILE"
+  chmod +x "$FILE"
+fi

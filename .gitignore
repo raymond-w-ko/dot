@@ -137,9 +137,12 @@
 /android-sdk*
 /android-ndk*
 
-# machine specific ln
+# machine specific symbolic links
+# bootstrapped symlinks
 .xinitrc.extra
 .i3status.conf
+/bin/mymonitors.sh
+/bin/configure_i3_workspaces.sh
 
 ## VIM
 # compiled binaries
@@ -158,8 +161,6 @@
 yankring_history_v2.txt
 # other
 /.local
-# bootstrapped symlinks
-/bin/mymonitors.sh
 
 # src should come from repos and archives backed up on the Internet
 /src
