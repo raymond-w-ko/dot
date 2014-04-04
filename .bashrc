@@ -73,8 +73,8 @@ export PROMPT_COMMAND=prompt_command
 
 unset PYTHONHOME
 
-unamestr=`uname -s`
-if [[ "$unamestr" == 'Darwin' ]]; then
+unameString=`uname -s`
+if [[ "$unameString" == 'Darwin' ]]; then
     if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
         alias vim="vim"
     else
@@ -220,7 +220,11 @@ alias fix_permissions="find . -regex '.*\.\(vim\|h\|hpp\|c\|cpp\)$' -type f -exe
 
 # custom work aliases
 alias Platform4="cd ~/SVN/Syandus_ALIVE4/Platform/Source/Code"
-alias ThirdParty4="cd ~/SVN/Syandus_ALIVE4/Platform/ThirdParty/Linux"
+if [[ "$unameString" == 'Darwin' ]]; then
+  alias ThirdParty4="cd ~/SVN/Syandus_ALIVE4/Platform/ThirdParty/Mac"
+else
+  alias ThirdParty4="cd ~/SVN/Syandus_ALIVE4/Platform/ThirdParty/Linux"
+fi
 alias ImmuneQuest="cd ~/SVN/Syandus_Cores/C_ImmunoSim_01"
 alias PatientEducation="cd ~/SVN/Syandus_Cores/C_MS_PatientEd_01"
 alias Treatment="cd ~/SVN/Syandus_Cores/C_MS_Treatment_01"
@@ -228,6 +232,10 @@ alias Cellulose="cd ~/SVN/Syandus_ALIVE4/Cellulose"
 alias Hydrogen="cd ~/SVN/Syandus_ALIVE4/Frameworks/Hydrogen/Build/Content"
 alias Oxygen="cd ~/SVN/Syandus_ALIVE4/Frameworks/Oxygen/Build/Content"
 alias Nitrogen="cd ~/SVN/Syandus_ALIVE4/Frameworks/Nitrogen/Build/Content"
+
+if [[ "$unameString" == 'Darwin' ]]; then
+  alias ImmuneQuestBuilds="cd ~/Desktop/ImmuneQuest_Builds"
+fi
 
 if hash stty 2>/dev/null; then
   stty stop undef
