@@ -88,3 +88,6 @@
 [submodule "src/tmux-colors-solarized"]
 	path = src/tmux-colors-solarized
 	url = https://github.com/seebi/tmux-colors-solarized.git
+[submodule ".vim/bundle/vim-classpath"]
+	path = .vim/bundle/vim-classpath
+	url = git://github.com/tpope/vim-classpath.git
