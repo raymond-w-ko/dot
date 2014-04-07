@@ -8,6 +8,7 @@
 /.ccache
 /.cache
 /.cgdb
+/.chromium-bsu
 /.cinnamon
 /.config/QtProject.conf
 /.config/QtProject
