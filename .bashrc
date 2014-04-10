@@ -243,6 +243,9 @@ if hash stty 2>/dev/null; then
   stty erase 
 fi
 
+ulimit -c unlimited
+export MC_SKIN=$HOME/.config/mc/solarized.ini
+
 # TMUX
 #if which tmux 2>&1 >/dev/null; then
   ##if not inside a tmux session, and if no session is started, start a new session
