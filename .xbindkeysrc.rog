@@ -1,16 +1,16 @@
-"~/bin/volume incr"
+"ponymix increase 5"
   XF86AudioRaiseVolume
-"~/bin/volume incr"
+"ponymix increase 5"
   Control+Shift + Up
 
-"~/bin/volume decr"
+"ponymix decrease 5"
   XF86AudioLowerVolume
-"~/bin/volume decr"
+"ponymix decrease 5"
   Control+Shift + Down
 
-"~/bin/volume mute"
+"ponymix toggle"
   XF86AudioMute
-"~/bin/volume mute"
+"ponymix toggle"
   Control+Shift + Left
 
 #"xbacklight -dec 10"

@@ -28,6 +28,7 @@
 /.config/libreoffice
 /.config/menus
 /.config/nemo
+/.config/pavucontrol.ini
 /.config/pulse
 /.config/ranger
 /.config/user-dirs.dirs
