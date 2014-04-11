@@ -726,5 +726,7 @@ map <leader>u :call HandleURI()<CR>
 " Especially useful for adding items in the middle of long lists/tuples in Python
 " while maintaining a sane text width.
 "nnoremap K h/[^ ]<cr>"zd$jyyP^v$h"zpJk:s/\v +$//<cr>:noh<cr>j^
-"
+
+nnoremap <leader>m :make!<CR>
+
 " vim:fdm=marker:foldlevel=0
