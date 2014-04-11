@@ -39,6 +39,7 @@
 /.dropbox
 /.dropbox-dist
 /.electrum
+/.esd_auth
 /.fltk
 /.fontconfig
 /.gconf
