@@ -9,7 +9,12 @@ SUFFIX="$1"
 FILE=~/.gtkrc-2.0.$SUFFIX
 if [ ! -e "$FILE" ]; then
   echo 'gtk-theme-name = "MediterraneanNightDarkest"' >> "$FILE"
-  echo 'gtk-font-name = "DejaVu Sans 8"' >> "$FILE"
+  echo 'gtk-font-name = "DejaVu Sans 7"' >> "$FILE"
+fi
+
+FILE=~/.gtkrc-2.0.mine.$SUFFIX
+if [ ! -e "$FILE" ]; then
+  echo 'gtk-font-name = "Sans 7"' >> "$FILE"
 fi
 
 FILE=~/.i3status.conf.$SUFFIX
