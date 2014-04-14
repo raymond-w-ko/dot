@@ -240,7 +240,8 @@ fi
 if hash stty 2>/dev/null; then
   stty stop undef
   stty start undef
-  stty erase 
+  # breaks backspace in hidden password reading prompts
+  #stty erase 
 fi
 
 ulimit -c unlimited
@@ -251,3 +252,8 @@ export MC_SKIN=$HOME/.config/mc/solarized.ini
   ##if not inside a tmux session, and if no session is started, start a new session
   #test -z "$TMUX" && (tmux attach || tmux new-session)
 #fi
+
+if [[ ! $DISPLAY && $(tty) = /dev/tty1 ]]; then
+  xinit -nolisten tcp ~/.xinitrc &> ~/.xsession-errors
+  logout
+fi
