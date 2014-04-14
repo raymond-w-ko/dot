@@ -254,6 +254,6 @@ export MC_SKIN=$HOME/.config/mc/solarized.ini
 #fi
 
 if [[ ! $DISPLAY && $(tty) = /dev/tty1 ]]; then
-  xinit -nolisten tcp ~/.xinitrc &> ~/.xsession-errors
+  xinit -nolisten tcp ~/.xinitrc -- vt01 &> ~/.xsession-errors
   logout
 fi
