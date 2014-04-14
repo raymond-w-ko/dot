@@ -90,6 +90,7 @@
 /.viminfo
 /.viminfo.tmp
 /.viminfz.tmp
+/.vmware
 /.vnc
 /.wine
 /.xbindkeysrc
