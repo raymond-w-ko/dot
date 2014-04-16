@@ -15,5 +15,4 @@ function config_keyboard()
 }
 
 config_keyboard
-sleep 1
 config_keyboard
