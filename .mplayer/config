@@ -3,7 +3,7 @@ nolirc=yes
 
 vo=xv
 
-ao=alsa
+ao=pulse
 
 # scale the subtitles to the 3% of the screen size
 subfont-text-scale = 3
