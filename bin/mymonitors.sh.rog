@@ -9,11 +9,12 @@ if [ "$isHdmiConnected" -eq 1 ] && [ "$isLidOpen" -eq 1 ]; then
 elif [ "$isHdmiConnected" -eq 1 ] && [ "$isLidOpen" -eq 0 ]; then
   xrandr \
     --output LVDS-0 --off \
-    --output HDMI-0 --auto --primary
+    --output HDMI-0 --auto --primary --right-of LVDS-0
 else
   xrandr \
     --output LVDS-0 --auto --primary \
-    --output HDMI-0 --off
+    --output HDMI-0 --off --primary --right-of LVDS-0
 fi
 
 $HOME/bin/configure_i3_workspaces.sh
+nvidia-settings --load-config-only
