@@ -119,13 +119,13 @@ set noerrorbells
 if has('mac')
     set vb
 endif
-augroup CursorLine
-  au!
-  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  au VimEnter,WinEnter,BufWinEnter * setlocal cursorcolumn
-  au WinLeave * setlocal nocursorline
-  au WinLeave * setlocal nocursorcolumn
-augroup END
+"augroup CursorLine
+  "au!
+  "au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  "au VimEnter,WinEnter,BufWinEnter * setlocal cursorcolumn
+  "au WinLeave * setlocal nocursorline
+  "au WinLeave * setlocal nocursorcolumn
+"augroup END
 set nonumber
 if exists('+relativenumber')
     set norelativenumber
