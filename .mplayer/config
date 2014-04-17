@@ -1,7 +1,7 @@
 # disable irrelevant error message
 nolirc=yes
 
-vo=xv
+vo=vdpau,xv
 
 ao=pulse
 
