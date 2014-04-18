@@ -75,7 +75,6 @@ function prompt_command {
       echo ""
     fi
   }
-  HOST="$(echo $(hostname) | cksum | awk '{print $1}')"
   USER_AT_HOST="$(if [[ ${EUID} == 0 ]]; then echo "$redBold\h"; else echo "$blueBold\u @ $COLORED_HOST"; fi)"
   BATTERY="\$(BatteryStatus)"
   FILE_INFO="\$(ls -1 2>/dev/null | wc -l | sed 's: ::g') files, \$(ls -lah 2>/dev/null | grep -m 1 total | sed 's/total //')b"
