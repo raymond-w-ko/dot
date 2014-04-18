@@ -9,16 +9,19 @@ export HISTCONTROL=ignoreboth:erasedups
 export CCACHE_SLOPPINESS=time_macros
 export PATH="/usr/lib/ccache/bin:$HOME/bin:/opt/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl:/opt/aws/bin:/opt/mono/bin:/opt/dropbox"
 
-export TMP='/tmp'
-export TEMP='/tmp'
+[[ -z "$TMP" ]] && export TMP='/tmp'
+[[ -z "$TEMP" ]] && export TEMP='/tmp'
 export PKG_CONFIG_PATH="/usr/lib/pkgconfig/:/usr/local/lib/pkgconfig/"
 
 ################################################################################
 # PS1 prompt
 ################################################################################
-function parse_git_branch {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-}
+MD5="md5sum"
+if [[ $OS == 'darwin' ]]; then MD5="md5" ; fi
+HOST=`hostname -s`
+HASH=`echo $HOST | ${MD5}`
+RGB=${HASH:0:6}
+COLORED_HOST=$(~/bin/rgb2term.py $RGB)$HOST
 
 function prompt_command {
   ACTUAL_LAST_RET=$?
@@ -50,9 +53,9 @@ function prompt_command {
   }
   function GitBranch {
     if hash git 2>/dev/null; then
-      GIT_BRANCH=`git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'`
+      GIT_BRANCH=`git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
       if [[ ! -z "$GIT_BRANCH" ]]; then
-        echo "$GIT_BRANCH"
+        echo "(git: $GIT_BRANCH)"
       else
         echo ""
       fi
@@ -60,11 +63,25 @@ function prompt_command {
       echo ""
     fi
   }
-  USER_AT_HOST="$(if [[ ${EUID} == 0 ]]; then echo "$redBold\h"; else echo "$blueBold\u@\h"; fi)"
+  function HgBranch {
+    if hash hg 2>/dev/null; then
+      HG_BRANCH=`hg branch 2>/dev/null`
+      if [[ ! -z "$HG_BRANCH" ]]; then
+        echo "(hg: $HG_BRANCH)"
+      else
+        echo ""
+      fi
+    else
+      echo ""
+    fi
+  }
+  HOST="$(echo $(hostname) | cksum | awk '{print $1}')"
+  USER_AT_HOST="$(if [[ ${EUID} == 0 ]]; then echo "$redBold\h"; else echo "$blueBold\u @ $COLORED_HOST"; fi)"
   BATTERY="\$(BatteryStatus)"
   FILE_INFO="\$(ls -1 2>/dev/null | wc -l | sed 's: ::g') files, \$(ls -lah 2>/dev/null | grep -m 1 total | sed 's/total //')b"
   LINE1="$whiteBold($cyan\D{%Y %b %e %l:%M:%S %p}$whiteBold)$dash($green$BATTERY$whiteBold)"
-  LINE2="($yellow$FILE_INFO$whiteBold)$dash$green\$(GitBranch)$whiteBold$dash($yellow\w$white$whiteBold)"
+  #LINE2="($yellow$FILE_INFO$whiteBold)$dash$green\$(GitBranch)$whiteBold$dash($yellow\w$white$whiteBold)"
+  LINE2="$green\$(GitBranch)$whiteBold$dash$green\$(HgBranch)$whiteBold$dash($yellow\w$white$whiteBold)"
   LINE3="$whiteBold($USER_AT_HOST$whiteBold)$dash($white$RET_STATUS$whiteBold)"
   PROMPT="$dash> $normalColor"
   export PS1="\n$LINE1\n$LINE2\n$LINE3$PROMPT`echo $REAL_LAST_RET`"
