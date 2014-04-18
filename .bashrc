@@ -13,11 +13,15 @@ export PATH="/usr/lib/ccache/bin:$HOME/bin:/opt/local/bin:/usr/local/bin:/usr/bi
 [[ -z "$TEMP" ]] && export TEMP='/tmp'
 export PKG_CONFIG_PATH="/usr/lib/pkgconfig/:/usr/local/lib/pkgconfig/"
 
+unameString=`uname -s`
+
 ################################################################################
 # PS1 prompt
 ################################################################################
 MD5="md5sum"
-if [[ $OS == 'darwin' ]]; then MD5="md5" ; fi
+if [[ "$unameString" == 'Darwin' ]]; then
+  MD5="md5"
+fi
 HOST=`hostname -s`
 HASH=`echo $HOST | ${MD5}`
 RGB=${HASH:0:6}
@@ -89,7 +93,6 @@ export PROMPT_COMMAND=prompt_command
 
 unset PYTHONHOME
 
-unameString=`uname -s`
 if [[ "$unameString" == 'Darwin' ]]; then
     if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
         alias vim="vim"
