@@ -82,8 +82,8 @@ function prompt_command {
   LINE1="$whiteBold($cyan\D{%Y %b %e %l:%M:%S %p}$whiteBold)$dash($green$BATTERY$whiteBold)"
   #LINE2="($yellow$FILE_INFO$whiteBold)$dash$green\$(GitBranch)$whiteBold$dash($yellow\w$white$whiteBold)"
   LINE2="$green\$(GitBranch)$whiteBold$dash$green\$(HgBranch)$whiteBold$dash($yellow\w$white$whiteBold)"
-  LINE3="$whiteBold($USER_AT_HOST$whiteBold)$dash($white$RET_STATUS$whiteBold)"
-  PROMPT="$dash> $normalColor"
+  LINE3="$whiteBold$USER_AT_HOST$whiteBold ($white$RET_STATUS$whiteBold)"
+  PROMPT=" $dash> $normalColor"
   export PS1="\n$LINE1\n$LINE2\n$LINE3$PROMPT`echo $REAL_LAST_RET`"
 }
 export PROMPT_COMMAND=prompt_command
