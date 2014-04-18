@@ -171,6 +171,7 @@ yankring_history_v2.txt
 # other
 /.local
 /bin/__pycache__
+/bin/*.pyc
 
 # src should come from repos and archives backed up on the Internet
 /src
