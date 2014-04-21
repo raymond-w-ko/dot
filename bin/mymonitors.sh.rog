@@ -13,7 +13,7 @@ elif [ "$isHdmiConnected" -eq 1 ] && [ "$isLidOpen" -eq 0 ]; then
 else
   xrandr \
     --output LVDS-0 --auto --primary \
-    --output HDMI-0 --off --primary --right-of LVDS-0
+    --output HDMI-0 --off
 fi
 
 $HOME/bin/configure_i3_workspaces.sh
