@@ -16,17 +16,20 @@ if [[ "$unameString" == 'Darwin' ]]; then
     if hash gls 2>/dev/null; then
       alias ls='gls --color -F'
       alias l='gls --color -Flh'
+      alias lt='gls --color -Flht'
       alias ll='gls --color -Flha'
       alias ls='gls --color'
     else
       export LSCOLORS=ExFxCxDxBxegedabagacad
       alias ls='ls -FG'
       alias l='ls -FGlh'
+      alias lt='ls -FGlht'
       alias ll='ls -FGlha'
     fi
 else
     alias ls='ls --color -F'
     alias l='ls --color -Flh'
+    alias lt='ls --color -Flht'
     alias ll='ls --color -Flha'
 
     # fix ls colors especially for directories and files that are globally readable and writeable
