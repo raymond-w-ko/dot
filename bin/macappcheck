@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo "running codecheck"
+codesign -vvvvvvvvvvvvvvvvvvvvvv "$1"
+
+echo
+
+echo "running GateKeeper check, no output == okay"
+spctl --assess "$1"
