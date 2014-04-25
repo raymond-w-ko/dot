@@ -327,8 +327,6 @@ def rgb2short(rgb):
     @returns: String between 0 and 255, compatible with xterm.
     >>> rgb2short('123456')
     ('23', '005f5f')
-    >>> rgb2short('ffffff')
-    ('231', 'ffffff')
     >>> rgb2short('0DADD6') # vimeo logo
     ('38', '00afd7')
     """
