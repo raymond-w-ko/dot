@@ -153,7 +153,7 @@ set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set notimeout
 set timeoutlen=1024
 set ttimeout
-set ttimeoutlen=0
+set ttimeoutlen=100
 
 " }}}
 " Automatic Commands {{{
