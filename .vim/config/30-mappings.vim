@@ -56,12 +56,13 @@ nnoremap <leader>/ :s/\\/\//<CR>:nohlsearch<CR>
 " CTRL-V and are Paste
 "inoremap <C-v> <C-r>=@+<CR>
 
+" below obsoleted: by tpope's vim-rsi
 " CTRL-hjkl movement while in : command mode
 " <C-h> interferes with <BS> key
 "cnoremap <C-h> <Left>
 "cnoremap <C-l> <Right>
-cnoremap <C-j> <Down>
-cnoremap <C-k> <Up>
+"cnoremap <C-j> <Down>
+"cnoremap <C-k> <Up>
 
 " Platform specific keybinds
 if has("unix")
