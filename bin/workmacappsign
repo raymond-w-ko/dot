@@ -1,0 +1,2 @@
+#!/bin/bash
+codesign --force -s 'Developer ID Application: Syandus Inc. (8RG55572N6)' "$1"

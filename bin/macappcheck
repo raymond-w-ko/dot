@@ -7,3 +7,7 @@ echo
 
 echo "running GateKeeper check, no output == okay"
 spctl --assess "$1"
+
+echo
+
+codesign -d -vv "$1"
