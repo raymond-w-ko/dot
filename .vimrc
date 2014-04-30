@@ -115,10 +115,7 @@ set showmode
 set hidden
 set novisualbell
 set noerrorbells
-" WTF, setting visual bell means NO visual bell and NO audio bell in MacVIM
-if has('mac')
-    set vb
-endif
+set novb
 "augroup CursorLine
   "au!
   "au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
