@@ -169,7 +169,7 @@ bar {
 }
 
 for_window [title="ImmuneQuest"] floating enable
-for_window [title="MS Patient Education"] floating enable
+for_window [title="My MS Conversations"] floating enable
 for_window [title="MS Treatment"] floating enable
 
 exec /opt/dropbox/dropbox start
