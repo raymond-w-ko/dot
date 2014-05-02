@@ -159,6 +159,11 @@ augroup SaveAllBuffersWhenLosingFocus
     au FocusLost * silent! wall
 augroup END
 
+augroup HackToForceAutoreadToWorkCorrectlyInConsoleVim
+  au!
+  au FocusGained,BufEnter * :silent! !
+augroup END
+
 " Make sure Vim returns to the same line when you reopen a file.
 " Thanks, Amit
 augroup ReturnToSameLineWhenReopeningFile
@@ -178,8 +183,8 @@ function! StripTrailingWhitespace()
     call winrestview(l:my_saved_winview)
 endfunction
 command! StripTrailingWhitespace call StripTrailingWhitespace()
-augroup StripTrailingWhitespaceOnSave
-    au!
+"augroup StripTrailingWhitespaceOnSave
+    "au!
     "Syandus
     "au BufWritePre C:/SVN/* call StripTrailingWhitespace()
 
@@ -191,14 +196,14 @@ augroup StripTrailingWhitespaceOnSave
     "au BufWritePre *.py call StripTrailingWhitespace()
     " Lua
     "au BufWritePre *.lua call StripTrailingWhitespace()
-augroup END
+"augroup END
 "augroup SaveAndRestoreFolds
     "au!
     "au BufWinLeave * silent! mkview
     "au BufWinEnter * silent! loadview
 "augroup END
-augroup LocationListAutoOpenClose
-    au!
+"augroup LocationListAutoOpenClose
+    "au!
     " Automatically open, but do not go to (if there are errors) the quickfix /
     " location list window, or close it when is has become empty.
     "
@@ -209,18 +214,18 @@ augroup LocationListAutoOpenClose
     " seem to happen.
     "autocmd QuickFixCmdPost [^l]* nested cwindow
     "autocmd QuickFixCmdPost    l* nested lwindow
-augroup END
-augroup AlwaysOpenHelpInTheSameWindow
+"augroup END
+"augroup AlwaysOpenHelpInTheSameWindow
     "autocmd FileType help :wincmd H
-augroup END
+"augroup END
 
 function! AdjustWindowHeight(minheight, maxheight)
   exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
 endfunction
-augroup QuickFixAutoSizer
-    au!
-    au FileType qf call AdjustWindowHeight(3, 16)
-augroup END
+"augroup QuickFixAutoSizer
+    "au!
+    "au FileType qf call AdjustWindowHeight(3, 16)
+"augroup END
 " }}}
 " wildmenu completion {{{
 set wildmode=longest,list
