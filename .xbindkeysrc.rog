@@ -1,23 +1,27 @@
-"ponymix increase 5"
+"volume.py incr"
   XF86AudioRaiseVolume
-"ponymix increase 5"
+"volume.py incr"
   Control+Shift + Up
 
-"ponymix decrease 5"
+"volume.py decr"
   XF86AudioLowerVolume
-"ponymix decrease 5"
+"volume.py decr"
   Control+Shift + Down
 
-"ponymix toggle"
+"volume.py toggle"
   XF86AudioMute
-"ponymix toggle"
+"volume.py toggle"
   Control+Shift + Left
 
-#"xbacklight -dec 10"
-  #XF86MonBrightnessDown
+"xbacklight -dec 10"
+  XF86MonBrightnessDown
+"xbacklight -dec 10"
+  Control+Shift + F5
 
-#"xbacklight -inc 10"
-  #XF86MonBrightnessUp
+"xbacklight -inc 10"
+  XF86MonBrightnessUp
+"xbacklight -inc 10"
+  Control+Shift + F6
 
 #"sudo systemctl hibernate"
   #XF86Sleep
