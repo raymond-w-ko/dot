@@ -1,9 +1,9 @@
 #!/bin/bash
 exec osd_cat \
-    --font='-*-fixed-*-*-*-*-24-*-*-*-*-*-iso8559-1' \
+    --font='-*-terminus-*-*-*-*-32-*-*-*-*-*-*-*' \
     --shadow=0 \
     --outline=1 \
-    --color=green \
+    --color=yellow \
     --shadowcolour=black \
     --outlinecolour=black \
     --pos=bottom \
