@@ -2,7 +2,7 @@
 
 loadplugins '\.(js|penta)$'
 group user
-set guioptions=bCrsTB
+set guioptions=brsB
 set hlfind
 
 " vim: set ft=pentadactyl:
