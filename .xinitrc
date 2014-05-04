@@ -52,4 +52,7 @@ export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
 export GNOME_KEYRING_CONTROL=/var/run/user/1000/keyring/control
 export GNOME_KEYRING_PID=$(pidof gnome-keyring-daemon)
 
+# this should prevent tearing
+compton -b --backend glx --paint-on-overlay --vsync opengl-swc
+
 exec i3 -V > ~/.i3/i3log
