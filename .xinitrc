@@ -53,6 +53,6 @@ export GNOME_KEYRING_CONTROL=/var/run/user/1000/keyring/control
 export GNOME_KEYRING_PID=$(pidof gnome-keyring-daemon)
 
 # this should prevent tearing
-compton -b --backend glx --paint-on-overlay --vsync opengl-swc --mark-wmwin-focused --mark-ovredir-focused
+compton -b --backend xr_glx_hybrid --paint-on-overlay --vsync opengl-swc --mark-wmwin-focused --mark-ovredir-focused
 
 exec i3 -V > ~/.i3/i3log
