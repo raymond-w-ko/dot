@@ -1,2 +1,10 @@
 #!/bin/bash
-codesign --force -s 'Developer ID Application: Syandus Inc. (8RG55572N6)' "$1"
+#export CODESIGN_ALLOCATE="/Applications/Xcode.app/Contents/Developer/usr/bin/codesign_allocate"
+RET=1
+until [ "$RET" -eq 0 ]; do
+  codesign --force -s 'Developer ID Application: Syandus Inc. (8RG55572N6)' "$1"
+  RET=$?
+  echo $RET
+done
+
+~/bin/macappcheck "$1"

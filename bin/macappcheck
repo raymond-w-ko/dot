@@ -1,13 +1,18 @@
 #!/bin/bash
 
-echo "running codecheck"
+echo "*** running codecheck ***"
 codesign -vvvvvvvvvvvvvvvvvvvvvv "$1"
+echo "*** end codecheck ***"
 
 echo
 
-echo "running GateKeeper check, no output == okay"
+echo "*** running GateKeeper check, no output == okay ***"
 spctl --assess "$1"
+echo "*** end GateKeeper ***"
 
 echo
+echo
+echo
 
+echo "*** signature info ***"
 codesign -d -vv "$1"
