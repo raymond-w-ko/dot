@@ -53,6 +53,6 @@ export GNOME_KEYRING_CONTROL=/var/run/user/1000/keyring/control
 export GNOME_KEYRING_PID=$(pidof gnome-keyring-daemon)
 
 # this should prevent tearing
-compton --config /dev/null -b --backend xr_glx_hybrid --vsync opengl-swc --glx-no-stencil
+compton --config /dev/null -b --backend xr_glx_hybrid --vsync opengl-swc --glx-no-stencil --unredir-if-possible --paint-on-overlay --glx-no-rebind-pixmap
 
 exec i3 -V > ~/.i3/i3log
