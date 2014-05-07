@@ -159,10 +159,12 @@ augroup SaveAllBuffersWhenLosingFocus
     au FocusLost * silent! wall
 augroup END
 
-augroup HackToForceAutoreadToWorkCorrectlyInConsoleVim
-  au!
-  au FocusGained,BufEnter * :silent! !
-augroup END
+if !has("gui_running")
+  augroup HackToForceAutoreadToWorkCorrectlyInConsoleVim
+    au!
+    au FocusGained,BufEnter * :silent! !
+  augroup END
+endif
 
 " Make sure Vim returns to the same line when you reopen a file.
 " Thanks, Amit
