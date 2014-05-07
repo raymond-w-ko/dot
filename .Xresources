@@ -9,6 +9,8 @@ XTerm*font:               6x13
 XTerm*faceSize:           8
 XTerm*faceNameDoublesize: WenQuanYi Bitmap Song
 XTerm*saveLines:          16384
+! make Backspace generate ^? instead ^H, which seems to work better for most things
+XTerm*backarrowKey:       false
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
