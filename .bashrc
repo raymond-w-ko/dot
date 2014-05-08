@@ -1,6 +1,14 @@
 # If not running interactively, don't do anything
 [[ "$-" != *i* ]] && return
 
+# attempts to correct bad "cd" target
+shopt -s cdspell
+shopt -s checkwinsize
+shopt -s cmdhist
+shopt -s expand_aliases
+shopt -s extglob
+shopt -s histappend
+
 export HISTSIZE=32768
 export HISTCONTROL=ignoreboth:erasedups
 
