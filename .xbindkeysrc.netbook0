@@ -1,15 +1,17 @@
-"~/bin/volume incr"
+"~/bin/volume.py incr"
   XF86AudioRaiseVolume
-"~/bin/volume decr"
+"~/bin/volume.py incr"
+  Control+Shift + Up
+
+"~/bin/volume.py decr"
   XF86AudioLowerVolume
-"~/bin/volume mute"
+"~/bin/volume.py decr"
+  Control+Shift + Down
+
+"~/bin/volume.py toggle"
   XF86AudioMute
-
-#"xbacklight -dec 10"
-  #XF86MonBrightnessDown
-
-#"xbacklight -inc 10"
-  #XF86MonBrightnessUp
+"~/bin/volume.py toggle"
+  Control+Shift + Left
 
 "~/bin/hibernate.sh"
   XF86Sleep
