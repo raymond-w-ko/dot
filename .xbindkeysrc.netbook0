@@ -13,7 +13,7 @@
 "~/bin/volume.py toggle"
   Control+Shift + Left
 
-"~/bin/hibernate.sh"
+"~/bin/sleepkey.sh"
   XF86Sleep
 
 "xset dpms force off; i3lock -c 000000; sleep 4; xset dpms force off"
