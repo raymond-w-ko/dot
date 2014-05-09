@@ -144,7 +144,8 @@ if hash stty 2>/dev/null; then
   stty stop undef
   stty start undef
   # breaks backspace in hidden password reading prompts
-  #stty erase 
+  # actually only if xterm backspace is set to generate ^H and not ^?
+  stty erase 
 fi
 
 ulimit -c unlimited
