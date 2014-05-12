@@ -9,7 +9,7 @@ PULSEAUDIO_RUNNING = False
 s = subprocess.Popen(["ps", "axw"], stdout=subprocess.PIPE)
 for line in s.stdout:
     line = line.decode(encoding = 'UTF-8')
-    if re.search('/usr/bin/pulseaudio --start', line):
+    if re.search('pulseaudio --start', line):
         PULSEAUDIO_RUNNING = True
 
 def adjust_volume(delta):

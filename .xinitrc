@@ -25,11 +25,7 @@ xset fp rehash
 
 # LOL, let's pretend we are Java Looking Glass 3D WM
 wmname LG3D
-
-~/bin/keyboard_settings.sh
-
 hsetroot -solid '#000000'
-xcape -t 333 -e 'Control_L=Escape;Shift_L=Shift_L|minus'
 
 # WM must start this for this to work?
 #dropboxd
@@ -52,7 +48,11 @@ export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
 export GNOME_KEYRING_CONTROL=/var/run/user/1000/keyring/control
 export GNOME_KEYRING_PID=$(pidof gnome-keyring-daemon)
 
+pulseaudio --start
+
 # this should prevent tearing
 compton --config /dev/null -b --backend xr_glx_hybrid --vsync opengl-swc --glx-no-stencil --unredir-if-possible --paint-on-overlay --glx-no-rebind-pixmap
+
+$HOME/bin/keyboard_settings.sh
 
 exec i3 -V > ~/.i3/i3log

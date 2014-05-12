@@ -12,7 +12,9 @@ function config_keyboard()
 
   killall xbindkeys
   xbindkeys
+
+  killall xcape
+  xcape -t 333 -e 'Control_L=Escape;Shift_L=Shift_L|minus'
 }
 
-config_keyboard
 config_keyboard
