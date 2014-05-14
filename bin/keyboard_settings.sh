@@ -10,11 +10,12 @@ function config_keyboard()
 
   xset r rate 333 32
 
-  killall xbindkeys
-  xbindkeys
-
   killall xcape
   xcape -t 333 -e 'Control_L=Escape;Shift_L=Shift_L|minus'
+
+  killall xbindkeys
+  xbindkeys
 }
 
+config_keyboard
 config_keyboard

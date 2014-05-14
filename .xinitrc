@@ -3,6 +3,10 @@
 [ -f /etc/profile ] && source /etc/profile
 [ -f /etc/xprofile ] && source /etc/xprofile
 
+export PATH="$HOME/bin:$PATH"
+
+source ~/.bashrc
+
 # system level
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
   for f in /etc/X11/xinit/xinitrc.d/*; do
@@ -53,6 +57,6 @@ pulseaudio --start
 # this should prevent tearing
 compton --config /dev/null -b --backend xr_glx_hybrid --vsync opengl-swc --glx-no-stencil --unredir-if-possible --paint-on-overlay --glx-no-rebind-pixmap
 
-$HOME/bin/keyboard_settings.sh
+source $HOME/bin/keyboard_settings.sh
 
 exec i3 -V > ~/.i3/i3log
