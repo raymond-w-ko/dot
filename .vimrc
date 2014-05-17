@@ -314,10 +314,12 @@ endfunction
 call ApplyMyFormatOptions()
 set wrap
 set wrapscan
-if exists("&breakindent")
-    exe 'set breakindent showbreak=+++\ '
+if exists("+breakindent")
+    set breakindent
+    set breakindentopt=min:20,shift:2,sbr
+    set showbreak=>>
 else
-    exe 'set showbreak=+++\ '
+    exe 'set showbreak=>>\ '
 endif
 set noswapfile  " computers are pretty reliable nowadays
 " }}}
