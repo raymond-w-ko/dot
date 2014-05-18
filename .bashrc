@@ -12,10 +12,8 @@ shopt -s histappend
 export HISTSIZE=32768
 export HISTCONTROL=ignoreboth:erasedups
 
-#export PATH="$HOME/bin:/opt/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl:/opt/aws/bin:/opt/mono/bin:/opt/dropbox"
-
 export CCACHE_SLOPPINESS=time_macros
-export PATH="/usr/lib/ccache/bin:$HOME/bin:/opt/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl:/opt/aws/bin:/opt/mono/bin:/opt/dropbox"
+export PATH="/usr/lib/ccache/bin:$HOME/bin:/opt/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl:/opt/aws/bin:/opt/mono/bin:/opt/dropbox:$PATH"
 
 [[ -z "$TMP" ]] && export TMP='/tmp'
 [[ -z "$TEMP" ]] && export TEMP='/tmp'
