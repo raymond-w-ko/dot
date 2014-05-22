@@ -8,6 +8,7 @@ shopt -s cmdhist
 shopt -s expand_aliases
 shopt -s extglob
 shopt -s histappend
+shopt -s autocd
 
 export HISTSIZE=32768
 export HISTCONTROL=ignoreboth:erasedups
@@ -46,6 +47,7 @@ alias genctags='/usr/bin/find . -regex ".*\.\(c\|h\|hpp\|cc\|cpp\)" -print | /us
 alias omegacomplete='cd ~/lib/dot/vim/bundle/omegacomplete'
 alias killpngcolorpofile='find . -type f -name "*.png" -exec convert {} -strip {} \;'
 alias iotop='sudo iotop'
+alias openports='ss --all --numeric --processes --ipv4 --ipv6'
 
 if [ -d "/cygdrive/c/Users/root/Desktop/P2P" ]; then
     alias p2p='cd /cygdrive/c/Users/root/Desktop/P2P'
@@ -160,4 +162,6 @@ export MC_SKIN=$HOME/.config/mc/solarized.ini
 if [[ ! $DISPLAY && $(tty) = /dev/tty1 ]]; then
   xinit -nolisten tcp ~/.xinitrc -- vt01 &> ~/.xsession-errors
   logout
+else
+  cowsay $(fortune)
 fi
