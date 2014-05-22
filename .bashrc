@@ -8,7 +8,7 @@ shopt -s cmdhist
 shopt -s expand_aliases
 shopt -s extglob
 shopt -s histappend
-shopt -s autocd
+shopt -s autocd 2>/dev/null
 
 export HISTSIZE=32768
 export HISTCONTROL=ignoreboth:erasedups
