@@ -1,3 +1,2 @@
 #!/bin/bash
-pulseaudio -k
-pulseaudio --start
+/usr/bin/pasuspender /bin/true
