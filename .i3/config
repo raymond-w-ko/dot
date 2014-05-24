@@ -168,6 +168,8 @@ bar {
   status_command i3status
 }
 
+focus_follows_mouse no
+
 for_window [title="ImmuneQuest"] floating enable
 for_window [title="My MS Conversations"] floating enable
 for_window [title="MS Treatment"] floating enable
