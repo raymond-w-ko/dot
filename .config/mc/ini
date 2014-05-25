@@ -136,12 +136,16 @@ quick_search_mode=2
 xterm=
 color_terminals=
 
+simple_swap=false
+
 [Colors]
 base_color=
 screen-256color=
 color_terminals=
 
 xterm=
+
+rxvt-unicode-256color=
 
 [Panelize]
 Find *.orig after patching=find . -name \\*.orig -print
