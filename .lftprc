@@ -13,6 +13,8 @@ alias ka kill all
 
 alias p pget -c
 alias p2 pget -c -n 2
+alias p3 pget -c -n 3
+alias p4 pget -c -n 4
 alias p5 pget -c -n 5
 alias p10 pget -c -n 10
 alias p15 pget -c -n 15
@@ -20,6 +22,8 @@ alias p20 pget -c -n 20
 
 alias m mirror -c
 alias m2 mirror -c --use-pget-n=2
+alias m3 mirror -c --use-pget-n=3
+alias m4 mirror -c --use-pget-n=4
 alias m5 mirror -c --use-pget-n=5
 alias m10 mirror -c --use-pget-n=10
 alias m15 mirror -c --use-pget-n=15
