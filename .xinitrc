@@ -55,7 +55,7 @@ export GNOME_KEYRING_PID=$(pidof gnome-keyring-daemon)
 $HOME/bin/restart-pulseaudio
 
 # this should prevent tearing
-compton --config /dev/null -b --backend xr_glx_hybrid --vsync opengl-swc --glx-no-rebind-pixmap --glx-no-stencil --vsync-use-glfinish --unredir-if-possible --paint-on-overlay 
+compton --config /dev/null -b --backend xr_glx_hybrid --vsync opengl-swc --glx-no-rebind-pixmap --glx-no-stencil --unredir-if-possible --paint-on-overlay 
 
 source $HOME/bin/keyboard_settings.sh
 
