@@ -21,6 +21,8 @@ URxvt*saveLines: 10000
 
 URxvt*meta8: False
 
+URxvt*depth: 24
+
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 ! Solarized color scheme for the X Window System
