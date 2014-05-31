@@ -17,11 +17,11 @@ XTerm*backarrowKey:       false
 URxvt*font: -misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1
 
 URxvt*scrollBar: false
-URxvt*saveLines: 10000
-
+URxvt*saveLines: 16384
+URxvt*loginShell: true
 URxvt*meta8: False
-
 URxvt*depth: 24
+!URxvt.letterSpace: -1
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
