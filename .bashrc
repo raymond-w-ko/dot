@@ -48,6 +48,8 @@ alias omegacomplete='cd ~/lib/dot/vim/bundle/omegacomplete'
 alias killpngcolorpofile='find . -type f -name "*.png" -exec convert {} -strip {} \;'
 alias iotop='sudo iotop'
 alias openports='ss --all --numeric --processes --ipv4 --ipv6'
+alias n19='nice -n 19'
+alias n='nice -n 19'
 
 if [ -d "/cygdrive/c/Users/root/Desktop/P2P" ]; then
     alias p2p='cd /cygdrive/c/Users/root/Desktop/P2P'
