@@ -52,6 +52,8 @@ export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
 export GNOME_KEYRING_CONTROL=/var/run/user/1000/keyring/control
 export GNOME_KEYRING_PID=$(pidof gnome-keyring-daemon)
 
+export QT_STYLE_OVERRIDE="gtk"
+
 $HOME/bin/restart-pulseaudio
 
 # this should prevent tearing
