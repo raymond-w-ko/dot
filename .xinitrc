@@ -57,7 +57,7 @@ export QT_STYLE_OVERRIDE="gtk"
 $HOME/bin/restart-pulseaudio
 
 # this should prevent tearing
-compton --config /dev/null -b --backend xr_glx_hybrid --vsync opengl-swc --glx-no-rebind-pixmap --glx-no-stencil --unredir-if-possible --paint-on-overlay 
+compton --config /dev/null -b --backend glx --vsync opengl-swc --glx-no-rebind-pixmap --glx-no-stencil --unredir-if-possible --paint-on-overlay --xrender-sync-fence 
 
 source $HOME/bin/keyboard_settings.sh
 

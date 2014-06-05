@@ -26,6 +26,7 @@ let s:commands = [
     \ 'ImmuneQuest',        '__SVN__/SVN/Syandus_Cores/C_ImmunoSim_01',
     \ 'PatientEducation',   '__SVN__/SVN/Syandus_Cores/C_MS_PatientEd_01',
     \ 'Treatment',          '__SVN__/SVN/Syandus_Cores/C_MS_Treatment_01',
+    \ 'MCRC',               '__SVN__/SVN/Syandus_Cores/C_mCRC_Treatment_01',
     \ 'Sutent',             '__SVN__/SVN/Syandus_Cores/C_Sut_AE_01',
     \ 'SyMetrics',          '__SVN__/SVN/Syandus_ALIVE3/Metrics/SyMetrics',
     \ 'SyLogParser',        '__SVN__/SVN/Syandus_ALIVE3/Metrics/SyLoginParser',
