@@ -54,7 +54,7 @@ export GNOME_KEYRING_PID=$(pidof gnome-keyring-daemon)
 
 export QT_STYLE_OVERRIDE="gtk"
 
-$HOME/bin/restart-pulseaudio
+pulseaudio --start
 
 # this should prevent tearing
 compton --config /dev/null -b --backend glx --vsync opengl-swc --glx-no-rebind-pixmap --glx-no-stencil --unredir-if-possible --paint-on-overlay --xrender-sync-fence 
