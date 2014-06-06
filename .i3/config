@@ -173,5 +173,6 @@ focus_follows_mouse no
 for_window [title="ImmuneQuest"] floating enable
 for_window [title="My MS Conversations"] floating enable
 for_window [title="Treatment & Management of Multiple Sclerosis: Virtual Patient Simulation"] floating enable
+for_window [title="Treatment & Management of Metastatic Colorectal Cancer"] floating enable
 
 exec /opt/dropbox/dropbox start
