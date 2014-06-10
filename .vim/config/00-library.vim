@@ -71,6 +71,7 @@ let s:project_directories_list = [
     \ '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Oxygen',
     \ '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Hydrogen',
     \ '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Nitrogen',
+    \ '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Nitrogen16',
     \ '__SVN__/SVN/Syandus_ALIVE4/Platform/Source/Code',
     \ '__SVN__/SVN/Syandus_ALIVE4/Tools/Source/SyProjectGenerator',
     \ '__SVN__/SVN/Syandus_ALIVE4/Tools/Source/mercky',

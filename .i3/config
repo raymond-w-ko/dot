@@ -174,5 +174,7 @@ for_window [title="ImmuneQuest"] floating enable
 for_window [title="My MS Conversations"] floating enable
 for_window [title="Treatment & Management of Multiple Sclerosis: Virtual Patient Simulation"] floating enable
 for_window [title="Treatment & Management of Metastatic Colorectal Cancer"] floating enable
+for_window [class="Steam"] floating enable
+for_window [class="Steam" title="^Steam$"] floating disable
 
 exec /opt/dropbox/dropbox start
