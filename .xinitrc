@@ -58,6 +58,7 @@ pulseaudio --start
 
 # this should prevent tearing
 compton --config /dev/null -b --backend glx --vsync opengl-swc --glx-no-rebind-pixmap --glx-no-stencil --unredir-if-possible --paint-on-overlay --xrender-sync-fence 
+(sleep 20 && DISPLAY=":0.0" nvidia-settings -a [gpu:0]/GPUPowerMizerMode=1) &
 
 source $HOME/bin/keyboard_settings.sh
 
