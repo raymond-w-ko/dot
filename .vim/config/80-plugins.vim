@@ -125,3 +125,5 @@ let g:airline#extensions#whitespace#enabled = 0
 
 " bufkill.vim
 let g:BufKillCreateMappings = 0
+
+let g:solarized_italic = 0

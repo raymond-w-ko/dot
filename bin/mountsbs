@@ -13,11 +13,10 @@ for pair in "${ARRAY[@]}" ; do
   SYPATH=${pair%%:*}
   DIR=${pair#*:}
 
-  mkdir -p "$HOME/mnt/$DIR"
-
   if mount | grep "$SYPATH" > /dev/null; then
     echo "$SYPATH already mounted"
   else
-    sudo mount -t cifs "$SYPATH" "$HOME/mnt/$DIR" -o $OPTIONS
+    mkdir -p "/mnt/$DIR"
+    sudo mount -t cifs "$SYPATH" "/mnt/$DIR" -o $OPTIONS
   fi
 done
