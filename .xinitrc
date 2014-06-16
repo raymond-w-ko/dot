@@ -62,4 +62,4 @@ compton --config /dev/null -b --backend glx --vsync opengl-swc --glx-no-rebind-p
 
 source $HOME/bin/keyboard_settings.sh
 
-exec i3 -V > ~/.i3/i3log
+exec i3 > ~/.i3/i3log
