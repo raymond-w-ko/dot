@@ -43,6 +43,9 @@ alias ta='tmux attach'
 alias tmux="TERM=screen-256color-bce tmux"
 alias svnlog='svn log -l 1024 -v | less'
 alias svnfixexe="find . -name '*.sh' -exec svn propset svn:executable yes '{}' \;"
+svnrmmissing() {
+  svn st | grep ^! | awk '{print " --force "$2}' | xargs svn rm
+}
 alias genctags='/usr/bin/find . -regex ".*\.\(c\|h\|hpp\|cc\|cpp\)" -print | /usr/bin/ctags --c++-kinds=+px --fields=+aimSz --languages=c++ --sort=yes -L -'
 alias omegacomplete='cd ~/lib/dot/vim/bundle/omegacomplete'
 alias killpngcolorpofile='find . -type f -name "*.png" -exec convert {} -strip {} \;'
