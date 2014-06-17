@@ -53,6 +53,9 @@ alias iotop='sudo iotop -oP'
 alias openports='ss --all --numeric --processes --ipv4 --ipv6'
 alias n19='nice -n 19'
 alias n='nice -n 19'
+findcore() {
+  find . -type f -regextype posix-extended -regex '.*/core\.[0-9]+$'
+}
 
 if [ -d "/cygdrive/c/Users/root/Desktop/P2P" ]; then
     alias p2p='cd /cygdrive/c/Users/root/Desktop/P2P'
