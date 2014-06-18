@@ -152,7 +152,8 @@ set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set notimeout
 set timeoutlen=1024
 set ttimeout
-set ttimeoutlen=0
+" needed to avoid leaving insert mode delay for vim-airline
+set ttimeoutlen=50
 
 " }}}
 " Automatic Commands {{{
