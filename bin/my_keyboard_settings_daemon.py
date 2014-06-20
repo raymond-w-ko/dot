@@ -1,41 +1,57 @@
 #!/usr/bin/env python
 
 import pyudev                                                                   
-from subprocess import call
+import subprocess
 import time
+import threading
 
-need_to_reapply_settings = 2
+ticks_before_reapplying_settings = 2
 
 def kbd_event(action, device):
-    global need_to_reapply_settings
+    global ticks_before_reapplying_settings
 
     if action == 'add':
-        need_to_reapply_settings = 2
+        ticks_before_reapplying_settings = 2
 
-def apply_settings():
-    global need_to_reapply_settings
-    need_to_reapply_settings = -1
+def apply_keyboard_settings():
+    global ticks_before_reapplying_settings
 
-    call('setxkbmap -option -option ctrl:nocaps', shell = True)
-    call('xset r rate 333 32', shell = True)
-    call('killall xcape', shell = True)
-    call("xcape -t 333 -e 'Control_L=Escape;Shift_L=Shift_L|minus'", shell = True)
-    call('killall xbindkeys', shell = True)
-    call('xbindkeys', shell = True)
+    while True:
+        time.sleep(0.25)
 
-    print('applied keyboard settings')
+        if ticks_before_reapplying_settings < 0:
+            continue
+        elif ticks_before_reapplying_settings > 0:
+            ticks_before_reapplying_settings = ticks_before_reapplying_settings - 1
+            continue
 
-monitor = pyudev.Monitor.from_netlink(pyudev.Context())
-monitor.filter_by('input')
-observer = pyudev.MonitorObserver(monitor, kbd_event)
-observer.start()
+        ticks_before_reapplying_settings = -1
 
-while True:
-    time.sleep(0.25)
+        subprocess.call('setxkbmap -option -option ctrl:nocaps', shell = True)
+        subprocess.call('xset r rate 333 32', shell = True)
+        subprocess.call('killall xcape', shell = True)
+        subprocess.call("xcape -t 333 -e 'Control_L=Escape;Shift_L=Shift_L|minus'", shell = True)
+        subprocess.call('killall xbindkeys', shell = True)
+        subprocess.call('xbindkeys', shell = True)
 
-    if need_to_reapply_settings < 0:
-        continue
+        print('applied keyboard settings')
 
-    need_to_reapply_settings = need_to_reapply_settings - 1
-    if need_to_reapply_settings == 0:
-        apply_settings()
+def main():
+    t = threading.Thread(target=apply_keyboard_settings)
+    t.start()
+
+    while True:
+        try:
+            context = pyudev.Context()
+            monitor = pyudev.Monitor.from_netlink(context)
+            monitor.filter_by('input')
+            observer = pyudev.MonitorObserver(monitor, kbd_event)
+            observer.start()
+
+            for action, device in monitor:
+                pass
+        except:
+            pass
+
+if __name__ == '__main__':
+    main()
