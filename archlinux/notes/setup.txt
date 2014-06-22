@@ -17,7 +17,7 @@ openssl aes256 -d -in root.key 2>/dev/null | cryptsetup --key-file=- -c serpent-
 
 mount
 -----
-openssl aes256 -d -in root.key 2>/dev/null | cryptsetup --key-file=- luksOpen luksOpen /dev/sda1 root
+openssl aes256 -d -in root.key 2>/dev/null | cryptsetup --key-file=- open --type luks /dev/sda1 root
 
 kernel
 ------
