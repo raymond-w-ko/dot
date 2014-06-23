@@ -50,6 +50,7 @@ alias genctags='/usr/bin/find . -regex ".*\.\(c\|h\|hpp\|cc\|cpp\)" -print | /us
 alias omegacomplete='cd ~/lib/dot/vim/bundle/omegacomplete'
 alias killpngcolorpofile='find . -type f -name "*.png" -exec convert {} -strip {} \;'
 alias iotop='sudo iotop -oP'
+alias iftop='sudo iftop'
 alias openports='ss --all --numeric --processes --ipv4 --ipv6'
 alias n19='nice -n 19'
 alias n='nice -n 19'
