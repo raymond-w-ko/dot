@@ -27,7 +27,7 @@ def apply_keyboard_settings():
 
         ticks_before_reapplying_settings = -1
 
-        subprocess.call('setxkbmap -option -option ctrl:nocaps', shell = True)
+        subprocess.call('setxkbmap -option -option ctrl:nocaps -option altwin:swap_alt_win', shell = True)
         subprocess.call('xset r rate 333 32', shell = True)
         subprocess.call('killall xcape', shell = True)
         subprocess.call("xcape -t 333 -e 'Control_L=Escape;Shift_L=Shift_L|minus'", shell = True)
