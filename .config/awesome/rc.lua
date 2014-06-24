@@ -38,7 +38,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+beautiful.init(awful.util.getdir("config") .. "/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "urxvt"
@@ -51,6 +51,8 @@ editor_cmd = terminal .. " -e " .. editor
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
+local wheel_down_button = 5
+local wheel_up_button = 4
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 local layouts =
@@ -122,8 +124,8 @@ mytaglist.buttons = awful.util.table.join(
                     awful.button({ modkey }, 1, awful.client.movetotag),
                     awful.button({ }, 3, awful.tag.viewtoggle),
                     awful.button({ modkey }, 3, awful.client.toggletag),
-                    awful.button({ }, 4, function(t) awful.tag.viewnext(awful.tag.getscreen(t)) end),
-                    awful.button({ }, 5, function(t) awful.tag.viewprev(awful.tag.getscreen(t)) end)
+                    awful.button({ }, wheel_down_button, function(t) awful.tag.viewnext(awful.tag.getscreen(t)) end),
+                    awful.button({ }, wheel_up_button, function(t) awful.tag.viewprev(awful.tag.getscreen(t)) end)
                     )
 mytasklist = {}
 mytasklist.buttons = awful.util.table.join(
@@ -153,11 +155,11 @@ mytasklist.buttons = awful.util.table.join(
                                                   })
                                               end
                                           end),
-                     awful.button({ }, 4, function ()
+                     awful.button({ }, wheel_down_button, function ()
                                               awful.client.focus.byidx(1)
                                               if client.focus then client.focus:raise() end
                                           end),
-                     awful.button({ }, 5, function ()
+                     awful.button({ }, wheel_up_button, function ()
                                               awful.client.focus.byidx(-1)
                                               if client.focus then client.focus:raise() end
                                           end))
@@ -171,8 +173,8 @@ for s = 1, screen.count() do
     mylayoutbox[s]:buttons(awful.util.table.join(
                            awful.button({ }, 1, function () awful.layout.inc(layouts, 1) end),
                            awful.button({ }, 3, function () awful.layout.inc(layouts, -1) end),
-                           awful.button({ }, 4, function () awful.layout.inc(layouts, 1) end),
-                           awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end)))
+                           awful.button({ }, wheel_down_button, function () awful.layout.inc(layouts, -1) end),
+                           awful.button({ }, wheel_up_button, function () awful.layout.inc(layouts, 1) end)))
     -- Create a taglist widget
     mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, mytaglist.buttons)
 
@@ -207,8 +209,8 @@ end
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
     awful.button({ }, 3, function () mymainmenu:toggle() end),
-    awful.button({ }, 4, awful.tag.viewnext),
-    awful.button({ }, 5, awful.tag.viewprev)
+    awful.button({ }, wheel_down_button, awful.tag.viewnext),
+    awful.button({ }, wheel_up_button, awful.tag.viewprev)
 ))
 -- }}}
 

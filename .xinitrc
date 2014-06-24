@@ -62,6 +62,8 @@ compton --config /dev/null -b --backend glx --vsync opengl-swc --glx-no-rebind-p
 
 $HOME/bin/my_keyboard_settings_daemon.py &
 
+(sleep 5 && /opt/dropbox/dropbox) &
+
 #exec herbstluftwm
 #exec i3 > ~/.i3/log
 exec awesome
