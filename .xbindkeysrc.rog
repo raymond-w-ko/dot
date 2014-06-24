@@ -26,10 +26,8 @@
 #"sudo systemctl hibernate"
   #XF86Sleep
 
-#"xset dpms force off; i3lock -c 000000; sleep 4; xset dpms force off"
-  #Mod4 + l
 "i3lock -c 000000"
-  Mod4 + l
+  Mod1 + l
 
 "~/bin/mymonitors.sh"
-  Mod4 + p
+  Mod1 + p
