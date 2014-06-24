@@ -4,7 +4,7 @@
 
 theme = {}
 
-theme.font          = "snap 8"
+theme.font          = "terminus 8"
 
 theme.bg_normal     = "#222222"
 theme.bg_focus      = "#535d88"
@@ -19,7 +19,7 @@ theme.fg_minimize   = "#ffffff"
 
 theme.border_width  = 1
 theme.border_normal = "#000000"
-theme.border_focus  = "#00ff00"
+theme.border_focus  = "#00aa00"
 theme.border_marked = "#ff0000"
 
 -- There are other variable sets
