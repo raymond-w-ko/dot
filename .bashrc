@@ -174,7 +174,10 @@ if [[ ! $DISPLAY && $(tty) = /dev/tty1 ]]; then
   logout
 else
   if hash fortune 2>/dev/null; then
-    MY_FORTUNE_COOKIE=$(fortune 2>/dev/null)
-    cowsay "$MY_FORTUNE_COOKIE" 2>/dev/null
+    if hash cowsay 2>/dev/null; then
+      fortune | cowsay 2>/dev/null
+    else
+      fortune
+    fi
   fi
 fi
