@@ -11,5 +11,5 @@ for pair in "${ARRAY[@]}" ; do
   SYPATH=${pair%%:*}
   DIR=${pair#*:}
 
-  sudo umount "/mnt/$DIR"
+  sudo umount -a -t cifs -l "/mnt/$DIR"
 done
