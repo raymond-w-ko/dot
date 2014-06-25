@@ -1,0 +1,4 @@
+#!/bin/bash
+
+export WINE_DEBUG=-all,warn-all,fixme-all
+exec wine 'C:/Program Files/Microsoft Office/Office14/POWERPNT.exe' &>/dev/null
