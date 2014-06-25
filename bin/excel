@@ -1,3 +1,4 @@
 #!/bin/bash
 
-exec wine 'C:/Program Files/Microsoft Office/Office14/EXCEL.exe'
+export WINE_DEBUG=-all,warn-all,fixme-all
+exec wine 'C:/Program Files/Microsoft Office/Office14/EXCEL.exe' &>/dev/null
