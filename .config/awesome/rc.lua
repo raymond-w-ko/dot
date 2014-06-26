@@ -10,7 +10,7 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
-local vicous = require('vicious')
+local vicious = require('vicious')
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -167,6 +167,172 @@ mytasklist.buttons = awful.util.table.join(
                                               if client.focus then client.focus:raise() end
                                           end))
 
+local function make_sep(layout)
+    local sep = wibox.widget.textbox()
+    sep:set_text(' :: ')
+    layout:add(sep)
+end
+
+local function format_speed(speed, output)
+    if speed >= 1024 then
+        speed = speed / 1024
+        table.insert(output, string.format('%.02f', speed))
+        table.insert(output, ' MB/s')
+    else
+        table.insert(output, tostring(speed))
+        table.insert(output, ' KB/s')
+    end
+    return speed
+end
+
+local function add_info_widgets(layout)
+    local eth_widget = wibox.widget.textbox() 
+    local function format_func(widget, args)
+        local output = {}
+        --for k, v in pairs(args) do
+            --table.insert(output, k)
+        --end
+        table.insert(output, 'enp4s0 - ')
+
+        table.insert(output, 'down ')
+        local down = tonumber(args['{enp4s0 down_kb}'])
+        format_speed(down, output)
+
+        table.insert(output, ' - up ')
+        local up = tonumber(args['{enp4s0 up_kb}'])
+        format_speed(up, output)
+
+        output = table.concat(output)
+        return output
+    end
+    vicious.register(eth_widget, vicious.widgets.net, format_func, 1, 'enp4s0')
+    layout:add(eth_widget)
+
+    make_sep(layout)
+
+    local wifi_widget = wibox.widget.textbox() 
+    local function format_func(widget, args)
+        local output = {}
+
+        table.insert(output, '<span color="%s">')
+
+        table.insert(output, ' wlp3s0 ')
+        table.insert(output, args['{ssid}'])
+        table.insert(output, ' @ ')
+        -- linp should be link, but is mispelled in library
+        local quality = tonumber(args['{linp}'])
+        table.insert(output, tostring(quality))
+        table.insert(output, '%% ')
+        table.insert(output, args['{rate}'])
+        table.insert(output, 'MB/s')
+        table.insert(output, '</span>')
+
+        local color
+        if quality >= 90 then
+            color = 'green'
+        elseif quality >= 55 then
+            color = 'yellow'
+        else
+            color = 'red'
+        end
+
+        output = table.concat(output)
+        output = output:format(color)
+        return output
+    end
+    vicious.register(wifi_widget, vicious.widgets.wifi, format_func, 7, 'wlp3s0')
+    layout:add(wifi_widget)
+
+    make_sep(layout)
+
+    -- battery
+    local batwidget = wibox.widget.textbox()
+    local function format_func(widget, args)
+        local state = args[1]
+        local percent = tonumber(args[2])
+        local time = args[3]
+        local color
+        if percent <= 20 then
+            color = 'red'
+        elseif percent <= 50 then
+            color = 'yellow'
+        else
+            color = 'green'
+        end
+        local output = '<span color="%s">bat %d%% %s</span>'
+        output = output:format(color, percent, time)
+        return output
+    end
+    vicious.register(batwidget, vicious.widgets.bat, format_func, 61, "BAT0")
+    layout:add(batwidget)
+
+    make_sep(layout)
+
+    -- temp
+    local temp_widget = wibox.widget.textbox()
+    local function format_func(widget, args)
+        local temp = tonumber(args[1])
+        local color
+        if temp >= 70 then
+            color = 'red'
+        elseif temp >= 55 then
+            color = 'yellow'
+        else
+            color = 'green'
+        end
+        local output = '<span color="%s">cpu core1: %d °C</span> '
+        output = output:format(color, temp)
+        return output
+    end
+    vicious.register(temp_widget, vicious.widgets.thermal,
+                     format_func, nil,
+                     {'coretemp.0/hwmon/hwmon0/', 'core', 'temp1_input'})
+    layout:add(temp_widget)
+
+    -- label for CPU graph
+    --local cpu_label = wibox.widget.textbox()
+    --cpu_label:set_text(' cpu')
+    --layout:add(cpu_label)
+
+    -- CPU graph
+    local cpuwidget = awful.widget.graph()
+    cpuwidget:set_width(50)
+    cpuwidget:set_background_color("#494B4F")
+    cpuwidget:set_color(
+        {
+            type = "linear",
+            from = { 0, 0 },
+            to = { 10,0 },
+            stops = { {0, "#FF5656"}, {0.5, "#88A175"}, {1, "#AECF96" }}
+        })
+    vicious.register(cpuwidget, vicious.widgets.cpu, "$1", 3)
+    layout:add(cpuwidget)
+
+    make_sep(layout)
+
+    -- mem
+    local memwidget = wibox.widget.textbox()
+    vicious.register(memwidget, vicious.widgets.mem,
+                     'mem $1% <span color="#555555">($2MB / $3MB)</span>', 13)
+    layout:add(memwidget)
+
+    make_sep(layout)
+
+    -- free space on /
+    local fs_widget = wibox.widget.textbox()
+	vicious.register(fs_widget, vicious.widgets.fs, "/ ${/ avail_gb} GB", 599)
+    layout:add(fs_widget)
+
+    make_sep(layout)
+
+    -- free space on /mnt/data
+    local fs_widget = wibox.widget.textbox()
+	vicious.register(fs_widget, vicious.widgets.fs, "/mnt/data/ ${/mnt/data avail_gb} GB", 599)
+    layout:add(fs_widget)
+
+    make_sep(layout)
+end
+
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
     mypromptbox[s] = awful.widget.prompt()
@@ -196,8 +362,15 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
-    if s == 1 then right_layout:add(wibox.widget.systray()) end
+
+    add_info_widgets(right_layout)
+
     right_layout:add(mytextclock)
+    if s == 1 then
+        make_sep(right_layout)
+
+        right_layout:add(wibox.widget.systray())
+    end
 
     -- Now bring it all together (with the tasklist in the middle)
     local layout = wibox.layout.align.horizontal()
@@ -211,6 +384,7 @@ for s = 1, screen.count() do
     mywibox2[s] = awful.wibox({ position = "top", screen = s })
     local layout = wibox.layout.fixed.horizontal()
     layout:add(mytasklist[s])
+
     mywibox2[s]:set_widget(layout)
 end
 -- }}}
