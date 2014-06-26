@@ -96,6 +96,11 @@ URxvt*color13:                 S_violet
 URxvt*color14:                 S_base1
 URxvt*color15:                 S_base3
 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+! General
+
+*font:         -lucy-Tewi-medium-R-Normal--11-90-75-75-P-58-ISO10646-1
 Xcursor*theme: Premium
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -112,16 +117,19 @@ XTerm*backarrowKey:       false
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-URxvt*font: -misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1
-!URxvt*font: xft:Ubuntu Mono:size=9
-!URxvt*font: -*-proggytinysz-medium-r-*-*-*-*-*-*-*-*-*-*
+URxvt*font:           -lucy-Tewi-medium-R-Normal--11-90-75-75-P-58-ISO10646-1,-*-stlarch-medium-r-*-*-10-*-*-*-*-*-*-*
+URxvt*boldFont:       -lucy-Tewi-medium-R-Normal--11-90-75-75-P-58-ISO10646-1,-*-stlarch-medium-r-*-*-10-*-*-*-*-*-*-*
+URxvt*italicFont:     -lucy-Tewi-medium-R-Normal--11-90-75-75-P-58-ISO10646-1,-*-stlarch-medium-r-*-*-10-*-*-*-*-*-*-*
+URxvt*bolditalicFont: -lucy-Tewi-medium-R-Normal--11-90-75-75-P-58-ISO10646-1,-*-stlarch-medium-r-*-*-10-*-*-*-*-*-*-*
 
 !URxvt.letterSpace: -1
 URxvt*scrollBar:     false
 URxvt*saveLines:     16384
 URxvt*loginShell:    true
 URxvt*meta8:         false
-URxvt*depth:         32
+URxvt*depth:         24
+! this usually means use the desktop background as the background instead of a
+! configured color for pseudo-transparency
 URxvt*inheritPixmap: false
 URxvt*transparent:   false
 URxvt*urgentOnBell:  true
