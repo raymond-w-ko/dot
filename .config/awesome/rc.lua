@@ -10,6 +10,7 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
+local vicous = require('vicious')
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -117,6 +118,7 @@ mytextclock = awful.widget.textclock(time_format, 5)
 
 -- Create a wibox for each screen and add it
 mywibox = {}
+mywibox2 = {}
 mypromptbox = {}
 mylayoutbox = {}
 mytaglist = {}
@@ -200,10 +202,16 @@ for s = 1, screen.count() do
     -- Now bring it all together (with the tasklist in the middle)
     local layout = wibox.layout.align.horizontal()
     layout:set_left(left_layout)
-    layout:set_middle(mytasklist[s])
+    --layout:set_middle(mytasklist[s])
     layout:set_right(right_layout)
 
     mywibox[s]:set_widget(layout)
+
+    -- create top toolbar with just tasklist
+    mywibox2[s] = awful.wibox({ position = "top", screen = s })
+    local layout = wibox.layout.fixed.horizontal()
+    layout:add(mytasklist[s])
+    mywibox2[s]:set_widget(layout)
 end
 -- }}}
 
