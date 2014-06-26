@@ -156,13 +156,14 @@
 .i3status.conf
 /bin/mymonitors.sh
 /bin/configure_i3_workspaces.sh
+/bin/sleepkey.sh
 
 ## VIM
 # compiled binaries
 /vim
 /.vim/.netrwhist
 /bin/xcape
-# symlinks created by dot_files_bootstrap.sh
+# symlinks created by VIM install process
 /bin/ex
 /bin/rview
 /bin/rvim

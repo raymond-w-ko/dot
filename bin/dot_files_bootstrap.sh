@@ -46,6 +46,7 @@ ensure_link ".gtkrc-2.0.mine.$1" ".gtkrc-2.0.mine"
 ensure_link ".xbindkeysrc.$1" ".xbindkeysrc"
 ensure_link "bin/mymonitors.sh.$1" "bin/mymonitors.sh"
 ensure_link "bin/configure_i3_workspaces.sh.$1" "bin/configure_i3_workspaces.sh"
+ensure_link "bin/sleepkey.sh.$1" "bin/sleepkey.sh"
 
 mkdir -p ~/.ssh
 chmod 700 ~/.ssh

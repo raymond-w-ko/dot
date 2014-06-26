@@ -2,7 +2,7 @@
 
 if [ -z "$1" ]; then
   echo $0 [rc suffx]
-  exit 0
+  exit 1
 fi
 
 SUFFIX="$1"
