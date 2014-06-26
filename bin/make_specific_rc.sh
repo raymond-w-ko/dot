@@ -2,6 +2,7 @@
 
 if [ -z "$1" ]; then
   echo $0 [rc suffx]
+  exit 0
 fi
 
 SUFFIX="$1"
@@ -35,6 +36,12 @@ if [ ! -e "$FILE" ]; then
 fi
 
 FILE=~/bin/configure_i3_workspaces.sh.$SUFFIX
+if [ ! -e "$FILE" ]; then
+  echo '#!/bin/bash' > "$FILE"
+  chmod +x "$FILE"
+fi
+
+FILE=~/bin/sleepkey.sh.$SUFFIX
 if [ ! -e "$FILE" ]; then
   echo '#!/bin/bash' > "$FILE"
   chmod +x "$FILE"
