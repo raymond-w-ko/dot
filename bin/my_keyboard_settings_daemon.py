@@ -7,19 +7,12 @@ import threading
 
 ticks_before_reapplying_settings = 2
 
-def kbd_event(action, device):
-    global ticks_before_reapplying_settings
-
-    if action == 'add':
-        ticks_before_reapplying_settings = 2
-        print(device)
-
 def apply_keyboard_settings():
     global ticks_before_reapplying_settings
 
     while True:
         try:
-            time.sleep(1)
+            time.sleep(0.5)
 
             if ticks_before_reapplying_settings < 0:
                 continue
@@ -39,9 +32,10 @@ def apply_keyboard_settings():
             print('applied keyboard settings')
         except:
             print('swallowed exception in apply_keyboard_settings thread')
-            pass
 
 def main():
+    global ticks_before_reapplying_settings
+
     t = threading.Thread(target=apply_keyboard_settings)
     t.start()
 
@@ -50,11 +44,13 @@ def main():
             context = pyudev.Context()
             monitor = pyudev.Monitor.from_netlink(context)
             monitor.filter_by('input')
-            observer = pyudev.MonitorObserver(monitor, kbd_event)
-            observer.start()
 
             for action, device in monitor:
-                pass
+                if action == 'add':
+                    ticks_before_reapplying_settings = 2
+
+        except KeyboardInterrupt:
+            break
         except:
             print('swallowed exception in main thread')
             pass
