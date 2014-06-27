@@ -187,12 +187,16 @@ local function get_ip_addr(dev)
     local text = io.popen('ip addr show ' .. dev .. ' | grep inet'):read('*all')
     local index1 = text:find('inet ')
     local index2 = text:find('/')
+    local ip, success
     if index1 and index2 then
-        local ip = text:sub(index1 + 5, index2 - 1)
-        return ip
+        ip = text:sub(index1 + 5, index2 - 1)
+        success = true
     else
-        return 'IP N/A'
+        ip = 'IP N/A'
+        success = false
     end
+    ip = '<span color="#FF7F00">' .. ip .. '</span>'
+    return ip
 end
 
 -- ethernet
@@ -203,13 +207,13 @@ eth_dev = eth_dev:sub(index1 + 1, index2 - 2)
 local eth_widget = wibox.widget.textbox() 
 local function format_func(widget, args)
     local output = {}
-    --for k, v in pairs(args) do
-        --table.insert(output, k)
-    --end
+
+    table.insert(output, '<span color="%s"> ')
     table.insert(output, eth_dev)
     table.insert(output, ' - ')
 
-    table.insert(output, get_ip_addr(eth_dev))
+    local ip_addr, active = get_ip_addr(eth_dev)
+    table.insert(output, ip_addr)
     table.insert(output, ' - ')
 
     table.insert(output, 'down ')
@@ -220,7 +224,16 @@ local function format_func(widget, args)
     local up = tonumber(args['{' .. eth_dev .. ' up_kb}'])
     format_speed(up, output)
 
+    table.insert(output, '</span>')
+
     output = table.concat(output)
+
+    if active then
+        color = 'green'
+    else
+        color = 'red'
+    end
+    output = output:format(color)
     return output
 end
 vicious.register(eth_widget, vicious.widgets.net, format_func, 1, eth_dev)
@@ -243,7 +256,8 @@ local function format_func(widget, args)
     table.insert(output, wifi_dev)
     table.insert(output, ' ')
     if quality and quality > 0 and ssid ~= 'N/A' then
-        table.insert(output, get_ip_addr(wifi_dev))
+        local ip_addr, active = get_ip_addr(wifi_dev)
+        table.insert(output, ip_addr)
         table.insert(output, ' ')
     end
     table.insert(output, ssid)
@@ -253,7 +267,6 @@ local function format_func(widget, args)
     table.insert(output, '%% ')
     table.insert(output, args['{rate}'])
     table.insert(output, 'MB/s')
-
 
     table.insert(output, '</span>')
 
