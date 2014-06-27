@@ -273,7 +273,7 @@ local function format_func(widget, args)
     output = table.concat(output)
 
     local color
-    if quality >= 90 then
+    if quality >= 80 then
         color = 'green'
     elseif quality >= 55 then
         color = 'yellow'
