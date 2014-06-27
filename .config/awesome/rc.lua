@@ -183,6 +183,18 @@ local function make_separator()
     table.insert(info_widgets, separator)
 end
 
+local function get_ip_addr(dev)
+    local text = io.popen('ip addr show ' .. dev .. ' | grep inet'):read('*all')
+    local index1 = text:find('inet ')
+    local index2 = text:find('/')
+    if index1 and index2 then
+        local ip = text:sub(index1 + 5, index2 - 1)
+        return ip
+    else
+        return 'IP N/A'
+    end
+end
+
 -- ethernet
 local eth_dev = io.popen('ip addr | grep enp'):read('*all')
 local index1 = eth_dev:find(' ')
@@ -195,7 +207,10 @@ local function format_func(widget, args)
         --table.insert(output, k)
     --end
     table.insert(output, eth_dev)
-    table.insert(output, '- ')
+    table.insert(output, ' - ')
+
+    table.insert(output, get_ip_addr(eth_dev))
+    table.insert(output, ' - ')
 
     table.insert(output, 'down ')
     local down = tonumber(args['{'.. eth_dev .. ' down_kb}'])
@@ -221,17 +236,25 @@ local wifi_widget = wibox.widget.textbox()
 local function format_func(widget, args)
     local output = {}
 
+    local ssid = args['{ssid}']
+    local quality = tonumber(args['{linp}'])
+
     table.insert(output, '<span color="%s"> ')
     table.insert(output, wifi_dev)
     table.insert(output, ' ')
-    table.insert(output, args['{ssid}'])
+    if quality and quality > 0 and ssid ~= 'N/A' then
+        table.insert(output, get_ip_addr(wifi_dev))
+        table.insert(output, ' ')
+    end
+    table.insert(output, ssid)
     table.insert(output, ' @ ')
     -- linp should be link, but is mispelled in library
-    local quality = tonumber(args['{linp}'])
     table.insert(output, tostring(quality))
     table.insert(output, '%% ')
     table.insert(output, args['{rate}'])
     table.insert(output, 'MB/s')
+
+
     table.insert(output, '</span>')
 
     output = table.concat(output)
