@@ -184,38 +184,46 @@ local function make_separator()
 end
 
 -- ethernet
+local eth_dev = io.popen('ip addr | grep enp'):read('*all')
+local index1 = eth_dev:find(' ')
+local index2 = eth_dev:find(' ', index1 + 1)
+eth_dev = eth_dev:sub(index1 + 1, index2 - 2)
 local eth_widget = wibox.widget.textbox() 
 local function format_func(widget, args)
     local output = {}
     --for k, v in pairs(args) do
         --table.insert(output, k)
     --end
-    table.insert(output, 'enp4s0 - ')
+    table.insert(output, eth_dev)
+    table.insert(output, '- ')
 
     table.insert(output, 'down ')
-    local down = tonumber(args['{enp4s0 down_kb}'])
+    local down = tonumber(args['{'.. eth_dev .. ' down_kb}'])
     format_speed(down, output)
 
     table.insert(output, ' - up ')
-    local up = tonumber(args['{enp4s0 up_kb}'])
+    local up = tonumber(args['{' .. eth_dev .. ' up_kb}'])
     format_speed(up, output)
 
     output = table.concat(output)
     return output
 end
-vicious.register(eth_widget, vicious.widgets.net, format_func, 1, 'enp4s0')
+vicious.register(eth_widget, vicious.widgets.net, format_func, 1, eth_dev)
 table.insert(info_widgets, eth_widget)
 
 make_separator()
 
 -- wifi
+local wifi_dev = io.popen('iwconfig | grep wlp'):read('*all')
+local index = wifi_dev:find(' ')
+wifi_dev = wifi_dev:sub(1, index - 1)
 local wifi_widget = wibox.widget.textbox() 
 local function format_func(widget, args)
     local output = {}
 
-    table.insert(output, '<span color="%s">')
-
-    table.insert(output, ' wlp3s0 ')
+    table.insert(output, '<span color="%s"> ')
+    table.insert(output, wifi_dev)
+    table.insert(output, ' ')
     table.insert(output, args['{ssid}'])
     table.insert(output, ' @ ')
     -- linp should be link, but is mispelled in library
@@ -226,6 +234,8 @@ local function format_func(widget, args)
     table.insert(output, 'MB/s')
     table.insert(output, '</span>')
 
+    output = table.concat(output)
+
     local color
     if quality >= 90 then
         color = 'green'
@@ -234,12 +244,11 @@ local function format_func(widget, args)
     else
         color = 'red'
     end
-
-    output = table.concat(output)
     output = output:format(color)
+
     return output
 end
-vicious.register(wifi_widget, vicious.widgets.wifi, format_func, 7, 'wlp3s0')
+vicious.register(wifi_widget, vicious.widgets.wifi, format_func, 7, wifi_dev)
 table.insert(info_widgets, wifi_widget)
 
 make_separator()
