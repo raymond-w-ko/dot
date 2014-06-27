@@ -196,7 +196,7 @@ local function get_ip_addr(dev)
         success = false
     end
     ip = '<span color="#FF7F00">' .. ip .. '</span>'
-    return ip
+    return ip, success
 end
 
 -- ethernet
@@ -208,7 +208,7 @@ local eth_widget = wibox.widget.textbox()
 local function format_func(widget, args)
     local output = {}
 
-    table.insert(output, '<span color="%s"> ')
+    table.insert(output, '<span color="%s">')
     table.insert(output, eth_dev)
     table.insert(output, ' - ')
 
@@ -228,6 +228,7 @@ local function format_func(widget, args)
 
     output = table.concat(output)
 
+    local color
     if active then
         color = 'green'
     else
