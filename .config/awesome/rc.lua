@@ -192,7 +192,7 @@ local function get_ip_addr(dev)
         ip = text:sub(index1 + 5, index2 - 1)
         success = true
     else
-        ip = 'IP N/A'
+        ip = ''
         success = false
     end
     ip = '<span color="#FF7F00">' .. ip .. '</span>'
@@ -210,17 +210,16 @@ local function format_func(widget, args)
 
     table.insert(output, '<span color="%s">')
     table.insert(output, eth_dev)
-    table.insert(output, ' - ')
 
     local ip_addr, active = get_ip_addr(eth_dev)
     table.insert(output, ip_addr)
     table.insert(output, ' - ')
 
-    table.insert(output, 'down ')
+    table.insert(output, 'D ')
     local down = tonumber(args['{'.. eth_dev .. ' down_kb}'])
     format_speed(down, output)
 
-    table.insert(output, ' - up ')
+    table.insert(output, ' - U ')
     local up = tonumber(args['{' .. eth_dev .. ' up_kb}'])
     format_speed(up, output)
 
@@ -253,7 +252,7 @@ local function format_func(widget, args)
     local ssid = args['{ssid}']
     local quality = tonumber(args['{linp}'])
 
-    table.insert(output, '<span color="%s"> ')
+    table.insert(output, '<span color="%s">')
     table.insert(output, wifi_dev)
     table.insert(output, ' ')
     if quality and quality > 0 and ssid ~= 'N/A' then
@@ -325,7 +324,7 @@ local function format_func(widget, args)
     else
         color = 'green'
     end
-    local output = '<span color="%s">cpu core1: %d °C</span> '
+    local output = '<span color="%s">cpu %d °C</span> '
     output = output:format(color, temp)
     return output
 end
@@ -353,7 +352,7 @@ make_separator()
 -- memory widget
 local mem_widget = wibox.widget.textbox()
 vicious.register(mem_widget, vicious.widgets.mem,
-                 'mem $1% <span color="#555555">($2MB / $3MB)</span>', 13)
+                 'mem $1% <span color="#555555">$2MB</span>', 13)
 table.insert(info_widgets, mem_widget)
 
 make_separator()
@@ -366,11 +365,15 @@ table.insert(info_widgets, fs_widget)
 make_separator()
 
 -- free space on /mnt/data
-local fs_widget = wibox.widget.textbox()
-vicious.register(fs_widget, vicious.widgets.fs, "/mnt/data/ ${/mnt/data avail_gb} GB", 599)
-table.insert(info_widgets, fs_widget)
+local text = io.popen('mount | grep /mnt/data'):read('*all')
+if text:len() > 0 then
+    local fs_widget = wibox.widget.textbox()
+    vicious.register(fs_widget, vicious.widgets.fs, "/mnt/data/ ${/mnt/data avail_gb} GB", 599)
+    table.insert(info_widgets, fs_widget)
 
-make_separator()
+    make_separator()
+end
+
 
 clock_widget = awful.widget.textclock('%a %b %d, %I:%M:%S %p', 5)
 table.insert(info_widgets, clock_widget)
