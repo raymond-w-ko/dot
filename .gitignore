@@ -181,6 +181,10 @@ yankring_history_v2.txt
 # src should come from repos and archives backed up on the Internet
 /src
 
+# perl
+/perl5
+/.cpan
+
 #work
 /SVN
 /mnt
