@@ -212,6 +212,7 @@ local function format_func(widget, args)
 
     table.insert(output, '<span color="%s">')
     table.insert(output, eth_dev)
+    table.insert(output, ' ')
 
     local ip_addr, active = get_ip_addr(eth_dev)
     table.insert(output, ip_addr)
