@@ -10,6 +10,8 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
+-- such a bad hack for luajit, which is 5.1
+package.path = package.path .. ';/usr/share/lua/5.2/?.lua'
 local vicious = require('vicious')
 
 -- {{{ Error handling
