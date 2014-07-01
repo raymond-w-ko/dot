@@ -101,7 +101,7 @@ URxvt*color15:                 S_base3
 ! General
 
 *font:         -lucy-Tewi-medium-R-Normal--11-90-75-75-P-58-ISO10646-1
-Xcursor*theme: Premium
+Xcursor*theme: neutralplus-inv
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
