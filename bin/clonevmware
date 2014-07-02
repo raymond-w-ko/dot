@@ -1,0 +1,36 @@
+#!/bin/bash
+
+SRC="$1"
+SRC=$(echo $SRC | sed 's!/$!!')
+DST="$2"
+
+if [ -z "$SRC" ] || [ -z "$DST" ]; then
+  echo $0 [src] [dst]
+  exit 1
+fi
+
+echo cloning "$SRC/" to "$DST/"
+
+set -e
+
+mkdir -p "$DST"
+
+# clone and rename binary files
+cp "$SRC/$SRC.nvram" "$DST/$DST.nvram"
+cp "$SRC/$SRC.vmsd" "$DST/$DST.vmsd"
+
+# clone and rename text files, and sed guts
+cp "$SRC/$SRC.vmx" "$DST/$DST.vmx"
+perl -pi -e "s/$SRC/$DST/" "$DST/$DST.vmx"
+
+cp "$SRC/$SRC.vmxf" "$DST/$DST.vmxf"
+perl -pi -e "s/$SRC/$DST/" "$DST/$DST.vmxf"
+
+# clone and rename disk
+pushd "$SRC"
+for f in *.vmdk; do
+  dstname=$(echo $f | sed "s/$SRC/$DST/")
+  cp "$f" "../$DST/$dstname"
+done
+popd
+perl -pi -e "s/$SRC/$DST/" "$DST/$DST.vmdk"
