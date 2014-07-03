@@ -212,14 +212,15 @@ table.insert(info_widgets, temp_widget)
 -- CPU graph
 local cpu_widget = awful.widget.graph()
 cpu_widget:set_width(50)
-cpu_widget:set_background_color("#494B4F")
+cpu_widget:set_background_color("#222222")
 cpu_widget:set_color(
-    {
-        type = "linear",
-        from = { 0, 0 },
-        to = { 10,0 },
-        stops = { {0, "#FF5656"}, {0.5, "#88A175"}, {1, "#AECF96" }}
-    })
+  {
+    type = "linear",
+
+    from = { 75,0 },
+    to = { 75,30 },
+    stops = { {0, "#FF0000"}, {0.5, "#FFFF00"}, {1, "#00FF00" }}
+  })
 vicious.register(cpu_widget, vicious.widgets.cpu, "$1", 2)
 table.insert(info_widgets, cpu_widget)
 
@@ -235,7 +236,7 @@ make_separator()
 
 -- free space on /
 local fs_widget = wibox.widget.textbox()
-vicious.register(fs_widget, vicious.widgets.fs, "/ ${/ avail_gb} GB", 599)
+vicious.register(fs_widget, vicious.widgets.fs, "/ ${/ avail_gb} GB", 597)
 table.insert(info_widgets, fs_widget)
 
 make_separator()
