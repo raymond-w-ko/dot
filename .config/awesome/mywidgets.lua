@@ -105,9 +105,9 @@ local function format_func(widget, args)
     table.insert(output, '<span color="%s">')
     table.insert(output, wifi_dev)
     table.insert(output, '</span> ')
+    table.insert(output, '<span color="#555">')
     if quality and quality > 0 and ssid ~= 'N/A' then
         local ip_addr, active = get_ip_addr(wifi_dev)
-        table.insert(output, '<span color="#555">')
         table.insert(output, ip_addr)
         table.insert(output, ' ')
     end
