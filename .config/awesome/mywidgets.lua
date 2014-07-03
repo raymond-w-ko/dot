@@ -42,17 +42,12 @@ local function get_ip_addr(dev)
 end
 
 local function get_dev_speed_stats(dev, ip_addr, args, output)
-  table.insert(output, ' ')
-
-  table.insert(output, ip_addr)
-  table.insert(output, ' - ')
-
   table.insert(output, 'D ')
-  local down = tonumber(args['{'.. eth_dev .. ' down_kb}'])
+  local down = tonumber(args['{'.. dev .. ' down_kb}'])
   format_speed(down, output)
 
   table.insert(output, ' - U ')
-  local up = tonumber(args['{' .. eth_dev .. ' up_kb}'])
+  local up = tonumber(args['{' .. dev .. ' up_kb}'])
   format_speed(up, output)
 end
 
@@ -70,6 +65,11 @@ local function format_func(widget, args)
 
     local ip_addr, active = get_ip_addr(eth_dev)
     if active then
+      table.insert(output, ' ')
+
+      table.insert(output, ip_addr)
+      table.insert(output, ' - ')
+
       get_dev_speed_stats(eth_dev, ip_addr, args, output)
     end
 
@@ -104,9 +104,10 @@ local function format_func(widget, args)
 
     table.insert(output, '<span color="%s">')
     table.insert(output, wifi_dev)
-    table.insert(output, ' ')
+    table.insert(output, '</span> ')
     if quality and quality > 0 and ssid ~= 'N/A' then
         local ip_addr, active = get_ip_addr(wifi_dev)
+        table.insert(output, '<span color="#555">')
         table.insert(output, ip_addr)
         table.insert(output, ' ')
     end
@@ -134,8 +135,33 @@ local function format_func(widget, args)
 
     return output
 end
-vicious.register(wifi_widget, vicious.widgets.wifi, format_func, 7, wifi_dev)
+vicious.register(wifi_widget, vicious.widgets.wifi, format_func, 1, wifi_dev)
+local wifi_widget2 = wibox.widget.textbox() 
 table.insert(info_widgets, wifi_widget)
+local function format_func(widget, args)
+    local output = {}
+
+    table.insert(output, ' <span color="%s">')
+    local ip_addr, active = get_ip_addr(wifi_dev)
+    if active then
+      get_dev_speed_stats(wifi_dev, ip_addr, args, output)
+    end
+
+    table.insert(output, '</span>')
+
+    output = table.concat(output)
+
+    local color
+    if active then
+        color = 'green'
+    else
+        color = 'red'
+    end
+    output = output:format(color)
+    return output
+end
+vicious.register(wifi_widget2, vicious.widgets.net, format_func, 1, wifi_dev)
+table.insert(info_widgets, wifi_widget2)
 
 make_separator()
 
