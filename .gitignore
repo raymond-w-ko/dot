@@ -97,6 +97,7 @@
 /.vmware
 /.vnc
 /.wine
+/.wine-pipelight
 /.xbindkeysrc
 /.xmonad/xmonad-x86_64-linux
 /.xmonad/xmonad.errors
