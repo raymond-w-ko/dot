@@ -117,19 +117,29 @@ XTerm*backarrowKey:       false
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-URxvt*font:           -lucy-Tewi-medium-R-Normal--11-90-75-75-P-58-ISO10646-1,-*-stlarch-medium-r-*-*-10-*-*-*-*-*-*-*
-URxvt*boldFont:       -lucy-Tewi-medium-R-Normal--11-90-75-75-P-58-ISO10646-1,-*-stlarch-medium-r-*-*-10-*-*-*-*-*-*-*
-URxvt*italicFont:     -lucy-Tewi-medium-R-Normal--11-90-75-75-P-58-ISO10646-1,-*-stlarch-medium-r-*-*-10-*-*-*-*-*-*-*
-URxvt*bolditalicFont: -lucy-Tewi-medium-R-Normal--11-90-75-75-P-58-ISO10646-1,-*-stlarch-medium-r-*-*-10-*-*-*-*-*-*-*
+#define fonts \
+  -lucy-tewi-medium-r-normal--11-90-75-75-p-58-iso10646-1, \
+  xft:MS Gothic:pixelsize=12
 
-!URxvt.letterSpace: -1
-URxvt*scrollBar:     false
-URxvt*saveLines:     16384
-URxvt*loginShell:    true
-URxvt*meta8:         false
-URxvt*depth:         24
+URxvt*font:           fonts
+URxvt*boldFont:       fonts
+URxvt*italicFont:     fonts
+URxvt*bolditalicFont: fonts
+
+URxvt*cursorBlink     : false
+URxvt*cursorUnderline : false
+URxvt*depth           : 24
 ! this usually means use the desktop background as the background instead of a
 ! configured color for pseudo-transparency
-URxvt*inheritPixmap: false
-URxvt*transparent:   false
-URxvt*urgentOnBell:  true
+URxvt*inheritPixmap   : false
+URxvt*intensityStyles : true
+URxvt*internalBorder  : 4
+URxvt*loginShell      : true
+URxvt*meta8           : false
+URxvt*pointerBlank    : true
+URxvt*saveLines       : 8192
+URxvt*scrollBar       : false
+URxvt*skipScroll      : true
+URxvt*transparent     : false
+URxvt*urgentOnBell    : true
+URxvt*visualBell      : true

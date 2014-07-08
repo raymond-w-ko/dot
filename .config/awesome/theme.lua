@@ -19,8 +19,8 @@ theme.fg_minimize   = "#ffffff"
 
 theme.border_width  = 1
 theme.border_normal = "#000000"
-theme.border_focus  = "#00aa00"
-theme.border_marked = "#ff0000"
+theme.border_focus  = "#dc322f"
+theme.border_marked = "#000000"
 
 -- There are other variable sets
 -- overriding the default one when
