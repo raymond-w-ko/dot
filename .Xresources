@@ -142,4 +142,4 @@ URxvt*scrollBar       : false
 URxvt*skipScroll      : true
 URxvt*transparent     : false
 URxvt*urgentOnBell    : true
-URxvt*visualBell      : true
+URxvt*visualBell      : false
