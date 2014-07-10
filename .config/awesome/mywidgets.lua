@@ -205,6 +205,7 @@ local function format_func(widget, args)
             break
         end
     end
+    temp = temp / 1000
 
     local color
     if temp >= 70 then
