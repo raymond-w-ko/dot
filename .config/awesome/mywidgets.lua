@@ -191,7 +191,21 @@ make_separator()
 -- CPU core temperature
 local temp_widget = wibox.widget.textbox()
 local function format_func(widget, args)
-    local temp = tonumber(args[1])
+    local candidates = {
+        '/sys/devices/platform/coretemp.0/hwmon/hwmon0/temp1_input',
+        '/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input',
+    }
+    local temp
+    for i = 1, #candidates do
+        local candidate = candidates[i]
+        local f = io.open(candidate)
+        if f then
+            temp = tonumber(f:read('*all'))
+            f:close()
+            break
+        end
+    end
+
     local color
     if temp >= 70 then
         color = 'red'
@@ -202,11 +216,10 @@ local function format_func(widget, args)
     end
     local output = '<span color="%s">cpu %d °C</span> '
     output = output:format(color, temp)
+
     return output
 end
-vicious.register(temp_widget, vicious.widgets.thermal,
-                 format_func, nil,
-                 {'coretemp.0/hwmon/hwmon0/', 'core', 'temp1_input'})
+vicious.register(temp_widget, vicious.widgets.mem, format_func, 2)
 table.insert(info_widgets, temp_widget)
 
 -- CPU graph
