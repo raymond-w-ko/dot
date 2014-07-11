@@ -26,7 +26,9 @@ local function make_separator()
 end
 
 local function get_ip_addr(dev)
-    local text = io.popen('ip addr show ' .. dev .. ' | grep inet'):read('*all')
+    local pipe = io.popen('ip addr show ' .. dev .. ' | grep inet')
+    local text = pipe:read('*all')
+    pipe:close()
     local index1 = text:find('inet ')
     local index2 = text:find('/')
     local ip, success
@@ -52,7 +54,9 @@ local function get_dev_speed_stats(dev, ip_addr, args, output)
 end
 
 -- ethernet
-local eth_dev = io.popen('ip addr | grep enp'):read('*all')
+local pipe = io.popen('ip addr | grep enp')
+local eth_dev = pipe:read('*all')
+pipe:close()
 local index1 = eth_dev:find(' ')
 local index2 = eth_dev:find(' ', index1 + 1)
 eth_dev = eth_dev:sub(index1 + 1, index2 - 2)
@@ -92,7 +96,9 @@ table.insert(info_widgets, eth_widget)
 make_separator()
 
 -- wifi
-local wifi_dev = io.popen('iwconfig | grep wlp'):read('*all')
+local pipe = io.popen('iwconfig | grep wlp')
+local wifi_dev = pipe:read('*all')
+pipe:close()
 local index = wifi_dev:find(' ')
 wifi_dev = wifi_dev:sub(1, index - 1)
 local wifi_widget = wibox.widget.textbox() 
@@ -256,7 +262,9 @@ table.insert(info_widgets, fs_widget)
 make_separator()
 
 -- free space on /mnt/data
-local text = io.popen('mount | grep /mnt/data'):read('*all')
+local pipe = io.popen('mount | grep /mnt/data')
+local text = pipe:read('*all')
+pipe:close()
 if text:len() > 0 then
     local fs_widget = wibox.widget.textbox()
     vicious.register(fs_widget, vicious.widgets.fs, "/mnt/data/ ${/mnt/data avail_gb} GB", 599)
