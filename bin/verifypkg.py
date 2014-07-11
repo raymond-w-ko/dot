@@ -30,6 +30,7 @@ import tarfile
 from glob import glob
 from StringIO import StringIO
 import hashlib
+import subprocess
 try:
     import lzma
 except ImportError:
@@ -37,6 +38,7 @@ except ImportError:
 
 DB = '/var/lib/pacman'
 CACHE = '/var/cache/pacman/pkg'
+ARCH = subprocess.check_output('uname -m', shell = True).strip()
 
 # TODO: use logging module ?
 def error(s):
@@ -97,9 +99,14 @@ def findpkgtarball(s, dbpkg):
                 name = i
                 break
     if found:
-        res = glob('/'.join([CACHE, name+'*']))
+        res = glob('/'.join([CACHE, name + '*']))
         if len(res) == 1:
             return res[0]
+        elif len(res) >= 2:
+            # we might have x86_64 and x86 copies of the package
+            res = glob('/'.join([CACHE, name + '-' + ARCH + '*']))
+            if len(res) == 1:
+                return res[0]
     return None
 
 def pkgmd5s(pkgfile):
