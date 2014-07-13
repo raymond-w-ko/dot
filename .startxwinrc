@@ -30,5 +30,3 @@ unset d
 xset fp rehash
 
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
-
-urxvt
