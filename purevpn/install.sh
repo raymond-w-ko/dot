@@ -16,7 +16,8 @@ sudo rm -f passwd
 sudo ln -s "$HOME/.ssh/purevpn" passwd
 
 sudo rm -f client.conf
-sudo ln -s "$ORIGDIR/UDP/USA-Chicago-UDP.ovpn" client.conf
+#sudo ln -s "$ORIGDIR/UDP/USA-Chicago-UDP.ovpn" client.conf
+sudo ln -s "$ORIGDIR/UDP/USA-New York-UDP.ovpn" client.conf
 
 ls -l --color=yes /etc/openvpn
 
