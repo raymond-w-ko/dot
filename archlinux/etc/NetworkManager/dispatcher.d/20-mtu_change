@@ -1,0 +1,12 @@
+#!/bin/bash
+
+INTERFACE=$1
+STATUS=$2
+
+if [ "$INTERFACE" = "ppp0" ]; then
+  case $STATUS in
+    up)
+      ip link set ppp0 mtu 1372
+      ;;
+  esac
+fi
