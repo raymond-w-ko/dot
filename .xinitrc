@@ -61,7 +61,7 @@ compton --config /dev/null -b --backend glx --vsync opengl-swc --glx-no-rebind-p
 (sleep 20 && DISPLAY=":0.0" nvidia-settings -a [gpu:0]/GPUPowerMizerMode=1) &
 
 $HOME/bin/my_keyboard_settings_daemon.py &
-nm-applet --sm-disable &
+
 (sleep 5 && /opt/dropbox/dropbox) &
 
 #exec herbstluftwm
