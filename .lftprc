@@ -11,7 +11,7 @@ alias qs queue stop
 alias k kill
 alias ka kill all
 
-alias p pget -c
+alias p pget -c -n 1
 alias p2 pget -c -n 2
 alias p3 pget -c -n 3
 alias p4 pget -c -n 4
@@ -20,7 +20,7 @@ alias p10 pget -c -n 10
 alias p15 pget -c -n 15
 alias p20 pget -c -n 20
 
-alias m mirror -c
+alias m mirror -c --use-pget-n=1
 alias m2 mirror -c --use-pget-n=2
 alias m3 mirror -c --use-pget-n=3
 alias m4 mirror -c --use-pget-n=4
