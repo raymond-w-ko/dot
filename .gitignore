@@ -1,18 +1,20 @@
 # Linux RC
 
+.config/libfm/
+.config/pcmanfm/
 /.ICEauthority
 /.Xauthority
 /.adobe/Flash_Player
 /.android
 /.bash_history
-/.ccache
 /.cache
+/.ccache
 /.cgdb
 /.chromium-bsu
 /.cinnamon
 /.config/ImageMagick
-/.config/QtProject.conf
 /.config/QtProject
+/.config/QtProject.conf
 /.config/Synergy
 /.config/Trolltech.conf
 /.config/VirtualBox
@@ -66,8 +68,8 @@
 /.i3/i3log*
 /.icons
 /.kde4
-/.lesshst
 /.lein
+/.lesshst
 /.lftp
 /.links2
 /.linuxmint
