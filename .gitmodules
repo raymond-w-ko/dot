@@ -115,3 +115,6 @@
 [submodule ".vim/bundle/vim-lion"]
 	path = .vim/bundle/vim-lion
 	url = https://github.com/tommcdo/vim-lion.git
+[submodule ".vim/bundle/vim-obsession"]
+	path = .vim/bundle/vim-obsession
+	url = https://github.com/tpope/vim-obsession.git
