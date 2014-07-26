@@ -361,6 +361,11 @@ endfunction
 function! CreateAndSetupVsplits()
     let num_vsplits = (&columns / 100) - 1
 
+    let num_cur_tabs = tabpagenr('$')
+    if ((num_cur_tabs > 1) && !exists('g:my_current_number_of_tabs'))
+        let g:my_current_number_of_tabs = num_cur_tabs
+    endif
+
     if !exists("g:my_current_number_of_tabs")
         let g:my_current_number_of_tabs = 1
     endif
