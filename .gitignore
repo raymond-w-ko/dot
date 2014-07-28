@@ -72,6 +72,7 @@
 /.lesshst
 /.lftp
 /.links2
+/.linssid.prefs
 /.linuxmint
 /.macromedia
 /.monicarc
@@ -93,8 +94,7 @@
 /.thumbnails
 /.thunderbird
 /.vboxclient*
-/.viminfo
-/.viminfo.tmp
+/.viminf*
 /.viminfz.tmp
 /.vmware
 /.vnc
