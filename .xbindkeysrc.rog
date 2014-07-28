@@ -31,3 +31,6 @@
 
 "~/bin/mymonitors.sh"
   Mod1 + p
+
+"~/bin/take_screenshot_of_currently_focused_window.sh"
+  Mod4 + Print
