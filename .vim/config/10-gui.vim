@@ -16,6 +16,7 @@ if !exists("g:already_set_color_scheme") && !($TERM == "linux")
     "set background=light
     "colorscheme seoul256-light
     
+    let g:solarized_visibility="high"
     colorscheme solarized 
 
     let g:already_set_color_scheme=1
