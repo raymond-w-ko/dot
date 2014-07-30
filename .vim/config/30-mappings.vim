@@ -24,6 +24,8 @@ if (!exists('g:lazy_writing') || g:lazy_writing == 0)
 endif
 nnoremap <CR> :call MyLazyWrite()<CR>
 
+nnoremap ; :
+
 " disable crazy keys
 nnoremap K <Nop>
 vnoremap K <Nop>
