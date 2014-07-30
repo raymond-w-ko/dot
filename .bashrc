@@ -170,7 +170,10 @@ export MC_SKIN=$HOME/.config/mc/solarized.ini
 #fi
 
 if [[ ! $DISPLAY && $(tty) = /dev/tty1 ]]; then
-  exec startx
+  # we can't completely redirect stderr to a file otherwise root-less X breaks
+  # I'm guessing it is determining the VTTY from the stderr file descriptor
+  startx &> >(tee $HOME/.xsession-errors)
+  logout
 else
   if hash fortune 2>/dev/null; then
     if hash cowsay 2>/dev/null; then
