@@ -25,6 +25,8 @@ endif
 nnoremap <CR> :call MyLazyWrite()<CR>
 
 nnoremap ; :
+" some convenience mappings for Vim autocomplete
+inoremap <C-l> <C-x><C-l>
 
 " disable crazy keys
 nnoremap K <Nop>
