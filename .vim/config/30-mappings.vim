@@ -24,7 +24,6 @@ if (!exists('g:lazy_writing') || g:lazy_writing == 0)
 endif
 nnoremap <CR> :call MyLazyWrite()<CR>
 
-nnoremap ; :
 " some convenience mappings for Vim autocomplete
 inoremap <C-l> <C-x><C-l>
 
