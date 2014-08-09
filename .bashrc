@@ -174,6 +174,8 @@ if [[ ! $DISPLAY && $(tty) = /dev/tty1 ]]; then
   # I'm guessing it is determining the VTTY from the stderr file descriptor
   startx &> >(tee $HOME/.xsession-errors)
   logout
+elif [[ $(ps auxww | grep interkonnect.py | grep -v grep | wc -l) = 0 ]]; then
+  sudo ~/src/interkonnect/interkonnect.py
 else
   if hash fortune 2>/dev/null; then
     if hash cowsay 2>/dev/null; then
