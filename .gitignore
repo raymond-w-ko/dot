@@ -21,6 +21,7 @@
 /.config/autostart
 /.config/caja
 /.config/chromium
+/.config/chromium-backup
 /.config/dconf
 /.config/evince
 /.config/gtk-2.0
@@ -81,6 +82,7 @@
 /.mysql_history
 /.nv
 /.nvidia-settings-rc
+/.parallel
 /.pentadactyl
 /.pki
 /.pulse-cookie
