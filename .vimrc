@@ -10,9 +10,9 @@ set encoding=utf-8
 
 if exists('+regexpengine')
     " automatic engine selection
-    "set regexpengine=0
+    set regexpengine=0
     " use old engine
-    set regexpengine=1
+    "set regexpengine=1
     " use new engine
     "set regexpengine=2
 end
