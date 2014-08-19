@@ -54,6 +54,7 @@ alias iftop='sudo iftop'
 alias openports='ss --all --numeric --processes --ipv4 --ipv6'
 alias n19='nice -n 19'
 alias n='nice -n 19'
+alias makepkg='nice -n 19 makepkg'
 findcore() {
   find . -type f -regextype posix-extended -regex '.*/core\.[0-9]+$'
 }
