@@ -26,7 +26,6 @@ call add(g:pathogen_disabled, "cocoa")
 call add(g:pathogen_disabled, "YankRing")
 call add(g:pathogen_disabled, "vim-easymotion")
 call add(g:pathogen_disabled, "vim-fireplace")
-call add(g:pathogen_disabled, "rainbow_parentheses.vim")
 
 if g:omegacomplete_version_preference == 2
     if has('java')

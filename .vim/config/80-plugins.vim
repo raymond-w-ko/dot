@@ -73,16 +73,26 @@ let g:clojure_fuzzy_indent_blacklist =
     \ ['-fn$', '\v^with-%(meta|out-str|loading-context)$']
 
 " rainbow_parentheses
-let g:rbpt_bold=1
-if exists('*RainbowParenthesesToggle')
-    augroup EnableRainbowParentheses
-        au!
-        au VimEnter * RainbowParenthesesToggle
-        au Syntax * RainbowParenthesesLoadRound
-        au Syntax * RainbowParenthesesLoadSquare
-        au Syntax * RainbowParenthesesLoadBraces
-    augroup END
-endif
+let g:rbpt_bold=0
+let g:rbpt_max=8
+let g:rbpt_colorpairs = [
+    \ [ '13', '#6c71c4'],
+    \ [ '5',  '#d33682'],
+    \ [ '1',  '#dc322f'],
+    \ [ '9',  '#cb4b16'],
+    \ [ '3',  '#b58900'],
+    \ [ '2',  '#859900'],
+    \ [ '6',  '#2aa198'],
+    \ [ '4',  '#268bd2'],
+    \ ]
+augroup EnableRainbowParentheses
+  au!
+  au VimEnter * RainbowParenthesesToggle
+  au Syntax * RainbowParenthesesLoadRound
+  au Syntax * RainbowParenthesesLoadSquare
+  au Syntax * RainbowParenthesesLoadBraces
+  au Syntax * RainbowParenthesesLoadChevrons
+augroup END
 
 "NERDCommenter
 let g:NERDCustomDelimiters = {
