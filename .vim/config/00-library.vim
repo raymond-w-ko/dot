@@ -47,6 +47,7 @@ let s:project_directories_list = [
     \ '__UNIX_HOME__/src/ocularwm',
     \ '__UNIX_HOME__/src/windmenu',
     \ '__UNIX_HOME__/src/dk2test',
+    \ '__UNIX_HOME__/src/tsukuyomi',
     \ '__UNIX_HOME__/src/vim/src',
     \ '__UNIX_HOME__/lib/dot/vim/bundle/omegacomplete',
     \ '__SVN__/SVN/Syandus_ALIVE3/Frameworks/Carbon',
