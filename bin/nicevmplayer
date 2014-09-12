@@ -1,0 +1,3 @@
+#!/bin/bash
+
+exec nice -n 19 vmplayer
