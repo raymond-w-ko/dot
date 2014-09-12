@@ -120,6 +120,8 @@ alias hpush='hg push'
 alias hpull='hg pull'
 alias hcmergedwithupstream='hg commit -m "merged with upstream"'
 
+alias us='~/bin/update-submodules'
+
 alias svnadddir='svn add --depth=empty'
 if hash colordiff 2>/dev/null; then
   svndiff() {
