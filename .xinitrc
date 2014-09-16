@@ -58,7 +58,7 @@ export QT_STYLE_OVERRIDE="gtk"
 start-pulseaudio-x11
 
 # this should prevent tearing
-compton --config /dev/null -b --backend glx --vsync opengl-swc --glx-no-rebind-pixmap --glx-no-stencil --unredir-if-possible --paint-on-overlay --xrender-sync-fence 
+#compton --config /dev/null -b --backend glx --vsync opengl-swc --glx-no-rebind-pixmap --glx-no-stencil --unredir-if-possible --paint-on-overlay --xrender-sync-fence 
 (sleep 20 && DISPLAY=":0.0" nvidia-settings -a [gpu:0]/GPUPowerMizerMode=1) &
 
 $HOME/bin/my_keyboard_settings_daemon.py &
