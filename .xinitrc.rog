@@ -6,6 +6,13 @@ xinput set-float-prop "$TOUCHPAD" "Device Accel Constant Deceleration" 7.5
 xinput set-float-prop "$TOUCHPAD" "Device Accel Adaptive Deceleration" 1.5
 
 # this causes a signficant amount of wakeups in powertop
-# but ma spoon^H^H^H^H^H is too big
+# but ma spoon^H^H^H^H^Hhands are too big
 killall syndaemon
 syndaemon -t -k -i 1 -d &
+
+# this should prevent tearing
+compton --config /dev/null -b --backend glx --vsync opengl --glx-no-rebind-pixmap --glx-no-stencil --unredir-if-possible --paint-on-overlay --xrender-sync-fence
+#compton --config /dev/null -b --backend xrender --unredir-if-possible
+
+# always full GPU speed
+(sleep 5 && DISPLAY=":0.0" nvidia-settings -a [gpu:0]/GPUPowerMizerMode=1) &
