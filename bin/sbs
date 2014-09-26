@@ -1,0 +1,12 @@
+#!/usr/bin/env python
+
+import sys
+import subprocess
+
+def main(dir):
+  dir = dir.replace('\\', '/')
+  dir = dir.replace('//192.168.1.3/Art/', '/mnt/art/')
+  subprocess.call(['pcmanfm', dir])
+
+if __name__ == '__main__':
+  main(sys.argv[1])
