@@ -367,7 +367,7 @@ command! FixSmartQuotes silent! call FixSmartQuotes()
 
 command! WriteUTF8 write ++enc=utf-8
 
-function ReplaceWithTLINK()
+function! ReplaceWithTLINK()
     %s/\vvoice\="Audrey16" type\="STREAMING" category\="VOICE"/TLINK=">sounds>amy"/
     %s/\vvoice\="Mike16" type\="STREAMING" category\="VOICE"/TLINK=">sounds>bob"/
 endfunction
