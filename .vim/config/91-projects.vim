@@ -300,13 +300,36 @@ function! AutoConfigureSpaceM()
   return
 endfunction
 
+function! FindAndRunMakefile()
+  let prev_dir = ''
+  let current_dir = expand('%:p:h')
+
+  let max_search = 0
+
+  while current_dir != prev_dir && current_dir != '/'
+    let max_search += 1
+
+    let makefile = current_dir . '/Makefile'
+    if filereadable(makefile)
+      echom current_dir
+      execute "!make -f Makefile " . '-C ' . current_dir
+      return
+    endif
+
+    let prev_dir = current_dir
+    let current_dir = simplify(current_dir . '/..')
+    if max_search == 8
+      break
+    endif
+  endwhile
+endfunction
+
 if has('unix')
-  augroup SyandusUnix
-      au!
-      au BufNewFile,BufRead,BufEnter
-          \ ~/SVN/*
-          \ call AutoConfigureSpaceM()
-  augroup END
+  "augroup SyandusUnix
+      "au!
+      "au BufNewFile,BufRead,BufEnter * call AutoConfigureSpaceM()
+  "augroup END
+  nnoremap <leader>m :update<CR>:call FindAndRunMakefile()<CR>
 endif
 
 " vim:fdm=marker:foldlevel=0
