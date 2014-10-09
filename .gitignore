@@ -80,6 +80,7 @@
 /.mozilla
 /.mysql
 /.mysql_history
+/.npm
 /.nv
 /.nvidia-settings-rc
 /.parallel
@@ -121,10 +122,11 @@
 /Pictures
 /VirtualBox VMs
 /Wallpapers
-/packages
 /boost
+/node_modules
 /old
 /p2p
+/packages
 /tmp
 /whatbox
 
