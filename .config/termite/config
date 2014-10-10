@@ -35,7 +35,8 @@ foreground = #839496
 foreground_bold = #eee8d5
 #foreground_dim = #888888
 background = #002b36
-cursor = #93a1a1
+#cursor = #93a1a1
+cursor = #dc322f
 # if unset, will reverse foreground and background
 ;highlight = #839496
 # colors from color0 to color254 can be set
@@ -62,7 +63,7 @@ color15 = #fdf6e3
 #background = #3f3f3f
 #active_foreground = #e68080
 #active_background = #3f3f3f
-#padding = 2
+padding = 2
 #border = #3f3f3f
 #border_width = 0.5
 #roundness = 2.0
