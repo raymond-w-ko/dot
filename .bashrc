@@ -83,11 +83,11 @@ fi
 
 alias makeinstallvim="vimsrc && hpa && cd src && nice -n 19 make && rm -r ~/vim/ && make install"
 
-if [ -d "$HOME/android-ndk-r9d" ]
+if [ -d "$HOME/android-ndk-r10b" ]
 then
-  export NDK_HOME=$HOME/android-ndk-r9d
-  export ANDROID_NDK=$HOME/android-ndk-r9d
-  export PATH="$PATH:$HOME/android-ndk-r9d"
+  export NDK_HOME=$HOME/android-ndk-r10b
+  export ANDROID_NDK=$HOME/android-ndk-r10b
+  export PATH="$PATH:$HOME/android-ndk-r10b"
 fi
 
 if [ -d "$HOME/android-sdk-linux" ]
