@@ -81,7 +81,7 @@ elif [ -d "$HOME/src/vim" ]; then
     alias vimsrc="cd $HOME/src/vim"
 fi
 
-alias makeinstallvim="vimsrc && hpa && cd src && nice -n 19 make && rm -r ~/vim/ && make install"
+alias makeinstallvim="vimsrc && hpa && cd src && nice -n 19 make && rm -rf ~/vim/ && make install"
 
 if [ -d "$HOME/android-ndk-r10b" ]
 then
