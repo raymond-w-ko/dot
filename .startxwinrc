@@ -3,7 +3,7 @@
 [ -f /etc/profile ] && source /etc/profile
 [ -f /etc/xprofile ] && source /etc/xprofile
 
-export PATH="$HOME/bin:$PATH"
+. "$HOME/.bash.d/add_dot_extra_paths.sh"
 
 source ~/.bashrc
 
