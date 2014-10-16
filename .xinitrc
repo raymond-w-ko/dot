@@ -3,7 +3,7 @@
 [ -f /etc/profile ] && source /etc/profile
 [ -f /etc/xprofile ] && source /etc/xprofile
 
-export PATH="$HOME/bin:$PATH"
+. "$HOME/.bash.d/add_dot_extra_paths.sh"
 
 source ~/.bashrc
 
@@ -57,7 +57,7 @@ export QT_STYLE_OVERRIDE="gtk"
 #pulseaudio --start
 start-pulseaudio-x11
 
-$HOME/bin/my_keyboard_settings_daemon.py &
+my_keyboard_settings_daemon.py &
 
 (sleep 5 && /opt/dropbox/dropbox) &
 
