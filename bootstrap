@@ -13,7 +13,7 @@ function safe_delete_existing_file
 {
   if [ -L "$1" ]; then
     $DRYRU rm "$1"
-  else
+  elif [ -e "$1" ]; then
     $DRYRU rm -ri "$1"
   fi
 }
