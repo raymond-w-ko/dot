@@ -7,7 +7,7 @@ fi
 HOSTNAME=`hostname -s`
 HASH=`echo $HOSTNAME | ${MD5}`
 RGB=${HASH:0:6}
-COLORED_HOST=$(~/bin/rgb2term.py $RGB)$HOSTNAME
+COLORED_HOST=$(rgb2term.py $RGB)$HOSTNAME
 
 _WhiteBold="\[\033[1;37m\]"
 _White="\[\033[0;37m\]"
