@@ -16,14 +16,6 @@ BASE_SCRIPT_DIR=$(basename $SCRIPT_DIR)
 echo $BASE_SCRIPT_DIR
 
 IFS=$'\n'
-for dotfile in $(find . -maxdepth 1 -regex '.*/\..+') ; do
-  FILENAME=$(basename $dotfile)
-  SRC=$BASE_SCRIPT_DIR/$FILENAME
-  DST=$HOME/$FILENAME
-  if [ ! -e "$HOME/$SRC" ]; then echo could not find "$SRC"; exit 1; fi
-  $DRYRUN rm -rf "$DST"
-  $DRYRUN ln -s "$SRC" "$DST"
-done
 
 mkdir -p "$HOME/src"
 pushd src
@@ -36,6 +28,30 @@ for dotfile in $(find . -maxdepth 1 ! -path .) ; do
   $DRYRUN ln -s "../$SRC" "$DST"
 done
 popd
+echo
+
+for dotfile in $(find . -maxdepth 1 ! -path ./.git -regex '.*/\..+') ; do
+  FILENAME=$(basename $dotfile)
+  SRC=$BASE_SCRIPT_DIR/$FILENAME
+  DST=$HOME/$FILENAME
+  if [ ! -e "$HOME/$SRC" ]; then echo could not find "$SRC"; exit 1; fi
+  $DRYRUN rm -rf "$DST"
+  $DRYRUN ln -s "$SRC" "$DST"
+done
+echo
+
+mkdir -p "$HOME/.config"
+pushd config
+for dotfile in $(find . -maxdepth 1 ! -path .) ; do
+  FILENAME=$(basename $dotfile)
+  SRC=$BASE_SCRIPT_DIR/config/$FILENAME
+  DST=$HOME/.config/$FILENAME
+  if [ ! -e "$HOME/$SRC" ]; then echo could not find "$SRC"; exit 1; fi
+  $DRYRUN rm -rf "$DST"
+  $DRYRUN ln -s "../$SRC" "$DST"
+done
+popd
+echo
 
 if [ -z "$1" ]; then
   echo 'did not request machine specific config files, exiting'
@@ -52,3 +68,4 @@ for dotfile in $(find . -maxdepth 1 -regex '.*/\..+') ; do
   $DRYRUN ln -s "$SRC" "$DST"
 done
 popd
+echo
