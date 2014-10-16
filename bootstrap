@@ -53,6 +53,10 @@ done
 popd
 echo
 
+echo "export PATH=$HOME/$BASE_SCRIPT_DIR/bin:\$PATH" > "$SCRIPT_DIR/.bash.d/add_dot_extra_paths.sh"
+
+################################################################################
+
 if [ -z "$1" ]; then
   echo 'did not request machine specific config files, exiting'
   exit 0

@@ -16,6 +16,8 @@ export HISTCONTROL=ignoreboth:erasedups
 export CCACHE_SLOPPINESS=time_macros
 export PATH="/usr/lib/ccache/bin:$HOME/bin:/opt/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl:/opt/aws/bin:/opt/mono/bin:/opt/dropbox:$PATH"
 
+. ~/.bash.d/add_dot_extra_paths.sh
+
 [[ -z "$TMP" ]] && export TMP='/tmp'
 [[ -z "$TEMP" ]] && export TEMP='/tmp'
 export PKG_CONFIG_PATH="/usr/lib/pkgconfig/:/usr/local/lib/pkgconfig/"
