@@ -9,6 +9,24 @@ if [ -z "$HOME" ]; then
   exit 1
 fi
 
+mkdir -p "$HOME/.ssh"
+chmod 700 "$HOME/.ssh"
+
+mkdir -p "$HOME/.vnc"
+chmod 700 "$HOME/.vnc"
+
+mkdir -p "$HOME/src"
+
+if [[ `uname` == 'Darwin' ]]; then
+  mkdir -p "$HOME/Library/Vim/backup"
+  mkdir -p "$HOME/Library/Vim/swap"
+  mkdir -p "$HOME/Library/Vim/undo"
+else
+  mkdir -p "$HOME/.local/share/vim/backup"
+  mkdir -p "$HOME/.local/share/vim/swap"
+  mkdir -p "$HOME/.local/share/vim/undo"
+fi
+
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd "$SCRIPT_DIR"
 
@@ -17,7 +35,6 @@ echo $BASE_SCRIPT_DIR
 
 IFS=$'\n'
 
-mkdir -p "$HOME/src"
 pushd src
 for dotfile in $(find . -maxdepth 1 ! -path .) ; do
   FILENAME=$(basename $dotfile)
