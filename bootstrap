@@ -2,7 +2,7 @@
 
 set -e
 
-DRYRUN=
+DRYRUN=echo
 
 if [ -z "$HOME" ]; then
   echo 'Your $HOME is unset!'
@@ -73,3 +73,5 @@ for dotfile in $(find . -maxdepth 1 -regex '.*/\..+') ; do
 done
 popd
 echo
+
+echo "export PATH=$HOME/$BASE_SCRIPT_DIR/machines/$1/bin:\$PATH" >> "$SCRIPT_DIR/.bash.d/add_dot_extra_paths.sh"
