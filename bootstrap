@@ -30,7 +30,7 @@ done
 popd
 echo
 
-for dotfile in $(find . -maxdepth 1 ! -path ./.git -regex '.*/\..+') ; do
+for dotfile in $(find . -maxdepth 1 ! -path ./.git ! -path ./.gitignore ! -path ./.gitmodules -regex '.*/\..+') ; do
   FILENAME=$(basename $dotfile)
   SRC=$BASE_SCRIPT_DIR/$FILENAME
   DST=$HOME/$FILENAME
