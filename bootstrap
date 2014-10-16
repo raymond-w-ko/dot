@@ -9,6 +9,15 @@ if [ -z "$HOME" ]; then
   exit 1
 fi
 
+function safe_delete_existing_file
+{
+  if [ -L "$1" ]; then
+    $DRYRU rm "$1"
+  else
+    $DRYRU rm -ri "$1"
+  fi
+}
+
 mkdir -p "$HOME/.ssh"
 chmod 700 "$HOME/.ssh"
 
@@ -41,7 +50,7 @@ for dotfile in $(find . -maxdepth 1 ! -path .) ; do
   SRC=$BASE_SCRIPT_DIR/src/$FILENAME
   DST=$HOME/src/$FILENAME
   if [ ! -e "$HOME/$SRC" ]; then echo could not find "$SRC"; exit 1; fi
-  $DRYRUN rm -rf "$DST"
+  safe_delete_existing_file "$DST"
   $DRYRUN ln -s "../$SRC" "$DST"
 done
 popd
@@ -52,7 +61,7 @@ for dotfile in $(find . -maxdepth 1 ! -path ./.git ! -path ./.gitignore ! -path 
   SRC=$BASE_SCRIPT_DIR/$FILENAME
   DST=$HOME/$FILENAME
   if [ ! -e "$HOME/$SRC" ]; then echo could not find "$SRC"; exit 1; fi
-  $DRYRUN rm -rf "$DST"
+  safe_delete_existing_file "$DST"
   $DRYRUN ln -s "$SRC" "$DST"
 done
 echo
@@ -64,7 +73,7 @@ for dotfile in $(find . -maxdepth 1 ! -path .) ; do
   SRC=$BASE_SCRIPT_DIR/config/$FILENAME
   DST=$HOME/.config/$FILENAME
   if [ ! -e "$HOME/$SRC" ]; then echo could not find "$SRC"; exit 1; fi
-  $DRYRUN rm -rf "$DST"
+  safe_delete_existing_file "$DST"
   $DRYRUN ln -s "../$SRC" "$DST"
 done
 popd
@@ -85,7 +94,7 @@ for dotfile in $(find . -maxdepth 1 -regex '.*/\..+') ; do
   SRC=$BASE_SCRIPT_DIR/machines/$1/$FILENAME
   DST=$HOME/$FILENAME
   if [ ! -e "$HOME/$SRC" ]; then echo could not find "$SRC"; exit 1; fi
-  $DRYRUN rm -rf "$DST"
+  safe_delete_existing_file "$DST"
   $DRYRUN ln -s "$SRC" "$DST"
 done
 popd
