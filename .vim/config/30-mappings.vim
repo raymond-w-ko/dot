@@ -86,16 +86,16 @@ if has("unix")
     endif
 elseif has("win32")
     if isdirectory('C:/cygwin/home/rko')
-        exe 'nnoremap <leader>ev :e C:/cygwin/home/rko/.vimrc<CR>'
-        exe 'nnoremap <leader>gc :CtrlP C:/cygwin/home/rko/.vim/config<CR>'
+        exe 'nnoremap <leader>ev :e C:/cygwin/home/rko/dot/.vimrc<CR>'
+        exe 'nnoremap <leader>gc :CtrlP C:/cygwin/home/rko/dot/.vim/config<CR>'
     endif
     if isdirectory('C:/cygwin64/home/rko')
-        exe 'nnoremap <leader>ev :e C:/cygwin64/home/rko/.vimrc<CR>'
-        exe 'nnoremap <leader>gc :CtrlP C:/cygwin64/home/rko/.vim/config<CR>'
+        exe 'nnoremap <leader>ev :e C:/cygwin64/home/rko/dot/.vimrc<CR>'
+        exe 'nnoremap <leader>gc :CtrlP C:/cygwin64/home/rko/dot/.vim/config<CR>'
     endif
     if isdirectory('C:/cygwin/home/root')
-        exe 'nnoremap <leader>ev :e C:/cygwin/home/root/.vimrc<CR>'
-        exe 'nnoremap <leader>gc :CtrlP C:/cygwin/home/root/.vim/config<CR>'
+        exe 'nnoremap <leader>ev :e C:/cygwin/home/root/dot/.vimrc<CR>'
+        exe 'nnoremap <leader>gc :CtrlP C:/cygwin/home/root/dot/.vim/config<CR>'
     endif
 
     nnoremap <leader>eh :e C:/Windows/system32/drivers/etc/hosts<CR>

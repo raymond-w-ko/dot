@@ -68,15 +68,15 @@ augroup vimrc
     au BufWritePost .gvimrc source $MYGVIMRC
     au BufWritePost ~/.vim/* source $MYVIMRC
 
-    au BufWritePost C:/cygwin/home/root/.vimrc source $MYVIMRC
-    au BufWritePost C:/cygwin/home/root/.gvimrc source $MYVIMRC
-    au BufWritePost C:/cygwin/home/root/.vim/config/* source $MYVIMRC
-    au BufWritePost C:/cygwin/home/rko/.vimrc source $MYVIMRC
-    au BufWritePost C:/cygwin/home/rko/.gvimrc source $MYGVIMRC
-    au BufWritePost C:/cygwin/home/rko/.vim/config/* source $MYVIMRC
-    au BufWritePost C:/cygwin64/home/rko/.vimrc source $MYVIMRC
-    au BufWritePost C:/cygwin64/home/rko/.gvimrc source $MYGVIMRC
-    au BufWritePost C:/cygwin64/home/rko/.vim/config/* source $MYVIMRC
+    au BufWritePost C:/cygwin/home/root/dot/.vimrc source $MYVIMRC
+    au BufWritePost C:/cygwin/home/root/dot/.gvimrc source $MYVIMRC
+    au BufWritePost C:/cygwin/home/root/dot/.vim/config/* source $MYVIMRC
+    au BufWritePost C:/cygwin/home/rko/dot/.vimrc source $MYVIMRC
+    au BufWritePost C:/cygwin/home/rko/dot/.gvimrc source $MYGVIMRC
+    au BufWritePost C:/cygwin/home/rko/dot/.vim/config/* source $MYVIMRC
+    au BufWritePost C:/cygwin64/home/rko/dot/.vimrc source $MYVIMRC
+    au BufWritePost C:/cygwin64/home/rko/dot/.gvimrc source $MYGVIMRC
+    au BufWritePost C:/cygwin64/home/rko/dot/.vim/config/* source $MYVIMRC
 augroup END
 " }}}
 " git {{{
