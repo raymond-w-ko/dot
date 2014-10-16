@@ -38,7 +38,7 @@ show_volume() {
     killall -9 -q osd_cat &>/dev/null
     killall -9 -q xosd &>/dev/null
 
-    ~/bin/myxosd --text "$( [ "z$2" = "z" ] && echo Volume: $1% || echo $2 )" \
+    myxosd --text "$( [ "z$2" = "z" ] && echo Volume: $1% || echo $2 )" \
       --barmode=percentage \
       --percentage=$1
 }

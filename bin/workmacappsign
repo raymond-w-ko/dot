@@ -7,4 +7,4 @@ until [ "$RET" -eq 0 ]; do
   echo $RET
 done
 
-~/bin/macappcheck "$1"
+macappcheck "$1"

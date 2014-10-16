@@ -1,16 +1,16 @@
-"~/bin/volume.py incr"
+"volume.py incr"
   XF86AudioRaiseVolume
-"~/bin/volume.py incr"
+"volume.py incr"
   Control+Shift + Up
 
-"~/bin/volume.py decr"
+"volume.py decr"
   XF86AudioLowerVolume
-"~/bin/volume.py decr"
+"volume.py decr"
   Control+Shift + Down
 
-"~/bin/volume.py toggle"
+"volume.py toggle"
   XF86AudioMute
-"~/bin/volume.py toggle"
+"volume.py toggle"
   Control+Shift + Left
 
 "xbacklight -dec 10"
@@ -23,14 +23,14 @@
 "xbacklight -inc 10"
   Control+Shift + F6
 
-"~/bin/sleepkey.sh"
+"sleepkey.sh"
   XF86Sleep
 
 "i3lock -c 000000"
   Mod1 + l
 
-"~/bin/mymonitors.sh"
+"mymonitors.sh"
   Mod1 + p
 
-"~/bin/take_screenshot_of_currently_focused_window.sh"
+"take_screenshot_of_currently_focused_window.sh"
   Mod4 + Print
