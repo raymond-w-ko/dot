@@ -138,6 +138,8 @@ color_terminals=
 
 simple_swap=false
 
+select_flags=6
+
 [Colors]
 base_color=
 screen-256color=
@@ -146,6 +148,8 @@ color_terminals=
 xterm=
 
 rxvt-unicode-256color=
+
+xterm-termite=
 
 [Panelize]
 Find *.orig after patching=find . -name \\*.orig -print
