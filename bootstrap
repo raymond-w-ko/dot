@@ -2,7 +2,7 @@
 
 set -e
 
-DRYRUN=echo
+DRYRUN=
 
 if [ -z "$HOME" ]; then
   echo 'Your $HOME is unset!'
