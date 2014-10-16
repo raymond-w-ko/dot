@@ -24,8 +24,9 @@ def apply_keyboard_settings():
 
             subprocess.call('setxkbmap -option -option ctrl:nocaps -option altwin:swap_alt_win', shell = True)
             subprocess.call('xset r rate 333 32', shell = True)
-            subprocess.call('killall xcape', shell = True)
-            subprocess.call("xcape -t 333 -e 'Control_L=Escape;Shift_L=Shift_L|minus'", shell = True)
+            # causes freezes?
+            #subprocess.call('killall xcape', shell = True)
+            #subprocess.call("xcape -t 333 -e 'Control_L=Escape;Shift_L=Shift_L|minus'", shell = True)
             subprocess.call('killall xbindkeys', shell = True)
             subprocess.call('xbindkeys', shell = True)
 
