@@ -12,9 +12,9 @@ fi
 function safe_delete_existing_file
 {
   if [ -L "$1" ]; then
-    $DRYRU rm "$1"
+    $DRYRUN rm "$1"
   elif [ -e "$1" ]; then
-    $DRYRU rm -ri "$1"
+    $DRYRUN rm -ri "$1"
   fi
 }
 
@@ -47,6 +47,7 @@ IFS=$'\n'
 pushd src
 for dotfile in $(find . -maxdepth 1 ! -path .) ; do
   FILENAME=$(basename $dotfile)
+  echo $FILENAME
   SRC=$BASE_SCRIPT_DIR/src/$FILENAME
   DST=$HOME/src/$FILENAME
   if [ ! -e "$HOME/$SRC" ]; then echo could not find "$SRC"; exit 1; fi
@@ -58,6 +59,7 @@ echo
 
 for dotfile in $(find . -maxdepth 1 ! -path ./.git ! -path ./.gitignore ! -path ./.gitmodules -regex '.*/\..+') ; do
   FILENAME=$(basename $dotfile)
+  echo $FILENAME
   SRC=$BASE_SCRIPT_DIR/$FILENAME
   DST=$HOME/$FILENAME
   if [ ! -e "$HOME/$SRC" ]; then echo could not find "$SRC"; exit 1; fi
@@ -70,6 +72,7 @@ mkdir -p "$HOME/.config"
 pushd config
 for dotfile in $(find . -maxdepth 1 ! -path .) ; do
   FILENAME=$(basename $dotfile)
+  echo $FILENAME
   SRC=$BASE_SCRIPT_DIR/config/$FILENAME
   DST=$HOME/.config/$FILENAME
   if [ ! -e "$HOME/$SRC" ]; then echo could not find "$SRC"; exit 1; fi
@@ -91,6 +94,7 @@ fi
 pushd "machines/$1"
 for dotfile in $(find . -maxdepth 1 -regex '.*/\..+') ; do
   FILENAME=$(basename $dotfile)
+  echo $FILENAME
   SRC=$BASE_SCRIPT_DIR/machines/$1/$FILENAME
   DST=$HOME/$FILENAME
   if [ ! -e "$HOME/$SRC" ]; then echo could not find "$SRC"; exit 1; fi
