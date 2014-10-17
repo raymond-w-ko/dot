@@ -9,9 +9,8 @@ if (s:uname == "Darwin\n")
 endif
 
 " ALL GLORY TO THE ESC KEY
-inoremap jk <Esc>:update<CR>
-inoremap kj <Esc>:update<CR>
-
+"inoremap jk <Esc>:update<CR>
+"inoremap kj <Esc>:update<CR>
 
 "lazy write
 if (!exists('g:lazy_writing') || g:lazy_writing == 0)
