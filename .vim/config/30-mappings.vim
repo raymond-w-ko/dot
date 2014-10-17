@@ -2,12 +2,16 @@ let s:uname = "win32"
 if has("unix")
     let s:uname = system("uname")
 endif
-
 if (s:uname == "Darwin\n")
     if has("+macmeta")
         set macmeta
     endif
 endif
+
+" ALL GLORY TO THE ESC KEY
+inoremap jk <Esc>:update<CR>
+inoremap kj <Esc>:update<CR>
+
 
 "lazy write
 if (!exists('g:lazy_writing') || g:lazy_writing == 0)
