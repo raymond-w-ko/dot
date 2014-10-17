@@ -44,8 +44,13 @@ echo $BASE_SCRIPT_DIR
 
 IFS=$'\n'
 
+FIND=find
+if [ $(uname) == 'Darwin' ]; then
+  FIND=/usr/local/bin/gfind
+fi
+
 pushd src
-for dotfile in $(find . -maxdepth 1 ! -path .) ; do
+for dotfile in $($FIND . -maxdepth 1 ! -path .) ; do
   FILENAME=$(basename $dotfile)
   echo $FILENAME
   SRC=$BASE_SCRIPT_DIR/src/$FILENAME
@@ -57,7 +62,7 @@ done
 popd
 echo
 
-for dotfile in $(find . -maxdepth 1 ! -path ./.git ! -path ./.gitignore ! -path ./.gitmodules -regex '.*/\..+') ; do
+for dotfile in $($FIND . -maxdepth 1 ! -path ./.git ! -path ./.gitignore ! -path ./.gitmodules -regex '.*/\..+') ; do
   FILENAME=$(basename $dotfile)
   echo $FILENAME
   SRC=$BASE_SCRIPT_DIR/$FILENAME
@@ -70,7 +75,7 @@ echo
 
 mkdir -p "$HOME/.config"
 pushd config
-for dotfile in $(find . -maxdepth 1 ! -path .) ; do
+for dotfile in $($FIND . -maxdepth 1 ! -path .) ; do
   FILENAME=$(basename $dotfile)
   echo $FILENAME
   SRC=$BASE_SCRIPT_DIR/config/$FILENAME
@@ -92,7 +97,7 @@ if [ -z "$1" ]; then
 fi
 
 pushd "machines/$1"
-for dotfile in $(find . -maxdepth 1 -regex '.*/\..+') ; do
+for dotfile in $($FIND . -maxdepth 1 -regex '.*/\..+') ; do
   FILENAME=$(basename $dotfile)
   echo $FILENAME
   SRC=$BASE_SCRIPT_DIR/machines/$1/$FILENAME

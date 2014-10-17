@@ -14,17 +14,17 @@ if [[ "$unameString" == 'Darwin' ]]; then
     fi
 
     if hash gls 2>/dev/null; then
-      alias ls='gls --color -F'
-      alias l='gls --color -Flh'
-      alias lt='gls --color -Flht'
-      alias ll='gls --color -Flha'
+      alias ls='gls --color'
+      alias l='gls --color -lh'
+      alias lt='gls --color -lht'
+      alias ll='gls --color -lha'
       alias ls='gls --color'
     else
       export LSCOLORS=ExFxCxDxBxegedabagacad
-      alias ls='ls -FG'
-      alias l='ls -FGlh'
-      alias lt='ls -FGlht'
-      alias ll='ls -FGlha'
+      alias ls='ls -G'
+      alias l='ls -Glh'
+      alias lt='ls -Glht'
+      alias ll='ls -Glha'
     fi
 else
     alias ls='ls --color'
