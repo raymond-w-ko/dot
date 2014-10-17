@@ -27,10 +27,10 @@ if [[ "$unameString" == 'Darwin' ]]; then
       alias ll='ls -FGlha'
     fi
 else
-    alias ls='ls --color -F'
-    alias l='ls --color -Flh'
-    alias lt='ls --color -Flht'
-    alias ll='ls --color -Flha'
+    alias ls='ls --color'
+    alias l='ls --color -lh'
+    alias lt='ls --color -lht'
+    alias ll='ls --color -lha'
 
     # fix ls colors especially for directories and files that are globally readable and writeable
     if [ -r "$HOME/src/dircolors-solarized/dircolors.256dark" ]; then
