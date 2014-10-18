@@ -1,6 +1,6 @@
 BoldAsFont=yes
 Transparency=off
-CursorType=block
+CursorType=line
 Font=Terminus
 FontHeight=9
 Locale=C
