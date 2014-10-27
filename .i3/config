@@ -56,13 +56,13 @@ exec /opt/dropbox/dropbox
 # keybinds start here
 ################################################################################
 
-set $mod Mod1
+set $mod Mod4
 
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec termite
 
 # kill focused window
 bindsym $mod+Shift+q kill
