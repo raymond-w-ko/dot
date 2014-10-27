@@ -188,7 +188,7 @@ elif [[ -f ~/src/interkonnect/interkonnect.py && $(ps auxww | grep interkonnect.
 else
   if hash fortune 2>/dev/null; then
     if hash cowsay 2>/dev/null; then
-      fortune | cowsay -W 60 2>/dev/null
+      fortune | cowsay -W 70 2>/dev/null
     else
       fortune
     fi
