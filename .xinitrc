@@ -61,6 +61,5 @@ my_keyboard_settings_daemon.py &
 
 (sleep 5 && /opt/dropbox/dropbox) &
 
-#exec herbstluftwm
-#exec i3 > ~/.i3/log
-exec awesome
+exec i3
+#exec awesome
