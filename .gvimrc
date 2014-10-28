@@ -1,7 +1,7 @@
 " set font
 if has("win32")
-    set guifont=Terminus:h9
-    "set guifont=fixed613:h8
+    set guifont=fixed613:h8
+    "set guifont=Terminus:h9
     "set guifont=Dina_TTF:h8
     "set guifont=Consolas:h8
     "set guifont=Lucida_Console:h9
@@ -37,4 +37,4 @@ end
 
 " Remove cursor blink
 "set guicursor=n-v-c:block-Cursor/lCursor,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
-set guicursor=a:ver01-blinkon0-Cursor/lCursor
+set guicursor=a:hor10-blinkon0-Cursor/lCursor

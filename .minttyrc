@@ -1,8 +1,8 @@
 BoldAsFont=yes
 Transparency=off
-CursorType=line
-Font=Terminus
-FontHeight=9
+CursorType=underscore
+Font=fixed613
+FontHeight=8
 Locale=C
 Charset=UTF-8
 Rows=45
