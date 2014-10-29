@@ -18,7 +18,7 @@ icon_name = terminal
 cursor_blink = off
 
 # "block", "underline" or "ibeam"
-cursor_shape = ibeam
+cursor_shape = underline
 
 # $BROWSER is used by default
 browser = firefox
