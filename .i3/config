@@ -11,25 +11,22 @@
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
-#font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+font -misc-fixed-medium-r-semicondensed-*-12-110-75-75-c-60-iso10646-1
 #font pango:DejaVu Sans Mono 7
 #font pango:Ubuntu Sans Mono 5
 #font -misc-fixed-medium-r-semicondensed-*-12-120-75-75-c-60-iso10646-1
 #font -misc-fixed-medium-r-semicondensed-*-12-110-75-75-c-60-iso10646-1
 #font -*-terminus-medium-*-*-*-16-*-*-*-*-*-*-*
-font -*-proggytinysz-medium-r-*-*-*-*-*-*-*-*-*-*
+#font -*-proggytinysz-medium-r-*-*-*-*-*-*-*-*-*-*
 
-# default colors for reference
-## class                 border  backgr. text    indicator
-#client.focused          #4c7899 #285577 #ffffff #2e9ef4
-#client.focused_inactive #333333 #5f676a #ffffff #484e50
-#client.unfocused        #333333 #222222 #888888 #292d2e
-#client.urgent           #2f343a #900000 #ffffff #900000
-
-# class                 border  backgr. text    indicator
-client.focused          #4c7899 #486597 #ffffff #00ff00
-client.focused_inactive #333333 #444444 #eeeeee #484e50
-client.unfocused        #333333 #222222 #888888 #292d2e
+# archlinux theme for i3 by okraits
+# http://okraits.de
+# $i3-theme-window
+# class border backgr. text indicator
+client.focused          #0088CC #0088CC #ffffff #dddddd
+#client.focused_inactive #0C2D3C #0C2D3C #888888 #484e50 # I don't like it that way
+client.focused_inactive #333333 #333333 #888888 #292d2e
+client.unfocused        #333333 #333333 #888888 #292d2e
 client.urgent           #2f343a #900000 #ffffff #900000
 
 new_window pixel 1
