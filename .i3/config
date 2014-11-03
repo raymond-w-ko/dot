@@ -11,13 +11,14 @@
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
-font -misc-fixed-medium-r-semicondensed-*-12-110-75-75-c-60-iso10646-1
+#font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+#font -misc-fixed-medium-r-semicondensed-*-12-110-75-75-c-60-iso10646-1
 #font pango:DejaVu Sans Mono 7
 #font pango:Ubuntu Sans Mono 5
 #font -misc-fixed-medium-r-semicondensed-*-12-120-75-75-c-60-iso10646-1
 #font -misc-fixed-medium-r-semicondensed-*-12-110-75-75-c-60-iso10646-1
 #font -*-terminus-medium-*-*-*-16-*-*-*-*-*-*-*
-#font -*-proggytinysz-medium-r-*-*-*-*-*-*-*-*-*-*
+font -*-proggytinysz-medium-r-*-*-*-*-*-*-*-*-*-*
 
 # archlinux theme for i3 by okraits
 # http://okraits.de
