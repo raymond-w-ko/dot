@@ -1,3 +1,3 @@
 #!/bin/bash
 
-jmtpfs /mnt/s3
+jmtpfs /mnt/phone
