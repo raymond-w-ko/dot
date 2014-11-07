@@ -181,6 +181,17 @@ augroup ReturnToSameLineWhenReopeningFile
         \ exe 'normal! gg'
 augroup END
 
+function! SaveAndCheckIfModified()
+  if &modified
+    update
+    SyntasticCheck
+  endif
+endfunction
+augroup SaveWhenExitingInsertMode
+  au!
+  au InsertLeave * call SaveAndCheckIfModified()
+augroup END
+
 function! StripTrailingWhitespace()
     let l:my_saved_winview = winsaveview()
     silent! %s/\s\+$//
