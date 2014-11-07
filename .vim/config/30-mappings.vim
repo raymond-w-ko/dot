@@ -9,8 +9,8 @@ if (s:uname == "Darwin\n")
 endif
 
 " ALL GLORY TO THE ESC KEY
-inoremap jk <Esc>:update<CR>
-inoremap kj <Esc>:update<CR>
+inoremap jk <Esc>
+inoremap kj <Esc>
 
 "lazy write
 if (!exists('g:lazy_writing') || g:lazy_writing == 0)
@@ -25,7 +25,7 @@ if (!exists('g:lazy_writing') || g:lazy_writing == 0)
         let g:lazy_writing = 0
     endfunction
 endif
-nnoremap <CR> :call MyLazyWrite()<CR>
+nnoremap <silent> <CR> :call MyLazyWrite()<CR>
 
 " some convenience mappings for Vim autocomplete
 inoremap <C-l> <C-x><C-l>
