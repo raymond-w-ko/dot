@@ -384,4 +384,6 @@ function! ReplaceWithTLINK()
 endfunction
 command! ReplaceWithTLINK silent! call ReplaceWithTLINK()
 
+map <leader>S VVS<
+
 " vim:fdm=marker:foldlevel=0
