@@ -115,3 +115,6 @@
 [submodule ".vim/bundle/vim-vinegar"]
 	path = .vim/bundle/vim-vinegar
 	url = https://github.com/tpope/vim-vinegar.git
+[submodule ".vim/bundle/vim-lua-indent"]
+	path = .vim/bundle/vim-lua-indent
+	url = git@github.com:raymond-w-ko/vim-lua-indent.git
