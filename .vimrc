@@ -184,7 +184,7 @@ augroup END
 function! SaveAndCheckIfModified()
   if &modified
     update
-    SyntasticCheck
+    "SyntasticCheck
   endif
 endfunction
 augroup SaveWhenExitingInsertMode
