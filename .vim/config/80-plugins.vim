@@ -89,8 +89,9 @@ augroup EnableRainbowParentheses
   au!
   au VimEnter * RainbowParenthesesToggle
   au Syntax * RainbowParenthesesLoadRound
-  au Syntax * RainbowParenthesesLoadSquare
   au Syntax * RainbowParenthesesLoadBraces
+  " breaks Lua's [[multiline string literal]] and --[[megacomment]]
+  "au Syntax * RainbowParenthesesLoadSquare
   " breaks XML hilighting
   "au Syntax * RainbowParenthesesLoadChevrons
 augroup END
