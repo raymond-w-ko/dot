@@ -24,7 +24,7 @@ let s:commands = [
     \ 'Proton',             '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Proton',
     \ 'Symlin',             '__SVN__/SVN/Syandus_Cores/C_Sym_DM_01',
     \ 'Spiriva',            '__SVN__/SVN/Syandus_Cores/C_Spv_COPD_01',
-    \ 'Copd',               '__SVN__/SVN/Syandus_Cores/C_Unb_COPD_01',
+    \ 'Copd',               '__SVN__/SVN/Syandus_Cores/C_COPD_Treatment_01',
     \ 'ImmuneQuest',        '__SVN__/SVN/Syandus_Cores/C_ImmunoSim_01',
     \ 'PatientEducation',   '__SVN__/SVN/Syandus_Cores/C_MS_PatientEd_01',
     \ 'Treatment',          '__SVN__/SVN/Syandus_Cores/C_MS_Treatment_01',

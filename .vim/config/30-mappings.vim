@@ -12,6 +12,9 @@ endif
 inoremap jk <Esc>
 inoremap kj <Esc>
 
+noremap ; :
+noremap : ;
+
 "lazy write
 if (!exists('g:lazy_writing') || g:lazy_writing == 0)
     function! MyLazyWrite()
