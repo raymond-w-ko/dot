@@ -1,5 +1,8 @@
 #!/bin/bash
 
+rm -f "/tmp/rko_temp1_input"
+ln -s /sys/devices/platform/coretemp.0/hwmon/hwmon*/temp1_input "/tmp/rko_temp1_input"
+
 TOUCHPAD="SynPS/2 Synaptics TouchPad"
 xinput set-int-prop "$TOUCHPAD" "Device Accel Profile" 32 2 
 xinput set-float-prop "$TOUCHPAD" "Device Accel Constant Deceleration" 7.5

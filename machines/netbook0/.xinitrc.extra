@@ -1,5 +1,8 @@
 #!/bin/sh
 
+rm -f "/tmp/rko_temp1_input"
+ln -s /sys/devices/platform/coretemp.0/hwmon/hwmon*/temp1_input "/tmp/rko_temp1_input"
+
 $HOME/.monicarc   #monitor calibration
 # this probably is not necessary
 #xrandr --dpi 156
