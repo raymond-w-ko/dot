@@ -12,8 +12,11 @@ endif
 inoremap jk <Esc>
 inoremap kj <Esc>
 
-noremap ; :
-noremap : ;
+nnoremap ; :
+nnoremap : ;
+
+vnoremap ; :
+vnoremap : ;
 
 "lazy write
 if (!exists('g:lazy_writing') || g:lazy_writing == 0)
@@ -138,7 +141,7 @@ nnoremap <leader>p :call MyPasteToggle()<CR>
 
 " This allows for change paste motion cp{motion}
 " http://stackoverflow.com/questions/2471175/vim-replace-word-with-contents-of-paste-buffer
-nmap <silent> cp :set opfunc=ChangePaste<CR>g@
+nnoremap <silent> cp :set opfunc=ChangePaste<CR>g@
 function! ChangePaste(type, ...)
     silent exe "normal! `[v`]\"_c"
     silent exe "normal! p"
