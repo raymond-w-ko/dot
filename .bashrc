@@ -39,15 +39,16 @@ export GIT_EDITOR=vim
 export HGEDITOR=vim
 export EDITOR=vim
 
+if hash colordiff 2>/dev/null; then
+  DIFF_PROG=colordiff
+else
+  DIFF_PROG=diff
+fi
+
 # aliases
 alias sdr='screen -U -D -R'
 alias ta='tmux attach'
 alias tmux="TERM=screen-256color-bce tmux"
-alias svnlog='svn log -l 1024 -v | less'
-alias svnfixexe="find . -name '*.sh' -exec svn propset svn:executable yes '{}' \;"
-svnrmmissing() {
-  svn st | grep ^! | awk '{print " --force "$2}' | xargs svn rm
-}
 alias genctags='/usr/bin/find . -regex ".*\.\(c\|h\|hpp\|cc\|cpp\)" -print | /usr/bin/ctags --c++-kinds=+px --fields=+aimSz --languages=c++ --sort=yes -L -'
 alias omegacomplete='cd ~/lib/dot/vim/bundle/omegacomplete'
 alias killpngcolorpofile='find . -type f -name "*.png" -exec convert {} -strip {} \;'
@@ -63,6 +64,8 @@ findcore() {
   find . -type f -regextype posix-extended -regex '.*/core\.[0-9]+$'
 }
 alias uu='udevil umount'
+alias us='update-submodules'
+alias fix_permissions="find . -regex '.*\.\(vim\|h\|hpp\|c\|cpp\)$' -type f -exec chmod -x {} \;"
 
 if [ -d "/cygdrive/c/Users/root/Desktop/P2P" ]; then
     alias p2p='cd /cygdrive/c/Users/root/Desktop/P2P'
@@ -123,21 +126,19 @@ alias hpush='hg push'
 alias hpull='hg pull'
 alias hcmergedwithupstream='hg commit -m "merged with upstream"'
 
-alias us='update-submodules'
-
+alias svnlog='svn log -l 1024 -v | less'
+alias svnfixexe="find . -name '*.sh' -exec svn propset svn:executable yes '{}' \;"
+svnrmmissing() {
+  svn st | grep ^! | awk '{print " --force "$2}' | xargs svn rm
+}
 alias svnadddir='svn add --depth=empty'
-if hash colordiff 2>/dev/null; then
-  svndiff() {
-    svn diff -x "-w --ignore-eol-style" "${@}" | sed 's///' | colordiff | less -R
-  }
-else
-  svndiff() {
-    svn diff -x "-w --ignore-eol-style" "${@}" | sed 's///' | less -R
-  }
-fi
+svndiff() {
+  svn diff -x "-w --ignore-eol-style" "${@}" | sed 's///' | $DIFF_PROG | less -R
+}
+svnshow() {
+  svn diff -x "-w --ignore-eol-style" -c $1 | sed 's///' | $DIFF_PROG | less -R
+}
 alias svnignore='svn propedit svn:ignore'
-
-alias fix_permissions="find . -regex '.*\.\(vim\|h\|hpp\|c\|cpp\)$' -type f -exec chmod -x {} \;"
 
 # custom work aliases
 alias Platform4="cd ~/SVN/Syandus_ALIVE4/Platform/Source/Code"
