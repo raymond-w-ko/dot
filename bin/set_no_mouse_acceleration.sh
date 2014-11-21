@@ -12,8 +12,10 @@ set_no_mouse_accel()
   for i in $ids
   do
     echo $i
-    xinput set-int-prop $i 'Device Accel Profile' 32 -1
-    xinput set-atom-prop $i 'AccelerationScheme' 'none'
+    xinput set-prop $i 'Device Accel Profile' -1
+    xinput set-prop $i 'Device Accel Velocity Scaling' 1
+    # don't think this is a valid setting, maybe only in X.org conf file?
+    #xinput set-atom-prop $i 'AccelerationScheme' 'none'
   done
 }
 

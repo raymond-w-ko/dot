@@ -31,6 +31,7 @@ def apply_keyboard_settings():
             system("xcape -t 333 -e 'Control_L=Escape;Shift_L=Shift_L|minus'")
             system('killall xbindkeys')
             system('xbindkeys')
+            system('set_no_mouse_acceleration.sh')
 
             print('applied keyboard settings')
         except:
