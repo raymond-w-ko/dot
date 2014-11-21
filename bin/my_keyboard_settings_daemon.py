@@ -7,6 +7,9 @@ import threading
 
 ticks_before_reapplying_settings = 2
 
+def system(cmd):
+    subprocess.call(cmd, shell = True)
+
 def apply_keyboard_settings():
     global ticks_before_reapplying_settings
 
@@ -22,12 +25,12 @@ def apply_keyboard_settings():
 
             ticks_before_reapplying_settings = -1
 
-            subprocess.call('setxkbmap -option -option ctrl:nocaps -option altwin:swap_alt_win', shell = True)
-            subprocess.call('xset r rate 333 32', shell = True)
-            subprocess.call('killall xcape', shell = True)
-            subprocess.call("xcape -t 333 -e 'Control_L=Escape;Shift_L=Shift_L|minus'", shell = True)
-            subprocess.call('killall xbindkeys', shell = True)
-            subprocess.call('xbindkeys', shell = True)
+            system('setxkbmap -option -option ctrl:nocaps -option altwin:swap_alt_win')
+            system('xset r rate 333 32')
+            system('killall xcape')
+            system("xcape -t 333 -e 'Control_L=Escape;Shift_L=Shift_L|minus'")
+            system('killall xbindkeys')
+            system('xbindkeys')
 
             print('applied keyboard settings')
         except:
