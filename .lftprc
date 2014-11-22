@@ -4,6 +4,7 @@
 set bmk:save-passwords true
  
 alias dir !ls -Fsh --group-directories-first
+alias l cls -1 -a -h -k -l --sort=date
 alias j jobs
 alias jv jobs -v
 alias q queue
