@@ -269,10 +269,10 @@ function! CreateCppMethodImplementation()
         normal W
     endwhile
 
-    execute "normal i\<C-r>=g:RefactorCppClassName\<CR>::\<ESC>G$s\<CR>\<ESC>xxxxxxxx"
+    execute "normal! i\<C-r>=g:RefactorCppClassName\<CR>::\<ESC>G$s\<CR>\<ESC>xxxxxxxx"
 endfunction
 
-nmap <leader>rci :call CreateCppMethodImplementation()<CR>dd$a<Space>{{
+nnoremap <leader>rci :call CreateCppMethodImplementation()<CR>dd$a<Space>{{
 
 " lazy .. to ->
 function! MyLazyDotDotToArrow()
