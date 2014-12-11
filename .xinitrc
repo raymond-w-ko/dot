@@ -41,6 +41,8 @@ hsetroot -solid '#000000'
   #exec i3 -V -d all > ~/.i3/i3log-$(date +'%F-%k-%M-%S') 2>&1
 #fi
 
+export DE=gnome
+
 dex /etc/xdg/autostart/at-spi-dbus-bus.desktop
 #dex /etc/xdg/autostart/caribou-autostart.desktop
 dex /etc/xdg/autostart/gsettings-data-convert.desktop
