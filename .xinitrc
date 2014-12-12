@@ -14,6 +14,8 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   done
   unset f
 fi
+# override system defaults
+. ~/dot/bin/infinality-settings.sh
 
 # machine specific customization
 $HOME/.xinitrc.extra
