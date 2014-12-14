@@ -372,7 +372,7 @@ function! CreateScratch()
     wincmd k
 endfunction
 function! CreateAndSetupVsplits()
-    let num_vsplits = (&columns / 100) - 1
+    let num_vsplits = (&columns / &winwidth) - 1
 
     let num_cur_tabs = tabpagenr('$')
     if ((num_cur_tabs > 1) && !exists('g:my_current_number_of_tabs'))
