@@ -61,8 +61,8 @@ set $mod Mod4
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec termite
-#bindsym $mod+Return exec urxvt
+#bindsym $mod+Return exec termite
+bindsym $mod+Return exec urxvt
 
 # kill focused window
 bindsym $mod+Shift+q kill

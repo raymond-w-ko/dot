@@ -123,7 +123,7 @@ XTerm*backarrowKey:       false
 !  xft:MS Gothic:pixelsize=12
 
 #define fonts \
-  -*-proggytinysz-medium-*-*-*-10-*-*-*-*-*-*-*
+  -*-proggyclean-*-*-*-*-13-*-*-*-*-*-*-*
 
 URxvt*font:           fonts
 URxvt*boldFont:       fonts
