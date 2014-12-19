@@ -1,8 +1,8 @@
 " set font
 if has("win32")
-    set guifont=ProggyClean:h8
+    "set guifont=ProggyClean:h8
     "set guifont=ProggyTinySZ:h8
-    "set guifont=fixed613:h8
+    set guifont=fixed613:h8
     "set guifont=Terminus:h9
     "set guifont=Dina_TTF:h8
 
