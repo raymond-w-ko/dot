@@ -36,16 +36,20 @@ try:
 except ImportError:
     print >>sys.stderr, 'You need the python bindings for lzma: python-pyliblzma or pylzma'
 
+import colorhelper
+
 DB = '/var/lib/pacman'
 CACHE = '/var/cache/pacman/pkg'
 ARCH = subprocess.check_output('uname -m', shell = True).strip()
 
 # TODO: use logging module ?
 def error(s):
-    sys.stderr.write('Error: %s\n' % s)
+    short, rgb = colorhelper.rgb2short('FF0000')
+    sys.stdout.write('\033[38;5;%smError: \033[0m%s\n' % (short, s))
 
 def warning(s):
-    sys.stderr.write('Warning: %s\n' % s)
+    short, rgb = colorhelper.rgb2short('d78700')
+    sys.stdout.write('\033[38;5;%smWarning: \033[0m%s\n' % (short, s))
 
 def getpkgname(pkgfile):
     '''return package name from its pkgfilename'''
