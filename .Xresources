@@ -118,12 +118,11 @@ XTerm*backarrowKey:       false
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-!#define fonts \
-!  -lucy-tewi-medium-r-normal--11-90-75-75-p-58-iso10646-1, \
-!  xft:MS Gothic:pixelsize=12
-
-#define fonts \
-  -*-proggyclean-*-*-*-*-13-*-*-*-*-*-*-*
+!#define fonts 
+!#define fonts -lucy-tewi-medium-r-normal--11-90-75-75-p-58-iso10646-1
+!#define fonts xft:MS Gothic:pixelsize=12
+!#define fonts -*-proggyclean-*-*-*-*-13-*-*-*-*-*-*-*
+#define fonts -misc-fixed-medium-r-semicondensed-*-12-120-75-75-c-60-iso10646-1
 
 URxvt*font:           fonts
 URxvt*boldFont:       fonts
@@ -132,7 +131,7 @@ URxvt*bolditalicFont: fonts
 
 URxvt*cursorBlink     : false
 URxvt*cursorUnderline : false
-URxvt*depth           : 24
+URxvt*depth           : 32
 ! this usually means use the desktop background as the background instead of a
 ! configured color for pseudo-transparency
 URxvt*inheritPixmap   : false
