@@ -1,6 +1,6 @@
 BoldAsFont=yes
 Transparency=off
-CursorType=underscore
+CursorType=block
 Font=fixed613
 FontHeight=8
 Locale=en_US
