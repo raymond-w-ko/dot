@@ -182,7 +182,9 @@ export MC_SKIN=$HOME/.config/mc/solarized.ini
 if [[ ! $DISPLAY && $(tty) = /dev/tty1 ]]; then
   # we can't completely redirect stderr to a file otherwise root-less X breaks
   # I'm guessing it is determining the VTTY from the stderr file descriptor
-  startx | tee > "$HOME/.xsession-errors"
+  #startx | tee > "$HOME/.xsession-errors"
+  # maybe this works from the archlinux wiki?
+  exec startx -- -keeptty -nolisten tcp > "$HOME/.xsession-errors" 2>&1
   logout
 elif [[ -f ~/src/interkonnect/interkonnect.py && $(ps auxww | grep interkonnect.py | grep -v grep | wc -l) = 0 ]]; then
   sudo ~/src/interkonnect/interkonnect.py
