@@ -117,13 +117,13 @@ set hidden
 set novisualbell
 set noerrorbells
 set novb
-augroup CursorLine
-  au!
-  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  au WinLeave * setlocal nocursorline
+"augroup CursorLine
+  "au!
+  "au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  "au WinLeave * setlocal nocursorline
   "au VimEnter,WinEnter,BufWinEnter * setlocal cursorcolumn
   "au WinLeave * setlocal nocursorcolumn
-augroup END
+"augroup END
 set nonumber
 if exists('+relativenumber')
     set norelativenumber
