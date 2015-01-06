@@ -39,3 +39,9 @@ for dir in * ; do
     fi
     cd ..
 done
+
+cd
+pushd "$HOME/.oh-my-zsh/"
+git checkout master
+git pull
+popd

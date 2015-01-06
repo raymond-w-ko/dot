@@ -26,7 +26,9 @@ export PKG_CONFIG_PATH="/usr/lib/pkgconfig/:/usr/local/lib/pkgconfig/"
 
 unameString=`uname -s`
 
-. ~/.bash.d/ps1.sh
+if [[ "$SHELL" == bash ]]; then
+  . ~/.bash.d/ps1.sh
+fi
 
 unset PYTHONHOME
 
