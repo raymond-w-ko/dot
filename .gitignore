@@ -1,3 +1,5 @@
 /.bash.d/add_dot_extra_paths.sh
 /.subversion/auth/
 /.vim/.netrwhist
+/.lein/self-installs
+/.lein/repl-history
