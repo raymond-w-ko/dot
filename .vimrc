@@ -25,7 +25,7 @@ call add(g:pathogen_disabled, "ack.vim")
 call add(g:pathogen_disabled, "cocoa")
 call add(g:pathogen_disabled, "YankRing.vim")
 call add(g:pathogen_disabled, "vim-easymotion")
-call add(g:pathogen_disabled, "vim-fireplace")
+"call add(g:pathogen_disabled, "vim-fireplace")
 
 if g:omegacomplete_version_preference == 2
     if has('java')
