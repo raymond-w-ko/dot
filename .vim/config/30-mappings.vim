@@ -10,7 +10,7 @@ endif
 
 " ALL GLORY TO THE ESC KEY
 inoremap jk <Esc>
-inoremap kj <Esc>
+"inoremap kj <Esc>
 
 nnoremap ; :
 nnoremap : ;
