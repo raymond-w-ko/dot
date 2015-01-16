@@ -3,3 +3,4 @@
 /.vim/.netrwhist
 /.lein/self-installs
 /.lein/repl-history
+*.xkm

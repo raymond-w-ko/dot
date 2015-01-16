@@ -25,10 +25,10 @@ def apply_keyboard_settings():
 
             ticks_before_reapplying_settings = -1
 
-            system('setxkbmap -option -option ctrl:nocaps -option altwin:swap_alt_win')
+            system('xkbcomp -I$HOME/.xkb $HOME/.xkb/pc.xkb $DISPLAY')
             system('xset r rate 333 32')
             system('killall xcape')
-            system("xcape -t 333 -e 'Control_L=Escape;Shift_L=Shift_L|minus'")
+            system("xcape -t 333 -e 'Control_L=Escape;Shift_L=Shift_L|minus;Control_R=Return'")
             system('killall xbindkeys')
             system('xbindkeys')
             system('set_no_mouse_acceleration.sh')
