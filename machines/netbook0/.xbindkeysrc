@@ -16,5 +16,11 @@
 "sleepkey.sh"
   XF86Sleep
 
+"xbacklight -dec 10"
+  XF86MonBrightnessDown
+
+"xbacklight -inc 10"
+  XF86MonBrightnessUp
+
 "xset dpms force off; i3lock -c 000000; sleep 4; xset dpms force off"
 Mod4 + l
