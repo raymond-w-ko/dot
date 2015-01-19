@@ -4,3 +4,5 @@
 /.lein/self-installs
 /.lein/repl-history
 *.xkm
+/.emacs.d/elpa
+/.emacs.d/*~
