@@ -1,10 +1,10 @@
 " Text objects
 
 " Shortcut for []
-onoremap id i[
-onoremap ad a[
-vnoremap id i[
-vnoremap ad a[
+"onoremap id i[
+"onoremap ad a[
+"vnoremap id i[
+"vnoremap ad a[
 
 " Next and Last
 

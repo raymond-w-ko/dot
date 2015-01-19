@@ -1,14 +1,14 @@
 " Toggle whitespace in diffs
 
 set diffopt-=iwhite
-let g:diffwhitespaceon = 1
+let g:should_diff_whitespace = 1
 function! ToggleDiffWhitespace() "
-    if g:diffwhitespaceon
+    if g:should_diff_whitespace
         set diffopt-=iwhite
-        let g:diffwhitespaceon = 0
+        let g:should_diff_whitespace = 0
     else
         set diffopt+=iwhite
-        let g:diffwhitespaceon = 1
+        let g:should_diff_whitespace = 1
     endif
     diffupdate
 endfunction

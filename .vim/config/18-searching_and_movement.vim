@@ -1,8 +1,20 @@
 " use aesthetic middle of screen for "zz"
 function! CenterCursorAesthetically()
     normal! zz
-    let offset = float2nr(winheight(0) * 0.1)
-    exe 'normal ' . offset . "\<C-e>"
+
+    let center = round(winheight(0) / 2.0)
+    let offset = winheight(0) * 0.1
+    let final = center - offset
+    let rounded_final = float2nr(final)
+    let rounded_offset = float2nr(offset)
+
+    let delta = winline() - (rounded_final + 1)
+
+    if (delta <= 0)
+        return
+    endif
+
+    exe 'normal ' . delta . "\<C-e>"
 
     return
 endfunction

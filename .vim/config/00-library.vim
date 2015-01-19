@@ -49,7 +49,8 @@ let s:project_directories_list = [
     \ '__UNIX_HOME__/src/dk2test',
     \ '__UNIX_HOME__/src/tsukuyomi',
     \ '__UNIX_HOME__/src/vim/src',
-    \ '__UNIX_HOME__/lib/dot/vim/bundle/omegacomplete',
+    \ '__UNIX_HOME__/.vim/bundle/omegacomplete',
+    \ '__UNIX_HOME__/dot/.vim/bundle/omegacomplete',
     \ '__SVN__/SVN/Syandus_ALIVE3/Frameworks/Carbon',
     \ '__SVN__/SVN/Syandus_ALIVE3/Frameworks/CarbonCME',
     \ '__SVN__/SVN/Syandus_ALIVE3/Frameworks/Oxygen',
@@ -100,8 +101,8 @@ for directory in s:project_directories_list
   let g:my_project_directories[dir] = 1
 endfor
 
-" traverses up directories until it finds one what has 'root.dir'
-" it then returns that directory
+" traverse up parent directories until it finds one that matches in the above
+" list
 function! MyGetProjectDirectory()
   let last_directory = ''
   let directory = getcwd()
@@ -120,93 +121,93 @@ function! MyGetProjectDirectory()
     return directory . '/'
 endfunction
 
-let s:cores_with_carbon_lua_shared_framework = [
-    \ 'C:/SVN/Syandus_Cores/C_Ogre_Lair_01/Build/Framework/Shared/Scripts',
-    \]
+"let s:cores_with_carbon_lua_shared_framework = [
+    "\ 'C:/SVN/Syandus_Cores/C_Ogre_Lair_01/Build/Framework/Shared/Scripts',
+    "\]
 
-function! PropagateCarbonFrameworkLua()
-    let errors = getloclist(0)
-    if len(errors) > 0
-        " don't copy a syntatically incorrect file!
-        " assumes you have syntastic installed and it can check Lua
-        "return
-    endif
+"function! PropagateCarbonFrameworkLua()
+    "let errors = getloclist(0)
+    "if len(errors) > 0
+        "" don't copy a syntatically incorrect file!
+        "" assumes you have syntastic installed and it can check Lua
+        ""return
+    "endif
 
-    let file = expand('%:p')
-    for dir in s:cores_with_carbon_lua_shared_framework
-        if !isdirectory(dir)
-            continue
-        endif
-        if has('win32')
-            exe 'silent !copy "' . file . '" "' . dir . '"'
-        endif
-    endfor
-endfunction
+    "let file = expand('%:p')
+    "for dir in s:cores_with_carbon_lua_shared_framework
+        "if !isdirectory(dir)
+            "continue
+        "endif
+        "if has('win32')
+            "exe 'silent !copy "' . file . '" "' . dir . '"'
+        "endif
+    "endfor
+"endfunction
 
-let s:cores_with_oxygen_lua_shared_framework = [
-    \ 'C:/SVN/Syandus_Cores/C_ImmunoSim_01/Build/Framework/Shared/Scripts',
-    \]
+"let s:cores_with_oxygen_lua_shared_framework = [
+    "\ 'C:/SVN/Syandus_Cores/C_ImmunoSim_01/Build/Framework/Shared/Scripts',
+    "\]
 
-function! PropagateOxygenFrameworkLua()
-    let errors = getloclist(0)
-    if len(errors) > 0
-        " don't copy a syntatically incorrect file!
-        " assumes you have syntastic installed and it can check Lua
-        "return
-    endif
+"function! PropagateOxygenFrameworkLua()
+    "let errors = getloclist(0)
+    "if len(errors) > 0
+        "" don't copy a syntatically incorrect file!
+        "" assumes you have syntastic installed and it can check Lua
+        ""return
+    "endif
 
-    let file = expand('%:p')
-    for dir in s:cores_with_oxygen_lua_shared_framework
-        if !isdirectory(dir)
-            continue
-        endif
-        if has('win32')
-            exe 'silent !copy "' . file . '" "' . dir . '"'
-        endif
-    endfor
-endfunction
+    "let file = expand('%:p')
+    "for dir in s:cores_with_oxygen_lua_shared_framework
+        "if !isdirectory(dir)
+            "continue
+        "endif
+        "if has('win32')
+            "exe 'silent !copy "' . file . '" "' . dir . '"'
+        "endif
+    "endfor
+"endfunction
 
-let s:cores_with_carbon_ogre_shared_framework = [
-    \ 'C:/SVN/Syandus_Cores/C_Ogre_Lair_01/Build/Framework/Shared/OGRE',
-    \]
+"let s:cores_with_carbon_ogre_shared_framework = [
+    "\ 'C:/SVN/Syandus_Cores/C_Ogre_Lair_01/Build/Framework/Shared/OGRE',
+    "\]
 
-function! PropagateCarbonFrameworkOgre()
-    let file = expand('%:p')
-    for dir in s:cores_with_carbon_ogre_shared_framework
-        if !isdirectory(dir)
-            continue
-        endif
-        let subdirs = substitute(file, '\', '/', 'g')
-        let subdirs = substitute(
-            \ subdirs,
-            \ 'C:/SVN/Syandus_ALIVE4/Frameworks/Carbon/Build/Content/OGRE/',
-            \ '', '')
-        if has('win32')
-            exe 'silent !copy "' . file . '" "' . dir . '/' . subdirs . '"'
-        endif
-    endfor
-endfunction
+"function! PropagateCarbonFrameworkOgre()
+    "let file = expand('%:p')
+    "for dir in s:cores_with_carbon_ogre_shared_framework
+        "if !isdirectory(dir)
+            "continue
+        "endif
+        "let subdirs = substitute(file, '\', '/', 'g')
+        "let subdirs = substitute(
+            "\ subdirs,
+            "\ 'C:/SVN/Syandus_ALIVE4/Frameworks/Carbon/Build/Content/OGRE/',
+            "\ '', '')
+        "if has('win32')
+            "exe 'silent !copy "' . file . '" "' . dir . '/' . subdirs . '"'
+        "endif
+    "endfor
+"endfunction
 
-let s:cores_with_oxygen_ogre_shared_framework = [
-    \ 'C:/SVN/Syandus_Cores/C_ImmunoSim_01/Build/Framework/Shared/OGRE',
-    \]
+"let s:cores_with_oxygen_ogre_shared_framework = [
+    "\ 'C:/SVN/Syandus_Cores/C_ImmunoSim_01/Build/Framework/Shared/OGRE',
+    "\]
 
-function! PropagateOxygenFrameworkOgre()
-    let file = expand('%:p')
-    for dir in s:cores_with_oxygen_ogre_shared_framework
-        if !isdirectory(dir)
-            continue
-        endif
-        let subdirs = substitute(file, '\', '/', 'g')
-        let subdirs = substitute(
-            \ subdirs,
-            \ 'C:/SVN/Syandus_ALIVE4/Frameworks/Oxygen/Build/Content/OGRE/',
-            \ '', '')
-        if has('win32')
-            exe 'silent !copy "' . file . '" "' . dir . '/' . subdirs . '"'
-        endif
-    endfor
-endfunction
+"function! PropagateOxygenFrameworkOgre()
+    "let file = expand('%:p')
+    "for dir in s:cores_with_oxygen_ogre_shared_framework
+        "if !isdirectory(dir)
+            "continue
+        "endif
+        "let subdirs = substitute(file, '\', '/', 'g')
+        "let subdirs = substitute(
+            "\ subdirs,
+            "\ 'C:/SVN/Syandus_ALIVE4/Frameworks/Oxygen/Build/Content/OGRE/',
+            "\ '', '')
+        "if has('win32')
+            "exe 'silent !copy "' . file . '" "' . dir . '/' . subdirs . '"'
+        "endif
+    "endfor
+"endfunction
 
 " command to delete all empty buffers in case you have over 9000 of them
 function! DeleteEmptyBuffers()
@@ -230,46 +231,46 @@ function! EscapePathname(pathname)
 endfunction
 
 " executes the specificed autohotkey script
-function! AutoHotkeyMake(arg0)
-    if filereadable("C:/Users/root/Desktop/Dropbox/make.ahk")
-        let file = "C:/Users/root/Desktop/Dropbox/make.ahk"
-    elseif filereadable("C:/Users/Raymond W. Ko/Dropbox/make.ahk")
-        let file = "C:/Users/Raymond W. Ko/Dropbox/make.ahk"
-    elseif filereadable("C:/Users/rko/Dropbox/make.ahk")
-        let file = "C:/Users/rko/Dropbox/make.ahk"
-    else
-        echom "autohotkey script not found"
-    endif
-    silent! execute ':!start "C:/Program Files/AutoHotkey/AutoHotkey.exe" ' .
-        \ '"' . file . '" ' .
-        \ a:arg0
-endfunction
+"function! AutoHotkeyMake(arg0)
+    "if filereadable("C:/Users/root/Desktop/Dropbox/make.ahk")
+        "let file = "C:/Users/root/Desktop/Dropbox/make.ahk"
+    "elseif filereadable("C:/Users/Raymond W. Ko/Dropbox/make.ahk")
+        "let file = "C:/Users/Raymond W. Ko/Dropbox/make.ahk"
+    "elseif filereadable("C:/Users/rko/Dropbox/make.ahk")
+        "let file = "C:/Users/rko/Dropbox/make.ahk"
+    "else
+        "echom "autohotkey script not found"
+    "endif
+    "silent! execute ':!start "C:/Program Files/AutoHotkey/AutoHotkey.exe" ' .
+        "\ '"' . file . '" ' .
+        "\ a:arg0
+"endfunction
 
-function! AutoHotkeyConsole2Make(console_name, cmd)
-    if filereadable("C:/Users/root/Desktop/Dropbox/console2_make.ahk")
-        let file = "C:/Users/root/Desktop/Dropbox/console2_make.ahk"
-    elseif filereadable("C:/Users/Raymond W. Ko/Dropbox/console2_make.ahk")
-        let file = "C:/Users/Raymond W. Ko/Dropbox/console2_make.ahk"
-    else
-        echom "autohotkey script not found"
-    endif
-    silent! execute ':!start "C:/Program Files/AutoHotkey/AutoHotkey.exe" ' .
-        \ '"' . file . '" ' .
-        \ a:console_name . ' ' . a:cmd
-endfunction
+"function! AutoHotkeyConsole2Make(console_name, cmd)
+    "if filereadable("C:/Users/root/Desktop/Dropbox/console2_make.ahk")
+        "let file = "C:/Users/root/Desktop/Dropbox/console2_make.ahk"
+    "elseif filereadable("C:/Users/Raymond W. Ko/Dropbox/console2_make.ahk")
+        "let file = "C:/Users/Raymond W. Ko/Dropbox/console2_make.ahk"
+    "else
+        "echom "autohotkey script not found"
+    "endif
+    "silent! execute ':!start "C:/Program Files/AutoHotkey/AutoHotkey.exe" ' .
+        "\ '"' . file . '" ' .
+        "\ a:console_name . ' ' . a:cmd
+"endfunction
 
-function! AutoHotkeyWinSCP(arg0)
-    if filereadable("C:/Users/root/Desktop/Dropbox/winscp_sync.ahk")
-        let file = "C:/Users/root/Desktop/Dropbox/winscp_sync.ahk"
-    elseif filereadable("C:/Users/Raymond W. Ko/Dropbox/winscp_sync.ahk")
-        let file = "C:/Users/Raymond W. Ko/Dropbox/winscp_sync.ahk"
-    else
-        echom "autohotkey script not found"
-    endif
-  silent! execute ':!start "C:/Program Files/AutoHotkey/AutoHotkey.exe" ' .
-        \ '"' . file . '" ' .
-        \ a:arg0
-endfunction
+"function! AutoHotkeyWinSCP(arg0)
+    "if filereadable("C:/Users/root/Desktop/Dropbox/winscp_sync.ahk")
+        "let file = "C:/Users/root/Desktop/Dropbox/winscp_sync.ahk"
+    "elseif filereadable("C:/Users/Raymond W. Ko/Dropbox/winscp_sync.ahk")
+        "let file = "C:/Users/Raymond W. Ko/Dropbox/winscp_sync.ahk"
+    "else
+        "echom "autohotkey script not found"
+    "endif
+  "silent! execute ':!start "C:/Program Files/AutoHotkey/AutoHotkey.exe" ' .
+        "\ '"' . file . '" ' .
+        "\ a:arg0
+"endfunction
 
 " ex command for toggling hex mode - define mapping if desired
 command! -bar HexMode call ToggleHex()
@@ -314,16 +315,16 @@ function! ToggleHex()
 endfunction
 
 function! PrecedingWhitespaceCount(line)
-    let num_space = 0
-    for i in range(0, strlen(a:line))
-        if (match(a:line[i], '\v\W') != -1)
-            let num_space = num_space + 1
-        else
-            break
-        endif
-    endfor
+  let num_space = 0
+  for i in range(0, strlen(a:line))
+    if (match(a:line[i], '\v\W') != -1)
+      let num_space = num_space + 1
+    else
+      break
+    endif
+  endfor
 
-    return num_space
+  return num_space
 endfunction
 
 " vim:fdm=marker:foldlevel=0

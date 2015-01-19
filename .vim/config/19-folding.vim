@@ -22,10 +22,10 @@
 "call SetFoldSettings()
 
 function! MySaveOrigFoldMethod()
-    if exists("b:original_fdm")
+    if exists("b:original_foldmethod")
         return
     endif
-    let b:original_fdm=&foldmethod
+    let b:original_foldmethod=&foldmethod
     setlocal foldmethod=manual
 endfunction
 augroup SaveOriginalFoldMethod
@@ -34,7 +34,7 @@ augroup SaveOriginalFoldMethod
 augroup END
 
 " remake all 
-nnoremap zM a<ESC>:setl foldmethod=<C-R>=b:original_fdm<CR><CR>zM:setl fdm=manual<CR>
+nnoremap zM a<ESC>:setl foldmethod=<C-R>=b:original_foldmethod<CR><CR>zM:setl fdm=manual<CR>
 
 nnoremap <Space><Space> za
 vnoremap <Space><Space> za

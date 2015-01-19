@@ -83,17 +83,6 @@ if has("unix")
 
     nnoremap <leader>ev :e ~/.vimrc<CR>
     nnoremap <leader>gc :CtrlP ~/.vim/config<CR>
-
-    let s:uname = system("uname")
-    if s:uname == "Darwin\n"
-        " Mac OS X
-        "imap <D-k> _
-        "imap <D-d> _
-        "imap <D-K> -
-        "imap <D-D> -
-    else
-        " regular UNIX
-    endif
 elseif has("win32")
     if isdirectory('C:/cygwin/home/rko')
         exe 'nnoremap <leader>ev :e C:/cygwin/home/rko/dot/.vimrc<CR>'
@@ -109,7 +98,7 @@ elseif has("win32")
     endif
 
     nnoremap <leader>eh :e C:/Windows/system32/drivers/etc/hosts<CR>
-    nnoremap <leader>el :e C:/SVN/_my_launch.bat<CR>
+    "nnoremap <leader>el :e C:/SVN/_my_launch.bat<CR>
 endif
 
 function! FindFileInProjectDirectory()
@@ -313,7 +302,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 nnoremap <leader>wv :vsplit<CR>
-nnoremap <leader>wn :split<CR>
+nnoremap <leader>ws :split<CR>
 nnoremap <leader>wc :close<CR>
 nnoremap <leader>wo :wincmd o<CR>
 nnoremap <leader>w} :wincmd }<CR>
