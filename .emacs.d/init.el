@@ -12,7 +12,8 @@
     evil-tabs
     evil-paredit
     evil-surround
-    smooth-scrolling)
+    smooth-scrolling
+    paredit)
   "List of packages needs to be installed at launch")
 
 (defun has-package-not-installed ()
