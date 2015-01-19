@@ -124,7 +124,7 @@ function! MyAlternateFunction()
     A
     let new_buf_nr = bufnr('%')
     if (old_buf_nr != new_buf_nr)
-        call AestheticCenterCursor()
+        call CenterCursorAesthetically()
     endif
 endfunction
 nnoremap <leader>a :call MyAlternateFunction()<CR>

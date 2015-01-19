@@ -1,74 +1,78 @@
 " when re-sourcing with this set, syntax highlighting changes!
+" having an existence of .vimrc already implies this
 "set nocompatible
 
 " don't customize anything if we are running in evim mode
 if v:progname =~? "evim"
-    finish
+  finish
 endif
 
+" http://utf8everywhere.org/
 set encoding=utf-8
 
 if exists('+regexpengine')
     " automatic engine selection
     set regexpengine=0
-    " use old engine
+
+    " use old engine (this could be faster in some cases to due new engine
+    " still being a work in progress)
+
     "set regexpengine=1
-    " use new engine
+
+    " use new engine, faster in particular tricky cases due to NFA
     "set regexpengine=2
 end
 
-let g:omegacomplete_version_preference = 1
-
 " pathogen
 let g:pathogen_disabled = []
-call add(g:pathogen_disabled, "ack.vim")
-call add(g:pathogen_disabled, "cocoa")
 call add(g:pathogen_disabled, "YankRing.vim")
 call add(g:pathogen_disabled, "vim-easymotion")
 "call add(g:pathogen_disabled, "vim-fireplace")
 
+let g:omegacomplete_version_preference = 1
 if g:omegacomplete_version_preference == 2
-    if has('java')
-        call add(g:pathogen_disabled, "omegacomplete")
-    else
-        call add(g:pathogen_disabled, "omegacomplete2")
-    endif
+  if has('java')
+    call add(g:pathogen_disabled, "omegacomplete")
+  else
+    call add(g:pathogen_disabled, "omegacomplete2")
+  endif
 elseif g:omegacomplete_version_preference == 1
     call add(g:pathogen_disabled, "omegacomplete2")
 endif
 
 if !has('python')
-    call add(g:pathogen_disabled, "omegacomplete")
-    call add(g:pathogen_disabled, "omegacomplete2")
-    call add(g:pathogen_disabled, "ultisnips")
+  call add(g:pathogen_disabled, "omegacomplete")
+  call add(g:pathogen_disabled, "omegacomplete2")
+  call add(g:pathogen_disabled, "ultisnips")
 endif
 
 if has('java')
-    let jar_list = split(globpath(expand('$HOME') . '/java', '*.jar'), "\n")
-    call insert(jar_list, expand('$VIMRUNTIME') . '/vim.jar', 0)
-    let jars = substitute(join(jar_list, ';'), '\\', '/', 'g')
-    let jars = substitute(jars, ' ', '\\ ', 'g')
-    exe "set javacp=" . jars
+  let jar_list = split(globpath(expand('$HOME') . '/java', '*.jar'), "\n")
+  call insert(jar_list, expand('$VIMRUNTIME') . '/vim.jar', 0)
+  let jars = substitute(join(jar_list, ';'), '\\', '/', 'g')
+  let jars = substitute(jars, ' ', '\\ ', 'g')
+  exe "set javacp=" . jars
 
-    javarepl clojure
+  javarepl clojure
 endif
 
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
 
+" load sensible defaults by our prophet Tim Pope
 runtime! plugin/sensible.vim
 
-let s:dir = has('win32') ? '$APPDATA/Vim' : match(system('uname'), "Darwin") > -1 ? '~/Library/Vim' : empty($XDG_DATA_HOME) ? '~/.local/share/vim' : '$XDG_DATA_HOME/vim'
-if isdirectory(expand(s:dir))
+let s:data_dir = has('win32') ? '$APPDATA/Vim' : match(system('uname'), "Darwin") > -1 ? '~/Library/Vim' : empty($XDG_DATA_HOME) ? '~/.local/share/vim' : '$XDG_DATA_HOME/vim'
+if isdirectory(expand(s:data_dir))
   if &directory =~# '^\.,'
-    let &directory = expand(s:dir) . '/swap//,' . &directory
+    let &directory = expand(s:data_dir) . '/swap//,' . &directory
   endif
   if &backupdir =~# '^\.,'
-    let &backupdir = expand(s:dir) . '/backup//,' . &backupdir
+    let &backupdir = expand(s:data_dir) . '/backup//,' . &backupdir
   endif
   if exists('+undodir') && &undodir =~# '^\.\%(,\|$\)'
-    let &undodir = expand(s:dir) . '/undo//,' . &undodir
+    let &undodir = expand(s:data_dir) . '/undo//,' . &undodir
   endif
 endif
 if exists('+undofile')
@@ -77,35 +81,22 @@ endif
 
 set fileformats=unix,dos,mac
 
-if has("win32")
-    " set this so that RUBY omnicompletion works
-    "let g:ruby_path='C:/Ruby192/bin'
-else
-    if !has("gui_running")
-        " need this otherwise colors disappear
-        if !exists('g:has_set_my_console_vim_settings')
-            set t_Co=256
-            " Prevent Vim from clobbering the scrollback buffer. See
-            " http://www.shallowsky.com/linux/noaltscreen.html
-            "
-            " this basically doesn't clear the screen when you close Vim
-            "set t_ti= t_te=
+if !has("gui_running")
+  " need this otherwise colors disappear
+  if !exists('g:has_set_my_console_vim_settings')
+    set t_Co=256
+    " Prevent Vim from clobbering the scrollback buffer. See
+    " http://www.shallowsky.com/linux/noaltscreen.html
+    "
+    " this basically doesn't clear the screen when you close Vim
+    "set t_ti= t_te=
 
-            "set t_RV=
-            "set ttymouse=
-            "set ttymouse=xterm2
-            "set mouse=
-            let g:has_set_my_console_vim_settings = 1
-        endif
-    endif
-
-    let s:uname = "win32"
-    if has("unix")
-        let s:uname = system("uname")
-    endif
-
-    if (s:uname == "Darwin\n")
-    endif
+    "set t_RV=
+    "set ttymouse=
+    "set ttymouse=xterm2
+    "set mouse=
+    let g:has_set_my_console_vim_settings = 1
+  endif
 endif
 
 " General {{{
@@ -116,7 +107,6 @@ set showmode
 set hidden
 set novisualbell
 set noerrorbells
-set novb
 "augroup CursorLine
   "au!
   "au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
@@ -126,15 +116,15 @@ set novb
 "augroup END
 set nonumber
 if exists('+relativenumber')
-    set norelativenumber
+  set norelativenumber
 endif
-set history=1024
+set history=10000
 set lazyredraw
 set ttyfast
 set matchtime=0
 set splitbelow
 set splitright
-set notitle
+set title
 set showtabline=2
 set cmdheight=1
 set completeopt=menu,menuone,preview
@@ -142,23 +132,24 @@ set pumheight=16
 set autochdir
 set nolist
 " always try to make the current window 80 columns
-set winwidth=80
+set winwidth=79
 set nojoinspaces
 set maxmempattern=2000000
 set maxmem=2000000
 set maxmemtot=2000000
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+
 set notimeout
 set timeoutlen=1024
 set ttimeout
 " needed to avoid leaving insert mode delay for vim-airline
-set ttimeoutlen=50
+set ttimeoutlen=100
 
 " }}}
 " Automatic Commands {{{
 augroup SaveAllBuffersWhenLosingFocus
-    au!
-    au FocusLost * silent! wall
+  au!
+  au FocusLost * silent! wall
 augroup END
 
 if !has("gui_running")
@@ -171,19 +162,20 @@ endif
 " Make sure Vim returns to the same line when you reopen a file.
 " Thanks, Amit
 augroup ReturnToSameLineWhenReopeningFile
-    au!
-    au BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
-        \     execute 'normal! g`"zv' |
-        \     call AestheticCenterCursor() |
-        \ endif
-    au BufReadPost COMMIT_EDITMSG
-        \ exe 'normal! gg'
+  au!
+  au BufReadPost *
+      \ if line("'\"") > 0 && line("'\"") <= line("$") |
+      \     execute 'normal! g`"zv' |
+      \     call CenterCursorAesthetically() |
+      \ endif
+  au BufReadPost COMMIT_EDITMSG
+      \ exe 'normal! gg'
 augroup END
 
 function! SaveAndCheckIfModified()
   if &modified
     update
+    " too distracting
     "SyntasticCheck
   endif
 endfunction
@@ -198,6 +190,7 @@ function! StripTrailingWhitespace()
     call winrestview(l:my_saved_winview)
 endfunction
 command! StripTrailingWhitespace call StripTrailingWhitespace()
+" generates too many annoying deltas in open source projects like OGRE
 "augroup StripTrailingWhitespaceOnSave
     "au!
     "Syandus
@@ -234,16 +227,17 @@ command! StripTrailingWhitespace call StripTrailingWhitespace()
     "autocmd FileType help :wincmd H
 "augroup END
 
-function! AdjustWindowHeight(minheight, maxheight)
-  exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
-endfunction
+"function! AdjustWindowHeight(minheight, maxheight)
+  "exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
+"endfunction
 "augroup QuickFixAutoSizer
     "au!
     "au FileType qf call AdjustWindowHeight(3, 16)
 "augroup END
 " }}}
 " wildmenu completion {{{
-set wildmode=longest,list
+" try this out, previously was longest,list
+set wildmode=longest,full
 set wildchar=<Tab>
 
 " binaries with a 99.9% chance of not being edited
@@ -364,6 +358,7 @@ runtime! config/**/*.vim
 "nnoremap <leader>8 ggVGD
 "nnoremap <leader>9 ggVGY
 
+" various snippets and utility functions go here
 function! FilterSmartQuotes()
     %s/\v“|”/\'/
 endfunction

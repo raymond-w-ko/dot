@@ -1,24 +1,12 @@
 " use aesthetic middle of screen for "zz"
-function! AestheticCenterCursor()
+function! CenterCursorAesthetically()
     normal! zz
-
-    let center = round(winheight(0) / 2.0)
-    let offset = winheight(0) * 0.1
-    let final = center - offset
-    let rounded_final = float2nr(final)
-    let rounded_offset = float2nr(offset)
-
-    let delta = winline() - (rounded_final + 1)
-
-    if (delta <= 0)
-        return
-    endif
-
-    exe 'normal ' . delta . "\<C-e>"
+    let offset = float2nr(winheight(0) * 0.1)
+    exe 'normal ' . offset . "\<C-e>"
 
     return
 endfunction
-nnoremap <silent> zz :call AestheticCenterCursor()<CR>
+nnoremap <silent> zz :call CenterCursorAesthetically()<CR>
 
 " Searching and movement
 " Use sane regexes.
