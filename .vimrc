@@ -132,7 +132,7 @@ set pumheight=16
 set autochdir
 set nolist
 " always try to make the current window 80 columns
-set winwidth=79
+set winwidth=80
 set nojoinspaces
 set maxmempattern=2000000
 set maxmem=2000000
@@ -173,9 +173,9 @@ augroup ReturnToSameLineWhenReopeningFile
 augroup END
 
 function! SaveAndCheckIfModified()
-  if &modified
+  if &modified && len(bufname('%')) > 0
     update
-    " too distracting
+    " too distracting (flickering) and slow
     "SyntasticCheck
   endif
 endfunction
