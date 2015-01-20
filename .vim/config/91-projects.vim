@@ -7,8 +7,8 @@ set tags=
     "\ 'Hub',                '__SVN__/SVN/Syandus_ALIVE3/Hub/Source',
     "\ 'Metrics',            '__SVN__/SVN/Syandus_ALIVE3/Metrics',
 let s:commands = [
-    \ 'Omegacomplete',      '__UNIX_HOME__/.vim/bundle/omegacomplete',
-    \ 'Omegacomplete2',     '__UNIX_HOME__/.vim/bundle/omegacomplete2',
+    \ 'Omegacomplete',      '__UNIX_HOME__/dot/.vim/bundle/omegacomplete',
+    \ 'Omegacomplete2',     '__UNIX_HOME__/dot/.vim/bundle/omegacomplete2',
     \ 'OcularWM',           '__UNIX_HOME__/src/ocularwm',
     \ 'Windmenu',           '__UNIX_HOME__/src/windmenu',
     \ 'Dk2test',            '__UNIX_HOME__/src/dk2test',
