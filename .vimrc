@@ -173,7 +173,7 @@ augroup ReturnToSameLineWhenReopeningFile
 augroup END
 
 function! SaveAndCheckIfModified()
-  if &modified && len(bufname('%')) > 0
+  if &modified && !&readonly && len(bufname('%')) > 0
     update
     " too distracting (flickering) and slow
     "SyntasticCheck
