@@ -236,8 +236,7 @@ command! StripTrailingWhitespace call StripTrailingWhitespace()
 "augroup END
 " }}}
 " wildmenu completion {{{
-" try this out, previously was longest,list
-set wildmode=longest,full
+set wildmode=longest,list
 set wildchar=<Tab>
 
 " binaries with a 99.9% chance of not being edited
