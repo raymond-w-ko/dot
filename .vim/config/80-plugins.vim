@@ -105,6 +105,15 @@ let g:NERDCustomDelimiters = {
 
 " omegacomplete
 "let g:omegacomplete_log_file = "C:\\SVN\\omegacomplete.txt"
+let g:omegacomplete_normal_hi_cmds=[
+    \ "hi Pmenu guifg=#00ff00 guibg=#002b36 gui=none ctermbg=8 ctermfg=046 cterm=none",
+    \ "hi PmenuSel guifg=#002b36 guibg=#00ff00 gui=none ctermbg=046 ctermfg=8 cterm=none",
+    \ ]
+
+let g:omegacomplete_corrections_hi_cmds=[
+    \ "hi Pmenu guifg=#ffff00 guibg=#002b36 gui=none ctermbg=8 ctermfg=226 cterm=none",
+    \ "hi PmenuSel guifg=#002b36 guibg=#ffff00 gui=none ctermbg=226 ctermfg=8 cterm=none",
+    \ ]
 
 " syntastic
 let g:syntastic_enable_highlighting = 1
