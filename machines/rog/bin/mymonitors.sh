@@ -18,5 +18,5 @@ fi
 
 #$configure_i3_workspaces.sh
 # dropped my laptop and partially broke cooling, always want adaptive speed now.
-#nvidia-settings --load-config-only
+nvidia-settings --load-config-only
 #(sleep 20 && DISPLAY=":0.0" nvidia-settings -a [gpu:0]/GPUPowerMizerMode=1) &

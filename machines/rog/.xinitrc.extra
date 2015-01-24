@@ -19,4 +19,5 @@ compton --config /dev/null -b --backend glx --vsync opengl-swc --glx-no-rebind-p
 
 # always full GPU speed
 # dropped laptop and broke something, cooling not working 100%
+(sleep 2 && DISPLAY=":0.0" nvidia-settings --load-config-only) &
 #(sleep 5 && DISPLAY=":0.0" nvidia-settings -a [gpu:0]/GPUPowerMizerMode=1) &
