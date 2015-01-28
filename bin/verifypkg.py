@@ -69,6 +69,7 @@ def checkpkg(pkgfile):
     md5s = pkgmd5s(pkgfile)
     for filename,md5 in md5s.items():
         ff = '/' + filename
+        ff = ff.replace('GNUSparseFile/', '')
         if os.path.exists(ff):
             try:
                 with open(ff) as g:
