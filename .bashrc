@@ -50,6 +50,7 @@ else
 fi
 
 # aliases
+alias dot="cd $HOME/dot"
 alias sdr='screen -U -D -R'
 alias ta='tmux attach'
 #alias tmux="TERM=screen-256color-bce tmux"
