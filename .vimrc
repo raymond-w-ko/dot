@@ -27,6 +27,7 @@ end
 let g:pathogen_disabled = []
 call add(g:pathogen_disabled, "YankRing.vim")
 call add(g:pathogen_disabled, "vim-easymotion")
+call add(g:pathogen_disabled, "rainbow_parentheses.vim")
 "call add(g:pathogen_disabled, "vim-fireplace")
 
 let g:omegacomplete_version_preference = 1
@@ -372,11 +373,11 @@ command! FixSmartQuotes silent! call FixSmartQuotes()
 
 command! WriteUTF8 write ++enc=utf-8
 
-function! ReplaceWithTLINK()
-    %s/\vvoice\="Audrey16" type\="STREAMING" category\="VOICE"/TLINK=">sounds>amy"/
-    %s/\vvoice\="Mike16" type\="STREAMING" category\="VOICE"/TLINK=">sounds>bob"/
-endfunction
-command! ReplaceWithTLINK silent! call ReplaceWithTLINK()
+"function! ReplaceWithTLINK()
+    "%s/\vvoice\="Audrey16" type\="STREAMING" category\="VOICE"/TLINK=">sounds>amy"/
+    "%s/\vvoice\="Mike16" type\="STREAMING" category\="VOICE"/TLINK=">sounds>bob"/
+"endfunction
+"command! ReplaceWithTLINK silent! call ReplaceWithTLINK()
 
 map <leader>S VVS<
 

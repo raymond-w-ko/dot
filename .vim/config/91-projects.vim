@@ -13,6 +13,7 @@ let s:commands = [
     \ 'Windmenu',           '__UNIX_HOME__/src/windmenu',
     \ 'Dk2test',            '__UNIX_HOME__/src/dk2test',
     \ 'Collimator',         '__UNIX_HOME__/src/collimator',
+    \ 'Diffractor',         '__UNIX_HOME__/src/diffractor',
     \
     \ 'SVN',                '__SVN__/SVN/',
     \ 'Platform4',          '__SVN__/SVN/Syandus_ALIVE4/Platform/Source/Code',

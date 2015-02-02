@@ -85,16 +85,16 @@ let g:rbpt_colorpairs = [
     \ [ '3',  '#b58900'],
     \ [ '9',  '#cb4b16'],
     \ ]
-augroup EnableRainbowParentheses
-  au!
-  au VimEnter * RainbowParenthesesToggle
-  au Syntax * RainbowParenthesesLoadRound
-  au Syntax * RainbowParenthesesLoadBraces
+"augroup EnableRainbowParentheses
+  "au!
+  "au VimEnter * RainbowParenthesesToggle
+  "au Syntax * RainbowParenthesesLoadRound
+  "au Syntax * RainbowParenthesesLoadBraces
   " breaks Lua's [[multiline string literal]] and --[[megacomment]]
   "au Syntax * RainbowParenthesesLoadSquare
   " breaks XML hilighting
   "au Syntax * RainbowParenthesesLoadChevrons
-augroup END
+"augroup END
 
 "NERDCommenter
 let g:NERDCustomDelimiters = {
