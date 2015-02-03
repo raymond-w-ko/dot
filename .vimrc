@@ -140,11 +140,14 @@ set maxmem=2000000
 set maxmemtot=2000000
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 
-set notimeout
-set timeoutlen=1024
-set ttimeout
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" mirror tpope dotfiles
+"set notimeout
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set timeoutlen=1200
+"set ttimeout
 " needed to avoid leaving insert mode delay for vim-airline
-set ttimeoutlen=100
+set ttimeoutlen=50
 
 " }}}
 " Automatic Commands {{{
