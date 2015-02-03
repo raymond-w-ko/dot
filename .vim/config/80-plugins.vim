@@ -122,7 +122,7 @@ let g:syntastic_auto_jump = 3
 let g:syntastic_enable_signs = 1
 let g:syntastic_mode_map = {
             \ 'mode': 'active',
-            \ 'active_filetypes': ['ruby', 'php'],
+            \ 'active_filetypes': ['ruby', 'php', 'python'],
             \ 'passive_filetypes': ['java', 'c', 'cpp', 'objc', 'objcpp'] }
 
 " paredit
