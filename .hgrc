@@ -1,5 +1,6 @@
 [ui]
 username = Raymond W. Ko <raymond.w.ko@gmail.com>
+editor = ~/vim/bin/vim
 [pager]
 pager = LESS='FSRX' less
 [extensions]

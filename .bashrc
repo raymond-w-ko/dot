@@ -136,6 +136,9 @@ alias svnfixexe="find . -name '*.sh' -exec svn propset svn:executable yes '{}' \
 svnrmmissing() {
   svn st | grep ^! | awk '{print " --force "$2}' | xargs svn rm
 }
+svnaddmissing() {
+  svn st | grep '^?' | awk '{print " --force "$2}' | xargs svn add
+}
 alias svnadddir='svn add --depth=empty'
 svndiff() {
   svn diff -x "-w --ignore-eol-style" "${@}" | sed 's///' | $DIFF_PROG | less -R
