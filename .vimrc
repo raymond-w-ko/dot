@@ -103,7 +103,7 @@ endif
 " General {{{
 set autowrite
 set autowriteall
-set shortmess+=aI    " no intro message
+set shortmess+=aIc    " no intro message, no ins-completion-menu
 set showmode
 set hidden
 set novisualbell
