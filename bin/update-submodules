@@ -5,10 +5,8 @@ set -e
 cd "$HOME/.vim/bundle"
 pwd
 
-for dir in * ; do
-    test -d "$dir" || continue
-    cd "$dir"
-    pwd
+do_git_pull ()
+{
     if [ -e .git ]; then
         has_develop=`git branch | grep develop | wc -l`
         if [ "$has_develop" -gt 0 ]; then
@@ -37,7 +35,12 @@ for dir in * ; do
 
         echo --------------------------------------------------------------------------------
     fi
-    cd ..
+}
+
+for dir in * ; do
+    test -d "$dir" || continue
+    CMD="(pwd ; cd \"$dir\"; do_git_pull)&"
+    eval $CMD
 done
 
 cd
