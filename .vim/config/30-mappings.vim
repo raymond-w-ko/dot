@@ -10,7 +10,12 @@ endif
 
 " ALL GLORY TO THE ESC KEY
 inoremap jk <Esc>
+" I only hit this like 5% of the time
 "inoremap kj <Esc>
+
+" looking at junegunn's vimrc, <C-f> and <C-b> are usually overkill
+noremap <C-F> <C-D>
+noremap <C-B> <C-U>
 
 nnoremap ; :
 nnoremap : ;
