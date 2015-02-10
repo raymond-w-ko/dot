@@ -51,7 +51,8 @@ function! CtrlPMatch(items, str, limit, mmode, ispath, crfile, regex) abort
   endif
   return haystack#filter(items, a:str)
 endfunction
-let g:ctrlp_match_func = {'match': function('CtrlPMatch')}
+" too slow
+"let g:ctrlp_match_func = {'match': function('CtrlPMatch')}
 
 " indent-guides
 "let g:indent_guides_enable_on_vim_startup=0
