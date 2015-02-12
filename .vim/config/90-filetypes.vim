@@ -107,6 +107,12 @@ augroup ft_dosbatch
   au FileType dosbatch setlocal ff=dos
 augroup END
 "}}}
+" Makefile {{{
+augroup ft_makefile
+  au!
+  au FileType Makefile setlocal noexpandtab
+augroup END
+" }}}
 
 " Hex Editing {{{
 " vim -b : edit binary using xxd-format!
