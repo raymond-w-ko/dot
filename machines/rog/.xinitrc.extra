@@ -7,6 +7,8 @@ TOUCHPAD="SynPS/2 Synaptics TouchPad"
 xinput set-int-prop "$TOUCHPAD" "Device Accel Profile" 32 2 
 xinput set-float-prop "$TOUCHPAD" "Device Accel Constant Deceleration" 7.5
 xinput set-float-prop "$TOUCHPAD" "Device Accel Adaptive Deceleration" 1.5
+# may palm accidentally hits this too often
+synclient VertEdgeScroll=0
 
 # this causes a signficant amount of wakeups in powertop
 # but ma spoon^H^H^H^H^Hhands are too big
