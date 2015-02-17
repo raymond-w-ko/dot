@@ -259,8 +259,8 @@ set wildignore+=*.ncb,*.suo,*.user,*.vcproj,*.vcxproj,*.out,*.sln,*.pdb
 set wildignore+=*.manifest,*.dep,*.idb,*.ipch,*.o,*.obj
 set wildignore+=Debug,Release
 
-" GCC dependencies
-set wildignore+=*.d
+" GCC
+set wildignore+=*.d,*.a
 
 " Gamebryo Binaries
 set wildignore+=*.nif,*.kf,*.kfm,*.NSB
