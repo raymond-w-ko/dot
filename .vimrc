@@ -145,7 +145,14 @@ set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 " mirror tpope dotfiles
 "set notimeout
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set timeoutlen=1200
+augroup MySetTimeoutLen1
+  au!
+  autocmd InsertLeave * set timeoutlen=1200
+augroup END
+augroup MySetTimeoutLen2
+  au!
+  autocmd InsertEnter * set timeoutlen=150
+augroup END
 "set ttimeout
 " needed to avoid leaving insert mode delay for vim-airline
 set ttimeoutlen=50

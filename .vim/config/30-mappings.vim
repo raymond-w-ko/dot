@@ -9,9 +9,13 @@ if (s:uname == "Darwin\n")
 endif
 
 " ALL GLORY TO THE ESC KEY
-inoremap jk <Esc>
+"inoremap jk <Esc>
 " I only hit this like 5% of the time
 "inoremap kj <Esc>
+
+" trying out something crazy
+inoremap dk <Esc>
+inoremap kd <Esc>
 
 " looking at junegunn's vimrc, <C-f> and <C-b> are usually overkill
 noremap <C-F> <C-D>
