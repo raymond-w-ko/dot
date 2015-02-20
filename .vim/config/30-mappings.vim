@@ -14,8 +14,10 @@ endif
 "inoremap kj <Esc>
 
 " trying out something crazy
-inoremap dk <Esc>
-inoremap kd <Esc>
+"inoremap dk <Esc>
+"inoremap kd <Esc>
+inoremap fj <Esc>
+inoremap jf <Esc>
 
 " looking at junegunn's vimrc, <C-f> and <C-b> are usually overkill
 noremap <C-F> <C-D>

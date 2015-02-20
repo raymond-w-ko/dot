@@ -147,11 +147,11 @@ set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup MySetTimeoutLen1
   au!
+  autocmd InsertEnter * set timeoutlen=50
   autocmd InsertLeave * set timeoutlen=1200
 augroup END
 augroup MySetTimeoutLen2
   au!
-  autocmd InsertEnter * set timeoutlen=150
 augroup END
 "set ttimeout
 " needed to avoid leaving insert mode delay for vim-airline
