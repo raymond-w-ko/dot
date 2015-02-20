@@ -296,7 +296,7 @@ function! ToggleHex()
     let b:editHex=1
     " switch to hex editor
     %!xxd
-    %:s/$//g
+    %:s/$//e
   else
     " restore old options
     let &ft=b:oldft
