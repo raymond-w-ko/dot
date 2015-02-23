@@ -1,6 +1,6 @@
 [ui]
 username = Raymond W. Ko <raymond.w.ko@gmail.com>
-editor = ~/vim/bin/vim
+editor = vim
 [pager]
 pager = LESS='FSRX' less
 [extensions]
@@ -11,6 +11,7 @@ color =
 mq =
 progress =
 shelve =
+hgext.extdiff =
 [diff]
 #ignorews=True
 [color]
@@ -22,3 +23,5 @@ status.unknown = blue bold
 status.ignored = black bold
 [progress]
 delay = 1.5
+[extdiff]
+cmd.vdiff = vimdiff
