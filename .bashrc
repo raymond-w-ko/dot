@@ -74,6 +74,15 @@ findcore() {
 alias uu='udevil umount'
 alias us='update-submodules'
 alias fix_permissions="find . -regex '.*\.\(vim\|h\|hpp\|c\|cpp\)$' -type f -exec chmod -x {} \;"
+superwget() {
+  while [ 1 ]; do
+    wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 0 --continue "$1"
+    if [ $? = 0 ]; then
+      break;
+    fi; # check return value, break if successful (0)
+    sleep 1s;
+  done;
+}
 
 if [ -d "/cygdrive/c/Users/root/Desktop/P2P" ]; then
     alias p2p='cd /cygdrive/c/Users/root/Desktop/P2P'
