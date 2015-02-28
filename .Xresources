@@ -149,3 +149,4 @@ URxvt*transparent     : false
 URxvt*urgentOnBell    : true
 URxvt*visualBell      : false
 URxvt*iso14755        : false
+URxvt*reverseVideo    : false
