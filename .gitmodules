@@ -124,6 +124,3 @@
 [submodule ".vim/bundle/vim-cpp"]
 	path = .vim/bundle/vim-cpp
 	url = git@github.com:vim-jp/vim-cpp.git
-[submodule ".vim/bundle/a.vim"]
-	path = .vim/bundle/a.vim
-	url = git@github.com:raymond-w-ko/a.vim.git
