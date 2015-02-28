@@ -71,7 +71,8 @@ XTerm*color13:                 S_violet
 XTerm*color14:                 S_base1
 XTerm*color15:                 S_base3
 
-URxvt*background:              S_base03
+!URxvt*background:              S_base03
+URxvt*background:              [100]#002b36
 URxvt*foreground:              S_base0
 URxvt*fading:                  42
 URxvt*fadeColor:               S_base03
@@ -131,7 +132,8 @@ URxvt*bolditalicFont: fonts
 
 URxvt*cursorBlink     : false
 URxvt*cursorUnderline : false
-URxvt*depth           : 24
+! true transparency for compositor
+URxvt*depth           : 32
 ! this usually means use the desktop background as the background instead of a
 ! configured color for pseudo-transparency
 URxvt*inheritPixmap   : false
