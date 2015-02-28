@@ -10,9 +10,6 @@
 [submodule ".vim/bundle/ctrlp.vim"]
 	path = .vim/bundle/ctrlp.vim
 	url = https://github.com/ctrlpvim/ctrlp.vim.git
-[submodule ".vim/bundle/bufkill.vim"]
-	path = .vim/bundle/bufkill.vim
-	url = git@bitbucket.org:rko/bufkill.vim.git
 [submodule ".vim/bundle/cocoa.vim"]
 	path = .vim/bundle/cocoa.vim
 	url = https://github.com/msanders/cocoa.vim.git
@@ -127,3 +124,6 @@
 [submodule ".vim/bundle/a.vim"]
 	path = .vim/bundle/a.vim
 	url = git@github.com:raymond-w-ko/a.vim.git
+[submodule ".vim/bundle/bufkill.vim"]
+	path = .vim/bundle/bufkill.vim
+	url = git@github.com:raymond-w-ko/bufkill.vim.git
