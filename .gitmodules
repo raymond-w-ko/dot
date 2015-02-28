@@ -124,3 +124,6 @@
 [submodule ".vim/bundle/vim-haystack"]
 	path = .vim/bundle/vim-haystack
 	url = git@github.com:tpope/vim-haystack.git
+[submodule ".vim/bundle/vim-cpp"]
+	path = .vim/bundle/vim-cpp
+	url = git@github.com:vim-jp/vim-cpp.git
