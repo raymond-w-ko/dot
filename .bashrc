@@ -177,6 +177,7 @@ alias Proton="cd ~/SVN/Syandus_ALIVE4/Frameworks/Proton/Build/Content"
 alias Hydrogen="cd ~/SVN/Syandus_ALIVE4/Frameworks/Hydrogen/Build/Content"
 alias Oxygen="cd ~/SVN/Syandus_ALIVE4/Frameworks/Oxygen/Build/Content"
 alias Nitrogen="cd ~/SVN/Syandus_ALIVE4/Frameworks/Nitrogen/Build/Content"
+alias Merck="cd ~/SVN/Syandus_Web/Merck"
 
 if [[ "$unameString" == 'Darwin' ]]; then
   alias ImmuneQuestBuilds="cd ~/Desktop/ImmuneQuest_Builds"
