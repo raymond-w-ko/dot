@@ -121,7 +121,7 @@ if exists('+relativenumber')
 endif
 set history=10000
 set lazyredraw
-set noshowcmd
+set showcmd
 set ttyfast
 set matchtime=0
 set splitbelow
