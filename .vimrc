@@ -132,6 +132,11 @@ set cmdheight=1
 set completeopt=menu,menuone,preview
 set pumheight=16
 set autochdir
+augroup HardcoreAutoChdir
+  au!
+  autocmd BufEnter * silent! lcd %:p:h
+  autocmd BufEnter * silent! cd %:p:h
+augroup END
 set nolist
 " always try to make the current window 80 columns
 set winwidth=80
