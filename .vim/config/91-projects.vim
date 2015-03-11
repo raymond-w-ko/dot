@@ -48,6 +48,7 @@ let s:commands = [
     \ 'SyandusHtml5',       '__SVN__/SVN/Syandus_Company/Web/Syandus.com/main/2013-html/html',
     \ 'Cellulose',          '__SVN__/SVN/Syandus_ALIVE4/Cellulose',
     \ 'Rosettastone',       '__SVN__/SVN/Syandus_Web/Merck/rosettastone',
+    \ 'Merck',              '__SVN__/SVN/Syandus_Web/Merck',
     \ ]
 for i in range(len(s:commands) / 2)
     let cmd = (i * 2) + 0

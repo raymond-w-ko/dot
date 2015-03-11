@@ -5,11 +5,11 @@
 let g:alternateNoDefaultAlternate=1
 
 " NetRW
-let g:netrw_silent=1
+"let g:netrw_silent=1
 " apparently enabling this hijacks the mouse completely
 " so you can't use it to select stuff (WTF!)
-let g:netrw_mousemaps=0
-let g:netrw_cygwin = 1
+"let g:netrw_mousemaps=0
+"let g:netrw_cygwin = 1
 
 " AutoComplPop
 "let g:acp_enableAtStartup = 0
