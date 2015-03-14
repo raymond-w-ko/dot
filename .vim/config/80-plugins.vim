@@ -46,7 +46,7 @@ let g:ctrlp_working_path_mode = 0
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_max_files = 0
-let g:ctrlp_lazy_update = 350
+"let g:ctrlp_lazy_update = 350
 
 "function! CtrlPMatch(items, str, limit, mmode, ispath, crfile, regex) abort
   "let items = copy(a:items)
@@ -60,13 +60,9 @@ let g:ctrlp_lazy_update = 350
 
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
-  let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
-      \ --ignore .git
-      \ --ignore .svn
-      \ --ignore .hg
-      \ --ignore .DS_Store
-      \ --ignore "**/*.pyc"
-      \ -g ""'
+  let ignored_exts = map(split(&wildignore, ','), '"--ignore \"" . v:val . "\""')
+  let ignore_string = join(ignored_exts, ' ')
+  let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden -g "" ' . ignore_string
 endif
 
 if !has('python')
