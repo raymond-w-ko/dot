@@ -41,7 +41,7 @@ let g:alternateNoDefaultAlternate=1
 let g:ctrlp_map = '<leader>\'           " set to something that I will never use
 let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_match_window_bottom = 0
-let g:ctrlp_max_height = 16
+let g:ctrlp_max_height = 32
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_switch_buffer = 0
 function! CtrlPMatch(items, str, limit, mmode, ispath, crfile, regex) abort
@@ -53,6 +53,16 @@ function! CtrlPMatch(items, str, limit, mmode, ispath, crfile, regex) abort
 endfunction
 " too slow
 "let g:ctrlp_match_func = {'match': function('CtrlPMatch')}
+
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+      \ --ignore .git
+      \ --ignore .svn
+      \ --ignore .hg
+      \ --ignore .DS_Store
+      \ --ignore "**/*.pyc"
+      \ -g ""'
+endif
 
 " indent-guides
 "let g:indent_guides_enable_on_vim_startup=0
