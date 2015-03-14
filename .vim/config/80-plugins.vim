@@ -44,17 +44,22 @@ let g:ctrlp_match_window_bottom = 0
 let g:ctrlp_max_height = 32
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_switch_buffer = 0
-function! CtrlPMatch(items, str, limit, mmode, ispath, crfile, regex) abort
-  let items = copy(a:items)
-  if a:ispath
-    call filter(items, 'v:val !=# a:crfile')
-  endif
-  return haystack#filter(items, a:str)
-endfunction
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_max_files = 0
+let g:ctrlp_lazy_update = 350
+
+"function! CtrlPMatch(items, str, limit, mmode, ispath, crfile, regex) abort
+  "let items = copy(a:items)
+  "if a:ispath
+    "call filter(items, 'v:val !=# a:crfile')
+  "endif
+  "return haystack#filter(items, a:str)
+"endfunction
 " too slow
 "let g:ctrlp_match_func = {'match': function('CtrlPMatch')}
 
 if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
   let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
       \ --ignore .git
       \ --ignore .svn
@@ -62,6 +67,12 @@ if executable('ag')
       \ --ignore .DS_Store
       \ --ignore "**/*.pyc"
       \ -g ""'
+endif
+
+if !has('python')
+  echo 'In order to use pymatcher plugin, you need +python compiled vim'
+else
+  let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 endif
 
 " indent-guides
