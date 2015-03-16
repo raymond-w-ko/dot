@@ -19,6 +19,8 @@ endif
 inoremap fj <Esc>
 inoremap jf <Esc>
 
+nnoremap Y y$
+
 " looking at junegunn's vimrc, <C-f> and <C-b> are usually overkill
 noremap <C-F> <C-D>
 noremap <C-B> <C-U>

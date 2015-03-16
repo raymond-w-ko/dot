@@ -153,7 +153,7 @@ set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 augroup MySetTimeoutLen1
   au!
   autocmd InsertEnter * set timeoutlen=100
-  autocmd InsertLeave * set timeoutlen=1200
+  autocmd InsertLeave * set timeoutlen=500
 augroup END
 augroup MySetTimeoutLen2
   au!
