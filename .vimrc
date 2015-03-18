@@ -104,6 +104,7 @@ endif
 set autowrite
 set autowriteall
 set shortmess+=aIc    " no intro message, no ins-completion-menu
+set report=0 " report back when greater than N lines changed
 set showmode
 set hidden
 set novisualbell
@@ -116,6 +117,7 @@ augroup CursorLine
   "au WinLeave * setlocal nocursorcolumn
 augroup END
 set nonumber
+set ruler
 if exists('+relativenumber')
   set norelativenumber
 endif
@@ -253,8 +255,12 @@ command! StripTrailingWhitespace call StripTrailingWhitespace()
 "augroup END
 " }}}
 " wildmenu completion {{{
-set wildmode=longest,list
+"set wildmode=longest,list
+set wildmode=list:longest
 set wildchar=<Tab>
+if exists('&wildignorecase')
+  set wildignorecase
+endif
 
 " binaries with a 99.9% chance of not being edited
 set wildignore+=*.exe,*.dll
@@ -360,7 +366,7 @@ set selection=inclusive
 set mousehide
 set nomousefocus
 set mouse=a
-set clipboard=autoselect
+set clipboard=unnamed
 
 " source all other files in the vimfiles/config directory
 runtime! config/**/*.vim
