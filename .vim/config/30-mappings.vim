@@ -278,11 +278,6 @@ augroup CppRefactor
     au BufReadPre *.cpp,*.h nnoremap <buffer> <leader>rci :call CreateCppMethodImplementation()<CR>dd$a<Space>{{
 augroup END
 
-augroup Clojure
-    au BufReadPre *.clj nnoremap <buffer> <leader>r :Require<CR>
-    au BufReadPre *.clj nnoremap <buffer> <leader>R :Require!<CR>
-augroup END
-
 
 " lazy .. to ->
 function! MyLazyDotDotToArrow()

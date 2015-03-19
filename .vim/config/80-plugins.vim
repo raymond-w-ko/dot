@@ -173,4 +173,13 @@ let g:airline#extensions#whitespace#enabled = 0
 " bufkill.vim
 let g:BufKillCreateMappings = 0
 
-let g:solarized_italic = 0
+" vim-cljfmt
+let g:clj_fmt_autosave = 0
+
+augroup Clojure
+  au!
+  au BufReadPre *.clj nnoremap <buffer> <leader>r :Require<CR>
+  au BufReadPre *.clj nnoremap <buffer> <leader>R :Require!<CR>
+  au BufReadPost *.clj nnoremap <buffer> == :Cljfmt<CR>
+augroup END
+
