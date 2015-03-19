@@ -366,7 +366,7 @@ set selection=inclusive
 set mousehide
 set nomousefocus
 set mouse=a
-set clipboard=unnamed
+set clipboard=autoselect
 
 " source all other files in the vimfiles/config directory
 runtime! config/**/*.vim
