@@ -401,6 +401,6 @@ command! WriteUTF8 write ++enc=utf-8
 "endfunction
 "command! ReplaceWithTLINK silent! call ReplaceWithTLINK()
 
-map <leader>S VVS<
+"map <leader>S VVS<
 
 " vim:fdm=marker:foldlevel=0
