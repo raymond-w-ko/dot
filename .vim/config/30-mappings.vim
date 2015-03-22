@@ -37,26 +37,13 @@ nnoremap : ;
 vnoremap ; :
 vnoremap : ;
 
-"lazy write
-if (!exists('g:lazy_writing') || g:lazy_writing == 0)
-    function! MyLazyWrite()
-        let g:lazy_writing = 1
-        silent wall
-        "let curdir = expand("%:p:h")
-        "let makefile = curdir . '/make.bat'
-        "if (filereadable(makefile)) && match(getcwd(), '\v\CSVN.Syandus_') != -1
-            "silent !make.bat
-        "endif
-        let g:lazy_writing = 0
-        "SyntasticCheck
-    endfunction
-endif
-nnoremap <silent> <CR> :call MyLazyWrite()<CR>
+" fastest way to save a file
+nnoremap <silent> <CR> :wall<CR>
 
 " some convenience mappings for Vim autocomplete
 inoremap <C-l> <C-x><C-l>
 
-" disable crazy keys
+" disable crazy / dangerous keys
 nnoremap K <Nop>
 vnoremap K <Nop>
 nnoremap ZZ <Nop>
@@ -116,14 +103,14 @@ elseif has("win32")
         exe 'nnoremap <leader>gc :CtrlP C:/cygwin/home/root/dot/.vim/config<CR>'
     endif
 
-    nnoremap <leader>eh :e C:/Windows/system32/drivers/etc/hosts<CR>
+    "nnoremap <leader>eh :e C:/Windows/system32/drivers/etc/hosts<CR>
     "nnoremap <leader>el :e C:/SVN/_my_launch.bat<CR>
 endif
 
 function! FindFileInProjectDirectory()
     execute ':CtrlP ' . EscapePathname(MyGetProjectDirectory())
 endfunction
-nnoremap <leader>t :call FindFileInProjectDirectory()<CR>
+nnoremap <C-p> :call FindFileInProjectDirectory()<CR>
 
 nnoremap <leader>b :CtrlPBuffer<CR>
 
@@ -149,11 +136,11 @@ nnoremap <leader>p :call MyPasteToggle()<CR>
 
 " This allows for change paste motion cp{motion}
 " http://stackoverflow.com/questions/2471175/vim-replace-word-with-contents-of-paste-buffer
-nnoremap <silent> cp :set opfunc=ChangePaste<CR>g@
 function! ChangePaste(type, ...)
     silent exe "normal! `[v`]\"_c"
     silent exe "normal! p"
 endfunction
+nnoremap <silent> cp :set opfunc=ChangePaste<CR>g@
 
 " lazy braces
 function! MyDoubleBracesExpander()
@@ -163,8 +150,7 @@ function! MyDoubleBracesExpander()
         return
     endif
 
-    if ( line[line_len - 2] != '{' ||
-       \ line[line_len - 1] != '{' )
+    if (line[line_len - 2] != '{' || line[line_len - 1] != '{')
         return
     endif
     call feedkeys("\<BS>\<CR>X\<CR>}\<Up>\<End>\<BS>", 't')
@@ -758,7 +744,5 @@ map <leader>u :call HandleURI()<CR>
 " Especially useful for adding items in the middle of long lists/tuples in Python
 " while maintaining a sane text width.
 "nnoremap K h/[^ ]<cr>"zd$jyyP^v$h"zpJk:s/\v +$//<cr>:noh<cr>j^
-
-nnoremap <leader>m :make!<CR>
 
 " vim:fdm=marker:foldlevel=0
