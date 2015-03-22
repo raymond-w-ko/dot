@@ -157,9 +157,6 @@ augroup MySetTimeoutLen1
   autocmd InsertEnter * set timeoutlen=100
   autocmd InsertLeave * set timeoutlen=500
 augroup END
-augroup MySetTimeoutLen2
-  au!
-augroup END
 "set ttimeout
 " needed to avoid leaving insert mode delay for vim-airline
 set ttimeoutlen=50
