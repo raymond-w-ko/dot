@@ -8,26 +8,32 @@ if (s:uname == "Darwin\n")
     endif
 endif
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ALL GLORY TO THE ESC KEY
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" this caused too much stress to right hand and was a bit awkward for me
 "inoremap jk <Esc>
 " I only hit this like 5% of the time
 "inoremap kj <Esc>
 
 " trying out something crazy
+" too much stress to middle fingers
 "inoremap dk <Esc>
 "inoremap kd <Esc>
+" just right :-)
 inoremap fj <Esc>
 inoremap jf <Esc>
 
+" mirror dd and D, a bit hard to get use to
 nnoremap Y y$
 
 " looking at junegunn's vimrc, <C-f> and <C-b> are usually overkill
 noremap <C-F> <C-D>
 noremap <C-B> <C-U>
 
+" lazyness, and to help me use Ex commands
 nnoremap ; :
 nnoremap : ;
-
 vnoremap ; :
 vnoremap : ;
 
