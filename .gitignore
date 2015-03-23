@@ -6,3 +6,4 @@
 *.xkm
 /.emacs.d/elpa
 /.emacs.d/*~
+/bin/ag
