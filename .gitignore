@@ -7,3 +7,4 @@
 /.emacs.d/elpa
 /.emacs.d/*~
 /bin/ag
+/config/mc/hotlist
