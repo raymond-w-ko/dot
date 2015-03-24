@@ -122,6 +122,9 @@ let g:rbpt_colorpairs = [
   "au Syntax * RainbowParenthesesLoadChevrons
 "augroup END
 
+" rainbow
+let g:rainbow_active = 1
+
 "NERDCommenter
 let g:NERDCustomDelimiters = {
     \ 'syxml': { 'left': '//', 'right': ''},
@@ -178,8 +181,8 @@ let g:clj_fmt_autosave = 0
 
 augroup Clojure
   au!
-  au BufReadPre *.clj nnoremap <buffer> <leader>r :Require<CR>
-  au BufReadPre *.clj nnoremap <buffer> <leader>R :Require!<CR>
+  au BufReadPost *.clj nnoremap <buffer> <leader>r :Require<CR>
+  au BufReadPost *.clj nnoremap <buffer> <leader>R :Require!<CR>
   au BufReadPost *.clj nnoremap <buffer> == :Cljfmt<CR>
 augroup END
 
