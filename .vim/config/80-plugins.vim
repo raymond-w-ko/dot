@@ -123,7 +123,20 @@ let g:rbpt_colorpairs = [
 "augroup END
 
 " rainbow
-let g:rainbow_active = 1
+"let g:rainbow_active = 1
+"let g:rainbow_load_separately = [
+    "\ [ '*' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
+    "\ [ '*.tex' , [['(', ')'], ['\[', '\]']] ],
+    "\ [ '*.cpp' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
+    "\ [ '*.{html,htm}' , [['(', ')'], ['\[', '\]'], ['{', '}'], ['<\a[^>]*>', '</[^>]*>']] ],
+    "\ ]
+augroup RainbowParentheses
+  au!
+  au FileType c,cpp,objc,objcpp,go,rust,javascript,java call rainbow#load()
+  au FileType clojure call rainbow#load(
+      \ [['(', ')'], ['\[', '\]'],
+      \ ['{', '}']], '"[-+*/=><%^&$#@!~|:?\\]"')
+augroup END
 
 "NERDCommenter
 let g:NERDCustomDelimiters = {
