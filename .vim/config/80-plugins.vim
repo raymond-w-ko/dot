@@ -132,10 +132,10 @@ let g:rbpt_colorpairs = [
     "\ ]
 augroup RainbowParentheses
   au!
-  au FileType c,cpp,objc,objcpp,go,rust,javascript,java call rainbow#load()
-  au FileType clojure call rainbow#load(
-      \ [['(', ')'], ['\[', '\]'],
-      \ ['{', '}']], '"[-+*/=><%^&$#@!~|:?\\]"')
+  "au FileType c,cpp,objc,objcpp,go,rust,javascript,java call rainbow#load()
+  "au FileType clojure call rainbow#load(
+      "\ [['(', ')'], ['\[', '\]'],
+      "\ ['{', '}']], '"[-+*/=><%^&$#@!~|:?\\]"')
 augroup END
 
 "NERDCommenter
