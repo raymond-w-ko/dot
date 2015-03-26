@@ -130,13 +130,25 @@ let g:rbpt_colorpairs = [
     "\ [ '*.cpp' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
     "\ [ '*.{html,htm}' , [['(', ')'], ['\[', '\]'], ['{', '}'], ['<\a[^>]*>', '</[^>]*>']] ],
     "\ ]
-augroup RainbowParentheses
-  au!
+"augroup RainbowParentheses
+  "au!
   "au FileType c,cpp,objc,objcpp,go,rust,javascript,java call rainbow#load()
   "au FileType clojure call rainbow#load(
       "\ [['(', ')'], ['\[', '\]'],
       "\ ['{', '}']], '"[-+*/=><%^&$#@!~|:?\\]"')
-augroup END
+"augroup END
+
+" vim-niji
+let g:niji_dark_colours = [
+    \ ['196', 'red1'],
+    \ ['214', 'orange1'],
+    \ ['226', 'yellow1'],
+    \ ['154', 'greenyellow'],
+    \ ['46', 'green1'],
+    \ ['48', 'springgreen1'],
+    \ ['51', 'cyan1'],
+    \ ['62', 'slateblue1'],
+    \ ['135', 'purple1']]
 
 "NERDCommenter
 let g:NERDCustomDelimiters = {
