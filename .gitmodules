@@ -138,4 +138,4 @@
 	url = https://github.com/venantius/vim-cljfmt.git
 [submodule ".vim/bundle/vim-niji"]
 	path = .vim/bundle/vim-niji
-	url = https://github.com/amdt/vim-niji.git
+	url = git@github.com:raymond-w-ko/vim-niji.git
