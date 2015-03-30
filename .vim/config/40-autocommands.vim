@@ -44,10 +44,13 @@ function! SaveAndCheckIfModified()
     "SyntasticCheck
   endif
 endfunction
-augroup SaveWhenExitingInsertMode
-  au!
-  au InsertLeave * call SaveAndCheckIfModified()
-augroup END
+
+" this probably causes more trouble than it is worth, especially for files not
+" under version control
+"augroup SaveWhenExitingInsertMode
+  "au!
+  "au InsertLeave * call SaveAndCheckIfModified()
+"augroup END
 
 function! StripTrailingWhitespace()
     let l:my_saved_winview = winsaveview()
