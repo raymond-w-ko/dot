@@ -1,3 +1,4 @@
+set cursorline " needed as netrw uses the global value to save and restore state
 augroup CursorLine
   au!
   au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
