@@ -168,7 +168,7 @@ else
   alias ThirdParty4="cd ~/SVN/Syandus_ALIVE4/Platform/ThirdParty/Linux"
 fi
 alias ImmuneQuest="cd ~/SVN/Syandus_Cores/C_ImmunoSim_01"
-alias PatientEducation="cd ~/SVN/Syandus_Cores/C_MS_PatientEd_01"
+alias mspatienteducation="cd ~/SVN/Syandus_Cores/C_MS_PatientEd_01"
 alias Treatment="cd ~/SVN/Syandus_Cores/C_MS_Treatment_01"
 alias mcrc="cd ~/SVN/Syandus_Cores/C_mCRC_Treatment_01"
 alias copd="cd ~/SVN/Syandus_Cores/C_COPD_Treatment_01"
