@@ -52,6 +52,12 @@ else
   DIFF_PROG=diff
 fi
 
+if hash schedtool 2>/dev/null; then
+	NICE_PROG="schedtool -D -e"
+else
+  NICE_PROG="nice -n 19"
+fi
+
 # aliases
 alias dot="cd $HOME/dot"
 alias sdr='screen -U -D -R'
@@ -64,10 +70,10 @@ alias iotop='sudo iotop -oP'
 alias iftop='sudo iftop'
 alias openports='ss --all --numeric --processes --ipv4 --ipv6'
 alias n19='nice -n 19'
-alias n='nice -n 19'
-alias makepkg='nice -n 19 makepkg'
-alias yaourt='nice -n 19 yaourt'
-alias yup='nice -n 19 yaourt -Syua --noconfirm'
+alias n="$NICE_PROG"
+alias makepkg="$NICE_PROG makepkg"
+alias yaourt="$NICE_PROG yaourt"
+alias yup="$NICE_PROG yaourt -Syua --noconfirm"
 findcore() {
   find . -type f -regextype posix-extended -regex '.*/core\.[0-9]+$'
 }
@@ -103,7 +109,7 @@ elif [ -d "$HOME/src/vim" ]; then
     alias vimsrc="cd $HOME/src/vim"
 fi
 
-alias makeinstallvim="vimsrc && hpa && cd src && nice -n 19 make && rm -rf ~/vim/ && make install"
+alias makeinstallvim="vimsrc && hpa && cd src && $NICE_PROG make && rm -rf ~/vim/ && make install"
 
 if [ -d $HOME/android-ndk-r10d ]
 then
