@@ -29,6 +29,7 @@ let s:commands = [
     \ 'Copd',               '__SVN__/SVN/Syandus_Cores/C_COPD_Treatment_01',
     \ 'ImmuneQuest',        '__SVN__/SVN/Syandus_Cores/C_ImmunoSim_01',
     \ 'PatientEducation',   '__SVN__/SVN/Syandus_Cores/C_MS_PatientEd_01',
+    \ 'HemoPatientEd',      '__SVN__/SVN/Syandus_Cores/C_Hemo_PatientEd_01',
     \ 'Treatment',          '__SVN__/SVN/Syandus_Cores/C_MS_Treatment_01',
     \ 'MCRC',               '__SVN__/SVN/Syandus_Cores/C_mCRC_Treatment_01',
     \ 'Sutent',             '__SVN__/SVN/Syandus_Cores/C_Sut_AE_01',
