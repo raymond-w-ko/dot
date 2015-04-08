@@ -84,6 +84,7 @@ let s:project_directories_list = [
     \ '__SVN__/SVN/Syandus_Cores/C_CMSC_MS_01',
     \ '__SVN__/SVN/Syandus_Cores/C_ImmunoSim_01',
     \ '__SVN__/SVN/Syandus_Cores/C_MS_PatientEd_01',
+    \ '__SVN__/SVN/Syandus_Cores/C_Hemo_PatientEd_01',
     \ '__SVN__/SVN/Syandus_Cores/C_MS_Treatment_01',
     \ '__SVN__/SVN/Syandus_Cores/C_mCRC_Treatment_01',
     \ '__SVN__/SVN/Syandus_Cores/C_Mic_HTN_01',
