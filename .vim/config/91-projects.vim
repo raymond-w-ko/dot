@@ -22,7 +22,6 @@ let s:commands = [
     \ 'Oxygen',             '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Oxygen',
     \ 'Hydrogen',           '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Hydrogen',
     \ 'Nitrogen',           '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Nitrogen',
-    \ 'Nitrogen16',         '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Nitrogen16',
     \ 'Proton',             '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Proton',
     \ 'Symlin',             '__SVN__/SVN/Syandus_Cores/C_Sym_DM_01',
     \ 'Spiriva',            '__SVN__/SVN/Syandus_Cores/C_Spv_COPD_01',
