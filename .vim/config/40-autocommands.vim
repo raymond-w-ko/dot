@@ -51,10 +51,12 @@ endfunction
 
 " this probably causes more trouble than it is worth, especially for files not
 " under version control
-"augroup SaveWhenExitingInsertMode
-  "au!
-  "au InsertLeave * call SaveAndCheckIfModified()
-"augroup END
+"
+" but I am to lazy and often don't want to press Enter to save...
+augroup SaveWhenExitingInsertMode
+  au!
+  au InsertLeave * call SaveAndCheckIfModified()
+augroup END
 
 function! StripTrailingWhitespace()
     let l:my_saved_winview = winsaveview()
