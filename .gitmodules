@@ -139,3 +139,6 @@
 [submodule ".vim/bundle/vim-niji"]
 	path = .vim/bundle/vim-niji
 	url = git@github.com:raymond-w-ko/vim-niji.git
+[submodule ".vim/bundle/vim-synesthesia"]
+	path = .vim/bundle/vim-synesthesia
+	url = git@github.com:raymond-w-ko/vim-synesthesia.git
