@@ -6,7 +6,7 @@ if !exists("g:already_set_color_scheme") && !($TERM == "linux")
     "let g:lucius_use_bold=0
     "let g:lucius_use_underline=0
     "colorscheme lucius
-    
+
     set background=dark
     " seoul256 (dark):
     "   Range:   233 (darkest) ~ 239 (lightest)
@@ -15,12 +15,13 @@ if !exists("g:already_set_color_scheme") && !($TERM == "linux")
     "colorscheme seoul256
     "set background=light
     "colorscheme seoul256-light
-    
+
     "let g:solarized_italic = 0
     "let g:solarized_visibility="low"
-    "colorscheme solarized 
-    
-    colorscheme Tomorrow-Night-Bright
+    "colorscheme solarized
+
+    let base16colorspace=256
+    colorscheme base16-eighties
 
     let g:already_set_color_scheme=1
 endif
