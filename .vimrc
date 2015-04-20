@@ -102,6 +102,7 @@ endif
 " General {{{
 set autowrite
 set autowriteall
+set updatetime=500
 set shortmess+=aIc    " no intro message, no ins-completion-menu
 set report=0 " report back when greater than N lines changed
 set showmode
