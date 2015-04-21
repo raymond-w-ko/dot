@@ -200,7 +200,7 @@ fi
 
 ulimit -c unlimited
 #export MC_SKIN=$HOME/.config/mc/solarized.ini
-. ~/dot/bin/base16-eighties.dark.sh
+. ~/dot/bin/base16-default.dark.sh
 
 # TMUX
 #if which tmux 2>&1 >/dev/null; then
