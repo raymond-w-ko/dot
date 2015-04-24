@@ -211,3 +211,28 @@ augroup Clojure
   au FileType clojure nnoremap <buffer> == :Cljfmt<CR>
 augroup END
 
+" base16 default colorscheme
+let g:synesthesia_banned_console_colors = [
+    \ 0,
+    \ 8,
+    \ 18,
+    \ 19,
+    \ 232,
+    \ 233,
+    \ 234,
+    \ 235,
+    \ 236,
+    \ 237,
+    \ 238,
+    \ 251,
+    \ 252,
+    \ 253,
+    \ 254,
+    \ 255,
+    \ 256,
+    \ 52,
+    \ 53,
+    \ 54,
+    \ 55,
+    \ 55,
+    \ ]

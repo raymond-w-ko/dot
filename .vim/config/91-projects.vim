@@ -30,6 +30,7 @@ let s:commands = [
     \ 'MsPatientEd',        '__SVN__/SVN/Syandus_Cores/C_MS_PatientEd_01',
     \ 'HemoPatientEd',      '__SVN__/SVN/Syandus_Cores/C_Hemo_PatientEd_01',
     \ 'Treatment',          '__SVN__/SVN/Syandus_Cores/C_MS_Treatment_01',
+    \ 'MmTreatment',        '__SVN__/SVN/Syandus_Cores/C_MM_Treatment_01',
     \ 'MCRC',               '__SVN__/SVN/Syandus_Cores/C_mCRC_Treatment_01',
     \ 'Sutent',             '__SVN__/SVN/Syandus_Cores/C_Sut_AE_01',
     \ 'SyMetrics',          '__SVN__/SVN/Syandus_ALIVE3/Metrics/SyMetrics',
