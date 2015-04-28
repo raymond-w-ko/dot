@@ -3,7 +3,7 @@
 
 include "/home/rko/.gtkrc-2.0.mine"
 gtk-theme-name="AlaDelta"
-gtk-icon-theme-name="Adwaita"
+gtk-icon-theme-name="gnome"
 gtk-font-name="Ubuntu 8"
 gtk-cursor-theme-name="neutralplus-inv"
 gtk-cursor-theme-size=0
