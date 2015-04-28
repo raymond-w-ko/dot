@@ -21,7 +21,7 @@ if !exists("g:already_set_color_scheme") && !($TERM == "linux")
     "colorscheme solarized
 
     let base16colorspace=256
-    colorscheme base16-default
+    colorscheme base16-3024
 
     let g:already_set_color_scheme=1
 endif
