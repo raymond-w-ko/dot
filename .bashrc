@@ -132,6 +132,7 @@ alias gs='git status'
 alias gc='git commit'
 alias gca='git commit -a'
 alias gcasubmodules='git commit -a -m "updated submodule(s)"'
+alias gcsubmodules='git commit -m "updated submodule(s)"'
 alias gd='git diff'
 alias gpush='git push'
 alias gpull='git pull'
@@ -172,6 +173,7 @@ if [[ "$unameString" == 'Darwin' ]]; then
   alias ThirdParty4="cd ~/SVN/Syandus_ALIVE4/Platform/ThirdParty/Mac"
 else
   alias ThirdParty4="cd ~/SVN/Syandus_ALIVE4/Platform/ThirdParty/Linux"
+  alias ThirdParty4Android="cd ~/SVN/Syandus_ALIVE4/Platform/ThirdParty/Android"
 fi
 alias ImmuneQuest="cd ~/SVN/Syandus_Cores/C_ImmunoSim_01"
 alias mspatienteducation="cd ~/SVN/Syandus_Cores/C_MS_PatientEd_01"
