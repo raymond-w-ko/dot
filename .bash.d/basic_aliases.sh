@@ -36,6 +36,7 @@ else
     #if [ -r "$HOME/src/dircolors-solarized/dircolors.256dark" ]; then
       #eval `dircolors $HOME/src/dircolors-solarized/dircolors.256dark`
     #fi
+    eval `dircolors -b`
 fi
 
 alias v=vim
@@ -46,6 +47,11 @@ alias ..3='cd ../../..'
 alias ..4='cd ../../../..'
 alias ..5='cd ../../../../..'
 alias ..6='cd ../../../../../..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+alias .......='cd ../../../../../..'
 
 # old cygwin wrapper
 # vim
