@@ -86,7 +86,7 @@ URxvt*bolditalicFont: fonts
 
 URxvt*cursorBlink     : false
 ! true transparency for compositor
-URxvt*depth           : 32
+URxvt*depth           : 24
 ! this usually means use the desktop background as the background instead of a
 ! configured color for pseudo-transparency
 URxvt*inheritPixmap   : false
