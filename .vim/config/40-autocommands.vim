@@ -108,3 +108,18 @@ command! StripTrailingWhitespace call StripTrailingWhitespace()
     "au!
     "au FileType qf call AdjustWindowHeight(3, 16)
 "augroup END
+
+" ----------------------------------------------------------------------------
+" Help in new tabs
+" ----------------------------------------------------------------------------
+function! s:helptab()
+  if &buftype == 'help'
+    execute "normal! \<C-W>T"
+    nnoremap <buffer> q :q<cr>
+  endif
+endfunction
+
+augroup vimrc_help
+  autocmd!
+  autocmd BufEnter *.txt call s:helptab()
+augroup END
