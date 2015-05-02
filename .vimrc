@@ -207,7 +207,8 @@ function! SetMyCino()
     set cinoptions+=:0
     set cinoptions+=g0
     set cinoptions+=N-s
-    set cinoptions+=(0
+    " this breaks vim-synesthesia + vim-niji
+    exe "set cinoptions+=(0"
     set cinoptions+=u0
     set cinoptions+=Ws
     set cinoptions+=l1
