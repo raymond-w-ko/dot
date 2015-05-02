@@ -262,6 +262,7 @@ set mousehide
 set nomousefocus
 set mouse=a
 set clipboard=autoselect
+set pastetoggle=<F9>
 
 " source all other files in the vimfiles/config directory
 runtime! config/**/*.vim
