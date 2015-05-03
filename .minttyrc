@@ -1,6 +1,6 @@
 BoldAsFont=no
 Transparency=off
-CursorType=underscore
+CursorType=block
 Font=fixed613
 FontHeight=8
 Locale=en_US
@@ -39,3 +39,4 @@ Cyan=181,228,244
 BoldCyan=205,171,83
 White=165,162,162
 BoldWhite=247,247,247
+CursorColour=0,255,0
