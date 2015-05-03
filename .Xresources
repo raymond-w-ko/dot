@@ -103,5 +103,5 @@ URxvt*urgentOnBell    : true
 URxvt*visualBell      : false
 URxvt*iso14755        : false
 URxvt*reverseVideo    : false
-URxvt*cursorUnderline : true
+URxvt*cursorUnderline : false
 URxvt*fading          : 0
