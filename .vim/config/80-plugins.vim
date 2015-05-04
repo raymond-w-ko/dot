@@ -237,3 +237,9 @@ call add(g:synesthesia_banned_console_colors, 62)
 for i in range(232, 256)
   call add(g:synesthesia_banned_console_colors, i)
 endfor
+
+let g:synesthesia_ignored_filetypes = []
+call add(g:synesthesia_ignored_filetypes, 'help')
+call add(g:synesthesia_ignored_filetypes, 'text')
+call add(g:synesthesia_ignored_filetypes, 'diff')
+call add(g:synesthesia_ignored_filetypes, 'gitcommit')
