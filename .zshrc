@@ -50,6 +50,9 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git mercurial lein pip svn systemd tmux screen vim-interaction)
 
+# stop eating characters after tab completion
+export ZLE_REMOVE_SUFFIX_CHARS=""
+
 # User configuration
 
 source $ZSH/oh-my-zsh.sh
