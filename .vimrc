@@ -192,6 +192,7 @@ set wildignore+=*.lnk
 
 " Syandus Files
 set wildignore+=*.ID
+set wildignore+=*.sse
 set wildignore+=*.ccv,*.fls,*.pat,*.gsl,*.flt,*.asi
 
 " OGRE

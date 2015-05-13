@@ -55,7 +55,7 @@ endfunction
 " but I am to lazy and often don't want to press Enter to save...
 augroup SaveWhenExitingInsertMode
   au!
-  au InsertLeave * call SaveAndCheckIfModified()
+  "au InsertLeave * call SaveAndCheckIfModified()
 augroup END
 
 function! StripTrailingWhitespace()
