@@ -48,7 +48,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git mercurial lein pip svn systemd tmux screen vim-interaction)
+plugins=(git mercurial lein pip svn systemd tmux screen vim-interaction adb ant archlinux aws brew cp)
 
 # stop eating characters after tab completion
 export ZLE_REMOVE_SUFFIX_CHARS=""
