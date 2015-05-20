@@ -1,5 +1,4 @@
 [options]
-resize_grip = false
 scroll_on_output = false
 scroll_on_keystroke = true
 audible_bell = false
@@ -11,17 +10,17 @@ clickable_url = true
 font = Ubuntu Mono 9
 scrollback_lines = 8192
 search_wrap = true
-icon_name = terminal
+#icon_name = terminal
 #geometry = 640x480
 
 # "system", "on" or "off"
 cursor_blink = off
 
 # "block", "underline" or "ibeam"
-cursor_shape = underline
+cursor_shape = block
 
 # $BROWSER is used by default
-browser = firefox
+browser = chrome
 
 # set size hints for the window
 size_hints = true
@@ -31,32 +30,30 @@ size_hints = true
 
 # Solarized dark color scheme
 [colors]
-foreground = #839496
-foreground_bold = #eee8d5
+#foreground = #839496
+#foreground_bold = #eee8d5
 #foreground_dim = #888888
-background = #002b36
-#cursor = #93a1a1
-;cursor = #dc322f
+#background = #002b36
 cursor = #00ff00
 # if unset, will reverse foreground and background
-;highlight = #839496
+#highlight = #839496
 # colors from color0 to color254 can be set
-color0 = #073642
-color1 = #dc322f
-color2 = #859900
-color3 = #b58900
-color4 = #268bd2
-color5 = #d33682
-color6 = #2aa198
-color7 = #eee8d5
-color8 = #002b36
-color9 = #cb4b16
-color10 = #586e75
-color11 = #657b83
-color12 = #839496
-color13 = #6c71c4
-color14 = #93a1a1
-color15 = #fdf6e3
+#color0 = #073642
+#color1 = #dc322f
+#color2 = #859900
+#color3 = #b58900
+#color4 = #268bd2
+#color5 = #d33682
+#color6 = #2aa198
+#color7 = #eee8d5
+#color8 = #002b36
+#color9 = #cb4b16
+#color10 = #586e75
+#color11 = #657b83
+#color12 = #839496
+#color13 = #6c71c4
+#color14 = #93a1a1
+#color15 = #fdf6e3
 
 [hints]
 #font = Monospace 12
@@ -64,9 +61,9 @@ color15 = #fdf6e3
 #background = #3f3f3f
 #active_foreground = #e68080
 #active_background = #3f3f3f
-padding = 2
-;border = #3f3f3f
-border_width = 2
+#padding = 2
+#border = #3f3f3f
+#border_width = 0.5
 #roundness = 2.0
 
 # vim: ft=dosini cms=#%s
