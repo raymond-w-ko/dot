@@ -12,6 +12,10 @@
 /.emacs.d/elpa
 /.emacs.d/*~
 
+/.vifm/Trash
+/.vifm/vifm-help.txt
+/.vifm/vifminfo
+
 /bin/ag
 
 /config/mc/hotlist
