@@ -28,6 +28,7 @@ let g:pathogen_disabled = []
 call add(g:pathogen_disabled, "YankRing.vim")
 call add(g:pathogen_disabled, "vim-easymotion")
 call add(g:pathogen_disabled, "rainbow_parentheses.vim")
+call add(g:pathogen_disabled, "vim-niji")
 
 let g:omegacomplete_version_preference = 1
 if g:omegacomplete_version_preference == 2
