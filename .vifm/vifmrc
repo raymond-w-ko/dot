@@ -1,4 +1,4 @@
-" vim: filetype=vifm :
+" vim: filetype=vim :
 " Sample configuration file for vifm (last updated: 24 Oct, 2014)
 " You can edit this file by hand.
 " The " character at the beginning of a line comments out the line.
@@ -421,3 +421,9 @@ nnoremap <f8> :delete<cr>
 " Block particular shortcut
 "
 " nnoremap <left> <nop>
+
+nnoremap ; :
+" TAB should suffice
+"nnoremap <C-l> <C-w>l
+"nnoremap <C-h> <C-w>h
+"nnoremap <bs> <C-w>h
