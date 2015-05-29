@@ -142,9 +142,6 @@
 [submodule ".vim/bundle/vim-synesthesia"]
 	path = .vim/bundle/vim-synesthesia
 	url = git@github.com:raymond-w-ko/vim-synesthesia.git
-[submodule ".vim/bundle/base16-vim"]
-	path = .vim/bundle/base16-vim
-	url = https://github.com/chriskempson/base16-vim.git
 [submodule "src/base16-builder"]
 	path = src/base16-builder
 	url = https://github.com/chriskempson/base16-builder.git
