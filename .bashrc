@@ -4,6 +4,17 @@ export LANG=en_US.UTF-8
 # If not running interactively, don't do anything
 [[ "$-" != *i* ]] && return
 
+## workaround for handling TERM variable in multiple tmux sessions properly from http://sourceforge.net/p/tmux/mailman/message/32751663/ by Nicholas Marriott
+if [[ -n ${TMUX} && -n ${commands[tmux]} ]];then
+  case $(tmux showenv TERM 2>/dev/null) in
+    *256color) ;&
+    TERM=fbterm)
+      TERM=screen-256color ;;
+    *)
+      TERM=screen
+  esac
+fi
+
 if [[ "$SHELL" == bash ]]; then
   # attempts to correct bad "cd" target
   shopt -s cdspell
@@ -63,7 +74,6 @@ fi
 alias dot="cd $HOME/dot"
 alias sdr='screen -U -D -R'
 alias ta='tmux attach'
-#alias tmux="TERM=screen-256color-bce tmux"
 alias genctags='/usr/bin/find . -regex ".*\.\(c\|h\|hpp\|cc\|cpp\)" -print | /usr/bin/ctags --c++-kinds=+px --fields=+aimSz --languages=c++ --sort=yes -L -'
 alias omegacomplete='cd ~/.vim/bundle/omegacomplete'
 alias killpngcolorpofile='find . -type f -name "*.png" -exec convert {} -strip {} \;'
