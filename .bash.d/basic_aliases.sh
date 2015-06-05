@@ -40,6 +40,7 @@ else
 fi
 
 alias v=vim
+alias vr=vim -R
 
 alias ..='cd ..'
 alias ..2='cd ../..'
