@@ -85,6 +85,7 @@ alias n="$NICE_PROG"
 alias makepkg="$NICE_PROG makepkg"
 alias yaourt="$NICE_PROG yaourt"
 alias yup="$NICE_PROG yaourt -Syua --noconfirm"
+alias y="yaourt"
 findcore() {
   find . -type f -regextype posix-extended -regex '.*/core\.[0-9]+$'
 }
