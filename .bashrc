@@ -73,7 +73,8 @@ fi
 # aliases
 alias dot="cd $HOME/dot"
 alias sdr='screen -U -D -R'
-alias ta='tmux attach'
+# covered by oh-my-zsh
+#alias ta='tmux attach'
 alias genctags='/usr/bin/find . -regex ".*\.\(c\|h\|hpp\|cc\|cpp\)" -print | /usr/bin/ctags --c++-kinds=+px --fields=+aimSz --languages=c++ --sort=yes -L -'
 alias omegacomplete='cd ~/.vim/bundle/omegacomplete'
 alias killpngcolorpofile='find . -type f -name "*.png" -exec convert {} -strip {} \;'
