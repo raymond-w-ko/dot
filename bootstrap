@@ -87,7 +87,7 @@ done
 popd
 echo
 
-echo "export PATH=$HOME/$BASE_SCRIPT_DIR/bin:\$PATH" > "$SCRIPT_DIR/.bash.d/add_dot_extra_paths.sh"
+echo "export PATH=$HOME/$BASE_SCRIPT_DIR/bin:$HOME/bin:\$PATH" > "$SCRIPT_DIR/.bash.d/add_dot_extra_paths.sh"
 
 ################################################################################
 
