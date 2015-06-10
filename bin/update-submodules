@@ -31,8 +31,6 @@ do_git_pull ()
             echo $CMD
             $CMD
         fi
-
-        echo --------------------------------------------------------------------------------
     fi
 }
 
@@ -57,3 +55,9 @@ pushd "$HOME/.oh-my-zsh/"
 git checkout master
 git pull
 popd
+
+set +e
+for job in `jobs -p`
+do
+    wait $job
+done
