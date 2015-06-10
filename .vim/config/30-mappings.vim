@@ -110,7 +110,7 @@ endif
 function! FindFileInProjectDirectory()
     execute ':CtrlP ' . EscapePathname(MyGetProjectDirectory())
 endfunction
-nnoremap <C-p> :call FindFileInProjectDirectory()<CR>
+nnoremap <leader>p :call FindFileInProjectDirectory()<CR>
 
 nnoremap <leader>b :CtrlPBuffer<CR>
 
@@ -132,7 +132,7 @@ function! MyPasteToggle()
         set paste
     endif
 endfunction
-nnoremap <leader>p :call MyPasteToggle()<CR>
+"nnoremap <leader>p :call MyPasteToggle()<CR>
 
 " This allows for change paste motion cp{motion}
 " http://stackoverflow.com/questions/2471175/vim-replace-word-with-contents-of-paste-buffer
