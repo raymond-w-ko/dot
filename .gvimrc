@@ -2,13 +2,12 @@
 if has("win32")
     "set guifont=ProggyClean:h8
     "set guifont=ProggyTinySZ:h8
-    set guifont=fixed613:h8
     "set guifont=Terminus:h9
     "set guifont=Dina_TTF:h8
-
     "set guifont=Consolas:h8
     "set guifont=Lucida_Console:h9
     "set guifont=Inconsolata:h9
+    set guifont=fixed613:h8
     set linespace=0
     if has("directx")
         "set rop=type:directx
@@ -17,6 +16,8 @@ elseif has("gui_macvim")
     set noantialias
     set guifont=Dina_TTF:h11
     set linespace=0
+else
+    set guifont=Tewi\ 11
 endif
 
 " set GUI options

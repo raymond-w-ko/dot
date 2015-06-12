@@ -35,6 +35,5 @@ if has("gui_running")
     set guioptions-=r  "remove right-hand scroll bar
     set guioptions-=L  "remove left-hand scroll bar
     set guioptions-=e  "use in editor tabline
-    set guifont=Tewi\ 11
     set lines=9999
 endif
