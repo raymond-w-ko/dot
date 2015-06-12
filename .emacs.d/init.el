@@ -1,12 +1,12 @@
 (require 'package)
 (setq package-archives
       '(("gnu" . "http://elpa.gnu.org/packages/")
-        ("org" . "http://orgmode.org/elpa/")
-        ("marmalade" . "http://marmalade-repo.org/packages/")
-        ("melpa" . "http://melpa.milkbox.net/packages/")))
+	("melpa" . "http://melpa.milkbox.net/packages/")
+        ("org" . "http://orgmode.org/elpa/")))
 (package-initialize)
 
 (require 'cl)
+
 (defvar packages-list
   '(evil
     evil-leader
@@ -31,28 +31,28 @@
     (when (not (package-installed-p p))
       (package-install p))))
 
-(require 'evil)
-(evil-mode 1)
+(evil-mode)
+(define-key evil-normal-state-map (kbd ";") 'evil-ex)
+(define-key evil-normal-state-map (kbd ":") 'evil-repeat-find-char)
 
 (require 'uniquify)
-(setq uniquify-buffer-name-style 'post-forward
-      uniquify-separator ":")
+(setq 
+ uniquify-buffer-name-style 'post-forward
+ uniquify-separator ":")
 
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (setq inhibit-startup-screen t)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(frame-background-mode (quote dark)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width semi-condensed :foundry "Misc" :family "Fixed")))))
+
+(set-face-attribute 'default nil :font "Consolas 8")
+(set-frame-font "Consolas 8" nil t)
 
 (load-theme 'solarized t)
