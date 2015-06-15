@@ -1,43 +1,20 @@
-" MatchParen
-"let g:loaded_matchparen = 1
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " a.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:alternateNoDefaultAlternate=1
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NetRW
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let g:netrw_silent=1
 " apparently enabling this hijacks the mouse completely
 " so you can't use it to select stuff (WTF!)
 "let g:netrw_mousemaps=0
 "let g:netrw_cygwin = 1
 
-" AutoComplPop
-"let g:acp_enableAtStartup = 0
-"let g:acp_ignorecaseOption = 0
-"let g:acp_completeOption = '.,w,b,u,t'
-"let g:acp_behaviorKeywordLength = 2
-"let g:acp_completeoptPreview = 1
-"let g:acp_behaviorKeywordIgnores = ['Sy', 'sy', 'get', 'set', 'Get', 'Set']
-
-" Command-T
-"let g:CommandTMaxHeight=16
-"let g:CommandTMatchWindowAtTop=1
-"let g:CommandTMatchWindowReverse=0
-
-" ack.vim
-"let g:ackprg="C:/Perl/site/bin/ack.bat -H --nocolor --nogroup --column"
-
-" LustyJuggler
-"let g:LustyJugglerDefaultMappings=0
-
-" yankring
-"let g:yankring_min_element_length = 2
-
-" tagbar
-"let g:tagbar_width = 40
-"let g:tagbar_sort = 0
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ctrlp_map = "<C-\\>"           " set to something that I will never use
 let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_match_window_bottom = 0
@@ -71,46 +48,54 @@ else
   let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 endif
 
-" indent-guides
-"let g:indent_guides_enable_on_vim_startup=0
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-powerline
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:Powerline_symbols='compatible'
 let g:Powerline_stl_path_style='short'
 let g:Powerline_theme='default'
 let g:Powerline_colorscheme='default'
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UltiSnips
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:UltiSnipsExpandTrigger = "<F1>"
 let g:UltiSnipsListSnippets = "<C-F1>"
 let g:UltiSnipsJumpForwardTrigger = "<C-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Gundo
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "nnoremap <F5> :GundoToggle<CR>
 let g:gundo_right=1
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-clojure-static
-let g:clojure_maxlines = 1024
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:clojure_maxlines = 256
 let g:clojure_align_multiline_strings = 1
+let g:clojure_align_subforms = 1
 let g:clojure_fuzzy_indent = 1
 let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let']
 let g:clojure_fuzzy_indent_blacklist =
     \ ['-fn$', '\v^with-%(meta|out-str|loading-context)$']
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " rainbow_parentheses
-let g:rbpt_bold=0
-let g:rbpt_max=8
-let g:rbpt_colorpairs = [
-    \ [ '6',  '#2aa198'],
-    \ [ '13', '#6c71c4'],
-    \ [ '4',  '#268bd2'],
-    \ [ '5',  '#d33682'],
-    \ [ '1',  '#dc322f'],
-    \ [ '2',  '#859900'],
-    \ [ '3',  '#b58900'],
-    \ [ '9',  '#cb4b16'],
-    \ ]
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"let g:rbpt_bold=0
+"let g:rbpt_max=8
+"let g:rbpt_colorpairs = [
+    "\ [ '6',  '#2aa198'],
+    "\ [ '13', '#6c71c4'],
+    "\ [ '4',  '#268bd2'],
+    "\ [ '5',  '#d33682'],
+    "\ [ '1',  '#dc322f'],
+    "\ [ '2',  '#859900'],
+    "\ [ '3',  '#b58900'],
+    "\ [ '9',  '#cb4b16'],
+    "\ ]
 "augroup EnableRainbowParentheses
   "au!
   "au VimEnter * RainbowParenthesesToggle
@@ -138,7 +123,9 @@ let g:rbpt_colorpairs = [
       "\ ['{', '}']], '"[-+*/=><%^&$#@!~|:?\\]"')
 "augroup END
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-niji
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:niji_dark_colours = [
     \ ['196', 'red1'],
     \ ['214', 'orange1'],
@@ -150,14 +137,18 @@ let g:niji_dark_colours = [
     \ ['62', 'slateblue1'],
     \ ['135', 'purple1']]
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "NERDCommenter
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:NERDCustomDelimiters = {
     \ 'syxml': { 'left': '//', 'right': ''},
     \ 'ogre': { 'left': '//', 'right': ''},
     \ 'glsl': { 'left': '//', 'right': ''}
     \ }
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " omegacomplete
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let g:omegacomplete_log_file = "C:\\SVN\\omegacomplete.txt"
 let g:omegacomplete_normal_hi_cmds=[
     \ "hi Pmenu guifg=#00ff00 guibg=#002b36 gui=none ctermbg=0 ctermfg=046 cterm=none",
@@ -169,7 +160,9 @@ let g:omegacomplete_corrections_hi_cmds=[
     \ "hi PmenuSel guifg=#002b36 guibg=#ffff00 gui=none ctermbg=226 ctermfg=0 cterm=none",
     \ ]
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " syntastic
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:syntastic_enable_highlighting = 1
 let g:syntastic_enable_balloons = 1
 let g:syntastic_auto_jump = 3
@@ -179,11 +172,15 @@ let g:syntastic_mode_map = {
             \ 'active_filetypes': ['ruby', 'php', 'python'],
             \ 'passive_filetypes': ['java', 'c', 'cpp', 'objc', 'objcpp'] }
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " paredit
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:paredit_leader = ','
 let g:paredit_shortmaps = 0
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " detectindent
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:detectindent_max_lines_to_analyse = 1024
 let g:detectindent_autodetect = 1
 let g:detectindent_preferred_indent = 2
@@ -192,7 +189,9 @@ let g:detectindent_min_indent = 2
 " hope to $DEITY that no one uses > 4 indents
 let g:detectindent_max_indent = 4
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " airline
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_theme='base16'
@@ -202,7 +201,9 @@ let g:airline#extensions#tabline#enabled = 1
 " bufkill.vim
 let g:BufKillCreateMappings = 0
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-cljfmt
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:clj_fmt_autosave = 0
 
 augroup Clojure
@@ -212,7 +213,9 @@ augroup Clojure
   au FileType clojure nnoremap <buffer> == :Cljfmt<CR>
 augroup END
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " base16 default colorscheme
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 let g:synesthesia_banned_console_colors = []
 " depends on console theme
@@ -245,3 +248,24 @@ call add(g:synesthesia_ignored_filetypes, 'text')
 call add(g:synesthesia_ignored_filetypes, 'diff')
 call add(g:synesthesia_ignored_filetypes, 'gitcommit')
 call add(g:synesthesia_ignored_filetypes, 'svn')
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-easymotion
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" Bi-directional find motion
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" `s{char}{label}`
+"nmap s <Plug>(easymotion-s)
+" or
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+nmap s <Plug>(easymotion-s2)
+
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
