@@ -25,8 +25,12 @@ end
 
 " pathogen
 let g:pathogen_disabled = []
+" already using airline
+call add(g:pathogen_disabled, "vim-flagship")
+
 "call add(g:pathogen_disabled, "vim-easymotion")
-"
+"call add(g:pathogen_disabled, "vim-obsession")
+
 let g:omegacomplete_version_preference = 1
 if g:omegacomplete_version_preference == 2
   if has('java')
