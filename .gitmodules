@@ -124,9 +124,6 @@
 [submodule ".vim/bundle/a.vim"]
 	path = .vim/bundle/a.vim
 	url = git@github.com:raymond-w-ko/a.vim.git
-[submodule ".vim/bundle/bufkill.vim"]
-	path = .vim/bundle/bufkill.vim
-	url = git@github.com:raymond-w-ko/bufkill.vim.git
 [submodule ".vim/bundle/vim-tbone"]
 	path = .vim/bundle/vim-tbone
 	url = git@github.com:tpope/vim-tbone.git
@@ -148,3 +145,6 @@
 [submodule ".vim/bundle/vim-flagship"]
 	path = .vim/bundle/vim-flagship
 	url = https://github.com/tpope/vim-flagship.git
+[submodule ".vim/bundle/vim-bufkill"]
+	path = .vim/bundle/vim-bufkill
+	url = https://github.com/qpkorr/vim-bufkill.git
