@@ -25,7 +25,8 @@ inoremap fj <Esc>
 inoremap jf <Esc>
 
 " mirror dd and D, a bit hard to get use to
-nnoremap Y y$
+call yankstack#setup()
+map Y y$
 
 " looking at junegunn's vimrc, <C-f> and <C-b> are usually overkill
 noremap <C-F> <C-D>
