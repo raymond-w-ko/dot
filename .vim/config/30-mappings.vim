@@ -305,10 +305,10 @@ augroup END
 
 "}}}
 " Splits {{{
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+nmap <C-h> <C-w>h
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-l> <C-w>l
 
 nnoremap <leader>wv :vsplit<CR>
 nnoremap <leader>ws :split<CR>
@@ -370,7 +370,7 @@ function! CreateScratch()
     wincmd k
 endfunction
 function! CreateAndSetupVsplits()
-    let num_vsplits = (&columns / &winwidth) - 1
+    let num_vsplits = (&columns / (&winwidth - 1)) - 1
 
     let num_cur_tabs = tabpagenr('$')
     if ((num_cur_tabs > 1) && !exists('g:my_current_number_of_tabs'))
