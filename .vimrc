@@ -307,4 +307,4 @@ command! WriteUTF8 write ++enc=utf-8
 
 "map <leader>S VVS<
 
-" vim:fdm=marker:foldlevel=0
+" vim:fdm=marker

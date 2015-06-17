@@ -18,7 +18,7 @@ augroup END
 
 augroup SaveAllBuffersWhenLosingFocus
   au!
-  au FocusLost * silent! wall
+  "au FocusLost * silent! wall
 augroup END
 
 if !has("gui_running")
@@ -53,10 +53,10 @@ endfunction
 " under version control
 "
 " but I am to lazy and often don't want to press Enter to save...
-augroup SaveWhenExitingInsertMode
-  au!
+"augroup SaveWhenExitingInsertMode
+  "au!
   "au InsertLeave * call SaveAndCheckIfModified()
-augroup END
+"augroup END
 
 function! StripTrailingWhitespace()
     let l:my_saved_winview = winsaveview()
