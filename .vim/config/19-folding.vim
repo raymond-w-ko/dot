@@ -21,25 +21,23 @@
 "set foldtext=MyFoldText()
 "call SetFoldSettings()
 
-function! MySaveOrigFoldMethod()
-    if exists("b:original_foldmethod")
-        return
-    endif
-    let b:original_foldmethod=&foldmethod
-    setlocal foldmethod=manual
-endfunction
-augroup SaveOriginalFoldMethod
-    au!
-    au InsertEnter * call MySaveOrigFoldMethod()
-augroup END
-
-" remake all 
-nnoremap zM a<ESC>:setl foldmethod=<C-R>=b:original_foldmethod<CR><CR>zM:setl fdm=manual<CR>
-
-nnoremap <Space><Space> za
-vnoremap <Space><Space> za
+" hopefully replaced by fastfold.vim
+"function! MySaveOrigFoldMethod()
+    "if exists("b:original_foldmethod")
+        "return
+    "endif
+    "let b:original_foldmethod=&foldmethod
+    "setlocal foldmethod=manual
+"endfunction
+"augroup SaveOriginalFoldMethod
+    "au!
+    "au InsertEnter * call MySaveOrigFoldMethod()
+"augroup END
+"nnoremap zM a<ESC>:setl foldmethod=<C-R>=b:original_foldmethod<CR><CR>zM:setl fdm=manual<CR>
 
 " enable syntax folding for XML (caution, this can be slow)
-let g:xml_syntax_folding=1
+"let g:xml_syntax_folding=1
 
-set nofoldenable
+nmap <Space><Space> za
+vmap <Space><Space> za
+set foldlevelstart=9001
