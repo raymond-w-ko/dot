@@ -32,11 +32,13 @@ else
     alias lt='ls --color -lht'
     alias ll='ls --color -lha'
 
-    # fix ls colors especially for directories and files that are globally readable and writeable
-    #if [ -r "$HOME/src/dircolors-solarized/dircolors.256dark" ]; then
-      #eval `dircolors $HOME/src/dircolors-solarized/dircolors.256dark`
-    #fi
-    eval `dircolors -b`
+    # fix ls colors especially for directories and files that are globally
+    # readable and writeable, they are completely unreadable by default
+    if [ -r "$HOME/src/dircolors-solarized/dircolors.256dark" ]; then
+      eval `dircolors $HOME/src/dircolors-solarized/dircolors.256dark`
+    else
+      eval `dircolors -b`
+    fi
 fi
 
 alias v=vim
