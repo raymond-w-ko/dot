@@ -248,6 +248,7 @@ call add(g:synesthesia_ignored_filetypes, 'text')
 call add(g:synesthesia_ignored_filetypes, 'diff')
 call add(g:synesthesia_ignored_filetypes, 'gitcommit')
 call add(g:synesthesia_ignored_filetypes, 'svn')
+call add(g:synesthesia_ignored_filetypes, 'markdown')
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-easymotion
