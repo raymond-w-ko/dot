@@ -218,27 +218,30 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 let g:synesthesia_banned_console_colors = []
+
+" base16-3024-dark
 " depends on console theme
-for i in range(0, 16)
-  call add(g:synesthesia_banned_console_colors, i)
-endfor
-
+"for i in range(0, 16)
+  "call add(g:synesthesia_banned_console_colors, i)
+"endfor
 " too dark
-call add(g:synesthesia_banned_console_colors, 17)
-call add(g:synesthesia_banned_console_colors, 18)
-call add(g:synesthesia_banned_console_colors, 19)
-call add(g:synesthesia_banned_console_colors, 52)
-call add(g:synesthesia_banned_console_colors, 53)
-call add(g:synesthesia_banned_console_colors, 54)
-call add(g:synesthesia_banned_console_colors, 55)
-call add(g:synesthesia_banned_console_colors, 58)
-call add(g:synesthesia_banned_console_colors, 59)
-call add(g:synesthesia_banned_console_colors, 60)
-call add(g:synesthesia_banned_console_colors, 61)
-call add(g:synesthesia_banned_console_colors, 62)
-
+"call add(g:synesthesia_banned_console_colors, 17)
+"call add(g:synesthesia_banned_console_colors, 18)
+"call add(g:synesthesia_banned_console_colors, 19)
+"call add(g:synesthesia_banned_console_colors, 52)
+"call add(g:synesthesia_banned_console_colors, 53)
+"call add(g:synesthesia_banned_console_colors, 54)
+"call add(g:synesthesia_banned_console_colors, 55)
+"call add(g:synesthesia_banned_console_colors, 58)
+"call add(g:synesthesia_banned_console_colors, 59)
+"call add(g:synesthesia_banned_console_colors, 60)
+"call add(g:synesthesia_banned_console_colors, 61)
+"call add(g:synesthesia_banned_console_colors, 62)
 " white color
-for i in range(232, 256)
+"for i in range(232, 256)
+  "call add(g:synesthesia_banned_console_colors, i)
+"endfor
+for i in range(17, 257)
   call add(g:synesthesia_banned_console_colors, i)
 endfor
 
