@@ -241,9 +241,13 @@ let g:synesthesia_banned_console_colors = []
 "for i in range(232, 256)
   "call add(g:synesthesia_banned_console_colors, i)
 "endfor
+
+" solarized-dark
 for i in range(17, 257)
   call add(g:synesthesia_banned_console_colors, i)
 endfor
+" this is same as background color, don't want things to be invisible
+call add(g:synesthesia_banned_console_colors, 0)
 
 let g:synesthesia_ignored_filetypes = []
 call add(g:synesthesia_ignored_filetypes, 'help')
