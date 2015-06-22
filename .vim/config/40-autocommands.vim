@@ -1,14 +1,13 @@
-"set cursorline    " needed as netrw uses the global value to save and restore state
+set cursorline    " needed as netrw uses the global value to save and restore state
 "set cursorcolumn  " needed as netrw uses the global value to save and restore state
-"augroup CursorLine
-  "au!
-  "au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+
   "au VimEnter,WinEnter,BufWinEnter * setlocal cursorcolumn
-  "au WinLeave * setlocal nocursorline
   "au WinLeave * setlocal nocursorcolumn
-  "au VimEnter,WinEnter,BufWinEnter * setlocal cursorcolumn
-  "au WinLeave * setlocal nocursorcolumn
-"augroup END
+augroup END
 
 augroup HardcoreAutoChdir
   au!
@@ -114,7 +113,7 @@ command! StripTrailingWhitespace call StripTrailingWhitespace()
 " ----------------------------------------------------------------------------
 function! s:helptab()
   if &buftype == 'help'
-    execute "normal! \<C-W>T"
+    wincmd T
     nnoremap <buffer> q :q<cr>
   endif
 endfunction

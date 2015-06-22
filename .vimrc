@@ -136,7 +136,7 @@ set nojoinspaces
 set maxmempattern=2000000
 set maxmem=2000000
 set maxmemtot=2000000
-set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+set listchars=tab:\|\ ,trail:-,extends:>,precedes:<,nbsp:+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " mirror tpope dotfiles

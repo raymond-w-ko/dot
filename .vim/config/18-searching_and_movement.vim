@@ -39,8 +39,10 @@ set sidescrolloff=1
 
 nnoremap <silent> <leader>l :nohlsearch<CR>:let @/=''<CR>:call clearmatches()<CR>
 
-nmap n nzzzv
-nmap N Nzzzv
+" mutally exclusive I think
+set scrolloff=9999
+"nmap n nzzzv
+"nmap N Nzzzv
 
 nmap G Gzz
 
