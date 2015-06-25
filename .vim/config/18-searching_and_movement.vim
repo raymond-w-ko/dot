@@ -43,8 +43,7 @@ nnoremap <silent> <leader>l :nohlsearch<CR>:let @/=''<CR>:call clearmatches()<CR
 set scrolloff=9999
 "nmap n nzzzv
 "nmap N Nzzzv
-
-nmap G Gzz
+"nmap G Gzz
 
 " Don't move on *
 "nnoremap * *<c-o>
