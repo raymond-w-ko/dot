@@ -34,7 +34,7 @@ augroup ReturnToSameLineWhenReopeningFile
   au BufReadPost *
       \ if line("'\"") > 0 && line("'\"") <= line("$") |
       \     execute 'normal! g`"zv' |
-      \     call CenterCursorAesthetically() |
+      "\     call CenterCursorAesthetically() |
       \ endif
 
   au BufReadPost COMMIT_EDITMSG exe 'normal! gg'

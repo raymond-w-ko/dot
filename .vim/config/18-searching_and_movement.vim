@@ -18,7 +18,7 @@ function! CenterCursorAesthetically()
 
     return
 endfunction
-nnoremap <silent> zz :call CenterCursorAesthetically()<CR>
+"nnoremap <silent> zz :call CenterCursorAesthetically()<CR>
 
 " Searching and movement
 " Use sane regexes.
