@@ -35,7 +35,7 @@ client.urgent           #2f343a #900000 #ffffff #900000
 
 new_window pixel 1
 new_float pixel 4
-hide_edge_borders none
+hide_edge_borders both
 
 focus_follows_mouse no
 
