@@ -250,12 +250,14 @@ endfor
 call add(g:synesthesia_banned_console_colors, 0)
 
 let g:synesthesia_ignored_filetypes = []
+call add(g:synesthesia_ignored_filetypes, '')
 call add(g:synesthesia_ignored_filetypes, 'help')
 call add(g:synesthesia_ignored_filetypes, 'text')
 call add(g:synesthesia_ignored_filetypes, 'diff')
 call add(g:synesthesia_ignored_filetypes, 'gitcommit')
 call add(g:synesthesia_ignored_filetypes, 'svn')
 call add(g:synesthesia_ignored_filetypes, 'markdown')
+call add(g:synesthesia_ignored_filetypes, 'tex')
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-easymotion
