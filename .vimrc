@@ -253,22 +253,9 @@ set mouse=a
 set clipboard=autoselect
 set pastetoggle=<F9>
 
-" source all other files in the vimfiles/config directory
-runtime! config/**/*.vim
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " temporary / quick and dirty mappings for doing random things
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"nmap <leader>1 HWs@param <ESC>elxxj
-"nmap <leader>2 HWs@r<ESC>exj
-"xmap <leader>3 :s@// @/// @<CR>
-"nnoremap <leader>4 :normal ciwSetPaintBoxOutlineZOrder<ESC>
-"nnoremap <leader>5 :normal ciwSetPaintZOrder<ESC>
-"nnoremap <leader>5 :s/if(/if (/e<CR>:s/( /(/e<CR>:s/ )/)/e<CR>:nohlsearch<CR>
-"nnoremap <leader>8 ggVGD
-"nnoremap <leader>9 ggVGY
-
 " various snippets and utility functions go here
 function! FilterSmartQuotes()
     %s/\v“|”/\'/
@@ -284,12 +271,9 @@ command! FixSmartQuotes silent! call FixSmartQuotes()
 
 command! WriteUTF8 write ++enc=utf-8
 
-"function! ReplaceWithTLINK()
-    "%s/\vvoice\="Audrey16" type\="STREAMING" category\="VOICE"/TLINK=">sounds>amy"/
-    "%s/\vvoice\="Mike16" type\="STREAMING" category\="VOICE"/TLINK=">sounds>bob"/
-"endfunction
-"command! ReplaceWithTLINK silent! call ReplaceWithTLINK()
-
-"map <leader>S VVS<
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" source all other files in the vimfiles/config directory
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+runtime! config/*.vim
 
 " vim:fdm=marker
