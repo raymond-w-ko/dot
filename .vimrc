@@ -10,26 +10,10 @@ endif
 " http://utf8everywhere.org/
 set encoding=utf-8
 
-if exists('+regexpengine')
-    " automatic engine selection
-    set regexpengine=0
-
-    " use old engine (this could be faster in some cases to due new engine
-    " still being a work in progress)
-
-    "set regexpengine=1
-
-    " use new engine, faster in particular tricky cases due to NFA
-    "set regexpengine=2
-end
-
 " pathogen
 let g:pathogen_disabled = []
 " already using airline
 call add(g:pathogen_disabled, "vim-flagship")
-
-"call add(g:pathogen_disabled, "vim-easymotion")
-"call add(g:pathogen_disabled, "vim-obsession")
 
 let g:omegacomplete_version_preference = 1
 if g:omegacomplete_version_preference == 2
@@ -167,7 +151,8 @@ set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.bmp,*.tga,*.mp3,*.ico,*.wav
 set wildignore+=*.bik,*.ani,*.mask,*.dds
 
 " version control directories
-set wildignore+=.hg,.git,.svn
+" adding .git breaks vim-fugitive
+"set wildignore+=.hg,.git,.svn
 
 " Visual Studio files
 set wildignore+=*.ncb,*.suo,*.user,*.vcproj,*.vcxproj,*.out,*.sln,*.pdb
