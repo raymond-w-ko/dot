@@ -39,6 +39,6 @@ endfunction
 
 " Since keys are laid out like [Cut] [Copy] [Paste] for the left hand
 " Mirrored is [Paste] [Copy] [Cut], for [F9] [10] [F11] [F12]
-nnoremap <silent> <F9>  :call GetClipboard()<CR>
-vnoremap <silent> <F10> :call SetClipboard(visualmode(), 1)<CR>
-nnoremap <silent> <F10> :call SetClipboard('n', 1)<CR>
+"nnoremap <silent> <F9>  :call GetClipboard()<CR>
+"vnoremap <silent> <F10> :call SetClipboard(visualmode(), 1)<CR>
+"nnoremap <silent> <F10> :call SetClipboard('n', 1)<CR>
