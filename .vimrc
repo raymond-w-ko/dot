@@ -9,8 +9,6 @@ set encoding=utf-8
 
 " pathogen
 let g:pathogen_disabled = []
-" already using airline
-call add(g:pathogen_disabled, "vim-flagship")
 
 let g:omegacomplete_version_preference = 1
 if g:omegacomplete_version_preference == 2
@@ -46,7 +44,15 @@ call pathogen#helptags()
 " load sensible defaults by our prophet Tim Pope
 runtime! plugin/sensible.vim
 
-let s:data_dir = has('win32') ? '$APPDATA/Vim' : match(system('uname'), "Darwin") > -1 ? '~/Library/Vim' : empty($XDG_DATA_HOME) ? '~/.local/share/vim' : '$XDG_DATA_HOME/vim'
+if has('win32')
+  let s:data_dir="$APPDATA/Vim"
+elseif match(system('uname'), "Darwin") > -1
+  let s:data_dir='~/Library/Vim'
+elseif empty($XDG_DATA_HOME)
+  let s:data_dir='~/.local/share/vim'
+else
+  let s:data_dir='$XDG_DATA_HOME/vim'
+endif
 if isdirectory(expand(s:data_dir))
   if &directory =~# '^\.,'
     let &directory = expand(s:data_dir) . '/swap//,' . &directory
@@ -62,25 +68,7 @@ if exists('+undofile')
   set undofile
 endif
 
-set fileformats=unix,dos,mac
-
-if !has("gui_running")
-  " need this otherwise colors disappear
-  if !exists('g:has_set_my_console_vim_settings')
-    set t_Co=256
-    " Prevent Vim from clobbering the scrollback buffer. See
-    " http://www.shallowsky.com/linux/noaltscreen.html
-    "
-    " this basically doesn't clear the screen when you close Vim
-    "set t_ti= t_te=
-
-    "set t_RV=
-    "set ttymouse=
-    "set ttymouse=xterm2
-    "set mouse=
-    let g:has_set_my_console_vim_settings = 1
-  endif
-endif
+set fileformats=unix,dos
 
 " General {{{
 set autowrite
@@ -497,6 +485,13 @@ if !exists("g:already_set_color_scheme") && !($TERM == "linux")
     colorscheme base16-solarized
 
     let g:already_set_color_scheme=1
+endif
+if !has("gui_running")
+  " need this otherwise colors disappear
+  if !exists('g:has_set_my_console_vim_settings')
+    set t_Co=256
+    let g:has_set_my_console_vim_settings = 1
+  endif
 endif
 
 " pretty vertical Splits
