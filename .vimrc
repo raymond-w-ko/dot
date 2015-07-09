@@ -2016,7 +2016,7 @@ augroup ft_dosbatch
 augroup END
 augroup ft_makefile
   au!
-  au BufNewFile,BufReadPost Makefile* setlocal noexpandtab
+  au FileType Makefile* setlocal noexpandtab
 augroup END
 
 " Hex Editing {{{
