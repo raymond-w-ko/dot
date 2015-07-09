@@ -142,3 +142,6 @@
 [submodule ".vim/bundle/vim-fugitive"]
 	path = .vim/bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
+[submodule ".vim/bundle/scrollfix"]
+	path = .vim/bundle/scrollfix
+	url = git@github.com:raymond-w-ko/scrollfix.git
