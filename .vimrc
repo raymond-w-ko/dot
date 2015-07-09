@@ -527,7 +527,6 @@ function! CenterCursorAesthetically()
 
     return
 endfunction
-"nnoremap <silent> zz :call CenterCursorAesthetically()<CR>
 
 " Searching and movement
 " Use sane regexes.
@@ -549,18 +548,18 @@ set sidescrolloff=1
 nnoremap <silent> <leader>l :nohlsearch<CR>:let @/=''<CR>:call clearmatches()<CR>
 
 " mutally exclusive I think
-set scrolloff=9999
+"set scrolloff=9999
+"nnoremap <silent> zz :call CenterCursorAesthetically()<CR>
 "nmap n nzzzv
 "nmap N Nzzzv
 "nmap G Gzz
+"nnoremap g; g;zz
+"nnoremap g, g,zz
 
 " Don't move on *
 "nnoremap * *<c-o>
 nnoremap <silent> * :set nohls<CR>:let @/='\C\<<C-R>=expand('<cword>')<CR>\>'<CR>:set hls<CR>
 
-" Same when jumping around
-"nnoremap g; g;zz
-"nnoremap g, g,zz
 
 " Easier to type, and I never use the default behavior.
 nnoremap H ^
@@ -939,16 +938,20 @@ nnoremap <silent> cp :set opfunc=ChangePaste<CR>g@
 
 " lazy braces
 function! MyDoubleBracesExpander()
-    let line = strpart(getline('.'), 0, col('.') - 1)
-    let line_len = strlen(line)
-    if (line_len < 2)
-        return
-    endif
+  if &filetype =~# '\v^(vim|html)$'
+    return
+  endif
 
-    if (line[line_len - 2] != '{' || line[line_len - 1] != '{')
-        return
-    endif
-    call feedkeys("\<BS>\<CR>X\<CR>}\<Up>\<End>\<BS>", 't')
+  let line = strpart(getline('.'), 0, col('.') - 1)
+  let line_len = strlen(line)
+  if (line_len < 2)
+    return
+  endif
+
+  if (line[line_len - 2] != '{' || line[line_len - 1] != '{')
+    return
+  endif
+  call feedkeys("\<BS>\<CR>}\<Up>\<End>\<CR>", 't')
 endfunction
 augroup ExpandDoubleBraces
     au!
@@ -1068,29 +1071,29 @@ augroup END
 
 " lazy .. to ->
 function! MyLazyDotDotToArrow()
-    if (match(&filetype, '\vc$|cpp|objc|php') == -1)
-        return
-    endif
+  if &filetype !~# '\v^(c|cpp|objc|php)$'
+    return
+  endif
 
-    let line = strpart(getline('.'), 0, col('.') - 1)
-    let line_len = strlen(line)
-    if (line_len < 2)
-        return
-    endif
+  let line = strpart(getline('.'), 0, col('.') - 1)
+  let line_len = strlen(line)
+  if (line_len < 2)
+    return
+  endif
 
-    if (line[line_len - 3] != '.' &&
+  if (line[line_len - 3] != '.' &&
       \ line[line_len - 3] != '/' &&
       \ line[line_len - 3] != '\' &&
       \ line[line_len - 2] == '.' &&
       \ line[line_len - 1] == '.')
-        call feedkeys("\<BS>\<BS>->", 'n')
-    endif
+    call feedkeys("\<BS>\<BS>->", 'n')
+  endif
 
-    if (line[line_len - 3] == '-' &&
+  if (line[line_len - 3] == '-' &&
       \ line[line_len - 2] == '>' &&
       \ line[line_len - 1] == '.')
-        call feedkeys("\<BS>\<BS>\<BS>...", 'n')
-    endif
+    call feedkeys("\<BS>\<BS>\<BS>...", 'n')
+  endif
 endfunction
 augroup ConvertTwoDotsToArrow
     au!
@@ -1889,29 +1892,6 @@ augroup END
 "
 let g:synesthesia_banned_console_colors = []
 
-" base16-3024-dark
-" depends on console theme
-"for i in range(0, 16)
-  "call add(g:synesthesia_banned_console_colors, i)
-"endfor
-" too dark
-"call add(g:synesthesia_banned_console_colors, 17)
-"call add(g:synesthesia_banned_console_colors, 18)
-"call add(g:synesthesia_banned_console_colors, 19)
-"call add(g:synesthesia_banned_console_colors, 52)
-"call add(g:synesthesia_banned_console_colors, 53)
-"call add(g:synesthesia_banned_console_colors, 54)
-"call add(g:synesthesia_banned_console_colors, 55)
-"call add(g:synesthesia_banned_console_colors, 58)
-"call add(g:synesthesia_banned_console_colors, 59)
-"call add(g:synesthesia_banned_console_colors, 60)
-"call add(g:synesthesia_banned_console_colors, 61)
-"call add(g:synesthesia_banned_console_colors, 62)
-" white color
-"for i in range(232, 256)
-  "call add(g:synesthesia_banned_console_colors, i)
-"endfor
-
 " solarized-dark
 for i in range(18, 256 + 1)
   call add(g:synesthesia_banned_console_colors, i)
@@ -1922,6 +1902,8 @@ for i in range(9, 14 + 1)
 endfor
 " this is same as background color, don't want things to be invisible
 call add(g:synesthesia_banned_console_colors, 0)
+
+" this is the solarized color table
 let s:color_table = [
     \ "002b36",
     \ "073642",
@@ -1999,123 +1981,39 @@ map <Leader>k <Plug>(easymotion-k)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <C-p> <Plug>yankstack_substitute_older_paste
 nmap <C-n> <Plug>yankstack_substitute_newer_paste
-" }}}
-" filetype {{{
-" C {{{
-augroup ft_c
-  autocmd!
-  autocmd BufNewFile,BufRead *.c setlocal foldnestmax=1
-augroup END
-" }}}
-" C# {{{
-augroup ft_cs
-  autocmd!
-  autocmd BufNewFile,BufRead *.cs setlocal foldnestmax=1 foldmethod=indent
-augroup END
-" }}}
-" C++ {{{
-augroup ft_cpp
-  autocmd!
-  autocmd BufNewFile,BufRead *.cpp,*.cc setlocal foldnestmax=1
-augroup END
-" }}}
-" Objective-C {{{
-augroup ft_objc
-  autocmd!
-  autocmd BufNewFile,BufRead *.m setlocal foldnestmax=1
-augroup END
-" }}}
-" C, C++, Obj-C Header {{{
-augroup ft_h
-  autocmd!
-  autocmd BufNewFile,BufRead *.h setlocal foldnestmax=20
-augroup END
-" }}}
 
-" Syandus Spec File {{{
-augroup ft_ssf
-  autocmd!
-  autocmd BufNewFile,BufRead *.ssf setlocal foldnestmax=20
-augroup END
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" scrollfix
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:scrollfix=40
 " }}}
-" SyML {{{
-augroup ft_sml
-  autocmd!
-  autocmd BufNewFile,BufRead *.sml setlocal foldnestmax=20
-augroup END
-" }}}
-" HLSL, FX, FXL {{{
-augroup ft_fx
-  autocmd!
-  autocmd BufNewFile,BufRead *.fx,*.fxl,*.fxh,*.hlsl setlocal filetype=fx foldnestmax=20
-augroup END
-" }}}
-
-" Java {{{
-augroup ft_java
-    au!
-    au FileType java setlocal foldmethod=marker foldmarker={,}
-augroup END
-" }}}
-" Javascript {{{
-augroup ft_javascript
-    au!
-    au FileType javascript setlocal foldmethod=marker foldmarker={,}
-augroup END
-" }}}
-" vimrc {{{
-augroup vimrc
+" filetype specific settings {{{
+augroup AutoReloadVimrc
     au!
 
-    au BufWritePost .vimrc source $MYVIMRC
-    au BufWritePost ~/.vim/* source $MYVIMRC
-
-    au BufWritePost C:/cygwin/home/root/dot/.vimrc source $MYVIMRC
-    au BufWritePost C:/cygwin/home/root/dot/.gvimrc source $MYVIMRC
-    au BufWritePost C:/cygwin/home/root/dot/.vim/config/* source $MYVIMRC
-    au BufWritePost C:/cygwin/home/rko/dot/.vimrc source $MYVIMRC
-    au BufWritePost C:/cygwin/home/rko/dot/.vim/config/* source $MYVIMRC
-    au BufWritePost C:/cygwin64/home/rko/dot/.vimrc source $MYVIMRC
-    au BufWritePost C:/cygwin64/home/rko/dot/.vim/config/* source $MYVIMRC
-
+    au BufWritePost *.vimrc source $MYVIMRC
     if strlen($MYGVIMRC) > 0
-      au BufWritePost .gvimrc source $MYGVIMRC
-      au BufWritePost C:/cygwin/home/rko/dot/.gvimrc source $MYGVIMRC
-      au BufWritePost C:/cygwin64/home/rko/dot/.gvimrc source $MYGVIMRC
+      au BufWritePost *.gvimrc source $MYGVIMRC
     endif
 augroup END
-" }}}
-" git {{{
-augroup ft_gitcommit
+augroup FixGitCommitMessageCollapsing
   au!
   au FileType gitcommit setlocal foldlevel=9001
 augroup END
-"}}}
-" Python {{{
 augroup ft_python
   au!
   au BufNewFile,BufRead *.py setlocal foldmethod=syntax foldlevel=1
   au BufNewFile,BufRead *.py setlocal omnifunc=pythoncomplete#Complete
 augroup END
-"}}}
-" autohotkey {{{
-augroup ft_autohotkey
-  au!
-  au FileType autohotkey setlocal foldlevel=0 foldnestmax=1 foldmethod=marker
-augroup END
-"}}}
-" DOS Batch Files {{{
+" DOS Batch Files
 augroup ft_dosbatch
   au!
   au FileType dosbatch setlocal ff=dos
 augroup END
-"}}}
-" Makefile {{{
 augroup ft_makefile
   au!
-  au FileType Makefile setlocal noexpandtab
+  au BufNewFile,BufReadPost Makefile* setlocal noexpandtab
 augroup END
-" }}}
 
 " Hex Editing {{{
 " vim -b : edit binary using xxd-format!
