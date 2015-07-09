@@ -1671,6 +1671,9 @@ augroup vimrc_help
 augroup END
 " }}}
 " Plugins {{{
+
+let g:loaded_matchparen = 1
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " a.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1985,7 +1988,8 @@ nmap <C-n> <Plug>yankstack_substitute_newer_paste
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " scrollfix
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:scrollfix=40
+let g:scrollfix=45
+
 " }}}
 " filetype specific settings {{{
 augroup AutoReloadVimrc
