@@ -7,8 +7,9 @@
 " http://utf8everywhere.org/
 set encoding=utf-8
 
-" pathogen
+" pathogen {{{
 let g:pathogen_disabled = []
+call add(g:pathogen_disabled, "cocoa.vim")
 
 let g:omegacomplete_version_preference = 1
 if g:omegacomplete_version_preference == 2
@@ -40,6 +41,8 @@ endif
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
+"}}}
+" General {{{
 
 " load sensible defaults by our prophet Tim Pope
 runtime! plugin/sensible.vim
@@ -67,10 +70,13 @@ endif
 if exists('+undofile')
   set undofile
 endif
+set noswapfile  " computers are pretty reliable nowadays
+
+" Leader
+let mapleader = ' '
+let maplocalleader = ','
 
 set fileformats=unix,dos
-
-" General {{{
 set autowrite
 set autowriteall
 set updatetime=500
@@ -106,11 +112,19 @@ set maxmempattern=2000000
 set maxmem=2000000
 set maxmemtot=2000000
 set listchars=tab:\|\ ,trail:-,extends:>,precedes:<,nbsp:+
+" Mouse & selection Behavior
+behave xterm                " of course xterm is better
+set selectmode=""           " never want SELECT mode
+set mousemodel=popup
+set keymodel=""
+set selection=inclusive
+set mousehide
+set nomousefocus
+set mouse=a
+set clipboard=autoselect
+set pastetoggle=<F9>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" mirror tpope dotfiles
 "set notimeout
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup MySetTimeoutLen1
   au!
   autocmd InsertEnter * set timeoutlen=100
@@ -119,7 +133,45 @@ augroup END
 "set ttimeout
 set ttimeoutlen=50    " needed to avoid leaving insert mode delay for vim-airline
 
-" }}}
+set cinoptions=
+set cinoptions+=:0
+set cinoptions+=g0
+set cinoptions+=N-s
+" this by inteself breaks vim-synesthesia + vim-niji parent parsing
+exe "set cinoptions+=(0"
+set cinoptions+=u0
+set cinoptions+=Ws
+set cinoptions+=l1
+set cinoptions+=j1
+set cinoptions+=J1
+
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+" 3 shiftwidths is a little excessive
+let g:vim_indent_cont=4
+
+set textwidth=0           " no automatic text wrapping
+set formatoptions=qn1
+  set fo=
+  set fo+=t   " auto-wrap text using textwidth
+  set fo+=c   " auto-wrap comments using textwidth, insert comment leader
+  set fo+=q   " allow formatting comments with 'gq'
+  set fo+=l   " long lines are not broken in insert mode
+  if v:version > 702 || (v:version == 702 && has('patch541'))
+      set fo+=j   " remove comment leader when joining lines.
+  endif
+set wrap
+set wrapscan
+if exists("+breakindent")
+    set breakindent
+    set breakindentopt=min:20,shift:2,sbr
+    set showbreak=>>
+else
+    exe 'set showbreak=>>\ '
+endif
+
 " wildmenu completion {{{
 "set wildmode=longest,list
 set wildmode=list:longest
@@ -174,88 +226,7 @@ set wildignore+=*.mesh
 set wildignore+=*.apk,*.ap_
 
 " }}}
-" Tabs, indents, spaces, wrapping {{{
-function! SetMyCino()
-    set cinoptions=
-    set cinoptions+=:0
-    set cinoptions+=g0
-    set cinoptions+=N-s
-    " this breaks vim-synesthesia + vim-niji
-    exe "set cinoptions+=(0"
-    set cinoptions+=u0
-    set cinoptions+=Ws
-    set cinoptions+=l1
-    set cinoptions+=j1
-    set cinoptions+=J1
-endfunction
-call SetMyCino()
-
-set expandtab
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-" 3 shiftwidths is a little excessive
-let g:vim_indent_cont=4
-
-set textwidth=0           " no automatic text wrapping
-set formatoptions=qn1
-function! ApplyMyFormatOptions()
-    set fo=
-    set fo+=t   " auto-wrap text using textwidth
-    set fo+=c   " auto-wrap comments using textwidth, insert comment leader
-    set fo+=q   " allow formatting comments with 'gq'
-    set fo+=l   " long lines are not broken in insert mode
-    if v:version > 702 || (v:version == 702 && has('patch541'))
-        set fo+=j   " remove comment leader when joining lines.
-    endif
-endfunction
-call ApplyMyFormatOptions()
-set wrap
-set wrapscan
-if exists("+breakindent")
-    set breakindent
-    set breakindentopt=min:20,shift:2,sbr
-    set showbreak=>>
-else
-    exe 'set showbreak=>>\ '
-endif
-set noswapfile  " computers are pretty reliable nowadays
 " }}}
-
-" Leader
-let mapleader = ' '
-let maplocalleader = ','
-
-" Mouse & selection Behavior
-behave xterm                " of course xterm is better
-set selectmode=""           " never want SELECT mode
-set mousemodel=popup
-set keymodel=""
-set selection=inclusive
-set mousehide
-set nomousefocus
-set mouse=a
-set clipboard=autoselect
-set pastetoggle=<F9>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" temporary / quick and dirty mappings for doing random things
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" various snippets and utility functions go here
-function! FilterSmartQuotes()
-    %s/\v“|”/\'/
-endfunction
-command! FilterSmartQuotes silent! call FilterSmartQuotes()
-function! FixSmartQuotes()
-    %s/\v/‘/
-    %s/\v/’/
-    %s/\v/“/
-    %s/\v/”/
-endfunction
-command! FixSmartQuotes silent! call FixSmartQuotes()
-
-command! WriteUTF8 write ++enc=utf-8
-
 " Function Library {{{
 " Since I keep my projects in the UNIX-ish HOME directory, we have to figure
 " out where it is. The problem is that it is potentially different everywhere.
@@ -457,6 +428,22 @@ function! PrecedingWhitespaceCount(line)
 
   return num_space
 endfunction
+
+function! FilterSmartQuotes()
+    %s/\v“|”/\'/
+endfunction
+command! FilterSmartQuotes silent! call FilterSmartQuotes()
+
+function! FixSmartQuotes()
+    %s/\v/‘/
+    %s/\v/’/
+    %s/\v/“/
+    %s/\v/”/
+endfunction
+command! FixSmartQuotes silent! call FixSmartQuotes()
+
+command! WriteUTF8 write ++enc=utf-8
+
 " }}}
 " GUI {{{
 if !exists("g:already_set_color_scheme") && !($TERM == "linux")
@@ -799,14 +786,29 @@ if (s:uname == "Darwin\n")
     endif
 endif
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ALL GLORY TO THE ESC KEY
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"               ,'``.._   ,'``.
+"              :,--._:)\,:,._,.:       All Glory to
+"              :`--,''   :`...';\      the ESC KEY!
+"               `,'       `---'  `.
+"               /                 :
+"              /                   \
+"            ,'                     :\.___,-.
+"           `...,---'``````-..._    |:       \
+"             (                 )   ;:    )   \  _,-.
+"              `.              (   //          `'    \
+"               :               `.//  )      )     , ;
+"             ,-|`.            _,'/       )    ) ,' ,'
+"            (  :`.`-..____..=:.-':     .     _,' ,'
+"             `,'\ ``--....-)='    `._,  \  ,') _ '``._
+"          _.-/ _ `.       (_)      /     )' ; / \ \`-.'
+"         `--(   `-:`.     `' ___..'  _,-'   |/   `.)
+"             `-. `.`.``-----``--,  .'
+"               |/`.\`'        ,','); SSt
+"                   `         (/  (/
 " this caused too much stress to right hand and was a bit awkward for me
 "inoremap jk <Esc>
 " I only hit this like 5% of the time
 "inoremap kj <Esc>
-
 " trying out something crazy
 " too much stress to middle fingers
 "inoremap dk <Esc>
@@ -822,8 +824,9 @@ call yankstack#setup()
 map Y y$
 
 " looking at junegunn's vimrc, <C-f> and <C-b> are usually overkill
-noremap <C-F> <C-D>
-noremap <C-B> <C-U>
+" not if using scrollfix though...
+"noremap <C-F> <C-D>
+"noremap <C-B> <C-U>
 
 " lazyness, and to help me use Ex commands
 nnoremap ; :
@@ -855,10 +858,9 @@ nnoremap  :BD<CR>
 nnoremap <C-BS> :BD<CR>
 
 " Press F12 to switch to UTF-8 encoding
-nnoremap <F11> :e ++enc=latin1<CR>
-nnoremap <F12> :e ++enc=utf8<CR>
+"nnoremap <F11> :e ++enc=latin1<CR>
+"nnoremap <F12> :e ++enc=utf8<CR>
 
-" General {{{
 " Substitute
 nnoremap <leader>s :%s//
 vnoremap <leader>s :s//
@@ -912,20 +914,20 @@ function! MyAlternateFunction()
     let old_buf_nr = bufnr('%')
     A
     let new_buf_nr = bufnr('%')
-    if (old_buf_nr != new_buf_nr)
-        call CenterCursorAesthetically()
-    endif
+    "if (old_buf_nr != new_buf_nr)
+        "call CenterCursorAesthetically()
+    "endif
 endfunction
 nnoremap <leader>a :call MyAlternateFunction()<CR>
 nnoremap <leader>o :ToggleWord<CR>
 
-function! MyPasteToggle()
-    if (&paste)
-        set nopaste
-    else
-        set paste
-    endif
-endfunction
+"function! MyPasteToggle()
+    "if (&paste)
+        "set nopaste
+    "else
+        "set paste
+    "endif
+"endfunction
 "nnoremap <leader>p :call MyPasteToggle()<CR>
 
 " This allows for change paste motion cp{motion}
@@ -1065,7 +1067,8 @@ function! CreateCppMethodImplementation()
 endfunction
 
 augroup CppRefactor
-    au BufReadPre *.cpp,*.h nnoremap <buffer> <leader>rci :call CreateCppMethodImplementation()<CR>dd$a<Space>{{
+  au!
+  au BufReadPre *.cpp,*.h exe "nnoremap <buffer> <leader>rci :call CreateCppMethodImplementation()<CR>dd$a<Space>{{"
 augroup END
 
 
@@ -1100,7 +1103,6 @@ augroup ConvertTwoDotsToArrow
     au CursorMovedI * call MyLazyDotDotToArrow()
 augroup END
 
-"}}}
 " Splits {{{
 nmap <C-h> <C-w>h
 nmap <C-j> <C-w>j
@@ -1122,7 +1124,6 @@ nnoremap <C-Right> :vertical resize +1<CR>
 function! MarkWindowSwap()
     let g:markedWinNum = winnr()
 endfunction
-
 function! DoWindowSwap()
     "Mark destination
     let curNum = winnr()
@@ -1137,10 +1138,8 @@ function! DoWindowSwap()
     "Hide and open so that we aren't prompted and keep history
     exe 'hide buf' markedBuf
 endfunction
-
 nnoremap <silent> <leader>wm :call MarkWindowSwap()<CR>
 nnoremap <silent> <leader>wp :call DoWindowSwap()<CR>
-
 nnoremap <silent> <Left> :call MarkWindowSwap()<CR><C-w>h:call DoWindowSwap()<CR>
 nnoremap <silent> <Right> :call MarkWindowSwap()<CR><C-w>l:call DoWindowSwap()<CR>
 " }}}
@@ -1989,6 +1988,7 @@ nmap <C-n> <Plug>yankstack_substitute_newer_paste
 " scrollfix
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:scrollfix=45
+let g:scrollinfo=1
 
 " }}}
 " filetype specific settings {{{
