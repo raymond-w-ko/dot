@@ -101,7 +101,7 @@ set splitright
 set title
 set showtabline=2
 set cmdheight=1
-set completeopt=menu,menuone,preview
+set completeopt+=menu,menuone,preview
 set pumheight=16
 set autochdir
 set nolist
@@ -1166,48 +1166,35 @@ function! CreateScratch()
     wincmd k
 endfunction
 function! CreateAndSetupVsplits()
-    let num_vsplits = (&columns / (80 - 1)) - 1
+  let num_vsplits = (&columns / (80 - 1)) - 1
 
-    let num_cur_tabs = tabpagenr('$')
-    if ((num_cur_tabs > 1) && !exists('g:my_current_number_of_tabs'))
-        let g:my_current_number_of_tabs = num_cur_tabs
-    endif
+  " get the current directory because we want to replicate this
+  " in the new tab
+  let current_directory = expand("%:p:h")
 
-    if !exists("g:my_current_number_of_tabs")
-        let g:my_current_number_of_tabs = 1
-    endif
+  if winnr('$') > 1
+    tabnew
+    silent! exe "chdir " . current_directory
+  endif
 
-    " get the current directory because we want to replicate this
-    " in the new tab
-    let current_directory = expand("%:p:h")
+  "call CreateScratch()
 
-    " set up our initial tab if this is our first time
-    if g:my_current_number_of_tabs > 1
-        tabnew
-        silent! exe "chdir " . current_directory
-    endif
+  " create number of vsplits based off of argument passwd
+  for ii in range(num_vsplits)
+    vsplit
+    silent! exe "chdir " . current_directory
+  endfor
 
-    "call CreateScratch()
+  " move back to left vsplit
+  for ii in range(num_vsplits)
+    wincmd h
+  endfor
 
-    " create number of vsplits based off of argument passwd
-    for ii in range(num_vsplits)
-        vsplit
-        silent! exe "chdir " . current_directory
-    endfor
+  if (num_vsplits >= 2)
+    wincmd l
+  endif
 
-    " move back to left vsplit
-    for ii in range(num_vsplits)
-        wincmd h
-    endfor
-
-    if (num_vsplits >= 2)
-        wincmd l
-    endif
-
-    wincmd =
-
-    let g:my_current_number_of_tabs += 1
-    return
+  wincmd =
 endfunction
 nnoremap <leader>wt :call CreateAndSetupVsplits()<CR>
 nnoremap <leader>ww :tabclose<CR>
