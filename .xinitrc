@@ -52,9 +52,8 @@ dex /etc/xdg/autostart/lxpolkit.desktop
 # Start GNOME Keyring
 eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
 # You probably need to do this too:
-export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
-export GNOME_KEYRING_CONTROL=/var/run/user/1000/keyring/control
-export GNOME_KEYRING_PID=$(pidof gnome-keyring-daemon)
+export GPG_AGENT_INFO
+export SSH_AUTH_SOCK
 
 export QT_STYLE_OVERRIDE="gtk"
 
