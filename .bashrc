@@ -30,7 +30,11 @@ export HISTSIZE=32768
 export HISTCONTROL=ignoreboth:erasedups
 
 export CCACHE_SLOPPINESS=pch_defines,time_macros
-export PATH="$HOME/vim/bin:/usr/lib/ccache/bin:/opt/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl:/opt/aws/bin:/opt/mono/bin:/opt/dropbox:$PATH"
+if [[ $(uname -s) == CYGWIN* ]]; then
+  export PATH="$HOME/vim/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+else
+  export PATH="$HOME/vim/bin:/usr/lib/ccache/bin:/opt/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl:/opt/aws/bin:/opt/mono/bin:/opt/dropbox:$PATH"
+fi
 
 . ~/.bash.d/add_dot_extra_paths.sh
 
