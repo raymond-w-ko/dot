@@ -1975,7 +1975,7 @@ nmap <C-n> <Plug>yankstack_substitute_newer_paste
 " scrollfix
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:scrollfix=45
-let g:scrollinfo=1
+let g:scrollinfo=0
 
 " }}}
 " filetype specific settings {{{
