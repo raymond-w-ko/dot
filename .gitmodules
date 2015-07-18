@@ -142,3 +142,6 @@
 [submodule ".vim/bundle/scrollfix"]
 	path = .vim/bundle/scrollfix
 	url = git@github.com:raymond-w-ko/scrollfix.git
+[submodule ".vim/bundle/vim-commentary"]
+	path = .vim/bundle/vim-commentary
+	url = https://github.com/tpope/vim-commentary.git
