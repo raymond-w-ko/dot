@@ -1658,7 +1658,7 @@ augroup END
 " }}}
 " Plugins {{{
 
-let g:loaded_matchparen = 1
+" let g:loaded_matchparen = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " a.vim
