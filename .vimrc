@@ -1974,7 +1974,7 @@ nmap <C-n> <Plug>yankstack_substitute_newer_paste
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " scrollfix
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:scrollfix=45
+let g:scrollfix=50
 let g:scrollinfo=0
 
 " }}}
