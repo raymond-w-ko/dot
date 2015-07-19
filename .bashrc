@@ -31,7 +31,7 @@ export HISTCONTROL=ignoreboth:erasedups
 
 export CCACHE_SLOPPINESS=pch_defines,time_macros
 if [[ $(uname -s) == CYGWIN* ]]; then
-  export PATH="$HOME/vim/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+  export PATH="$HOME/vim/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/lib/lapack"
 else
   export PATH="$HOME/vim/bin:/usr/lib/ccache/bin:/opt/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl:/opt/aws/bin:/opt/mono/bin:/opt/dropbox:$PATH"
 fi
