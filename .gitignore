@@ -10,6 +10,7 @@
 *.xkm
 
 /.emacs.d/elpa
+/.emacs.d/eshell/history
 /.emacs.d/*~
 
 /.vifm/Trash
