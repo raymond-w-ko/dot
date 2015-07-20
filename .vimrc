@@ -1942,6 +1942,7 @@ call add(g:synesthesia_ignored_filetypes, 'markdown')
 call add(g:synesthesia_ignored_filetypes, 'svn')
 call add(g:synesthesia_ignored_filetypes, 'tex')
 call add(g:synesthesia_ignored_filetypes, 'text')
+call add(g:synesthesia_ignored_filetypes, 'xml')
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-easymotion
