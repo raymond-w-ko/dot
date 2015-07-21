@@ -1,51 +1,37 @@
-# the following line is actually
-# equivalent to "\C-?": delete-char
-"\e[3~": delete-char
+# do not bell on tab-completion
+set bell-style none
 
-# VT
+set meta-flag on
+set input-meta on
+set convert-meta off
+set output-meta on
+set completion-ignore-case on
+
+$if mode=emacs
+
+# for linux console and RH/Debian xterm
 "\e[1~": beginning-of-line
 "\e[4~": end-of-line
-
-# kvt
-"\e[H": beginning-of-line
-"\e[F": end-of-line
-
-# rxvt and konsole (i.e. the KDE-app...)
+"\e[5~": beginning-of-history
+"\e[6~": end-of-history
 "\e[7~": beginning-of-line
+"\e[3~": delete-char
+"\e[2~": quoted-insert
+"\e[5C": forward-word
+"\e[5D": backward-word
+"\e\e[C": forward-word
+"\e\e[D": backward-word
+"\e[1;5C": forward-word
+"\e[1;5D": backward-word
+
+# for rxvt
 "\e[8~": end-of-line
 
-# VT220
+# for non RH/Debian xterm, can't hurt for RH/DEbian xterm
 "\eOH": beginning-of-line
 "\eOF": end-of-line
 
-# Allow 8-bit input/output
-#set meta-flag on
-#set convert-meta off
-#set input-meta on
-#set output-meta on
-#$if Bash
-  # Don't ring bell on completion
-  #set bell-style none
-
-  # or, don't beep at me - show me
-  #set bell-style visible
-
-  # Filename completion/expansion
-  #set completion-ignore-case on
-  #set show-all-if-ambiguous on
-
-  # Expand homedir name
-  #set expand-tilde on
-
-  # Append "/" to all dirnames
-  #set mark-directories on
-  #set mark-symlinked-directories on
-
-  # Match all files
-  #set match-hidden-files on
-
-  # 'Magic Space'
-  # Insert a space character then performs
-  # a history expansion in the line
-  #Space: magic-space
-#$endif
+# for freebsd console
+"\e[H": beginning-of-line
+"\e[F": end-of-line
+$endif
