@@ -86,6 +86,9 @@ set showmode
 set hidden
 set novisualbell
 set noerrorbells
+if exists('+belloff')
+  set belloff=all
+endif
 set nonumber
 set ruler
 if exists('+relativenumber')
@@ -829,10 +832,11 @@ map Y y$
 "noremap <C-B> <C-U>
 
 " lazyness, and to help me use Ex commands
-nnoremap ; :
-nnoremap : ;
-vnoremap ; :
-vnoremap : ;
+" since I am testing crazy semicolon mode map layout, this is not necessary
+" nnoremap ; :
+" nnoremap : ;
+" vnoremap ; :
+" vnoremap : ;
 
 " fastest way to save a file
 nnoremap <silent> <CR> :wall<CR>
