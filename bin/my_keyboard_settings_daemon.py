@@ -15,7 +15,7 @@ def apply_keyboard_settings():
 
     while True:
         try:
-            time.sleep(0.5)
+            time.sleep(0.25)
 
             if ticks_before_reapplying_settings < 0:
                 continue
@@ -25,11 +25,11 @@ def apply_keyboard_settings():
 
             ticks_before_reapplying_settings = -1
 
-            system('xkbcomp -I$HOME/.xkb $HOME/.xkb/pc.xkb $DISPLAY')
+            system('xmodmap ~/.Xmodmap')
             system('xset r rate 333 32')
-            system('killall xcape')
-            system("xcape -t 333 -e 'Control_L=Escape;Shift_L=Shift_L|minus;Control_R=Return'")
-            system('killall xbindkeys')
+            system('killall -u xcape')
+            system("xcape -t 333 -e 'Control_R=Return'")
+            system('killall -u xbindkeys')
             system('xbindkeys')
             system('set_no_mouse_acceleration.sh')
 

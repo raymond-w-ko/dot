@@ -1,3 +1,4 @@
+! semimap by github.com/abo-abo
 keycode  10 = 1 exclam exclam U2081
 keycode  11 = 2 at at U2082
 keycode  12 = 3 numbersign numbersign U2083
@@ -41,8 +42,13 @@ keycode  58 = m M U03BC U039C
 keycode  59 = comma less U2023 less
 keycode  60 = period greater U2022 greater
 keycode  66 = Control_L Control_L Control_L Control_L
+
+! remap Return key as Control_R, use xcape to generate Return
+keycode  36 = Control_R Control_R Control_R Control_R
+keycode  97 = Return Return Return Return
+
 clear Lock
-add Control = Control_L
+add Control = Control_L Control_R
 
 ! exchange left Alt and left Win
 remove Mod1 = Alt_L

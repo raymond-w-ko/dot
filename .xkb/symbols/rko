@@ -1,9 +1,0 @@
-partial modifier_keys alphanumeric_keys
-xkb_symbols "rko" {
-  key <RCTL> {
-    symbols[Group1] = [ Return, Return ]
-  };
-  key <RTRN> {
-    symbols[Group1] = [ Control_R, Control_R ]
-  };
-};
