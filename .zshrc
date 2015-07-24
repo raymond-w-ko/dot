@@ -66,4 +66,11 @@ bindkey '^S' history-incremental-search-forward
 bindkey '^P' history-search-backward
 bindkey '^N' history-search-forward  
 
+bindkey -s 'θ' '"\C-b"'
+bindkey -s 'ω' "'\C-b'"
+bindkey -s 'υ' ">\C-b<"
+bindkey -s 'σ' "}\C-b{"
+bindkey -s 'φ' ")\C-b("
+bindkey -s 'ρ' "]\C-b["
+
 source $HOME/.bashrc

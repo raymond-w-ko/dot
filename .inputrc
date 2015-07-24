@@ -5,6 +5,15 @@ set meta-flag on
 set input-meta on
 set convert-meta off
 set output-meta on
+
+"θ":""\C-b""
+"ω":"'\C-b'"
+"\e\C-l":"\C-e | less\C-m"
+"υ":">\C-b<"
+"σ":"}\C-b{"
+"φ":")\C-b("
+"ρ":"]\C-b["
+
 set completion-ignore-case on
 
 $if mode=emacs
