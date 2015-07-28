@@ -1,11 +1,16 @@
+(require 'cl)
+
+(setq inhibit-startup-screen t)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+
 (require 'package)
 (setq package-archives
       '(("gnu" . "http://elpa.gnu.org/packages/")
 	("melpa" . "http://melpa.milkbox.net/packages/")
         ("org" . "http://orgmode.org/elpa/")))
 (package-initialize)
-
-(require 'cl)
 
 (defvar packages-list
   '(evil
@@ -15,6 +20,7 @@
     evil-surround
     smooth-scrolling
     paredit
+    key-chord
     color-theme-solarized)
   "List of packages needs to be installed at launch")
 
@@ -32,18 +38,15 @@
       (package-install p))))
 
 (evil-mode)
-(define-key evil-normal-state-map (kbd ";") 'evil-ex)
-(define-key evil-normal-state-map (kbd ":") 'evil-repeat-find-char)
+(setq key-chord-two-keys-delay 0.1)
+(key-chord-define evil-insert-state-map "fj" 'evil-normal-state)
+(key-chord-define evil-insert-state-map "jf" 'evil-normal-state)
+(key-chord-mode 1)
 
 (require 'uniquify)
 (setq 
  uniquify-buffer-name-style 'post-forward
  uniquify-separator ":")
-
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-(setq inhibit-startup-screen t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
