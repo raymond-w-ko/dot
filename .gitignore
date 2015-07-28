@@ -11,6 +11,7 @@
 
 /.emacs.d/elpa
 /.emacs.d/eshell/history
+/.emacs.d/auto-save-list
 /.emacs.d/*~
 
 /.vifm/Trash
