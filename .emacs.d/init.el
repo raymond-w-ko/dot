@@ -43,6 +43,9 @@
 (key-chord-define evil-insert-state-map "jf" 'evil-normal-state)
 (key-chord-mode 1)
 
+(blink-cursor-mode 0)
+(global-hl-line-mode 1)
+
 (require 'uniquify)
 (setq 
  uniquify-buffer-name-style 'post-forward
