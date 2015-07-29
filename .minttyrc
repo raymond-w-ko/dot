@@ -1,8 +1,8 @@
 BoldAsFont=no
 Transparency=off
 CursorType=block
-Font=fixed613
-FontHeight=8
+Font=Terminus
+FontHeight=9
 Locale=en_US
 Charset=UTF-8
 Rows=45
