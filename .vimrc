@@ -1982,6 +1982,11 @@ nmap <C-n> <Plug>yankstack_substitute_newer_paste
 let g:scrollfix=50
 let g:scrollinfo=0
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-slime
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:slime_target="tmux"
+
 " }}}
 " filetype specific settings {{{
 augroup AutoReloadVimrc
