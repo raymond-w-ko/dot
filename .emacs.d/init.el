@@ -38,10 +38,11 @@
       (package-install p))))
 
 (evil-mode)
-(setq key-chord-two-keys-delay 0.1)
-(key-chord-define evil-insert-state-map "fj" 'evil-normal-state)
-(key-chord-define evil-insert-state-map "jf" 'evil-normal-state)
-(key-chord-mode 1)
+(setq-default evil-escape-delay 0.1)
+(setq-default evil-escape-key-sequence "fj")
+
+; (setq key-chord-two-keys-delay 0.1)
+; (key-chord-mode 1)
 
 (blink-cursor-mode 0)
 (global-hl-line-mode 1)

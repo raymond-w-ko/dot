@@ -799,9 +799,7 @@ endif
 "inoremap kd <Esc>
 " just right :-)
 inoremap fj <Esc>
-inoremap jf <Esc>
 cnoremap fj <C-c>
-cnoremap jf <C-c>
 
 " mirror dd and D, a bit hard to get use to
 call yankstack#setup()
