@@ -4,12 +4,19 @@
 " having an existence of .vimrc already implies this
 "set nocompatible
 
+augroup vimrc_group
+  au!
+augroup END
+
 " http://utf8everywhere.org/
 set encoding=utf-8
 
 " pathogen {{{
 let g:pathogen_disabled = []
+" very heavy, adds over 9000 keywords and library functions
 call add(g:pathogen_disabled, "cocoa.vim")
+" disable this for now, try out dimmed out parentheses
+call add(g:pathogen_disabled, "vim-niji")
 
 let g:omegacomplete_version_preference = 1
 if g:omegacomplete_version_preference == 2
@@ -128,8 +135,7 @@ set clipboard=autoselect
 set pastetoggle=<F9>
 
 "set notimeout
-augroup MySetTimeoutLen1
-  au!
+augroup vimrc_group
   autocmd InsertEnter * set timeoutlen=100
   autocmd InsertLeave * set timeoutlen=750
 augroup END
@@ -686,20 +692,6 @@ vnoremap # :<C-u>call <SID>VisualModeSetSearch()<CR>??<CR><c-o>
 "set foldtext=MyFoldText()
 "call SetFoldSettings()
 
-" hopefully replaced by fastfold.vim
-"function! MySaveOrigFoldMethod()
-    "if exists("b:original_foldmethod")
-        "return
-    "endif
-    "let b:original_foldmethod=&foldmethod
-    "setlocal foldmethod=manual
-"endfunction
-"augroup SaveOriginalFoldMethod
-    "au!
-    "au InsertEnter * call MySaveOrigFoldMethod()
-"augroup END
-"nnoremap zM a<ESC>:setl foldmethod=<C-R>=b:original_foldmethod<CR><CR>zM:setl fdm=manual<CR>
-
 " enable syntax folding for XML (caution, this can be slow)
 "let g:xml_syntax_folding=1
 
@@ -940,8 +932,7 @@ function! MyDoubleBracesExpander()
   endif
   call feedkeys("\<BS>\<CR>}\<Up>\<End>\<CR>", 't')
 endfunction
-augroup ExpandDoubleBraces
-    au!
+augroup vimrc_group
     au CursorMovedI * call MyDoubleBracesExpander()
 augroup END
 
@@ -1051,8 +1042,7 @@ function! CreateCppMethodImplementation()
     execute "normal! i\<C-r>=g:RefactorCppClassName\<CR>::\<ESC>G$s\<CR>\<ESC>xxxxxxxx"
 endfunction
 
-augroup CppRefactor
-  au!
+augroup vimrc_group
   au BufReadPre *.cpp,*.h exe "nnoremap <buffer> <leader>rci :call CreateCppMethodImplementation()<CR>dd$a<Space>{{"
 augroup END
 
@@ -1083,8 +1073,7 @@ function! MyLazyDotDotToArrow()
     call feedkeys("\<BS>\<BS>\<BS>...", 'n')
   endif
 endfunction
-augroup ConvertTwoDotsToArrow
-    au!
+augroup vimrc_group
     au CursorMovedI * call MyLazyDotDotToArrow()
 augroup END
 
@@ -1519,45 +1508,6 @@ map <leader>u :call HandleURI()<CR>
 " autocommands {{{
 set cursorline    " needed as netrw uses the global value to save and restore state
 "set cursorcolumn  " needed as netrw uses the global value to save and restore state
-augroup CursorLine
-  au!
-  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  au WinLeave * setlocal nocursorline
-
-  "au VimEnter,WinEnter,BufWinEnter * setlocal cursorcolumn
-  "au WinLeave * setlocal nocursorcolumn
-augroup END
-
-augroup HardcoreAutoChdir
-  au!
-  autocmd BufEnter * silent! lcd %:p:h
-  autocmd BufEnter * silent! cd %:p:h
-augroup END
-
-augroup SaveAllBuffersWhenLosingFocus
-  au!
-  "au FocusLost * silent! wall
-augroup END
-
-if !has("gui_running")
-  augroup HackToForceAutoreadToWorkCorrectlyInConsoleVim
-    au!
-    au FocusGained,BufEnter * :silent! !
-  augroup END
-endif
-
-" Make sure Vim returns to the same line when you reopen a file.
-" Thanks, Amit
-augroup ReturnToSameLineWhenReopeningFile
-  au!
-  au BufReadPost *
-      \ if line("'\"") > 0 && line("'\"") <= line("$") |
-      \     execute 'normal! g`"zv' |
-      "\     call CenterCursorAesthetically() |
-      \ endif
-
-  au BufReadPost COMMIT_EDITMSG exe 'normal! gg'
-augroup END
 
 function! SaveAndCheckIfModified()
   if &modified && !&readonly && len(bufname('%')) > 0
@@ -1567,65 +1517,12 @@ function! SaveAndCheckIfModified()
   endif
 endfunction
 
-" this probably causes more trouble than it is worth, especially for files not
-" under version control
-"
-" but I am to lazy and often don't want to press Enter to save...
-"augroup SaveWhenExitingInsertMode
-  "au!
-  "au InsertLeave * call SaveAndCheckIfModified()
-"augroup END
-
 function! StripTrailingWhitespace()
     let l:my_saved_winview = winsaveview()
     silent! %s/\s\+$//
     call winrestview(l:my_saved_winview)
 endfunction
 command! StripTrailingWhitespace call StripTrailingWhitespace()
-" generates too many annoying deltas in open source projects like OGRE
-"augroup StripTrailingWhitespaceOnSave
-    "au!
-    "Syandus
-    "au BufWritePre C:/SVN/* call StripTrailingWhitespace()
-
-    " C / C++
-    "au BufWritePre *.h,*.hpp,*.c,*.cc,*.cpp call StripTrailingWhitespace()
-    " Java
-    "au BufWritePre *.java call StripTrailingWhitespace()
-    " Python
-    "au BufWritePre *.py call StripTrailingWhitespace()
-    " Lua
-    "au BufWritePre *.lua call StripTrailingWhitespace()
-"augroup END
-"augroup SaveAndRestoreFolds
-    "au!
-    "au BufWinLeave * silent! mkview
-    "au BufWinEnter * silent! loadview
-"augroup END
-"augroup LocationListAutoOpenClose
-    "au!
-    " Automatically open, but do not go to (if there are errors) the quickfix /
-    " location list window, or close it when is has become empty.
-    "
-    " Note: Must allow nesting of autocmds to enable any customizations for quickfix
-    " buffers.
-    " Note: Normally, :cwindow jumps to the quickfix window if the command opens it
-    " (but not if it's already open). However, as part of the autocmd, this doesn't
-    " seem to happen.
-    "autocmd QuickFixCmdPost [^l]* nested cwindow
-    "autocmd QuickFixCmdPost    l* nested lwindow
-"augroup END
-"augroup AlwaysOpenHelpInTheSameWindow
-    "autocmd FileType help :wincmd H
-"augroup END
-
-"function! AdjustWindowHeight(minheight, maxheight)
-  "exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
-"endfunction
-"augroup QuickFixAutoSizer
-    "au!
-    "au FileType qf call AdjustWindowHeight(3, 16)
-"augroup END
 
 " ----------------------------------------------------------------------------
 " Help in new tabs
@@ -1637,10 +1534,46 @@ function! s:helptab()
   endif
 endfunction
 
-augroup vimrc_help
-  autocmd!
+augroup vimrc_group
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+
+  "au VimEnter,WinEnter,BufWinEnter * setlocal cursorcolumn
+  "au WinLeave * setlocal nocursorcolumn
+
+  " hack for console VIM so that check for changed files work correctly
+  au FocusGained,BufEnter * if !has("gui_running") | :silent! checktime | endif
+
+  " hardcore autochdir
+  autocmd BufEnter * silent! lcd %:p:h
+  autocmd BufEnter * silent! cd %:p:h
+
+  " save all buffers when losing focus
+  "au FocusLost * silent! wall
+
+  " Make sure Vim returns to the same line when you reopen a file.
+  " Thanks, Amit
+  au BufReadPost *
+      \ if line("'\"") > 0 && line("'\"") <= line("$") |
+      \     execute 'normal! g`"zv' |
+      "\     call CenterCursorAesthetically() |
+      \ endif
+  " this however is annoying for git commit messages
+  au BufReadPost COMMIT_EDITMSG exe 'normal! gg'
+
+  " this probably causes more trouble than it is worth, especially for files not
+  " under version control
+  " but I am to lazy and often don't want to press Enter to save...
+  "au InsertLeave * call SaveAndCheckIfModified()
+
+  " generates too many annoying deltas in open source projects like OGRE
+  "au BufWritePre C:/SVN/* call StripTrailingWhitespace()
+  "au BufWritePre *.h,*.hpp,*.c,*.cc,*.cpp,*.java,*.py,*.lua call StripTrailingWhitespace()
+
+  " help in new tab to avoid interfering with existing tab layout
   autocmd BufEnter *.txt call s:helptab()
 augroup END
+
 " }}}
 " Plugins {{{
 
@@ -1730,48 +1663,6 @@ let g:clojure_fuzzy_indent_blacklist =
     \ ['-fn$', '\v^with-%(meta|out-str|loading-context)$']
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" rainbow_parentheses
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:rbpt_bold=0
-"let g:rbpt_max=8
-"let g:rbpt_colorpairs = [
-    "\ [ '6',  '#2aa198'],
-    "\ [ '13', '#6c71c4'],
-    "\ [ '4',  '#268bd2'],
-    "\ [ '5',  '#d33682'],
-    "\ [ '1',  '#dc322f'],
-    "\ [ '2',  '#859900'],
-    "\ [ '3',  '#b58900'],
-    "\ [ '9',  '#cb4b16'],
-    "\ ]
-"augroup EnableRainbowParentheses
-  "au!
-  "au VimEnter * RainbowParenthesesToggle
-  "au Syntax * RainbowParenthesesLoadRound
-  "au Syntax * RainbowParenthesesLoadBraces
-  " breaks Lua's [[multiline string literal]] and --[[megacomment]]
-  "au Syntax * RainbowParenthesesLoadSquare
-  " breaks XML hilighting
-  "au Syntax * RainbowParenthesesLoadChevrons
-"augroup END
-
-" rainbow
-"let g:rainbow_active = 1
-"let g:rainbow_load_separately = [
-    "\ [ '*' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
-    "\ [ '*.tex' , [['(', ')'], ['\[', '\]']] ],
-    "\ [ '*.cpp' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
-    "\ [ '*.{html,htm}' , [['(', ')'], ['\[', '\]'], ['{', '}'], ['<\a[^>]*>', '</[^>]*>']] ],
-    "\ ]
-"augroup RainbowParentheses
-  "au!
-  "au FileType c,cpp,objc,objcpp,go,rust,javascript,java call rainbow#load()
-  "au FileType clojure call rainbow#load(
-      "\ [['(', ')'], ['\[', '\]'],
-      "\ ['{', '}']], '"[-+*/=><%^&$#@!~|:?\\]"')
-"augroup END
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-niji
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:niji_dark_colours = [
@@ -1854,8 +1745,7 @@ let g:BufKillCreateMappings = 0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:clj_fmt_autosave = 0
 
-augroup Clojure
-  au!
+augroup vimrc_group
   au FileType clojure nnoremap <buffer> <leader>r :Require<CR>
   au FileType clojure nnoremap <buffer> <leader>R :Require!<CR>
   au FileType clojure nnoremap <buffer> == :Cljfmt<CR>
@@ -1972,38 +1862,22 @@ let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
 
 " }}}
 " filetype specific settings {{{
-augroup AutoReloadVimrc
-    au!
+augroup vimrc_group
+  au BufWritePost *.vimrc source $MYVIMRC
+  au BufWritePost *.gvimrc source $MYGVIMRC
 
-    au BufWritePost *.vimrc source $MYVIMRC
-    if strlen($MYGVIMRC) > 0
-      au BufWritePost *.gvimrc source $MYGVIMRC
-    endif
-augroup END
-augroup FixGitCommitMessageCollapsing
-  au!
   au FileType gitcommit setlocal foldlevel=9001
-augroup END
-augroup ft_python
-  au!
+
   au BufNewFile,BufRead *.py setlocal foldmethod=syntax foldlevel=1
   au BufNewFile,BufRead *.py setlocal omnifunc=pythoncomplete#Complete
-augroup END
-" DOS Batch Files
-augroup ft_dosbatch
-  au!
+
   au FileType dosbatch setlocal ff=dos
-augroup END
-augroup ft_makefile
-  au!
   au FileType Makefile* setlocal noexpandtab
 augroup END
 
 " Hex Editing {{{
 " vim -b : edit binary using xxd-format!
-augroup Binary
-  au!
-
+augroup vimrc_group
   " set binary option for all binary files before reading them
   "au BufReadPre *.bin,*.hex,*.exe,*.dll setlocal binary
 
