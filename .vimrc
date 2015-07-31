@@ -453,6 +453,21 @@ command! FixSmartQuotes silent! call FixSmartQuotes()
 
 command! WriteUTF8 write ++enc=utf-8
 
+function! SaveAndCheckIfModified()
+  if &modified && !&readonly && len(bufname('%')) > 0
+    update
+    " too distracting (flickering) and slow
+    "SyntasticCheck
+  endif
+endfunction
+
+function! StripTrailingWhitespace()
+    let l:my_saved_winview = winsaveview()
+    silent! %s/\s\+$//
+    call winrestview(l:my_saved_winview)
+endfunction
+command! StripTrailingWhitespace call StripTrailingWhitespace()
+
 " }}}
 " GUI {{{
 if !exists("g:already_set_color_scheme") && !($TERM == "linux")
@@ -1508,21 +1523,6 @@ map <leader>u :call HandleURI()<CR>
 " autocommands {{{
 set cursorline    " needed as netrw uses the global value to save and restore state
 "set cursorcolumn  " needed as netrw uses the global value to save and restore state
-
-function! SaveAndCheckIfModified()
-  if &modified && !&readonly && len(bufname('%')) > 0
-    update
-    " too distracting (flickering) and slow
-    "SyntasticCheck
-  endif
-endfunction
-
-function! StripTrailingWhitespace()
-    let l:my_saved_winview = winsaveview()
-    silent! %s/\s\+$//
-    call winrestview(l:my_saved_winview)
-endfunction
-command! StripTrailingWhitespace call StripTrailingWhitespace()
 
 " ----------------------------------------------------------------------------
 " Help in new tabs
