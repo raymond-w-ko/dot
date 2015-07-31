@@ -18,6 +18,7 @@
     evil-tabs
     evil-paredit
     evil-surround
+    evil-escape
     smooth-scrolling
     paredit
     key-chord
@@ -38,8 +39,10 @@
       (package-install p))))
 
 (evil-mode)
+
 (setq-default evil-escape-delay 0.1)
 (setq-default evil-escape-key-sequence "fj")
+(evil-escape-mode)
 
 ; (setq key-chord-two-keys-delay 0.1)
 ; (key-chord-mode 1)
