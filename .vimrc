@@ -574,12 +574,6 @@ nnoremap VaB vaBV
 nnoremap <silent> j gj
 nnoremap <silent> k gk
 
-" Easy buffer navigation
-nnoremap <C-h>  <C-w>h
-nnoremap <C-j>  <C-w>j
-nnoremap <C-k>  <C-w>k
-nnoremap <C-l>  <C-w>l
-
 " treat leading whitespace as though it was not there
 function! MyLeftBrace()
     let counter = 0
@@ -948,7 +942,7 @@ function! MyDoubleBracesExpander()
   call feedkeys("\<BS>\<CR>}\<Up>\<End>\<CR>", 't')
 endfunction
 augroup vimrc_group
-    au CursorMovedI * call MyDoubleBracesExpander()
+    " au CursorMovedI * call MyDoubleBracesExpander()
 augroup END
 
 function! CreateCppMethodImplementation()
