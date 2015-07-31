@@ -1572,6 +1572,11 @@ augroup vimrc_group
 
   " help in new tab to avoid interfering with existing tab layout
   autocmd BufEnter *.txt call s:helptab()
+
+  " de-emphasized parentheses
+  au BufReadPost * highlight SubtleParentheses ctermfg=19
+  au BufReadPost * syntax match SubtleParentheses /(\|)/
+  au FileType clojure syntax match SubtleParentheses /\[\|\]\|{\|}/
 augroup END
 
 " }}}
