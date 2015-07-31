@@ -799,7 +799,9 @@ endif
 "inoremap kd <Esc>
 " just right :-)
 inoremap fj <Esc>
+inoremap jf <Esc>
 cnoremap fj <C-c>
+cnoremap jf <C-c>
 
 " mirror dd and D, a bit hard to get use to
 call yankstack#setup()
@@ -856,7 +858,7 @@ nnoremap <leader>/ :s/\\/\//<CR>:nohlsearch<CR>
 
 " below obsoleted: by tpope's vim-rsi
 " CTRL-hjkl movement while in : command mode
-" <C-h> interferes with <BS> key
+" <C-h> interferes with <BS> key in most consoles
 "cnoremap <C-h> <Left>
 "cnoremap <C-l> <Right>
 "cnoremap <C-j> <Down>
@@ -1087,10 +1089,11 @@ augroup ConvertTwoDotsToArrow
 augroup END
 
 " Splits {{{
-nmap <C-h> <C-w>h
-nmap <C-j> <C-w>j
-nmap <C-k> <C-w>k
-nmap <C-l> <C-w>l
+" enhanced by vim-tmux-navigator
+" nmap <C-h> <C-w>h
+" nmap <C-j> <C-w>j
+" nmap <C-k> <C-w>k
+" nmap <C-l> <C-w>l
 
 nnoremap <leader>wv :vsplit<CR>
 nnoremap <leader>ws :split<CR>
