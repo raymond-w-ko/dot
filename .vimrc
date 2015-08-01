@@ -942,7 +942,7 @@ function! MyDoubleBracesExpander()
   call feedkeys("\<BS>\<CR>}\<Up>\<End>\<CR>", 't')
 endfunction
 augroup vimrc_group
-    " au CursorMovedI * call MyDoubleBracesExpander()
+    au CursorMovedI * call MyDoubleBracesExpander()
 augroup END
 
 function! CreateCppMethodImplementation()
@@ -1083,7 +1083,7 @@ function! MyLazyDotDotToArrow()
   endif
 endfunction
 augroup vimrc_group
-    au CursorMovedI * call MyLazyDotDotToArrow()
+    " au CursorMovedI * call MyLazyDotDotToArrow()
 augroup END
 
 " Splits {{{
