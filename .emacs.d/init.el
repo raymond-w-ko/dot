@@ -1,48 +1,35 @@
 (require 'cl)
 
-(setq inhibit-startup-screen t)
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-
 (require 'package)
-(setq package-archives
-      '(("gnu" . "http://elpa.gnu.org/packages/")
-	("melpa" . "http://melpa.milkbox.net/packages/")
-        ("org" . "http://orgmode.org/elpa/")))
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(setq package-enable-at-startup t)
 (package-initialize)
 
-(defvar packages-list
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+(defvar my-packages
   '(evil
     evil-leader
     evil-tabs
     evil-paredit
     evil-surround
     evil-escape
+    aggressive-indent
     smooth-scrolling
     paredit
     key-chord
     color-theme-solarized)
-  "List of packages needs to be installed at launch")
+  "A list of packages that are ensured to be installed at launch")
 
-(defun has-package-not-installed ()
-  (loop for p in packages-list
-        when (not (package-installed-p p)) do (return t)
-        finally (return nil)))
+(dolist (p my-packages)
+  (when (not (package-installed-p p))
+    (package-install p)))
 
-(when (has-package-not-installed)
-  (message "%s" "Get latest versions of all packages...")
-  (package-refresh-contents)
-  (message "%s" " done.")
-  (dolist (p packages-list)
-    (when (not (package-installed-p p))
-      (package-install p))))
+(add-to-list 'load-path "~/.emacs.d/config")
 
-(evil-mode)
-
-(setq-default evil-escape-delay 0.1)
-(setq-default evil-escape-key-sequence "fj")
-(evil-escape-mode)
+(require 'basic-settings)
 
 ; (setq key-chord-two-keys-delay 0.1)
 ; (key-chord-mode 1)
