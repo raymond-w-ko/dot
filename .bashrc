@@ -68,7 +68,8 @@ else
   DIFF_PROG=diff
 fi
 
-if hash schedtool 2>/dev/null; then
+hash schedtool 2>/dev/null
+if [[ $? == 0 && -f /proc/sys/kernel/rr_interval ]]; then
 	NICE_PROG="schedtool -D -e"
 else
   NICE_PROG="nice -n 19"
