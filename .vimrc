@@ -1052,9 +1052,8 @@ function! CreateCppMethodImplementation()
 endfunction
 
 augroup vimrc_group
-  au BufReadPre *.cpp,*.h exe "nnoremap <buffer> <leader>rci :call CreateCppMethodImplementation()<CR>dd$a<Space>{{"
+  au FileType cpp exe "nnoremap <buffer> <leader>rci :call CreateCppMethodImplementation()<CR>dd$a<Space>{{"
 augroup END
-
 
 " lazy .. to ->
 function! MyLazyDotDotToArrow()
