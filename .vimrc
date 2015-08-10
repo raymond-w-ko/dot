@@ -4,7 +4,7 @@
 " having an existence of .vimrc already implies this
 "set nocompatible
 
-augroup vimrc_group
+augroup rko
   au!
 augroup END
 
@@ -136,7 +136,7 @@ set clipboard=autoselect
 set pastetoggle=<F9>
 
 "set notimeout
-augroup vimrc_group
+augroup rko
   autocmd InsertEnter * set timeoutlen=100
   autocmd InsertLeave * set timeoutlen=750
 augroup END
@@ -884,18 +884,13 @@ function! MyDoubleBracesExpander()
     return
   endif
 
-  let line = strpart(getline('.'), 0, col('.') - 1)
-  let line_len = strlen(line)
-  if (line_len < 2)
-    return
-  endif
-
-  if (line[line_len - 2] != '{' || line[line_len - 1] != '{')
+  let line = getline('.')
+  if strpart(line, strlen(line) - 2, 2) != '{{'
     return
   endif
   call feedkeys("\<BS>\<CR>}\<Up>\<End>\<CR>", 't')
 endfunction
-augroup vimrc_group
+augroup rko
     au CursorMovedI * call MyDoubleBracesExpander()
 augroup END
 
@@ -1005,7 +1000,7 @@ function! CreateCppMethodImplementation()
     execute "normal! i\<C-r>=g:RefactorCppClassName\<CR>::\<ESC>G$s\<CR>\<ESC>xxxxxxxx"
 endfunction
 
-augroup vimrc_group
+augroup rko
   au FileType cpp exe "nnoremap <buffer> <leader>rci :call CreateCppMethodImplementation()<CR>dd$a<Space>{{"
 augroup END
 
@@ -1035,7 +1030,7 @@ function! MyLazyDotDotToArrow()
     call feedkeys("\<BS>\<BS>\<BS>...", 'n')
   endif
 endfunction
-augroup vimrc_group
+augroup rko
     " au CursorMovedI * call MyLazyDotDotToArrow()
 augroup END
 
@@ -1481,7 +1476,7 @@ function! s:SetupHelpTab()
   endif
 endfunction
 
-augroup vimrc_group
+augroup rko
   au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
   au WinLeave * setlocal nocursorline
 
@@ -1697,7 +1692,7 @@ let g:BufKillCreateMappings = 0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:clj_fmt_autosave = 0
 
-augroup vimrc_group
+augroup rko
   au FileType clojure nnoremap <buffer> <leader>r :Require<CR>
   au FileType clojure nnoremap <buffer> <leader>R :Require!<CR>
   au FileType clojure nnoremap <buffer> == :Cljfmt<CR>
@@ -1814,7 +1809,7 @@ let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
 
 " }}}
 " filetype specific settings {{{
-augroup vimrc_group
+augroup rko
   au BufWritePost *.vimrc source $MYVIMRC
   au BufWritePost *.gvimrc source $MYGVIMRC
 
@@ -1829,7 +1824,7 @@ augroup END
 
 " Hex Editing {{{
 " vim -b : edit binary using xxd-format!
-augroup vimrc_group
+augroup rko
   " set binary option for all binary files before reading them
   "au BufReadPre *.bin,*.hex,*.exe,*.dll setlocal binary
 
