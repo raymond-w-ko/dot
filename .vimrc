@@ -131,6 +131,7 @@ set selection=inclusive
 set mousehide
 set nomousefocus
 set mouse=a
+set ttymouse=xterm2
 set clipboard=autoselect
 set pastetoggle=<F9>
 
@@ -576,22 +577,20 @@ nnoremap <silent> k gk
 
 " treat leading whitespace as though it was not there
 function! MyLeftBrace()
-    let counter = 0
     let line_number = line('.')
     let starting_line_number = line_number
     let line_number -= 1
 
-    while (line_number >= 1)
-        let line = getline(line_number)
-        if (match(line, '^\s*$') != -1)
+    while line_number >= 1
+        if match(getline(line_number), '^\s*$') != -1
             break
         endif
         let line_number -= 1
     endwhile
 
-    if (line_number != starting_line_number && line_number != 0)
+    if line_number != starting_line_number && line_number != 0
         exe 'normal! ' . line_number . 'G'
-    elseif (line_number == 0)
+    elseif line_number == 0
         normal! 1G
     else
         return
@@ -601,27 +600,25 @@ function! MyLeftBrace()
 
     return
 endfunction
-nnoremap <silent> { :call MyLeftBrace()<CR>
+exe "nnoremap <silent> { :call MyLeftBrace()<CR>"
 
 function! MyRightBrace()
-    let counter = 0
     let line_number = line('.')
     let starting_line_number = line_number
     let line_number += 1
     
     let max_bounds = line('$')
 
-    while (line_number <= max_bounds)
-        let line = getline(line_number)
-        if (match(line, '^\s*$') != -1)
+    while line_number <= max_bounds
+        if (match(getline(line_number), '^\s*$') != -1)
             break
         endif
         let line_number += 1
     endwhile
 
-    if (line_number != starting_line_number && line_number <= max_bounds)
+    if line_number != starting_line_number && line_number <= max_bounds
         exe 'normal! ' . line_number . 'G'
-    elseif (line_number > max_bounds)
+    elseif line_number > max_bounds
         normal! G
     else
         return
@@ -631,29 +628,7 @@ function! MyRightBrace()
 
     return
 endfunction
-nnoremap <silent> } :call MyRightBrace()<CR>
-
-function! PushBraceSettings()
-    let g:BraceSettingsOrigWrapscan=&wrapscan
-    let g:BraceSettingsOrigSearch=@/
-
-    set nohls
-    set nowrapscan
-
-    return ''
-endfunction
-function! PopBraceSettings()
-    let @/=g:BraceSettingsOrigSearch
-    set hls
-
-    if (g:BraceSettingsOrigWrapscan)
-        set wrapscan
-    endif
-
-    return ''
-endfunction
-"vnoremap <silent> { ?<C-r>=PushBraceSettings()<CR>^\s*$<CR><ESC>:<C-r>=PopBraceSettings()<CR><ESC>gv
-"vnoremap <silent> } /<C-r>=PushBraceSettings()<CR>^\s*$<CR><ESC>:<C-r>=PopBraceSettings()<CR><ESC>gv
+exe "nnoremap <silent> } :call MyRightBrace()<CR>"
 
 " Highlight word {{{
 nnoremap <silent> <leader>hh :execute 'match InterestingWord1 /\<<c-r><c-w>\>/'<cr>
@@ -825,12 +800,6 @@ nnoremap <silent> <CR> :wall<CR>
 
 " some convenience mappings for Vim autocomplete
 inoremap <C-l> <C-x><C-l>
-
-" disable crazy / dangerous keys
-nnoremap K <Nop>
-vnoremap K <Nop>
-nnoremap ZZ <Nop>
-nnoremap ZQ <Nop>
 
 " nobody uses EX mode, use Q for formatting instead
 nnoremap Q gqip
@@ -1520,9 +1489,9 @@ set cursorline    " needed as netrw uses the global value to save and restore st
 " ----------------------------------------------------------------------------
 " Help in new tabs
 " ----------------------------------------------------------------------------
-function! s:helptab()
+function! s:SetupHelpTab()
   if &buftype == 'help'
-    wincmd T
+    silent wincmd T
     nnoremap <buffer> q :q<cr>
   endif
 endfunction
@@ -1564,7 +1533,7 @@ augroup vimrc_group
   "au BufWritePre *.h,*.hpp,*.c,*.cc,*.cpp,*.java,*.py,*.lua call StripTrailingWhitespace()
 
   " help in new tab to avoid interfering with existing tab layout
-  autocmd BufEnter *.txt call s:helptab()
+  autocmd BufEnter *.txt call s:SetupHelpTab()
 
   " de-emphasized parentheses
   au BufReadPost * highlight SubtleParentheses ctermfg=19
