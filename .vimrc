@@ -828,7 +828,6 @@ if has("unix")
     cmap w!! w !sudo tee % >/dev/null
 
     nnoremap <leader>ev :e ~/.vimrc<CR>
-    nnoremap <leader>gc :CtrlP ~/.vim/config<CR>
 elseif has("win32")
     if isdirectory('C:/cygwin/home/rko')
         exe 'nnoremap <leader>ev :e C:/cygwin/home/rko/dot/.vimrc<CR>'
@@ -842,9 +841,6 @@ elseif has("win32")
         exe 'nnoremap <leader>ev :e C:/cygwin/home/root/dot/.vimrc<CR>'
         exe 'nnoremap <leader>gc :CtrlP C:/cygwin/home/root/dot/.vim/config<CR>'
     endif
-
-    "nnoremap <leader>eh :e C:/Windows/system32/drivers/etc/hosts<CR>
-    "nnoremap <leader>el :e C:/SVN/_my_launch.bat<CR>
 endif
 
 function! FindFileInProjectDirectory()
