@@ -1034,7 +1034,6 @@ augroup rko
     " au CursorMovedI * call MyLazyDotDotToArrow()
 augroup END
 
-" Splits {{{
 " enhanced by vim-tmux-navigator
 " nmap <C-h> <C-w>h
 " nmap <C-j> <C-w>j
@@ -1074,8 +1073,7 @@ nnoremap <silent> <leader>wm :call MarkWindowSwap()<CR>
 nnoremap <silent> <leader>wp :call DoWindowSwap()<CR>
 nnoremap <silent> <Left> :call MarkWindowSwap()<CR><C-w>h:call DoWindowSwap()<CR>
 nnoremap <silent> <Right> :call MarkWindowSwap()<CR><C-w>l:call DoWindowSwap()<CR>
-" }}}
-" Tabs {{{
+
 nnoremap <leader>1 1gt
 nnoremap <leader>2 2gt
 nnoremap <leader>3 3gt
@@ -1131,7 +1129,6 @@ endfunction
 nnoremap <leader>wt :call CreateAndSetupVsplits()<CR>
 nnoremap <leader>ww :tabclose<CR>
 
-" }}}
 " Finding stuff {{{
 function! ExtensionHelper(ext, dir)
     let partial = a:dir . '/**/*.' . a:ext
@@ -1391,12 +1388,10 @@ endfunction
 "inoremap <expr> <S-A-l> MyChangeNextArg()
 " }}}
 
-" Super Insert Mode Completion {{{
 function! ChooseWordFromPmenu(index)
     if pumvisible() == 0
         return ""
     endif
-
     let keys = ""
     for ii in range(1, a:index)
         let keys .= "\<C-N>"
@@ -1414,7 +1409,6 @@ endfunction
 "inoremap <expr> <A-k> ChooseWordFromPmenu(8)
 "inoremap <expr> <A-l> ChooseWordFromPmenu(9)
 "inoremap <expr> <A-;> ChooseWordFromPmenu(10)
-
 "inoremap <expr> <A-q> ChooseWordFromPmenu(11)
 "inoremap <expr> <A-w> ChooseWordFromPmenu(12)
 "inoremap <expr> <A-e> ChooseWordFromPmenu(13)
@@ -1425,19 +1419,18 @@ endfunction
 "inoremap <expr> <A-i> ChooseWordFromPmenu(18)
 "inoremap <expr> <A-o> ChooseWordFromPmenu(19)
 "inoremap <expr> <A-p> ChooseWordFromPmenu(20)
-"}}}
 
 " Handle URL
 " Stolen from https://github.com/askedrelic/homedir/blob/master/.vimrc
 " OSX only: Open a web-browser with the URL in the current line
 function! HandleURI()
-    let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;]*')
-    echo s:uri
-    if s:uri != ""
-        exec "!open \"" . s:uri . "\""
-    else
-        echo "No URI found in line."
-    endif
+  let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;]*')
+  echo s:uri
+  if s:uri != ""
+    exec "!open \"" . s:uri . "\""
+  else
+    echo "No URI found in line."
+  endif
 endfunction
 map <leader>u :call HandleURI()<CR>
 
@@ -1819,7 +1812,7 @@ augroup rko
   au BufNewFile,BufRead *.py setlocal omnifunc=pythoncomplete#Complete
 
   au FileType dosbatch setlocal ff=dos
-  au FileType Makefile* setlocal noexpandtab
+  au FileType Makefile setlocal noexpandtab
 augroup END
 
 " Hex Editing {{{
