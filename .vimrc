@@ -116,7 +116,7 @@ set pumheight=16
 set autochdir
 set nolist
 " always try to make the current window 80 columns
-set winwidth=80
+set winwidth=79
 set nojoinspaces
 set maxmempattern=2000000
 set maxmem=2000000
@@ -679,8 +679,8 @@ vnoremap # :<C-u>call <SID>VisualModeSetSearch()<CR>??<CR><c-o>
 " enable syntax folding for XML (caution, this can be slow)
 "let g:xml_syntax_folding=1
 
-nmap <Space><Space> za
-vmap <Space><Space> za
+" nmap <leader><leader> za
+" vmap <leader><leader> za
 set foldlevelstart=9001
 " }}}
 " Toggle Diff Whitespace {{{
@@ -859,6 +859,7 @@ function! MyAlternateFunction()
     "endif
 endfunction
 nnoremap <leader>a :call MyAlternateFunction()<CR>
+nnoremap <leader><leader> <C-^>
 nnoremap <leader>o :ToggleWord<CR>
 
 "function! MyPasteToggle()
