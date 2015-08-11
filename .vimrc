@@ -1457,7 +1457,7 @@ map <leader>u :call HandleURI()<CR>
 
 " }}}
 " autocommands {{{
-set cursorline    " needed as netrw uses the global value to save and restore state
+" set cursorline    " needed as netrw uses the global value to save and restore state
 "set cursorcolumn  " needed as netrw uses the global value to save and restore state
 
 " ----------------------------------------------------------------------------
@@ -1471,8 +1471,11 @@ function! s:SetupHelpTab()
 endfunction
 
 augroup rko
-  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  au WinLeave * setlocal nocursorline
+  " only show cursorline if a window has focus
+  " this noticably slows down VIM in files with complicated syntax hilighting,
+  " like PHP, so disable it for now.
+  " au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  " au WinLeave * setlocal nocursorline
 
   "au VimEnter,WinEnter,BufWinEnter * setlocal cursorcolumn
   "au WinLeave * setlocal nocursorcolumn
