@@ -154,3 +154,6 @@
 [submodule ".vim/bundle/vim-slamhound"]
 	path = .vim/bundle/vim-slamhound
 	url = https://github.com/guns/vim-slamhound.git
+[submodule ".vim/bundle/vim-capslock"]
+	path = .vim/bundle/vim-capslock
+	url = https://github.com/tpope/vim-capslock.git
