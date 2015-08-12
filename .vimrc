@@ -17,6 +17,8 @@ let g:pathogen_disabled = []
 call add(g:pathogen_disabled, "cocoa.vim")
 " disable this for now, try out dimmed out parentheses
 call add(g:pathogen_disabled, "vim-niji")
+" disable this for now, try out lexima.vim
+call add(g:pathogen_disabled, "vim-pairwise")
 
 let g:omegacomplete_version_preference = 1
 if g:omegacomplete_version_preference == 2
@@ -116,7 +118,7 @@ set pumheight=16
 set autochdir
 set nolist
 " always try to make the current window 80 columns
-set winwidth=79
+set winwidth=80
 set nojoinspaces
 set maxmempattern=2000000
 set maxmem=2000000
@@ -1807,6 +1809,10 @@ let g:scrollinfo=0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:slime_target="tmux"
 let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" lexima
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " }}}
 " filetype specific settings {{{
