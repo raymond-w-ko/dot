@@ -814,20 +814,19 @@ vnoremap Q gq
 nnoremap ' `
 nnoremap ` '
 
-" <Ctrl-Backspace>
-nnoremap  :BD<CR>
-nnoremap <C-BS> :BD<CR>
-
-" Press F12 to switch to UTF-8 encoding
-"nnoremap <F11> :e ++enc=latin1<CR>
-"nnoremap <F12> :e ++enc=utf8<CR>
-
 " Substitute
 nnoremap <leader>s :%s//
 vnoremap <leader>s :s//
 
 nnoremap <leader>\ :s/\//\\/<CR>:nohlsearch<CR>
 nnoremap <leader>/ :s/\\/\//<CR>:nohlsearch<CR>
+
+" semimap helpers
+exe "imap φ ("
+exe "imap σ {"
+exe "imap ρ ["
+exe "imap θ \""
+" exe imap χ ? "need to investigate the equivalent of paredit-forward-up
 
 " Platform specific keybinds
 if has("unix")
@@ -868,15 +867,6 @@ nnoremap <leader>a :call MyAlternateFunction()<CR>
 nnoremap <leader><leader> <C-^>
 nnoremap <leader>o :ToggleWord<CR>
 
-"function! MyPasteToggle()
-    "if (&paste)
-        "set nopaste
-    "else
-        "set paste
-    "endif
-"endfunction
-"nnoremap <leader>p :call MyPasteToggle()<CR>
-
 " This allows for change paste motion cp{motion}
 " http://stackoverflow.com/questions/2471175/vim-replace-word-with-contents-of-paste-buffer
 function! ChangePaste(type, ...)
@@ -884,22 +874,6 @@ function! ChangePaste(type, ...)
     silent exe "normal! p"
 endfunction
 nnoremap <silent> cp :set opfunc=ChangePaste<CR>g@
-
-" lazy braces
-function! MyDoubleBracesExpander()
-  if &filetype =~# '\v^(vim|html)$'
-    return
-  endif
-
-  let line = getline('.')
-  if strpart(line, strlen(line) - 2, 2) != '{{'
-    return
-  endif
-  call feedkeys("\<BS>\<CR>}\<Up>\<End>\<CR>", 't')
-endfunction
-augroup rko
-    au CursorMovedI * call MyDoubleBracesExpander()
-augroup END
 
 function! CreateCppMethodImplementation()
     " determine the complete function definition
@@ -1011,37 +985,7 @@ augroup rko
   au FileType cpp exe "nnoremap <buffer> <leader>rci :call CreateCppMethodImplementation()<CR>dd$a<Space>{{"
 augroup END
 
-" lazy .. to ->
-function! MyLazyDotDotToArrow()
-  if &filetype !~# '\v^(c|cpp|objc|php)$'
-    return
-  endif
-
-  let line = strpart(getline('.'), 0, col('.') - 1)
-  let line_len = strlen(line)
-  if (line_len < 2)
-    return
-  endif
-
-  if (line[line_len - 3] != '.' &&
-      \ line[line_len - 3] != '/' &&
-      \ line[line_len - 3] != '\' &&
-      \ line[line_len - 2] == '.' &&
-      \ line[line_len - 1] == '.')
-    call feedkeys("\<BS>\<BS>->", 'n')
-  endif
-
-  if (line[line_len - 3] == '-' &&
-      \ line[line_len - 2] == '>' &&
-      \ line[line_len - 1] == '.')
-    call feedkeys("\<BS>\<BS>\<BS>...", 'n')
-  endif
-endfunction
-augroup rko
-    " au CursorMovedI * call MyLazyDotDotToArrow()
-augroup END
-
-" enhanced by vim-tmux-navigator
+" obsoleted by vim-tmux-navigator
 " nmap <C-h> <C-w>h
 " nmap <C-j> <C-w>j
 " nmap <C-k> <C-w>k
