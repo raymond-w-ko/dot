@@ -18,7 +18,7 @@ call add(g:pathogen_disabled, "cocoa.vim")
 " disable this for now, try out dimmed out parentheses
 call add(g:pathogen_disabled, "vim-niji")
 " disable this for now, try out lexima.vim
-call add(g:pathogen_disabled, "vim-pairwise")
+call add(g:pathogen_disabled, "vim-endwise")
 
 let g:omegacomplete_version_preference = 1
 if g:omegacomplete_version_preference == 2
