@@ -157,3 +157,6 @@
 [submodule ".vim/bundle/vim-capslock"]
 	path = .vim/bundle/vim-capslock
 	url = https://github.com/tpope/vim-capslock.git
+[submodule ".vim/bundle/auto-pairs"]
+	path = .vim/bundle/auto-pairs
+	url = git@github.com:raymond-w-ko/auto-pairs.git
