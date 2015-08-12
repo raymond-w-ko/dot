@@ -826,7 +826,15 @@ exe "imap φ ("
 exe "imap σ {"
 exe "imap ρ ["
 exe "imap θ \""
-" exe imap χ ? "need to investigate the equivalent of paredit-forward-up
+" TODO work on this more
+function PareditForwardUp()
+  if pumvisible()
+    return "\<C-y>\<C-e>"
+  else
+    return "\<C-e>"
+  endif
+endfunction
+imap <expr> χ PareditForwardUp()
 
 " Platform specific keybinds
 if has("unix")
