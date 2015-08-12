@@ -135,13 +135,16 @@ set ttymouse=xterm2
 set clipboard=autoselect
 set pastetoggle=<F9>
 
-" breaks vim-capslock due to having to press <C-g>c, which you can't in 100ms
+" this breaks vim-capslock since you can't press <C-g>c in less than 100ms
 " augroup rko
 "   autocmd InsertEnter * set timeoutlen=100
 "   autocmd InsertLeave * set timeoutlen=750
 " augroup END
-"set ttimeout
-set notimeout
+
+" timeout is needed due to completing fj with omegacomplete
+set timeout
+set timeoutlen=750
+set ttimeout
 set ttimeoutlen=100    " needed to avoid leaving insert mode delay for vim-airline
 
 set cinoptions=
