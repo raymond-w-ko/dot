@@ -1813,6 +1813,11 @@ let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " lexima
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup rko
+  autocmd FileType clojure let b:lexima_disabled = 0
+  autocmd FileType lisp let b:lexima_disabled = 0
+  autocmd FileType scheme let b:lexima_disabled = 0
+augroup END
 
 " }}}
 " filetype specific settings {{{
