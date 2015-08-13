@@ -20,6 +20,8 @@ call add(g:pathogen_disabled, "vim-niji")
 " disable this for now, try out lexima.vim
 call add(g:pathogen_disabled, "vim-endwise")
 
+call add(g:pathogen_disabled, "omegacomplete")
+
 let g:omegacomplete_version_preference = 1
 if g:omegacomplete_version_preference == 2
   if has('java')
@@ -827,7 +829,7 @@ exe "imap σ {"
 exe "imap ρ ["
 exe "imap θ \""
 " TODO work on this more
-function PareditForwardUp()
+function! PareditForwardUp()
   if pumvisible()
     return "\<C-y>\<C-e>"
   else
