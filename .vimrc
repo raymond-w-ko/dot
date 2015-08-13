@@ -13,15 +13,8 @@ set encoding=utf-8
 
 " pathogen {{{
 let g:pathogen_disabled = []
-" very heavy, adds over 9000 keywords and library functions
-call add(g:pathogen_disabled, "cocoa.vim")
-" disable this for now, try out dimmed out parentheses
-call add(g:pathogen_disabled, "vim-niji")
-" disable this for now, try out lexima.vim
-call add(g:pathogen_disabled, "vim-endwise")
 
-call add(g:pathogen_disabled, "omegacomplete")
-
+" omegacomplete
 let g:omegacomplete_version_preference = 1
 if g:omegacomplete_version_preference == 2
   if has('java')
@@ -32,22 +25,78 @@ if g:omegacomplete_version_preference == 2
 elseif g:omegacomplete_version_preference == 1
     call add(g:pathogen_disabled, "omegacomplete2")
 endif
-
-if !has('python')
-  call add(g:pathogen_disabled, "omegacomplete")
-  call add(g:pathogen_disabled, "omegacomplete2")
-  call add(g:pathogen_disabled, "ultisnips")
-endif
-
 if has('java')
   let jar_list = split(globpath(expand('$HOME') . '/java', '*.jar'), "\n")
   call insert(jar_list, expand('$VIMRUNTIME') . '/vim.jar', 0)
   let jars = substitute(join(jar_list, ';'), '\\', '/', 'g')
   let jars = substitute(jars, ' ', '\\ ', 'g')
   exe "set javacp=" . jars
-
   javarepl clojure
 endif
+
+" if this version of vim doesn't have Pythong bindings
+if !has('python')
+  call add(g:pathogen_disabled, "omegacomplete")
+  call add(g:pathogen_disabled, "omegacomplete2")
+  call add(g:pathogen_disabled, "ultisnips")
+endif
+
+" very heavy, adds over 9000 keywords and library functions
+call add(g:pathogen_disabled, "cocoa.vim")
+" disable this for now, try out dimmed out parentheses
+call add(g:pathogen_disabled, "vim-niji")
+" disable this for now, try out lexima.vim
+call add(g:pathogen_disabled, "vim-endwise")
+
+" call add(g:pathogen_disabled, "FastFold")
+" call add(g:pathogen_disabled, "PHP-Indenting-for-VIm")
+" call add(g:pathogen_disabled, "a.vim")
+" call add(g:pathogen_disabled, "cocoa.vim")
+" call add(g:pathogen_disabled, "ctrlp-py-matcher")
+" call add(g:pathogen_disabled, "ctrlp.vim")
+" call add(g:pathogen_disabled, "detectindent")
+" call add(g:pathogen_disabled, "gundo.vim")
+" call add(g:pathogen_disabled, "scratch")
+" call add(g:pathogen_disabled, "scrollfix")
+" call add(g:pathogen_disabled, "syntastic")
+" call add(g:pathogen_disabled, "toggle_words")
+" call add(g:pathogen_disabled, "vim-airline")
+" call add(g:pathogen_disabled, "vim-bufkill")
+" call add(g:pathogen_disabled, "vim-capslock")
+" call add(g:pathogen_disabled, "vim-characterize")
+" call add(g:pathogen_disabled, "vim-classpath")
+" call add(g:pathogen_disabled, "vim-cljfmt")
+" call add(g:pathogen_disabled, "vim-clojure-static")
+" call add(g:pathogen_disabled, "vim-commentary")
+" call add(g:pathogen_disabled, "vim-cpp")
+" call add(g:pathogen_disabled, "vim-dispatch")
+" call add(g:pathogen_disabled, "vim-easy-align")
+" call add(g:pathogen_disabled, "vim-easymotion")
+" call add(g:pathogen_disabled, "vim-endwise")
+" call add(g:pathogen_disabled, "vim-fireplace")
+" call add(g:pathogen_disabled, "vim-fugitive")
+" call add(g:pathogen_disabled, "vim-haystack")
+" call add(g:pathogen_disabled, "vim-lua-indent")
+" call add(g:pathogen_disabled, "vim-markdown")
+" call add(g:pathogen_disabled, "vim-niji")
+" call add(g:pathogen_disabled, "vim-obsession")
+" call add(g:pathogen_disabled, "vim-pathogen")
+" call add(g:pathogen_disabled, "vim-repeat")
+" call add(g:pathogen_disabled, "vim-rsi")
+" call add(g:pathogen_disabled, "vim-salve")
+" call add(g:pathogen_disabled, "vim-scriptease")
+" call add(g:pathogen_disabled, "vim-sensible")
+" call add(g:pathogen_disabled, "vim-sexp-mappings-for-regular-people")
+" call add(g:pathogen_disabled, "vim-sexp")
+" call add(g:pathogen_disabled, "vim-slamhound")
+" call add(g:pathogen_disabled, "vim-slime")
+" call add(g:pathogen_disabled, "vim-surround")
+" call add(g:pathogen_disabled, "vim-synesthesia")
+" call add(g:pathogen_disabled, "vim-tbone")
+" call add(g:pathogen_disabled, "vim-tmux-navigator")
+" call add(g:pathogen_disabled, "vim-unimpaired")
+" call add(g:pathogen_disabled, "vim-vinegar")
+" call add(g:pathogen_disabled, "vim-yankstack")
 
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
@@ -788,7 +837,10 @@ cnoremap fj <C-c>
 cnoremap jf <C-c>
 
 " mirror dd and D, a bit hard to get use to
-call yankstack#setup()
+try
+  call yankstack#setup()
+catch
+endtry
 map Y y$
 
 " looking at junegunn's vimrc, <C-f> and <C-b> are usually overkill
@@ -1772,6 +1824,9 @@ augroup rko
   autocmd FileType lisp let b:lexima_disabled = 0
   autocmd FileType scheme let b:lexima_disabled = 0
 augroup END
+if !exists('s:added_lexima_rules')
+  let s:added_lexima_rules = 1
+endif
 
 " }}}
 " filetype specific settings {{{
