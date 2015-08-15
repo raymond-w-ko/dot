@@ -526,6 +526,22 @@ function! StripTrailingWhitespace()
 endfunction
 command! StripTrailingWhitespace call StripTrailingWhitespace()
 
+" use aesthetic middle of screen for "zz"
+function! CenterCursorAesthetically()
+  normal! zz
+
+  let center = round(winheight(0) / 2.0)
+  let offset = winheight(0) * 0.1
+  let final = center - offset
+  let rounded_final = float2nr(final)
+  let rounded_offset = float2nr(offset)
+  let delta = winline() - (rounded_final + 1)
+
+  if delta > 0
+    exe 'normal ' . delta . "\<C-e>"
+  endif
+endfunction
+
 " }}}
 " GUI {{{
 if !exists("g:already_set_color_scheme") && !($TERM == "linux")
@@ -557,35 +573,6 @@ if has("gui_running")
 endif
 " }}}
 " Searching and Movement {{{
-" use aesthetic middle of screen for "zz"
-function! CenterCursorAesthetically()
-    normal! zz
-
-    let center = round(winheight(0) / 2.0)
-    let offset = winheight(0) * 0.1
-    let final = center - offset
-    let rounded_final = float2nr(final)
-    let rounded_offset = float2nr(offset)
-
-    let delta = winline() - (rounded_final + 1)
-
-    if (delta <= 0)
-        return
-    endif
-
-    exe 'normal ' . delta . "\<C-e>"
-
-    return
-endfunction
-
-" Searching and movement
-" Use sane regexes.
-nnoremap / /\v
-vnoremap / /\v
-
-nnoremap ? ?\v
-vnoremap ? ?\v
-
 set ignorecase
 set smartcase
 set hlsearch
@@ -1827,6 +1814,13 @@ augroup END
 if !exists('s:added_lexima_rules')
   let s:added_lexima_rules = 1
 endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" incsearch.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map /  <Plug>(incsearch-forward)\v
+map ?  <Plug>(incsearch-backward)\v
+map g/ <Plug>(incsearch-stay)\v
 
 " }}}
 " filetype specific settings {{{
