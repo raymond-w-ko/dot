@@ -593,10 +593,20 @@ nnoremap <silent> <leader>l :nohlsearch<CR>:let @/=''<CR>:call clearmatches()<CR
 "nnoremap g; g;zz
 "nnoremap g, g,zz
 
-" Don't move on *
+" Don't move on *, superseded by vim-asterisk
 "nnoremap * *<c-o>
-nnoremap <silent> * :set nohls<CR>:let @/='\C\<<C-R>=expand('<cword>')<CR>\>'<CR>:set hls<CR>
+" nnoremap <silent> * :set nohls<CR>:let @/='\C\<<C-R>=expand('<cword>')<CR>\>'<CR>:set hls<CR>
 
+" Visual Mode */# from Scrooloose {{{
+" function! s:VisualModeSetSearch()
+"     let temp = @@
+"     norm! gvy
+"     let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
+"     let @@ = temp
+" endfunction
+
+" vnoremap * :<C-u>call <SID>VisualModeSetSearch()<CR>//<CR><c-o>
+" vnoremap # :<C-u>call <SID>VisualModeSetSearch()<CR>??<CR><c-o>
 
 " Easier to type, and I never use the default behavior.
 nnoremap H ^
@@ -684,17 +694,6 @@ nnoremap <silent> <leader>h4 :execute '4match InterestingWord4 /\<<c-r><c-w>\>/'
 nnoremap <silent> <leader>h5 :execute '5match InterestingWord5 /\<<c-r><c-w>\>/'<cr>
 nnoremap <silent> <leader>h6 :execute '6match InterestingWord6 /\<<c-r><c-w>\>/'<cr>
 " }}}
-
-" Visual Mode */# from Scrooloose {{{
-function! s:VisualModeSetSearch()
-    let temp = @@
-    norm! gvy
-    let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
-    let @@ = temp
-endfunction
-
-vnoremap * :<C-u>call <SID>VisualModeSetSearch()<CR>//<CR><c-o>
-vnoremap # :<C-u>call <SID>VisualModeSetSearch()<CR>??<CR><c-o>
 " }}}
 " }}}
 " Folding {{{
@@ -1821,6 +1820,15 @@ endif
 map /  <Plug>(incsearch-forward)\v
 map ?  <Plug>(incsearch-backward)\v
 map g/ <Plug>(incsearch-stay)\v
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-asterisk
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:asterisk#keeppos=1
+map *  <Plug>(asterisk-z*)
+map #  <Plug>(asterisk-z#)
+map g* <Plug>(asterisk-gz*)
+map g# <Plug>(asterisk-gz#)
 
 " }}}
 " filetype specific settings {{{
