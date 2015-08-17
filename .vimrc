@@ -4,7 +4,7 @@
 " having an existence of .vimrc already implies this
 "set nocompatible
 
-augroup rko
+augroup MyVimrc
   au!
 augroup END
 
@@ -189,7 +189,7 @@ set clipboard=autoselect
 set pastetoggle=<F9>
 
 " this breaks vim-capslock since you can't press <C-g>c in less than 100ms
-" augroup rko
+" augroup MyVimrc
 "   autocmd InsertEnter * set timeoutlen=100
 "   autocmd InsertLeave * set timeoutlen=750
 " augroup END
@@ -1029,7 +1029,7 @@ function! CreateCppMethodImplementation()
     execute "normal! i\<C-r>=g:RefactorCppClassName\<CR>::\<ESC>G$s\<CR>\<ESC>xxxxxxxx"
 endfunction
 
-augroup rko
+augroup MyVimrc
   au FileType cpp exe "nnoremap <buffer> <leader>rci :call CreateCppMethodImplementation()<CR>dd$a<Space>{{"
 augroup END
 
@@ -1468,7 +1468,7 @@ function! s:SetupHelpTab()
   endif
 endfunction
 
-augroup rko
+augroup MyVimrc
   " only show cursorline if a window has focus
   " this noticably slows down VIM in files with complicated syntax hilighting,
   " like PHP, so disable it for now.
@@ -1687,7 +1687,7 @@ let g:BufKillCreateMappings = 0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:clj_fmt_autosave = 0
 
-augroup rko
+augroup MyVimrc
   au FileType clojure nnoremap <buffer> <leader>r :Require<CR>
   au FileType clojure nnoremap <buffer> <leader>R :Require!<CR>
   au FileType clojure nnoremap <buffer> == :Cljfmt<CR>
@@ -1777,6 +1777,17 @@ let g:EasyMotion_smartcase = 1
 " `s{char}{char}{label}`
 " Need one more keystroke, but on average, it may be more comfortable.
 nmap s <Plug>(easymotion-s2)
+vmap s <Plug>(easymotion-s2)
+omap z <Plug>(easymotion-s2)
+
+omap f <Plug>(easymotion-bd-fl)
+xmap f <Plug>(easymotion-bd-fl)
+omap F <Plug>(easymotion-Fl)
+xmap F <Plug>(easymotion-Fl)
+omap t <Plug>(easymotion-tl)
+xmap t <Plug>(easymotion-tl)
+omap T <Plug>(easymotion-Tl)
+xmap T <Plug>(easymotion-Tl)
 
 " JK motions: Line motions
 map <Leader>j <Plug>(easymotion-j)
@@ -1804,7 +1815,7 @@ let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " lexima
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-augroup rko
+augroup MyVimrc
   autocmd FileType clojure let b:lexima_disabled = 0
   autocmd FileType lisp let b:lexima_disabled = 0
   autocmd FileType scheme let b:lexima_disabled = 0
@@ -1831,7 +1842,7 @@ map g# <Plug>(asterisk-gz#)
 
 " }}}
 " filetype specific settings {{{
-augroup rko
+augroup MyVimrc
   au BufWritePost *.vimrc source $MYVIMRC
   au BufWritePost *.gvimrc source $MYGVIMRC
 
@@ -1846,7 +1857,7 @@ augroup END
 
 " Hex Editing {{{
 " vim -b : edit binary using xxd-format!
-augroup rko
+augroup MyVimrc
   " set binary option for all binary files before reading them
   "au BufReadPre *.bin,*.hex,*.exe,*.dll setlocal binary
 
