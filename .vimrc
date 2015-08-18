@@ -240,8 +240,7 @@ else
 endif
 
 " wildmenu completion {{{
-"set wildmode=longest,list
-set wildmode=list:longest
+set wildmode=list:longest,full
 set wildchar=<Tab>
 if exists('&wildignorecase')
   set wildignorecase
