@@ -164,7 +164,9 @@ set splitright
 set title
 set showtabline=2
 set cmdheight=1
-set completeopt+=menu,menuone,preview
+set completeopt+=menu
+set completeopt+=menuone
+set completeopt+=preview
 set pumheight=16
 set autochdir
 set nolist
