@@ -818,10 +818,14 @@ endif
 "inoremap dk <Esc>
 "inoremap kd <Esc>
 " just right :-)
-inoremap fj <Esc>
-inoremap jf <Esc>
+" inoremap fj <Esc>
+" inoremap jf <Esc>
 cnoremap fj <C-c>
 cnoremap jf <C-c>
+
+inoremap <silent> fj <C-r>=lexima#insmode#escape()<CR><Esc>
+inoremap <silent> jf <C-r>=lexima#insmode#escape()<CR><Esc>
+
 
 " mirror dd and D, a bit hard to get use to
 try
