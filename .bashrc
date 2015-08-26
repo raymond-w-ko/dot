@@ -156,6 +156,7 @@ alias gpush='git push'
 alias gpull='git pull'
 alias gpum='git pull upstream master'
 alias ga='git add'
+alias gcfxd='git clean -fxd'
 
 alias hs='hg status'
 alias hm='hg merge'
