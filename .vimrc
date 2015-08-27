@@ -868,20 +868,40 @@ vnoremap <leader>s :s//
 nnoremap <leader>\ :s/\//\\/<CR>:nohlsearch<CR>
 nnoremap <leader>/ :s/\\/\//<CR>:nohlsearch<CR>
 
-" semimap helpers
-exe "imap φ ("
-exe "imap σ {"
-exe "imap ρ ["
-exe "imap θ \""
-" TODO work on this more
-function! PareditForwardUp()
+let s:move_right_keystroke = "\<C-g>U\<Right>"
+let s:move_right_pair_ends = { "'" : 1, '"' : 1, ')' : 1, ']' : 1, '}' : 1 }
+function! s:PareditForwardUp()
+  let keys = ''
   if pumvisible()
-    return "\<C-y>\<C-e>"
-  else
-    return "\<C-e>"
+    let keys .= "\<C-y>"
   endif
+  
+  let line = getline('.')
+  let n = strlen(line)
+  let steps_right = 0
+  let x = col('.') - 1
+  if n > 0
+    while x < n
+      let ch = line[x]
+      if has_key(s:move_right_pair_ends, ch)
+        break
+      endif
+      
+      let steps_right += 1
+      let x += 1
+    endwhile
+  endif
+
+  if n == 0 || x == n
+    " do nothing
+  else
+    let keys .= repeat(s:move_right_keystroke, steps_right+1)
+  endif
+  
+  return keys
 endfunction
-imap <expr> χ PareditForwardUp()
+
+inoremap <expr> χ <SID>PareditForwardUp()
 
 " Platform specific keybinds
 if has("unix")
@@ -1827,9 +1847,57 @@ augroup MyVimrc
   autocmd FileType lisp let b:lexima_disabled = 0
   autocmd FileType scheme let b:lexima_disabled = 0
 augroup END
-if !exists('s:added_lexima_rules')
-  let s:added_lexima_rules = 1
-endif
+
+let g:lexima_enable_basic_rules = 0
+call lexima#set_default_rules()
+
+" semimap helpers
+" exe "imap φ ("
+" exe "imap σ {"
+" exe "imap ρ ["
+" exe "imap θ \""
+
+let s:lexima_rules = [
+\ {'char': 'φ', 'input' : '(', 'input_after': ')'},
+\ {'char': ')', 'at': '\%#)', 'leave': 1},
+\ {'char': '<BS>', 'at': '(\%#)', 'delete': 1},
+\ {'char': 'σ', 'input': '{', 'input_after': '}'},
+\ {'char': '}', 'at': '\%#}', 'leave': 1},
+\ {'char': '<BS>', 'at': '{\%#}', 'delete': 1},
+\ {'char': 'ρ', 'input': '[', 'input_after': ']'},
+\ {'char': ']', 'at': '\%#]', 'leave': 1},
+\ {'char': '<BS>', 'at': '\[\%#\]', 'delete': 1},
+\
+\ {'char': 'θ', 'input' : '"', 'input_after': '"'},
+\ {'char': '"', 'at': '\%#"', 'leave': 1},
+\ {'char': '"', 'at': '^\s*\%#', 'filetype': 'vim'},
+\ {'char': '"', 'at': '\%#\s*$', 'filetype': 'vim'},
+\ {'char': '<BS>', 'at': '"\%#"', 'delete': 1},
+\ {'char': '"', 'input' : '"', 'at': '\%#"""', 'leave': 3},
+\ {'char': '<BS>', 'at': '"""\%#"""', 'input': '<BS><BS><BS>', 'delete': 3},
+\
+\ {'char': "'", 'input_after': "'"},
+\ {'char': "'", 'at': '\%#''', 'leave': 1},
+\ {'char': "'", 'at': '\w\%#''\@!'},
+\ {'char': "'", 'at': '\\\%#'},
+\ {'char': "'", 'at': '\\\%#', 'leave': 1, 'filetype': ['vim', 'sh', 'csh', 'ruby', 'tcsh', 'zsh']},
+\ {'char': "'", 'filetype': ['haskell', 'lisp', 'clojure', 'ocaml', 'scala']},
+\ {'char': '<BS>', 'at': "'\\%#'", 'delete': 1},
+\ {'char': "'", 'at': "''\\%#", 'input_after': "'''"},
+\ {'char': "'", 'at': "\\%#'''", 'leave': 3},
+\ {'char': '<BS>', 'at': "'''\\%#'''", 'input': '<BS><BS><BS>', 'delete': 3},
+\ {'char': '`', 'input_after': '`'},
+\ {'char': '`', 'at': '\%#`', 'leave': 1},
+\ {'char': '<BS>', 'at': '`\%#`', 'delete': 1},
+\ {'char': '`', 'at': '``\%#', 'input_after': '```'},
+\ {'char': '`', 'at': '\%#```', 'leave': 3},
+\ {'char': '<BS>', 'at': '```\%#```', 'input': '<BS><BS><BS>', 'delete': 3},
+\ ]
+
+for rule in s:lexima_rules
+  call lexima#add_rule(rule)
+endfor
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " incsearch.vim
