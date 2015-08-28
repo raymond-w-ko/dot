@@ -1587,7 +1587,9 @@ let g:ctrlp_max_files = 0
 
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
-  let ignored_exts = map(split(&wildignore, ','), '"--ignore \"" . v:val . "\""')
+  let exts=&wildignore
+  let exts .= ',.git,.hg,.svn'
+  let ignored_exts = map(split(exts, ','), '"--ignore \"" . v:val . "\""')
   let ignore_string = join(ignored_exts, ' ')
   let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden -g "" ' . ignore_string
 endif
