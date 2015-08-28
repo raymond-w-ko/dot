@@ -63,8 +63,8 @@ setopt no_sharehistory
 # vi style incremental search
 bindkey '^R' history-incremental-search-backward
 bindkey '^S' history-incremental-search-forward
-bindkey '^P' history-search-backward
-bindkey '^N' history-search-forward  
+bindkey '^P' up-line-or-search
+bindkey '^N' down-line-or-search
 
 bindkey -s 'θ' '"\C-b"'
 bindkey -s 'ω' "'\C-b'"
