@@ -47,6 +47,8 @@ call add(g:pathogen_disabled, "cocoa.vim")
 call add(g:pathogen_disabled, "vim-niji")
 " disable this for now, try out lexima.vim
 call add(g:pathogen_disabled, "vim-endwise")
+" try substituting with simple keybinds
+call add(g:pathogen_disabled, "lexima.vim")
 
 " call add(g:pathogen_disabled, "FastFold")
 " call add(g:pathogen_disabled, "PHP-Indenting-for-VIm")
@@ -826,7 +828,8 @@ cnoremap jj <C-c>
 
 " inoremap <silent> fj <C-r>=lexima#insmode#escape()<CR><Esc>
 " inoremap <silent> jf <C-r>=lexima#insmode#escape()<CR><Esc>
-inoremap <silent> jj <C-r>=lexima#insmode#escape()<CR><Esc>
+" inoremap <silent> jj <C-r>=lexima#insmode#escape()<CR><Esc>
+inoremap jj <Esc>
 
 
 " mirror dd and D, a bit hard to get use to
@@ -867,6 +870,23 @@ vnoremap <leader>s :s//
 
 nnoremap <leader>\ :s/\//\\/<CR>:nohlsearch<CR>
 nnoremap <leader>/ :s/\\/\//<CR>:nohlsearch<CR>
+
+function! s:SetupPairBindings()
+  " handled by vim-sexp
+  if &ft == 'clojure' || &ft == 'lisp' || &ft == 'scheme'
+    return
+  endif
+
+  " semimap helpers
+  exe "imap <buffer> φ ()<C-g>U<Left>"
+  exe "imap <buffer> σ {}<C-g>U<Left>"
+  exe "imap <buffer> ρ []<C-g>U<Left>"
+  exe "imap <buffer> θ \"\"<C-g>U<Left>"
+endfunction
+
+augroup MyVimrc
+  au FileType * call <SID>SetupPairBindings()
+augroup END
 
 let s:move_right_keystroke = "\<C-g>U\<Right>"
 let s:move_right_pair_ends = { "'" : 1, '"' : 1, ')' : 1, ']' : 1, '}' : 1 }
@@ -1851,13 +1871,7 @@ augroup MyVimrc
 augroup END
 
 let g:lexima_enable_basic_rules = 0
-call lexima#set_default_rules()
-
-" semimap helpers
-" exe "imap φ ("
-" exe "imap σ {"
-" exe "imap ρ ["
-" exe "imap θ \""
+" call lexima#set_default_rules()
 
 let s:lexima_rules = [
 \ {'char': 'φ', 'input' : '(', 'input_after': ')'},
@@ -1897,7 +1911,7 @@ let s:lexima_rules = [
 \ ]
 
 for rule in s:lexima_rules
-  call lexima#add_rule(rule)
+  " call lexima#add_rule(rule)
 endfor
 
 
