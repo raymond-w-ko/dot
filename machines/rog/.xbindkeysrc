@@ -23,8 +23,8 @@
 "xbacklight -inc 10"
   Control+Shift + F6
 
-"sleepkey.sh"
-  XF86Sleep
+#"sleepkey.sh"
+#  XF86Sleep
 
 "i3lock -c 000000"
   Mod1 + l
