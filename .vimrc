@@ -47,7 +47,7 @@ call add(g:pathogen_disabled, "cocoa.vim")
 call add(g:pathogen_disabled, "vim-niji")
 " disable this for now, try out lexima.vim
 call add(g:pathogen_disabled, "vim-endwise")
-" try substituting with simple keybinds
+" disable lexima.vim due to deletion limitations
 call add(g:pathogen_disabled, "lexima.vim")
 
 " call add(g:pathogen_disabled, "FastFold")
@@ -811,25 +811,9 @@ endif
 "             `-. `.`.``-----``--,  .'
 "               |/`.\`'        ,','); SSt
 "                   `         (/  (/
-" this caused too much stress to right hand and was a bit awkward for me
-"inoremap jk <Esc>
-" I only hit this like 5% of the time
-"inoremap kj <Esc>
-" trying out something crazy
-" too much stress to middle fingers
-"inoremap dk <Esc>
-"inoremap kd <Esc>
-" just right :-)
-" inoremap fj <Esc>
-" inoremap jf <Esc>
-" cnoremap fj <C-c>
-" cnoremap jf <C-c>
 cnoremap jj <C-c>
-
-" inoremap <silent> fj <C-r>=lexima#insmode#escape()<CR><Esc>
-" inoremap <silent> jf <C-r>=lexima#insmode#escape()<CR><Esc>
-" inoremap <silent> jj <C-r>=lexima#insmode#escape()<CR><Esc>
 inoremap jj <Esc>
+" inoremap <silent> jj <C-r>=lexima#insmode#escape()<CR><Esc>
 
 
 " mirror dd and D, a bit hard to get use to
@@ -1913,7 +1897,6 @@ let s:lexima_rules = [
 for rule in s:lexima_rules
   " call lexima#add_rule(rule)
 endfor
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " incsearch.vim
