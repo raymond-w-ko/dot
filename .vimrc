@@ -855,6 +855,25 @@ vnoremap <leader>s :s//
 nnoremap <leader>\ :s/\//\\/<CR>:nohlsearch<CR>
 nnoremap <leader>/ :s/\\/\//<CR>:nohlsearch<CR>
 
+
+function! s:EmptyPairDeleterBackspace()
+  let line = getline('.')
+  let n = strlen(line)
+  let pos = col('.')
+  if pos <= 1 || pos > n
+    return "\<BS>"
+  endif
+  
+  let left = line[pos-2]
+  let right = line[pos-1]
+  
+  if (left == '(' && right == ')') || (left == '{' && right == '}') || (left == '[' && right == ']')
+    return "\<C-g>U\<Right>\<BS>\<BS>"
+  else
+    return "\<BS>"
+  endif
+endfunction
+
 function! s:SetupPairBindings()
   " handled by vim-sexp
   if &ft == 'clojure' || &ft == 'lisp' || &ft == 'scheme'
@@ -866,6 +885,7 @@ function! s:SetupPairBindings()
   exe "imap <buffer> σ {}<C-g>U<Left>"
   exe "imap <buffer> ρ []<C-g>U<Left>"
   exe "imap <buffer> θ \"\"<C-g>U<Left>"
+  exe "inoremap <silent> <buffer> <BS> <C-r>=<SID>EmptyPairDeleterBackspace()<CR>"
 endfunction
 
 augroup MyVimrc
