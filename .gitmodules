@@ -166,3 +166,6 @@
 [submodule ".vim/bundle/vim-asterisk"]
 	path = .vim/bundle/vim-asterisk
 	url = https://github.com/haya14busa/vim-asterisk.git
+[submodule ".vim/bundle/vim-expand-region"]
+	path = .vim/bundle/vim-expand-region
+	url = https://github.com/terryma/vim-expand-region.git

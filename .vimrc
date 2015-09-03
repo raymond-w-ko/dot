@@ -135,8 +135,8 @@ endif
 set noswapfile  " computers are pretty reliable nowadays
 
 " Leader
-let mapleader = ' '
-let maplocalleader = ','
+let mapleader = "\<Space>"
+let maplocalleader = "\\"
 
 set fileformats=unix,dos
 set autowrite
@@ -1917,6 +1917,12 @@ let s:lexima_rules = [
 for rule in s:lexima_rules
   " call lexima#add_rule(rule)
 endfor
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-expand-region
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " incsearch.vim
