@@ -25,7 +25,7 @@ case "$(uname -s)" in
    CYGWIN*)
      (
      while true; do
-       nc -l 127.0.0.1 64999 | putclip
+       nc -l 127.0.0.1 64999 | putclip -d
      done
      )
      ;;
