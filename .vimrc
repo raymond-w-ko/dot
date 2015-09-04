@@ -545,11 +545,12 @@ function! CenterCursorAesthetically()
   endif
 endfunction
 
-function! PropagePasteBufferToRemote()
+function! PropagePasteBufferToRemote(line1, line2)
   call system('cat_to_remote_clipboard.sh', getreg("*"))
   echo "propagated * register to remote clipboard"
 endfunction
-command! PropagePasteBufferToRemote call PropagePasteBufferToRemote()
+command! -range=% PropagePasteBufferToRemote
+    \ call PropagePasteBufferToRemote(<line1>, <line2>)
 
 " }}}
 " GUI {{{
