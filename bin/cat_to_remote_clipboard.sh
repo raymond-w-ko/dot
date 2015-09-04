@@ -5,6 +5,7 @@ case "$(uname -s)" in
      ;;
 
    Linux)
+     nc -c 127.0.0.1 64999 <&0
      ;;
 
    CYGWIN*)
