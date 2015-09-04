@@ -862,7 +862,11 @@ vnoremap <leader>s :s//
 nnoremap <leader>\ :s/\//\\/<CR>:nohlsearch<CR>
 nnoremap <leader>/ :s/\\/\//<CR>:nohlsearch<CR>
 
-
+let s:list_of_pairs = [
+    \ ['(', ')'],
+    \ ['[', ']'],
+    \ ['{', '}'],
+    \ ]
 function! s:EmptyPairDeleterBackspace()
   let line = getline('.')
   let n = strlen(line)
@@ -874,11 +878,32 @@ function! s:EmptyPairDeleterBackspace()
   let left = line[pos-2]
   let right = line[pos-1]
 
-  if (left == '(' && right == ')') || (left == '{' && right == '}') || (left == '[' && right == ']')
-    return "\<C-g>U\<Right>\<BS>\<BS>"
-  else
-    return "\<BS>"
+  for pairs in s:list_of_pairs
+    if left == pairs[0] && right == pairs[1]
+      return "\<C-g>U\<Right>\<BS>\<BS>"
+    endif
+  endfor
+
+  return "\<BS>"
+endfunction
+
+function! s:MySmarterCR()
+  let line = getline('.')
+  let n = strlen(line)
+  let pos = col('.')
+  if pos <= 1 || pos > n
+    return "\<CR>"
   endif
+
+  let left = line[pos-2]
+  let right = line[pos-1]
+
+  for pairs in s:list_of_pairs
+    if left == pairs[0] && right == pairs[1]
+      return "\<CR>\<Esc>O"
+    endif
+  endfor
+  return "\<CR>"
 endfunction
 
 function! s:SetupPairBindings()
@@ -888,11 +913,12 @@ function! s:SetupPairBindings()
   endif
 
   " semimap helpers
-  exe "imap <buffer> φ ()<C-g>U<Left>"
-  exe "imap <buffer> σ {}<C-g>U<Left>"
-  exe "imap <buffer> ρ []<C-g>U<Left>"
-  exe "imap <buffer> θ \"\"<C-g>U<Left>"
-  exe "inoremap <silent> <buffer> <BS> <C-r>=<SID>EmptyPairDeleterBackspace()<CR>"
+  inoremap <buffer> φ ()<C-g>U<Left>
+  inoremap <buffer> σ {}<C-g>U<Left>
+  inoremap <buffer> ρ []<C-g>U<Left>
+  inoremap <buffer> θ \"\"<C-g>U<Left>
+  inoremap <buffer> <BS> <C-r>=<SID>EmptyPairDeleterBackspace()<CR>
+  inoremap <buffer> <CR> <C-r>=<SID>MySmarterCR()<CR>
 endfunction
 
 augroup MyVimrc
