@@ -663,7 +663,7 @@ function! MyRightBrace()
     let line_number = line('.')
     let starting_line_number = line_number
     let line_number += 1
-    
+
     let max_bounds = line('$')
 
     while line_number <= max_bounds
@@ -863,10 +863,10 @@ function! s:EmptyPairDeleterBackspace()
   if pos <= 1 || pos > n
     return "\<BS>"
   endif
-  
+
   let left = line[pos-2]
   let right = line[pos-1]
-  
+
   if (left == '(' && right == ')') || (left == '{' && right == '}') || (left == '[' && right == ']')
     return "\<C-g>U\<Right>\<BS>\<BS>"
   else
@@ -899,7 +899,7 @@ function! s:PareditForwardUp()
   if pumvisible()
     let keys .= "\<C-y>"
   endif
-  
+
   let line = getline('.')
   let n = strlen(line)
   let steps_right = 0
@@ -910,7 +910,7 @@ function! s:PareditForwardUp()
       if has_key(s:move_right_pair_ends, ch)
         break
       endif
-      
+
       let steps_right += 1
       let x += 1
     endwhile
@@ -921,7 +921,7 @@ function! s:PareditForwardUp()
   else
     let keys .= repeat(s:move_right_keystroke, steps_right+1)
   endif
-  
+
   return keys
 endfunction
 
@@ -2100,7 +2100,7 @@ if has('unix')
 endif
 
 " }}}
-" cygwin {{{ 
+" cygwin {{{
 if filereadable('/dev/clipboard')
   function! SetClipboard(type, ...) range
     let sel_save = &selection
