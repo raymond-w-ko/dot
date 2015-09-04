@@ -169,3 +169,9 @@
 [submodule ".vim/bundle/vim-expand-region"]
 	path = .vim/bundle/vim-expand-region
 	url = https://github.com/terryma/vim-expand-region.git
+[submodule ".tmux/plugins/sensible"]
+	path = .tmux/plugins/sensible
+	url = https://github.com/tmux-plugins/tmux-sensible.git
+[submodule ".tmux/plugins/copycat"]
+	path = .tmux/plugins/copycat
+	url = https://github.com/tmux-plugins/tmux-copycat.git
