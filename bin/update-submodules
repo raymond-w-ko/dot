@@ -34,11 +34,19 @@ do_git_pull ()
     fi
 }
 
+do_git_pull_simple ()
+{
+    if [ -e .git ]; then
+        git checkout master
+        git pull
+    fi
+}
+
 cd "$HOME/.vim/bundle"
 pwd
 for dir in * ; do
     test -d "$dir" || continue
-    CMD="(pwd ; cd \"$dir\"; do_git_pull)&"
+    CMD="(cd \"$dir\"; pwd ; do_git_pull_simple)&"
     eval $CMD
 done
 
@@ -46,7 +54,15 @@ cd "$DIR/../src/"
 pwd
 for dir in * ; do
     test -d "$dir" || continue
-    CMD="(pwd ; cd \"$dir\"; do_git_pull)&"
+    CMD="(cd \"$dir\"; pwd ; do_git_pull_simple)&"
+    eval $CMD
+done
+
+cd "$DIR/../.tmux/plugins/"
+pwd
+for dir in * ; do
+    test -d "$dir" || continue
+    CMD="(cd \"$dir\"; pwd ; do_git_pull_simple)&"
     eval $CMD
 done
 
