@@ -26,4 +26,4 @@
 /config/ranger/history
 /config/ranger/tagged
 
-/.psd/.*
+/config/psd/.*
