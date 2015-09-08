@@ -240,17 +240,19 @@ if [[ -z $DISPLAY && $(tty) == /dev/tty1 ]]; then
 elif [[ -f ~/src/interkonnect/interkonnect.py && $(ps auxww | grep interkonnect.py | grep -v grep | wc -l) = 0 ]]; then
   sudo ~/src/interkonnect/interkonnect.py
 else
-  if hash gnome-keyring-daemon 2>/dev/null; then
-    export DISPLAY=:0
-    if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
-      ## if not found, launch a new one
-      #eval `dbus-launch --sh-syntax`
-      export DBUS_SESSION_BUS_ADDRESS="autolaunch:"
-    fi
-    if [[ -z $SSH_AUTH_SOCK ]]; then
-      eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-      export GPG_AGENT_INFO
-      export SSH_AUTH_SOCK
+  if [[ `uname -o` != "Cygwin" ]]; then
+    if hash gnome-keyring-daemon 2>/dev/null; then
+      export DISPLAY=:0
+      if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
+        ## if not found, launch a new one
+        #eval `dbus-launch --sh-syntax`
+        export DBUS_SESSION_BUS_ADDRESS="autolaunch:"
+      fi
+      if [[ -z $SSH_AUTH_SOCK ]]; then
+        eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+        export GPG_AGENT_INFO
+        export SSH_AUTH_SOCK
+      fi
     fi
   fi
   if hash fortune 2>/dev/null; then
