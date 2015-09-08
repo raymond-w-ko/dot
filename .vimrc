@@ -916,7 +916,7 @@ function! s:SetupPairBindings()
   inoremap <buffer> φ ()<C-g>U<Left>
   inoremap <buffer> σ {}<C-g>U<Left>
   inoremap <buffer> ρ []<C-g>U<Left>
-  inoremap <buffer> θ \"\"<C-g>U<Left>
+  inoremap <buffer> θ ""<C-g>U<Left>
   inoremap <buffer> <BS> <C-r>=<SID>EmptyPairDeleterBackspace()<CR>
   inoremap <buffer> <CR> <C-r>=<SID>MySmarterCR()<CR>
 endfunction
