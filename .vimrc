@@ -1597,7 +1597,7 @@ augroup MyVimrc
   " de-emphasized parentheses
   au BufReadPost * highlight SubtleParentheses ctermfg=19
   au BufReadPost * syntax match SubtleParentheses /(\|)/
-  au FileType clojure syntax match SubtleParentheses /\[\|\]\|{\|}/
+  au FileType clojure,lisp,scheme syntax match SubtleParentheses /\[\|\]\|{\|}/
 augroup END
 
 " }}}
@@ -1900,9 +1900,7 @@ let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
 " lexima
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup MyVimrc
-  autocmd FileType clojure let b:lexima_disabled = 0
-  autocmd FileType lisp let b:lexima_disabled = 0
-  autocmd FileType scheme let b:lexima_disabled = 0
+  autocmd FileType clojure,lisp,scheme let b:lexima_disabled = 0
 augroup END
 
 let g:lexima_enable_basic_rules = 0
