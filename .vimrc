@@ -1595,7 +1595,7 @@ augroup MyVimrc
   autocmd BufEnter *.txt call s:SetupHelpTab()
 
   " de-emphasized parentheses
-  au BufReadPost * highlight SubtleParentheses ctermfg=19
+  au BufReadPost * highlight link SubtleParentheses Comment
   au BufReadPost * syntax match SubtleParentheses /(\|)/
   au FileType clojure,lisp,scheme syntax match SubtleParentheses /\[\|\]\|{\|}/
 augroup END
