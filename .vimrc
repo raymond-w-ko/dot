@@ -843,7 +843,7 @@ map Y y$
 " vnoremap : ;
 
 " fastest way to save a file
-nnoremap <silent> <CR> :wall<CR>
+nnoremap <silent> <leader>w :wall<CR>
 
 " some convenience mappings for Vim autocomplete
 inoremap <C-l> <C-x><C-l>
@@ -1123,13 +1123,6 @@ augroup END
 " nmap <C-k> <C-w>k
 " nmap <C-l> <C-w>l
 
-nnoremap <leader>wv :vsplit<CR>
-nnoremap <leader>ws :split<CR>
-nnoremap <leader>wc :close<CR>
-nnoremap <leader>wo :wincmd o<CR>
-nnoremap <leader>w} :wincmd }<CR>
-nnoremap <leader>wg} :wincmd g}<CR>
-
 nnoremap <C-Up> :resize +1<CR>
 nnoremap <C-Down> :resize -1<CR>
 nnoremap <C-Left> :vertical resize -1<CR>
@@ -1152,8 +1145,8 @@ function! DoWindowSwap()
     "Hide and open so that we aren't prompted and keep history
     exe 'hide buf' markedBuf
 endfunction
-nnoremap <silent> <leader>wm :call MarkWindowSwap()<CR>
-nnoremap <silent> <leader>wp :call DoWindowSwap()<CR>
+" nnoremap <silent> <leader>wm :call MarkWindowSwap()<CR>
+" nnoremap <silent> <leader>wp :call DoWindowSwap()<CR>
 nnoremap <silent> <Left> :call MarkWindowSwap()<CR><C-w>h:call DoWindowSwap()<CR>
 nnoremap <silent> <Right> :call MarkWindowSwap()<CR><C-w>l:call DoWindowSwap()<CR>
 
