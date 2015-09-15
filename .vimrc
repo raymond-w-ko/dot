@@ -1202,8 +1202,8 @@ function! CreateAndSetupVsplits()
 
   wincmd =
 endfunction
-nnoremap <leader>wt :call CreateAndSetupVsplits()<CR>
-nnoremap <leader>ww :tabclose<CR>
+" nnoremap <leader>wt :call CreateAndSetupVsplits()<CR>
+" nnoremap <leader>ww :tabclose<CR>
 
 " Finding stuff {{{
 function! ExtensionHelper(ext, dir)
