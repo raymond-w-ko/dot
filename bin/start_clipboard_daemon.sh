@@ -26,6 +26,7 @@ case "$(uname -s)" in
      (
      while true; do
        nc -l 127.0.0.1 64999 | putclip -d
+       echo "somebody wrote to the clipboard"
      done
      )
      ;;

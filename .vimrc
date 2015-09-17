@@ -1114,7 +1114,7 @@ function! CreateCppMethodImplementation()
 endfunction
 
 augroup MyVimrc
-  au FileType cpp exe "nnoremap <buffer> <leader>rci :call CreateCppMethodImplementation()<CR>dd$a<Space>{{"
+  au FileType cpp exe "nmap <buffer> <leader>rci :call CreateCppMethodImplementation()<CR>dd$a<Space>σ<CR>"
 augroup END
 
 " obsoleted by vim-tmux-navigator
