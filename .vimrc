@@ -463,12 +463,13 @@ function! ToggleHex()
     let b:oldbin=&bin
     " set new options
     setlocal binary " make sure it overrides any textwidth, etc.
+    silent :e " this will reload the file without trickeries 
+              "(DOS line endings will be shown entirely )
     let &ft="xxd"
     " set status
     let b:editHex=1
     " switch to hex editor
     %!xxd
-    %:s/$//e
   else
     " restore old options
     let &ft=b:oldft
@@ -552,6 +553,42 @@ endfunction
 command! -range=% PropagePasteBufferToRemote
     \ call PropagePasteBufferToRemote(<line1>, <line2>)
 
+if filereadable('/dev/clipboard')
+  function! SetClipboard(type, ...) range
+    let sel_save = &selection
+    let &selection = "inclusive"
+    let reg_save = @@
+    if a:type == 'n'
+      silent exe a:firstline . "," . a:lastline . "y"
+    elseif a:type == 'c'
+      silent exe a:1 . "," . a:2 . "y"
+    else
+      silent exe "normal! `<" . a:type . "`>y"
+    endif
+    "call system('putclip', @@)
+    "As of Cygwin 1.7.13, the /dev/clipboard device was added to provide
+    "access to the native Windows clipboard. It provides the added benefit
+    "of supporting utf-8 characters which putclip currently does not. Based
+    "on a tip from John Beckett, use the following:
+    call writefile(split(@@,"\n"), '/dev/clipboard', 'b')
+    let &selection = sel_save
+    let @@ = reg_save
+  endfunction
+
+  function! GetClipboard()
+    let reg_save = @@
+    "let @@ = system('getclip')
+    "Much like Putclip(), using the /dev/clipboard device to access to the
+    "native Windows clipboard for Cygwin 1.7.13 and above. It provides the
+    "added benefit of supporting utf-8 characters which getclip currently does
+    "not. Based again on a tip from John Beckett, use the following:
+    let @@ = join(readfile('/dev/clipboard'), "\n")
+    setlocal paste
+    exe 'normal p'
+    setlocal nopaste
+    let @@ = reg_save
+  endfunction
+endif
 " }}}
 " GUI {{{
 if !exists("g:already_set_color_scheme") && !($TERM == "linux")
@@ -1205,7 +1242,6 @@ endfunction
 " nnoremap <leader>wt :call CreateAndSetupVsplits()<CR>
 " nnoremap <leader>ww :tabclose<CR>
 
-" Finding stuff {{{
 function! ExtensionHelper(ext, dir)
     let partial = a:dir . '/**/*.' . a:ext
     let partial = EscapePathname(partial) . ' '
@@ -1244,7 +1280,6 @@ nnoremap <leader>fwib :call FindCursorWordInBuffer()<CR>
 nnoremap <leader>fwip :call FindCursorWordInProject()<CR>
 nnoremap <leader>fkip :call FindThisKeywordInProject("")<left><left>
 nnoremap <leader>fl :FufLine<CR>
-" }}}
 
 " Fancy Tag Completion {{{
 
@@ -1976,54 +2011,6 @@ augroup MyVimrc
   au FileType dosbatch setlocal ff=dos
   au FileType Makefile setlocal noexpandtab
 augroup END
-
-" Hex Editing {{{
-" vim -b : edit binary using xxd-format!
-augroup MyVimrc
-  " set binary option for all binary files before reading them
-  "au BufReadPre *.bin,*.hex,*.exe,*.dll setlocal binary
-
-  " if on a fresh read the buffer variable is already set, it's wrong
-  "au BufReadPost *
-  "\ if exists('b:editHex') && b:editHex |
-  "\   let b:editHex = 0 |
-  "\ endif
-
-  " convert to hex on startup for binary files automatically
-  "au BufReadPost *
-  "\ if &binary | HexMode | endif
-
-  " When the text is freed, the next time the buffer is made active it will
-  " re-read the text and thus not match the correct mode, we will need to
-  " convert it again if the buffer is again loaded.
-  "au BufUnload *
-  "\ if getbufvar(expand("<afile>"), 'editHex') == 1 |
-  "\   call setbufvar(expand("<afile>"), 'editHex', 0) |
-  "\ endif
-
-  " before writing a file when editing in hex mode, convert back to non-hex
-  "au BufWritePre *
-  "\ if exists("b:editHex") && b:editHex && &binary |
-  "\  let oldro=&ro | let &ro=0 |
-  "\  let oldma=&ma | let &ma=1 |
-  "\  silent exe "%!xxd -r" |
-  "\  let &ma=oldma | let &ro=oldro |
-  "\  unlet oldma | unlet oldro |
-  "\ endif
-
-  " after writing a binary file, if we're in hex mode, restore hex mode
-  "au BufWritePost *
-  "\ if exists("b:editHex") && b:editHex && &binary |
-  "\  let oldro=&ro | let &ro=0 |
-  "\  let oldma=&ma | let &ma=1 |
-  "\  silent exe "%!xxd" |
-  "\  silent exe "%:s/$//g" |
-  "\  exe "set nomod" |
-  "\  let &ma=oldma | let &ro=oldro |
-  "\  unlet oldma | unlet oldro |
-  "\ endif
-augroup END
-" }}}
 " }}}
 " Projects {{{
 " no tags by default, omegacomplete is usually enough
@@ -2121,48 +2108,4 @@ if has('unix')
   nnoremap <leader>m :update<CR>:call FindAndRunMakefile()<CR>
 endif
 
-" }}}
-" cygwin {{{
-if filereadable('/dev/clipboard')
-  function! SetClipboard(type, ...) range
-    let sel_save = &selection
-    let &selection = "inclusive"
-    let reg_save = @@
-    if a:type == 'n'
-      silent exe a:firstline . "," . a:lastline . "y"
-    elseif a:type == 'c'
-      silent exe a:1 . "," . a:2 . "y"
-    else
-      silent exe "normal! `<" . a:type . "`>y"
-    endif
-    "call system('putclip', @@)
-    "As of Cygwin 1.7.13, the /dev/clipboard device was added to provide
-    "access to the native Windows clipboard. It provides the added benefit
-    "of supporting utf-8 characters which putclip currently does not. Based
-    "on a tip from John Beckett, use the following:
-    call writefile(split(@@,"\n"), '/dev/clipboard', 'b')
-    let &selection = sel_save
-    let @@ = reg_save
-  endfunction
-
-  function! GetClipboard()
-    let reg_save = @@
-    "let @@ = system('getclip')
-    "Much like Putclip(), using the /dev/clipboard device to access to the
-    "native Windows clipboard for Cygwin 1.7.13 and above. It provides the
-    "added benefit of supporting utf-8 characters which getclip currently does
-    "not. Based again on a tip from John Beckett, use the following:
-    let @@ = join(readfile('/dev/clipboard'), "\n")
-    setlocal paste
-    exe 'normal p'
-    setlocal nopaste
-    let @@ = reg_save
-  endfunction
-
-  " Since keys are laid out like [Cut] [Copy] [Paste] for the left hand
-  " Mirrored is [Paste] [Copy] [Cut], for [F9] [10] [F11] [F12]
-  "nnoremap <silent> <F9>  :call GetClipboard()<CR>
-  "vnoremap <silent> <F10> :call SetClipboard(visualmode(), 1)<CR>
-  "nnoremap <silent> <F10> :call SetClipboard('n', 1)<CR>
-endif
 " }}}
