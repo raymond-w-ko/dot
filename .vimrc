@@ -348,6 +348,7 @@ let s:project_directories_list = [
     \ '__UNIX_HOME__/src/windmenu',
     \ '__UNIX_HOME__/src/dk2test',
     \ '__UNIX_HOME__/src/tsukuyomi',
+    \ '__UNIX_HOME__/src/letterdungeon',
     \ '__UNIX_HOME__/src/vim/src',
     \ '__UNIX_HOME__/.vim/bundle/omegacomplete',
     \ '__UNIX_HOME__/dot/.vim/bundle/omegacomplete',
@@ -2029,6 +2030,7 @@ let s:commands = [
     \ 'Dk2test',            '__UNIX_HOME__/src/dk2test',
     \ 'Collimator',         '__UNIX_HOME__/src/collimator',
     \ 'Diffractor',         '__UNIX_HOME__/src/diffractor',
+    \ 'LetterDungeon',      '__UNIX_HOME__/src/letterdungeon',
     \
     \ 'SVN',                '__SVN__/SVN/',
     \ 'Platform4',          '__SVN__/SVN/Syandus_ALIVE4/Platform/Source/Code',
