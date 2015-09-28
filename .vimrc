@@ -617,7 +617,9 @@ if has("gui_running")
     set guioptions-=r  "remove right-hand scroll bar
     set guioptions-=L  "remove left-hand scroll bar
     set guioptions-=e  "use in editor tabline
-    set lines=9999
+    if !has('win32')
+      set lines=9999
+    endif
 endif
 " }}}
 " Searching and Movement {{{
@@ -2110,8 +2112,22 @@ function! FindAndRunMakefile()
   endwhile
 endfunction
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Windows
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! IssueBuildCommandToVisualStudio()
+  let ahk_file = s:unix_home.'/dot/bin/issue_build_command_to_visual_studio.ahk'
+  if !filereadable(ahk_file)
+    return
+  endif
+  
+  exe "silent! !".ahk_file
+endfunction
+
 if has('unix')
   nnoremap <leader>m :update<CR>:call FindAndRunMakefile()<CR>
+elseif has('win32')
+  nnoremap <leader>m :update<CR>:call IssueBuildCommandToVisualStudio()<CR>
 endif
 
 " }}}
