@@ -20,7 +20,7 @@
 
 *foreground:   base05
 *background:   base00
-*cursorColor:  base05
+!*cursorColor:  base05
 
 *color0:       base00
 *color1:       base08
@@ -48,6 +48,7 @@
 *color19:      base02
 *color20:      base04
 *color21:      base06
+
 *cursorColor:  #00ff00
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
