@@ -910,6 +910,8 @@ let s:list_of_pairs = [
     \ ['(', ')'],
     \ ['[', ']'],
     \ ['{', '}'],
+    \ ['"', '"'],
+    \ ["'", "'"],
     \ ]
 function! s:EmptyPairDeleterBackspace()
   let line = getline('.')
