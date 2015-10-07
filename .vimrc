@@ -2006,6 +2006,14 @@ map #  <Plug>(asterisk-z#)
 map g* <Plug>(asterisk-gz*)
 map g# <Plug>(asterisk-gz#)
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" tagbar
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" usually the files that I deal with have functions arranged in some sort of
+" logical grouping that we wnat to preserve
+let g:tagbar_sort=0
+let g:tagbar_width=40
+
 " }}}
 " filetype specific settings {{{
 augroup MyVimrc
