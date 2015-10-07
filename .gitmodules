@@ -175,3 +175,6 @@
 [submodule ".tmux/plugins/copycat"]
 	path = .tmux/plugins/copycat
 	url = https://github.com/tmux-plugins/tmux-copycat.git
+[submodule ".vim/bundle/tagbar"]
+	path = .vim/bundle/tagbar
+	url = https://github.com/majutsushi/tagbar.git
