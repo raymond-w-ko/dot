@@ -2024,8 +2024,12 @@ augroup MyVimrc
 
   au BufNewFile,BufRead *.py setlocal foldmethod=syntax foldlevel=1
   au BufNewFile,BufRead *.py setlocal omnifunc=pythoncomplete#Complete
+  
+  au FileType cmake setlocal commentstring=#\ %s
 
   au FileType dosbatch setlocal ff=dos
+  au FileType dosbatch setlocal commentstring=REM\ %s
+
   au FileType Makefile setlocal noexpandtab
 augroup END
 " }}}
