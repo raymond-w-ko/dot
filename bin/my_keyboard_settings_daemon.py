@@ -4,8 +4,11 @@ import pyudev
 import subprocess
 import time
 import threading
+import getpass
 
 ticks_before_reapplying_settings = 2
+
+username = getpass.getuser()
 
 def system(cmd):
     subprocess.call(cmd, shell = True)
@@ -27,9 +30,9 @@ def apply_keyboard_settings():
 
             system('xmodmap ~/.Xmodmap')
             system('xset r rate 333 32')
-            system('killall -u xcape')
+            system('killall -u %s xcape' % username)
             system("xcape -t 333 -e 'Control_R=Return'")
-            system('killall -u xbindkeys')
+            system('killall -u %s xbindkeys' % username)
             system('xbindkeys')
             system('set_no_mouse_acceleration.sh')
 
