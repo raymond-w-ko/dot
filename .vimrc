@@ -955,16 +955,19 @@ endfunction
 function! s:SetupPairBindings()
   " handled by vim-sexp
   if &ft == 'clojure' || &ft == 'lisp' || &ft == 'scheme'
-    return
+    exe "imap <buffer> φ ("
+    exe "imap <buffer> σ {"
+    exe "imap <buffer> ρ ["
+    exe 'imap <buffer> θ "'
+  else
+    " semimap helpers
+    inoremap <buffer> φ ()<C-g>U<Left>
+    inoremap <buffer> σ {}<C-g>U<Left>
+    inoremap <buffer> ρ []<C-g>U<Left>
+    inoremap <buffer> θ ""<C-g>U<Left>
+    inoremap <buffer> <BS> <C-r>=<SID>EmptyPairDeleterBackspace()<CR>
+    inoremap <buffer> <CR> <C-r>=<SID>MySmarterCR()<CR>
   endif
-
-  " semimap helpers
-  inoremap <buffer> φ ()<C-g>U<Left>
-  inoremap <buffer> σ {}<C-g>U<Left>
-  inoremap <buffer> ρ []<C-g>U<Left>
-  inoremap <buffer> θ ""<C-g>U<Left>
-  inoremap <buffer> <BS> <C-r>=<SID>EmptyPairDeleterBackspace()<CR>
-  inoremap <buffer> <CR> <C-r>=<SID>MySmarterCR()<CR>
 endfunction
 
 augroup MyVimrc
