@@ -243,7 +243,7 @@ else
     exe 'set showbreak=>>\ '
 endif
 
-" wildmenu completion {{{
+" wildmenu completion
 set wildmode=list:longest,full
 set wildchar=<Tab>
 if exists('&wildignorecase')
@@ -252,50 +252,34 @@ endif
 
 " binaries with a 99.9% chance of not being edited
 set wildignore+=*.exe,*.dll
-
 " media files in a binary format
 set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.bmp,*.tga,*.mp3,*.ico,*.wav
 set wildignore+=*.bik,*.ani,*.mask,*.dds
-
 " version control directories
 " adding .git breaks vim-fugitive
 "set wildignore+=.hg,.git,.svn
-
 " Visual Studio files
 set wildignore+=*.ncb,*.suo,*.user,*.vcproj,*.vcxproj,*.out,*.sln,*.pdb
 set wildignore+=*.manifest,*.dep,*.idb,*.ipch,*.o,*.obj
-set wildignore+=Debug,Release
-
 " GCC
 set wildignore+=*.d,*.a
-
 " Gamebryo Binaries
-set wildignore+=*.nif,*.kf,*.kfm,*.NSB
-
+set wildignore+=*.nif,*.kf,*.kfm,*.nsb
 " compiled cached bytecodes
 set wildignore+=*.pyc,*.luac,*.luc,*.class
-
 " binary document formats
 set wildignore+=*.pdf,*.doc,*.docx,*.xls,*.xlsx
-
 " Mac OS X metadata files
 set wildignore+=.DS_Store
-
 " Windows OS metadata files
 set wildignore+=*.lnk
-
 " Syandus Files
-set wildignore+=*.ID
-set wildignore+=*.sse
-set wildignore+=*.ccv,*.fls,*.pat,*.gsl,*.flt,*.asi
-
+set wildignore+=*.ID,*.sse,*.ccv,*.fls,*.pat,*.gsl,*.flt,*.asi
 " OGRE
 set wildignore+=*.mesh
-
 " Android Files
 set wildignore+=*.apk,*.ap_
 
-" }}}
 " }}}
 " Function Library {{{
 " Since I keep my projects in the UNIX-ish HOME directory, we have to figure
