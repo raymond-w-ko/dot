@@ -842,8 +842,12 @@ endif
 "             `-. `.`.``-----``--,  .'
 "               |/`.\`'        ,','); SSt
 "                   `         (/  (/
-cnoremap jj <C-c>
-inoremap jj <Esc>
+" greek small letter nu
+inoremap ν <Esc>
+cnoremap ν <C-c>
+
+" cnoremap jj <C-c>
+" inoremap jj <Esc>
 " inoremap <silent> jj <C-r>=lexima#insmode#escape()<CR><Esc>
 
 
