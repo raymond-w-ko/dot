@@ -6,12 +6,12 @@ if has("win32")
     "set guifont=Consolas:h8
     "set guifont=Lucida_Console:h9
     "set guifont=Inconsolata:h9
-    "set guifont=fixed613:h8
+    set guifont=fixed613:h8
     "set guifont=Terminus:h9
-    set guifont=Terminus\ (TTF):h9
+    " set guifont=Terminus\ (TTF):h9
     set linespace=0
     if has("directx")
-        "set rop=type:directx
+        " set rop=type:directx,taamode:0
     endif
 elseif has("gui_macvim")
     set noantialias
