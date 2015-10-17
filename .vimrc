@@ -136,7 +136,7 @@ set noswapfile  " computers are pretty reliable nowadays
 
 " Leader
 let mapleader = "\<Space>"
-let maplocalleader = "\\"
+let maplocalleader = ","
 
 set fileformats=unix,dos
 set autowrite
@@ -1802,7 +1802,7 @@ let g:clj_fmt_autosave = 0
 augroup MyVimrc
   au FileType clojure nnoremap <buffer> <leader>r :Require<CR>
   au FileType clojure nnoremap <buffer> <leader>R :Require!<CR>
-  au FileType clojure nnoremap <buffer> == :Cljfmt<CR>
+  " au FileType clojure nnoremap <buffer> == :Cljfmt<CR>
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
