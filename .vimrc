@@ -2005,6 +2005,11 @@ map g# <Plug>(asterisk-gz#)
 let g:tagbar_sort=0
 let g:tagbar_width=40
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-clang-format
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:clang_format#code_style="google"
+
 " }}}
 " filetype specific settings {{{
 augroup MyVimrc
