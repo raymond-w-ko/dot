@@ -240,7 +240,7 @@ if [[ -z $DISPLAY && $(tty) == /dev/tty1 ]]; then
 elif [[ -f ~/src/interkonnect/interkonnect.py && $(ps auxww | grep interkonnect.py | grep -v grep | wc -l) = 0 ]]; then
   sudo ~/src/interkonnect/interkonnect.py
 else
-  if [[ `uname -o` != "Cygwin" ]]; then
+  if [[ "$unameString" != 'Darwin' && `uname -o` != "Cygwin" ]]; then
     if hash gnome-keyring-daemon 2>/dev/null; then
       export DISPLAY=:0
       if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
