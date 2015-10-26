@@ -380,6 +380,7 @@ let s:project_directories_list = [
     \ '__SVN__/SVN/Syandus_Cores/C_Sym_DM_01',
     \ '__SVN__/SVN/Syandus_Cores/C_Unb_COPD_01',
     \ '__SVN__/SVN/Syandus_ALIVE4/Cellulose',
+    \ '__SVN__/SVN/Syandus_ALIVE5/nitrogen',
     \ ]
 
 let g:my_project_directories = {}
@@ -1668,6 +1669,10 @@ let g:ctrlp_max_files = 0
 " too slow
 "let g:ctrlp_match_func = {'match': function('CtrlPMatch')}
 
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$|[\/]compiled[\/]out$',
+  \ }
+
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
   let exts=&wildignore
@@ -2083,6 +2088,7 @@ let s:commands = [
     \ 'Cellulose',          '__SVN__/SVN/Syandus_ALIVE4/Cellulose',
     \ 'Rosettastone',       '__SVN__/SVN/Syandus_Web/Merck/rosettastone',
     \ 'Merck',              '__SVN__/SVN/Syandus_Web/Merck',
+    \ 'Nitrogen5',           '__SVN__/SVN/Syandus_ALIVE5/nitrogen',
     \ ]
 for i in range(len(s:commands) / 2)
     let cmd = (i * 2) + 0
