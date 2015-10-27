@@ -532,12 +532,12 @@ function! CenterCursorAesthetically()
   endif
 endfunction
 
-function! PropagePasteBufferToRemote(line1, line2)
+function! PropagatePasteBufferToRemote(line1, line2)
   call system('cat_to_remote_clipboard.sh', getreg("*"))
   echo "propagated * register to remote clipboard"
 endfunction
-command! -range=% PropagePasteBufferToRemote
-    \ call PropagePasteBufferToRemote(<line1>, <line2>)
+command! -range=% PropagatePasteBufferToRemote
+    \ call PropagatePasteBufferToRemote(<line1>, <line2>)
 
 if filereadable('/dev/clipboard')
   function! SetClipboard(type, ...) range
@@ -1813,7 +1813,7 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " base16 default colorscheme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
+let g:loaded_synesthesia=1
 let g:synesthesia_banned_console_colors = []
 
 " solarized-dark

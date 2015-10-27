@@ -42,11 +42,5 @@ case "$(uname -s)" in
      ;;
 esac
 
-(
-while true; do
-  nc -l 127.0.0.1 64999 | putclip
-done
-)
-
 child1=$!
 wait "$child1"
