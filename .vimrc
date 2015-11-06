@@ -650,9 +650,6 @@ nnoremap L g_
 " Open a Quickfix window for the last search.
 nnoremap <silent> <leader>/ :execute 'lvimgrep /'.@/.'/g %'<CR>:lopen<CR>
 
-" Ack for the last search.
-"nnoremap <silent> <leader>? :execute "Ack! '" . substitute(substitute(substitute(@/, "\\\\<", "\\\\b", ""), "\\\\>", "\\\\b", ""), "\\\\v", "", "") . "'"<CR>
-
 " Fix linewise visual selection of various text objects
 nnoremap VV V
 nnoremap Vit vitVkoj
@@ -1263,25 +1260,6 @@ function! GetRelevantExtensions()
   return extensions
 endfunction
 
-function! FindCursorWordInBuffer()
-  let filename = EscapePathname(expand('%:p'))
-  execute 'LAck! ' . expand("<cword>") . ' ' . EscapePathname(filename)
-  lopen
-endfunction
-
-function! FindCursorWordInProject()
-  execute ':Ack! ' . expand("<cword>") . ' ' . MyGetProjectDirectory()
-endfunction
-
-function! FindThisKeywordInProject(keyword)
-  execute ':Ack! ' . a:keyword . ' ' . MyGetProjectDirectory()
-endfunction
-
-nnoremap <leader>fwib :call FindCursorWordInBuffer()<CR>
-nnoremap <leader>fwip :call FindCursorWordInProject()<CR>
-nnoremap <leader>fkip :call FindThisKeywordInProject("")<left><left>
-nnoremap <leader>fl :FufLine<CR>
-
 " Fancy Tag Completion {{{
 
 function! MyCppCompleteFunc(findstart, base)
@@ -1807,7 +1785,7 @@ let g:clj_fmt_autosave = 0
 augroup MyVimrc
   au FileType clojure nnoremap <buffer> <leader>r :Require<CR>
   au FileType clojure nnoremap <buffer> <leader>R :Require!<CR>
-  " au FileType clojure nnoremap <buffer> == :Cljfmt<CR>
+  au FileType clojure nnoremap <buffer> <leader>f :Cljfmt<CR>
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -2014,8 +1992,8 @@ let g:tagbar_width=40
 " vim-clang-format
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:clang_format#code_style="google"
-autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>f :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>f :ClangFormat<CR>
 
 " }}}
 " filetype specific settings {{{
