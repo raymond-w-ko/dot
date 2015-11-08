@@ -920,11 +920,16 @@ function! s:EmptyPairDeleterBackspace()
 endfunction
 
 function! s:MySmarterCR()
+  let keys = ""
+  if pumvisible()
+    let keys .= "\<C-e>"
+  endif
+  
   let line = getline('.')
   let n = strlen(line)
   let pos = col('.')
   if pos <= 1 || pos > n
-    return "\<CR>"
+    return keys . "\<CR>"
   endif
 
   let left = line[pos-2]
@@ -932,10 +937,20 @@ function! s:MySmarterCR()
 
   for pairs in s:list_of_pairs
     if left == pairs[0] && right == pairs[1]
-      return "\<CR>\<Esc>O"
+      return keys . "\<CR>\<Esc>O"
     endif
   endfor
-  return "\<CR>"
+  return keys . "\<CR>"
+endfunction
+
+function! s:MyBasicCR()
+  
+  let keys = ""
+  if pumvisible()
+    let keys .= "\<C-e>"
+  endif
+  
+  return keys . "\<CR>"
 endfunction
 
 function! s:SetupPairBindings()
@@ -945,6 +960,7 @@ function! s:SetupPairBindings()
     exe "imap <buffer> σ {"
     exe "imap <buffer> ρ ["
     exe 'imap <buffer> θ "'
+    inoremap <buffer> <CR> <C-r>=<SID>MyBasicCR()<CR>
   else
     " semimap helpers
     inoremap <buffer> φ ()<C-g>U<Left>
