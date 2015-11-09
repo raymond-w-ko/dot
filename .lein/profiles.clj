@@ -3,6 +3,8 @@
                   [lein-cljfmt "0.3.0"]
                   [venantius/ultra "0.4.0"]
                   [lein-ancient "0.6.8"]]
-        :dependencies [[slamhound "1.5.5"]]
+        :dependencies [[slamhound "1.5.5"]
+                       [cljfmt "0.3.0"]]
+        :repl-options {:init (require 'cljfmt.core)}
         :aliases {"slamhound" ["run" "-m" "slam.hound"]}
-        :ultra {:color-scheme :solarized_dark}}}
+        :ultra {:color-scheme :solarized_dark}} }
