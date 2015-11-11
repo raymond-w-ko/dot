@@ -1707,13 +1707,50 @@ let g:gundo_right=1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-clojure-static
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:clojure_maxlines = 256
-let g:clojure_align_multiline_strings = 1
-let g:clojure_align_subforms = 0
+" By default, parenthesized compound forms that look like function calls and
+" whose head subform is on its own line have subsequent subforms indented by
+" two spaces relative to the opening paren:
+" (foo
+"   bar
+"   baz)
+" Setting this option changes this behavior so that all subforms are aligned to
+" the same column, emulating the default behavior of clojure-mode.el:
+" (foo
+"  bar
+"  baz)
+" ---> 1 is recommended by the Clojure style guide
+" https://github.com/bbatsov/clojure-style-guide#one-space-indent
+" ;; good
+" (filter
+"  even?
+"  (range 1 10))
+" 
+" (or
+"  ala
+"  bala
+"  portokala)
+" 
+" ;; bad - two-space indent
+" (filter
+"   even?
+"   (range 1 10))
+" 
+" (or
+"   ala
+"   bala
+"   portokala)
+let g:clojure_align_subforms = 1
+" default is 100
+let g:clojure_maxlines = 512
+
+" this seems to suggest that it should be off
+" https://github.com/bbatsov/clojure-style-guide#align-docstring-lines
+let g:clojure_align_multiline_strings = 0
+
+" these are default values that should be overriden if needed
 let g:clojure_fuzzy_indent = 1
 let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let']
-let g:clojure_fuzzy_indent_blacklist =
-    \ ['-fn$', '\v^with-%(meta|out-str|loading-context)$']
+let g:clojure_fuzzy_indent_blacklist = ['-fn$', '\v^with-%(meta|out-str|loading-context)$']
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-niji
