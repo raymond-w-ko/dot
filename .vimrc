@@ -381,6 +381,7 @@ let s:project_directories_list = [
     \ '__SVN__/SVN/Syandus_Cores/C_Unb_COPD_01',
     \ '__SVN__/SVN/Syandus_ALIVE4/Cellulose',
     \ '__SVN__/SVN/Syandus_ALIVE5/nitrogen',
+    \ '__SVN__/SVN/Syandus_ALIVE5/nitrogen.js',
     \ ]
 
 let g:my_project_directories = {}
@@ -1800,6 +1801,7 @@ let g:syntastic_mode_map = {
             \ 'mode': 'active',
             \ 'active_filetypes': ['ruby', 'php', 'python'],
             \ 'passive_filetypes': ['java', 'c', 'cpp', 'objc', 'objcpp'] }
+let g:syntastic_javascript_checkers = ['jshint']
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " paredit
@@ -2121,7 +2123,7 @@ let s:commands = [
     \ 'Cellulose',          '__SVN__/SVN/Syandus_ALIVE4/Cellulose',
     \ 'Rosettastone',       '__SVN__/SVN/Syandus_Web/Merck/rosettastone',
     \ 'Merck',              '__SVN__/SVN/Syandus_Web/Merck',
-    \ 'Nitrogen5',           '__SVN__/SVN/Syandus_ALIVE5/nitrogen',
+    \ 'Nitrogen5',           '__SVN__/SVN/Syandus_ALIVE5/nitrogen.js',
     \ ]
 for i in range(len(s:commands) / 2)
     let cmd = (i * 2) + 0
