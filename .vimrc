@@ -2133,7 +2133,7 @@ for i in range(len(s:commands) / 2)
 
     let g:my_project_directories[dir] = 1
 
-    exe 'com! ' . s:commands[cmd] . ' cd ' . dir
+    exe 'command! ' . s:commands[cmd] . ' silent cd ' . dir
 endfor
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
