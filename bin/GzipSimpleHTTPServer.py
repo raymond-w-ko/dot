@@ -67,7 +67,7 @@ class SimpleHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 
         """
         path = self.translate_path(self.path)
-        print "Serving path '%s'" % path
+        print("Serving path '%s'" % path)
         f = None
         if os.path.isdir(path):
             if not self.path.endswith('/'):
@@ -96,7 +96,9 @@ class SimpleHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         self.send_header("Content-type", ctype)
         self.send_header("Content-Encoding", "gzip")
         fs = os.fstat(f.fileno())
-        self.send_header("Content-Length", str(fs[6]))
+        content_length = str(fs[6])
+        print(content_length)
+        self.send_header("Content-Length", content_length)
         self.send_header("Last-Modified", self.date_time_string(fs.st_mtime))
         self.end_headers()
         return f
@@ -179,8 +181,16 @@ class SimpleHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         to copy binary data as well.
 
         """
-        outputfile = gzip.GzipFile(mode='wb', fileobj=outputfile)
-        shutil.copyfileobj(source, outputfile)
+        out = StringIO()
+        gz = gzip.GzipFile(mode='wb', fileobj=out)
+        gz.write(source.read())
+        gz.flush()
+        out.flush()
+        value = out.getvalue()
+
+        print(len(value))
+        outputfile.write(value)
+        outputfile.flush()
 
     def guess_type(self, path):
         """Guess the type of a file.
