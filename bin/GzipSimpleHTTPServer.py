@@ -26,6 +26,12 @@ except ImportError:
     from StringIO import StringIO
 import gzip
 
+def gzipencode(content):
+    out = StringIO()
+    f = gzip.GzipFile(fileobj=out, mode='w', compresslevel=5)
+    f.write(content)
+    f.close()
+    return out.getvalue()
 
 class SimpleHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 
@@ -44,16 +50,13 @@ class SimpleHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 
     def do_GET(self):
         """Serve a GET request."""
-        f = self.send_head()
-        if f:
-            self.copyfile(f, self.wfile)
-            f.close()
+        content = self.send_head()
+        if content:
+            self.wfile.write(content)
 
     def do_HEAD(self):
         """Serve a HEAD request."""
-        f = self.send_head()
-        if f:
-            f.close()
+        content = self.send_head()
 
     def send_head(self):
         """Common code for GET and HEAD commands.
@@ -82,7 +85,7 @@ class SimpleHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                     path = index
                     break
             else:
-                return self.list_directory(path)
+                return self.list_directory(path).read()
         ctype = self.guess_type(path)
         try:
             # Always read in binary mode. Opening files in text mode may cause
@@ -96,12 +99,15 @@ class SimpleHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         self.send_header("Content-type", ctype)
         self.send_header("Content-Encoding", "gzip")
         fs = os.fstat(f.fileno())
-        content_length = str(fs[6])
-        print(content_length)
-        self.send_header("Content-Length", content_length)
+        raw_content_length = fs[6]
+        content = f.read();
+        content = gzipencode(content)
+        compressed_content_length = len(content)
+        f.close()
+        self.send_header("Content-Length", max(raw_content_length, compressed_content_length))
         self.send_header("Last-Modified", self.date_time_string(fs.st_mtime))
         self.end_headers()
-        return f
+        return content
 
     def list_directory(self, path):
         """Helper to produce a directory listing (absent index.html).
@@ -166,31 +172,6 @@ class SimpleHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             if word in (os.curdir, os.pardir): continue
             path = os.path.join(path, word)
         return path
-
-    def copyfile(self, source, outputfile):
-        """Copy all data between two file objects.
-
-        The SOURCE argument is a file object open for reading
-        (or anything with a read() method) and the DESTINATION
-        argument is a file object open for writing (or
-        anything with a write() method).
-
-        The only reason for overriding this would be to change
-        the block size or perhaps to replace newlines by CRLF
-        -- note however that this the default server uses this
-        to copy binary data as well.
-
-        """
-        out = StringIO()
-        gz = gzip.GzipFile(mode='wb', fileobj=out)
-        gz.write(source.read())
-        gz.flush()
-        out.flush()
-        value = out.getvalue()
-
-        print(len(value))
-        outputfile.write(value)
-        outputfile.flush()
 
     def guess_type(self, path):
         """Guess the type of a file.
