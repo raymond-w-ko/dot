@@ -231,6 +231,10 @@ ulimit -c unlimited
   #test -z "$TMUX" && (tmux attach || tmux new-session)
 #fi
 
+if [[ -f /usr/bin/virtualenvwrapper.sh ]]; then
+  source /usr/bin/virtualenvwrapper.sh
+fi
+
 if [[ -z $DISPLAY && $(tty) == /dev/tty1 ]]; then
   # we can't completely redirect stderr to a file otherwise root-less X breaks
   # I'm guessing it is determining the VTTY from the stderr file descriptor
