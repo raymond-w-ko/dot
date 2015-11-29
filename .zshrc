@@ -48,7 +48,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git mercurial lein pip svn systemd tmux screen vim-interaction adb ant brew cp chucknorris)
+plugins=(git mercurial lein pip svn systemd tmux screen vim-interaction adb ant brew cp chucknorris history-substring-search)
 
 # stop eating characters after tab completion
 export ZLE_REMOVE_SUFFIX_CHARS=""
@@ -60,11 +60,23 @@ source $ZSH/oh-my-zsh.sh
 setopt AUTO_CD
 setopt no_sharehistory
 
-# vi style incremental search
-bindkey '^R' history-incremental-search-backward
-bindkey '^S' history-incremental-search-forward
-bindkey '^P' up-line-or-search
-bindkey '^N' down-line-or-search
+# bind UP and DOWN arrow keys
+zmodload zsh/terminfo
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+
+# bind UP and DOWN arrow keys (compatibility fallback
+# for Ubuntu 12.04, Fedora 21, and MacOSX 10.9 users)
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+# bind P and N for EMACS mode
+bindkey -M emacs '^P' history-substring-search-up
+bindkey -M emacs '^N' history-substring-search-down
+
+# bind k and j for VI mode
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
 
 bindkey -s 'θ' '"\C-b"'
 bindkey -s 'ω' "'\C-b'"
