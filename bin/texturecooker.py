@@ -34,8 +34,14 @@ def cook(path):
   # subprocess.check_output(cmd)
   
   # make PVR
-  out = re.sub(r".png$", ".pvr", path)
-  cmd = [pvrtextool, "-i", path, "-o", out, "-f", "PVRTC1_4", "-q", "pvrtcbest"]
+  # out = re.sub(r".png$", ".pvr", path)
+  # cmd = [pvrtextool, "-f", "PVRTC1_4", "-m", "-q", "pvrtcbest", "-legacypvr", "-i", path, "-o", out]
+  # print(" ".join(cmd))
+  # subprocess.check_output(cmd)
+  
+  # make ETC2
+  out = re.sub(r".png$", ".etc2.ktx", path)
+  cmd = [pvrtextool, "-f", "ETC2_RGBA", "-m", "-q", "etcslowperceptual", "-i", path, "-o", out]
   print(" ".join(cmd))
   subprocess.check_output(cmd)
 
