@@ -842,13 +842,12 @@ endif
 "               |/`.\`'        ,','); SSt
 "                   `         (/  (/
 " greek small letter nu
-inoremap ν <Esc>
-cnoremap ν <C-c>
+" inoremap ν <Esc>
+" cnoremap ν <C-c>
 
-" cnoremap jj <C-c>
-" inoremap jj <Esc>
-" inoremap <silent> jj <C-r>=lexima#insmode#escape()<CR><Esc>
-
+inoremap kj <Esc>
+cnoremap kj <C-c>
+" inoremap <silent> kj <C-r>=lexima#insmode#escape()<CR><Esc>
 
 " mirror dd and D, a bit hard to get use to
 try
