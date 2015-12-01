@@ -255,6 +255,7 @@ set wildignore+=*.exe,*.dll
 " media files in a binary format
 set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.bmp,*.tga,*.mp3,*.ico,*.wav
 set wildignore+=*.bik,*.ani,*.mask,*.dds
+set wildignore+=*.pvr,*.ktx
 " version control directories
 " adding .git breaks vim-fugitive
 "set wildignore+=.hg,.git,.svn
@@ -450,7 +451,7 @@ function! ToggleHex()
     let b:oldbin=&bin
     " set new options
     setlocal binary " make sure it overrides any textwidth, etc.
-    silent :e " this will reload the file without trickeries 
+    silent :e " this will reload the file without trickeries
               "(DOS line endings will be shown entirely )
     let &ft="xxd"
     " set status
@@ -924,7 +925,7 @@ function! s:MySmarterCR()
   if pumvisible()
     let keys .= "\<C-e>"
   endif
-  
+
   let line = getline('.')
   let n = strlen(line)
   let pos = col('.')
@@ -944,12 +945,12 @@ function! s:MySmarterCR()
 endfunction
 
 function! s:MyBasicCR()
-  
+
   let keys = ""
   if pumvisible()
     let keys .= "\<C-e>"
   endif
-  
+
   return keys . "\<CR>"
 endfunction
 
@@ -1724,17 +1725,17 @@ let g:gundo_right=1
 " (filter
 "  even?
 "  (range 1 10))
-" 
+"
 " (or
 "  ala
 "  bala
 "  portokala)
-" 
+"
 " ;; bad - two-space indent
 " (filter
 "   even?
 "   (range 1 10))
-" 
+"
 " (or
 "   ala
 "   bala
@@ -2059,13 +2060,15 @@ augroup MyVimrc
 
   au BufNewFile,BufRead *.py setlocal foldmethod=syntax foldlevel=1
   au BufNewFile,BufRead *.py setlocal omnifunc=pythoncomplete#Complete
-  
+
   au FileType cmake setlocal commentstring=#\ %s
 
   au FileType dosbatch setlocal ff=dos
   au FileType dosbatch setlocal commentstring=REM\ %s
 
   au FileType Makefile setlocal noexpandtab
+
+  au BufReadPost *.hlsl set filetype=fx
 augroup END
 " }}}
 " Projects {{{
@@ -2170,7 +2173,7 @@ function! IssueBuildCommandToVisualStudio()
   if !filereadable(ahk_file)
     return
   endif
-  
+
   exe "silent! !".ahk_file
 endfunction
 
