@@ -1665,13 +1665,13 @@ let g:ctrlp_max_files = 0
 "let g:ctrlp_match_func = {'match': function('CtrlPMatch')}
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$|[\/]compiled[\/]out$',
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$|[\/]compiled[\/]out$|[\/]node_modules$',
   \ }
 
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
   let exts=&wildignore
-  let exts .= ',.git,.hg,.svn'
+  let exts .= ',.git,.hg,.svn,node_modules'
   let ignored_exts = map(split(exts, ','), '"--ignore \"" . v:val . "\""')
   let ignore_string = join(ignored_exts, ' ')
   let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden -g "" ' . ignore_string
@@ -2125,7 +2125,7 @@ let s:commands = [
     \ 'Cellulose',          '__SVN__/SVN/Syandus_ALIVE4/Cellulose',
     \ 'Rosettastone',       '__SVN__/SVN/Syandus_Web/Merck/rosettastone',
     \ 'Merck',              '__SVN__/SVN/Syandus_Web/Merck',
-    \ 'Nitrogen5',           '__SVN__/SVN/Syandus_ALIVE5/nitrogen.js',
+    \ 'Nitrogen5',          '__SVN__/SVN/Syandus_ALIVE5/nitrogen.js',
     \ ]
 for i in range(len(s:commands) / 2)
     let cmd = (i * 2) + 0
