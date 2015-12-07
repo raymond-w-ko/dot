@@ -1,0 +1,35 @@
+; .editorconfig
+
+root = true
+
+[**.js]
+path=~/npm-global/lib/node_modules/js-beautify/js/lib/beautify.js
+indent_style = space
+indent_size = 2
+max_char = 80
+
+[**.json]
+path=~/npm-global/lib/node_modules/js-beautify/js/lib/beautify.js
+indent_style = space
+indent_size = 2
+max_char = 80
+
+[**.jsx]
+path=~/npm-global/lib/node_modules/js-beautify/js/lib/beautify.js
+e4x = true
+indent_style = space
+indent_size = 2
+max_char = 80
+
+[**.css]
+path= ~/npm-global/lib/node_modules/js-beautify/js/lib/beautify-css.js
+indent_style = space
+indent_size = 2
+max_char = 80
+
+[**.html]
+path= ~/npm-global/lib/node_modules/js-beautify/js/lib/beautify-html.js
+indent_style = space
+indent_size = 2
+max_char = 80
+brace_style = expand
