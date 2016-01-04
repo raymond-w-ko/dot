@@ -187,3 +187,6 @@
 [submodule ".vim/bundle/vim-jsbeautify"]
 	path = .vim/bundle/vim-jsbeautify
 	url = git@github.com:raymond-w-ko/vim-jsbeautify.git
+[submodule ".vim/bundle/csscomplete.vim"]
+	path = .vim/bundle/csscomplete.vim
+	url = https://github.com/othree/csscomplete.vim.git

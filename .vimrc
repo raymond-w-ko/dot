@@ -2065,6 +2065,11 @@ autocmd FileType jsx vnoremap <buffer> <Leader>f :call RangeJsxBeautify()<CR>
 autocmd FileType html vnoremap <buffer> <Leader>f :call RangeHtmlBeautify()<CR>
 autocmd FileType css vnoremap <buffer> <Leader>f :call RangeCSSBeautify()<CR>
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" csscomplete.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS noci
+
 " }}}
 " filetype specific settings {{{
 augroup MyVimrc
