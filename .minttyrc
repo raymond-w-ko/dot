@@ -1,7 +1,7 @@
-BoldAsFont=yes
+BoldAsFont=no
 Transparency=off
 CursorType=block
-Font=fixed613
+Font=creep
 FontHeight=8
 Locale=en_US
 Charset=UTF-8
