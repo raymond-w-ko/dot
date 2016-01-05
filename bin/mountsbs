@@ -21,7 +21,6 @@ for pair in "${ARRAY[@]}" ; do
     if [ "$DIR" == "staff" ]; then
       EXTRA_OPT=",uid=1000"
     fi
-    sudo mount -t cifs "$SYPATH" "/mnt/$DIR" -o $OPTIONS$EXTRA_OPT
 
     CMD="sudo mount -t cifs "$SYPATH" "/mnt/$DIR" -o $OPTIONS$EXTRA_OPT"
     echo $CMD
