@@ -75,11 +75,14 @@ XTerm*backarrowKey:       false
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !#define fonts 
-!#define fonts -lucy-tewi-medium-r-normal--11-90-75-75-p-58-iso10646-1
 !#define fonts xft:MS Gothic:pixelsize=12
 !#define fonts -*-proggyclean-*-*-*-*-13-*-*-*-*-*-*-*
 !#define fonts -*-terminus-medium-r-normal-*-12-*-*-*-*-*-iso10646-1
-#define fonts -misc-fixed-medium-r-semicondensed-*-12-120-75-75-c-60-iso10646-1
+!#define fonts -misc-fixed-medium-r-semicondensed-*-12-120-75-75-c-60-iso10646-1
+!#define fonts -romeovs-creep-Regular-R-Normal--16-160-75-75-M-4-ISO10646-1
+#define fonts -lucy-tewi-medium-r-normal--11-90-75-75-m-60-iso10646-1
+URxvt*letterSpace     : 0
+URxvt*lineSpace       : 0
 
 URxvt*font:           fonts
 URxvt*boldFont:       fonts
