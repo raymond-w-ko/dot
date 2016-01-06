@@ -44,14 +44,16 @@ keycode  60 = period greater U2022 greater
 keycode  66 = Control_L Control_L Control_L Control_L
 
 ! remap Return key as Control_R, use xcape to generate Return
-keycode  36 = Control_R Control_R Control_R Control_R
-keycode  97 = Return Return Return Return
+! not necessary with Kinesis Advantage keyboard
+! keycode  36 = Control_R Control_R Control_R Control_R
+! keycode  97 = Return Return Return Return
 
 clear Lock
 add Control = Control_L Control_R
 
 ! exchange left Alt and left Win
-remove Mod1 = Alt_L
-remove Mod4 = Super_L
-add Mod1 = Super_L
-add Mod4 = Alt_L
+! not necessary with Kinesis Advantage keyboard
+! remove Mod1 = Alt_L
+! remove Mod4 = Super_L
+! add Mod1 = Super_L
+! add Mod4 = Alt_L

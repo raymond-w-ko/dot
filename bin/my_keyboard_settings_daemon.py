@@ -30,8 +30,9 @@ def apply_keyboard_settings():
 
             system('xmodmap ~/.Xmodmap')
             system('xset r rate 333 32')
-            system('killall -u %s xcape' % username)
-            system("xcape -t 333 -e 'Control_R=Return'")
+            # not necessary with Kinesis Advantage keyboard
+            # system('killall -u %s xcape' % username)
+            # system("xcape -t 333 -e 'Control_R=Return'")
             system('killall -u %s xbindkeys' % username)
             system('xbindkeys')
             system('set_no_mouse_acceleration.sh')
