@@ -55,7 +55,7 @@ exec /opt/dropbox/dropbox
 # keybinds start here
 ################################################################################
 
-set $mod Mod4
+set $mod Mod1
 
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
