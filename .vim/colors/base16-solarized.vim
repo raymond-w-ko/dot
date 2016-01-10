@@ -77,6 +77,8 @@ fun <sid>hi(group, guifg, guibg, ctermfg, ctermbg, attr, guisp)
   endif
   if a:attr != ""
     exec "hi " . a:group . " gui=" . a:attr . " cterm=" . a:attr
+  else
+    exec "hi " . a:group . " gui=NONE cterm=NONE"
   endif
   if a:guisp != ""
     exec "hi " . a:group . " guisp=#" . a:guisp
