@@ -26,11 +26,11 @@
 #"sleepkey.sh"
 #  XF86Sleep
 
-#"i3lock -c 000000"
-#  Mod1 + l
+"i3lock -c 000000"
+  Pause
 
 #"mymonitors.sh"
 #  Mod1 + p
 
 "take_screenshot_of_currently_focused_window.sh"
-  Mod4 + Print
+  Mod1 + Print
