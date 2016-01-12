@@ -25,6 +25,7 @@ for d in /usr/share/fonts/*; do
   xset +fp "$d"
 done
 unset d
+xset +fp $HOME/src/creep2
 xset fp rehash
 
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
