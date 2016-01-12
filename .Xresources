@@ -57,7 +57,8 @@
 
 !*font:         -lucy-Tewi-medium-R-Normal--11-90-75-75-P-58-ISO10646-1
 !*font:          -*-terminus-medium-r-normal-*-12-*-*-*-*-*-iso10646-1
-*font:          -misc-fixed-medium-r-semicondensed-*-12-120-75-75-c-60-iso10646-1
+!*font:          -misc-fixed-medium-r-semicondensed-*-12-120-75-75-c-60-iso10646-1
+*font:          -*-creep2-*-*-*--*-*-*-*-*-*-*-*
 Xcursor*theme: neutralplus-inv
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -80,7 +81,8 @@ XTerm*backarrowKey:       false
 !#define fonts -*-terminus-medium-r-normal-*-12-*-*-*-*-*-iso10646-1
 !#define fonts -misc-fixed-medium-r-semicondensed-*-12-120-75-75-c-60-iso10646-1
 !#define fonts -romeovs-creep-Regular-R-Normal--16-160-75-75-M-4-ISO10646-1
-#define fonts -lucy-tewi-medium-r-normal--11-90-75-75-m-60-iso10646-1
+!#define fonts -lucy-tewi-medium-r-normal--11-90-75-75-m-60-iso10646-1
+#define fonts -*-creep2-*-*-*--*-*-*-*-*-*-*-*
 URxvt*letterSpace     : 0
 URxvt*lineSpace       : 0
 
