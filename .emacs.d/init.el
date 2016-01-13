@@ -1,4 +1,9 @@
-(require 'cl)
+;; normalize directories in case symlinks are used
+(defvar emacs-d
+  (file-name-directory
+   (file-chase-links load-file-name)))
+(setq package-user-dir
+      (expand-file-name "elpa" emacs-d))
 
 (require 'package)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
