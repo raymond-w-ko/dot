@@ -29,8 +29,8 @@
 "i3lock -c 000000"
   Pause
 
-#"mymonitors.sh"
-#  Mod1 + p
+"mymonitors.sh"
+  Mod4 + p
 
 "take_screenshot_of_currently_focused_window.sh"
   Mod1 + Print
