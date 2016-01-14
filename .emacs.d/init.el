@@ -8,8 +8,8 @@
 (package-initialize)
 (setq package-archives
       '(("org" . "http://orgmode.org/elpa/")
-	("melpa" . "http://melpa.milkbox.net/packages/")
-	("gnu" . "http://elpa.gnu.org/packages")))
+	("melpa" . "https://melpa.org/packages/")
+	("gnu" . "https://elpa.gnu.org/packages/")))
 (package-refresh-contents)
 
 (defvar my-packages
@@ -25,6 +25,7 @@
     lispy
     avy
     ace-window
+    projectile
     color-theme-solarized))
 (dolist (package my-packages)
   (unless (package-installed-p package)
@@ -65,7 +66,8 @@
  ;; If there is more than one, they won't work right.
  '(frame-background-mode (quote dark)))
 
-(set-face-attribute 'default nil :font "Consolas 8")
-(set-frame-font "Consolas 8" nil t)
+(if (eq system-type 'windows-nt)
+    (begin (set-face-attribute 'default nil :font "Consolas 8")
+	   (set-frame-font "Consolas 8" nil t)))
 
 (load-theme 'solarized t)
