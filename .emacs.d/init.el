@@ -2,17 +2,15 @@
 (defvar emacs-d
   (file-name-directory
    (file-chase-links load-file-name)))
+
 (setq package-user-dir
       (expand-file-name "elpa" emacs-d))
-
-(require 'package)
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(setq package-enable-at-startup t)
 (package-initialize)
-
-(when (not package-archive-contents)
-  (package-refresh-contents))
+(setq package-archives
+      '(("org" . "http://orgmode.org/elpa/")
+	("melpa" . "http://melpa.milkbox.net/packages/")
+	("gnu" . "http://elpa.gnu.org/packages")))
+(package-refresh-contents)
 
 (defvar my-packages
   '(evil
@@ -21,31 +19,44 @@
     evil-paredit
     evil-surround
     evil-escape
-    aggressive-indent
     smooth-scrolling
     paredit
     key-chord
-    color-theme-solarized)
-  "A list of packages that are ensured to be installed at launch")
+    lispy
+    avy
+    ace-window
+    color-theme-solarized))
+(dolist (package my-packages)
+  (unless (package-installed-p package)
+    (ignore-errors (package-install package))))
+(defun my-upgrade-packages ()
+  (save-window-excursion
+    (package-list-packages t)
+    (package-menu-mark-upgrades)
+    (condition-case nil
+	(package-menu-execute t)
+      (error
+       (package-menu-execute)))))
 
-(dolist (p my-packages)
-  (when (not (package-installed-p p))
-    (package-install p)))
+(add-hook 'emacs-lisp-mode-hook
+	  (lambda () (lispy-mode 1)))
+
+(global-set-key (kbd "M-p") 'ace-window)
+(global-set-key (kbd "π") 'avy-goto-char)
 
 (add-to-list 'load-path "~/.emacs.d/config")
-
 (require 'basic-settings)
 
-; (setq key-chord-two-keys-delay 0.1)
-; (key-chord-mode 1)
+;; (setq key-chord-two-keys-delay 0.1)
+;; (key-chord-mode 1)
 
 (blink-cursor-mode 0)
 (global-hl-line-mode 1)
 
-(require 'uniquify)
-(setq 
- uniquify-buffer-name-style 'post-forward
- uniquify-separator ":")
+;; (require 'uniquify)
+;; (setq
+;;  uniquify-buffer-name-style 'post-forward
+;;  uniquify-separator ":")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
