@@ -13,6 +13,8 @@
 /.emacs.d/eshell/history
 /.emacs.d/auto-save-list
 /.emacs.d/*~
+/.emacs.d/*.cache
+/.emacs.d/projectile-bookmarks.eld
 
 /.vifm/Trash
 /.vifm/vifm-help.txt
