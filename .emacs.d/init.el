@@ -3,13 +3,14 @@
   (file-name-directory
    (file-chase-links load-file-name)))
 
-(setq package-user-dir
-      (expand-file-name "elpa" emacs-d))
+(require 'package)
+(setq package-user-dir (expand-file-name "elpa" emacs-d))
+;; https://github.com/milkypostman/melpa#usage
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+(when (< emacs-major-version 24)
+  (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
 (package-initialize)
-(setq package-archives
-      '(("org" . "http://orgmode.org/elpa/")
-	("melpa" . "https://melpa.org/packages/")
-	("gnu" . "https://elpa.gnu.org/packages/")))
 (package-refresh-contents)
 
 (defvar my-packages
@@ -21,6 +22,8 @@
     evil-escape
     smooth-scrolling
     paredit
+    helm
+    helm-projectile
     key-chord
     lispy
     avy
@@ -39,13 +42,30 @@
       (error
        (package-menu-execute)))))
 
+(add-to-list 'load-path (expand-file-name "lisp/"))
+(require 'rko-ins)
+
+(require 'helm)
+(require 'helm-config)
+(helm-mode 1)
+
+(projectile-global-mode)
+
 (add-hook 'emacs-lisp-mode-hook
 	  (lambda () (lispy-mode 1)))
 
 (global-set-key (kbd "M-p") 'ace-window)
 (global-set-key (kbd "π") 'avy-goto-char)
+(global-set-key (kbd "C-x C-m") 'helm-M-x)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "θ") 'rko-quotes) ; q
+(global-set-key (kbd "χ") 'lispy-right) ; x
+(global-set-key (kbd "φ") 'rko-parens) 	; f
+
+(setq show-paren-delay 0)
 
 (add-to-list 'load-path "~/.emacs.d/config")
+
 (require 'basic-settings)
 
 ;; (setq key-chord-two-keys-delay 0.1)
@@ -67,7 +87,7 @@
  '(frame-background-mode (quote dark)))
 
 (if (eq system-type 'windows-nt)
-    (begin (set-face-attribute 'default nil :font "Consolas 8")
+    (progn (set-face-attribute 'default nil :font "Consolas 8")
 	   (set-frame-font "Consolas 8" nil t)))
 
 (load-theme 'solarized t)
