@@ -1,3 +1,6 @@
+# emacs
+.#.*
+
 /.bash.d/add_dot_extra_paths.sh
 
 /.subversion/auth/
@@ -9,8 +12,10 @@
 
 *.xkm
 
+/.emacs.d/backup
 /.emacs.d/elpa
-/.emacs.d/eshell/history
+/.emacs.d/eshell/*
+/.emacs.d/auto-save
 /.emacs.d/auto-save-list
 /.emacs.d/*~
 /.emacs.d/*.cache
