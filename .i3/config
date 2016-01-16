@@ -14,7 +14,8 @@
 #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 #font -misc-fixed-medium-r-semicondensed-*-12-110-75-75-c-60-iso10646-1
 #font -misc-fixed-medium-r-semicondensed-*-12-120-75-75-c-60-iso10646-1
-font -misc-fixed-medium-r-normal-*-10-*-*-*-*-*-iso10646-*
+#font -misc-fixed-medium-r-normal-*-10-*-*-*-*-*-iso10646-*
+font -*-creep2-*-*-*--*-*-*-*-*-*-*-*
 
 #font pango:DejaVu Sans Mono 7
 #font pango:Ubuntu Sans Mono 5
@@ -35,7 +36,7 @@ client.urgent           #2f343a #900000 #ffffff #900000
 
 new_window pixel 1
 new_float pixel 4
-hide_edge_borders both
+hide_edge_borders none
 
 focus_follows_mouse no
 
