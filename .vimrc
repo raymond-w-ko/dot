@@ -2070,6 +2070,11 @@ autocmd FileType css vnoremap <buffer> <Leader>f :call RangeCSSBeautify()<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS noci
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-sexp
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:sexp_filetypes = 'clojure,scheme,lisp,timl,eslisp'
+
 " }}}
 " filetype specific settings {{{
 augroup MyVimrc
