@@ -381,7 +381,7 @@ let s:project_directories_list = [
     \ '__SVN__/SVN/Syandus_Cores/C_Sym_DM_01',
     \ '__SVN__/SVN/Syandus_Cores/C_Unb_COPD_01',
     \ '__SVN__/SVN/Syandus_ALIVE4/Cellulose',
-    \ '__SVN__/SVN/Syandus_ALIVE5/nitrogen',
+    \ '__SVN__/SVN/Syandus_ALIVE5/syplatform',
     \ '__SVN__/SVN/Syandus_ALIVE5/nitrogen.js',
     \ ]
 
@@ -2121,7 +2121,7 @@ let s:commands = [
     \ 'Carbon4',            '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Carbon',
     \ 'Oxygen',             '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Oxygen',
     \ 'Hydrogen',           '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Hydrogen',
-    \ 'Nitrogen',           '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Nitrogen',
+    \ 'Nitrogen4',          '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Nitrogen',
     \ 'Proton',             '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Proton',
     \ 'Symlin',             '__SVN__/SVN/Syandus_Cores/C_Sym_DM_01',
     \ 'Spiriva',            '__SVN__/SVN/Syandus_Cores/C_Spv_COPD_01',
@@ -2150,7 +2150,8 @@ let s:commands = [
     \ 'Cellulose',          '__SVN__/SVN/Syandus_ALIVE4/Cellulose',
     \ 'Rosettastone',       '__SVN__/SVN/Syandus_Web/Merck/rosettastone',
     \ 'Merck',              '__SVN__/SVN/Syandus_Web/Merck',
-    \ 'Nitrogen5',          '__SVN__/SVN/Syandus_ALIVE5/nitrogen.js',
+    \ 'Platform',           '__SVN__/SVN/Syandus_ALIVE5/syplatform',
+    \ 'Nitrogen',           '__SVN__/SVN/Syandus_ALIVE5/nitrogen.js',
     \ ]
 for i in range(len(s:commands) / 2)
     let cmd = (i * 2) + 0

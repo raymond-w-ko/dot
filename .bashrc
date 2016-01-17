@@ -206,8 +206,9 @@ alias Cellulose="cd ~/SVN/Syandus_ALIVE4/Cellulose"
 alias Proton="cd ~/SVN/Syandus_ALIVE4/Frameworks/Proton/Build/Content"
 alias Hydrogen="cd ~/SVN/Syandus_ALIVE4/Frameworks/Hydrogen/Build/Content"
 alias Oxygen="cd ~/SVN/Syandus_ALIVE4/Frameworks/Oxygen/Build/Content"
-alias Nitrogen="cd ~/SVN/Syandus_ALIVE4/Frameworks/Nitrogen/Build/Content"
 alias merck="cd ~/SVN/Syandus_Web/Merck"
+alias Nitrogen="cd ~/SVN/Syandus_ALIVE5/nitrogen.js"
+alias Platform5="cd ~/SVN/Syandus_ALIVE5/syplatform"
 
 if [[ "$unameString" == 'Darwin' ]]; then
   alias ImmuneQuestBuilds="cd ~/Desktop/ImmuneQuest_Builds"
