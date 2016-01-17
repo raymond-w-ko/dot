@@ -3,6 +3,20 @@
 (set-keyboard-coding-system 'utf-8-unix)
 (prefer-coding-system 'utf-8-unix)
 
+;; disables bold font since my font is so small that bolding is an issue
+ (defadvice set-face-attribute
+     (before ignore-attributes (face frame &rest args) activate)
+   (setq args
+         (apply 'nconc
+                (mapcar (lambda (i)
+                          (let ((attribute (nth i args))
+                                (value (nth (1+ i) args)))
+                            (if (not (memq attribute
+                                           set-face-ignore-attributes))
+                                (list attribute value))))
+                        (number-sequence 0 (1- (length args)) 2)))))
+(setq set-face-ignore-attributes '(:weight :height :box))
+
 ;; normalize directories in case symlinks are used
 (defvar emacs-d
   (file-name-directory
@@ -114,6 +128,11 @@ This functions should be added to the hooks of major modes for programming."
 (use-package diminish
   :ensure t)
 
+(use-package subword
+  :diminish subword-mode
+  :config
+  (global-subword-mode t))
+
 (use-package server
   :if window-system
   :config
@@ -130,6 +149,45 @@ This functions should be added to the hooks of major modes for programming."
   :config
   (popwin-mode 1)
   (push '("*Compile-Log*" :height 20 :noselect t) popwin:special-display-config))
+
+(use-package rainbow-delimiters
+  :ensure t
+  :config
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+
+(use-package rainbow-mode
+  :ensure t
+  :diminish rainbow-mode
+  :config
+  (add-hook 'prog-mode-hook #'rainbow-mode))
+
+(use-package highlight-numbers
+  :ensure t
+  :config
+  (add-hook 'prog-mode-hook #'highlight-numbers-mode))
+
+(use-package prog-mode
+  :defer t)
+
+(use-package guide-key
+  :commands guide-key-mode
+  :diminish guide-key-mode
+  :ensure t
+  :init
+  (setq guide-key/idle-delay 0.2
+        guide-key/guide-key-sequence '("C-x r"
+                                       "C-x 4"
+                                       "C-x 5"
+                                       "C-x c"
+                                       "C-c"))
+  (guide-key-mode 1))
+
+(use-package undo-tree
+  :ensure t
+  :diminish undo-tree-mode
+  :config
+  (setq undo-tree-auto-save-history t)
+  (global-undo-tree-mode))
 
 (use-package company
   :ensure t
@@ -196,7 +254,7 @@ This functions should be added to the hooks of major modes for programming."
 ;; (key-chord-mode 1)
 
 (blink-cursor-mode 0)
-(global-hl-line-mode 1)
+;; (global-hl-line-mode 1)
 
 ;; (require 'uniquify)
 ;; (setq
@@ -213,7 +271,6 @@ This functions should be added to the hooks of major modes for programming."
  '(frame-background-mode (quote dark)))
 
 (if (eq system-type 'windows-nt)
-    (progn (set-face-attribute 'default nil :font "Consolas 8")
-           (set-frame-font "Consolas 8" nil t)))
-
-(load-theme 'solarized t)
+    (progn (set-face-attribute 'default nil :font "creep2 8")
+           (set-frame-font "creep2 8" nil t)))
+(set-cursor-color "#00ff00")
