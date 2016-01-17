@@ -190,3 +190,6 @@
 [submodule ".vim/bundle/csscomplete.vim"]
 	path = .vim/bundle/csscomplete.vim
 	url = https://github.com/othree/csscomplete.vim.git
+[submodule ".vim/bundle/vim-eslisp"]
+	path = .vim/bundle/vim-eslisp
+	url = git@github.com:raymond-w-ko/vim-eslisp.git
