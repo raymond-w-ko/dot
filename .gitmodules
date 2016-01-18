@@ -202,3 +202,6 @@
 [submodule ".vim/bundle/vim-less"]
 	path = .vim/bundle/vim-less
 	url = https://github.com/genoma/vim-less.git
+[submodule ".vim/bundle/preto"]
+	path = .vim/bundle/preto
+	url = https://github.com/ewilazarus/preto.git
