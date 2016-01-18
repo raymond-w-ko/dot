@@ -196,3 +196,9 @@
 [submodule ".vim/bundle/vital.vim"]
 	path = .vim/bundle/vital.vim
 	url = https://github.com/vim-jp/vital.vim.git
+[submodule ".vim/bundle/css.vim"]
+	path = .vim/bundle/css.vim
+	url = https://github.com/JulesWang/css.vim.git
+[submodule ".vim/bundle/vim-less"]
+	path = .vim/bundle/vim-less
+	url = https://github.com/genoma/vim-less.git
