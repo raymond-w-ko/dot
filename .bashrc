@@ -188,7 +188,6 @@ alias svnignore='svn propedit svn:ignore'
 
 # custom work aliases
 alias Platform4="cd ~/SVN/Syandus_ALIVE4/Platform/Source/Code"
-alias Platform5="cd ~/SVN/Syandus_ALIVE5"
 if [[ "$unameString" == 'Darwin' ]]; then
   alias ThirdParty4="cd ~/SVN/Syandus_ALIVE4/Platform/ThirdParty/Mac"
 else
@@ -208,7 +207,7 @@ alias Hydrogen="cd ~/SVN/Syandus_ALIVE4/Frameworks/Hydrogen/Build/Content"
 alias Oxygen="cd ~/SVN/Syandus_ALIVE4/Frameworks/Oxygen/Build/Content"
 alias merck="cd ~/SVN/Syandus_Web/Merck"
 alias Nitrogen="cd ~/SVN/Syandus_ALIVE5/nitrogen.js"
-alias Platform5="cd ~/SVN/Syandus_ALIVE5/syplatform"
+alias Platform="cd ~/SVN/Syandus_ALIVE5/syplatform"
 
 if [[ "$unameString" == 'Darwin' ]]; then
   alias ImmuneQuestBuilds="cd ~/Desktop/ImmuneQuest_Builds"
