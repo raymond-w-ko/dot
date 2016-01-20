@@ -1918,32 +1918,22 @@ call add(g:synesthesia_ignored_filetypes, 'xml')
 " vim-easymotion
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
-" Turn on case insensitive feature
 let g:EasyMotion_smartcase = 1
+let g:EasyMotion_keys = "asdghklqwertyuiopzxcvbnmfj"
 
-" Bi-directional find motion
-" Jump to anywhere you want with minimal keystrokes, with just one key binding.
-" `s{char}{label}`
-"nmap s <Plug>(easymotion-s)
-" or
-" `s{char}{char}{label}`
-" Need one more keystroke, but on average, it may be more comfortable.
-nmap s <Plug>(easymotion-s2)
-vmap s <Plug>(easymotion-s2)
-omap z <Plug>(easymotion-s2)
+nmap s <Plug>(easymotion-overwin-f2)
 
-omap f <Plug>(easymotion-bd-fl)
-xmap f <Plug>(easymotion-bd-fl)
-omap F <Plug>(easymotion-Fl)
-xmap F <Plug>(easymotion-Fl)
-omap t <Plug>(easymotion-tl)
-xmap t <Plug>(easymotion-tl)
-omap T <Plug>(easymotion-Tl)
-xmap T <Plug>(easymotion-Tl)
+map <Leader>f <Plug>(easymotion-bd-fl)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
 
-" JK motions: Line motions
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
+" Move to line
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+
+" Move to word
+" conflicts with my save
+" map <Leader>w <Plug>(easymotion-bd-w)
+" nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
