@@ -2086,6 +2086,9 @@ augroup MyVimrc
   au FileType Makefile setlocal noexpandtab
 
   au BufReadPost *.hlsl set filetype=fx
+  
+  au FileType css,less setlocal iskeyword+=-
+  au FileType javascript setlocal iskeyword+=$
 augroup END
 " }}}
 " Projects {{{
