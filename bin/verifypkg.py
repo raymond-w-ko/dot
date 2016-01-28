@@ -120,7 +120,10 @@ def pkgmd5s(pkgfile):
         with open(pkgfile, 'r') as f:
             tf = tarfile.TarFile(fileobj=StringIO(lzma.decompress(f.read())))
     else:
-        tf = tarfile.open(pkgfile, 'r')
+        try:
+            tf = tarfile.open(pkgfile, 'r')
+        except:
+            print("!!! corrupted pkgfile: " + pkg + " !!!")
     md5s = {}
     for ti in tf:
         if ti.isfile() and ti.name not in ('.PKGINFO', '.INSTALL', '.CHANGELOG', '.MTREE'):
