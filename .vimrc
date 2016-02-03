@@ -1825,13 +1825,20 @@ let g:detectindent_max_indent = 4
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " airline
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:airline_left_sep=''
-let g:airline_right_sep=''
+if has("win32") || has("win32unix")
+  let g:airline_left_sep=''
+  let g:airline_right_sep=''
+else
+  let g:airline_left_sep = ''
+  let g:airline_right_sep = ''
+end
 let g:airline_theme='base16'
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#tabline#enabled = 1
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " bufkill.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:BufKillCreateMappings = 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
