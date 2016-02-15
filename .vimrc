@@ -2211,4 +2211,10 @@ elseif has('win32')
   nnoremap <leader>m :update<CR>:call IssueBuildCommandToVisualStudio()<CR>
 endif
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" random stuff
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>c :s#_\(\l\)#\u\1#<CR>
+vnoremap <leader>c :s#_\(\l\)#\u\1#<CR>
+
 " }}}
