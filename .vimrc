@@ -1686,10 +1686,46 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-powerline
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" disabled for lightline
+let g:loaded_powerline=1
 let g:Powerline_symbols='compatible'
 let g:Powerline_stl_path_style='short'
 let g:Powerline_theme='default'
 let g:Powerline_colorscheme='default'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" airline
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" disabled for lightline
+let g:loaded_airline=1
+
+if has("win32") || has("win32unix")
+  let g:airline_left_sep=''
+  let g:airline_right_sep=''
+else
+  let g:airline_left_sep = ''
+  let g:airline_right_sep = ''
+end
+let g:airline_theme='base16'
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#tabline#enabled = 1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" airline
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:lightline = {
+    \ 'colorscheme': 'wombat',
+    \ 'component': {
+    \   'readonly': '%{&filetype=="help"?"":&readonly?"⭤":""}',
+    \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}'
+    \ },
+    \ 'component_visible_condition': {
+    \   'readonly': '(&filetype!="help"&& &readonly)',
+    \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))'
+    \ },
+    \ 'separator': { 'left': '⮀', 'right': '⮂' },
+    \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+    \ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UltiSnips
@@ -1821,21 +1857,6 @@ let g:detectindent_preferred_expandtab = 1
 let g:detectindent_min_indent = 2
 " hope to $DEITY that no one uses > 4 indents
 let g:detectindent_max_indent = 4
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" airline
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:loaded_airline=1
-if has("win32") || has("win32unix")
-  let g:airline_left_sep=''
-  let g:airline_right_sep=''
-else
-  let g:airline_left_sep = ''
-  let g:airline_right_sep = ''
-end
-let g:airline_theme='base16'
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline#extensions#tabline#enabled = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " bufkill.vim
