@@ -1825,6 +1825,7 @@ let g:detectindent_max_indent = 4
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " airline
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:loaded_airline=1
 if has("win32") || has("win32unix")
   let g:airline_left_sep=''
   let g:airline_right_sep=''
