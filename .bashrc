@@ -213,6 +213,12 @@ if [[ "$unameString" == 'Darwin' ]]; then
   alias ImmuneQuestBuilds="cd ~/Desktop/ImmuneQuest_Builds"
 fi
 
+sbscd() {
+  echo "$@"
+  remote_path=$(echo "$@" | tr '\\' '/' | sed 's/\/192.168.1.3\/Art/\/mnt\/art/g')
+  cd "$remote_path"
+}
+
 if hash stty 2>/dev/null; then
   stty stop undef
   stty start undef
