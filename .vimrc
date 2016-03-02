@@ -596,7 +596,7 @@ if !has("gui_running")
 endif
 
 " pretty vertical Splits
-set fillchars+=vert:\|
+set fillchars+=stl:\ ,stlnc:\ ,vert:\|
 
 if has("gui_running")
     set guioptions-=m  "remove menu bar
