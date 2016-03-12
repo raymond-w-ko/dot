@@ -34,6 +34,10 @@ xset fp rehash
 wmname LG3D
 hsetroot -solid '#000000'
 
+# sync clipboard
+autocutsel -fork &
+autocutsel -selection PRIMARY -fork &
+
 # WM must start this for this to work?
 #dropboxd
 

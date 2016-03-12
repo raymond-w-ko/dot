@@ -13,6 +13,7 @@ elif [ "$isHdmiConnected" -eq 1 ] && [ "$isLidOpen" -eq 0 ]; then
 else
   xrandr \
     --output LVDS-0 --auto --primary \
+    --output VGA-0 --off \
     --output HDMI-0 --off
 fi
 
