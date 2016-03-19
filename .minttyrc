@@ -42,3 +42,4 @@ White=147,161,161
 BoldBlack=101,123,131
 BoldRed=220,50,47
 CursorColour=0,255,0
+BellTaskbar=no
