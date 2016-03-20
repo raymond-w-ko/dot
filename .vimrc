@@ -1653,7 +1653,7 @@ let g:ctrlp_working_path_mode = 0
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_max_files = 0
-let g:ctrlp_lazy_update = 150
+let g:ctrlp_lazy_update = 0
 
 "function! CtrlPMatch(items, str, limit, mmode, ispath, crfile, regex) abort
   "let items = copy(a:items)
@@ -2091,9 +2091,9 @@ vmap <C-v> <Plug>(expand_region_shrink)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " incsearch.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map /  <Plug>(incsearch-forward)\v
-map ?  <Plug>(incsearch-backward)\v
-map g/ <Plug>(incsearch-stay)\v
+" map /  <Plug>(incsearch-forward)\v
+" map ?  <Plug>(incsearch-backward)\v
+" map g/ <Plug>(incsearch-stay)\v
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-asterisk
