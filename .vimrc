@@ -2091,9 +2091,9 @@ vmap <C-v> <Plug>(expand_region_shrink)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " incsearch.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" map /  <Plug>(incsearch-forward)\v
-" map ?  <Plug>(incsearch-backward)\v
-" map g/ <Plug>(incsearch-stay)\v
+map /  <Plug>(incsearch-forward)\v
+map ?  <Plug>(incsearch-backward)\v
+map g/ <Plug>(incsearch-stay)\v
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-asterisk
