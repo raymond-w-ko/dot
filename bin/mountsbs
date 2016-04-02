@@ -2,11 +2,12 @@
 CREDENTIALS=$HOME/.ssh/sycred
 OPTIONS=credentials=$CREDENTIALS,vers=2.0,soft
 
+SERVER=192.168.1.3
 ARRAY=( \
-  '//SYANDUS/Business:biz'  \
-  '//SYANDUS/Art:art'  \
-  '//SYANDUS/Staff:staff'  \
-  '//SYANDUS/Software:software'  \
+  "//$SERVER/Business:biz"  \
+  "//$SERVER/Art:art"  \
+  "//$SERVER/Staff:staff"  \
+  "//$SERVER/Software:software"  \
   )
 
 for pair in "${ARRAY[@]}" ; do
