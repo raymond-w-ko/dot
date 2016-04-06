@@ -46,9 +46,6 @@
 [submodule ".vim/bundle/omegacomplete"]
 	path = .vim/bundle/omegacomplete
 	url = git@github.com:raymond-w-ko/omegacomplete.vim.git
-[submodule ".vim/bundle/vim-airline"]
-	path = .vim/bundle/vim-airline
-	url = https://github.com/bling/vim-airline.git
 [submodule "src/dircolors-solarized"]
 	path = src/dircolors-solarized
 	url = https://github.com/seebi/dircolors-solarized.git
@@ -124,9 +121,6 @@
 [submodule ".vim/bundle/vim-bufkill"]
 	path = .vim/bundle/vim-bufkill
 	url = https://github.com/qpkorr/vim-bufkill.git
-[submodule ".vim/bundle/vim-yankstack"]
-	path = .vim/bundle/vim-yankstack
-	url = https://github.com/maxbrunsfeld/vim-yankstack.git
 [submodule ".vim/bundle/FastFold"]
 	path = .vim/bundle/FastFold
 	url = https://github.com/Konfekt/FastFold.git
@@ -157,9 +151,6 @@
 [submodule ".vim/bundle/vim-capslock"]
 	path = .vim/bundle/vim-capslock
 	url = https://github.com/tpope/vim-capslock.git
-[submodule ".vim/bundle/lexima.vim"]
-	path = .vim/bundle/lexima.vim
-	url = https://github.com/cohama/lexima.vim.git
 [submodule ".vim/bundle/incsearch.vim"]
 	path = .vim/bundle/incsearch.vim
 	url = https://github.com/haya14busa/incsearch.vim
@@ -202,12 +193,6 @@
 [submodule ".vim/bundle/vim-less"]
 	path = .vim/bundle/vim-less
 	url = https://github.com/genoma/vim-less.git
-[submodule ".vim/bundle/preto"]
-	path = .vim/bundle/preto
-	url = https://github.com/ewilazarus/preto.git
-[submodule ".vim/bundle/vim-airline-themes"]
-	path = .vim/bundle/vim-airline-themes
-	url = https://github.com/vim-airline/vim-airline-themes.git
 [submodule ".vim/bundle/lightline.vim"]
 	path = .vim/bundle/lightline.vim
 	url = https://github.com/itchyny/lightline.vim.git
