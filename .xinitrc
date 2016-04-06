@@ -16,6 +16,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 fi
 # override system defaults
 #. ~/dot/bin/infinality-settings.sh
+export INFINALITY_FT="ultimate3"
 
 # machine specific customization
 $HOME/.xinitrc.extra
