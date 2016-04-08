@@ -39,7 +39,7 @@ def cook(path):
     h = digest
     
   # make DDS
-  cached_dds = cache_dir + os.sep + h + ".png"
+  cached_dds = cache_dir + os.sep + h + ".dds"
   out = re.sub(r".png$", ".dds", path)
   if os.path.exists(cached_dds):
     print(cached_dds + " -> " + out)
