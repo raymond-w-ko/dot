@@ -681,7 +681,8 @@ nnoremap <silent> <leader>h6 :execute '6match InterestingWord6 /\<<c-r><c-w>\>/'
 " }}}
 " }}}
 " }}}
-" Folding {{{
+" Syntax and Folding {{{
+syntax sync fromstart
 "function! MyFoldText()
     "let line = getline(v:foldstart)
     "let sub = substitute(line, '^"\s\=\|/\*\|\*/\|{{{\d\=', '', 'g') "}}}
