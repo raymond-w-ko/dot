@@ -49,6 +49,8 @@ call add(g:pathogen_disabled, "vim-niji")
 call add(g:pathogen_disabled, "vim-endwise")
 " disable lexima.vim due to deletion limitations
 call add(g:pathogen_disabled, "lexima.vim")
+" vim-clang-format can handle javascript
+call add(g:pathogen_disabled, "vim-jsbeautify")
 
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
@@ -2068,22 +2070,22 @@ let g:tagbar_width=40
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:clang_format#code_style="google"
 let g:clang_format#detect_style_file=1
-autocmd FileType c,cpp,objc nnoremap <buffer><Leader>f :<C-u>ClangFormat<CR>zz
-autocmd FileType c,cpp,objc vnoremap <buffer><Leader>f :ClangFormat<CR>
+autocmd FileType c,cpp,objc,javascript nnoremap <buffer><Leader>f :<C-u>ClangFormat<CR>zz
+autocmd FileType c,cpp,objc,javascript vnoremap <buffer><Leader>f :ClangFormat<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-jsbeautify
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd FileType javascript noremap <buffer> <Leader>f :call JsBeautify()<CR>
-autocmd FileType json noremap <buffer> <Leader>f :call JsonBeautify()<CR>
-autocmd FileType jsx noremap <buffer> <Leader>f :call JsxBeautify()<CR>
-autocmd FileType html noremap <buffer> <Leader>f :call HtmlBeautify()<CR>
-autocmd FileType css noremap <buffer> <Leader>f :call CSSBeautify()<CR>
-autocmd FileType javascript vnoremap <buffer>  <Leader>f :call RangeJsBeautify()<CR>
-autocmd FileType json vnoremap <buffer> <Leader>f :call RangeJsonBeautify()<CR>
-autocmd FileType jsx vnoremap <buffer> <Leader>f :call RangeJsxBeautify()<CR>
-autocmd FileType html vnoremap <buffer> <Leader>f :call RangeHtmlBeautify()<CR>
-autocmd FileType css vnoremap <buffer> <Leader>f :call RangeCSSBeautify()<CR>
+" autocmd FileType javascript noremap <buffer> <Leader>f :call JsBeautify()<CR>
+" autocmd FileType json noremap <buffer> <Leader>f :call JsonBeautify()<CR>
+" autocmd FileType jsx noremap <buffer> <Leader>f :call JsxBeautify()<CR>
+" autocmd FileType html noremap <buffer> <Leader>f :call HtmlBeautify()<CR>
+" autocmd FileType css noremap <buffer> <Leader>f :call CSSBeautify()<CR>
+" autocmd FileType javascript vnoremap <buffer>  <Leader>f :call RangeJsBeautify()<CR>
+" autocmd FileType json vnoremap <buffer> <Leader>f :call RangeJsonBeautify()<CR>
+" autocmd FileType jsx vnoremap <buffer> <Leader>f :call RangeJsxBeautify()<CR>
+" autocmd FileType html vnoremap <buffer> <Leader>f :call RangeHtmlBeautify()<CR>
+" autocmd FileType css vnoremap <buffer> <Leader>f :call RangeCSSBeautify()<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " csscomplete.vim
