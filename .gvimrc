@@ -9,7 +9,7 @@ if has("win32")
     "set guifont=fixed613:h8
     "set guifont=Terminus:h9
     "set guifont=Terminus\ (TTF):h9
-    set guifont=creep2:h8
+    set guifont=creep2:h8:cANSI:qDEFAULT
     set linespace=0
     if has("directx")
         " set rop=type:directx,taamode:0

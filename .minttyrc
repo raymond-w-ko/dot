@@ -1,4 +1,4 @@
-BoldAsFont=yes
+BoldAsFont=no
 Transparency=off
 CursorType=block
 Font=creep2
@@ -44,4 +44,3 @@ BoldBlack=101,123,131
 BoldRed=220,50,47
 CursorColour=0,255,0
 BellTaskbar=no
-FontWeight=500
