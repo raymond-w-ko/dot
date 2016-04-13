@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if hash schedtool 2>/dev/null; then
-  exec schedtool -D -e vmplayer
+  exec schedtool -n 19 -D -e vmplayer
 else
   exec nice -n 19 vmplayer
 fi
