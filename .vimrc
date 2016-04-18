@@ -2175,8 +2175,8 @@ let s:commands = [
     \ 'Cellulose',          '__SVN__/SVN/Syandus_ALIVE4/Cellulose',
     \ 'Rosettastone',       '__SVN__/SVN/Syandus_Web/Merck/rosettastone',
     \ 'Merck',              '__SVN__/SVN/Syandus_Web/Merck',
-    \ 'Platform',           '__SVN__/SVN/Syandus_ALIVE5/syplatform',
-    \ 'Nitrogen',           '__SVN__/SVN/Syandus_ALIVE5/nitrogen.js',
+    \ 'Platform',           '__UNIX_HOME__/src/alive5/syplatform',
+    \ 'Nitrogen',           '__UNIX_HOME__/src/alive5/nitrogen.js',
     \ ]
 for i in range(len(s:commands) / 2)
     let cmd = (i * 2) + 0
