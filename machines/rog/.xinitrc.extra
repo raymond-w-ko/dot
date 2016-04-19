@@ -16,7 +16,7 @@ killall syndaemon
 syndaemon -t -k -i 1 -d &
 
 # this should prevent tearing
-compton --config /dev/null --backend glx --vsync opengl-swc --glx-no-rebind-pixmap --glx-no-stencil --unredir-if-possible --paint-on-overlay --xrender-sync-fence &
+compton -C -G --config /dev/null --backend glx --vsync opengl-swc &
 # disabled due to this not working with recent libglvnd
 # compton --config /dev/null -b --backend glx --vsync opengl-swc --glx-no-rebind-pixmap --glx-no-stencil --unredir-if-possible --paint-on-overlay --xrender-sync-fence
 #compton --config /dev/null -b --backend xrender --unredir-if-possible
