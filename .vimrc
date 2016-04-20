@@ -287,6 +287,9 @@ let s:project_directories_list = [
     \ '__UNIX_HOME__/src/tsukuyomi',
     \ '__UNIX_HOME__/src/letterdungeon',
     \ '__UNIX_HOME__/src/vim/src',
+    \ '__UNIX_HOME__/src/alive5',
+    \ '__UNIX_HOME__/src/alive5/frameworks/nitrogen',
+    \ '__UNIX_HOME__/src/alive5/apps/diabetes_cmesim_2015',
     \ '__UNIX_HOME__/.vim/bundle/omegacomplete',
     \ '__UNIX_HOME__/dot/.vim/bundle/omegacomplete',
     \ '__SVN__/SVN/Syandus_ALIVE3/Frameworks/Carbon',
@@ -2177,6 +2180,7 @@ let s:commands = [
     \ 'Merck',              '__SVN__/SVN/Syandus_Web/Merck',
     \ 'Platform',           '__UNIX_HOME__/src/alive5/syplatform',
     \ 'Nitrogen',           '__UNIX_HOME__/src/alive5/nitrogen.js',
+    \ 'Diabetes',           '__UNIX_HOME__/src/alive5/apps/diabetes_cmesim_2015',
     \ ]
 for i in range(len(s:commands) / 2)
     let cmd = (i * 2) + 0
