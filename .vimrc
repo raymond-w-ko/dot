@@ -287,11 +287,13 @@ let s:project_directories_list = [
     \ '__UNIX_HOME__/src/tsukuyomi',
     \ '__UNIX_HOME__/src/letterdungeon',
     \ '__UNIX_HOME__/src/vim/src',
+    \ '__UNIX_HOME__/.vim/bundle/omegacomplete',
+    \ '__UNIX_HOME__/dot/.vim/bundle/omegacomplete',
     \ '__UNIX_HOME__/src/alive5',
     \ '__UNIX_HOME__/src/alive5/frameworks/nitrogen',
     \ '__UNIX_HOME__/src/alive5/apps/diabetes_cmesim_2015',
-    \ '__UNIX_HOME__/.vim/bundle/omegacomplete',
-    \ '__UNIX_HOME__/dot/.vim/bundle/omegacomplete',
+    \ '__UNIX_HOME__/src/alive5/tools/parsenip',
+    \ '__UNIX_HOME__/src/alive5/tools/hummus',
     \ '__SVN__/SVN/Syandus_ALIVE3/Frameworks/Carbon',
     \ '__SVN__/SVN/Syandus_ALIVE3/Frameworks/CarbonCME',
     \ '__SVN__/SVN/Syandus_ALIVE3/Frameworks/Oxygen',
@@ -336,8 +338,6 @@ let s:project_directories_list = [
     \ '__SVN__/SVN/Syandus_Cores/C_Sym_DM_01',
     \ '__SVN__/SVN/Syandus_Cores/C_Unb_COPD_01',
     \ '__SVN__/SVN/Syandus_ALIVE4/Cellulose',
-    \ '__SVN__/SVN/Syandus_ALIVE5/syplatform',
-    \ '__SVN__/SVN/Syandus_ALIVE5/nitrogen.js',
     \ '__SVN__/SVN/Syandus_Web/Merck/DrugDev/English',
     \ ]
 
@@ -2181,6 +2181,8 @@ let s:commands = [
     \ 'Platform',           '__UNIX_HOME__/src/alive5/syplatform',
     \ 'Nitrogen',           '__UNIX_HOME__/src/alive5/nitrogen.js',
     \ 'Diabetes',           '__UNIX_HOME__/src/alive5/apps/diabetes_cmesim_2015',
+    \ 'Hummus',             '__UNIX_HOME__/src/alive5/tools/hummus',
+    \ 'Parsenip',           '__UNIX_HOME__/src/alive5/tools/parsenip',
     \ ]
 for i in range(len(s:commands) / 2)
     let cmd = (i * 2) + 0
