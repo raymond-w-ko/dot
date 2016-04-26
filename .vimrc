@@ -291,6 +291,7 @@ let s:project_directories_list = [
     \ '__UNIX_HOME__/dot/.vim/bundle/omegacomplete',
     \ '__UNIX_HOME__/src/alive5',
     \ '__UNIX_HOME__/src/alive5/frameworks/nitrogen',
+    \ '__UNIX_HOME__/src/alive5/frameworks/proton',
     \ '__UNIX_HOME__/src/alive5/apps/diabetes_cmesim_2015',
     \ '__UNIX_HOME__/src/alive5/tools/parsenip',
     \ '__UNIX_HOME__/src/alive5/tools/hummus',
@@ -2150,7 +2151,7 @@ let s:commands = [
     \ 'Oxygen',             '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Oxygen',
     \ 'Hydrogen',           '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Hydrogen',
     \ 'Nitrogen4',          '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Nitrogen',
-    \ 'Proton',             '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Proton',
+    \ 'Proton4',            '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Proton',
     \ 'Symlin',             '__SVN__/SVN/Syandus_Cores/C_Sym_DM_01',
     \ 'Spiriva',            '__SVN__/SVN/Syandus_Cores/C_Spv_COPD_01',
     \ 'Copd',               '__SVN__/SVN/Syandus_Cores/C_COPD_Treatment_01',
@@ -2183,6 +2184,7 @@ let s:commands = [
     \ 'Diabetes',           '__UNIX_HOME__/src/alive5/apps/diabetes_cmesim_2015',
     \ 'Hummus',             '__UNIX_HOME__/src/alive5/tools/hummus',
     \ 'Parsenip',           '__UNIX_HOME__/src/alive5/tools/parsenip',
+    \ 'Proton',             '__UNIX_HOME__/src/alive5/frameworks/proton',
     \ ]
 for i in range(len(s:commands) / 2)
     let cmd = (i * 2) + 0
