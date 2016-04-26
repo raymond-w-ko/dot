@@ -2180,10 +2180,10 @@ let s:commands = [
     \ 'Rosettastone',       '__SVN__/SVN/Syandus_Web/Merck/rosettastone',
     \ 'Merck',              '__SVN__/SVN/Syandus_Web/Merck',
     \ 'Platform',           '__UNIX_HOME__/src/alive5/syplatform',
-    \ 'Nitrogen',           '__UNIX_HOME__/src/alive5/nitrogen.js',
     \ 'Diabetes',           '__UNIX_HOME__/src/alive5/apps/diabetes_cmesim_2015',
     \ 'Hummus',             '__UNIX_HOME__/src/alive5/tools/hummus',
     \ 'Parsenip',           '__UNIX_HOME__/src/alive5/tools/parsenip',
+    \ 'Nitrogen',           '__UNIX_HOME__/src/alive5/frameworks/nitrogen',
     \ 'Proton',             '__UNIX_HOME__/src/alive5/frameworks/proton',
     \ ]
 for i in range(len(s:commands) / 2)
