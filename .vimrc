@@ -291,6 +291,7 @@ let s:project_directories_list = [
     \ '__UNIX_HOME__/dot/.vim/bundle/omegacomplete',
     \ '__UNIX_HOME__/src/alive5',
     \ '__UNIX_HOME__/src/alive5/frameworks/nitrogen',
+    \ '__UNIX_HOME__/src/alive5/frameworks/fluorine',
     \ '__UNIX_HOME__/src/alive5/frameworks/proton',
     \ '__UNIX_HOME__/src/alive5/apps/diabetes_cmesim_2015',
     \ '__UNIX_HOME__/src/alive5/tools/parsenip',
@@ -2184,6 +2185,7 @@ let s:commands = [
     \ 'Hummus',             '__UNIX_HOME__/src/alive5/tools/hummus',
     \ 'Parsenip',           '__UNIX_HOME__/src/alive5/tools/parsenip',
     \ 'Nitrogen',           '__UNIX_HOME__/src/alive5/frameworks/nitrogen',
+    \ 'Fluorine',           '__UNIX_HOME__/src/alive5/frameworks/fluorine',
     \ 'Proton',             '__UNIX_HOME__/src/alive5/frameworks/proton',
     \ ]
 for i in range(len(s:commands) / 2)

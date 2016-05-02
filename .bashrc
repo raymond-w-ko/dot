@@ -209,6 +209,7 @@ alias Oxygen="cd ~/SVN/Syandus_ALIVE4/Frameworks/Oxygen/Build/Content"
 alias merck="cd ~/SVN/Syandus_Web/Merck"
 alias Alive5="cd ~/src/alive5"
 alias Nitrogen="cd ~/src/alive5/frameworks/nitrogen"
+alias Fluorine="cd ~/src/alive5/frameworks/fluorine"
 alias Platform="cd ~/src/alive5/syplatform"
 alias Diabetes="cd ~/src/alive5/apps/diabetes_cmesim_2015"
 
