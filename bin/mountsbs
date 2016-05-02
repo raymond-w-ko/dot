@@ -1,6 +1,6 @@
 #!/bin/bash
 CREDENTIALS=$HOME/.ssh/sycred
-OPTIONS=credentials=$CREDENTIALS,workgroup=WORKGROUP,soft
+OPTIONS=credentials=$CREDENTIALS,workgroup=WORKGROUP,soft,vers=2.1
 
 SERVER=192.168.1.3
 ARRAY=( \
