@@ -322,8 +322,6 @@ let s:project_directories_list = [
     \ '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Nitrogen16',
     \ '__SVN__/SVN/Syandus_ALIVE4/Platform/Source/Code',
     \ '__SVN__/SVN/Syandus_ALIVE4/Tools/Source/SyProjectGenerator',
-    \ '__SVN__/SVN/Syandus_ALIVE4/Tools/Source/mercky',
-    \ '__SVN__/SVN/Syandus_ALIVE4/Web/Merck/Phase 1/PCRD/retroSyrus',
     \ '__SVN__/SVN/Syandus_Company/Web/Syandus.com/main/2012-html',
     \ '__SVN__/SVN/Syandus_Company/Web/Syandus.com/main/2013-html/html',
     \ '__SVN__/SVN/Syandus_Cores/C_CMSC_MS_01',
@@ -340,7 +338,6 @@ let s:project_directories_list = [
     \ '__SVN__/SVN/Syandus_Cores/C_Sym_DM_01',
     \ '__SVN__/SVN/Syandus_Cores/C_Unb_COPD_01',
     \ '__SVN__/SVN/Syandus_ALIVE4/Cellulose',
-    \ '__SVN__/SVN/Syandus_Web/Merck/DrugDev/English',
     \ ]
 
 let g:my_project_directories = {}
@@ -2178,8 +2175,8 @@ let s:commands = [
     \ 'Ms',                 '__SVN__/SVN/Syandus_Cores/C_CMSC_MS_01',
     \ 'SyandusHtml5',       '__SVN__/SVN/Syandus_Company/Web/Syandus.com/main/2013-html/html',
     \ 'Cellulose',          '__SVN__/SVN/Syandus_ALIVE4/Cellulose',
-    \ 'Rosettastone',       '__SVN__/SVN/Syandus_Web/Merck/rosettastone',
-    \ 'Merck',              '__SVN__/SVN/Syandus_Web/Merck',
+    \ 'Rosettastone',       '__UNIX_HOME__/src/merck/rosettastone',
+    \ 'Merck',              '__UNIX_HOME__/src/merck',
     \ 'Platform',           '__UNIX_HOME__/src/alive5/syplatform',
     \ 'Diabetes',           '__UNIX_HOME__/src/alive5/apps/diabetes_cmesim_2015',
     \ 'Hummus',             '__UNIX_HOME__/src/alive5/tools/hummus',
