@@ -49,9 +49,9 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 if [[ $(uname -s) == CYGWIN* ]]; then
-  plugins=(git mercurial lein pip svn systemd tmux screen vim-interaction adb ant brew cp chucknorris history-substring-search)
+  plugins=(git gitfast mercurial lein pip svn systemd tmux screen vim-interaction adb ant brew cp chucknorris history-substring-search)
 else
-  plugins=(git mercurial lein pip svn systemd tmux screen vim-interaction adb ant brew cp chucknorris history-substring-search node npm archlinux)
+  plugins=(git gitfast mercurial lein pip svn systemd tmux screen vim-interaction adb ant brew cp chucknorris history-substring-search node npm archlinux)
 fi
 
 # stop eating characters after tab completion
