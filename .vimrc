@@ -140,7 +140,11 @@ set selection=inclusive
 set mousehide
 set nomousefocus
 set mouse=a
-set ttymouse=xterm2
+if has("mouse_sgr")
+  set ttymouse=sgr
+else
+  set ttymouse=xterm2
+end
 set clipboard=autoselect
 set pastetoggle=<F9>
 
