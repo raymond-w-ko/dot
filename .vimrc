@@ -619,8 +619,12 @@ nnoremap Vab vabV
 nnoremap VaB vaBV
 
 " It's 2011.
-nnoremap <silent> j gj
-nnoremap <silent> k gk
+" nnoremap <silent> j gj
+" nnoremap <silent> k gk
+" this variant by Petr Zemek allows j and k to work properly whe nusing
+" relative line numbers
+noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
+noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
 " treat leading whitespace as though it was not there
 function! MyLeftBrace()
