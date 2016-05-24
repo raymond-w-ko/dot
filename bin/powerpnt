@@ -1,4 +1,7 @@
 #!/bin/bash
 
+if [[ ! -z $1 ]]; then
+  FILE=$(winepath -w $1)
+fi
 export WINE_DEBUG=-all,warn-all,fixme-all
-exec wine 'C:/Program Files/Microsoft Office/Office14/POWERPNT.exe' &>/dev/null
+exec wine 'C:/Program Files/Microsoft Office/Office14/POWERPNT.exe' $FILE &>/dev/null
