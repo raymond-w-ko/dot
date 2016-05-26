@@ -18,9 +18,9 @@ for pair in "${ARRAY[@]}" ; do
     echo "$SYPATH already mounted"
   else
     mkdir -p "/mnt/$DIR"
-    EXTRA_OPT=",ro"
+    EXTRA_OPT=",ro,echo_interval=5"
     if [ "$DIR" == "staff" ]; then
-      EXTRA_OPT=",uid=1000"
+      EXTRA_OPT=",uid=1000,echo_interval=5"
     fi
 
     CMD="sudo mount -v -t cifs "$SYPATH" "/mnt/$DIR" -o $OPTIONS$EXTRA_OPT"
