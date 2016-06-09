@@ -1629,13 +1629,13 @@ let g:ctrlp_lazy_update = 0
 "let g:ctrlp_match_func = {'match': function('CtrlPMatch')}
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$|[\/]compiled[\/]out$|[\/]node_modules$',
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$|[\/]compiled[\/]out$|[\/]node_modules$|[\/]__pycache__$',
   \ }
 
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
   let exts=&wildignore
-  let exts .= ',.git,.hg,.svn,node_modules'
+  let exts .= ',.git,.hg,.svn,node_modules,__pycache__'
   let ignored_exts = map(split(exts, ','), '"--ignore \"" . v:val . "\""')
   let ignore_string = join(ignored_exts, ' ')
   let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden -g "" ' . ignore_string
