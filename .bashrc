@@ -188,6 +188,11 @@ svnshow() {
 }
 alias svnignore='svn propedit svn:ignore'
 
+dcleanup(){
+  docker rm -v $(docker ps --filter status=exited -q 2>/dev/null) 2>/dev/null
+  docker rmi $(docker images --filter dangling=true -q 2>/dev/null) 2>/dev/null
+}
+
 # custom work aliases
 alias Platform4="cd ~/SVN/Syandus_ALIVE4/Platform/Source/Code"
 if [[ "$unameString" == 'Darwin' ]]; then
