@@ -89,6 +89,13 @@ echo
 
 echo "export PATH=$HOME/$BASE_SCRIPT_DIR/bin:$HOME/bin:\$PATH" > "$SCRIPT_DIR/.bash.d/add_dot_extra_paths.sh"
 
+if [[ ! -d $HOME/src/tmux ]]; then
+  git clone https://github.com/tmux/tmux.git $HOME/src/tmux
+fi
+if [[ ! -d $HOME/src/vim ]]; then
+  git clone git@github.com:raymond-w-ko/vim.git $HOME/src/vim
+fi
+
 ################################################################################
 
 if [ -z "$1" ]; then
