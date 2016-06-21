@@ -126,7 +126,7 @@ def pkgmd5s(pkgfile):
             print("!!! corrupted pkgfile: " + pkg + " !!!")
     md5s = {}
     for ti in tf:
-        if ti.isfile() and ti.name not in ('.PKGINFO', '.INSTALL', '.CHANGELOG', '.MTREE'):
+        if ti.isfile() and ti.name not in ('.PKGINFO', '.INSTALL', '.CHANGELOG', '.MTREE', '.BUILDINFO'):
             f = tf.extractfile(ti)
             md5s[ti.name] = hashlib.md5(f.read()).hexdigest()
             f.close()
