@@ -1693,16 +1693,17 @@ let g:lightline = {
     \   'fileencoding': 'LightLineFileencoding',
     \   'mode': 'LightLineMode',
     \ },
-    \ 'separator': { 'left': '⮀', 'right': '⮂' },
-    \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
     \ }
+    " \ 'separator': { 'left': '⮀', 'right': '⮂' },
+    " \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
 
 function! LightLineModified()
   return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
 endfunction
 
 function! LightLineReadonly()
-  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '⭤' : ''
+  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '[RO]' : ''
+  " return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '⭤' : ''
 endfunction
 
 function! LightLineFilename()
@@ -1717,7 +1718,8 @@ endfunction
 function! LightLineFugitive()
   if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
     let _ = fugitive#head()
-    return strlen(_) ? '⭠ '._ : ''
+    return strlen(_) ? '(branch) '._ : ''
+    " return strlen(_) ? '⭠ '._ : ''
   endif
   return ''
 endfunction
