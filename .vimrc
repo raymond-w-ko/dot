@@ -52,6 +52,11 @@ call add(g:pathogen_disabled, "lexima.vim")
 " vim-clang-format can handle javascript
 call add(g:pathogen_disabled, "vim-jsbeautify")
 
+" this plugin makes any file access extremely slow...
+if has('win32unix')
+  call add(g:pathogen_disabled, "vim-salve")
+endif
+
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
