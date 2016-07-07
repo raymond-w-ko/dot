@@ -165,6 +165,7 @@ alias ga='git add'
 alias gaa='git add --all'
 alias gapa='git add --patch'
 alias gcfxd='git clean -fxd'
+alias gitrmmissing='git ls-files --deleted -z | xargs -0 git rm'
 
 alias hs='hg status'
 alias hm='hg merge'
