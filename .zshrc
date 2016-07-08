@@ -61,6 +61,19 @@ export ZLE_REMOVE_SUFFIX_CHARS=""
 
 source $ZSH/oh-my-zsh.sh
 
+# oh-my-bug!
+# https://github.com/robbyrussell/oh-my-zsh/issues/1398
+## case-insensitive (all),partial-word and then substring completion
+if [ "x$CASE_SENSITIVE" = "xtrue" ]; then
+	zstyle ':completion:*' matcher-list 'r:|=*' 'l:|=* r:|=*'
+else
+	if [ "x$HYPHEN_INSENSITIVE" = "xtrue" ]; then
+		zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|=*' 'l:|=* r:|=*'
+	else
+		zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+	fi
+fi
+
 setopt AUTO_CD
 setopt no_sharehistory
 
