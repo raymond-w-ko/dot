@@ -1,8 +1,13 @@
 #!/bin/bash
 isHdmiConnected=$(xrandr | grep 'HDMI-0 connected' | wc -l)
+isDpOneConnected=$(xrandr | grep 'DP-1 connected' | wc -l)
 isLidOpen=$(cat /proc/acpi/button/lid/LID/state | grep 'open' | wc -l)
 
-if [ "$isHdmiConnected" -eq 1 ] && [ "$isLidOpen" -eq 1 ]; then
+if [ "$isDpOneConnected" -eq 1 ] && [ "$isLidOpen" -eq 1 ]; then
+  xrandr \
+    --output LVDS-0 --auto \
+    --output DP-1 --auto --primary --right-of LVDS-0
+elif [ "$isHdmiConnected" -eq 1 ] && [ "$isLidOpen" -eq 1 ]; then
   xrandr \
     --output LVDS-0 --auto \
     --output HDMI-0 --auto --primary --right-of LVDS-0
