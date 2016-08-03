@@ -8,6 +8,7 @@ ARRAY=( \
   "//$SERVER/Art:art"  \
   "//$SERVER/Staff:staff"  \
   "//$SERVER/Software:software"  \
+  "//$SERVER/syandus general:general"  \
   )
 
 for pair in "${ARRAY[@]}" ; do
@@ -23,8 +24,6 @@ for pair in "${ARRAY[@]}" ; do
       EXTRA_OPT=",uid=1000,echo_interval=5"
     fi
 
-    CMD="sudo mount -v -t cifs "$SYPATH" "/mnt/$DIR" -o $OPTIONS$EXTRA_OPT"
-    echo $CMD
-    $CMD
+    sudo mount -v -t cifs "$SYPATH" /mnt/$DIR -o $OPTIONS$EXTRA_OPT
   fi
 done
