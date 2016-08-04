@@ -19,7 +19,8 @@ else
   xrandr \
     --output LVDS-0 --auto --primary \
     --output VGA-0 --off \
-    --output HDMI-0 --off
+    --output HDMI-0 --off \
+    --output DP-1 --off
 fi
 
 #$configure_i3_workspaces.sh
