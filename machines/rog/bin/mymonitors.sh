@@ -3,16 +3,21 @@ isHdmiConnected=$(xrandr | grep 'HDMI-0 connected' | wc -l)
 isDpOneConnected=$(xrandr | grep 'DP-1 connected' | wc -l)
 isLidOpen=$(cat /proc/acpi/button/lid/LID/state | grep 'open' | wc -l)
 
+xrandr --rmmode "3840x2160R"
+xrandr --newmode "3840x2160R"  533.00  3840 3888 3920 4000  2160 2163 2168 2222 +hsync -vsync
+
 if [ "$isDpOneConnected" -eq 1 ] && [ "$isLidOpen" -eq 1 ]; then
   echo "DisplayPort and Laptop Screen"
+  xrandr --addmode DP-1 "3840x2160R"
   xrandr \
     --output LVDS-0 --auto \
-    --output DP-1 --auto --primary --right-of LVDS-0
+    --output DP-1 --primary --right-of LVDS-0 --mode "3840x2160R"
 elif [ "$isDpOneConnected" -eq 1 ] && [ "$isLidOpen" -eq 0 ]; then
   echo "DisplayPort Only"
+  xrandr --addmode DP-1 "3840x2160R"
   xrandr \
     --output LVDS-0 --off \
-    --output DP-1 --auto --primary
+    --output DP-1 --primary --mode "3840x2160R"
 elif [ "$isHdmiConnected" -eq 1 ] && [ "$isLidOpen" -eq 1 ]; then
   echo "HDMI and Laptop Screen"
   xrandr \
