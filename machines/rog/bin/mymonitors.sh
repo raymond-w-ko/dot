@@ -11,13 +11,13 @@ if [ "$isDpOneConnected" -eq 1 ] && [ "$isLidOpen" -eq 1 ]; then
   xrandr --addmode DP-1 "3840x2160R"
   xrandr \
     --output LVDS-0 --auto \
-    --output DP-1 --primary --right-of LVDS-0 --mode "3840x2160R"
+    --output DP-1 --primary --right-of LVDS-0 --auto
 elif [ "$isDpOneConnected" -eq 1 ] && [ "$isLidOpen" -eq 0 ]; then
   echo "DisplayPort Only"
   xrandr --addmode DP-1 "3840x2160R"
   xrandr \
     --output LVDS-0 --off \
-    --output DP-1 --primary --mode "3840x2160R"
+    --output DP-1 --primary --auto
 elif [ "$isHdmiConnected" -eq 1 ] && [ "$isLidOpen" -eq 1 ]; then
   echo "HDMI and Laptop Screen"
   xrandr \
