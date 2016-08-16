@@ -547,7 +547,7 @@ if !exists("g:already_set_color_scheme") && !($TERM == "linux")
     set background=dark
 
     let base16colorspace=256
-    colorscheme base16-solarized
+    colorscheme preto
 
     let g:already_set_color_scheme=1
 endif
