@@ -92,116 +92,116 @@ endfunction
 " Composition ------------------------------------------------------------ {{{1
 
 " PRIMITIVES
-call s:HL('Boolean'		  , s:palette.gray09, s:palette.black , 'bold'	   )
-call s:HL('Character'	  , s:palette.gray09, s:palette.black , 'bold'	   )
-call s:HL('Constant'	  , s:palette.gray09, s:palette.black , 'bold'	   )
-call s:HL('Float'		  , s:palette.gray09, s:palette.black , 'bold'	   )
-call s:HL('Number'		  , s:palette.gray09, s:palette.black , 'bold'	   )
-call s:HL('String'		  , s:palette.gray12, s:palette.black , 'none'	   )
-call s:HL('SpecialChar'	  , s:palette.white , s:palette.black , 'none'	   )
+call s:HL('Boolean',        s:palette.gray09, s:palette.black , 'none'	   )
+call s:HL('Character',      s:palette.gray09, s:palette.black , 'none'	   )
+call s:HL('Constant',       s:palette.gray09, s:palette.black , 'none'	   )
+call s:HL('Float',          s:palette.gray09, s:palette.black , 'none'	   )
+call s:HL('Number',         s:palette.gray09, s:palette.black , 'none'	   )
+call s:HL('String',         s:palette.gray12, s:palette.black , 'none'	   )
+call s:HL('SpecialChar',    s:palette.white , s:palette.black , 'none'	   )
 
 " COMMENTS
-call s:HL('Comment'		  , s:palette.gray09, s:palette.black , 'bold'	   )
-call s:HL('SpecialComment', s:palette.gray09, s:palette.black , 'bold'	   )
-call s:HL('Title'		  , s:palette.gray09, s:palette.black , 'bold'	   )
-call s:HL('Todo'		  , s:palette.purple, s:palette.black , 'bold'	   )
+call s:HL('Comment',        s:palette.gray11, s:palette.black , 'none'	   )
+call s:HL('SpecialComment', s:palette.gray12, s:palette.black , 'none'	   )
+call s:HL('Title',          s:palette.gray09, s:palette.black , 'none'	   )
+call s:HL('Todo',           s:palette.purple, s:palette.black , 'none'	   )
 
 " LINES, COLUMNS
-call s:HL('LineNr'		  , s:palette.gray06, s:palette.black , 'bold'	   )
-call s:HL('CursorLine'	  , s:palette.white , s:palette.gray03, 'none'	   )
-call s:HL('CursorLineNr'  , s:palette.gray09, s:palette.black , 'bold'	   )
+call s:HL('LineNr',         s:palette.gray06, s:palette.black , 'none'	   )
+call s:HL('CursorLine',     s:palette.white , s:palette.gray03, 'none'	   )
+call s:HL('CursorLineNr',   s:palette.gray09, s:palette.black , 'none'	   )
 
-call s:HL('ColorColumn'	  , s:palette.white , s:palette.gray03, 'none'	   )
-call s:HL('CursorColumn'  , s:palette.gray16, s:palette.gray03, 'none'	   )
+call s:HL('ColorColumn',    s:palette.white , s:palette.gray03, 'none'	   )
+call s:HL('CursorColumn',   s:palette.gray16, s:palette.gray03, 'none'	   )
 
 " VISUAL MODE
-call s:HL('Visual'		  , s:palette.green , s:palette.gray06, 'none'	   )
-call s:HL('VisualNOS'	  , s:palette.green , s:palette.gray06, 'none'	   )
+call s:HL('Visual',         s:palette.green , s:palette.gray06, 'none'	   )
+call s:HL('VisualNOS',      s:palette.green , s:palette.gray06, 'none'	   )
 
 " SEARCH
-call s:HL('Search'		  , s:palette.black , s:palette.yellow, 'bold'	   )
-call s:HL('IncSearch'	  , s:palette.yellow, s:palette.black , 'bold'	   )
+call s:HL('Search',         s:palette.black , s:palette.yellow, 'none'	   )
+call s:HL('IncSearch',      s:palette.yellow, s:palette.black , 'none'	   )
 
 " SPELLING
-call s:HL('SpellBad'	  , s:palette.white , s:palette.red	  , 'bold'	   )
-call s:HL('SpellCap'	  , s:palette.white , s:palette.red	  , 'bold'	   )
-call s:HL('SpellLocal'	  , s:palette.white , s:palette.red	  , 'bold'	   )
-call s:HL('SpellRare'	  , s:palette.white , s:palette.red	  , 'bold'	   )
+call s:HL('SpellBad',       s:palette.white , s:palette.red	  , 'none'	   )
+call s:HL('SpellCap',       s:palette.white , s:palette.red	  , 'none'	   )
+call s:HL('SpellLocal',     s:palette.white , s:palette.red	  , 'none'	   )
+call s:HL('SpellRare',      s:palette.white , s:palette.red	  , 'none'	   )
 
 " ERROR
-call s:HL('Error'		  , s:palette.red	, s:palette.black , 'bold'	   )
+call s:HL('Error',          s:palette.red	, s:palette.black , 'none'	   )
 
 " COMMAND MODE MESSAGES
-call s:HL('ErrorMsg'	  , s:palette.red	, s:palette.black , 'bold'	   )
-call s:HL('WarningMsg'	  , s:palette.brown	, s:palette.black , 'bold'	   )
-call s:HL('ModeMsg'		  , s:palette.white	, s:palette.black , 'bold'	   )
-call s:HL('MoreMsg'		  , s:palette.white	, s:palette.black , 'bold'	   )
+call s:HL('ErrorMsg',       s:palette.red	, s:palette.black , 'none'	   )
+call s:HL('WarningMsg',     s:palette.brown	, s:palette.black , 'none'	   )
+call s:HL('ModeMsg',        s:palette.white	, s:palette.black , 'none'	   )
+call s:HL('MoreMsg',        s:palette.white	, s:palette.black , 'none'	   )
 
 " PREPROCESSOR DIRECTIVES
-call s:HL('Include'		  , s:palette.white	, s:palette.black , 'bold'	   )
-call s:HL('Define'		  , s:palette.white	, s:palette.black , 'bold'	   )
-call s:HL('Macro'		  , s:palette.white	, s:palette.black , 'bold'	   )
-call s:HL('PreCondit'	  , s:palette.white	, s:palette.black , 'bold'	   )
-call s:HL('PreProc'		  , s:palette.white	, s:palette.black , 'bold'	   )
+call s:HL('Include',        s:palette.white	, s:palette.black , 'none'	   )
+call s:HL('Define',         s:palette.white	, s:palette.black , 'none'	   )
+call s:HL('Macro',          s:palette.white	, s:palette.black , 'none'	   )
+call s:HL('PreCondit',      s:palette.white	, s:palette.black , 'none'	   )
+call s:HL('PreProc',        s:palette.white	, s:palette.black , 'none'	   )
 
 " BINDINGS
-call s:HL('Identifier'	  , s:palette.white	, s:palette.black , 'bold'	   )
-call s:HL('Function'	  , s:palette.white	, s:palette.black , 'bold'	   )
-call s:HL('Keyword'		  , s:palette.white	, s:palette.black , 'bold'	   )
-call s:HL('Operator'	  , s:palette.white	, s:palette.black , 'bold'	   )
+call s:HL('Identifier',     s:palette.white	, s:palette.black , 'none'	   )
+call s:HL('Function',       s:palette.white	, s:palette.black , 'none'	   )
+call s:HL('Keyword',        s:palette.white	, s:palette.black , 'none'	   )
+call s:HL('Operator',       s:palette.white	, s:palette.black , 'none'	   )
 
 " TYPES
-call s:HL('Type'		  , s:palette.white	, s:palette.black , 'bold'	   )
-call s:HL('Typedef'	  	  , s:palette.white	, s:palette.black , 'bold'	   )
-call s:HL('StorageClass'  , s:palette.white	, s:palette.black , 'bold'	   )
-call s:HL('Structure'	  , s:palette.white	, s:palette.black , 'bold'	   )
+call s:HL('Type',           s:palette.white	, s:palette.black , 'none'	   )
+call s:HL('Typedef',        s:palette.white	, s:palette.black , 'none'	   )
+call s:HL('StorageClass',   s:palette.white	, s:palette.black , 'none'	   )
+call s:HL('Structure',      s:palette.white	, s:palette.black , 'none'	   )
 
 " FLOW CONTROL
-call s:HL('Statement'	  , s:palette.white	, s:palette.black , 'bold'	   )
-call s:HL('Conditional'	  , s:palette.white	, s:palette.black , 'bold'	   )
-call s:HL('Repeat'		  , s:palette.white	, s:palette.black , 'bold'	   )
-call s:HL('Label'		  , s:palette.white	, s:palette.black , 'bold'	   )
-call s:HL('Exception'	  , s:palette.white	, s:palette.black , 'bold'	   )
+call s:HL('Statement',      s:palette.white	, s:palette.black , 'none'	   )
+call s:HL('Conditional',    s:palette.white	, s:palette.black , 'none'	   )
+call s:HL('Repeat',         s:palette.white	, s:palette.black , 'none'	   )
+call s:HL('Label',          s:palette.white	, s:palette.black , 'none'	   )
+call s:HL('Exception',      s:palette.white	, s:palette.black , 'none'	   )
 
 " MISC
-call s:HL('Normal'		  , s:palette.gray14, s:palette.black , 'none'	   )
-call s:HL('Cursor'		  , s:palette.white , s:palette.black , 'none'	   , 'gui_macvim')
-call s:HL('Underlined'	  , s:palette.gray12, s:palette.black , 'underline')
-call s:HL('SpecialKey'	  , s:palette.white	, s:palette.black , 'bold'	   )
-call s:HL('NonText'		  , s:palette.white , s:palette.black , 'bold'	   )
-call s:HL('Directory'  	  , s:palette.orange, s:palette.black , 'none'	   )
+call s:HL('Normal',         s:palette.gray14, s:palette.black , 'none'	   )
+call s:HL('Cursor',         s:palette.white , s:palette.black , 'none'	   , 'gui_macvim')
+call s:HL('Underlined',     s:palette.gray12, s:palette.black , 'underline')
+call s:HL('SpecialKey',     s:palette.white	, s:palette.black , 'none'	   )
+call s:HL('NonText',        s:palette.white , s:palette.black , 'none'	   )
+call s:HL('Directory',      s:palette.orange, s:palette.black , 'none'	   )
 
 " FOLD
-call s:HL('FoldColumn'	  , s:palette.gray06, s:palette.black , 'bold'	   )
-call s:HL('Folded'		  , s:palette.gray06, s:palette.black , 'bold'	   )
+call s:HL('FoldColumn',     s:palette.gray06, s:palette.black , 'none'	   )
+call s:HL('Folded',         s:palette.gray06, s:palette.black , 'none'	   )
 
 " PARENTHESIS
-call s:HL('MatchParen'	  , s:palette.orange, s:palette.black , 'bold'	   )
+call s:HL('MatchParen',     s:palette.orange, s:palette.black , 'none'	   )
 
 " POPUP
-call s:HL('Pmenu'		  , s:palette.white , s:palette.gray09, 'none'	   )
-call s:HL('PmenuSbar'	  , s:palette.black , s:palette.gray19, 'none'	   )
-call s:HL('PmenuSel'	  , s:palette.black , s:palette.gray19, 'none'	   )
-call s:HL('PmenuThumb'	  , s:palette.gray01, s:palette.gray09, 'none'	   )
+call s:HL('Pmenu',          s:palette.white , s:palette.gray09, 'none'	   )
+call s:HL('PmenuSbar',      s:palette.black , s:palette.gray19, 'none'	   )
+call s:HL('PmenuSel',       s:palette.black , s:palette.gray19, 'none'	   )
+call s:HL('PmenuThumb',     s:palette.gray01, s:palette.gray09, 'none'	   )
 
 " SPLITS
-call s:HL('VertSplit'	  , s:palette.gray19, s:palette.black , 'none'	   )
+call s:HL('VertSplit',      s:palette.gray19, s:palette.black , 'none'	   )
 
 " OTHERS
-call s:HL('Debug'		  , s:palette.white	, s:palette.black , 'none'	   )
-call s:HL('Delimiter'  	  , s:palette.white	, s:palette.black , 'none'	   )
-call s:HL('Question'   	  , s:palette.white	, s:palette.black , 'none'	   )
-call s:HL('Special'		  , s:palette.white	, s:palette.black , 'none'	   )
-call s:HL('StatusLine' 	  , s:palette.white	, s:palette.black , 'none'	   , 'gui_macvim')
-call s:HL('StatusLineNC'  , s:palette.white	, s:palette.black , 'none'	   , 'gui_macvim')
-call s:HL('Tag'			  , s:palette.white	, s:palette.black , 'none'	   )
-call s:HL('WildMenu'   	  , s:palette.white	, s:palette.black , 'none'	   )
+call s:HL('Debug',          s:palette.white	, s:palette.black , 'none'	   )
+call s:HL('Delimiter',      s:palette.white	, s:palette.black , 'none'	   )
+call s:HL('Question',       s:palette.white	, s:palette.black , 'none'	   )
+call s:HL('Special',        s:palette.white	, s:palette.black , 'none'	   )
+call s:HL('StatusLine',     s:palette.white	, s:palette.black , 'none'	   , 'gui_macvim')
+call s:HL('StatusLineNC',   s:palette.white	, s:palette.black , 'none'	   , 'gui_macvim')
+call s:HL('Tag',            s:palette.white	, s:palette.black , 'none'	   )
+call s:HL('WildMenu',       s:palette.white	, s:palette.black , 'none'	   )
 
 " DIFF
-call s:HL('DiffAdd'		  , s:palette.white , s:palette.green , 'none'	   )
-call s:HL('DiffChange'	  , s:palette.white , s:palette.blue  , 'none'	   )
-call s:HL('DiffDelete'	  , s:palette.white , s:palette.red   , 'none'	   )
-call s:HL('DiffText'	  , s:palette.black , s:palette.yellow, 'none'	   )
+call s:HL('DiffAdd',        s:palette.white , s:palette.green , 'none'	   )
+call s:HL('DiffChange',     s:palette.white , s:palette.blue  , 'none'	   )
+call s:HL('DiffDelete',     s:palette.white , s:palette.red   , 'none'	   )
+call s:HL('DiffText',       s:palette.black , s:palette.yellow, 'none'	   )
 
 
 " Links ------------------------------------------------------------------ {{{1

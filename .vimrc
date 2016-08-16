@@ -1683,7 +1683,7 @@ let g:airline#extensions#tabline#enabled = 1
 " airline
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:lightline = {
-    \ 'colorscheme': 'seoul256',
+    \ 'colorscheme': 'default',
     \ 'mode_map': { 'c': 'NORMAL' },
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
