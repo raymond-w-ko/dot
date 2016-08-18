@@ -16,9 +16,9 @@
 	new = green
 	commit = yellow
 [color "status"]
-	added = yellow
-	changed = green
-	untracked = cyan
+	added = green
+	changed = cyan
+	untracked = normal
 	
 [alias]
 	lg = log --abbrev-commit --decorate --format=format:'%C(yellow)%h%C(reset) - %C(bold green)%ai %C(yellow)%ar %C(reset) %C(reset)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
