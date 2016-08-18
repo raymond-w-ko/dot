@@ -1,0 +1,2 @@
+#!/bin/bash
+sudo mount -v -t cifs //DESKTOP-JEFF/Art /mnt/jeff -o ro,echo_interval=5,uid=1000,iocharset=utf8,workgroup=workgroup,guest
