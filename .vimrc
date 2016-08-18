@@ -1965,8 +1965,15 @@ call add(g:synesthesia_ignored_filetypes, 'xml')
 " vim-easymotion
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
+let g:EasyMotion_do_shade = 0
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_keys = "dsaklghqwertyuiopzxcvbnmfj"
+
+" easymotion highlight colors
+hi EasyMotionTarget ctermbg=none ctermfg=46
+hi EasyMotionTarget2First ctermbg=none ctermfg=46
+hi EasyMotionTarget2Second ctermbg=none ctermfg=46
+hi link EasyMotionShade Comment
 
 nmap s <Plug>(easymotion-overwin-f2)
 

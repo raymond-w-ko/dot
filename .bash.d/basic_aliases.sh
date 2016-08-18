@@ -7,11 +7,11 @@ if [[ "$unameString" == 'Darwin' ]]; then
         alias vim='mvim'
     fi
 
-    #if hash gdircolors 2>/dev/null; then
-      #if [ -r "$HOME/src/dircolors-solarized/dircolors.256dark" ]; then
-        #eval `gdircolors $HOME/src/dircolors-solarized/dircolors.256dark`
-      #fi
-    #fi
+    # if hash gdircolors 2>/dev/null; then
+    #   if [ -r "$HOME/src/dircolors-solarized/dircolors.256dark" ]; then
+    #     eval `gdircolors $HOME/src/dircolors-solarized/dircolors.256dark`
+    #   fi
+    # fi
 
     if hash gls 2>/dev/null; then
       alias ls='gls --color'
@@ -31,14 +31,16 @@ else
     alias l='ls --color -lh'
     alias lt='ls --color -lht'
     alias ll='ls --color -lha'
+    
+    export GREP_COLOR='1;32'
 
     # fix ls colors especially for directories and files that are globally
     # readable and writeable, they are completely unreadable by default
-    if [ -r "$HOME/src/dircolors-solarized/dircolors.256dark" ]; then
-      eval `dircolors $HOME/src/dircolors-solarized/dircolors.256dark`
-    else
-      eval `dircolors -b`
-    fi
+    # if [ -r "$HOME/src/dircolors-solarized/dircolors.256dark" ]; then
+    #   eval `dircolors $HOME/src/dircolors-solarized/dircolors.256dark`
+    # else
+    #   eval `dircolors -b`
+    # fi
 fi
 
 alias v=vim
