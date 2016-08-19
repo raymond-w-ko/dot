@@ -1,5 +1,5 @@
 {:user {:plugins [[refactor-nrepl  "2.2.0"]
-                  [cider/cider-nrepl "0.12.0"]
+                  [cider/cider-nrepl "0.13.0"]
                   [lein-cljfmt "0.5.3"]
                   [venantius/ultra "0.4.1"]
                   [lein-ancient "0.6.10"]
