@@ -27,10 +27,10 @@ if [[ "$unameString" == 'Darwin' ]]; then
       alias ll='ls -Glha'
     fi
 else
-    alias ls='ls --color'
-    alias l='ls --color -lh'
-    alias lt='ls --color -lht'
-    alias ll='ls --color -lha'
+    alias ls='ls --color=never -F'
+    alias l='ls --color=never -lhF'
+    alias lt='ls --color=never -lhtF'
+    alias ll='ls --color=never -lhaF'
     
     export GREP_COLOR='1;32'
 
