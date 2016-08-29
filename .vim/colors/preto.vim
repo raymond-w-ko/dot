@@ -198,10 +198,10 @@ call s:HL('Tag',            s:palette.white	, s:palette.black , 'none'	   )
 call s:HL('WildMenu',       s:palette.white	, s:palette.black , 'none'	   )
 
 " DIFF
-call s:HL('DiffAdd',        s:palette.white , s:palette.green , 'none'	   )
-call s:HL('DiffChange',     s:palette.white , s:palette.blue  , 'none'	   )
-call s:HL('DiffDelete',     s:palette.white , s:palette.yellow   , 'none'	   )
-call s:HL('DiffText',       s:palette.black , s:palette.yellow, 'none'	   )
+call s:HL('DiffAdd',        s:palette.black , s:palette.green , 'none'	   )
+call s:HL('DiffChange',     s:palette.black , s:palette.cyan  , 'none'	   )
+call s:HL('DiffDelete',     s:palette.black , s:palette.yellow   , 'none'	   )
+call s:HL('DiffText',       s:palette.cyan , s:palette.black, 'none'	   )
 
 
 " Links ------------------------------------------------------------------ {{{1
