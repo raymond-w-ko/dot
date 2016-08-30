@@ -123,10 +123,10 @@ call s:HL('Search',         s:palette.black , s:palette.yellow, 'none'	   )
 call s:HL('IncSearch',      s:palette.yellow, s:palette.black , 'none'	   )
 
 " SPELLING
-call s:HL('SpellBad',       s:palette.white , s:palette.yellow	  , 'none'	   )
-call s:HL('SpellCap',       s:palette.white , s:palette.yellow	  , 'none'	   )
-call s:HL('SpellLocal',     s:palette.white , s:palette.yellow	  , 'none'	   )
-call s:HL('SpellRare',      s:palette.white , s:palette.yellow	  , 'none'	   )
+call s:HL('SpellBad',       s:palette.black , s:palette.yellow	  , 'none'	   )
+call s:HL('SpellCap',       s:palette.black , s:palette.yellow	  , 'none'	   )
+call s:HL('SpellLocal',     s:palette.black , s:palette.yellow	  , 'none'	   )
+call s:HL('SpellRare',      s:palette.black , s:palette.yellow	  , 'none'	   )
 
 " ERROR
 call s:HL('Error',          s:palette.yellow	, s:palette.black , 'none'	   )
