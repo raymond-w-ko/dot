@@ -169,7 +169,7 @@ call s:HL('Cursor',         s:palette.white , s:palette.black , 'none'	   , 'gui
 call s:HL('Underlined',     s:palette.gray12, s:palette.black , 'underline')
 call s:HL('SpecialKey',     s:palette.white	, s:palette.black , 'none'	   )
 call s:HL('NonText',        s:palette.white , s:palette.black , 'none'	   )
-call s:HL('Directory',      s:palette.orange, s:palette.black , 'none'	   )
+call s:HL('Directory',      s:palette.cyan, s:palette.black , 'none'	   )
 
 " FOLD
 call s:HL('FoldColumn',     s:palette.gray06, s:palette.black , 'none'	   )
