@@ -113,7 +113,7 @@ set ruler
 if exists('+relativenumber')
   set norelativenumber
 endif
-set history=10000
+set history=128
 set lazyredraw
 set showcmd
 set ttyfast
