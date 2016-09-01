@@ -176,7 +176,7 @@ call s:HL('FoldColumn',     s:palette.gray06, s:palette.black , 'none'	   )
 call s:HL('Folded',         s:palette.gray06, s:palette.black , 'none'	   )
 
 " PARENTHESIS
-call s:HL('MatchParen',     s:palette.orange, s:palette.black , 'none'	   )
+call s:HL('MatchParen',     s:palette.black, s:palette.cyan , 'none'	   )
 
 " POPUP
 call s:HL('Pmenu',          s:palette.white , s:palette.gray10, 'none'	   )
@@ -185,7 +185,7 @@ call s:HL('PmenuSel',       s:palette.black , s:palette.gray19, 'none'	   )
 call s:HL('PmenuThumb',     s:palette.gray01, s:palette.gray10, 'none'	   )
 
 " SPLITS
-call s:HL('VertSplit',      s:palette.gray19, s:palette.black , 'none'	   )
+call s:HL('VertSplit',      s:palette.gray03, s:palette.gray03 , 'none'	   )
 
 " OTHERS
 call s:HL('Debug',          s:palette.white	, s:palette.black , 'none'	   )
