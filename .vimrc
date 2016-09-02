@@ -1857,7 +1857,10 @@ let g:syntastic_mode_map = {
             \ 'mode': 'active',
             \ 'active_filetypes': ['ruby', 'php', 'python'],
             \ 'passive_filetypes': ['java', 'c', 'cpp', 'objc', 'objcpp'] }
+
+" JS
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exec = 'eslint_d'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " paredit
