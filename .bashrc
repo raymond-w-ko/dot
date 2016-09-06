@@ -226,6 +226,7 @@ alias Nitrogen="cd ~/src/alive5/frameworks/nitrogen"
 alias Fluorine="cd ~/src/alive5/frameworks/fluorine"
 alias Platform="cd ~/src/alive5/syplatform"
 alias Diabetes="cd ~/src/alive5/apps/diabetes_cmesim_2015"
+alias Dramd="cd ~/src/alive5/apps/dr_amd_cmesim_2016"
 
 if [[ "$unameString" == 'Darwin' ]]; then
   alias ImmuneQuestBuilds="cd ~/Desktop/ImmuneQuest_Builds"

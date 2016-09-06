@@ -303,6 +303,7 @@ let s:project_directories_list = [
     \ '__UNIX_HOME__/src/alive5/frameworks/fluorine',
     \ '__UNIX_HOME__/src/alive5/frameworks/proton',
     \ '__UNIX_HOME__/src/alive5/apps/diabetes_cmesim_2015',
+    \ '__UNIX_HOME__/src/alive5/apps/dr_amd_cmesim_2016',
     \ '__UNIX_HOME__/src/alive5/tools/parsenip',
     \ '__UNIX_HOME__/src/alive5/tools/hummus',
     \ '__SVN__/SVN/Syandus_ALIVE3/Frameworks/Carbon',
@@ -2204,12 +2205,13 @@ let s:commands = [
     \ 'Rosettastone',       '__UNIX_HOME__/src/merck/rosettastone',
     \ 'Merck',              '__UNIX_HOME__/src/merck',
     \ 'Platform',           '__UNIX_HOME__/src/alive5/syplatform',
-    \ 'Diabetes',           '__UNIX_HOME__/src/alive5/apps/diabetes_cmesim_2015',
     \ 'Hummus',             '__UNIX_HOME__/src/alive5/tools/hummus',
     \ 'Parsenip',           '__UNIX_HOME__/src/alive5/tools/parsenip',
     \ 'Nitrogen',           '__UNIX_HOME__/src/alive5/frameworks/nitrogen',
     \ 'Fluorine',           '__UNIX_HOME__/src/alive5/frameworks/fluorine',
     \ 'Proton',             '__UNIX_HOME__/src/alive5/frameworks/proton',
+    \ 'Diabetes',           '__UNIX_HOME__/src/alive5/apps/diabetes_cmesim_2015',
+    \ 'Dramd',              '__UNIX_HOME__/src/alive5/apps/dr_amd_cmesim_2016',
     \ ]
 for i in range(len(s:commands) / 2)
     let cmd = (i * 2) + 0
