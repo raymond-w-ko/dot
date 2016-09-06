@@ -113,6 +113,7 @@ set ruler
 if exists('+relativenumber')
   set norelativenumber
 endif
+" setting this to 10000 actually causes noticable exit lag
 set history=128
 set lazyredraw
 set showcmd
