@@ -202,8 +202,8 @@ call s:HL('DiffAdd',        s:palette.black , s:palette.green , 'none'	   )
 call s:HL('DiffChange',     s:palette.black , s:palette.cyan  , 'none'	   )
 call s:HL('DiffDelete',     s:palette.black , s:palette.yellow   , 'none'	   )
 call s:HL('DiffText',       s:palette.cyan , s:palette.black, 'none'	   )
-call s:HL('diffRemoved',    s:palette.black , s:palette.green , 'none'	   )
-call s:HL('diffAdded',      s:palette.black , s:palette.cyan  , 'none'	   )
+call s:HL('diffRemoved',    s:palette.black , s:palette.yellow , 'none'	   )
+call s:HL('diffAdded',      s:palette.black , s:palette.green  , 'none'	   )
 
 
 " Links ------------------------------------------------------------------ {{{1
