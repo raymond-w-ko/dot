@@ -12,9 +12,9 @@
 	
 [color "diff"]
 	frag = cyan
-	old = cyan
+	old = yellow
 	new = green
-	commit = yellow
+	commit = cyan
 [color "status"]
 	added = green
 	changed = cyan
