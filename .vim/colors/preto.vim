@@ -47,21 +47,22 @@ let s:palette.gray22 	 = [253, "#dadada"]
 let s:palette.gray23 	 = [254, "#e4e4e4"]
 let s:palette.white  	 = [255, "#eeeeee"]
 
-let s:palette.cyan 		 = [6  , "#008080"]
-let s:palette.darkblue 	 = [18 , "#000087"]
+let s:palette.darkcyan   = [30 , "#008787"]
+let s:palette.cyan       = [6  , "#008080"]
+let s:palette.darkblue   = [18 , "#000087"]
 let s:palette.darkgreen  = [22 , "#005f00"]
 let s:palette.dullgreen  = [34 , "#00af00"]
-let s:palette.blue   	 = [33 , "#0087ff"]
-let s:palette.green  	 = [42 , "#00d787"]
-let s:palette.darkred 	 = [52 , "#5f0000"]
+let s:palette.blue       = [33 , "#0087ff"]
+let s:palette.green      = [42 , "#00d787"]
+let s:palette.darkred    = [52 , "#5f0000"]
 let s:palette.darkpurple = [53 , "#5f005f"]
 let s:palette.darkyellow = [58 , "#5f5f00"]
-let s:palette.red      	 = [124, "#af0000"]
-let s:palette.purple 	 = [129, "#af00ff"]
-let s:palette.brown 	 = [130, "#af5f00"]
-let s:palette.orange 	 = [166, "#d75f00"]
-let s:palette.pink 		 = [200, "#ff00d7"]
-let s:palette.yellow	 = [228, "#ffff87"]
+let s:palette.red        = [124, "#af0000"]
+let s:palette.purple     = [129, "#af00ff"]
+let s:palette.brown      = [130, "#af5f00"]
+let s:palette.orange     = [166, "#d75f00"]
+let s:palette.pink       = [200, "#ff00d7"]
+let s:palette.yellow     = [228, "#ffff87"]
 
 
 " Utilities -------------------------------------------------------------- {{{1
@@ -146,10 +147,10 @@ call s:HL('PreCondit',      s:palette.white	, s:palette.black , 'none'	   )
 call s:HL('PreProc',        s:palette.white	, s:palette.black , 'none'	   )
 
 " BINDINGS
-call s:HL('Identifier',     s:palette.white	, s:palette.black , 'none'	   )
-call s:HL('Function',       s:palette.white	, s:palette.black , 'none'	   )
-call s:HL('Keyword',        s:palette.white	, s:palette.black , 'none'	   )
-call s:HL('Operator',       s:palette.white	, s:palette.black , 'none'	   )
+call s:HL('Identifier',     s:palette.darkcyan	, s:palette.black , 'none'	   )
+call s:HL('Function',       s:palette.darkcyan	, s:palette.black , 'none'	   )
+call s:HL('Keyword',        s:palette.darkcyan	, s:palette.black , 'none'	   )
+call s:HL('Operator',       s:palette.darkcyan	, s:palette.black , 'none'	   )
 
 " TYPES
 call s:HL('Type',           s:palette.white	, s:palette.black , 'none'	   )
@@ -170,7 +171,7 @@ call s:HL('Cursor',         s:palette.white , s:palette.black , 'none'	   , 'gui
 call s:HL('Underlined',     s:palette.gray12, s:palette.black , 'underline')
 call s:HL('SpecialKey',     s:palette.white	, s:palette.black , 'none'	   )
 call s:HL('NonText',        s:palette.white , s:palette.black , 'none'	   )
-call s:HL('Directory',      s:palette.cyan, s:palette.black , 'none'	   )
+call s:HL('Directory',      s:palette.darkcyan, s:palette.black , 'none'	   )
 
 " FOLD
 call s:HL('FoldColumn',     s:palette.gray06, s:palette.black , 'none'	   )
