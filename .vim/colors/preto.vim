@@ -50,6 +50,7 @@ let s:palette.white  	 = [255, "#eeeeee"]
 let s:palette.cyan 		 = [6  , "#008080"]
 let s:palette.darkblue 	 = [18 , "#000087"]
 let s:palette.darkgreen  = [22 , "#005f00"]
+let s:palette.dullgreen  = [34 , "#00af00"]
 let s:palette.blue   	 = [33 , "#0087ff"]
 let s:palette.green  	 = [42 , "#00d787"]
 let s:palette.darkred 	 = [52 , "#5f0000"]
@@ -92,24 +93,24 @@ endfunction
 " Composition ------------------------------------------------------------ {{{1
 
 " PRIMITIVES
-call s:HL('Boolean',        s:palette.gray19, s:palette.black , 'none'	   )
-call s:HL('Character',      s:palette.gray19, s:palette.black , 'none'	   )
-call s:HL('Constant',       s:palette.gray19, s:palette.black , 'none'	   )
-call s:HL('Float',          s:palette.gray19, s:palette.black , 'none'	   )
-call s:HL('Number',         s:palette.gray19, s:palette.black , 'none'	   )
-call s:HL('String',         s:palette.gray19, s:palette.black , 'none'	   )
+call s:HL('Boolean',        s:palette.darkgreen, s:palette.black , 'none'	   )
+call s:HL('Character',      s:palette.darkgreen, s:palette.black , 'none'	   )
+call s:HL('Constant',       s:palette.darkgreen, s:palette.black , 'none'	   )
+call s:HL('Float',          s:palette.darkgreen, s:palette.black , 'none'	   )
+call s:HL('Number',         s:palette.darkgreen, s:palette.black , 'none'	   )
+call s:HL('String',         s:palette.darkgreen, s:palette.black , 'none'	   )
 call s:HL('SpecialChar',    s:palette.white , s:palette.black , 'none'	   )
 
 " COMMENTS
 call s:HL('Comment',        s:palette.gray11, s:palette.black , 'none'	   )
 call s:HL('SpecialComment', s:palette.gray12, s:palette.black , 'none'	   )
-call s:HL('Title',          s:palette.gray19, s:palette.black , 'none'	   )
+call s:HL('Title',          s:palette.darkgreen, s:palette.black , 'none'	   )
 call s:HL('Todo',           s:palette.purple, s:palette.black , 'none'	   )
 
 " LINES, COLUMNS
 call s:HL('LineNr',         s:palette.gray06, s:palette.black , 'none'	   )
 call s:HL('CursorLine',     s:palette.white , s:palette.gray03, 'none'	   )
-call s:HL('CursorLineNr',   s:palette.gray19, s:palette.black , 'none'	   )
+call s:HL('CursorLineNr',   s:palette.darkgreen, s:palette.black , 'none'	   )
 
 call s:HL('ColorColumn',    s:palette.white , s:palette.gray03, 'none'	   )
 call s:HL('CursorColumn',   s:palette.gray16, s:palette.gray03, 'none'	   )
@@ -180,8 +181,8 @@ call s:HL('MatchParen',     s:palette.black, s:palette.cyan , 'none'	   )
 
 " POPUP
 call s:HL('Pmenu',          s:palette.white , s:palette.gray10, 'none'	   )
-call s:HL('PmenuSbar',      s:palette.black , s:palette.gray19, 'none'	   )
-call s:HL('PmenuSel',       s:palette.black , s:palette.gray19, 'none'	   )
+call s:HL('PmenuSbar',      s:palette.black , s:palette.darkgreen, 'none'	   )
+call s:HL('PmenuSel',       s:palette.black , s:palette.darkgreen, 'none'	   )
 call s:HL('PmenuThumb',     s:palette.gray01, s:palette.gray10, 'none'	   )
 
 " SPLITS
