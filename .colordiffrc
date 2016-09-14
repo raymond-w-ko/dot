@@ -23,7 +23,7 @@ diff_cmd=diff
 # this, use the default output colour"
 #
 plain=off
-newtext=green
-oldtext=yellow
-diffstuff=cyan
-cvsstuff=magenta
+newtext=darkgreen
+oldtext=darkyellow
+diffstuff=darkcyan
+cvsstuff=white
