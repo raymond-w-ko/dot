@@ -15,12 +15,22 @@ hgext.extdiff =
 [diff]
 #ignorews=True
 [color]
-status.modified = magenta bold
-status.added = green bold
-status.removed = red bold
-status.deleted = cyan bold
-status.unknown = blue bold
+status.modified = cyan
+status.added = green
+status.removed = yellow
+status.deleted = yellow bold
+status.unknown = cyan bold
 status.ignored = black bold
+
+diff.diffline = bold
+diff.extended = cyan bold
+diff.file_a = yellow bold
+diff.file_b = green bold
+diff.hunk = magenta
+diff.deleted = yellow
+diff.inserted = green
+diff.changed = white
+diff.trailingwhitespace = bold red_background
 [progress]
 delay = 1.5
 [extdiff]
