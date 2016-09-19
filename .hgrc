@@ -12,6 +12,7 @@ mq =
 progress =
 shelve =
 hgext.extdiff =
+histedit = 
 [diff]
 #ignorews=True
 [color]
