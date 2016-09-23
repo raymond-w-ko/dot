@@ -228,6 +228,7 @@ alias Platform="cd ~/src/alive5/syplatform"
 alias Diabetes="cd ~/src/alive5/apps/diabetes_cmesim_2015"
 alias Dramd="cd ~/src/alive5/apps/dr_amd_cmesim_2016"
 alias Hiv="cd ~/src/alive5/apps/hiv_cmesim_2016"
+alias LungGain="cd ~/src/alive5/apps/lung_gain_2016"
 
 if [[ "$unameString" == 'Darwin' ]]; then
   alias ImmuneQuestBuilds="cd ~/Desktop/ImmuneQuest_Builds"
