@@ -12,7 +12,7 @@
 create_mp4()
 {
   SRC=$1  
-  DST=converted/$1
+  DST=converted/${SRC%.*}.mp4
 
   echo creating $DST
 
@@ -21,15 +21,17 @@ create_mp4()
     -i "$SRC" \
     -threads 8 \
     -strict -2 \
-    -vcodec libx264 -b:v 1000000k -crf 1 \
+    -vcodec libx264 -b:v 1000000k -crf 23 \
     -profile:v baseline -level:v 3.0 -pix_fmt yuv420p \
     -movflags +faststart \
+    -acodec aac \
     -b:a 128k \
+    -ar 44100 \
     "$DST" \
     </dev/null
 }
 
 mkdir -p converted
-find . -iname '*.mp4' | while read file; do
+find . -iname '*.wmv' | while read file; do
   create_mp4 $file
 done
