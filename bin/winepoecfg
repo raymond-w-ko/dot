@@ -1,0 +1,4 @@
+#!/bin/bash
+set -e
+cd "$HOME/.wine-poe/drive_c/Program Files/Grinding Gear Games/Path of Exile/"
+WINEPREFIX=$HOME/.wine-poe winecfg
