@@ -1860,7 +1860,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_mode_map = {
             \ 'mode': 'active',
             \ 'active_filetypes': ['ruby', 'php', 'python'],
-            \ 'passive_filetypes': ['java', 'c', 'cpp', 'objc', 'objcpp'] }
+            \ 'passive_filetypes': ['java', 'c', 'cpp', 'objc', 'objcpp', "html"] }
 
 " JS
 let g:syntastic_javascript_checkers = ['eslint']
