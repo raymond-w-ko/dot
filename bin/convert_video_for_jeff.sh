@@ -21,7 +21,7 @@ create_dist_mp4()
     -i "$SRC" \
     -threads 8 \
     -strict -2 \
-    -vcodec libx264 -b:v 1000000k -crf 23 \
+    -vcodec libx264 -b:v 1000000k -crf 16 \
     -profile:v baseline -level:v 3.0 -pix_fmt yuv420p \
     -movflags +faststart \
     -acodec aac \
@@ -54,6 +54,10 @@ create_master_mp4()
 }
 
 mkdir -p converted
-find . -iname '*.mp4' | while read file; do
-  create_master_mp4 $file
+# find . -iname '*.mp4' | while read file; do
+#   create_master_mp4 $file
+# done
+
+find . -iname '*.wmv' | while read file; do
+  create_dist_mp4 $file
 done
