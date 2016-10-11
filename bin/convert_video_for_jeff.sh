@@ -12,7 +12,7 @@
 create_dist_mp4()
 {
   SRC=$1  
-  DST=converted/${SRC%.*}.mp4
+  DST=converted_for_publish/${SRC%.*}.mp4
 
   echo creating $DST
 
@@ -34,7 +34,7 @@ create_dist_mp4()
 create_master_mp4()
 {
   SRC=$1  
-  DST=converted/${SRC%.*}.mp4
+  DST=converted_for_editing/${SRC%.*}.mp4
 
   echo creating $DST
 
@@ -53,11 +53,12 @@ create_master_mp4()
     </dev/null
 }
 
-mkdir -p converted
+# mkdir -p converted_for_editing
 # find . -iname '*.mp4' | while read file; do
 #   create_master_mp4 $file
 # done
 
+mkdir -p converted_for_publish
 find . -iname '*.wmv' | while read file; do
   create_dist_mp4 $file
 done
