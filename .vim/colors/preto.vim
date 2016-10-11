@@ -53,6 +53,7 @@ let s:palette.darkblue   = [18 , "#000087"]
 let s:palette.darkgreen  = [22 , "#005f00"]
 let s:palette.dampgreen  = [28 , "#008700"]
 let s:palette.dullgreen  = [34 , "#00af00"]
+let s:palette.puregreen  = [82 , "#00ff00"]
 let s:palette.blue       = [33 , "#0087ff"]
 let s:palette.green      = [42 , "#00d787"]
 let s:palette.darkred    = [52 , "#5f0000"]
@@ -168,7 +169,7 @@ call s:HL('Exception',      s:palette.white	, s:palette.black , 'none'	   )
 
 " MISC
 call s:HL('Normal',         s:palette.gray14, s:palette.black , 'none'	   )
-call s:HL('Cursor',         s:palette.white , s:palette.black , 'none'	   , 'gui_macvim')
+call s:HL('Cursor',         s:palette.black , s:palette.puregreen , 'none')
 call s:HL('Underlined',     s:palette.gray12, s:palette.black , 'underline')
 call s:HL('SpecialKey',     s:palette.white	, s:palette.black , 'none'	   )
 call s:HL('NonText',        s:palette.white , s:palette.black , 'none'	   )
