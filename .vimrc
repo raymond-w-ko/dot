@@ -2129,6 +2129,11 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS noci
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:sexp_filetypes = 'clojure,scheme,lisp,timl,eslisp'
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-jsx
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:jsx_ext_required = 0
+
 " }}}
 " filetype specific settings {{{
 augroup MyVimrc
