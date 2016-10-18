@@ -26,7 +26,7 @@ elif [ "$isHdmiConnected" -eq 1 ] && [ "$isLidOpen" -eq 1 ]; then
   xrandr --addmode HDMI-0 "$MODE"
   xrandr \
     --output LVDS-0 --auto \
-    --output HDMI-0 --primary --right-of LVDS-0 --auto
+    --output HDMI-0 --primary --right-of LVDS-0 --mode "$MODE"
 elif [ "$isHdmiConnected" -eq 1 ] && [ "$isLidOpen" -eq 0 ]; then
   echo "HDMI only"
   xrandr \
