@@ -306,6 +306,7 @@ let s:project_directories_list = [
     \ '__UNIX_HOME__/src/alive5/apps/diabetes_cmesim_2015',
     \ '__UNIX_HOME__/src/alive5/apps/dr_amd_cmesim_2016',
     \ '__UNIX_HOME__/src/alive5/apps/hiv_cmesim_2016',
+    \ '__UNIX_HOME__/src/alive5/apps/obesity_cmesim_2016',
     \ '__UNIX_HOME__/src/alive5/apps/lung_gain_2016',
     \ '__UNIX_HOME__/src/alive5/tools/parsenip',
     \ '__UNIX_HOME__/src/alive5/tools/hummus',
@@ -2222,6 +2223,7 @@ let s:commands = [
     \ 'Dramd',              '__UNIX_HOME__/src/alive5/apps/dr_amd_cmesim_2016',
     \ 'Hiv',                '__UNIX_HOME__/src/alive5/apps/hiv_cmesim_2016',
     \ 'LungGain',           '__UNIX_HOME__/src/alive5/apps/lung_gain_2016',
+    \ 'Obesity',            '__UNIX_HOME__/src/alive5/apps/obesity_cmesim_2016',
     \ ]
 for i in range(len(s:commands) / 2)
     let cmd = (i * 2) + 0
