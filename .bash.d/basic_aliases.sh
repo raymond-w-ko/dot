@@ -8,11 +8,10 @@ if [[ "$unameString" == 'Darwin' ]]; then
     # fi
 
     if hash gls 2>/dev/null; then
-      alias ls='gls --color'
-      alias l='gls --color -lh'
-      alias lt='gls --color -lht'
-      alias ll='gls --color -lha'
-      alias ls='gls --color'
+      alias ls='gls -F'
+      alias l='gls -lhF'
+      alias lt='gls -lhtF'
+      alias ll='gls -lhaF'
     else
       export LSCOLORS=ExFxCxDxBxegedabagacad
       alias ls='ls -G'
