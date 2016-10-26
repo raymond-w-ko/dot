@@ -1,12 +1,6 @@
 unameString=`uname -s`
 
 if [[ "$unameString" == 'Darwin' ]]; then
-    if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-        alias vim="vim"
-    else
-        alias vim='mvim'
-    fi
-
     # if hash gdircolors 2>/dev/null; then
     #   if [ -r "$HOME/src/dircolors-solarized/dircolors.256dark" ]; then
     #     eval `gdircolors $HOME/src/dircolors-solarized/dircolors.256dark`
