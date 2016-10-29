@@ -263,7 +263,7 @@ if [[ -f /usr/bin/virtualenvwrapper.sh ]]; then
   source /usr/bin/virtualenvwrapper.sh
 fi
 
-if [[ -z $DISPLAY && $(tty) == /dev/tty1 ]]; then
+if [[ ! -d /mnt/c/Windows && -z $DISPLAY && $(tty) == /dev/tty1 ]]; then
   # we can't completely redirect stderr to a file otherwise root-less X breaks
   # I'm guessing it is determining the VTTY from the stderr file descriptor
   #startx | tee > "$HOME/.xsession-errors"
