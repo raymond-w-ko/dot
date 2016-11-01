@@ -31,7 +31,7 @@ elif [ "$isHdmiConnected" -eq 1 ] && [ "$isLidOpen" -eq 0 ]; then
   echo "HDMI only"
   xrandr \
     --output LVDS-0 --off \
-    --output HDMI-0 --auto --primary
+    --output HDMI-0 --primary --mode "$MODE"
 else
   echo "No monitors connected"
   xrandr \
