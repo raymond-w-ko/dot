@@ -39,6 +39,8 @@ fi
 alias v=vim
 alias vr="vim -R"
 alias vs="vim -S"
+alias rmr="rm -r"
+alias rmri="rm -r -i"
 
 alias ..='cd ..'
 alias ..2='cd ../..'
