@@ -1186,6 +1186,7 @@ nnoremap <leader>6 6gt
 nnoremap <leader>7 7gt
 nnoremap <leader>8 8gt
 nnoremap <leader>9 9gt
+nnoremap <F1> :tabnew<CR>
 nnoremap <F8> <C-W>v<C-W>v<C-W>v<C-W>h<C-W>h<C-W>h
 
 function! CreateScratch()
