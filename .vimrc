@@ -308,6 +308,7 @@ let s:project_directories_list = [
     \ '__UNIX_HOME__/src/alive5/apps/hiv_cmesim_2016',
     \ '__UNIX_HOME__/src/alive5/apps/obesity_cmesim_2016',
     \ '__UNIX_HOME__/src/alive5/apps/lung_gain_2016',
+    \ '__UNIX_HOME__/src/alive5/portal',
     \ '__UNIX_HOME__/src/alive5/tools/parsenip',
     \ '__UNIX_HOME__/src/alive5/tools/hummus',
     \ '__SVN__/SVN/Syandus_ALIVE3/Frameworks/Carbon',
@@ -1185,6 +1186,7 @@ nnoremap <leader>6 6gt
 nnoremap <leader>7 7gt
 nnoremap <leader>8 8gt
 nnoremap <leader>9 9gt
+nnoremap <F8> <C-W>v<C-W>v<C-W>v<C-W>h<C-W>h<C-W>h
 
 function! CreateScratch()
     1split
