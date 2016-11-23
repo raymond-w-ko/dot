@@ -43,14 +43,6 @@ endif
 
 " very heavy, adds over 9000 keywords and library functions
 call add(g:pathogen_disabled, "cocoa.vim")
-" disable this for now, try out dimmed out parentheses
-call add(g:pathogen_disabled, "vim-niji")
-" disable this for now, try out lexima.vim
-call add(g:pathogen_disabled, "vim-endwise")
-" disable lexima.vim due to deletion limitations
-call add(g:pathogen_disabled, "lexima.vim")
-" vim-clang-format can handle javascript
-call add(g:pathogen_disabled, "vim-jsbeautify")
 
 " this plugin makes any file access extremely slow...
 if has('win32unix')
@@ -290,75 +282,80 @@ function! MyTranslateDirectory(dir)
   return dir
 endfunction
 
-let s:project_directories_list = [
-    \ '__UNIX_HOME__/src/ocularwm',
-    \ '__UNIX_HOME__/src/windmenu',
-    \ '__UNIX_HOME__/src/dk2test',
-    \ '__UNIX_HOME__/src/tsukuyomi',
-    \ '__UNIX_HOME__/src/letterdungeon',
-    \ '__UNIX_HOME__/src/vim/src',
-    \ '__UNIX_HOME__/.vim/bundle/omegacomplete',
-    \ '__UNIX_HOME__/dot/.vim/bundle/omegacomplete',
-    \ '__UNIX_HOME__/src/alive5',
-    \ '__UNIX_HOME__/src/alive5/frameworks/nitrogen',
-    \ '__UNIX_HOME__/src/alive5/frameworks/fluorine',
-    \ '__UNIX_HOME__/src/alive5/frameworks/proton',
-    \ '__UNIX_HOME__/src/alive5/apps/diabetes_cmesim_2015',
-    \ '__UNIX_HOME__/src/alive5/apps/dr_amd_cmesim_2016',
-    \ '__UNIX_HOME__/src/alive5/apps/hiv_cmesim_2016',
-    \ '__UNIX_HOME__/src/alive5/apps/obesity_cmesim_2016',
-    \ '__UNIX_HOME__/src/alive5/apps/lung_gain_2016',
-    \ '__UNIX_HOME__/src/alive5/portal',
-    \ '__UNIX_HOME__/src/alive5/tools/parsenip',
-    \ '__UNIX_HOME__/src/alive5/tools/hummus',
-    \ '__SVN__/SVN/Syandus_ALIVE3/Frameworks/Carbon',
-    \ '__SVN__/SVN/Syandus_ALIVE3/Frameworks/CarbonCME',
-    \ '__SVN__/SVN/Syandus_ALIVE3/Frameworks/Oxygen',
-    \ '__SVN__/SVN/Syandus_ALIVE3/Groundhog/Client',
-    \ '__SVN__/SVN/Syandus_ALIVE3/Groundhog/ConnectionTester',
-    \ '__SVN__/SVN/Syandus_ALIVE3/Groundhog/Server',
-    \ '__SVN__/SVN/Syandus_ALIVE3/Groundhog/Shared',
-    \ '__SVN__/SVN/Syandus_ALIVE3/Hub/Source',
-    \ '__SVN__/SVN/Syandus_ALIVE3/Hub/Web',
-    \ '__SVN__/SVN/Syandus_ALIVE3/Hub/Web/galleries/cme',
-    \ '__SVN__/SVN/Syandus_ALIVE3/Installation Suite/trunk',
-    \ '__SVN__/SVN/Syandus_ALIVE3/Mac/trunk/ALIVE Med',
-    \ '__SVN__/SVN/Syandus_ALIVE3/Metrics/SyLoginParser',
-    \ '__SVN__/SVN/Syandus_ALIVE3/Metrics/SyMetrics',
-    \ '__SVN__/SVN/Syandus_ALIVE3/Metrics/web',
-    \ '__SVN__/SVN/Syandus_ALIVE3/Platform/Source/Code',
-    \ '__SVN__/SVN/Syandus_ALIVE3/Tools/Source/Launcher',
-    \ '__SVN__/SVN/Syandus_ALIVE3/Tools/Source/SyHandleGen',
-    \ '__SVN__/SVN/Syandus_ALIVE3/Tools/Source/SyRefresh',
-    \ '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Carbon',
-    \ '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Oxygen',
-    \ '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Hydrogen',
-    \ '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Nitrogen',
-    \ '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Nitrogen16',
-    \ '__SVN__/SVN/Syandus_ALIVE4/Platform/Source/Code',
-    \ '__SVN__/SVN/Syandus_ALIVE4/Tools/Source/SyProjectGenerator',
-    \ '__SVN__/SVN/Syandus_Company/Web/Syandus.com/main/2012-html',
-    \ '__SVN__/SVN/Syandus_Company/Web/Syandus.com/main/2013-html/html',
-    \ '__SVN__/SVN/Syandus_Cores/C_CMSC_MS_01',
-    \ '__SVN__/SVN/Syandus_Cores/C_ImmunoSim_01',
-    \ '__SVN__/SVN/Syandus_Cores/C_MS_PatientEd_01',
-    \ '__SVN__/SVN/Syandus_Cores/C_Hemo_PatientEd_01',
-    \ '__SVN__/SVN/Syandus_Cores/C_MS_Treatment_01',
-    \ '__SVN__/SVN/Syandus_Cores/C_MM_Treatment_01',
-    \ '__SVN__/SVN/Syandus_Cores/C_mCRC_Treatment_01',
-    \ '__SVN__/SVN/Syandus_Cores/C_Mic_HTN_01',
-    \ '__SVN__/SVN/Syandus_Cores/C_Ogre_Lair_01',
-    \ '__SVN__/SVN/Syandus_Cores/C_Spv_COPD_01',
-    \ '__SVN__/SVN/Syandus_Cores/C_Sut_AE_01',
-    \ '__SVN__/SVN/Syandus_Cores/C_Sym_DM_01',
-    \ '__SVN__/SVN/Syandus_Cores/C_Unb_COPD_01',
-    \ '__SVN__/SVN/Syandus_ALIVE4/Cellulose',
+    "\ 'Platform',           '__SVN__/SVN/Syandus_ALIVE3/Platform/Source/Code',
+    "\ 'Carbon',             '__SVN__/SVN/Syandus_ALIVE3/Frameworks/Carbon',
+    "\ 'CarbonCME',          '__SVN__/SVN/Syandus_ALIVE3/Frameworks/CarbonCME',
+    "\ 'Hub',                '__SVN__/SVN/Syandus_ALIVE3/Hub/Source',
+    "\ 'Metrics',            '__SVN__/SVN/Syandus_ALIVE3/Metrics',
+let s:commands = [
+    \ 'Omegacomplete',      '__UNIX_HOME__/dot/.vim/bundle/omegacomplete',
+    \ 'Omegacomplete2',     '__UNIX_HOME__/dot/.vim/bundle/omegacomplete2',
+    \ 'OcularWM',           '__UNIX_HOME__/src/ocularwm',
+    \ 'Windmenu',           '__UNIX_HOME__/src/windmenu',
+    \ 'Dk2test',            '__UNIX_HOME__/src/dk2test',
+    \ 'Collimator',         '__UNIX_HOME__/src/collimator',
+    \ 'Diffractor',         '__UNIX_HOME__/src/diffractor',
+    \ 'LetterDungeon',      '__UNIX_HOME__/src/letterdungeon',
+    \
+    \ 'SVN',                '__SVN__/SVN/',
+    \ 'Platform4',          '__SVN__/SVN/Syandus_ALIVE4/Platform/Source/Code',
+    \ 'Doc4',               '__SVN__/SVN/Syandus_ALIVE4/Documentation',
+    \ 'Carbon4',            '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Carbon',
+    \ 'Oxygen',             '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Oxygen',
+    \ 'Hydrogen',           '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Hydrogen',
+    \ 'Nitrogen4',          '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Nitrogen',
+    \ 'Proton4',            '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Proton',
+    \ 'Symlin',             '__SVN__/SVN/Syandus_Cores/C_Sym_DM_01',
+    \ 'Spiriva',            '__SVN__/SVN/Syandus_Cores/C_Spv_COPD_01',
+    \ 'Copd',               '__SVN__/SVN/Syandus_Cores/C_COPD_Treatment_01',
+    \ 'ImmuneQuest',        '__SVN__/SVN/Syandus_Cores/C_ImmunoSim_01',
+    \ 'MsPatientEd',        '__SVN__/SVN/Syandus_Cores/C_MS_PatientEd_01',
+    \ 'HemoPatientEd',      '__SVN__/SVN/Syandus_Cores/C_Hemo_PatientEd_01',
+    \ 'Treatment',          '__SVN__/SVN/Syandus_Cores/C_MS_Treatment_01',
+    \ 'MmTreatment',        '__SVN__/SVN/Syandus_Cores/C_MM_Treatment_01',
+    \ 'MCRC',               '__SVN__/SVN/Syandus_Cores/C_mCRC_Treatment_01',
+    \ 'Sutent',             '__SVN__/SVN/Syandus_Cores/C_Sut_AE_01',
+    \ 'SyMetrics',          '__SVN__/SVN/Syandus_ALIVE3/Metrics/SyMetrics',
+    \ 'SyLogParser',        '__SVN__/SVN/Syandus_ALIVE3/Metrics/SyLoginParser',
+    \ 'SyHandleGen',        '__SVN__/SVN/Syandus_ALIVE3/Tools/Source/SyHandleGen',
+    \ 'SyHandleGen4',       '__SVN__/SVN/Syandus_ALIVE4/Tools/Source/SyHandleGen',
+    \ 'Groundhog',          '__SVN__/SVN/Syandus_ALIVE3/Groundhog',
+    \ 'GroundhogClient',    '__SVN__/SVN/Syandus_ALIVE3/Groundhog/Client',
+    \ 'GroundhogServer',    '__SVN__/SVN/Syandus_ALIVE3/Groundhog/Server',
+    \ 'GroundhogShared',    '__SVN__/SVN/Syandus_ALIVE3/Groundhog/Shared',
+    \ 'ConnectionTester',   '__SVN__/SVN/Syandus_ALIVE3/Groundhog/ConnectionTester',
+    \ 'SyRefresh',          '__SVN__/SVN/Syandus_ALIVE3/Tools/Source/SyRefresh',
+    \ 'SyProjectGenerator', '__SVN__/SVN/Syandus_ALIVE4/Tools/Source/SyProjectGenerator',
+    \ 'OgreLair',           '__SVN__/SVN/Syandus_Cores/C_Ogre_Lair_01',
+    \ 'Ms',                 '__SVN__/SVN/Syandus_Cores/C_CMSC_MS_01',
+    \ 'SyandusHtml5',       '__SVN__/SVN/Syandus_Company/Web/Syandus.com/main/2013-html/html',
+    \ 'Cellulose',          '__SVN__/SVN/Syandus_ALIVE4/Cellulose',
+    \ 'Rosettastone',       '__UNIX_HOME__/src/merck/rosettastone',
+    \ 'Merck',              '__UNIX_HOME__/src/merck',
+    \ 'Platform',           '__UNIX_HOME__/src/alive5/syplatform',
+    \ 'Hummus',             '__UNIX_HOME__/src/alive5/tools/hummus',
+    \ 'Parsenip',           '__UNIX_HOME__/src/alive5/tools/parsenip',
+    \ 'Nitrogen',           '__UNIX_HOME__/src/alive5/frameworks/nitrogen',
+    \ 'Fluorine',           '__UNIX_HOME__/src/alive5/frameworks/fluorine',
+    \ 'Proton',             '__UNIX_HOME__/src/alive5/frameworks/proton',
+    \ 'Diabetes',           '__UNIX_HOME__/src/alive5/apps/diabetes_cmesim_2015',
+    \ 'Dramd',              '__UNIX_HOME__/src/alive5/apps/dr_amd_cmesim_2016',
+    \ 'Hiv',                '__UNIX_HOME__/src/alive5/apps/hiv_cmesim_2016',
+    \ 'LungGain',           '__UNIX_HOME__/src/alive5/apps/lung_gain_2016',
+    \ 'Obesity',            '__UNIX_HOME__/src/alive5/apps/obesity_cmesim_2016',
     \ ]
 
+let s:project_directories_list = []
 let g:my_project_directories = {}
-for directory in s:project_directories_list
-  let dir = MyTranslateDirectory(directory)
-  let g:my_project_directories[dir] = 1
+
+for i in range(len(s:commands) / 2)
+    let cmd = (i * 2) + 0
+
+    let dir = s:commands[(i * 2) + 1]
+    let dir = MyTranslateDirectory(dir)
+    let g:my_project_directories[dir] = 1
+
+    exe 'command! ' . s:commands[cmd] . ' silent cd ' . dir
 endfor
 
 " traverse up parent directories until it finds one that matches in the above
@@ -2165,79 +2162,6 @@ augroup END
 " Projects {{{
 " no tags by default, omegacomplete is usually enough
 set tags=
-
-    "\ 'Platform',           '__SVN__/SVN/Syandus_ALIVE3/Platform/Source/Code',
-    "\ 'Carbon',             '__SVN__/SVN/Syandus_ALIVE3/Frameworks/Carbon',
-    "\ 'CarbonCME',          '__SVN__/SVN/Syandus_ALIVE3/Frameworks/CarbonCME',
-    "\ 'Hub',                '__SVN__/SVN/Syandus_ALIVE3/Hub/Source',
-    "\ 'Metrics',            '__SVN__/SVN/Syandus_ALIVE3/Metrics',
-let s:commands = [
-    \ 'Omegacomplete',      '__UNIX_HOME__/dot/.vim/bundle/omegacomplete',
-    \ 'Omegacomplete2',     '__UNIX_HOME__/dot/.vim/bundle/omegacomplete2',
-    \ 'OcularWM',           '__UNIX_HOME__/src/ocularwm',
-    \ 'Windmenu',           '__UNIX_HOME__/src/windmenu',
-    \ 'Dk2test',            '__UNIX_HOME__/src/dk2test',
-    \ 'Collimator',         '__UNIX_HOME__/src/collimator',
-    \ 'Diffractor',         '__UNIX_HOME__/src/diffractor',
-    \ 'LetterDungeon',      '__UNIX_HOME__/src/letterdungeon',
-    \
-    \ 'SVN',                '__SVN__/SVN/',
-    \ 'Platform4',          '__SVN__/SVN/Syandus_ALIVE4/Platform/Source/Code',
-    \ 'Doc4',               '__SVN__/SVN/Syandus_ALIVE4/Documentation',
-    \ 'Carbon4',            '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Carbon',
-    \ 'Oxygen',             '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Oxygen',
-    \ 'Hydrogen',           '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Hydrogen',
-    \ 'Nitrogen4',          '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Nitrogen',
-    \ 'Proton4',            '__SVN__/SVN/Syandus_ALIVE4/Frameworks/Proton',
-    \ 'Symlin',             '__SVN__/SVN/Syandus_Cores/C_Sym_DM_01',
-    \ 'Spiriva',            '__SVN__/SVN/Syandus_Cores/C_Spv_COPD_01',
-    \ 'Copd',               '__SVN__/SVN/Syandus_Cores/C_COPD_Treatment_01',
-    \ 'ImmuneQuest',        '__SVN__/SVN/Syandus_Cores/C_ImmunoSim_01',
-    \ 'MsPatientEd',        '__SVN__/SVN/Syandus_Cores/C_MS_PatientEd_01',
-    \ 'HemoPatientEd',      '__SVN__/SVN/Syandus_Cores/C_Hemo_PatientEd_01',
-    \ 'Treatment',          '__SVN__/SVN/Syandus_Cores/C_MS_Treatment_01',
-    \ 'MmTreatment',        '__SVN__/SVN/Syandus_Cores/C_MM_Treatment_01',
-    \ 'MCRC',               '__SVN__/SVN/Syandus_Cores/C_mCRC_Treatment_01',
-    \ 'Sutent',             '__SVN__/SVN/Syandus_Cores/C_Sut_AE_01',
-    \ 'SyMetrics',          '__SVN__/SVN/Syandus_ALIVE3/Metrics/SyMetrics',
-    \ 'SyLogParser',        '__SVN__/SVN/Syandus_ALIVE3/Metrics/SyLoginParser',
-    \ 'SyHandleGen',        '__SVN__/SVN/Syandus_ALIVE3/Tools/Source/SyHandleGen',
-    \ 'SyHandleGen4',       '__SVN__/SVN/Syandus_ALIVE4/Tools/Source/SyHandleGen',
-    \ 'Groundhog',          '__SVN__/SVN/Syandus_ALIVE3/Groundhog',
-    \ 'GroundhogClient',    '__SVN__/SVN/Syandus_ALIVE3/Groundhog/Client',
-    \ 'GroundhogServer',    '__SVN__/SVN/Syandus_ALIVE3/Groundhog/Server',
-    \ 'GroundhogShared',    '__SVN__/SVN/Syandus_ALIVE3/Groundhog/Shared',
-    \ 'ConnectionTester',   '__SVN__/SVN/Syandus_ALIVE3/Groundhog/ConnectionTester',
-    \ 'SyRefresh',          '__SVN__/SVN/Syandus_ALIVE3/Tools/Source/SyRefresh',
-    \ 'SyProjectGenerator', '__SVN__/SVN/Syandus_ALIVE4/Tools/Source/SyProjectGenerator',
-    \ 'OgreLair',           '__SVN__/SVN/Syandus_Cores/C_Ogre_Lair_01',
-    \ 'Ms',                 '__SVN__/SVN/Syandus_Cores/C_CMSC_MS_01',
-    \ 'SyandusHtml5',       '__SVN__/SVN/Syandus_Company/Web/Syandus.com/main/2013-html/html',
-    \ 'Cellulose',          '__SVN__/SVN/Syandus_ALIVE4/Cellulose',
-    \ 'Rosettastone',       '__UNIX_HOME__/src/merck/rosettastone',
-    \ 'Merck',              '__UNIX_HOME__/src/merck',
-    \ 'Platform',           '__UNIX_HOME__/src/alive5/syplatform',
-    \ 'Hummus',             '__UNIX_HOME__/src/alive5/tools/hummus',
-    \ 'Parsenip',           '__UNIX_HOME__/src/alive5/tools/parsenip',
-    \ 'Nitrogen',           '__UNIX_HOME__/src/alive5/frameworks/nitrogen',
-    \ 'Fluorine',           '__UNIX_HOME__/src/alive5/frameworks/fluorine',
-    \ 'Proton',             '__UNIX_HOME__/src/alive5/frameworks/proton',
-    \ 'Diabetes',           '__UNIX_HOME__/src/alive5/apps/diabetes_cmesim_2015',
-    \ 'Dramd',              '__UNIX_HOME__/src/alive5/apps/dr_amd_cmesim_2016',
-    \ 'Hiv',                '__UNIX_HOME__/src/alive5/apps/hiv_cmesim_2016',
-    \ 'LungGain',           '__UNIX_HOME__/src/alive5/apps/lung_gain_2016',
-    \ 'Obesity',            '__UNIX_HOME__/src/alive5/apps/obesity_cmesim_2016',
-    \ ]
-for i in range(len(s:commands) / 2)
-    let cmd = (i * 2) + 0
-
-    let dir = s:commands[(i * 2) + 1]
-    let dir = MyTranslateDirectory(dir)
-
-    let g:my_project_directories[dir] = 1
-
-    exe 'command! ' . s:commands[cmd] . ' silent cd ' . dir
-endfor
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UNIX
