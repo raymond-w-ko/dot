@@ -300,6 +300,7 @@ let s:commands = [
     \ 'Nitrogen',           '__UNIX_HOME__/src/alive5/frameworks/nitrogen',
     \ 'Fluorine',           '__UNIX_HOME__/src/alive5/frameworks/fluorine',
     \ 'Proton',             '__UNIX_HOME__/src/alive5/frameworks/proton',
+    \ 'Portal',             '__UNIX_HOME__/src/alive5/portal',
     \
     \ 'Diabetes',           '__UNIX_HOME__/src/alive5/apps/diabetes_cmesim_2015',
     \ 'Dramd',              '__UNIX_HOME__/src/alive5/apps/dr_amd_cmesim_2016',
