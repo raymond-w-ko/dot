@@ -2121,6 +2121,7 @@ augroup MyVimrc
   
   au FileType css,less setlocal iskeyword+=-
   au FileType javascript setlocal iskeyword+=$
+  au FileType javascript setlocal cinoptions=g0,N-s,(0,u0,Ws,l1,j1,J1
 augroup END
 " }}}
 " Projects {{{
