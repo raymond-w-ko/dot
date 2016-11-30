@@ -16,13 +16,7 @@ killall syndaemon
 syndaemon -t -k -i 1 -d &
 
 # compton-garnetius-git
-# no compton for 4K
-# compton --config /dev/null -C -G -b --backend glx --vsync opengl-swc --glx-no-rebind-pixmap --glx-no-stencil --unredir-if-possible --paint-on-overlay --xrender-sync-fence
-# this should prevent tearing
-# compton -C -G --config /dev/null --backend glx --vsync opengl-swc &
-# disabled due to this not working with recent libglvnd
-# compton --config /dev/null -b --backend glx --vsync opengl-swc --glx-no-rebind-pixmap --glx-no-stencil --unredir-if-possible --paint-on-overlay --xrender-sync-fence
-#compton --config /dev/null -b --backend xrender --unredir-if-possible
+compton --config /dev/null -b --backend glx --unredir-if-possible --vsync opengl
 
 # always full GPU speed
 # dropped laptop and broke something, cooling not working 100%
