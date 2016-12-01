@@ -1148,52 +1148,36 @@ nnoremap <leader>7 7gt
 nnoremap <leader>8 8gt
 nnoremap <leader>9 9gt
 nnoremap <F1> :tabnew<CR>
-nnoremap <F8> <C-W>v<C-W>v<C-W>v<C-W>h<C-W>h<C-W>h
 
-function! CreateScratch()
-    1split
-
-    " create preview window
-    set winfixheight
-    Scratch
-    setlocal nowrap
-    silent! exe "chdir " . current_directory
-
-    wincmd k
-endfunction
+if !exists("g:rko_setup_initial_tab")
+  let g:rko_setup_initial_tab=0
+endif
 function! CreateAndSetupVsplits()
+  let num_tabs=tabpagenr("$")
+  if num_tabs == 1
+    if g:rko_setup_initial_tab
+      tabnew
+    endif
+  else
+      tabnew
+  endif
+  let g:rko_setup_initial_tab=1
+  
   let num_vsplits = (&columns / (80 - 1)) - 1
 
-  " get the current directory because we want to replicate this
-  " in the new tab
-  let current_directory = expand("%:p:h")
-
-  if winnr('$') > 1
-    tabnew
-    silent! exe "chdir " . current_directory
-  endif
-
-  "call CreateScratch()
-
   " create number of vsplits based off of argument passwd
-  for ii in range(num_vsplits)
-    vsplit
-    silent! exe "chdir " . current_directory
+  for i in range(num_vsplits)
+    vnew
   endfor
 
   " move back to left vsplit
-  for ii in range(num_vsplits)
+  for i in range(num_vsplits)
     wincmd h
   endfor
 
-  if (num_vsplits >= 2)
-    wincmd l
-  endif
-
   wincmd =
 endfunction
-" nnoremap <leader>wt :call CreateAndSetupVsplits()<CR>
-" nnoremap <leader>ww :tabclose<CR>
+nnoremap <F8> :call CreateAndSetupVsplits()<CR>
 
 function! ExtensionHelper(ext, dir)
     let partial = a:dir . '/**/*.' . a:ext
