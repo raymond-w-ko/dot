@@ -307,6 +307,7 @@ let s:commands = [
     \ 'Hiv',                '__UNIX_HOME__/src/alive5/apps/hiv_cmesim_2016',
     \ 'LungGain',           '__UNIX_HOME__/src/alive5/apps/lung_gain_2016',
     \ 'Obesity',            '__UNIX_HOME__/src/alive5/apps/obesity_cmesim_2016',
+    \ 'Gibleed',            '__UNIX_HOME__/src/alive5/apps/gi_bleed_2016',
     \ ]
 
 let s:project_directories_list = []
