@@ -1570,7 +1570,7 @@ let g:alternateNoDefaultAlternate=1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ctrlp_map = "<C-\\>"           " set to something that I will never use
+let g:ctrlp_map = "F12"           " set to something that I will never use
 let g:ctrlp_max_height = 32
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_switch_buffer = 0
@@ -2084,6 +2084,15 @@ let g:sexp_filetypes = 'clojure,scheme,lisp,timl,eslisp'
 " vim-jsx
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:jsx_ext_required = 0
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-tmux-navigator
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <C-l> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 
 " }}}
 " filetype specific settings {{{
