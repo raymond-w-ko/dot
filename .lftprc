@@ -29,3 +29,6 @@ alias m5 mirror -c --use-pget-n=5
 alias m10 mirror -c --use-pget-n=10
 alias m15 mirror -c --use-pget-n=15
 alias m20 mirror -c --use-pget-n=20
+
+alias rate512 set net:limit-total-rate 524288:0
+alias rate0 set net:limit-total-rate 0:0
