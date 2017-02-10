@@ -26,6 +26,11 @@ chmod 700 "$HOME/.vnc"
 
 mkdir -p "$HOME/src"
 
+mkdir -p "$HOME/.local/share/fonts"
+pushd "$HOME/.local/share/fonts"
+ln -s ../../../src/creep2
+popd
+
 if [[ `uname` == 'Darwin' ]]; then
   mkdir -p "$HOME/Library/Vim/backup"
   mkdir -p "$HOME/Library/Vim/swap"
