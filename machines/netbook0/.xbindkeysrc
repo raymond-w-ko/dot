@@ -23,4 +23,4 @@
   XF86MonBrightnessUp
 
 "xset dpms force off; i3lock -c 000000; sleep 4; xset dpms force off"
-Mod4 + l
+Alt + l
