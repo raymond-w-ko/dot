@@ -60,8 +60,8 @@ set $mod Mod4
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt
-bindsym $mod+t exec urxvt
+bindsym $mod+Return exec my-terminal.sh
+bindsym $mod+t exec my-terminal.sh
 
 # kill focused window
 bindsym $mod+Shift+q kill
