@@ -308,6 +308,7 @@ let s:commands = [
     \ 'LungGain',           '__UNIX_HOME__/src/alive5/apps/lung_gain_2016',
     \ 'Obesity',            '__UNIX_HOME__/src/alive5/apps/obesity_cmesim_2016',
     \ 'Gibleed',            '__UNIX_HOME__/src/alive5/apps/gi_bleed_2016',
+    \ 'Nsclc',              '__UNIX_HOME__/src/alive5/apps/nsclc_cmesim_2017',
     \ ]
 
 let s:project_directories_list = []
@@ -2104,7 +2105,7 @@ augroup MyVimrc
   au FileType javascript setlocal iskeyword+=$
   au FileType javascript setlocal cinoptions=g0,N-s,(0,u0,Ws,l1,j1,J1
   if executable("prettier") 
-    autocmd FileType javascript set formatprg=prettier\ --stdin
+    autocmd FileType javascript set formatprg=prettier\ --stdin\ --trailing-comma
     autocmd FileType javascript nnoremap <buffer> <Leader>f gggqG
     " autocmd BufWritePre *.js exe "normal! gggqG\<C-o>\<C-o>"
   endif
