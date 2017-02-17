@@ -2053,22 +2053,8 @@ let g:tagbar_width=40
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:clang_format#code_style="google"
 let g:clang_format#detect_style_file=1
-autocmd FileType c,cpp,objc,javascript nnoremap <buffer><Leader>f :<C-u>ClangFormat<CR>zz
-autocmd FileType c,cpp,objc,javascript vnoremap <buffer><Leader>f :ClangFormat<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-jsbeautify
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" autocmd FileType javascript noremap <buffer> <Leader>f :call JsBeautify()<CR>
-" autocmd FileType json noremap <buffer> <Leader>f :call JsonBeautify()<CR>
-" autocmd FileType jsx noremap <buffer> <Leader>f :call JsxBeautify()<CR>
-" autocmd FileType html noremap <buffer> <Leader>f :call HtmlBeautify()<CR>
-" autocmd FileType css noremap <buffer> <Leader>f :call CSSBeautify()<CR>
-" autocmd FileType javascript vnoremap <buffer>  <Leader>f :call RangeJsBeautify()<CR>
-" autocmd FileType json vnoremap <buffer> <Leader>f :call RangeJsonBeautify()<CR>
-" autocmd FileType jsx vnoremap <buffer> <Leader>f :call RangeJsxBeautify()<CR>
-" autocmd FileType html vnoremap <buffer> <Leader>f :call RangeHtmlBeautify()<CR>
-" autocmd FileType css vnoremap <buffer> <Leader>f :call RangeCSSBeautify()<CR>
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>f :<C-u>ClangFormat<CR>zz
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>f :ClangFormat<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " csscomplete.vim
@@ -2117,6 +2103,11 @@ augroup MyVimrc
   au FileType css,less setlocal iskeyword+=-
   au FileType javascript setlocal iskeyword+=$
   au FileType javascript setlocal cinoptions=g0,N-s,(0,u0,Ws,l1,j1,J1
+  if executable("prettier") 
+    autocmd FileType javascript set formatprg=prettier\ --stdin
+    autocmd FileType javascript nnoremap <buffer> <Leader>f gggqG
+    " autocmd BufWritePre *.js exe "normal! gggqG\<C-o>\<C-o>"
+  endif
 augroup END
 " }}}
 " Projects {{{
