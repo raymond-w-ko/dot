@@ -2083,6 +2083,11 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 
 " }}}
 " filetype specific settings {{{
+function! MyJavascriptFormatter()
+  let view = winsaveview()
+  execute "%!prettier --stdin --trailing-comma none"
+  call winrestview(view)
+endfunction
 augroup MyVimrc
   au BufWritePost *.vimrc source $MYVIMRC
   au BufWritePost *.gvimrc source $MYGVIMRC
@@ -2105,9 +2110,7 @@ augroup MyVimrc
   au FileType javascript setlocal iskeyword+=$
   au FileType javascript setlocal cinoptions=g0,N-s,(0,u0,Ws,l1,j1,J1
   if executable("prettier") 
-    autocmd FileType javascript set formatprg=prettier\ --trailing-comma\ none\ --stdin
-    autocmd FileType javascript nnoremap <buffer> <Leader>f gggqG
-    " autocmd BufWritePre *.js exe "normal! gggqG\<C-o>\<C-o>"
+    autocmd FileType javascript nnoremap <buffer> <Leader>f :call MyJavascriptFormatter()<CR>
   endif
 augroup END
 " }}}
