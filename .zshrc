@@ -56,7 +56,6 @@ plugins=(${plugins} adb ant)
 if [[ $(uname -s) != CYGWIN* ]]; then
   plugins=(${plugins} pip brew systemd ssh-agent node npm archlinux aws)
 fi
-echo $plugins
 
 # stop eating characters after tab completion
 export ZLE_REMOVE_SUFFIX_CHARS=""
