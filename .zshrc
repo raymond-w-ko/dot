@@ -48,11 +48,15 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-if [[ $(uname -s) == CYGWIN* ]]; then
-  plugins=(git gitfast mercurial lein pip svn systemd tmux screen vim-interaction adb ant brew cp chucknorris history-substring-search)
-else
-  plugins=(git gitfast mercurial lein pip svn systemd tmux screen vim-interaction adb ant brew cp chucknorris history-substring-search node npm archlinux)
+
+# base
+plugins=(git gitfast mercurial lein pip svn svn-fast-info tmux screen vim-interaction cp chucknorris history-substring-search)
+# android development
+plugins=(${plugins} adb ant)
+if [[ $(uname -s) != CYGWIN* ]]; then
+  plugins=(${plugins} pip brew systemd ssh-agent node npm archlinux aws)
 fi
+echo $plugins
 
 # stop eating characters after tab completion
 export ZLE_REMOVE_SUFFIX_CHARS=""
