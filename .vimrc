@@ -292,11 +292,13 @@ let s:commands = [
     \ 'Diffractor',         '__UNIX_HOME__/src/diffractor',
     \ 'LetterDungeon',      '__UNIX_HOME__/src/letterdungeon',
     \
-    \ 'Rosettastone',       '__UNIX_HOME__/src/merck/rosettastone',
-    \ 'Merck',              '__UNIX_HOME__/src/merck',
+    \ 'Analytics',          '__UNIX_HOME__/src/alive5-server/analytics',
+    \ 'Backend',            '__UNIX_HOME__/src/alive5-server/main',
+    \
     \ 'Platform',           '__UNIX_HOME__/src/alive5/syplatform',
     \ 'Hummus',             '__UNIX_HOME__/src/alive5/tools/hummus',
     \ 'Parsenip',           '__UNIX_HOME__/src/alive5/tools/parsenip',
+    \ 'MetricsReport',      '__UNIX_HOME__/src/alive5/tools/metrics_report',
     \ 'Nitrogen',           '__UNIX_HOME__/src/alive5/frameworks/nitrogen',
     \ 'Fluorine',           '__UNIX_HOME__/src/alive5/frameworks/fluorine',
     \ 'Proton',             '__UNIX_HOME__/src/alive5/frameworks/proton',
@@ -1704,10 +1706,10 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UltiSnips
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:UltiSnipsExpandTrigger = "<F1>"
-let g:UltiSnipsListSnippets = "<C-F1>"
-let g:UltiSnipsJumpForwardTrigger = "<C-j>"
-let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
+let g:UltiSnipsExpandTrigger = "κ"
+let g:UltiSnipsListSnippets = "<F1>"
+let g:UltiSnipsJumpForwardTrigger = "<C-b>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-z>"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Gundo
