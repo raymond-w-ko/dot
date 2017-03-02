@@ -2088,6 +2088,11 @@ function! MyJavascriptFormatter()
   execute "%!prettier --stdin --trailing-comma es5"
   call winrestview(view)
 endfunction
+function! MyJavascriptFormatterNoTrailing()
+  let view = winsaveview()
+  execute "%!prettier --stdin --trailing-comma none"
+  call winrestview(view)
+endfunction
 augroup MyVimrc
   au BufWritePost *.vimrc source $MYVIMRC
   au BufWritePost *.gvimrc source $MYGVIMRC
