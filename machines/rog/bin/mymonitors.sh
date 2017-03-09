@@ -47,6 +47,13 @@ else
 fi
 
 #$configure_i3_workspaces.sh
+
 # dropped my laptop and partially broke cooling, always want adaptive speed now.
-nvidia-settings --load-config-only
 #(sleep 20 && DISPLAY=":0.0" nvidia-settings -a [gpu:0]/GPUPowerMizerMode=1) &
+
+nvidia-settings --load-config-only
+
+# load color profile
+if [ "$isDpOneConnected" -eq 1 ] && [ "$isLidOpen" -eq 0 ]; then
+  dispwin -d 1 $HOME/.local/share/icc/SE42UMS\ \#1\ 2017-03-09\ 13-36\ 2.2\ F-S\ XYZLUT+MTX.icc
+fi
