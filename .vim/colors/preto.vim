@@ -119,8 +119,8 @@ call s:HL('ColorColumn',    s:palette.white , s:palette.gray03, 'none'	   )
 call s:HL('CursorColumn',   s:palette.gray16, s:palette.gray03, 'none'	   )
 
 " VISUAL MODE
-call s:HL('Visual',         s:palette.green , s:palette.gray02, 'none'	   )
-call s:HL('VisualNOS',      s:palette.green , s:palette.gray02, 'none'	   )
+call s:HL('Visual',         s:palette.green , s:palette.gray03, 'none'	   )
+call s:HL('VisualNOS',      s:palette.green , s:palette.gray03, 'none'	   )
 
 " SEARCH
 call s:HL('Search',         s:palette.black , s:palette.yellow, 'none'	   )
