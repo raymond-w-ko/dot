@@ -105,8 +105,8 @@ call s:HL('String',         s:palette.dampgreen, s:palette.black , 'none'	   )
 call s:HL('SpecialChar',    s:palette.white , s:palette.black , 'none'	   )
 
 " COMMENTS
-call s:HL('Comment',        s:palette.gray11, s:palette.black , 'none'	   )
-call s:HL('SpecialComment', s:palette.gray12, s:palette.black , 'none'	   )
+call s:HL('Comment',        s:palette.gray06, s:palette.black , 'none'	   )
+call s:HL('SpecialComment', s:palette.gray06, s:palette.black , 'none'	   )
 call s:HL('Title',          s:palette.dampgreen, s:palette.black , 'none'	   )
 call s:HL('Todo',           s:palette.pink, s:palette.black , 'none'	   )
 
@@ -119,8 +119,8 @@ call s:HL('ColorColumn',    s:palette.white , s:palette.gray03, 'none'	   )
 call s:HL('CursorColumn',   s:palette.gray16, s:palette.gray03, 'none'	   )
 
 " VISUAL MODE
-call s:HL('Visual',         s:palette.green , s:palette.black, 'none'	   )
-call s:HL('VisualNOS',      s:palette.green , s:palette.black, 'none'	   )
+call s:HL('Visual',         s:palette.green , s:palette.gray02, 'none'	   )
+call s:HL('VisualNOS',      s:palette.green , s:palette.gray02, 'none'	   )
 
 " SEARCH
 call s:HL('Search',         s:palette.black , s:palette.yellow, 'none'	   )
@@ -168,9 +168,9 @@ call s:HL('Label',          s:palette.white	, s:palette.black , 'none'	   )
 call s:HL('Exception',      s:palette.white	, s:palette.black , 'none'	   )
 
 " MISC
-call s:HL('Normal',         s:palette.gray14, s:palette.black , 'none'	   )
+call s:HL('Normal',         s:palette.gray13, s:palette.black , 'none'	   )
 call s:HL('Cursor',         s:palette.black , s:palette.puregreen , 'none')
-call s:HL('Underlined',     s:palette.gray12, s:palette.black , 'underline')
+call s:HL('Underlined',     s:palette.gray13, s:palette.black , 'underline')
 call s:HL('SpecialKey',     s:palette.white	, s:palette.black , 'none'	   )
 call s:HL('NonText',        s:palette.white , s:palette.black , 'none'	   )
 call s:HL('Directory',      s:palette.darkcyan, s:palette.black , 'none'	   )
