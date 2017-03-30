@@ -60,6 +60,7 @@ let s:palette.darkred     = [52 , "#5f0000"]
 let s:palette.darkpurple  = [53 , "#5f005f"]
 let s:palette.darkyellow  = [58 , "#5f5f00"]
 let s:palette.red         = [124, "#af0000"]
+let s:palette.lightorange = [136, "#af8700"]
 let s:palette.purple      = [139, "#af87af"]
 let s:palette.brown       = [130, "#af5f00"]
 let s:palette.orange      = [166, "#d75f00"]
@@ -98,7 +99,7 @@ endfunction
 
 let s:color_alpha = s:palette.dullgreen
 let s:color_beta = s:palette.darkcyan
-let s:color_delta = s:palette.purple
+let s:color_delta = s:palette.lightorange
 let s:color_b = s:palette.white
 
 " PRIMITIVES
