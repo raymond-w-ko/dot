@@ -2101,7 +2101,7 @@ augroup MyVimrc
 
   au FileType gitcommit setlocal foldlevel=9001
 
-  au BufNewFile,BufRead *.py setlocal foldmethod=syntax foldlevel=1
+  " au BufNewFile,BufRead *.py setlocal foldmethod=syntax foldlevel=1
   au BufNewFile,BufRead *.py setlocal omnifunc=pythoncomplete#Complete
 
   au FileType cmake setlocal commentstring=#\ %s
