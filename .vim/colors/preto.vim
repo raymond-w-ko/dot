@@ -99,7 +99,7 @@ endfunction
 
 let s:color_alpha = s:palette.dullgreen
 let s:color_beta = s:palette.darkcyan
-let s:color_delta = s:palette.lightorange
+let s:color_delta = s:palette.orange
 let s:color_b = s:palette.white
 
 " PRIMITIVES
