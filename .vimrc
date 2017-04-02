@@ -34,7 +34,7 @@ if has('java')
   javarepl clojure
 endif
 
-" if this version of vim doesn't have Pythong bindings
+" if this version of vim doesn't have Python bindings
 if !has('python')
   call add(g:pathogen_disabled, "omegacomplete")
   call add(g:pathogen_disabled, "omegacomplete2")
