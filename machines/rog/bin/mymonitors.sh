@@ -56,5 +56,7 @@ nvidia-settings --load-config-only
 # load color profile
 if [ "$isDpOneConnected" -eq 1 ] && [ "$isLidOpen" -eq 0 ]; then
   # dispwin -d 1 $HOME/.local/share/icc/SE42UMS\ \#1\ 2017-03-09\ 13-36\ 2.2\ F-S\ XYZLUT+MTX.icc
-  echo
+  xset s off -dpms
+else
+  xset s 3600 3600 +dpms
 fi
