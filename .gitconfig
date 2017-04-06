@@ -8,7 +8,7 @@
 [color]
 	diff = always
 [push]
-	default = matching
+	default = current
 
 [color "diff"]
 	frag = cyan
