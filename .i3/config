@@ -62,6 +62,10 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec my-terminal.sh
 bindsym $mod+t exec my-terminal.sh
+# start clipboard manager
+# Solarized dark
+#bindsym $mod+c exec "clipmenu -i -fn Terminus:size=12 -nb '#002b36' -nf '#839496' -sb '#073642' -sf '#93a1a1'"
+bindsym $mod+c exec "clipmenu -i -fn Terminus:size=12 -nb '#000000' -nf '#00ff00' -sb '#00ff00' -sf '#000000'"
 
 # kill focused window
 bindsym $mod+Shift+q kill
