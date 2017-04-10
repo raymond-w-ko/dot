@@ -1154,19 +1154,15 @@ nnoremap <leader>8 8gt
 nnoremap <leader>9 9gt
 nnoremap <F1> :tabnew<CR>
 
-if !exists("g:rko_setup_initial_tab")
-  let g:rko_setup_initial_tab=0
-endif
 function! CreateAndSetupVsplits()
   let num_tabs=tabpagenr("$")
   if num_tabs == 1
-    if g:rko_setup_initial_tab
+    if winnr("$") > 1
       tabnew
     endif
   else
       tabnew
   endif
-  let g:rko_setup_initial_tab=1
   
   let num_vsplits = (&columns / (80 - 1)) - 1
 
