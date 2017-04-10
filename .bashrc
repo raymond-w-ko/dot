@@ -11,15 +11,15 @@ if hash zsh 2>/dev/null; then
 fi
 
 ## workaround for handling TERM variable in multiple tmux sessions properly from http://sourceforge.net/p/tmux/mailman/message/32751663/ by Nicholas Marriott
-if [[ -n ${TMUX} && -n ${commands[tmux]} ]];then
-  case $(tmux showenv TERM 2>/dev/null) in
-    *256color) ;&
-    TERM=fbterm)
-      TERM=screen-256color ;;
-    *)
-      TERM=screen
-  esac
-fi
+# if [[ -n ${TMUX} && -n ${commands[tmux]} ]];then
+#   case $(tmux showenv TERM 2>/dev/null) in
+#     *256color) ;&
+#     TERM=fbterm)
+#       TERM=screen-256color ;;
+#     *)
+#       TERM=screen
+#   esac
+# fi
 
 if [[ "$SHELL" == bash ]]; then
   # attempts to correct bad "cd" target
@@ -87,7 +87,6 @@ alias sdr='screen -U -D -R'
 # covered by oh-my-zsh, but I do not want to type argument
 alias ta='tmux attach -d'
 alias genctags='/usr/bin/find . -regex ".*\.\(c\|h\|hpp\|cc\|cpp\)" -print | /usr/bin/ctags --c++-kinds=+px --fields=+aimSz --languages=c++ --sort=yes -L -'
-alias omegacomplete='cd ~/.vim/bundle/omegacomplete'
 alias killpngcolorpofile='find . -type f -name "*.png" -exec convert {} -strip {} \;'
 alias iotop='sudo iotop -oP'
 alias iftop='sudo iftop'
@@ -97,7 +96,7 @@ alias n="$NICE_PROG"
 alias makepkg="$NICE_PROG makepkg"
 alias yaourt="$NICE_PROG yaourt"
 alias yup="$NICE_PROG yaourt -Syua --noconfirm"
-alias y="yaourt"
+alias y="$NICE_PROG yaourt"
 findcore() {
   find . -type f -regextype posix-extended -regex '.*/core\.[0-9]+$'
 }
@@ -202,6 +201,7 @@ dockerclean() {
 }
 
 # custom work aliases
+alias omegacomplete='cd ~/.vim/bundle/omegacomplete'
 alias Platform4="cd ~/SVN/Syandus_ALIVE4/Platform/Source/Code"
 if [[ "$unameString" == 'Darwin' ]]; then
   alias ThirdParty4="cd ~/SVN/Syandus_ALIVE4/Platform/ThirdParty/Mac"
@@ -294,11 +294,9 @@ else
       fi
     fi
   fi
-  if hash fortune 2>/dev/null; then
-    if hash cowsay 2>/dev/null; then
+  if hash cowsay 2>/dev/null; then
+    if hash fortune 2>/dev/null; then
       fortune | cowsay -W 70 2>/dev/null
-    else
-      fortune
     fi
   fi
 fi
