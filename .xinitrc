@@ -2,8 +2,7 @@
 
 [ -f /etc/profile ] && source /etc/profile
 [ -f /etc/xprofile ] && source /etc/xprofile
-
-. "$HOME/.bash.d/add_dot_extra_paths.sh"
+source "$HOME/.bash.d/add_dot_extra_paths.sh"
 
 source ~/.bashrc
 
@@ -14,9 +13,6 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   done
   unset f
 fi
-# override system defaults
-#. ~/dot/bin/infinality-settings.sh
-export INFINALITY_FT="osx"
 
 # machine specific customization
 $HOME/.xinitrc.extra
@@ -35,19 +31,8 @@ xset fp rehash
 wmname LG3D
 hsetroot -solid '#000000'
 
-# sync clipboard
-autocutsel -fork &
-autocutsel -selection PRIMARY -fork &
-
-# WM must start this for this to work?
-#dropboxd
-
-# dbus is already launched?
-#if hash dbus-launch 2>/dev/null; then
-  #exec dbus-launch --sh-syntax --exit-with-session i3 -V -d all > ~/.i3/i3log-$(date +'%F-%k-%M-%S') 2>&1
-#else
-  #exec i3 -V -d all > ~/.i3/i3log-$(date +'%F-%k-%M-%S') 2>&1
-#fi
+# clipboard manager
+systemctl --user start clipmenud
 
 export DE=gnome
 
@@ -68,7 +53,4 @@ start-pulseaudio-x11
 
 my_keyboard_settings_daemon.py &
 
-(sleep 5 && /opt/dropbox/dropbox) &
-
 exec i3
-#exec awesome
