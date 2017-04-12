@@ -1,4 +1,6 @@
 #!/bin/bash
 set -e
 set -x
-sudo mount -v -t cifs //DESKTOP-JEFF/Art /mnt/jeff -o rw,echo_interval=5,uid=1000,iocharset=utf8,workgroup=workgroup,guest
+CREDENTIALS=$HOME/.ssh/jeffcred
+OPTIONS=rw,credentials=$CREDENTIALS,workgroup=WORKGROUP,soft,vers=2.1,echo_interval=5,uid=1000,iocharset=utf8
+sudo mount -v -t cifs //DESKTOP-JEFF/Art /mnt/jeff -o $OPTIONS

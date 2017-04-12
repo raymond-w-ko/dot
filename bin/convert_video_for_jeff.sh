@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 #REM mp4  (H.264 / ACC)
 # -i %1 -b 1500k -vcodec libx264 -vpre slow -vpre baseline -g 30 -s 640x360 %1.mp4
 #REM webm (VP8 / Vorbis)
@@ -11,7 +13,7 @@
 
 create_dist_mp4()
 {
-  SRC=$1  
+  SRC="$1"
   DST=converted_for_publish/${SRC%.*}.mp4
 
   echo creating $DST
@@ -33,7 +35,7 @@ create_dist_mp4()
 
 create_master_mp4()
 {
-  SRC=$1  
+  SRC="$1"
   DST=converted_for_editing/${SRC%.*}.mp4
 
   echo creating $DST
@@ -53,12 +55,12 @@ create_master_mp4()
     </dev/null
 }
 
-# mkdir -p converted_for_editing
-# find . -iname '*.mp4' | while read file; do
-#   create_master_mp4 $file
-# done
-
-mkdir -p converted_for_publish
-find . -iname '*.wmv' | while read file; do
-  create_dist_mp4 $file
+mkdir -p converted_for_editing
+find . -iname '*.mp4' | while read file; do
+  create_master_mp4 "$file"
 done
+
+# mkdir -p converted_for_publish
+# find . -iname '*.wmv' | while read file; do
+#   create_dist_mp4 $file
+# done
