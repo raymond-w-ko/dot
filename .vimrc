@@ -305,7 +305,7 @@ let s:commands = [
     \ 'Portal',             '__UNIX_HOME__/src/alive5/portal',
     \
     \ 'Diabetes',           '__UNIX_HOME__/src/alive5/apps/diabetes_cmesim_2015',
-    \ 'Dramd',              '__UNIX_HOME__/src/alive5/apps/dr_amd_cmesim_2016',
+    \ 'Amddr',              '__UNIX_HOME__/src/alive5/apps/dr_amd_cmesim_2016',
     \ 'Hiv',                '__UNIX_HOME__/src/alive5/apps/hiv_cmesim_2016',
     \ 'LungGain',           '__UNIX_HOME__/src/alive5/apps/lung_gain_2016',
     \ 'Obesity',            '__UNIX_HOME__/src/alive5/apps/obesity_cmesim_2016',
