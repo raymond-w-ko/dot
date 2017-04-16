@@ -295,6 +295,7 @@ let s:commands = [
     \ 'Analytics',          '__UNIX_HOME__/src/alive5-server/analytics',
     \ 'Backend',            '__UNIX_HOME__/src/alive5-server/main',
     \
+    \ 'Documentation',      '__UNIX_HOME__/src/alive5/docs',
     \ 'Platform',           '__UNIX_HOME__/src/alive5/syplatform',
     \ 'Hummus',             '__UNIX_HOME__/src/alive5/tools/hummus',
     \ 'Parsenip',           '__UNIX_HOME__/src/alive5/tools/parsenip',
@@ -2114,6 +2115,8 @@ augroup MyVimrc
   if executable("prettier") 
     autocmd FileType javascript nnoremap <buffer> <Leader>f :call MyJavascriptFormatter()<CR>
   endif
+  
+  au FileType markdown setlocal textwidth=80
 augroup END
 " }}}
 " Projects {{{
