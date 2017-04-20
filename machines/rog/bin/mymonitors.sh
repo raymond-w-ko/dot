@@ -60,3 +60,8 @@ if [ "$isDpOneConnected" -eq 1 ] && [ "$isLidOpen" -eq 0 ]; then
 else
   xset s 3600 3600 +dpms
 fi
+
+if [[ -d ~/wallpapers ]]; then
+  wallpaper=$(find ~/wallpapers -type f | shuf -n 1)
+  feh --bg-center "$wallpaper"
+fi
