@@ -787,9 +787,10 @@ endif
 " inoremap ν <Esc>
 " cnoremap ν <C-c>
 
-inoremap kj <Esc>
-cnoremap kj <C-c>
+" inoremap kj <Esc>
+" cnoremap kj <C-c>
 " inoremap <silent> kj <C-r>=lexima#insmode#escape()<CR><Esc>
+call arpeggio#map('i', '', 0, 'jk', '<Esc>')
 
 " mirror dd and D, a bit hard to get use to
 try
