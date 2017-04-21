@@ -292,6 +292,8 @@ let s:commands = [
     \ 'Diffractor',         '__UNIX_HOME__/src/diffractor',
     \ 'LetterDungeon',      '__UNIX_HOME__/src/letterdungeon',
     \
+    \ 'Sydocs',             '__UNIX_HOME__/src/sydocs',
+    \
     \ 'Analytics',          '__UNIX_HOME__/src/alive5-server/analytics',
     \ 'Backend',            '__UNIX_HOME__/src/alive5-server/main',
     \
