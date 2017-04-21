@@ -5,11 +5,19 @@
 [user]
 	name = Raymond W. Ko
 	email = raymond.w.ko@gmail.com
-[color]
-	diff = always
 [push]
 	default = current
+[log]
+[diff]
+	renameLimit = 4096
 
+[pager]
+	diff = diff-highlight | less
+	log = diff-highlight | less
+	show = diff-highlight | less
+
+[color]
+	diff = always
 [color "diff"]
 	frag = cyan
 	old = yellow
@@ -19,13 +27,6 @@
 	added = green
 	changed = cyan
 	untracked = normal
-
-[pager]
-	diff = diff-highlight | less
-	log = diff-highlight | less
-	show = diff-highlight | less
-
-[log]
 
 [alias]
 	co = checkout
