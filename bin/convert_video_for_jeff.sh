@@ -55,12 +55,17 @@ create_master_mp4()
     </dev/null
 }
 
-mkdir -p converted_for_editing
-find . -iname '*.mp4' | while read file; do
-  create_master_mp4 "$file"
-done
+if [[ "$1" == "editing" ]]; then
+  mkdir -p converted_for_editing
+  find . -iname '*.mp4' | while read file; do
+    create_master_mp4 "$file"
+  done
+elif [[ "$1" == "publishing" ]]; then
+  mkdir -p converted_for_publish
+  find . -iname '*.wmv' | while read file; do
+    create_dist_mp4 "$file"
+  done
+else
+  echo "$0" "[editing | publishing]"
+fi
 
-# mkdir -p converted_for_publish
-# find . -iname '*.wmv' | while read file; do
-#   create_dist_mp4 $file
-# done
