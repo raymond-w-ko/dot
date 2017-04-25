@@ -10,6 +10,8 @@
 [log]
 [diff]
 	renameLimit = 4096
+[credential]
+	helper = cache --timeout=28800
 
 [pager]
 	diff = diff-highlight | less
