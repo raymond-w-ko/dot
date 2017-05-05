@@ -44,13 +44,12 @@ systemctl --user start clipmenud
 
 export DE=gnome
 
-# dex /etc/xdg/autostart/at-spi-dbus-bus.desktop
-#dex /etc/xdg/autostart/caribou-autostart.desktop
-# dex /etc/xdg/autostart/gsettings-data-convert.desktop
-# dex /etc/xdg/autostart/lxpolkit.desktop
+dex /etc/xdg/autostart/at-spi-dbus-bus.desktop
+# dex /etc/xdg/autostart/caribou-autostart.desktop
+dex /etc/xdg/autostart/gsettings-data-convert.desktop
+dex /etc/xdg/autostart/lxpolkit.desktop
 # Start GNOME Keyring
 eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
-# You probably need to do this too:
 export GPG_AGENT_INFO
 export SSH_AUTH_SOCK
 
@@ -61,30 +60,4 @@ start-pulseaudio-x11
 
 my_keyboard_settings_daemon.py &
 
-DEFAULT_SESSION=i3
-
-get_session() {
-	local dbus_args=(--sh-syntax --exit-with-session)
-	case $1 in
-		awesome) dbus_args+=(awesome) ;;
-		bspwm) dbus_args+=(bspwm-session) ;;
-		budgie) dbus_args+=(budgie-desktop) ;;
-		cinnamon) dbus_args+=(cinnamon-session) ;;
-		deepin) dbus_args+=(startdde) ;;
-		enlightenment) dbus_args+=(enlightenment_start) ;;
-		fluxbox) dbus_args+=(startfluxbox) ;;
-		gnome) dbus_args+=(gnome-session) ;;
-		i3|i3wm) dbus_args+=(i3 --shmlog-size 0) ;;
-		jwm) dbus_args+=(jwm) ;;
-		kde) dbus_args+=(startkde) ;;
-		lxde) dbus_args+=(startlxde) ;;
-		lxqt) dbus_args+=(lxqt-session) ;;
-		mate) dbus_args+=(mate-session) ;;
-		xfce) dbus_args+=(xfce4-session) ;;
-		openbox) dbus_args+=(openbox-session) ;;
-		*) dbus_args+=($DEFAULT_SESSION) ;;
-	esac
-
-	echo "dbus-launch ${dbus_args[*]}"
-}
-exec $(get_session)
+exec i3
