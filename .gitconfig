@@ -32,7 +32,7 @@
 
 [alias]
 	co = checkout
-	date = local
+	br = branch
 
 	lg = log --graph --full-history --pretty=format:"%h%x09%ar%x09%d%x20%s"
 	lga = log --graph --full-history --all --pretty=format:"%h%x09%ar%x09%d%x20%s"
