@@ -1577,7 +1577,7 @@ let g:ctrlp_map = "F12"           " set to something that I will never use
 let g:ctrlp_max_height = 32
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_switch_buffer = 0
-let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_clear_cache_on_exit = 1
 let g:ctrlp_max_files = 0
 let g:ctrlp_lazy_update = 0
 
