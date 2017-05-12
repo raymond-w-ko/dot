@@ -306,6 +306,7 @@ let s:commands = [
     \ 'Fluorine',           '__UNIX_HOME__/src/alive5/frameworks/fluorine',
     \ 'Proton',             '__UNIX_HOME__/src/alive5/frameworks/proton',
     \ 'Portal',             '__UNIX_HOME__/src/alive5/portal',
+    \ 'Styles',             '__UNIX_HOME__/src/alive5/styles/default',
     \
     \ 'Diabetes',           '__UNIX_HOME__/src/alive5/apps/diabetes_cmesim_2015',
     \ 'Amddr',              '__UNIX_HOME__/src/alive5/apps/dr_amd_cmesim_2016',
@@ -793,6 +794,7 @@ endif
 " cnoremap kj <C-c>
 " inoremap <silent> kj <C-r>=lexima#insmode#escape()<CR><Esc>
 call arpeggio#map('i', '', 0, 'jk', '<Esc>')
+call arpeggio#map('i', '', 0, 'fj', '()<C-g>U<Left>')
 
 " mirror dd and D, a bit hard to get use to
 try
