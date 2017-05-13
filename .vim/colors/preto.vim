@@ -93,6 +93,8 @@ function! s:HL(item, fgColor, bgColor, style, ...)
 	endif
 	if type(a:bgColor) == v:t_list
 		let command .= ' ' . target . 'bg=' . a:bgColor[pindex]
+	elseif target == "gui"
+		let command .= ' ' . target . 'bg=' . s:palette.black[pindex]
 	endif
 	let command .= ' ' . target . '=' . a:style
 
@@ -188,8 +190,8 @@ call s:HL('NonText',        s:color_alpha,       v:null,              'none')
 call s:HL('Directory',      s:color_beta,        v:null,              'none')
 
 " FOLD
-call s:HL('FoldColumn',     s:color_delta,       v:null,              'none')
-call s:HL('Folded',         s:color_delta,       v:null,              'none')
+call s:HL('FoldColumn',     s:color_delta,       s:palette.black,     'none')
+call s:HL('Folded',         s:color_delta,       s:palette.black,     'none')
 
 " PARENTHESIS
 call s:HL('MatchParen',     s:palette.black,     s:palette.cyan,      'none')
