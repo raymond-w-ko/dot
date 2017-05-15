@@ -114,20 +114,22 @@ function prompt_rko_setup {
   local NEWLINE=$'\n'
   ps1=(
     "$NEWLINE"
+    # user @ host
+    "%n at %{$fg_bold[cyan]%}%m "
+    # on
+    "${reset_color}on "
     # date and time
     "%D{%a, %b %d %Y, %I:%M:%S %p} "
-    "$NEWLINE"
-    # user@host
-    "%n @ %{$fg_bold[cyan]%}%m "
-    # path
-    "${reset_color}in "
-    "%{$fg_bold[yellow]%}%~ "
     "$NEWLINE"
     # version control
     '$(git_prompt_info)'
     '$(hg_prompt_info)'
+    ' '
+    # path
+    "%{$fg_bold[yellow]%}%~ "
     # arrow
-    "${reset_color} > "
+    "${reset_color}$NEWLINE"
+    " > "
   )
   PS1="${(j::)ps1}"
 }
