@@ -104,30 +104,30 @@ endfunction
 
 " Composition ------------------------------------------------------------ {{{1
 
+let s:color_bg = s:palette.black
 let s:color_alpha = s:palette.dullgreen
 let s:color_beta = s:palette.darkcyan
 let s:color_delta = s:palette.orange
-let s:color_b = s:palette.white
 
 " PRIMITIVES
-call s:HL('Boolean',        s:color_alpha,       v:null,              'none')
-call s:HL('Character',      s:color_alpha,       v:null,              'none')
-call s:HL('Constant',       s:color_alpha,       v:null,              'none')
-call s:HL('Float',          s:color_alpha,       v:null,              'none')
-call s:HL('Number',         s:color_alpha,       v:null,              'none')
-call s:HL('String',         s:color_alpha,       v:null,              'none')
-call s:HL('SpecialChar',    s:palette.puregreen, v:null,              'none')
+call s:HL('Boolean',        s:color_alpha,       s:color_bg,          'none')
+call s:HL('Character',      s:color_alpha,       s:color_bg,          'none')
+call s:HL('Constant',       s:color_alpha,       s:color_bg,          'none')
+call s:HL('Float',          s:color_alpha,       s:color_bg,          'none')
+call s:HL('Number',         s:color_alpha,       s:color_bg,          'none')
+call s:HL('String',         s:color_alpha,       s:color_bg,          'none')
+call s:HL('SpecialChar',    s:palette.puregreen, s:color_bg,          'none')
 
 " COMMENTS
-call s:HL('Comment',        s:color_delta,       v:null,              'none')
-call s:HL('SpecialComment', s:color_delta,       v:null,              'none')
-call s:HL('Title',          s:color_alpha,       v:null,              'none')
-call s:HL('Todo',           s:color_delta,       v:null,              'none')
+call s:HL('Comment',        s:color_delta,       s:color_bg,          'none')
+call s:HL('SpecialComment', s:color_delta,       s:color_bg,          'none')
+call s:HL('Title',          s:color_alpha,       s:color_bg,          'none')
+call s:HL('Todo',           s:color_delta,       s:color_bg,          'none')
 
 " LINES, COLUMNS
-call s:HL('LineNr',         s:color_delta,       v:null,              'none')
+call s:HL('LineNr',         s:color_delta,       s:color_bg,          'none')
 call s:HL('CursorLine',     s:palette.white,     s:palette.gray03,    'none')
-call s:HL('CursorLineNr',   s:color_alpha,       v:null,              'none')
+call s:HL('CursorLineNr',   s:color_alpha,       s:color_bg,          'none')
 
 call s:HL('ColorColumn',    s:palette.white,     s:palette.gray03,    'none')
 call s:HL('CursorColumn',   s:palette.gray16,    s:palette.gray03,    'none')
@@ -138,7 +138,7 @@ call s:HL('VisualNOS',      s:palette.green,     s:palette.gray03,    'none')
 
 " SEARCH
 call s:HL('Search',         s:palette.black,     s:palette.yellow,    'none')
-call s:HL('IncSearch',      s:palette.yellow,    v:null,              'none')
+call s:HL('IncSearch',      s:palette.yellow,    s:color_bg,          'none')
 
 " SPELLING
 call s:HL('SpellBad',       s:palette.black,     s:palette.yellow,    'none')
@@ -147,47 +147,47 @@ call s:HL('SpellLocal',     s:palette.black,     s:palette.yellow,    'none')
 call s:HL('SpellRare',      s:palette.black,     s:palette.yellow,    'none')
 
 " ERROR
-call s:HL('Error',          s:palette.yellow,    v:null,              'none')
+call s:HL('Error',          s:palette.yellow,    s:color_bg,          'none')
 
 " COMMAND MODE MESSAGES
-call s:HL('ErrorMsg',       s:palette.yellow,    v:null,              'none')
-call s:HL('WarningMsg',     s:palette.brown,     v:null,              'none')
-call s:HL('ModeMsg',        s:palette.white,     v:null,              'none')
-call s:HL('MoreMsg',        s:palette.white,     v:null,              'none')
+call s:HL('ErrorMsg',       s:palette.yellow,    s:color_bg,          'none')
+call s:HL('WarningMsg',     s:palette.brown,     s:color_bg,          'none')
+call s:HL('ModeMsg',        s:palette.white,     s:color_bg,          'none')
+call s:HL('MoreMsg',        s:palette.white,     s:color_bg,          'none')
 
 " PREPROCESSOR DIRECTIVES
-call s:HL('Include',        s:color_alpha,       v:null,              'none')
-call s:HL('Define',         s:color_alpha,       v:null,              'none')
-call s:HL('Macro',          s:color_alpha,       v:null,              'none')
-call s:HL('PreCondit',      s:color_alpha,       v:null,              'none')
-call s:HL('PreProc',        s:color_alpha,       v:null,              'none')
+call s:HL('Include',        s:color_alpha,       s:color_bg,          'none')
+call s:HL('Define',         s:color_alpha,       s:color_bg,          'none')
+call s:HL('Macro',          s:color_alpha,       s:color_bg,          'none')
+call s:HL('PreCondit',      s:color_alpha,       s:color_bg,          'none')
+call s:HL('PreProc',        s:color_alpha,       s:color_bg,          'none')
 
 " BINDINGS
-call s:HL('Identifier',     s:color_beta,        v:null,              'none')
-call s:HL('Function',       s:color_beta,        v:null,              'none')
-call s:HL('Keyword',        s:color_beta,        v:null,              'none')
-call s:HL('Operator',       s:color_beta,        v:null,              'none')
+call s:HL('Identifier',     s:color_beta,        s:color_bg,          'none')
+call s:HL('Function',       s:color_beta,        s:color_bg,          'none')
+call s:HL('Keyword',        s:color_beta,        s:color_bg,          'none')
+call s:HL('Operator',       s:color_beta,        s:color_bg,          'none')
 
 " TYPES
-call s:HL('Type',           s:color_alpha,       v:null,              'none')
-call s:HL('Typedef',        s:color_alpha,       v:null,              'none')
-call s:HL('StorageClass',   s:color_alpha,       v:null,              'none')
-call s:HL('Structure',      s:color_alpha,       v:null,              'none')
+call s:HL('Type',           s:color_alpha,       s:color_bg,          'none')
+call s:HL('Typedef',        s:color_alpha,       s:color_bg,          'none')
+call s:HL('StorageClass',   s:color_alpha,       s:color_bg,          'none')
+call s:HL('Structure',      s:color_alpha,       s:color_bg,          'none')
 
 " FLOW CONTROL
-call s:HL('Statement',      s:color_alpha,       v:null,              'none')
-call s:HL('Conditional',    s:color_alpha,       v:null,              'none')
-call s:HL('Repeat',         s:color_alpha,       v:null,              'none')
-call s:HL('Label',          s:color_alpha,       v:null,              'none')
-call s:HL('Exception',      s:color_alpha,       v:null,              'none')
+call s:HL('Statement',      s:color_alpha,       s:color_bg,          'none')
+call s:HL('Conditional',    s:color_alpha,       s:color_bg,          'none')
+call s:HL('Repeat',         s:color_alpha,       s:color_bg,          'none')
+call s:HL('Label',          s:color_alpha,       s:color_bg,          'none')
+call s:HL('Exception',      s:color_alpha,       s:color_bg,          'none')
 
 " MISC
-call s:HL('Normal',         s:palette.gray13,    v:null,              'none')
+call s:HL('Normal',         s:palette.gray13,    s:color_bg,          'none')
 call s:HL('Cursor',         s:palette.black,     s:palette.puregreen, 'none')
-call s:HL('Underlined',     s:palette.gray13,    v:null,              'underline')
-call s:HL('SpecialKey',     s:color_alpha,       v:null,              'none')
-call s:HL('NonText',        s:color_alpha,       v:null,              'none')
-call s:HL('Directory',      s:color_beta,        v:null,              'none')
+call s:HL('Underlined',     s:palette.gray13,    s:color_bg,          'underline')
+call s:HL('SpecialKey',     s:color_alpha,       s:color_bg,          'none')
+call s:HL('NonText',        s:color_alpha,       s:color_bg,          'none')
+call s:HL('Directory',      s:color_beta,        s:color_bg,          'none')
 
 " FOLD
 call s:HL('FoldColumn',     s:color_delta,       s:palette.black,     'none')
@@ -206,23 +206,23 @@ call s:HL('PmenuThumb',     s:palette.gray01,    s:palette.gray10,    'none')
 call s:HL('VertSplit',      s:palette.gray03,    s:palette.gray03,    'none')
 
 " OTHERS
-call s:HL('Debug',          s:color_alpha,       v:null,              'none')
-call s:HL('Delimiter',      s:color_alpha,       v:null,              'none')
-call s:HL('Question',       s:color_alpha,       v:null,              'none')
-call s:HL('Special',        s:color_alpha,       v:null,              'none')
-call s:HL('StatusLine',     s:color_alpha,       v:null,              'none', 'gui_macvim')
-call s:HL('StatusLineNC',   s:color_alpha,       v:null,              'none', 'gui_macvim')
-call s:HL('Tag',            s:color_alpha,       v:null,              'none')
-call s:HL('WildMenu',       s:color_alpha,       v:null,              'none')
+call s:HL('Debug',          s:color_alpha,       s:color_bg,          'none')
+call s:HL('Delimiter',      s:color_alpha,       s:color_bg,          'none')
+call s:HL('Question',       s:color_alpha,       s:color_bg,          'none')
+call s:HL('Special',        s:color_alpha,       s:color_bg,          'none')
+call s:HL('StatusLine',     s:color_alpha,       s:color_bg,          'none', 'gui_macvim')
+call s:HL('StatusLineNC',   s:color_alpha,       s:color_bg,          'none', 'gui_macvim')
+call s:HL('Tag',            s:color_alpha,       s:color_bg,          'none')
+call s:HL('WildMenu',       s:color_alpha,       s:color_bg,          'none')
 
 " DIFF
-call s:HL('DiffAdd',        s:palette.green,     v:null,              'none')
-call s:HL('DiffChange',     s:palette.cyan,      v:null,              'none')
-call s:HL('DiffDelete',     s:palette.yellow,    v:null,              'none')
+call s:HL('DiffAdd',        s:palette.green,     s:color_bg,          'none')
+call s:HL('DiffChange',     s:palette.cyan,      s:color_bg,          'none')
+call s:HL('DiffDelete',     s:palette.yellow,    s:color_bg,          'none')
 call s:HL('DiffText',       s:palette.black,     s:palette.cyan,      'none')
 
-call s:HL('diffRemoved',    s:palette.yellow,    v:null,              'none')
-call s:HL('diffAdded',      s:palette.green,     v:null,              'none')
+call s:HL('diffRemoved',    s:palette.yellow,    s:color_bg,          'none')
+call s:HL('diffAdded',      s:palette.green,     s:color_bg,          'none')
 
 
 " Links ------------------------------------------------------------------ {{{1
