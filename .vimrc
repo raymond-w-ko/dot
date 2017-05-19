@@ -786,34 +786,13 @@ endif
 "             `-. `.`.``-----``--,  .'
 "               |/`.\`'        ,','); SSt
 "                   `         (/  (/
-" greek small letter nu
-" inoremap ν <Esc>
-" cnoremap ν <C-c>
 
 " inoremap kj <Esc>
-" cnoremap kj <C-c>
-" inoremap <silent> kj <C-r>=lexima#insmode#escape()<CR><Esc>
 call arpeggio#map('i', '', 0, 'jk', '<Esc>')
 call arpeggio#map('i', '', 0, 'fj', '()<C-g>U<Left>')
 
-" mirror dd and D, a bit hard to get use to
-try
-  call yankstack#setup()
-catch
-endtry
+" normalize Y to act like D and C
 map Y y$
-
-" looking at junegunn's vimrc, <C-f> and <C-b> are usually overkill
-" not if using scrollfix though...
-"noremap <C-F> <C-D>
-"noremap <C-B> <C-U>
-
-" lazyness, and to help me use Ex commands
-" since I am testing crazy semicolon mode map layout, this is not necessary
-" nnoremap ; :
-" nnoremap : ;
-" vnoremap ; :
-" vnoremap : ;
 
 " fastest way to save a file
 nnoremap <silent> <leader>w :wall<CR>
@@ -1782,15 +1761,6 @@ let g:niji_dark_colours = [
     \ ['135', 'purple1']]
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"NERDCommenter
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:NERDCustomDelimiters = {
-    \ 'syxml': { 'left': '//', 'right': ''},
-    \ 'ogre': { 'left': '//', 'right': ''},
-    \ 'glsl': { 'left': '//', 'right': ''}
-    \ }
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " omegacomplete
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:omegacomplete_normal_hi_cmds=[
@@ -1820,12 +1790,6 @@ let g:syntastic_mode_map = {
 " JS
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exec = 'eslint_d'
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" paredit
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:paredit_leader = ','
-let g:paredit_shortmaps = 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " detectindent
@@ -1953,12 +1917,6 @@ nmap <Leader>L <Plug>(easymotion-overwin-line)
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" yankstack
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <C-p> <Plug>yankstack_substitute_older_paste
-nmap <C-n> <Plug>yankstack_substitute_newer_paste
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " scrollfix
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:scrollfix=50
@@ -1970,57 +1928,6 @@ let g:scrollinfo=0
 let g:slime_no_mappings = 1
 let g:slime_target="tmux"
 let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" lexima
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-augroup MyVimrc
-  autocmd FileType clojure,lisp,scheme let b:lexima_disabled = 0
-augroup END
-
-let g:lexima_enable_basic_rules = 0
-" call lexima#set_default_rules()
-
-let s:lexima_rules = [
-\ {'char': 'φ', 'input' : '(', 'input_after': ')'},
-\ {'char': ')', 'at': '\%#)', 'leave': 1},
-\ {'char': '<BS>', 'at': '(\%#)', 'delete': 1},
-\ {'char': 'σ', 'input': '{', 'input_after': '}'},
-\ {'char': '}', 'at': '\%#}', 'leave': 1},
-\ {'char': '<BS>', 'at': '{\%#}', 'delete': 1},
-\ {'char': 'ρ', 'input': '[', 'input_after': ']'},
-\ {'char': ']', 'at': '\%#]', 'leave': 1},
-\ {'char': '<BS>', 'at': '\[\%#\]', 'delete': 1},
-\
-\ {'char': 'θ', 'input' : '"', 'input_after': '"'},
-\ {'char': '"', 'at': '\%#"', 'leave': 1},
-\ {'char': '"', 'at': '^\s*\%#', 'filetype': 'vim'},
-\ {'char': '"', 'at': '\%#\s*$', 'filetype': 'vim'},
-\ {'char': '<BS>', 'at': '"\%#"', 'delete': 1},
-\ {'char': '"', 'input' : '"', 'at': '\%#"""', 'leave': 3},
-\ {'char': '<BS>', 'at': '"""\%#"""', 'input': '<BS><BS><BS>', 'delete': 3},
-\
-\ {'char': "'", 'input_after': "'"},
-\ {'char': "'", 'at': '\%#''', 'leave': 1},
-\ {'char': "'", 'at': '\w\%#''\@!'},
-\ {'char': "'", 'at': '\\\%#'},
-\ {'char': "'", 'at': '\\\%#', 'leave': 1, 'filetype': ['vim', 'sh', 'csh', 'ruby', 'tcsh', 'zsh']},
-\ {'char': "'", 'filetype': ['haskell', 'lisp', 'clojure', 'ocaml', 'scala']},
-\ {'char': '<BS>', 'at': "'\\%#'", 'delete': 1},
-\ {'char': "'", 'at': "''\\%#", 'input_after': "'''"},
-\ {'char': "'", 'at': "\\%#'''", 'leave': 3},
-\ {'char': '<BS>', 'at': "'''\\%#'''", 'input': '<BS><BS><BS>', 'delete': 3},
-\ {'char': '`', 'input_after': '`'},
-\ {'char': '`', 'at': '\%#`', 'leave': 1},
-\ {'char': '<BS>', 'at': '`\%#`', 'delete': 1},
-\ {'char': '`', 'at': '``\%#', 'input_after': '```'},
-\ {'char': '`', 'at': '\%#```', 'leave': 3},
-\ {'char': '<BS>', 'at': '```\%#```', 'input': '<BS><BS><BS>', 'delete': 3},
-\ ]
-
-for rule in s:lexima_rules
-  " call lexima#add_rule(rule)
-endfor
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-expand-region
