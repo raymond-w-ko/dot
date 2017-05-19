@@ -789,7 +789,6 @@ endif
 
 " inoremap kj <Esc>
 call arpeggio#map('i', '', 0, 'jk', '<Esc>')
-call arpeggio#map('i', '', 0, 'fj', '()<C-g>U<Left>')
 
 " normalize Y to act like D and C
 map Y y$
@@ -894,6 +893,9 @@ function! s:SetupPairBindings()
     inoremap <buffer> σ {}<C-g>U<Left>
     inoremap <buffer> ρ []<C-g>U<Left>
     inoremap <buffer> θ ""<C-g>U<Left>
+    call arpeggio#map('i', 'b', 0, 'fj', '()<C-g>U<Left>')
+    call arpeggio#map('i', 'b', 0, 'ru', '[]<C-g>U<Left>')
+    call arpeggio#map('i', 'b', 0, 'c,', '{}<C-g>U<Left>')
     inoremap <buffer> <BS> <C-r>=<SID>EmptyPairDeleterBackspace()<CR>
     inoremap <buffer> <CR> <C-r>=<SID>MySmarterCR()<CR>
   endif
