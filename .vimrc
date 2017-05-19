@@ -868,6 +868,7 @@ function! s:MySmarterCR()
   endfor
   return keys . "\<CR>"
 endfunction
+inoremap <Plug>MySmarterCR <C-r>=<SID>MySmarterCR()<CR>
 
 function! s:MyBasicCR()
 
@@ -878,6 +879,7 @@ function! s:MyBasicCR()
 
   return keys . "\<CR>"
 endfunction
+inoremap <Plug>MyBasicCR <C-r>=<SID>MyBasicCR()<CR>
 
 function! s:SetupPairBindings()
   " handled by vim-sexp
@@ -896,6 +898,7 @@ function! s:SetupPairBindings()
     call arpeggio#map('i', 'b', 0, 'fj', '()<C-g>U<Left>')
     call arpeggio#map('i', 'b', 0, 'ru', '[]<C-g>U<Left>')
     call arpeggio#map('i', 'b', 0, 'c,', '{}<C-g>U<Left>')
+    call arpeggio#map('i', 'b', 1, 'vm', '<Plug>MySmarterCR')
     inoremap <buffer> <BS> <C-r>=<SID>EmptyPairDeleterBackspace()<CR>
     inoremap <buffer> <CR> <C-r>=<SID>MySmarterCR()<CR>
   endif
