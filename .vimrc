@@ -895,12 +895,15 @@ function! s:SetupPairBindings()
     inoremap <buffer> σ {}<C-g>U<Left>
     inoremap <buffer> ρ []<C-g>U<Left>
     inoremap <buffer> θ ""<C-g>U<Left>
+    inoremap <buffer> <CR> <C-r>=<SID>MySmarterCR()<CR>
+    
     call arpeggio#map('i', 'b', 0, 'fj', '()<C-g>U<Left>')
     call arpeggio#map('i', 'b', 0, 'ru', '[]<C-g>U<Left>')
     call arpeggio#map('i', 'b', 0, 'c,', '{}<C-g>U<Left>')
+    call arpeggio#map('i', 'b', 0, 'qp', '""<C-g>U<Left>')
     call arpeggio#map('i', 'b', 1, 'vm', '<Plug>MySmarterCR')
+    
     inoremap <buffer> <BS> <C-r>=<SID>EmptyPairDeleterBackspace()<CR>
-    inoremap <buffer> <CR> <C-r>=<SID>MySmarterCR()<CR>
   endif
 endfunction
 
@@ -910,7 +913,7 @@ augroup END
 
 let s:move_right_keystroke = "\<C-g>U\<Right>"
 let s:move_right_pair_ends = { "'" : 1, '"' : 1, ')' : 1, ']' : 1, '}' : 1 }
-function! s:PareditForwardUp()
+function! s:MyPareditForwardUp()
   let keys = ''
   if pumvisible()
     let keys .= "\<C-y>"
@@ -940,8 +943,10 @@ function! s:PareditForwardUp()
 
   return keys
 endfunction
+inoremap <Plug>MyPareditForwardUp <C-r>=<SID>MyPareditForwardUp()<CR>
 
-inoremap <expr> χ <SID>PareditForwardUp()
+inoremap <expr> χ <SID>MyPareditForwardUp()
+call arpeggio#map('i', '', 1, 'x.', '<Plug>MyPareditForwardUp')
 
 " Platform specific keybinds
 if has("unix")
