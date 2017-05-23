@@ -58,6 +58,14 @@ call pathogen#helptags()
 " load sensible defaults by our prophet Tim Pope
 runtime! plugin/sensible.vim
 
+" my vim is so dense at 382 cols x 95 lines with 4 splits that there is usually
+" non-negligent lag doing anything that even the default 40 timeoutlen is not
+" enough!
+let g:arpeggio_timeoutlen=100
+" arpeggio is a bit special, since we may be defining our keymaps at any time
+" in no consecutive block
+call arpeggio#load()
+
 if has('win32')
   let s:data_dir="$APPDATA/Vim"
 elseif match(system('uname'), "Darwin") > -1
