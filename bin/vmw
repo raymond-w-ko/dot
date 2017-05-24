@@ -1,0 +1,3 @@
+#!/bin/bash
+export VMWARE_USE_SHIPPED_LIBS=force
+/usr/bin/vmware
