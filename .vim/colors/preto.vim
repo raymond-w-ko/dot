@@ -122,7 +122,7 @@ call s:HL('SpecialChar',    s:palette.puregreen, s:color_bg,          'none')
 call s:HL('Comment',        s:color_delta,       s:color_bg,          'none')
 call s:HL('SpecialComment', s:color_delta,       s:color_bg,          'none')
 call s:HL('Title',          s:color_alpha,       s:color_bg,          'none')
-call s:HL('Todo',           s:color_delta,       s:color_bg,          'none')
+call s:HL('Todo',           s:palette.black,     s:palette.puregreen, 'none')
 
 " LINES, COLUMNS
 call s:HL('LineNr',         s:color_delta,       s:color_bg,          'none')
