@@ -11,6 +11,88 @@ augroup END
 " http://utf8everywhere.org/
 set encoding=utf-8
 
+call plug#begin('~/.vim/plugged')
+
+" my plugins
+Plug 'raymond-w-ko/vim-eslisp'
+Plug 'raymond-w-ko/vim-lua-indent'
+Plug 'raymond-w-ko/omegacomplete.vim'
+
+Plug 'vim-jp/vital.vim'
+Plug 'kana/vim-arpeggio'
+Plug 'kana/vim-operator-user'
+Plug 'qpkorr/vim-bufkill'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'Konfekt/FastFold'
+Plug 'itchyny/lightline.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'FelikZ/ctrlp-py-matcher'
+Plug 'mhinz/vim-startify'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'vim-syntastic/syntastic'
+Plug 'sjl/gundo.vim'
+Plug 'majutsushi/tagbar'
+
+" Tim Pope
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-characterize'
+Plug 'tpope/vim-rsi'
+Plug 'tpope/vim-tbone'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-ragtag'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-capslock'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-scriptease'
+Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-git'
+Plug 'tpope/vim-haystack'
+
+" Hayabusa
+Plug 'haya14busa/vim-easymotion'
+Plug 'haya14busa/incsearch.vim'
+Plug 'haya14busa/vim-asterisk'
+
+" Junegunn Choi
+Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-peekaboo'
+Plug 'junegunn/gv.vim'
+
+" Web Development
+Plug '2072/PHP-Indenting-for-VIm'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'othree/csscomplete.vim'
+Plug 'groenewege/vim-less'
+
+" Clojure / Lisp
+Plug 'tpope/vim-salve'
+Plug 'tpope/vim-classpath'
+Plug 'tpope/vim-fireplace'
+Plug 'guns/vim-sexp'
+Plug 'guns/vim-clojure-static'
+Plug 'guns/slamhound'
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
+Plug 'venantius/vim-cljfmt'
+Plug 'jpalardy/vim-slime'
+
+" misc filetypes
+Plug 'rhysd/vim-clang-format'
+Plug 'octol/vim-cpp-enhanced-highlight'
+
+call plug#end()
+
 " pathogen {{{
 let g:pathogen_disabled = []
 
@@ -48,10 +130,6 @@ call add(g:pathogen_disabled, "cocoa.vim")
 if has('win32unix')
   call add(g:pathogen_disabled, "vim-salve")
 endif
-
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect()
-call pathogen#helptags()
 "}}}
 " General {{{
 
