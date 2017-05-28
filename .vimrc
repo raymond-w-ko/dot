@@ -58,8 +58,9 @@ Plug 'tpope/vim-git'
 Plug 'tpope/vim-haystack'
 
 " Hayabusa
-Plug 'haya14busa/vim-easymotion'
+Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
+Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'haya14busa/vim-asterisk'
 
 " Junegunn Choi
@@ -2009,7 +2010,6 @@ nmap <Leader>L <Plug>(easymotion-overwin-line)
 " conflicts with my save
 " map <Leader>w <Plug>(easymotion-bd-w)
 " nmap <Leader>w <Plug>(easymotion-overwin-w)
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " scrollfix
