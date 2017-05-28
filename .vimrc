@@ -7,6 +7,9 @@ augroup MyVimrc
   au!
 augroup END
 
+if filereadable(expand("$HOME/.has-full-github-access"))
+  let g:plug_url_format = 'git@github.com:%s.git'
+endif
 call plug#begin('~/.vim/plugged')
 
 " my plugins
