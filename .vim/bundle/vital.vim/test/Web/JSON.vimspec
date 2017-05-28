@@ -1,0 +1,217 @@
+Describe Web.JSON
+  Before all
+    let JSON = vital#vital#new().import('Web.JSON')
+  End
+
+  Describe .constants()
+    It should have constant variables which indicate the special tokens
+      Assert Match(string(JSON.true), "function('\.*_true')")
+      Assert Match(string(JSON.false), "function('\.*_false')")
+      Assert Match(string(JSON.null), "function('\.*_null')")
+    End
+  End
+
+  Describe .decode()
+    It decodes numbers
+      Assert Equals(JSON.decode(0), 0)
+      Assert Equals(JSON.decode(10), 10)
+      Assert Equals(JSON.decode(100), 100)
+    End
+
+    It decodes strings
+      Assert Equals(JSON.decode('""'), '')
+      Assert Equals(JSON.decode('"a"'), 'a')
+      Assert Equals(JSON.decode('"a\rb"'), "a\rb")
+      Assert Equals(JSON.decode('"a\nb"'), "a\nb")
+      Assert Equals(JSON.decode('"a\tb"'), "a\tb")
+      " double quotation
+      Assert Equals(
+            \ JSON.decode('"He said \"I''m a vimmer\""'),
+            \ 'He said "I''m a vimmer"'
+            \)
+      " there should be iconv tests as well
+    End
+
+    It decodes lists
+      Assert Equals(JSON.decode('[]'), [])
+      Assert Equals(JSON.decode('[0, 1, 2]'), [0, 1, 2])
+      Assert Equals(JSON.decode('["a", "b", "c"]'), ['a', 'b', 'c'])
+      " list should be encoded recursively
+      Assert Equals(
+            \ JSON.decode('[[0, 1, 2], ["a", "b", "c"]]'),
+            \ [[0, 1, 2], ['a', 'b', 'c']]
+            \)
+    End
+
+    It decodes dictionaries
+      Assert Equals(JSON.decode('{}'), {})
+      Assert Equals(
+            \ JSON.decode('{"a": 0, "b": 1, "c": 2}'),
+            \ {'a': 0, 'b': 1, 'c': 2}
+            \)
+      Assert Equals(
+            \ JSON.decode('{"a": "0", "b": "1", "c": "2"}'),
+            \ {'a': '0', 'b': '1', 'c': '2'}
+            \)
+      " dictionary should be encoded recursively
+      Assert Equals(
+            \ JSON.decode('{"a": {"b": {"c": [0, 1, 2]}}}'),
+            \ {'a': {'b': {'c': [0, 1, 2]}}}
+            \)
+    End
+
+    It decodes special tokens (true/false/null)
+      " true/false/null
+      Assert Equals(JSON.decode('true'), 1)
+      Assert Equals(JSON.decode('false'), 0)
+      Assert Equals(JSON.decode('null'), 0)
+
+      let s = { 'use_token': 1 }
+      Assert Equals(JSON.decode('true', s), JSON.true)
+      Assert Equals(JSON.decode('false', s), JSON.false)
+      Assert Equals(JSON.decode('null', s), JSON.null)
+    End
+  End
+
+  Describe .encode()
+    It encodes numbers
+      Assert Equals(JSON.encode(0), 0)
+      Assert Equals(JSON.encode(10), 10)
+      Assert Equals(JSON.encode(100), 100)
+    End
+
+    It encodes strings
+      Assert Equals(JSON.encode(''), '""')
+      Assert Equals(JSON.encode('a'), '"a"')
+      Assert Equals(JSON.encode("a\rb"), '"a\rb"')
+      Assert Equals(JSON.encode("a\nb"), '"a\nb"')
+      Assert Equals(JSON.encode("a\tb"), '"a\tb"')
+      " double quotation should be escaped
+      Assert Equals(
+            \ JSON.encode('He said "I''m a vimmer"'),
+            \ '"He said \"I''m a vimmer\""'
+            \)
+      " there should be iconv tests as well
+    End
+
+    It encodes lists
+      Assert Equals(JSON.encode([]), '[]')
+      Assert Equals(JSON.encode([0, 1, 2]), '[0,1,2]')
+      Assert Equals(JSON.encode(['a', 'b', 'c']), '["a","b","c"]')
+      " list should be encoded recursively
+      Assert Equals(
+            \ JSON.encode([[0, 1, 2], ['a', 'b', 'c']]),
+            \ '[[0,1,2],["a","b","c"]]'
+            \)
+    End
+
+    It encodes lists with indent when {settings.indent} > 0
+      let s = { 'indent': 2 }
+      Assert Equals(JSON.encode([], s), '[]')
+      Assert Equals(
+            \ JSON.encode([0, 1, 2], s),
+            \ join([
+            \   '[',
+            \   '  0,',
+            \   '  1,',
+            \   '  2',
+            \   ']',
+            \ ], "\n"),
+            \)
+      Assert Equals(
+            \ JSON.encode(['a', 'b', 'c'], s),
+            \ join([
+            \   '[',
+            \   '  "a",',
+            \   '  "b",',
+            \   '  "c"',
+            \   ']',
+            \ ], "\n"),
+            \)
+      " list should be encoded recursively
+      Assert Equals(
+            \ JSON.encode([[0, 1, 2, ['a', 'b', 'c']]], s),
+            \ join([
+            \   '[',
+            \   '  [',
+            \   '    0,',
+            \   '    1,',
+            \   '    2,',
+            \   '    [',
+            \   '      "a",',
+            \   '      "b",',
+            \   '      "c"',
+            \   '    ]',
+            \   '  ]',
+            \   ']',
+            \ ], "\n"),
+            \)
+    End
+
+    It encodes dictionaries
+      Assert Equals(JSON.encode({}), '{}')
+      Assert Equals(
+            \ JSON.encode({'a': 0, 'b': 1, 'c': 2}),
+            \ '{"a":0,"b":1,"c":2}'
+            \)
+      Assert Equals(
+            \ JSON.encode({'a': '0', 'b': '1', 'c': '2'}),
+            \ '{"a":"0","b":"1","c":"2"}'
+            \)
+      " dictionary should be encoded recursively
+      Assert Equals(
+            \ JSON.encode({'a': {'b': {'c': [0, 1, 2]}}}),
+            \ '{"a":{"b":{"c":[0,1,2]}}}',
+            \)
+    End
+
+    It encodes dictionaries with indent when {settings.indent} > 0
+      let s = { 'indent': 2 }
+      Assert Equals(JSON.encode({}, s), '{}')
+      Assert Equals(
+            \ JSON.encode({'a': 0, 'b': 1, 'c': 2}, s),
+            \ join([
+            \   '{',
+            \   '  "a": 0,',
+            \   '  "b": 1,',
+            \   '  "c": 2',
+            \   '}'
+            \ ], "\n")
+            \)
+      Assert Equals(
+            \ JSON.encode({'a': '0', 'b': '1', 'c': '2'}, s),
+            \ join([
+            \   '{',
+            \   '  "a": "0",',
+            \   '  "b": "1",',
+            \   '  "c": "2"',
+            \   '}'
+            \ ], "\n")
+            \)
+      " dictionary should be encoded recursively
+      Assert Equals(
+            \ JSON.encode({'a': {'b': {'c': [0, 1, 2]}}}, s),
+            \ join([
+            \   '{',
+            \   '  "a": {',
+            \   '    "b": {',
+            \   '      "c": [',
+            \   '        0,',
+            \   '        1,',
+            \   '        2',
+            \   '      ]',
+            \   '    }',
+            \   '  }',
+            \   '}',
+            \ ], "\n")
+            \)
+    End
+
+    " JavaScript special tokens
+    It encodes special tokens (true/false/null)
+      Assert Equals(JSON.encode(JSON.true), 'true')
+      Assert Equals(JSON.encode(JSON.false), 'false')
+      Assert Equals(JSON.encode(JSON.null), 'null')
+    End
+  End
+End
