@@ -1,5 +1,7 @@
 [core]
-	autocrlf = input
+	# no automatic conversion of any kind by default!
+	autocrlf = false
+	# LF line endings for the win!
 	eol = lf
 	excludesfile = ~/.gitignore_global
 [user]

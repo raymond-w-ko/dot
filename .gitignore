@@ -25,12 +25,11 @@
 /.vifm/vifm-help.txt
 /.vifm/vifminfo
 
-/bin/ag
-
 /config/mc/hotlist
 
 /config/ranger/bookmarks
 /config/ranger/history
 /config/ranger/tagged
 
-/config/psd/.*
+# vim plugins
+.git
