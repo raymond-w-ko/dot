@@ -1,9 +1,5 @@
 " vim:fdm=marker
 
-" when re-sourcing with this set, syntax highlighting changes!
-" having an existence of .vimrc already implies this
-"set nocompatible
-
 augroup MyVimrc
   au!
 augroup END
