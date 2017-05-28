@@ -15,7 +15,9 @@ call plug#begin('~/.vim/plugged')
 " my plugins
 Plug 'raymond-w-ko/vim-eslisp'
 Plug 'raymond-w-ko/vim-lua-indent'
-Plug 'raymond-w-ko/omegacomplete.vim'
+if has('python')
+  Plug 'raymond-w-ko/omegacomplete.vim'
+endif
 
 Plug 'vim-jp/vital.vim'
 Plug 'kana/vim-arpeggio'
@@ -27,7 +29,9 @@ Plug 'itchyny/lightline.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'mhinz/vim-startify'
-Plug 'SirVer/ultisnips'
+if has('python')
+  Plug 'SirVer/ultisnips'
+endif
 Plug 'honza/vim-snippets'
 Plug 'vim-syntastic/syntastic'
 Plug 'sjl/gundo.vim'
@@ -77,7 +81,10 @@ Plug 'othree/csscomplete.vim'
 Plug 'groenewege/vim-less'
 
 " Clojure / Lisp
-Plug 'tpope/vim-salve'
+if !has('win32unix')
+  " this plugin makes any file access extremely slow...
+  Plug 'tpope/vim-salve'
+endif
 Plug 'tpope/vim-classpath'
 Plug 'tpope/vim-fireplace'
 Plug 'guns/vim-sexp'
@@ -93,20 +100,7 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 
 call plug#end()
 
-" pathogen {{{
-let g:pathogen_disabled = []
-
-" omegacomplete
-let g:omegacomplete_version_preference = 1
-if g:omegacomplete_version_preference == 2
-  if has('java')
-    call add(g:pathogen_disabled, "omegacomplete")
-  else
-    call add(g:pathogen_disabled, "omegacomplete2")
-  endif
-elseif g:omegacomplete_version_preference == 1
-    call add(g:pathogen_disabled, "omegacomplete2")
-endif
+let g:omegacomplete_version_preference=1
 if has('java')
   let jar_list = split(globpath(expand('$HOME') . '/java', '*.jar'), "\n")
   call insert(jar_list, expand('$VIMRUNTIME') . '/vim.jar', 0)
@@ -116,21 +110,6 @@ if has('java')
   javarepl clojure
 endif
 
-" if this version of vim doesn't have Python bindings
-if !has('python')
-  call add(g:pathogen_disabled, "omegacomplete")
-  call add(g:pathogen_disabled, "omegacomplete2")
-  call add(g:pathogen_disabled, "ultisnips")
-endif
-
-" very heavy, adds over 9000 keywords and library functions
-call add(g:pathogen_disabled, "cocoa.vim")
-
-" this plugin makes any file access extremely slow...
-if has('win32unix')
-  call add(g:pathogen_disabled, "vim-salve")
-endif
-"}}}
 " General {{{
 
 " load sensible defaults by our prophet Tim Pope
