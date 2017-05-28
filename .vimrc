@@ -9,8 +9,9 @@ augroup END
 
 if filereadable(expand("$HOME/.has-full-github-access"))
   let g:plug_url_format = 'git@github.com:%s.git'
+  let g:plug_shallow = 0
 endif
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.vim/bundle')
 
 " my plugins
 Plug 'raymond-w-ko/vim-eslisp'
