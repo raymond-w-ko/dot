@@ -1,11 +1,11 @@
 " vim:fdm=marker
 
+" http://utf8everywhere.org/
+set encoding=utf-8
+
 augroup MyVimrc
   au!
 augroup END
-
-" http://utf8everywhere.org/
-set encoding=utf-8
 
 call plug#begin('~/.vim/plugged')
 
