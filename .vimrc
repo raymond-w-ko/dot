@@ -14,6 +14,7 @@ endif
 call plug#begin('~/.vim/bundle')
 
 " my plugins
+Plug 'raymond-w-ko/scrollfix'
 Plug 'raymond-w-ko/vim-eslisp'
 Plug 'raymond-w-ko/vim-lua-indent'
 if has('python')
