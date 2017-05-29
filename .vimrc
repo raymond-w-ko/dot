@@ -1668,37 +1668,10 @@ else
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-powerline
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" disabled for lightline
-let g:loaded_powerline=1
-let g:Powerline_symbols='compatible'
-let g:Powerline_stl_path_style='short'
-let g:Powerline_theme='default'
-let g:Powerline_colorscheme='default'
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" airline
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" disabled for lightline
-let g:loaded_airline=1
-
-if has("win32") || has("win32unix")
-  let g:airline_left_sep=''
-  let g:airline_right_sep=''
-else
-  let g:airline_left_sep = ''
-  let g:airline_right_sep = ''
-end
-let g:airline_theme='base16'
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline#extensions#tabline#enabled = 1
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" airline
+" lightline
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:lightline = {
-    \ 'colorscheme': 'default',
+    \ 'colorscheme': 'wombat',
     \ 'mode_map': { 'c': 'NORMAL' },
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
