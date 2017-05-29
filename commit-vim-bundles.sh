@@ -9,3 +9,4 @@ find . \( -type f -or -type l \) \
   ! -name '*.o' \
   ! -name '*.dll' \
   -exec git add -f {} \;
+git commit -m "updated vim bundle(s)"

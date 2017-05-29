@@ -42,22 +42,6 @@ do_git_pull_simple ()
     fi
 }
 
-cd "$HOME/.vim/bundle"
-pwd
-for dir in * ; do
-    test -d "$dir" || continue
-    CMD="(cd \"$dir\"; pwd ; do_git_pull_simple)&"
-    eval $CMD
-done
-
-cd "$DIR/../src/"
-pwd
-for dir in * ; do
-    test -d "$dir" || continue
-    CMD="(cd \"$dir\"; pwd ; do_git_pull_simple)&"
-    eval $CMD
-done
-
 cd "$DIR/../.tmux/plugins/"
 pwd
 for dir in * ; do
@@ -66,11 +50,9 @@ for dir in * ; do
     eval $CMD
 done
 
-cd
-pushd "$HOME/.oh-my-zsh/"
-git checkout master
-git pull
-popd
+dir="$HOME/.oh-my-zsh/"
+CMD="(cd \"$dir\"; pwd ; do_git_pull_simple)&"
+eval $CMD
 
 set +e
 for job in `jobs -p`
