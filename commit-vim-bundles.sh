@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-cd "$DIR"
+cd "$DIR/.vim/bundle/"
 find . \( -type f -or -type l \) \
   ! -path '*/.git/*' \
   ! -name '*.pyc' \
