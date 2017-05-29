@@ -1,15 +1,6 @@
-[submodule "src/dircolors-solarized"]
-	path = src/dircolors-solarized
-	url = https://github.com/seebi/dircolors-solarized.git
-[submodule "src/tmux-colors-solarized"]
-	path = src/tmux-colors-solarized
-	url = https://github.com/seebi/tmux-colors-solarized.git
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
 	url = git://github.com/robbyrussell/oh-my-zsh.git
-[submodule "src/base16-builder"]
-	path = src/base16-builder
-	url = https://github.com/chriskempson/base16-builder.git
 [submodule ".tmux/plugins/sensible"]
 	path = .tmux/plugins/sensible
 	url = https://github.com/tmux-plugins/tmux-sensible.git
