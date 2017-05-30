@@ -90,9 +90,9 @@ function s:parse_cino(f)
       let divider = 1
     elseif c ==# 's'
       if n is ''
-        let n = s:W
+        let n = s:sw()
       else
-        let n = str2nr(n) * s:W
+        let n = str2nr(n) * s:sw()
       endif
       break
     elseif c =~ '\d'
@@ -152,6 +152,10 @@ function s:alternatePair()
   call setpos('.',l:pos)
 endfunction
 
+function s:Nat(...)
+  return max(a:000+[0])
+endfunction
+
 function s:looking_at()
   return getline('.')[col('.')-1]
 endfunction
@@ -206,7 +210,7 @@ function s:expr_col()
     endif
   endwhile
   call setpos('.',l:pos)
-  return max([bal,0])
+  return s:Nat(bal)
 endfunction
 
 " configurable regexes that define continuation lines, not including (, {, or [.
@@ -252,7 +256,7 @@ function s:PrevCodeLine(lnum)
       endif
       let l:n = prevnonblank(l:n-1)
     elseif stridx(getline(l:n), '*/') != -1 && s:syn_at(l:n,1) =~? s:syng_com
-      for l:n in reverse(range(max([l:n-71,0]),l:n-1))
+      for l:n in range(l:n-1, s:Nat(l:n-(&cino =~ '\*' ? s:parse_cino('*') : 70)-1), -1)
         if stridx(getline(l:n),'/*') != -1
           break
         endif
@@ -320,11 +324,11 @@ endfunction
 " a continued expression, which could have started in a braceless context
 function s:iscontOne(i,num,cont)
   let [l:i, l:num, bL] = [a:i, a:num + !a:num, 0]
-  let pind = a:num ? indent(l:num) + s:W : 0
-  let ind = indent(l:i) + (a:cont ? 0 : s:W)
+  let pind = a:num ? indent(l:num) + s:sw() : 0
+  let ind = indent(l:i) + (a:cont ? 0 : s:sw())
   while l:i >= l:num && (ind > pind || l:i == l:num)
     if indent(l:i) < ind && s:OneScope(l:i)
-      let bL += s:W
+      let bL += s:sw()
       let l:i = line('.')
     elseif !a:cont || bL || ind < indent(a:i)
       break
@@ -416,7 +420,7 @@ function GetJavascriptIndent()
   let b:js_cache = [v:lnum] + (line('.') == v:lnum ? [s:scriptTag,0] : getpos('.')[1:2])
   let num = b:js_cache[1]
 
-  let [s:W, numInd, isOp, bL, l:switch_offset] = [s:sw(), max([indent(num),0]),0,0,0]
+  let [numInd, isOp, bL, l:switch_offset] = [s:Nat(indent(num)),0,0,0]
   if !b:js_cache[2] || s:looking_at() == '{' && s:IsBlock()
     let [ilnum, pline] = [line('.'), s:Trim(l:lnum)]
     if b:js_cache[2] && s:looking_at() == ')' && s:GetPair('(',')','bW',s:skip_expr,100) > 0
@@ -424,31 +428,31 @@ function GetJavascriptIndent()
         let [num, numInd] = [line('.'), indent('.')]
       endif
       if idx == -1 && s:previous_token() ==# 'switch' && s:previous_token() != '.'
-        let l:switch_offset = &cino !~ ':' ? s:W : s:parse_cino(':')
+        let l:switch_offset = &cino !~ ':' ? s:sw() : s:parse_cino(':')
         if pline[-1:] != '.' && l:line =~# '^\%(default\|case\)\>'
-          return max([numInd + l:switch_offset, 0])
+          return s:Nat(numInd + l:switch_offset)
         elseif &cino =~ '='
           let l:case_offset = s:parse_cino('=')
         endif
       endif
     endif
     if idx == -1 && pline[-1:] !~ '[{;]'
-      let isOp = (l:line =~# s:opfirst || s:continues(l:lnum,pline)) * s:W
+      let isOp = (l:line =~# s:opfirst || s:continues(l:lnum,pline)) * s:sw()
       let bL = s:iscontOne(l:lnum,b:js_cache[1],isOp)
-      let bL -= (bL && l:line[0] == '{') * s:W
+      let bL -= (bL && l:line[0] == '{') * s:sw()
     endif
   elseif idx == -1 && getline(b:js_cache[1])[b:js_cache[2]-1] == '(' && &cino =~ '('
     let pval = s:parse_cino('(')
     return !pval || !search('\m\S','nbW',num) && !s:parse_cino('U') ?
           \ (s:parse_cino('w') ? 0 : -!!search('\m\S','W'.s:z,num)) + virtcol('.') :
-          \ max([numInd + pval + s:GetPair('(',')','nbrmW',s:skip_expr,100,num) * s:W,0])
+          \ s:Nat(numInd + pval + s:GetPair('(',')','nbrmW',s:skip_expr,100,num) * s:sw())
   endif
 
   " main return
   if l:line =~ '^[])}]\|^|}'
     return numInd
   elseif num
-    return max([numInd + get(l:,'case_offset',s:W) + l:switch_offset + bL + isOp, 0])
+    return s:Nat(numInd + get(l:,'case_offset',s:sw()) + l:switch_offset + bL + isOp)
   endif
   return bL + isOp
 endfunction
