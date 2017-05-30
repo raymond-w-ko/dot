@@ -143,7 +143,7 @@ function! s:ToggleWord()
             endif
 
             " use the new word to replace the old word
-            exec "norm ciw" . new_word . ""
+            exec "normal! ciw" . new_word . ""
             break
         endif
     endfor
