@@ -97,6 +97,7 @@ let g:_toggle_words_dict = {'*': [
     \ ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'], 
     \ ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'], 
     \ ['1', '0'],
+    \ ['show', 'hide'],
     \ [],
     \ ],  }
 
