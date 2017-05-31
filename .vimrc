@@ -938,7 +938,6 @@ endfunction
 inoremap <Plug>MySmarterCR <C-r>=<SID>MySmarterCR()<CR>
 
 function! s:MyBasicCR()
-
   let keys = ""
   if pumvisible()
     let keys .= "\<C-e>"
@@ -951,26 +950,26 @@ inoremap <Plug>MyBasicCR <C-r>=<SID>MyBasicCR()<CR>
 function! s:SetupPairBindings()
   " handled by vim-sexp
   if &ft == 'clojure' || &ft == 'lisp' || &ft == 'scheme'
-    exe "imap <buffer> φ ("
-    exe "imap <buffer> σ {"
-    exe "imap <buffer> ρ ["
-    exe 'imap <buffer> θ "'
-    inoremap <buffer> <CR> <C-r>=<SID>MyBasicCR()<CR>
+    exe "imap <silent><buffer> φ ("
+    exe "imap <silent><buffer> σ {"
+    exe "imap <silent><buffer> ρ ["
+    exe 'imap <silent><buffer> θ "'
+    inoremap <silent><buffer> <CR> <C-r>=<SID>MyBasicCR()<CR>
   else
     " semimap helpers
-    inoremap <buffer> φ ()<C-g>U<Left>
-    inoremap <buffer> σ {}<C-g>U<Left>
-    inoremap <buffer> ρ []<C-g>U<Left>
-    inoremap <buffer> θ ""<C-g>U<Left>
-    inoremap <buffer> <CR> <C-r>=<SID>MySmarterCR()<CR>
+    inoremap <silent><buffer> φ ()<C-g>U<Left>
+    inoremap <silent><buffer> σ {}<C-g>U<Left>
+    inoremap <silent><buffer> ρ []<C-g>U<Left>
+    inoremap <silent><buffer> θ ""<C-g>U<Left>
+    inoremap <silent><buffer> <CR> <C-r>=<SID>MySmarterCR()<CR>
     
-    call arpeggio#map('i', 'b', 0, 'fj', '()<C-g>U<Left>')
-    call arpeggio#map('i', 'b', 0, 'ru', '[]<C-g>U<Left>')
-    call arpeggio#map('i', 'b', 0, 'c,', '{}<C-g>U<Left>')
-    call arpeggio#map('i', 'b', 0, 'qp', '""<C-g>U<Left>')
-    call arpeggio#map('i', 'b', 1, 'vm', '<Plug>MySmarterCR')
+    call arpeggio#map('i', 'sb', 0, 'fj', '()<C-g>U<Left>')
+    call arpeggio#map('i', 'sb', 0, 'ru', '[]<C-g>U<Left>')
+    call arpeggio#map('i', 'sb', 0, 'c,', '{}<C-g>U<Left>')
+    call arpeggio#map('i', 'sb', 0, 'qp', '""<C-g>U<Left>')
+    call arpeggio#map('i', 'sb', 1, 'vm', '<Plug>MySmarterCR')
     
-    inoremap <buffer> <BS> <C-r>=<SID>EmptyPairDeleterBackspace()<CR>
+    inoremap <silent><buffer> <BS> <C-r>=<SID>EmptyPairDeleterBackspace()<CR>
   endif
 endfunction
 
