@@ -1428,9 +1428,9 @@ endfunction
 " <CR> should not autoaccept what the popup menu has selected
 if !exists('g:has_set_my_omegacomplete_tab_binding')
     if g:omegacomplete_version_preference == 1
-        inoremap <expr> <Tab> omegacomplete#UseFirstEntryOfPopup()
+        inoremap <silent><expr> <Tab> omegacomplete#use_first_entry_of_popup()
     elseif g:omegacomplete_version_preference == 2
-        inoremap <expr> <Tab> omegacomplete2#UseFirstEntryOfPopup()
+        inoremap <silent><expr> <Tab> omegacomplete2#use_first_entry_of_popup()
     endif
     let g:has_set_my_omegacomplete_tab_binding=1
 endif
