@@ -855,7 +855,7 @@ endif
 "                   `         (/  (/
 
 " inoremap kj <Esc>
-call arpeggio#map('i', '', 0, 'jk', '<Esc>')
+call arpeggio#map('i', 's', 0, 'jk', '<Esc>')
 
 " normalize Y to act like D and C
 map Y y$
