@@ -11,7 +11,13 @@ if filereadable(expand("$HOME/.has-full-github-access"))
   let g:plug_url_format = 'git@github.com:%s.git'
   let g:plug_shallow = 0
 endif
-call plug#begin('~/.vim/bundle')
+
+let s:cywgin_vim_dir = expand("C:/cygwin64/home/$USERNAME/dot/.vim/bundle")
+if isdirectory(s:cywgin_vim_dir)
+  call plug#begin(s:cywgin_vim_dir)
+else
+  call plug#begin('~/.vim/bundle')
+endif
 
 " my plugins
 Plug 'raymond-w-ko/scrollfix'
