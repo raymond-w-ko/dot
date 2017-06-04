@@ -34,3 +34,5 @@
 # vim plugins
 .git
 /.vim/bundle/omegacomplete.vim/python/omegacomplete/core/all.cpp
+/.vim/bundle/omegacomplete.vim/python/omegacomplete/omegacomplete/*.dll
+/.vim/bundle/omegacomplete.vim/python/omegacomplete/omegacomplete/*.pyd
