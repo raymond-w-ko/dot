@@ -1,5 +1,7 @@
 # emacs
 .#.*
+# Visual Studio
+.vs
 
 /.bash.d/add_dot_extra_paths.sh
 
