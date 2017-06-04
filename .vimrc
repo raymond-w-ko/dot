@@ -17,7 +17,7 @@ call plug#begin('~/.vim/bundle')
 Plug 'raymond-w-ko/scrollfix'
 Plug 'raymond-w-ko/vim-eslisp'
 Plug 'raymond-w-ko/vim-lua-indent'
-if has('python')
+if has("python") || has("python3")
   Plug 'raymond-w-ko/omegacomplete.vim'
 endif
 
@@ -350,7 +350,7 @@ function! MyTranslateDirectory(dir)
 endfunction
 
 let s:commands = [
-    \ 'Omegacomplete',      '__UNIX_HOME__/dot/.vim/bundle/omegacomplete',
+    \ 'Omegacomplete',      '__UNIX_HOME__/dot/.vim/bundle/omegacomplete.vim',
     \ 'Omegacomplete2',     '__UNIX_HOME__/dot/.vim/bundle/omegacomplete2',
     \ 'OcularWM',           '__UNIX_HOME__/src/ocularwm',
     \ 'Windmenu',           '__UNIX_HOME__/src/windmenu',
@@ -1661,7 +1661,7 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden -g "" ' . ignore_string
 endif
 
-if !has('python')
+if !has("python") && !has("python3")
   echom 'In order to use pymatcher plugin, you need +python compiled vim'
 else
   let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
