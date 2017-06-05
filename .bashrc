@@ -120,15 +120,7 @@ if [ -d "/cygdrive/c/Users/Raymond W. Ko/Desktop/P2P" ]; then
     alias p2p='cd "/cygdrive/c/Users/Raymond W. Ko/Desktop/P2P"'
 fi
 
-if [ -d "/cygdrive/c/Program Files/Vim/vim73/src" ]; then
-    alias vimsrc='cd "/cygdrive/c/Program Files/Vim/vim73/src"'
-elif [ -d "/cygdrive/c/Program Files/Vim/vim74/src" ]; then
-    alias vimsrc='cd "/cygdrive/c/Program Files/Vim/vim74/src"'
-elif [ -d "/cygdrive/c/Program Files (x86)/Vim/vim73/src" ]; then
-    alias vimsrc='cd "/cygdrive/c/Program Files (x86)/Vim/vim73/src"'
-elif [ -d "/cygdrive/c/Program Files (x86)/Vim/vim74/src" ]; then
-    alias vimsrc='cd "/cygdrive/c/Program Files (x86)/Vim/vim74/src"'
-elif [ -d "$HOME/src/vim" ]; then
+if [ -d "$HOME/src/vim" ]; then
     alias vimsrc="cd $HOME/src/vim"
 fi
 
