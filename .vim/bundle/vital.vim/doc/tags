@@ -274,6 +274,7 @@ Vital.Data.Optional.get_unsafe()	vital/Data/Optional.txt	/*Vital.Data.Optional.g
 Vital.Data.Optional.has()	vital/Data/Optional.txt	/*Vital.Data.Optional.has()*
 Vital.Data.Optional.is_optional()	vital/Data/Optional.txt	/*Vital.Data.Optional.is_optional()*
 Vital.Data.Optional.map()	vital/Data/Optional.txt	/*Vital.Data.Optional.map()*
+Vital.Data.Optional.new()	vital/Data/Optional.txt	/*Vital.Data.Optional.new()*
 Vital.Data.Optional.none()	vital/Data/Optional.txt	/*Vital.Data.Optional.none()*
 Vital.Data.Optional.set()	vital/Data/Optional.txt	/*Vital.Data.Optional.set()*
 Vital.Data.Optional.some()	vital/Data/Optional.txt	/*Vital.Data.Optional.some()*
