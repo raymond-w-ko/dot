@@ -8,5 +8,6 @@ find . \( -type f -or -type l \) \
   ! -name '*.so' \
   ! -name '*.o' \
   ! -name '*.dll' \
-  -exec git add -f {} \;
+  ! -name '*.exe' \
+  -exec git add -f --verbose {} \;
 git commit -m "updated vim bundle(s)"
