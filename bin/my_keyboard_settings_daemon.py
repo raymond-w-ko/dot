@@ -1,16 +1,15 @@
 #!/usr/bin/env python3
 
-import os
 import sys
 import subprocess
-import time
 import getpass
 import threading
 from threading import Timer
 
-import pyudev                                                                   
+import pyudev
 
 username = getpass.getuser()
+
 
 def debounce(wait):
     """ Decorator that will postpone a functions
@@ -29,8 +28,10 @@ def debounce(wait):
         return debounced
     return decorator
 
+
 def system(cmd):
-    subprocess.call(cmd, shell = True)
+    subprocess.call(cmd, shell=True)
+
 
 @debounce(2)
 def apply_keyboard_settings():
@@ -40,6 +41,7 @@ def apply_keyboard_settings():
     system('killall -u %s xbindkeys' % (username))
     system('xbindkeys')
 
+
 def main():
     context = pyudev.Context()
     monitor = pyudev.Monitor.from_netlink(context)
@@ -48,6 +50,7 @@ def main():
         if action == 'add':
             t = threading.Timer(1.0, apply_keyboard_settings)
             t.start()
+
 
 if __name__ == '__main__':
     main()
