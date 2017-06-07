@@ -98,7 +98,7 @@ let g:_toggle_words_dict = {'*': [
     \ ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'], 
     \ ['1', '0'],
     \ ['show', 'hide'],
-    \ ['expandClass', 'removeClass'],
+    \ ['addClass', 'removeClass'],
     \ [],
     \ ],  }
 
@@ -119,7 +119,8 @@ function! s:ToggleWord()
     else
         let words_candicates_array = g:_toggle_words_dict[cur_filetype] + g:_toggle_words_dict['*']
     endif
-    let cur_word = expand("<cword>")
+    let cur_cased_word = expand("<cword>")
+    let cur_word = cur_cased_word
     let word_attr = 0 " 0 - lowercase; 1 - Capital; 2 - uppercase
 
     if toupper(cur_word)==#cur_word
@@ -133,21 +134,30 @@ function! s:ToggleWord()
 
     for words_candicates in words_candicates_array
         let index = index(words_candicates, cur_word)
-        if index != -1
-            let new_word_index = (index+1)%len(words_candicates)
-            let new_word = words_candicates[new_word_index]
-            if word_attr==2
-                let new_word =toupper(new_word)
-            elseif word_attr==1
-                let new_word = substitute(new_word, '.*', '\u\0', '')
-            else
-                let new_word = tolower(new_word)
-            endif
-
-            " use the new word to replace the old word
-            exec "normal! ciw" . new_word . ""
-            break
+        let keep_case = 0
+        if index == -1
+           let index = index(words_candicates, cur_cased_word)
+           let keep_case = 1
         endif
+        if index == -1
+           continue
+        endif
+
+        let new_word_index = (index+1)%len(words_candicates)
+        let new_word = words_candicates[new_word_index]
+        if keep_case
+           let new_word = new_word
+        elseif word_attr==2
+           let new_word = toupper(new_word)
+        elseif word_attr==1
+           let new_word = substitute(new_word, '.*', '\u\0', '')
+        else
+           let new_word = tolower(new_word)
+        endif
+
+        " use the new word to replace the old word
+        exec "normal! ciw" . new_word . ""
+        break
     endfor
 endfunction
 
