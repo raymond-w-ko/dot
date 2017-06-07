@@ -1,67 +1,53 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
-import pyudev                                                                   
+import os
+import sys
 import subprocess
 import time
-import threading
 import getpass
+import threading
+from threading import Timer
 
-ticks_before_reapplying_settings = 2
+import pyudev                                                                   
 
 username = getpass.getuser()
+
+def debounce(wait):
+    """ Decorator that will postpone a functions
+        execution until after wait seconds
+        have elapsed since the last time it was invoked. """
+    def decorator(fn):
+        def debounced(*args, **kwargs):
+            def call_it():
+                fn(*args, **kwargs)
+            try:
+                debounced.t.cancel()
+            except(AttributeError):
+                pass
+            debounced.t = Timer(wait, call_it)
+            debounced.t.start()
+        return debounced
+    return decorator
 
 def system(cmd):
     subprocess.call(cmd, shell = True)
 
+@debounce(2)
 def apply_keyboard_settings():
-    global ticks_before_reapplying_settings
-
-    while True:
-        try:
-            time.sleep(0.25)
-
-            if ticks_before_reapplying_settings < 0:
-                continue
-            elif ticks_before_reapplying_settings > 0:
-                ticks_before_reapplying_settings = ticks_before_reapplying_settings - 1
-                continue
-
-            ticks_before_reapplying_settings = -1
-
-            system('xmodmap ~/.Xmodmap')
-            system('xset r rate 333 32')
-            # not necessary with Kinesis Advantage keyboard
-            # system('killall -u %s xcape' % username)
-            # system("xcape -t 333 -e 'Control_R=Return'")
-            system('killall -u %s xbindkeys' % username)
-            system('xbindkeys')
-            system('set_no_mouse_acceleration.sh')
-
-            print('applied keyboard settings')
-        except:
-            print('swallowed exception in apply_keyboard_settings thread')
+    print("%s re-applying keyboard and mouse settings" % (sys.argv[0]))
+    system('xmodmap ~/.Xmodmap')
+    system('xset r rate 333 32')
+    system('killall -u %s xbindkeys' % (username))
+    system('xbindkeys')
 
 def main():
-    global ticks_before_reapplying_settings
-
-    t = threading.Thread(target=apply_keyboard_settings)
-    t.start()
-
-    while True:
-        try:
-            context = pyudev.Context()
-            monitor = pyudev.Monitor.from_netlink(context)
-            monitor.filter_by('input')
-
-            for action, device in monitor:
-                if action == 'add':
-                    ticks_before_reapplying_settings = 2
-
-        except KeyboardInterrupt:
-            break
-        except:
-            print('swallowed exception in main thread')
-            pass
+    context = pyudev.Context()
+    monitor = pyudev.Monitor.from_netlink(context)
+    monitor.filter_by('input')
+    for action, device in monitor:
+        if action == 'add':
+            t = threading.Timer(1.0, apply_keyboard_settings)
+            t.start()
 
 if __name__ == '__main__':
     main()
