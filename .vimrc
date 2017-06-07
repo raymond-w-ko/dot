@@ -1846,6 +1846,10 @@ let g:syntastic_mode_map = {
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exec = 'eslint_d'
 
+" Python 3
+let g:syntastic_python_flake8_exec = 'python3'
+let g:syntastic_python_flake8_args = ['-m', 'flake8']
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " detectindent
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
