@@ -784,6 +784,7 @@ Vital.System.Cache.File-methods	vital/System/Cache/File.txt	/*Vital.System.Cache
 Vital.System.Cache.File-properties	vital/System/Cache/File.txt	/*Vital.System.Cache.File-properties*
 Vital.System.Cache.File-usage	vital/System/Cache/File.txt	/*Vital.System.Cache.File-usage*
 Vital.System.Cache.File.dump()	vital/System/Cache/File.txt	/*Vital.System.Cache.File.dump()*
+Vital.System.Cache.File.hash()	vital/System/Cache/File.txt	/*Vital.System.Cache.File.hash()*
 Vital.System.Cache.File.load()	vital/System/Cache/File.txt	/*Vital.System.Cache.File.load()*
 Vital.System.Cache.File.new()	vital/System/Cache/File.txt	/*Vital.System.Cache.File.new()*
 Vital.System.Cache.Memory	vital/System/Cache/Memory.txt	/*Vital.System.Cache.Memory*
@@ -884,6 +885,7 @@ Vital.System.Process.System-introduction	vital/System/Process/System.txt	/*Vital
 Vital.System.Process.System.execute()	vital/System/Process/System.txt	/*Vital.System.Process.System.execute()*
 Vital.System.Process.System.is_available()	vital/System/Process/System.txt	/*Vital.System.Process.System.is_available()*
 Vital.System.Process.System.is_supported()	vital/System/Process/System.txt	/*Vital.System.Process.System.is_supported()*
+Vital.System.Process.System.shellescape()	vital/System/Process/System.txt	/*Vital.System.Process.System.shellescape()*
 Vital.System.Process.Vimproc	vital/System/Process/Vimproc.txt	/*Vital.System.Process.Vimproc*
 Vital.System.Process.Vimproc-contents	vital/System/Process/Vimproc.txt	/*Vital.System.Process.Vimproc-contents*
 Vital.System.Process.Vimproc-functions	vital/System/Process/Vimproc.txt	/*Vital.System.Process.Vimproc-functions*
@@ -1049,6 +1051,7 @@ Vital.Vim.Guard-interface	vital/Vim/Guard.txt	/*Vital.Vim.Guard-interface*
 Vital.Vim.Guard-introduction	vital/Vim/Guard.txt	/*Vital.Vim.Guard-introduction*
 Vital.Vim.Guard-usage	vital/Vim/Guard.txt	/*Vital.Vim.Guard-usage*
 Vital.Vim.Guard.is_local_variable_supported	vital/Vim/Guard.txt	/*Vital.Vim.Guard.is_local_variable_supported*
+Vital.Vim.Guard.is_third_argument_of_getreg_supported	vital/Vim/Guard.txt	/*Vital.Vim.Guard.is_third_argument_of_getreg_supported*
 Vital.Vim.Guard.store()	vital/Vim/Guard.txt	/*Vital.Vim.Guard.store()*
 Vital.Vim.Message	vital/Vim/Message.txt	/*Vital.Vim.Message*
 Vital.Vim.Message-contents	vital/Vim/Message.txt	/*Vital.Vim.Message-contents*
@@ -1067,8 +1070,8 @@ Vital.Vim.Python-functions	vital/Vim/Python.txt	/*Vital.Vim.Python-functions*
 Vital.Vim.Python-interface	vital/Vim/Python.txt	/*Vital.Vim.Python-interface*
 Vital.Vim.Python-introduction	vital/Vim/Python.txt	/*Vital.Vim.Python-introduction*
 Vital.Vim.Python.eval_expr()	vital/Vim/Python.txt	/*Vital.Vim.Python.eval_expr()*
-Vital.Vim.Python.exex_code()	vital/Vim/Python.txt	/*Vital.Vim.Python.exex_code()*
-Vital.Vim.Python.exex_file()	vital/Vim/Python.txt	/*Vital.Vim.Python.exex_file()*
+Vital.Vim.Python.exec_code()	vital/Vim/Python.txt	/*Vital.Vim.Python.exec_code()*
+Vital.Vim.Python.exec_file()	vital/Vim/Python.txt	/*Vital.Vim.Python.exec_file()*
 Vital.Vim.Python.get_major_version()	vital/Vim/Python.txt	/*Vital.Vim.Python.get_major_version()*
 Vital.Vim.Python.is_enabled()	vital/Vim/Python.txt	/*Vital.Vim.Python.is_enabled()*
 Vital.Vim.Python.is_python2_enabled()	vital/Vim/Python.txt	/*Vital.Vim.Python.is_python2_enabled()*

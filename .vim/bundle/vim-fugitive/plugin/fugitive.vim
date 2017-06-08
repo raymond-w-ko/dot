@@ -1812,12 +1812,12 @@ function! s:Diff(vert,keepfocus,...) abort
   elseif (empty(args) || args[0] == ':') && s:buffer().commit() =~# '^[0-1]\=$' && s:repo().git_chomp_in_tree('ls-files', '--unmerged', '--', s:buffer().path()) !=# ''
     let vert = empty(a:vert) ? s:diff_modifier(3) : a:vert
     let nr = bufnr('')
-    execute 'leftabove '.vert.'split' s:fnameescape(fugitive#repo().translate(s:buffer().expand('':2'')))
+    execute 'leftabove '.vert.'split' s:fnameescape(fugitive#repo().translate(s:buffer().expand(':2')))
     execute 'nnoremap <buffer> <silent> dp :diffput '.nr.'<Bar>diffupdate<CR>'
     let nr2 = bufnr('')
     call s:diffthis()
     wincmd p
-    execute 'rightbelow '.vert.'split' s:fnameescape(fugitive#repo().translate(s:buffer().expand('':3'')))
+    execute 'rightbelow '.vert.'split' s:fnameescape(fugitive#repo().translate(s:buffer().expand(':3')))
     execute 'nnoremap <buffer> <silent> dp :diffput '.nr.'<Bar>diffupdate<CR>'
     let nr3 = bufnr('')
     call s:diffthis()
@@ -1924,7 +1924,7 @@ function! s:MoveComplete(A,L,P) abort
   endif
 endfunction
 
-function! s:Remove(force) abort
+function! s:Remove(after, force) abort
   if s:buffer().commit() ==# ''
     let cmd = ['rm']
   elseif s:buffer().commit() ==# '0'
@@ -1942,7 +1942,7 @@ function! s:Remove(force) abort
     return 'echoerr '.string(v:errmsg)
   else
     call fugitive#reload_status()
-    return 'edit'.(a:force ? '!' : '')
+    return a:after . (a:force ? '!' : '')
   endif
 endfunction
 
@@ -1950,7 +1950,8 @@ augroup fugitive_remove
   autocmd!
   autocmd User Fugitive if s:buffer().commit() =~# '^0\=$' |
         \ exe "command! -buffer -bar -bang -nargs=1 -complete=customlist,s:MoveComplete Gmove :execute s:Move(<bang>0,<q-args>)" |
-        \ exe "command! -buffer -bar -bang Gremove :execute s:Remove(<bang>0)" |
+        \ exe "command! -buffer -bar -bang Gremove :execute s:Remove('edit',<bang>0)" |
+        \ exe "command! -buffer -bar -bang Gdelete :execute s:Remove('bdelete',<bang>0)" |
         \ endif
 augroup END
 
