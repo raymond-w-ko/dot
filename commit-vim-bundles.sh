@@ -10,4 +10,4 @@ find . \( -type f -or -type l \) \
   ! -name '*.dll' \
   ! -name '*.exe' \
   -exec git add -f --verbose {} \;
-git commit -m "updated vim bundle(s)"
+git commit -m "updated vim bundle(s)" .
