@@ -28,7 +28,6 @@ if has("python") || has("python3")
 endif
 
 Plug 'vim-jp/vital.vim'
-Plug 'kana/vim-arpeggio'
 Plug 'kana/vim-operator-user'
 Plug 'qpkorr/vim-bufkill'
 Plug 'christoomey/vim-tmux-navigator'
@@ -122,14 +121,6 @@ endif
 
 " load sensible defaults by our prophet Tim Pope
 runtime! plugin/sensible.vim
-
-" my vim is so dense at 382 cols x 95 lines with 4 splits that there is usually
-" non-negligent lag doing anything that even the default 40 timeoutlen is not
-" enough!
-let g:arpeggio_timeoutlen=50
-" arpeggio is a bit special, since we may be defining our keymaps at any time
-" in no consecutive block
-call arpeggio#load()
 
 if has('win32')
   let s:data_dir="$APPDATA/Vim"
@@ -860,8 +851,7 @@ endif
 "               |/`.\`'        ,','); SSt
 "                   `         (/  (/
 
-" inoremap kj <Esc>
-call arpeggio#map('i', 's', 0, 'jk', '<Esc>')
+inoremap kj <Esc>
 
 " normalize Y to act like D and C
 map Y y$
@@ -969,12 +959,6 @@ function! s:SetupPairBindings()
     inoremap <silent><buffer> θ ""<C-g>U<Left>
     inoremap <silent><buffer> <CR> <C-r>=<SID>MySmarterCR()<CR>
     
-    call arpeggio#map('i', 'sb', 0, 'fj', '()<C-g>U<Left>')
-    call arpeggio#map('i', 'sb', 0, 'ru', '[]<C-g>U<Left>')
-    call arpeggio#map('i', 'sb', 0, 'c,', '{}<C-g>U<Left>')
-    call arpeggio#map('i', 'sb', 0, 'qp', '""<C-g>U<Left>')
-    call arpeggio#map('i', 'sb', 1, 'vm', '<Plug>MySmarterCR')
-    
     inoremap <silent><buffer> <BS> <C-r>=<SID>EmptyPairDeleterBackspace()<CR>
   endif
 endfunction
@@ -1018,7 +1002,6 @@ endfunction
 inoremap <Plug>MyPareditForwardUp <C-r>=<SID>MyPareditForwardUp()<CR>
 
 inoremap <expr> χ <SID>MyPareditForwardUp()
-call arpeggio#map('i', '', 1, 'x.', '<Plug>MyPareditForwardUp')
 
 " Platform specific keybinds
 if has("unix")
