@@ -20,7 +20,7 @@ Xft.dpi:      96
 !*font:          -*-terminus-medium-r-normal-*-12-*-*-*-*-*-iso10646-1
 !*font:          -misc-fixed-medium-r-semicondensed-*-12-120-75-75-c-60-iso10646-1
 *font:          fonts
-Xcursor*theme: KDE_Classic
+Xcursor*theme: pixelfun3
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
