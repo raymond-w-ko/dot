@@ -89,13 +89,12 @@ echo
 
 echo "export PATH=$HOME/$BASE_SCRIPT_DIR/bin:$HOME/bin:\$PATH" > "$SCRIPT_DIR/.bash.d/add_dot_extra_paths.sh"
 
+# tmux
 if [[ ! -d $HOME/src/tmux ]]; then
   git clone https://github.com/tmux/tmux.git $HOME/src/tmux
 fi
-if [[ ! -d $HOME/src/vim ]]; then
-  git clone https://github.com/raymond-w-ko/vim.git $HOME/src/vim
-fi
 
+# creep2 font
 if [[ ! -d $HOME/src/creep2 ]]; then
   git clone https://github.com/raymond-w-ko/creep2.git $HOME/src/creep2
   
@@ -105,9 +104,14 @@ if [[ ! -d $HOME/src/creep2 ]]; then
   popd
 fi
 
-mkdir -p "$HOME/.themes"
-safe_delete_existing_file "$HOME/.themes/Clearlooks Compact"
-ln -s "$HOME/dot/src/Clearlooks Compact" "$HOME/.themes"
+# vim
+if [[ ! -d $HOME/src/vim ]]; then
+  git clone https://github.com/raymond-w-ko/vim.git $HOME/src/vim
+fi
+if [[ -f /home/rko/.has-full-github-access ]]; then
+  echo "setting ~/src/vim origin to be SSH based"
+  ( cd $HOME/src/vim && git remote set-url origin git@github.com:raymond-w-ko/vim.git )
+fi
 
 ################################################################################
 
