@@ -36,7 +36,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'mhinz/vim-startify'
-if has('python')
+if has('python3') || has('python')
   Plug 'SirVer/ultisnips'
 endif
 Plug 'honza/vim-snippets'
