@@ -350,6 +350,7 @@ syntastic-cmake-cmakelint	syntastic-checkers.txt	/*syntastic-cmake-cmakelint*
 syntastic-co-coco	syntastic-checkers.txt	/*syntastic-co-coco*
 syntastic-cobol-cobc	syntastic-checkers.txt	/*syntastic-cobol-cobc*
 syntastic-coffee-coffee	syntastic-checkers.txt	/*syntastic-coffee-coffee*
+syntastic-coffee-coffee_jshint	syntastic-checkers.txt	/*syntastic-coffee-coffee_jshint*
 syntastic-coffee-coffeelint	syntastic-checkers.txt	/*syntastic-coffee-coffeelint*
 syntastic-commands	syntastic.txt	/*syntastic-commands*
 syntastic-compatibility	syntastic.txt	/*syntastic-compatibility*
