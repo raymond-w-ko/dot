@@ -62,11 +62,13 @@ let s:skip_expr = "s:SynAt(line('.'),col('.')) =~? b:syng_strcom"
 " searchpair() wrapper
 if has('reltime')
   function s:GetPair(start,end,flags,skip,time,...)
-    return max([searchpair('\m'.a:start,'','\m'.a:end,a:flags,a:skip,max([prevnonblank(v:lnum) - 2000,0] + a:000),a:time),0])
+    return s:Nat(searchpair('\m'.(a:start == '[' ? '\[' : a:start),'','\m'.a:end,
+          \ a:flags,a:skip,max([prevnonblank(v:lnum) - 2000,0] + a:000),a:time))
   endfunction
 else
   function s:GetPair(start,end,flags,skip,...)
-    return max([searchpair('\m'.a:start,'','\m'.a:end,a:flags,a:skip,max([prevnonblank(v:lnum) - 1000,get(a:000,1)])),0])
+    return s:Nat(searchpair('\m'.(a:start == '[' ? '\[' : a:start),'','\m'.a:end,
+          \ a:flags,a:skip,max([prevnonblank(v:lnum) - 1000,get(a:000,1)])))
   endfunction
 endif
 
@@ -140,7 +142,7 @@ function s:AlternatePair()
         continue
       endif
     elseif tok =~ '[])}]'
-      if s:GetPair(escape(tr(tok,'])}','[({'),'['), tok,'bW','s:SkipFunc()',2000)
+      if s:GetPair(tr(tok,'])}','[({'), tok,'bW','s:SkipFunc()',2000)
         continue
       endif
     else
@@ -152,7 +154,7 @@ function s:AlternatePair()
 endfunction
 
 function s:Nat(int)
-  return max([a:int,0])
+  return a:int * (a:int > 0)
 endfunction
 
 function s:LookingAt()
@@ -327,7 +329,7 @@ function s:IsContOne(i,num,cont)
   let ind = indent(l:i) + (a:cont ? 0 : s:sw())
   while l:i >= l:num && (ind > pind || l:i == l:num)
     if indent(l:i) < ind && s:OneScope(l:i)
-      let b_l += s:sw()
+      let b_l += 1
       let l:i = line('.')
     elseif !a:cont || b_l || ind < indent(a:i)
       break
@@ -431,7 +433,7 @@ function GetJavascriptIndent()
     let [s:looksyn, s:check_in, s:top_col] = [v:lnum - 1, 0, 0]
     try
       if idx != -1
-        call s:GetPair(['\[','(','{'][idx],'])}'[idx],'bW','s:SkipFunc()',2000)
+        call s:GetPair('[({'[idx],'])}'[idx],'bW','s:SkipFunc()',2000)
       elseif getline(v:lnum) !~ '^\S' && syns =~? 'block'
         call s:GetPair('{','}','bW','s:SkipFunc()',2000)
       else
@@ -471,8 +473,7 @@ function GetJavascriptIndent()
         endif
       endif
       let is_op = (l:line =~# s:opfirst || s:Continues(l:lnum,pline)) * s:sw()
-      let b_l = s:IsContOne(l:lnum,b:js_cache[1],is_op)
-      let b_l -= (b_l && l:line[0] == '{') * s:sw()
+      let b_l = s:Nat(s:IsContOne(l:lnum,b:js_cache[1],is_op) - (l:line =~ '^{')) * s:sw()
     endif
   elseif idx == -1 && getline(b:js_cache[1])[b:js_cache[2]-1] == '(' && &cino =~ '('
     let pval = s:ParseCino('(')
