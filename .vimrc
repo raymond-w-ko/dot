@@ -2076,6 +2076,10 @@ augroup MyVimrc
   endif
   
   au FileType markdown setlocal textwidth=80
+
+  let g:pyindent_open_paren = '&sw'
+  let g:pyindent_nested_paren = '&sw'
+  let g:pyindent_continue = '&sw'
 augroup END
 " }}}
 " Projects {{{
