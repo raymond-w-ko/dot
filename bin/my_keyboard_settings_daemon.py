@@ -43,6 +43,8 @@ def apply_keyboard_settings():
 
 
 def main():
+    apply_keyboard_settings()
+
     context = pyudev.Context()
     monitor = pyudev.Monitor.from_netlink(context)
     monitor.filter_by('input')
