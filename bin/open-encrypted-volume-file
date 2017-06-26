@@ -1,0 +1,8 @@
+#!/bin/bash -e
+if [[ -z "$1" || -z "$2" || -z "$3" ]]; then
+  echo "$0 [filename] [mapper name] [mount name]"
+  exit 1
+fi
+sudo cryptsetup -c aes-xts-plain64 -s 512 open --type plain "$1" "$2"
+sudo mkdir -p "/mnt/$3"
+sudo mount "/dev/mapper/$2" "/mnt/$3"
