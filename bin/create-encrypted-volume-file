@@ -1,6 +1,12 @@
 #!/bin/bash -e
 if [[ -z "$1" || -z "$2" ]]; then
-  echo "$0 [filename] [size]"
+  echo "$0 [filename] [size in MiB] [mapper name] [mount name]"
   exit 1
 fi
 dd if=/dev/zero of="$1" bs=1M count="$2"
+sudo cryptsetup --verify-passphrase -c aes-xts-plain64 -s 512 open --type plain "$1" "$3"
+sudo mkfs.ext4 "/dev/mapper/$3"
+sudo mkdir -p "/mnt/$4"
+sudo mount "/dev/mapper/$3" "/mnt/$4"
+sudo umount "/dev/mapper/$3"
+sudo cryptsetup close "$3"
