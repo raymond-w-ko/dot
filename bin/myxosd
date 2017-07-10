@@ -1,6 +1,6 @@
 #!/bin/bash
 exec osd_cat \
-    --font='-*-terminus-*-*-*-*-32-*-*-*-*-*-*-*' \
+    --font='-*-dejavu sans-*-r-*-*-32-*-*-*-*-*-*-*' \
     --shadow=0 \
     --outline=1 \
     --color=yellow \
