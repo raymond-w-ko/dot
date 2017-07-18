@@ -179,10 +179,10 @@ svnaddmissing() {
 }
 alias svnadddir='svn add --depth=empty'
 svndiff() {
-  svn diff -x "-w --ignore-eol-style" "${@}" | sed 's///' | $DIFF_PROG | less -R
+  svn diff -x "-w --ignore-eol-style" "${@}" | sed 's///' | diff-highlight | less -R
 }
 svnshow() {
-  svn diff -x "-w --ignore-eol-style" -c $1 | sed 's///' | $DIFF_PROG | less -R
+  svn diff -x "-w --ignore-eol-style" -c $1 | sed 's///' | diff-highlight | less -R
 }
 alias svnignore='svn propedit svn:ignore'
 
