@@ -97,6 +97,7 @@ alias makepkg="$NICE_PROG makepkg"
 alias yaourt="$NICE_PROG yaourt"
 alias yup="$NICE_PROG yaourt -Syua --noconfirm"
 alias y="$NICE_PROG yaourt"
+alias adu="sudo apt-get update && sudo apt-get dist-upgrade"
 findcore() {
   find . -type f -regextype posix-extended -regex '.*/core\.[0-9]+$'
 }
