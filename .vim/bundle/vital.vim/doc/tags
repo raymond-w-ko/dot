@@ -1112,6 +1112,17 @@ Vital.Vim.Search-interface	vital/Vim/Search.txt	/*Vital.Vim.Search-interface*
 Vital.Vim.Search-introduction	vital/Vim/Search.txt	/*Vital.Vim.Search-introduction*
 Vital.Vim.Search-usage	vital/Vim/Search.txt	/*Vital.Vim.Search-usage*
 Vital.Vim.Search.finddef()	vital/Vim/Search.txt	/*Vital.Vim.Search.finddef()*
+Vital.Vim.Type	vital/Vim/Type.txt	/*Vital.Vim.Type*
+Vital.Vim.Type-constants	vital/Vim/Type.txt	/*Vital.Vim.Type-constants*
+Vital.Vim.Type-contents	vital/Vim/Type.txt	/*Vital.Vim.Type-contents*
+Vital.Vim.Type-functions	vital/Vim/Type.txt	/*Vital.Vim.Type-functions*
+Vital.Vim.Type-interface	vital/Vim/Type.txt	/*Vital.Vim.Type-interface*
+Vital.Vim.Type-introduction	vital/Vim/Type.txt	/*Vital.Vim.Type-introduction*
+Vital.Vim.Type-type_names	vital/Vim/Type.txt	/*Vital.Vim.Type-type_names*
+Vital.Vim.Type-types	vital/Vim/Type.txt	/*Vital.Vim.Type-types*
+Vital.Vim.Type.is_numeric()	vital/Vim/Type.txt	/*Vital.Vim.Type.is_numeric()*
+Vital.Vim.Type.is_predicate()	vital/Vim/Type.txt	/*Vital.Vim.Type.is_predicate()*
+Vital.Vim.Type.is_special()	vital/Vim/Type.txt	/*Vital.Vim.Type.is_special()*
 Vital.Vim.ViewTracer	vital/Vim/ViewTracer.txt	/*Vital.Vim.ViewTracer*
 Vital.Vim.ViewTracer-contents	vital/Vim/ViewTracer.txt	/*Vital.Vim.ViewTracer-contents*
 Vital.Vim.ViewTracer-functions	vital/Vim/ViewTracer.txt	/*Vital.Vim.ViewTracer-functions*
@@ -1406,6 +1417,7 @@ vital/Vim/Message.txt	vital/Vim/Message.txt	/*vital\/Vim\/Message.txt*
 vital/Vim/Python.txt	vital/Vim/Python.txt	/*vital\/Vim\/Python.txt*
 vital/Vim/ScriptLocal.txt	vital/Vim/ScriptLocal.txt	/*vital\/Vim\/ScriptLocal.txt*
 vital/Vim/Search.txt	vital/Vim/Search.txt	/*vital\/Vim\/Search.txt*
+vital/Vim/Type.txt	vital/Vim/Type.txt	/*vital\/Vim\/Type.txt*
 vital/Vim/ViewTracer.txt	vital/Vim/ViewTracer.txt	/*vital\/Vim\/ViewTracer.txt*
 vital/Web/HTML.txt	vital/Web/HTML.txt	/*vital\/Web\/HTML.txt*
 vital/Web/HTTP.txt	vital/Web/HTTP.txt	/*vital\/Web\/HTTP.txt*
