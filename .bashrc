@@ -57,7 +57,6 @@ fi
 unset PYTHONHOME
 
 . ~/.bash.d/basic_aliases.sh
-. ~/.bash.d/colored_man_pages.sh
 
 idleionice() {
   ionice -c3 -p $@
