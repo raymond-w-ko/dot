@@ -5,6 +5,7 @@ g:lightline.component	lightline.txt	/*g:lightline.component*
 g:lightline.component_expand	lightline.txt	/*g:lightline.component_expand*
 g:lightline.component_function	lightline.txt	/*g:lightline.component_function*
 g:lightline.component_function_visible_condition	lightline.txt	/*g:lightline.component_function_visible_condition*
+g:lightline.component_raw	lightline.txt	/*g:lightline.component_raw*
 g:lightline.component_type	lightline.txt	/*g:lightline.component_type*
 g:lightline.component_visible_condition	lightline.txt	/*g:lightline.component_visible_condition*
 g:lightline.enable	lightline.txt	/*g:lightline.enable*
