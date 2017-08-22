@@ -358,27 +358,16 @@ let s:commands = [
     \
     \ 'Sydocs',             '__UNIX_HOME__/src/sydocs',
     \
-    \ 'Analytics',          '__UNIX_HOME__/src/alive5-server/analytics',
-    \ 'Backend',            '__UNIX_HOME__/src/alive5-server/main',
+    \ 'Platform',           '__UNIX_HOME__/src/alivesim/engine/syplatform',
+    \ 'Proton',             '__UNIX_HOME__/src/alivesim/engine/src/proton',
+    \ 'Nitrogen',           '__UNIX_HOME__/src/alivesim/engine/src/nitrogen',
+    \ 'Fluorine',           '__UNIX_HOME__/src/alivesim/engine/src/fluorine',
+    \ 'Styles',             '__UNIX_HOME__/src/alivesim/engine/styles',
+    \ 'Hummus',             '__UNIX_HOME__/src/alivesim/engine/tools/hummus',
+    \ 'Parsenip',           '__UNIX_HOME__/src/alivesim/engine/tools/parsenip',
+    \ 'MetricsReport',      '__UNIX_HOME__/src/alivesim/engine/tools/metrics_report',
     \
-    \ 'Documentation',      '__UNIX_HOME__/src/alive5/docs',
-    \ 'Platform',           '__UNIX_HOME__/src/alive5/syplatform',
-    \ 'Hummus',             '__UNIX_HOME__/src/alive5/tools/hummus',
-    \ 'Parsenip',           '__UNIX_HOME__/src/alive5/tools/parsenip',
-    \ 'MetricsReport',      '__UNIX_HOME__/src/alive5/tools/metrics_report',
-    \ 'Nitrogen',           '__UNIX_HOME__/src/alive5/frameworks/nitrogen',
-    \ 'Fluorine',           '__UNIX_HOME__/src/alive5/frameworks/fluorine',
-    \ 'Proton',             '__UNIX_HOME__/src/alive5/frameworks/proton',
-    \ 'Portal',             '__UNIX_HOME__/src/alive5/portal',
-    \ 'Styles',             '__UNIX_HOME__/src/alive5/styles/default',
-    \
-    \ 'Diabetes',           '__UNIX_HOME__/src/alive5/apps/diabetes_cmesim_2015',
-    \ 'Amddr',              '__UNIX_HOME__/src/alive5/apps/dr_amd_cmesim_2016',
-    \ 'Hiv',                '__UNIX_HOME__/src/alive5/apps/hiv_cmesim_2016',
-    \ 'LungGain',           '__UNIX_HOME__/src/alive5/apps/lung_gain_2016',
-    \ 'Obesity',            '__UNIX_HOME__/src/alive5/apps/obesity_cmesim_2016',
-    \ 'Gibleed',            '__UNIX_HOME__/src/alive5/apps/gi_bleed_2016',
-    \ 'Nsclc',              '__UNIX_HOME__/src/alive5/apps/nsclc_cmesim_2017',
+    \ 'Diabetes',           '__UNIX_HOME__/src/alivesim/apps/Diabetes_CMESim_2015',
     \ ]
 
 let s:project_directories_list = []
