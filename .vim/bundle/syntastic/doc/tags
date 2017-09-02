@@ -334,6 +334,7 @@ syntastic-checkers-vala	syntastic-checkers.txt	/*syntastic-checkers-vala*
 syntastic-checkers-verilog	syntastic-checkers.txt	/*syntastic-checkers-verilog*
 syntastic-checkers-vhdl	syntastic-checkers.txt	/*syntastic-checkers-vhdl*
 syntastic-checkers-vim	syntastic-checkers.txt	/*syntastic-checkers-vim*
+syntastic-checkers-vue	syntastic-checkers.txt	/*syntastic-checkers-vue*
 syntastic-checkers-xhtml	syntastic-checkers.txt	/*syntastic-checkers-xhtml*
 syntastic-checkers-xml	syntastic-checkers.txt	/*syntastic-checkers-xml*
 syntastic-checkers-xquery	syntastic-checkers.txt	/*syntastic-checkers-xquery*
@@ -593,6 +594,8 @@ syntastic-vim-go	syntastic.txt	/*syntastic-vim-go*
 syntastic-vim-vimlint	syntastic-checkers.txt	/*syntastic-vim-vimlint*
 syntastic-vim-vint	syntastic-checkers.txt	/*syntastic-vim-vint*
 syntastic-vim-virtualenv	syntastic.txt	/*syntastic-vim-virtualenv*
+syntastic-vue-eslint	syntastic-checkers.txt	/*syntastic-vue-eslint*
+syntastic-vue-pug_lint_vue	syntastic-checkers.txt	/*syntastic-vue-pug_lint_vue*
 syntastic-xhtml-jshint	syntastic-checkers.txt	/*syntastic-xhtml-jshint*
 syntastic-xhtml-proselint	syntastic-checkers.txt	/*syntastic-xhtml-proselint*
 syntastic-xhtml-tidy	syntastic-checkers.txt	/*syntastic-xhtml-tidy*
