@@ -565,6 +565,7 @@ syntastic-solidity-solc	syntastic-checkers.txt	/*syntastic-solidity-solc*
 syntastic-solidity-solium	syntastic-checkers.txt	/*syntastic-solidity-solium*
 syntastic-spec-rpmlint	syntastic-checkers.txt	/*syntastic-spec-rpmlint*
 syntastic-sql-sqlint	syntastic-checkers.txt	/*syntastic-sql-sqlint*
+syntastic-sql-tsqllint	syntastic-checkers.txt	/*syntastic-sql-tsqllint*
 syntastic-statusline-flag	syntastic.txt	/*syntastic-statusline-flag*
 syntastic-stylus-stylint	syntastic-checkers.txt	/*syntastic-stylus-stylint*
 syntastic-tcl-nagelfar	syntastic-checkers.txt	/*syntastic-tcl-nagelfar*

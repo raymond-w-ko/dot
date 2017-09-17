@@ -62,11 +62,11 @@ let s:in_comm = s:skip_expr[:-14] . "'comment\\|doc'"
 let s:rel = has('reltime')
 " searchpair() wrapper
 if s:rel
-  function s:GetPair(start,end,flags,skip,time)
-    return searchpair('\m'.a:start,'','\m'.a:end,a:flags,a:skip,s:l1,a:time)
+  function s:GetPair(start,end,flags,skip)
+    return searchpair('\m'.a:start,'','\m'.a:end,a:flags,a:skip,s:l1,a:skip ==# 's:SkipFunc()' ? 2000 : 200)
   endfunction
 else
-  function s:GetPair(start,end,flags,skip,...)
+  function s:GetPair(start,end,flags,skip)
     return searchpair('\m'.a:start,'','\m'.a:end,a:flags,a:skip,s:l1)
   endfunction
 endif
@@ -88,7 +88,7 @@ function s:ParseCino(f)
       let divider = 1
     elseif c ==# 's'
       if n !~ '\d'
-        return n . s:sw()
+        return n . s:sw() + 0
       endif
       let n = str2nr(n) * s:sw()
       break
@@ -128,7 +128,7 @@ function s:AlternatePair()
   while s:SearchLoop(pat,'bW','s:SkipFunc()')
     if s:LookingAt() == ';'
       if !l:for
-        if s:GetPair('{','}','bW','s:SkipFunc()',2000)
+        if s:GetPair('{','}','bW','s:SkipFunc()')
           return
         endif
         break
@@ -139,7 +139,7 @@ function s:AlternatePair()
       let idx = stridx('])}',s:LookingAt())
       if idx == -1
         return
-      elseif !s:GetPair(['\[','(','{'][idx],'])}'[idx],'bW','s:SkipFunc()',2000)
+      elseif !s:GetPair(['\[','(','{'][idx],'])}'[idx],'bW','s:SkipFunc()')
         break
       endif
     endif
@@ -179,7 +179,7 @@ function s:Pure(f,...)
 endfunction
 
 function s:SearchLoop(pat,flags,expr)
-  return call('s:GetPair',insert([a:pat,a:flags,a:expr,200], '\_$.', a:flags =~# 'b'))
+  return s:GetPair(a:pat,'\_$.',a:flags,a:expr)
 endfunction
 
 function s:ExprCol()
@@ -195,7 +195,7 @@ function s:ExprCol()
     elseif s:LookingAt() == '{'
       let bal = !s:IsBlock()
       break
-    elseif !s:GetPair('{','}','bW',s:skip_expr,200)
+    elseif !s:GetPair('{','}','bW',s:skip_expr)
       break
     endif
   endwhile
@@ -237,7 +237,7 @@ function s:Balanced(lnum)
 endfunction
 
 function s:OneScope()
-  if s:LookingAt() == ')' && s:GetPair('(', ')', 'bW', s:skip_expr, 100)
+  if s:LookingAt() == ')' && s:GetPair('(', ')', 'bW', s:skip_expr)
     let tok = s:PreviousToken()
     return (count(split('for if let while with'),tok) ||
           \ tok =~# '^await$\|^each$' && s:PreviousToken() ==# 'for') &&
@@ -251,7 +251,7 @@ endfunction
 function s:DoWhile()
   let cpos = searchpos('\m\<','cbW')
   if s:SearchLoop('\C[{}]\|\<\%(do\|while\)\>','bW',s:skip_expr)
-    if s:{s:LookingAt() == '}' && s:GetPair('{','}','bW',s:skip_expr,200) ?
+    if s:{s:LookingAt() == '}' && s:GetPair('{','}','bW',s:skip_expr) ?
           \ 'Previous' : ''}Token() ==# 'do' && s:IsBlock()
       return 1
     endif
@@ -289,7 +289,7 @@ endfunction
 
 function s:IsSwitch()
   return s:PreviousToken() !~ '[.*]' &&
-        \ (!s:GetPair('{','}','cbW',s:skip_expr,100) || s:IsBlock() && !s:Class())
+        \ (!s:GetPair('{','}','cbW',s:skip_expr) || s:IsBlock() && !s:Class())
 endfunction
 
 " https://github.com/sweet-js/sweet.js/wiki/design#give-lookbehind-to-the-reader
@@ -300,8 +300,11 @@ function s:IsBlock()
   elseif tok =~ '\k'
     if tok ==# 'type'
       return s:Pure('eval',"s:PreviousToken() !~# '^\\%(im\\|ex\\)port$' || s:PreviousToken() == '.'")
+    elseif tok ==# 'of'
+      return s:Pure('eval',"!s:GetPair('[[({]','[])}]','bW',s:skip_expr) || s:LookingAt() != '(' ||"
+            \ ."s:{s:PreviousToken() ==# 'await' ? 'Previous' : ''}Token() !=# 'for' || s:PreviousToken() == '.'")
     endif
-    return index(split('return const let import export extends yield default delete var await void typeof throw case new of in instanceof')
+    return index(split('return const let import export extends yield default delete var await void typeof throw case new in instanceof')
           \ ,tok) < (line('.') != a:firstline) || s:Pure('s:PreviousToken') == '.'
   elseif tok == '>'
     return getline('.')[col('.')-2] == '=' || s:SynAt(line('.'),col('.')) =~? 'jsflow\|^html'
@@ -355,34 +358,34 @@ function GetJavascriptIndent()
   endif
 
   " the containing paren, bracket, or curly. Many hacks for performance
+  call cursor(v:lnum,1)
   let idx = index([']',')','}'],l:line[0])
   if b:js_cache[0] > l:lnum && b:js_cache[0] < v:lnum ||
         \ b:js_cache[0] == l:lnum && s:Balanced(l:lnum)
-    call call('cursor',b:js_cache[2] ? b:js_cache[1:] : [v:lnum,1])
+    call call('cursor',b:js_cache[1:])
   else
-    call cursor(v:lnum,1)
     let [s:looksyn, s:top_col, s:check_in, s:l1] = [v:lnum - 1,0,0,
           \ max([s:l1, &smc ? search('\m^.\{'.&smc.',}','nbW',s:l1 + 1) + 1 : 0])]
     try
       if idx != -1
-        call s:GetPair(['\[','(','{'][idx],'])}'[idx],'bW','s:SkipFunc()',2000)
+        call s:GetPair(['\[','(','{'][idx],'])}'[idx],'bW','s:SkipFunc()')
       elseif getline(v:lnum) !~ '^\S' && s:stack[-1] =~? 'block\|^jsobject$'
-        call s:GetPair('{','}','bW','s:SkipFunc()',2000)
+        call s:GetPair('{','}','bW','s:SkipFunc()')
       else
         call s:AlternatePair()
       endif
     catch /^\Cout of bounds$/
       call cursor(v:lnum,1)
     endtry
+    let b:js_cache[1:] = line('.') == v:lnum ? [0,0] : getpos('.')[1:2]
   endif
 
-  let b:js_cache = [v:lnum] + (line('.') == v:lnum ? [0,0] : getpos('.')[1:2])
-  let num = b:js_cache[1]
+  let [b:js_cache[0], num] = [v:lnum, b:js_cache[1]]
 
   let [num_ind, is_op, b_l, l:switch_offset] = [s:Nat(indent(num)),0,0,0]
-  if !b:js_cache[2] || s:LookingAt() == '{' && s:IsBlock()
+  if !num || s:LookingAt() == '{' && s:IsBlock()
     let ilnum = line('.')
-    if b:js_cache[2] && s:LookingAt() == ')' && s:GetPair('(',')','bW',s:skip_expr,100)
+    if num && s:LookingAt() == ')' && s:GetPair('(',')','bW',s:skip_expr)
       if ilnum == num
         let [num, num_ind] = [line('.'), indent('.')]
       endif
@@ -402,7 +405,7 @@ function GetJavascriptIndent()
         if s:Continues(l:lnum,pline)
           let is_op = s:sw()
         endif
-      elseif b:js_cache[2] && sol =~# '^\%(in\%(stanceof\)\=\|\*\)$'
+      elseif num && sol =~# '^\%(in\%(stanceof\)\=\|\*\)$'
         call call('cursor',b:js_cache[1:])
         if s:PreviousToken() =~ '\k' && s:Class()
           return num_ind + s:sw()
