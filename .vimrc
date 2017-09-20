@@ -385,11 +385,23 @@ endfor
 
 " traverse up parent directories until it finds one that matches in the above
 " list
+function! s:IsProjectDirectory(directory)
+  echom(a:directory)
+  if isdirectory(a:directory . "/.git")
+    return 1
+  elseif isdirectory(a:directory . "/.hg")
+    return 1
+  elseif has_key(g:my_project_directories, a:directory)
+    return 1
+  else
+    return 0
+  endif
+endfunction
 function! MyGetProjectDirectory()
   let last_directory = ''
   let directory = getcwd()
 
-  while has_key(g:my_project_directories, directory) == 0 && last_directory != directory
+  while !s:IsProjectDirectory(directory) && last_directory != directory
     let last_directory = directory
     let directory = substitute(simplify(directory . '/..'),
         \ '[\\/]*$', '', '')
