@@ -368,6 +368,7 @@ let s:commands = [
     \ 'MetricsReport',      '__UNIX_HOME__/src/alivesim/engine/tools/metrics_report',
     \
     \ 'Diabetes',           '__UNIX_HOME__/src/alivesim/apps/Diabetes_CMESim_2015',
+    \ 'Gibleed',            '__UNIX_HOME__/src/alivesim/apps/gi_bleed_2016',
     \ ]
 
 let s:project_directories_list = []
@@ -1822,9 +1823,10 @@ let g:syntastic_enable_signs = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_mode_map = {
-            \ 'mode': 'active',
-            \ 'active_filetypes': ['ruby', 'php', 'python'],
-            \ 'passive_filetypes': ['java', 'c', 'cpp', 'objc', 'objcpp', "html"] }
+            \ "mode": "active",
+            \ "active_filetypes": ["ruby", "php", "python", "yaml"],
+            \ "passive_filetypes": ["java", "c", "cpp", "objc", "objcpp", "html"],
+            \ }
 
 " JS
 let g:syntastic_javascript_checkers = ['eslint']
@@ -1833,6 +1835,9 @@ let g:syntastic_javascript_eslint_exec = 'eslint_d'
 " Python 3
 let g:syntastic_python_flake8_exec = 'python3'
 let g:syntastic_python_flake8_args = ['-m', 'flake8']
+
+" YAML
+let g:syntastic_yaml_checkers = ["yamllint"]
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " detectindent
