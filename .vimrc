@@ -304,6 +304,7 @@ set wildignore+=*.apk,*.ap_
 " Since I keep my projects in the UNIX-ish HOME directory, we have to figure
 " out where it is. The problem is that it is potentially different everywhere.
 if has('win32')
+  let s:unix_home = expand('$HOME')
   let dir = 'C:/cygwin/home/root'
   if isdirectory(dir) | let s:unix_home = dir | endif
   let dir = 'C:/cygwin64/home/root'
