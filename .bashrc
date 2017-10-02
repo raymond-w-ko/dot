@@ -258,6 +258,12 @@ ulimit -c unlimited
   #test -z "$TMUX" && (tmux attach || tmux new-session)
 #fi
 
+if [[ -n "$DISPLAY" ]]; then
+  export GTK_IM_MODULE=ibus
+  export XMODIFIERS=@im=ibus
+  export QT_IM_MODULE=ibus
+fi
+
 if [[ -f /usr/bin/virtualenvwrapper.sh ]]; then
   source /usr/bin/virtualenvwrapper.sh
 fi
