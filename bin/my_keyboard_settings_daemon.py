@@ -36,7 +36,6 @@ def system(cmd):
 @debounce(2)
 def apply_keyboard_settings():
     print("%s re-applying keyboard and mouse settings" % (sys.argv[0]))
-    system('xmodmap ~/.Xmodmap')
     system('xset r rate 333 32')
     system('killall -u %s xbindkeys' % (username))
     system('xbindkeys')
