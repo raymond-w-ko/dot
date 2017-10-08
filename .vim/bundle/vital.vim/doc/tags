@@ -1,5 +1,4 @@
 :Vitalize	vitalizer.txt	/*:Vitalize*
-NOT	vital/OptionParser.txt	/*NOT*
 Vital-Vital-object	vital.txt	/*Vital-Vital-object*
 Vital-Vital.exists()	vital.txt	/*Vital-Vital.exists()*
 Vital-Vital.import()	vital.txt	/*Vital-Vital.import()*
