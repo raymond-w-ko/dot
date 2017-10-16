@@ -497,6 +497,12 @@ Vital.Experimental.Functor-contents	vital/Experimental/Functor.txt	/*Vital.Exper
 Vital.Experimental.Functor-functions	vital/Experimental/Functor.txt	/*Vital.Experimental.Functor-functions*
 Vital.Experimental.Functor-interface	vital/Experimental/Functor.txt	/*Vital.Experimental.Functor-interface*
 Vital.Experimental.Functor-introduction	vital/Experimental/Functor.txt	/*Vital.Experimental.Functor-introduction*
+Vital.Hash.MD5	vital/Hash/MD5.txt	/*Vital.Hash.MD5*
+Vital.Hash.MD5-contents	vital/Hash/MD5.txt	/*Vital.Hash.MD5-contents*
+Vital.Hash.MD5-functions	vital/Hash/MD5.txt	/*Vital.Hash.MD5-functions*
+Vital.Hash.MD5-interface	vital/Hash/MD5.txt	/*Vital.Hash.MD5-interface*
+Vital.Hash.MD5-introduction	vital/Hash/MD5.txt	/*Vital.Hash.MD5-introduction*
+Vital.Hash.MD5.sum()	vital/Hash/MD5.txt	/*Vital.Hash.MD5.sum()*
 Vital.Interpreter.Brainf__k	vital/Interpreter/Brainf__k.txt	/*Vital.Interpreter.Brainf__k*
 Vital.Interpreter.Brainf__k-contents	vital/Interpreter/Brainf__k.txt	/*Vital.Interpreter.Brainf__k-contents*
 Vital.Interpreter.Brainf__k-functions	vital/Interpreter/Brainf__k.txt	/*Vital.Interpreter.Brainf__k-functions*
@@ -1375,6 +1381,7 @@ vital/Database/SQLite.txt	vital/Database/SQLite.txt	/*vital\/Database\/SQLite.tx
 vital/DateTime.txt	vital/DateTime.txt	/*vital\/DateTime.txt*
 vital/Deprecated.ProcessManager.txt	vital/Deprecated/ProcessManager.txt	/*vital\/Deprecated.ProcessManager.txt*
 vital/Experimental/Functor.txt	vital/Experimental/Functor.txt	/*vital\/Experimental\/Functor.txt*
+vital/Hash/MD5.txt	vital/Hash/MD5.txt	/*vital\/Hash\/MD5.txt*
 vital/Interpreter/Brainf__k.txt	vital/Interpreter/Brainf__k.txt	/*vital\/Interpreter\/Brainf__k.txt*
 vital/Locale/Message.txt	vital/Locale/Message.txt	/*vital\/Locale\/Message.txt*
 vital/Lua/Prelude.txt	vital/Lua/Prelude.txt	/*vital\/Lua\/Prelude.txt*
