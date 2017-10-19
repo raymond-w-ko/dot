@@ -98,6 +98,8 @@ bindsym $mod+Shift+k exec "~/.i3/move-cursor-window-center.sh move up"
 bindsym $mod+Shift+l exec "~/.i3/move-cursor-window-center.sh move right"
 
 # switch to workspace
+bindsym $mod+Left exec "~/.i3/move-cursor-window-center.sh workspace prev"
+bindsym $mod+Right exec "~/.i3/move-cursor-window-center.sh workspace next"
 bindsym $mod+1 exec "~/.i3/move-cursor-window-center.sh workspace 1"
 bindsym $mod+2 exec "~/.i3/move-cursor-window-center.sh workspace 2"
 bindsym $mod+3 exec "~/.i3/move-cursor-window-center.sh workspace 3"
