@@ -1552,6 +1552,18 @@ function! s:SetupHelpTab()
   endif
 endfunction
 
+function! s:SetupParenthesesHightlight()
+  highlight SubtleParentheses ctermfg=240 guifg=#585858
+  highlight link gitMergeConflict Error
+
+  syntax match SubtleParentheses /)}]/ containedin=ALL
+  syntax match SubtleParentheses /)}]/ contained
+
+  syntax match gitMergeConflict /^=======$/ containedin=ALL
+  syntax match gitMergeConflict /^<<<<<<< .\+$/ containedin=ALL
+  syntax match gitMergeConflict /^>>>>>>> .\+$/ containedin=ALL
+endfunction
+
 augroup MyVimrc
   " only show cursorline if a window has focus
   " this noticably slows down VIM in files with complicated syntax hilighting,
@@ -1595,9 +1607,7 @@ augroup MyVimrc
   autocmd BufEnter *.txt call s:SetupHelpTab()
 
   " de-emphasized parentheses
-  au BufReadPost * highlight link SubtleParentheses Comment
-  au BufReadPost * syntax match SubtleParentheses /(\|)/
-  au FileType clojure,lisp,scheme syntax match SubtleParentheses /\[\|\]\|{\|}/
+  autocmd Syntax * call s:SetupParenthesesHightlight()
 augroup END
 
 " }}}
