@@ -64,6 +64,7 @@ let s:palette.lightorange = [136, "#af8700"]
 let s:palette.purple      = [139, "#af87af"]
 let s:palette.brown       = [130, "#af5f00"]
 let s:palette.orange      = [166, "#d75f00"]
+let s:palette.purered     = [196, "#ff0000"]
 let s:palette.pink        = [200, "#ff00d7"]
 let s:palette.lightpurple = [219, "#ffafff"]
 let s:palette.yellow      = [228, "#ffff87"]
@@ -147,7 +148,7 @@ call s:HL('SpellLocal',     s:palette.black,     s:palette.yellow,    'none')
 call s:HL('SpellRare',      s:palette.black,     s:palette.yellow,    'none')
 
 " ERROR
-call s:HL('Error',          s:palette.yellow,    s:color_bg,          'none')
+call s:HL('Error',          s:palette.white,     s:palette.purered,   'none')
 
 " COMMAND MODE MESSAGES
 call s:HL('ErrorMsg',       s:palette.yellow,    s:color_bg,          'none')
