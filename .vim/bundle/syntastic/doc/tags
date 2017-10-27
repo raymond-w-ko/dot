@@ -567,6 +567,7 @@ syntastic-slim-slim_lint	syntastic-checkers.txt	/*syntastic-slim-slim_lint*
 syntastic-slim-slimrb	syntastic-checkers.txt	/*syntastic-slim-slimrb*
 syntastic-sml-smlnj	syntastic-checkers.txt	/*syntastic-sml-smlnj*
 syntastic-solidity-solc	syntastic-checkers.txt	/*syntastic-solidity-solc*
+syntastic-solidity-solhint	syntastic-checkers.txt	/*syntastic-solidity-solhint*
 syntastic-solidity-solium	syntastic-checkers.txt	/*syntastic-solidity-solium*
 syntastic-spec-rpmlint	syntastic-checkers.txt	/*syntastic-spec-rpmlint*
 syntastic-sql-sqlint	syntastic-checkers.txt	/*syntastic-sql-sqlint*
