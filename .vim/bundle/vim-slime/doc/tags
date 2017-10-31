@@ -19,6 +19,7 @@ slime-requirements	vim-slime.txt	/*slime-requirements*
 slime-screen	vim-slime.txt	/*slime-screen*
 slime-tmux	vim-slime.txt	/*slime-tmux*
 slime-usage	vim-slime.txt	/*slime-usage*
+slime-vimterminal	vim-slime.txt	/*slime-vimterminal*
 slime-whimrepl	vim-slime.txt	/*slime-whimrepl*
 slime.txt	vim-slime.txt	/*slime.txt*
 v_<c-c><c-c>	vim-slime.txt	/*v_<c-c><c-c>*
