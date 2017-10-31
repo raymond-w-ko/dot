@@ -68,11 +68,13 @@ Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-haystack'
 
-" Hayabusa
-Plug 'easymotion/vim-easymotion'
-Plug 'haya14busa/incsearch.vim'
-Plug 'haya14busa/incsearch-easymotion.vim'
+" Hayabusa + friends
+" Plug 'easymotion/vim-easymotion'
+" Plug 'haya14busa/incsearch.vim'
+" Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'haya14busa/vim-asterisk'
+Plug 'osyo-manga/vim-anzu'
+Plug 'haya14busa/is.vim'
 
 " Junegunn Choi
 Plug 'junegunn/vim-easy-align'
@@ -171,7 +173,8 @@ if exists('+relativenumber')
 endif
 " setting this to 10000 actually causes noticable exit lag
 set history=128
-set lazyredraw
+" lazy redraw breaks vim-anzu
+" set lazyredraw
 set showcmd
 set ttyfast
 set matchtime=0
@@ -388,7 +391,6 @@ endfor
 " traverse up parent directories until it finds one that matches in the above
 " list
 function! s:IsProjectDirectory(directory)
-  echom(a:directory)
   if isdirectory(a:directory . "/.git")
     return 1
   elseif isdirectory(a:directory . "/.hg")
@@ -1996,20 +1998,32 @@ vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" incsearch.vim
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map /  <Plug>(incsearch-forward)\v
-map ?  <Plug>(incsearch-backward)\v
-map g/ <Plug>(incsearch-stay)\v
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-asterisk
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:asterisk#keeppos=1
-map *  <Plug>(asterisk-z*)
-map #  <Plug>(asterisk-z#)
-map g* <Plug>(asterisk-gz*)
-map g# <Plug>(asterisk-gz#)
+" map *  <Plug>(asterisk-z*)
+" map #  <Plug>(asterisk-z#)
+" map g* <Plug>(asterisk-gz*)
+" map g# <Plug>(asterisk-gz#)
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" incsearch.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" map /  <Plug>(incsearch-forward)\v
+" map ?  <Plug>(incsearch-backward)\v
+" map g/ <Plug>(incsearch-stay)\v
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" is.vim + friends
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map n <Plug>(is-nohl)<Plug>(anzu-n-with-echo)
+map N <Plug>(is-nohl)<Plug>(anzu-N-with-echo)
+
+map *  <Plug>(asterisk-z*)<Plug>(is-nohl-1)
+map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)
+map #  <Plug>(asterisk-z#)<Plug>(is-nohl-1)
+map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " tagbar
@@ -2118,7 +2132,6 @@ function! FindAndRunMakefile()
 
     let makefile = current_dir . '/Makefile'
     if filereadable(makefile)
-      echom current_dir
       execute "!make -f Makefile " . '-C ' . current_dir
       return
     endif
