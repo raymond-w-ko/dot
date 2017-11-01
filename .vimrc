@@ -69,7 +69,7 @@ Plug 'tpope/vim-git'
 Plug 'tpope/vim-haystack'
 
 " Hayabusa + friends
-" Plug 'easymotion/vim-easymotion'
+Plug 'easymotion/vim-easymotion'
 " Plug 'haya14busa/incsearch.vim'
 " Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'haya14busa/vim-asterisk'
@@ -362,14 +362,7 @@ let s:commands = [
     \
     \ 'Sydocs',             '__UNIX_HOME__/src/sydocs',
     \
-    \ 'Platform',           '__UNIX_HOME__/src/alivesim/engine/syplatform',
-    \ 'Proton',             '__UNIX_HOME__/src/alivesim/engine/src/proton',
-    \ 'Nitrogen',           '__UNIX_HOME__/src/alivesim/engine/src/nitrogen',
-    \ 'Fluorine',           '__UNIX_HOME__/src/alivesim/engine/src/fluorine',
-    \ 'Styles',             '__UNIX_HOME__/src/alivesim/engine/styles',
-    \ 'Hummus',             '__UNIX_HOME__/src/alivesim/engine/tools/hummus',
-    \ 'Parsenip',           '__UNIX_HOME__/src/alivesim/engine/tools/parsenip',
-    \ 'MetricsReport',      '__UNIX_HOME__/src/alivesim/engine/tools/metrics_report',
+    \ 'Engine',             '__UNIX_HOME__/src/alivesim/engine',
     \
     \ 'Diabetes',           '__UNIX_HOME__/src/alivesim/apps/Diabetes_CMESim_2015',
     \ 'Gibleed',            '__UNIX_HOME__/src/alivesim/apps/gi_bleed_2016',
@@ -1958,7 +1951,7 @@ let g:EasyMotion_smartcase = 1
 let g:EasyMotion_keys = "dsaklghqwertyuiopzxcvbnmfj"
 
 " easymotion highlight colors
-hi EasyMotionTarget ctermbg=none ctermfg=46
+hi link EasyMotionTarget Error
 hi EasyMotionTarget2First ctermbg=none ctermfg=46
 hi EasyMotionTarget2Second ctermbg=none ctermfg=46
 hi link EasyMotionShade Comment
