@@ -468,6 +468,7 @@ syntastic-json-jsonval	syntastic-checkers.txt	/*syntastic-json-jsonval*
 syntastic-julia-lint	syntastic-checkers.txt	/*syntastic-julia-lint*
 syntastic-less-lessc	syntastic-checkers.txt	/*syntastic-less-lessc*
 syntastic-less-recess	syntastic-checkers.txt	/*syntastic-less-recess*
+syntastic-less-stylelint	syntastic-checkers.txt	/*syntastic-less-stylelint*
 syntastic-lex-flex	syntastic-checkers.txt	/*syntastic-lex-flex*
 syntastic-license	syntastic.txt	/*syntastic-license*
 syntastic-limbo-limbo	syntastic-checkers.txt	/*syntastic-limbo-limbo*
