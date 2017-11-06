@@ -51,7 +51,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-vinegar'
+" Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-tbone'
@@ -1619,11 +1619,7 @@ let g:alternateNoDefaultAlternate=1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NetRW
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:netrw_silent=1
-" apparently enabling this hijacks the mouse completely
-" so you can't use it to select stuff (WTF!)
-"let g:netrw_mousemaps=0
-"let g:netrw_cygwin = 1
+nnoremap - :edit .<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP
