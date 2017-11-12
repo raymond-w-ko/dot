@@ -157,6 +157,7 @@ Vital.Data.Dict-introduction	vital/Data/Dict.txt	/*Vital.Data.Dict-introduction*
 Vital.Data.Dict.clear()	vital/Data/Dict.txt	/*Vital.Data.Dict.clear()*
 Vital.Data.Dict.foldl()	vital/Data/Dict.txt	/*Vital.Data.Dict.foldl()*
 Vital.Data.Dict.foldr()	vital/Data/Dict.txt	/*Vital.Data.Dict.foldr()*
+Vital.Data.Dict.from_list()	vital/Data/Dict.txt	/*Vital.Data.Dict.from_list()*
 Vital.Data.Dict.make()	vital/Data/Dict.txt	/*Vital.Data.Dict.make()*
 Vital.Data.Dict.make_index()	vital/Data/Dict.txt	/*Vital.Data.Dict.make_index()*
 Vital.Data.Dict.max_by()	vital/Data/Dict.txt	/*Vital.Data.Dict.max_by()*
