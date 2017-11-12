@@ -221,9 +221,9 @@ set pastetoggle=<F9>
 
 " timeout is needed due to completing fj with omegacomplete
 set timeout
-set timeoutlen=8192
+set timeoutlen=1024
 set ttimeout
-set ttimeoutlen=100    " needed to avoid leaving insert mode delay for vim-airline
+set ttimeoutlen=256    " needed to avoid leaving insert mode delay for vim-airline
 
 set cinoptions=
 set cinoptions+=:0
