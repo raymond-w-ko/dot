@@ -70,11 +70,11 @@ Plug 'tpope/vim-haystack'
 
 " Hayabusa + friends
 Plug 'easymotion/vim-easymotion'
-" Plug 'haya14busa/incsearch.vim'
-" Plug 'haya14busa/incsearch-easymotion.vim'
+Plug 'haya14busa/incsearch.vim'
+Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'haya14busa/vim-asterisk'
+" Plug 'haya14busa/is.vim'
 Plug 'osyo-manga/vim-anzu'
-Plug 'haya14busa/is.vim'
 
 " Junegunn Choi
 Plug 'junegunn/vim-easy-align'
@@ -110,6 +110,7 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 call plug#end()
 
 let g:omegacomplete_version_preference=1
+let g:omegacomplete_quick_select_keys="asdfjklgh"
 if has('java')
   let jar_list = split(globpath(expand('$HOME') . '/java', '*.jar'), "\n")
   call insert(jar_list, expand('$VIMRUNTIME') . '/vim.jar', 0)
@@ -2019,8 +2020,9 @@ map g* <Plug>(asterisk-gz*)
 map #  <Plug>(asterisk-z#)
 map g# <Plug>(asterisk-gz#)
 
-map / /\v
-map ? ?\v
+map / <Plug>(incsearch-forward)\v
+map ? <Plug>(incsearch-backward)\v
+map g/ <Plug>(incsearch-stay)\v
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " tagbar
