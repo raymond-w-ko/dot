@@ -1193,15 +1193,10 @@ endfunction
 nnoremap <silent> <Left> :call MarkWindowSwap()<CR><C-w>h:call DoWindowSwap()<CR>
 nnoremap <silent> <Right> :call MarkWindowSwap()<CR><C-w>l:call DoWindowSwap()<CR>
 
-nnoremap <leader>1 1gt
-nnoremap <leader>2 2gt
-nnoremap <leader>3 3gt
-nnoremap <leader>4 4gt
-nnoremap <leader>5 5gt
-nnoremap <leader>6 6gt
-nnoremap <leader>7 7gt
-nnoremap <leader>8 8gt
-nnoremap <leader>9 9gt
+nnoremap <leader>tq 1gt
+nnoremap <leader>tw 2gt
+nnoremap <leader>te 3gt
+nnoremap <leader>tr 4gt
 nnoremap <F1> :tabnew<CR>
 
 function! CreateAndSetupVsplits()
@@ -1620,7 +1615,12 @@ let g:alternateNoDefaultAlternate=1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NetRW
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap - :edit .<CR>
+function! <SID>EditFileDirectory()
+  let p = expand("%:p:h")
+  let cmd = "edit " . p
+  execute cmd
+endfunction
+nnoremap - :call <SID>EditFileDirectory()<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP
