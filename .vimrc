@@ -110,7 +110,7 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 call plug#end()
 
 let g:omegacomplete_version_preference=1
-let g:omegacomplete_quick_select_keys="asdfjklgh"
+" let g:omegacomplete_quick_select_keys="asdfjklgh"
 if has('java')
   let jar_list = split(globpath(expand('$HOME') . '/java', '*.jar'), "\n")
   call insert(jar_list, expand('$VIMRUNTIME') . '/vim.jar', 0)
