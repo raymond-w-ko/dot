@@ -444,6 +444,7 @@ syntastic-html-gjslint	syntastic-checkers.txt	/*syntastic-html-gjslint*
 syntastic-html-htmlhint	syntastic-checkers.txt	/*syntastic-html-htmlhint*
 syntastic-html-jshint	syntastic-checkers.txt	/*syntastic-html-jshint*
 syntastic-html-proselint	syntastic-checkers.txt	/*syntastic-html-proselint*
+syntastic-html-stylelint	syntastic-checkers.txt	/*syntastic-html-stylelint*
 syntastic-html-textlint	syntastic-checkers.txt	/*syntastic-html-textlint*
 syntastic-html-tidy	syntastic-checkers.txt	/*syntastic-html-tidy*
 syntastic-html-validator	syntastic-checkers.txt	/*syntastic-html-validator*
