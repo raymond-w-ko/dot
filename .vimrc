@@ -51,7 +51,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-commentary'
-" Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-tbone'
@@ -1620,7 +1620,8 @@ function! <SID>EditFileDirectory()
   let cmd = "edit " . p
   execute cmd
 endfunction
-nnoremap - :call <SID>EditFileDirectory()<CR>
+" this breaks sometimes by consuming window splits
+" nnoremap - :call <SID>EditFileDirectory()<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP
