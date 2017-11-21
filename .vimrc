@@ -1223,7 +1223,7 @@ function! CreateAndSetupVsplits()
 
   wincmd =
 endfunction
-nnoremap <F8> :call CreateAndSetupVsplits()<CR>
+nnoremap <leader>tt :call CreateAndSetupVsplits()<CR>
 
 function! ExtensionHelper(ext, dir)
     let partial = a:dir . '/**/*.' . a:ext
