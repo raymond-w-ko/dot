@@ -40,7 +40,9 @@ if has('python3') || has('python')
   Plug 'SirVer/ultisnips'
 endif
 Plug 'honza/vim-snippets'
-Plug 'vim-syntastic/syntastic'
+" Plug 'vim-syntastic/syntastic'
+Plug 'w0rp/ale'
+Plug 'maximbaz/lightline-ale'
 Plug 'sjl/gundo.vim'
 Plug 'majutsushi/tagbar'
 
@@ -504,14 +506,6 @@ endfunction
 command! FixSmartQuotes silent! call FixSmartQuotes()
 
 command! WriteUTF8 write ++enc=utf-8
-
-function! SaveAndCheckIfModified()
-  if &modified && !&readonly && len(bufname('%')) > 0
-    update
-    " too distracting (flickering) and slow
-    "SyntasticCheck
-  endif
-endfunction
 
 function! StripTrailingWhitespace()
     let l:my_saved_winview = winsaveview()
@@ -1586,11 +1580,6 @@ augroup MyVimrc
   " this however is annoying for git commit messages
   au BufReadPost COMMIT_EDITMSG exe 'normal! gg'
 
-  " this probably causes more trouble than it is worth, especially for files not
-  " under version control
-  " but I am to lazy and often don't want to press Enter to save...
-  "au InsertLeave * call SaveAndCheckIfModified()
-
   " generates too many annoying deltas in open source projects like OGRE
   "au BufWritePre C:/SVN/* call StripTrailingWhitespace()
   "au BufWritePre *.h,*.hpp,*.c,*.cc,*.cpp,*.java,*.py,*.lua call StripTrailingWhitespace()
@@ -1675,7 +1664,10 @@ let g:lightline = {
     \ 'colorscheme': 'wombat',
     \ 'mode_map': { 'c': 'NORMAL' },
     \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+    \   'left': [
+    \     ['mode', 'paste'],
+    \     ["linter_errors", "linter_warnings", "linter_ok"],
+    \     ['fugitive','filename']]
     \ },
     \ 'component_function': {
     \   'modified': 'LightLineModified',
@@ -1690,6 +1682,16 @@ let g:lightline = {
     \ }
     " \ 'separator': { 'left': '⮀', 'right': '⮂' },
     " \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+
+let g:lightline.component_expand = {
+    \  'linter_warnings': 'lightline#ale#warnings',
+    \  'linter_errors': 'lightline#ale#errors',
+    \  'linter_ok': 'lightline#ale#ok',
+    \ }
+let g:lightline.component_type = {
+    \     'linter_warnings': 'warning',
+    \     'linter_errors': 'error',
+    \ }
 
 function! LightLineModified()
   return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
@@ -1848,6 +1850,18 @@ let g:syntastic_python_flake8_args = ['-m', 'flake8']
 
 " YAML
 let g:syntastic_yaml_checkers = ["yamllint"]
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ale
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ale_lint_on_text_changed=1
+let g:ale_lint_on_enter=1
+let g:ale_lint_on_save=1
+let g:ale_lint_on_filetype_changed=1
+
+let g:ale_linters = {
+    \ "jsx": ["eslint"],
+    \ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " detectindent
