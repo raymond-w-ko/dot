@@ -386,7 +386,6 @@ b:ale_javascript_jscs_use_global	ale-javascript.txt	/*b:ale_javascript_jscs_use_
 b:ale_javascript_jshint_executable	ale-javascript.txt	/*b:ale_javascript_jshint_executable*
 b:ale_javascript_jshint_use_global	ale-javascript.txt	/*b:ale_javascript_jshint_use_global*
 b:ale_javascript_prettier_eslint_executable	ale-javascript.txt	/*b:ale_javascript_prettier_eslint_executable*
-b:ale_javascript_prettier_eslint_legacy	ale-javascript.txt	/*b:ale_javascript_prettier_eslint_legacy*
 b:ale_javascript_prettier_eslint_options	ale-javascript.txt	/*b:ale_javascript_prettier_eslint_options*
 b:ale_javascript_prettier_eslint_use_global	ale-javascript.txt	/*b:ale_javascript_prettier_eslint_use_global*
 b:ale_javascript_prettier_executable	ale-javascript.txt	/*b:ale_javascript_prettier_executable*
@@ -395,7 +394,6 @@ b:ale_javascript_prettier_standard_executable	ale-javascript.txt	/*b:ale_javascr
 b:ale_javascript_prettier_standard_options	ale-javascript.txt	/*b:ale_javascript_prettier_standard_options*
 b:ale_javascript_prettier_standard_use_global	ale-javascript.txt	/*b:ale_javascript_prettier_standard_use_global*
 b:ale_javascript_prettier_use_global	ale-javascript.txt	/*b:ale_javascript_prettier_use_global*
-b:ale_javascript_prettier_use_local_config	ale-javascript.txt	/*b:ale_javascript_prettier_use_local_config*
 b:ale_javascript_standard_executable	ale-javascript.txt	/*b:ale_javascript_standard_executable*
 b:ale_javascript_standard_options	ale-javascript.txt	/*b:ale_javascript_standard_options*
 b:ale_javascript_standard_use_global	ale-javascript.txt	/*b:ale_javascript_standard_use_global*
@@ -467,6 +465,7 @@ b:ale_python_pylint_executable	ale-python.txt	/*b:ale_python_pylint_executable*
 b:ale_python_pylint_options	ale-python.txt	/*b:ale_python_pylint_options*
 b:ale_python_pylint_use_global	ale-python.txt	/*b:ale_python_pylint_use_global*
 b:ale_python_pyls_executable	ale-python.txt	/*b:ale_python_pyls_executable*
+b:ale_python_pyls_use_global	ale-python.txt	/*b:ale_python_pyls_use_global*
 b:ale_python_yapf_executable	ale-python.txt	/*b:ale_python_yapf_executable*
 b:ale_python_yapf_use_global	ale-python.txt	/*b:ale_python_yapf_use_global*
 b:ale_r_lintr_options	ale-r.txt	/*b:ale_r_lintr_options*
@@ -644,7 +643,6 @@ g:ale_javascript_jscs_use_global	ale-javascript.txt	/*g:ale_javascript_jscs_use_
 g:ale_javascript_jshint_executable	ale-javascript.txt	/*g:ale_javascript_jshint_executable*
 g:ale_javascript_jshint_use_global	ale-javascript.txt	/*g:ale_javascript_jshint_use_global*
 g:ale_javascript_prettier_eslint_executable	ale-javascript.txt	/*g:ale_javascript_prettier_eslint_executable*
-g:ale_javascript_prettier_eslint_legacy	ale-javascript.txt	/*g:ale_javascript_prettier_eslint_legacy*
 g:ale_javascript_prettier_eslint_options	ale-javascript.txt	/*g:ale_javascript_prettier_eslint_options*
 g:ale_javascript_prettier_eslint_use_global	ale-javascript.txt	/*g:ale_javascript_prettier_eslint_use_global*
 g:ale_javascript_prettier_executable	ale-javascript.txt	/*g:ale_javascript_prettier_executable*
@@ -653,7 +651,6 @@ g:ale_javascript_prettier_standard_executable	ale-javascript.txt	/*g:ale_javascr
 g:ale_javascript_prettier_standard_options	ale-javascript.txt	/*g:ale_javascript_prettier_standard_options*
 g:ale_javascript_prettier_standard_use_global	ale-javascript.txt	/*g:ale_javascript_prettier_standard_use_global*
 g:ale_javascript_prettier_use_global	ale-javascript.txt	/*g:ale_javascript_prettier_use_global*
-g:ale_javascript_prettier_use_local_config	ale-javascript.txt	/*g:ale_javascript_prettier_use_local_config*
 g:ale_javascript_standard_executable	ale-javascript.txt	/*g:ale_javascript_standard_executable*
 g:ale_javascript_standard_options	ale-javascript.txt	/*g:ale_javascript_standard_options*
 g:ale_javascript_standard_use_global	ale-javascript.txt	/*g:ale_javascript_standard_use_global*
@@ -745,6 +742,7 @@ g:ale_python_pylint_executable	ale-python.txt	/*g:ale_python_pylint_executable*
 g:ale_python_pylint_options	ale-python.txt	/*g:ale_python_pylint_options*
 g:ale_python_pylint_use_global	ale-python.txt	/*g:ale_python_pylint_use_global*
 g:ale_python_pyls_executable	ale-python.txt	/*g:ale_python_pyls_executable*
+g:ale_python_pyls_use_global	ale-python.txt	/*g:ale_python_pyls_use_global*
 g:ale_python_yapf_executable	ale-python.txt	/*g:ale_python_yapf_executable*
 g:ale_python_yapf_use_global	ale-python.txt	/*g:ale_python_yapf_use_global*
 g:ale_r_lintr_options	ale-r.txt	/*g:ale_r_lintr_options*
