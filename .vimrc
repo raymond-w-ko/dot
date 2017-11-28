@@ -45,6 +45,7 @@ Plug 'w0rp/ale'
 Plug 'maximbaz/lightline-ale'
 Plug 'sjl/gundo.vim'
 Plug 'majutsushi/tagbar'
+Plug 'justinmk/vim-dirvish'
 
 " Tim Pope
 Plug 'tpope/vim-sensible'
@@ -53,7 +54,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-vinegar'
+" Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-tbone'
@@ -190,7 +191,8 @@ set completeopt+=menu
 set completeopt+=menuone
 set completeopt+=preview
 set pumheight=16
-set autochdir
+" this breaks dirvish
+" set autochdir
 set nolist
 " always try to make the current window 80 columns
 set winwidth=80
