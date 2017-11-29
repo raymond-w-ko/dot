@@ -74,6 +74,7 @@ CONTENTS                                                         *ale-contents*
       gofmt...............................|ale-go-gofmt|
       gometalinter........................|ale-go-gometalinter|
     graphql...............................|ale-graphql-options|
+      eslint..............................|ale-graphql-eslint|
       gqlint..............................|ale-graphql-gqlint|
     handlebars............................|ale-handlebars-options|
       ember-template-lint.................|ale-handlebars-embertemplatelint|
@@ -169,6 +170,7 @@ CONTENTS                                                         *ale-contents*
       rails_best_practices................|ale-ruby-rails_best_practices|
       reek................................|ale-ruby-reek|
       rubocop.............................|ale-ruby-rubocop|
+      ruby................................|ale-ruby-ruby|
     rust..................................|ale-rust-options|
       cargo...............................|ale-rust-cargo|
       rls.................................|ale-rust-rls|
@@ -294,7 +296,7 @@ Notes:
 * FusionScript: `fusion-lint`
 * GLSL: glslang
 * Go: `gofmt`, `goimports`, `go vet`, `golint`, `gometalinter`!!, `go build`!!, `gosimple`!!, `staticcheck`!!
-* GraphQL: `gqlint`
+* GraphQL: `eslint`, `gqlint`
 * Haml: `haml-lint`
 * Handlebars: `ember-template-lint`
 * Haskell: `ghc`, `stack-ghc`, `stack-build`!!, `ghc-mod`, `stack-ghc-mod`, `hlint`, `hdevtools`, `hfmt`
@@ -1385,6 +1387,18 @@ b:ale_virtualenv_dir_names                         *b:ale_virtualenv_dir_names*
   directory containing the Python file to find virtualenv paths.
 
 
+g:ale_warn_about_trailing_blank_lines   *g:ale_warn_about_trailing_blank_lines*
+b:ale_warn_about_trailing_blank_lines   *b:ale_warn_about_trailing_blank_lines*
+
+  Type: |Number|
+  Default: `1`
+
+  When this option is set to `1`, warnings about trailing blank lines will be
+  shown.
+
+  This option behaves similarly to |g:ale_warn_about_trailing_whitespace|.
+
+
 g:ale_warn_about_trailing_whitespace     *g:ale_warn_about_trailing_whitespace*
 b:ale_warn_about_trailing_whitespace     *b:ale_warn_about_trailing_whitespace*
 
@@ -1392,10 +1406,9 @@ b:ale_warn_about_trailing_whitespace     *b:ale_warn_about_trailing_whitespace*
   Default: `1`
 
   When this option is set to `1`, warnings relating to trailing whitespace on
-  lines will be shown in signs, the loclist, and echo messages, etc. If these
-  errors are found to be too irritating while edits are being made, and you
-  have configured Vim to automatically remove trailing whitespace, then you
-  can disable these warnings for some linters by setting this option to `0`.
+  lines will be shown. If warnings are too irritating while editing buffers,
+  and you have configured Vim to automatically remove trailing whitespace,
+  you can disable these warnings by setting this option to `0`.
 
   Not all linters may respect this option. If a linter does not, please file a
   bug report, and it may be possible to add such support.

@@ -117,6 +117,7 @@ ale-go-gofmt	ale-go.txt	/*ale-go-gofmt*
 ale-go-gometalinter	ale-go.txt	/*ale-go-gometalinter*
 ale-go-options	ale-go.txt	/*ale-go-options*
 ale-go-to-definition	ale.txt	/*ale-go-to-definition*
+ale-graphql-eslint	ale-graphql.txt	/*ale-graphql-eslint*
 ale-graphql-gqlint	ale-graphql.txt	/*ale-graphql-gqlint*
 ale-graphql-options	ale-graphql.txt	/*ale-graphql-options*
 ale-handlebars-embertemplatelint	ale-handlebars.txt	/*ale-handlebars-embertemplatelint*
@@ -230,6 +231,7 @@ ale-ruby-options	ale-ruby.txt	/*ale-ruby-options*
 ale-ruby-rails_best_practices	ale-ruby.txt	/*ale-ruby-rails_best_practices*
 ale-ruby-reek	ale-ruby.txt	/*ale-ruby-reek*
 ale-ruby-rubocop	ale-ruby.txt	/*ale-ruby-rubocop*
+ale-ruby-ruby	ale-ruby.txt	/*ale-ruby-ruby*
 ale-rust-cargo	ale-rust.txt	/*ale-rust-cargo*
 ale-rust-options	ale-rust.txt	/*ale-rust-options*
 ale-rust-rls	ale-rust.txt	/*ale-rust-rls*
@@ -482,7 +484,9 @@ b:ale_ruby_rails_best_practices_executable	ale-ruby.txt	/*b:ale_ruby_rails_best_
 b:ale_ruby_rails_best_practices_options	ale-ruby.txt	/*b:ale_ruby_rails_best_practices_options*
 b:ale_ruby_reek_show_context	ale-ruby.txt	/*b:ale_ruby_reek_show_context*
 b:ale_ruby_reek_show_wiki_link	ale-ruby.txt	/*b:ale_ruby_reek_show_wiki_link*
+b:ale_ruby_rubocop_executable	ale-ruby.txt	/*b:ale_ruby_rubocop_executable*
 b:ale_ruby_rubocop_options	ale-ruby.txt	/*b:ale_ruby_rubocop_options*
+b:ale_ruby_ruby_executable	ale-ruby.txt	/*b:ale_ruby_ruby_executable*
 b:ale_rust_cargo_check_all_targets	ale-rust.txt	/*b:ale_rust_cargo_check_all_targets*
 b:ale_rust_cargo_use_check	ale-rust.txt	/*b:ale_rust_cargo_use_check*
 b:ale_rust_ignore_error_codes	ale-rust.txt	/*b:ale_rust_ignore_error_codes*
@@ -526,6 +530,7 @@ b:ale_typescript_tsserver_use_global	ale-typescript.txt	/*b:ale_typescript_tsser
 b:ale_verilog_verilator_options	ale-verilog.txt	/*b:ale_verilog_verilator_options*
 b:ale_vim_vint_show_style_issues	ale-vim.txt	/*b:ale_vim_vint_show_style_issues*
 b:ale_virtualenv_dir_names	ale.txt	/*b:ale_virtualenv_dir_names*
+b:ale_warn_about_trailing_blank_lines	ale.txt	/*b:ale_warn_about_trailing_blank_lines*
 b:ale_warn_about_trailing_whitespace	ale.txt	/*b:ale_warn_about_trailing_whitespace*
 b:ale_windows_node_executable_path	ale.txt	/*b:ale_windows_node_executable_path*
 b:ale_writegood_executable	ale.txt	/*b:ale_writegood_executable*
@@ -760,7 +765,9 @@ g:ale_ruby_rails_best_practices_executable	ale-ruby.txt	/*g:ale_ruby_rails_best_
 g:ale_ruby_rails_best_practices_options	ale-ruby.txt	/*g:ale_ruby_rails_best_practices_options*
 g:ale_ruby_reek_show_context	ale-ruby.txt	/*g:ale_ruby_reek_show_context*
 g:ale_ruby_reek_show_wiki_link	ale-ruby.txt	/*g:ale_ruby_reek_show_wiki_link*
+g:ale_ruby_rubocop_executable	ale-ruby.txt	/*g:ale_ruby_rubocop_executable*
 g:ale_ruby_rubocop_options	ale-ruby.txt	/*g:ale_ruby_rubocop_options*
+g:ale_ruby_ruby_executable	ale-ruby.txt	/*g:ale_ruby_ruby_executable*
 g:ale_rust_cargo_check_all_targets	ale-rust.txt	/*g:ale_rust_cargo_check_all_targets*
 g:ale_rust_cargo_use_check	ale-rust.txt	/*g:ale_rust_cargo_use_check*
 g:ale_rust_ignore_error_codes	ale-rust.txt	/*g:ale_rust_ignore_error_codes*
@@ -818,6 +825,7 @@ g:ale_typescript_tsserver_use_global	ale-typescript.txt	/*g:ale_typescript_tsser
 g:ale_verilog_verilator_options	ale-verilog.txt	/*g:ale_verilog_verilator_options*
 g:ale_vim_vint_show_style_issues	ale-vim.txt	/*g:ale_vim_vint_show_style_issues*
 g:ale_virtualenv_dir_names	ale.txt	/*g:ale_virtualenv_dir_names*
+g:ale_warn_about_trailing_blank_lines	ale.txt	/*g:ale_warn_about_trailing_blank_lines*
 g:ale_warn_about_trailing_whitespace	ale.txt	/*g:ale_warn_about_trailing_whitespace*
 g:ale_windows_node_executable_path	ale.txt	/*g:ale_windows_node_executable_path*
 g:ale_writegood_executable	ale.txt	/*g:ale_writegood_executable*
