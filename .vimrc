@@ -1856,7 +1856,8 @@ let g:syntastic_yaml_checkers = ["yamllint"]
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ale
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ale_lint_delay=512
+let g:ale_set_highlights=0
+let g:ale_set_signs=1
 let g:ale_lint_on_text_changed=1
 let g:ale_lint_on_enter=1
 let g:ale_lint_on_save=1
