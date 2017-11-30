@@ -230,6 +230,11 @@ set timeoutlen=1024
 set ttimeout
 set ttimeoutlen=256    " needed to avoid leaving insert mode delay for vim-airline
 
+" no curdir and no sesdir == file names are stored with absolute paths
+set sessionoptions-=folds
+set sessionoptions-=curdir
+set sessionoptions-=sesdir
+
 set cinoptions=
 set cinoptions+=:0
 set cinoptions+=g0
@@ -1859,7 +1864,7 @@ let g:syntastic_yaml_checkers = ["yamllint"]
 let g:ale_set_highlights=0
 let g:ale_set_signs=1
 let g:ale_lint_on_text_changed=1
-let g:ale_lint_on_enter=1
+let g:ale_lint_on_enter=0
 let g:ale_lint_on_save=1
 let g:ale_lint_on_filetype_changed=1
 
@@ -2107,6 +2112,7 @@ augroup MyVimrc
   au FileType gitcommit setlocal foldlevel=9001
 
   " au BufNewFile,BufRead *.py setlocal foldmethod=syntax foldlevel=1
+  au BufNewFile,BufRead *.py setlocal nofoldenable
   au BufNewFile,BufRead *.py setlocal omnifunc=pythoncomplete#Complete
 
   au FileType cmake setlocal commentstring=#\ %s
