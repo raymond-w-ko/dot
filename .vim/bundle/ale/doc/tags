@@ -560,6 +560,7 @@ g:ale_c_cppcheck_executable	ale-c.txt	/*g:ale_c_cppcheck_executable*
 g:ale_c_cppcheck_options	ale-c.txt	/*g:ale_c_cppcheck_options*
 g:ale_c_gcc_executable	ale-c.txt	/*g:ale_c_gcc_executable*
 g:ale_c_gcc_options	ale-c.txt	/*g:ale_c_gcc_options*
+g:ale_cache_executable_check_failures	ale.txt	/*g:ale_cache_executable_check_failures*
 g:ale_change_sign_column_color	ale.txt	/*g:ale_change_sign_column_color*
 g:ale_chef_foodcritic_executable	ale-chef.txt	/*g:ale_chef_foodcritic_executable*
 g:ale_chef_foodcritic_options	ale-chef.txt	/*g:ale_chef_foodcritic_options*
