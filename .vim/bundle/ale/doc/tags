@@ -112,6 +112,7 @@ ale-fortran-options	ale-fortran.txt	/*ale-fortran-options*
 ale-fuse-fusionlint	ale-fuse.txt	/*ale-fuse-fusionlint*
 ale-fuse-options	ale-fuse.txt	/*ale-fuse-options*
 ale-glsl-glslang	ale-glsl.txt	/*ale-glsl-glslang*
+ale-glsl-glslls	ale-glsl.txt	/*ale-glsl-glslls*
 ale-glsl-options	ale-glsl.txt	/*ale-glsl-options*
 ale-go-gofmt	ale-go.txt	/*ale-go-gofmt*
 ale-go-gometalinter	ale-go.txt	/*ale-go-gometalinter*
@@ -214,6 +215,7 @@ ale-python-flake8	ale-python.txt	/*ale-python-flake8*
 ale-python-isort	ale-python.txt	/*ale-python-isort*
 ale-python-mypy	ale-python.txt	/*ale-python-mypy*
 ale-python-options	ale-python.txt	/*ale-python-options*
+ale-python-prospector	ale-python.txt	/*ale-python-prospector*
 ale-python-pycodestyle	ale-python.txt	/*ale-python-pycodestyle*
 ale-python-pylint	ale-python.txt	/*ale-python-pylint*
 ale-python-pyls	ale-python.txt	/*ale-python-pyls*
@@ -360,6 +362,8 @@ b:ale_fuse_fusionlint_executable	ale-fuse.txt	/*b:ale_fuse_fusionlint_executable
 b:ale_fuse_fusionlint_options	ale-fuse.txt	/*b:ale_fuse_fusionlint_options*
 b:ale_glsl_glslang_executable	ale-glsl.txt	/*b:ale_glsl_glslang_executable*
 b:ale_glsl_glslang_options	ale-glsl.txt	/*b:ale_glsl_glslang_options*
+b:ale_glsl_glslls_executable	ale-glsl.txt	/*b:ale_glsl_glslls_executable*
+b:ale_glsl_glslls_logfile	ale-glsl.txt	/*b:ale_glsl_glslls_logfile*
 b:ale_go_gofmt_options	ale-go.txt	/*b:ale_go_gofmt_options*
 b:ale_go_gometalinter_executable	ale-go.txt	/*b:ale_go_gometalinter_executable*
 b:ale_go_gometalinter_options	ale-go.txt	/*b:ale_go_gometalinter_options*
@@ -464,6 +468,9 @@ b:ale_python_isort_use_global	ale-python.txt	/*b:ale_python_isort_use_global*
 b:ale_python_mypy_executable	ale-python.txt	/*b:ale_python_mypy_executable*
 b:ale_python_mypy_options	ale-python.txt	/*b:ale_python_mypy_options*
 b:ale_python_mypy_use_global	ale-python.txt	/*b:ale_python_mypy_use_global*
+b:ale_python_prospector_executable	ale-python.txt	/*b:ale_python_prospector_executable*
+b:ale_python_prospector_options	ale-python.txt	/*b:ale_python_prospector_options*
+b:ale_python_prospector_use_global	ale-python.txt	/*b:ale_python_prospector_use_global*
 b:ale_python_pycodestyle_executable	ale-python.txt	/*b:ale_python_pycodestyle_executable*
 b:ale_python_pycodestyle_options	ale-python.txt	/*b:ale_python_pycodestyle_options*
 b:ale_python_pycodestyle_use_global	ale-python.txt	/*b:ale_python_pycodestyle_use_global*
@@ -620,6 +627,8 @@ g:ale_fuse_fusionlint_executable	ale-fuse.txt	/*g:ale_fuse_fusionlint_executable
 g:ale_fuse_fusionlint_options	ale-fuse.txt	/*g:ale_fuse_fusionlint_options*
 g:ale_glsl_glslang_executable	ale-glsl.txt	/*g:ale_glsl_glslang_executable*
 g:ale_glsl_glslang_options	ale-glsl.txt	/*g:ale_glsl_glslang_options*
+g:ale_glsl_glslls_executable	ale-glsl.txt	/*g:ale_glsl_glslls_executable*
+g:ale_glsl_glslls_logfile	ale-glsl.txt	/*g:ale_glsl_glslls_logfile*
 g:ale_go_gofmt_options	ale-go.txt	/*g:ale_go_gofmt_options*
 g:ale_go_gometalinter_executable	ale-go.txt	/*g:ale_go_gometalinter_executable*
 g:ale_go_gometalinter_options	ale-go.txt	/*g:ale_go_gometalinter_options*
@@ -746,6 +755,9 @@ g:ale_python_isort_use_global	ale-python.txt	/*g:ale_python_isort_use_global*
 g:ale_python_mypy_executable	ale-python.txt	/*g:ale_python_mypy_executable*
 g:ale_python_mypy_options	ale-python.txt	/*g:ale_python_mypy_options*
 g:ale_python_mypy_use_global	ale-python.txt	/*g:ale_python_mypy_use_global*
+g:ale_python_prospector_executable	ale-python.txt	/*g:ale_python_prospector_executable*
+g:ale_python_prospector_options	ale-python.txt	/*g:ale_python_prospector_options*
+g:ale_python_prospector_use_global	ale-python.txt	/*g:ale_python_prospector_use_global*
 g:ale_python_pycodestyle_executable	ale-python.txt	/*g:ale_python_pycodestyle_executable*
 g:ale_python_pycodestyle_options	ale-python.txt	/*g:ale_python_pycodestyle_options*
 g:ale_python_pycodestyle_use_global	ale-python.txt	/*g:ale_python_pycodestyle_use_global*
