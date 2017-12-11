@@ -2093,6 +2093,15 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:startify_session_dir="~/sessions/"
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-dirvish
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup my_dirvish_events
+  autocmd!
+  " sort: folders at top, alphabetical, case-insensitive.
+  autocmd FileType dirvish sort ir /^.*[^\/]$/
+augroup END
+
 " }}}
 " filetype specific settings {{{
 function! MyJavascriptFormatter()
