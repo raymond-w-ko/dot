@@ -2099,7 +2099,13 @@ let g:startify_session_dir="~/sessions/"
 augroup my_dirvish_events
   autocmd!
   " sort: folders at top, alphabetical, case-insensitive.
-  autocmd FileType dirvish sort ir /^.*[^\/]$/
+  let g:dirvish_mode = ':sort ir /^.*[^\/]$/'
+
+  " Map `gr` to reload.
+  autocmd FileType dirvish nnoremap <silent><buffer> gr :<C-U>Dirvish %<CR>
+
+  " Map `gh` to hide dot-prefixed files.  Press `R` to "toggle" (reload).
+  autocmd FileType dirvish nnoremap <silent><buffer> gh :silent keeppatterns g@\v/\.[^\/]+/?$@d _<cr>
 augroup END
 
 " }}}
