@@ -137,7 +137,7 @@ function! s:buf_init() abort
     " 'nobuflisted'. BufDelete is _not_ fired if 'nobuflisted'.
     " NOTE: For 'nohidden' we cannot reliably handle :bdelete like this.
     if &hidden
-      autocmd BufUnload <buffer> call s:on_bufclosed()
+      autocmd BufUnload <buffer> call s:on_bufunload()
     endif
   augroup END
 
@@ -147,10 +147,6 @@ endfunction
 function! s:on_bufenter() abort
   " Ensure w:dirvish for window splits, `:b <nr>`, etc.
   let w:dirvish = extend(get(w:, 'dirvish', {}), b:dirvish, 'keep')
-
-  if s:buf_modified()  " User modified the buffer, don't re-init it.
-    return
-  endif
 
   if empty(getline(1)) && 1 == line('$')
     Dirvish %
@@ -187,7 +183,7 @@ function! s:save_state(d) abort
 endfunction
 
 function! s:win_init() abort
-  let w:dirvish = get(w:, 'dirvish', copy(b:dirvish))
+  let w:dirvish = extend(get(w:, 'dirvish', {}), b:dirvish, 'keep')
   setlocal nowrap cursorline
 
   if has('conceal')
@@ -195,7 +191,7 @@ function! s:win_init() abort
   endif
 endfunction
 
-function! s:on_bufclosed() abort
+function! s:on_bufunload() abort
   call s:restore_winlocal_settings()
 endfunction
 
@@ -413,12 +409,12 @@ function! s:do_open(d, reload) abort
 
   let b:dirvish = exists('b:dirvish') ? extend(b:dirvish, d, 'force') : d
 
+  call s:buf_init()
+  call s:win_init()
   if a:reload || s:should_reload()
     call s:buf_render(b:dirvish._dir, get(b:dirvish, 'lastpath', ''))
     let b:dirvish._c = b:changedtick
   endif
-  call s:buf_init()
-  call s:win_init()
   setlocal filetype=dirvish
 endfunction
 
