@@ -1351,7 +1351,6 @@ Vital.Web.XML.parseURL()	vital/Web/XML.txt	/*Vital.Web.XML.parseURL()*
 Vitalizer	vitalizer.txt	/*Vitalizer*
 g:vitalizer#vital_dir	vitalizer.txt	/*g:vitalizer#vital_dir*
 vital	vital.txt	/*vital*
-vital#of()	vital.txt	/*vital#of()*
 vital#{plugin-name}#import()	vital.txt	/*vital#{plugin-name}#import()*
 vital#{plugin-name}#new()	vital.txt	/*vital#{plugin-name}#new()*
 vital-window-layout-border_layout.txt	vital/Vim/WindowLayout/BorderLayout.txt	/*vital-window-layout-border_layout.txt*
