@@ -1126,6 +1126,7 @@ Vital.Vim.Type-interface	vital/Vim/Type.txt	/*Vital.Vim.Type-interface*
 Vital.Vim.Type-introduction	vital/Vim/Type.txt	/*Vital.Vim.Type-introduction*
 Vital.Vim.Type-type_names	vital/Vim/Type.txt	/*Vital.Vim.Type-type_names*
 Vital.Vim.Type-types	vital/Vim/Type.txt	/*Vital.Vim.Type-types*
+Vital.Vim.Type.is_comparable()	vital/Vim/Type.txt	/*Vital.Vim.Type.is_comparable()*
 Vital.Vim.Type.is_numeric()	vital/Vim/Type.txt	/*Vital.Vim.Type.is_numeric()*
 Vital.Vim.Type.is_predicate()	vital/Vim/Type.txt	/*Vital.Vim.Type.is_predicate()*
 Vital.Vim.Type.is_special()	vital/Vim/Type.txt	/*Vital.Vim.Type.is_special()*
