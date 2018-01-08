@@ -29,7 +29,7 @@ Concepts
 - Sort with `:sort`, filter with `:global`. Hit `R` to reload.
 - For complex scripting, `:Shdo!` (with `!`) operates on the local arglist.
 - Add lines to quickfix (`:'<,'>caddb`) and iterate (`:cdo`).
-- `:set ft=dirvish` on any buffer to enable Dirvish features. Try this:
+- `:set ft=dirvish` on any buffer to enable Dirvish features:
   ```
   git ls-files | vim +'setf dirvish' -
   ```
@@ -37,17 +37,29 @@ Concepts
 **Buffer name is the directory name.**  So commands and plugins that work with
 `@%` and `@#` do the Right Thing.
 
-- Create directories: `:!mkdir %foo`
-- Create files: `:e %foo.txt`
+- Create directories:
+  ```
+  :!mkdir %foo
+  ```
+- Create files:
+  ```
+  :e %foo.txt
+  ```
+- Use `@#` to get the Dirvish buffer from a `:Shdo` buffer:
+  ```
+  :Shdo
+  mkdir <C-R>#.bk
+  Z!
+  ```
 
 **Edit Dirvish buffers** for any purpose. It's safe and reversible.
 
-- Pipe to `:!` to see inline results. Example:
+- Use `:sort` or `:global` to re-arrange the view, delete lines with `d`, etc.
+  Then `:%Shdo` the result.
+- Pipe to `:!` to see inline results:
   ```
   :'<,'>!xargs du -hs
   ```
-- Use `:sort` or `:global` to re-arrange the view, delete lines with `d`, etc.
-  Then `:%Shdo` the result.
 - Type `u` to undo, or `R` to reload.
 
 Credits

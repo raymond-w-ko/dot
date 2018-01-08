@@ -79,7 +79,7 @@ function! s:set_args(args) abort
   exe 'source '.fnameescape(s:srcdir.'/syntax/dirvish.vim')
 endfunction
 
-function! dirvish#shdo(paths, cmd)
+function! dirvish#shdo(paths, cmd) abort
   " Remove empty/duplicate lines.
   let lines = uniq(sort(filter(copy(a:paths), '-1!=match(v:val,"\\S")')))
   let head = fnamemodify(get(lines, 0, '')[:-2], ':h')
@@ -129,6 +129,12 @@ endfunction
 function! s:buf_init() abort
   augroup dirvish_buflocal
     autocmd! * <buffer>
+  augroup END
+
+  " Fire BufEnter with the normalized file name, before setting up handler.
+  if exists("#BufEnter") | exe 'doautocmd <nomodeline> BufEnter' bufname('%') | endif
+
+  augroup dirvish_buflocal
     autocmd BufEnter,WinEnter <buffer> call <SID>on_bufenter()
     autocmd TextChanged,TextChangedI <buffer> if <SID>buf_modified()
           \&& has('conceal')|exe 'setlocal conceallevel=0'|endif
@@ -200,8 +206,8 @@ function! s:buf_close() abort
   endif
 
   let [altbuf, prevbuf] = [get(d, 'altbuf', 0), get(d, 'prevbuf', 0)]
-  let found_alt = s:try_visit(altbuf)
-  if !s:try_visit(prevbuf) && !found_alt
+  let found_alt = s:try_visit(altbuf, 1)
+  if !s:try_visit(prevbuf, 0) && !found_alt
       \ && (1 == bufnr('%') || (prevbuf != bufnr('%') && altbuf != bufnr('%')))
     bdelete
   endif
@@ -216,10 +222,10 @@ function! s:restore_winlocal_settings() abort
   endif
 endfunction
 
-function! s:open_selected(split_cmd, bg, line1, line2) abort
+function! s:open_selected(splitcmd, bg, line1, line2) abort
   let curbuf = bufnr('%')
   let [curtab, curwin, wincount] = [tabpagenr(), winnr(), winnr('$')]
-  let splitcmd = a:split_cmd
+  let p = (a:splitcmd ==# 'p')  " Preview-mode
 
   let paths = getline(a:line1, a:line2)
   for path in paths
@@ -229,22 +235,26 @@ function! s:open_selected(split_cmd, bg, line1, line2) abort
       continue
     endif
 
-    if isdirectory(path)
-      exe (splitcmd ==# 'edit' ? '' : splitcmd.'|') 'Dirvish' fnameescape(path)
-    else
-      exe splitcmd fnameescape(path)
+    if p
+      exe (winnr('$') > 1 ? 'wincmd p' : 'vsplit')
     endif
 
-    " return to previous window after _each_ split, otherwise we get lost.
-    if a:bg && splitcmd =~# 'sp' && winnr('$') > wincount
+    if isdirectory(path)
+      exe (p || a:splitcmd ==# 'edit' ? '' : a:splitcmd.'|') 'Dirvish' fnameescape(path)
+    else
+      exe (p ? 'edit' : a:splitcmd) fnameescape(path)
+    endif
+
+    " Return to previous window after _each_ split, else we get lost.
+    if a:bg && (p || (a:splitcmd =~# 'sp' && winnr('$') > wincount))
       wincmd p
     endif
   endfor
 
   if a:bg "return to dirvish buffer
-    if a:split_cmd ==# 'tabedit'
+    if a:splitcmd ==# 'tabedit'
       exe 'tabnext' curtab '|' curwin.'wincmd w'
-    elseif a:split_cmd ==# 'edit'
+    elseif a:splitcmd ==# 'edit'
       execute 'silent keepalt keepjumps buffer' curbuf
     endif
   elseif !exists('b:dirvish') && exists('w:dirvish')
@@ -262,18 +272,18 @@ function! s:set_altbuf(bnr) abort
   if has('patch-7.4.605') | let @# = a:bnr | return | endif
 
   let curbuf = bufnr('%')
-  if s:try_visit(a:bnr)
+  if s:try_visit(a:bnr, 1)
     let noau = bufloaded(curbuf) ? 'noau' : ''
     " Return to the current buffer.
     execute 'silent keepjumps' noau s:noswapfile 'buffer' curbuf
   endif
 endfunction
 
-function! s:try_visit(bnr) abort
+function! s:try_visit(bnr, noau) abort
   if s:is_valid_altbuf(a:bnr)
     " If _previous_ buffer is _not_ loaded (because of 'nohidden'), we must
     " allow autocmds (else no syntax highlighting; #13).
-    let noau = bufloaded(a:bnr) ? 'noau' : ''
+    let noau = a:noau && bufloaded(a:bnr) ? 'noau' : ''
     execute 'silent keepjumps' noau s:noswapfile 'buffer' a:bnr
     return 1
   endif
@@ -410,6 +420,8 @@ function! s:do_open(d, reload) abort
   call s:win_init()
   if a:reload || s:should_reload()
     call s:buf_render(b:dirvish._dir, get(b:dirvish, 'lastpath', ''))
+    " Set up Dirvish before any other `FileType dirvish` handler.
+    exe 'source '.fnameescape(s:srcdir.'/ftplugin/dirvish.vim')
     setlocal filetype=dirvish
     let b:dirvish._c = b:changedtick
   endif
