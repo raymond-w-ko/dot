@@ -96,6 +96,7 @@ ale-dart-dartanalyzer	ale-dart.txt	/*ale-dart-dartanalyzer*
 ale-dart-options	ale-dart.txt	/*ale-dart-options*
 ale-dockerfile-hadolint	ale-dockerfile.txt	/*ale-dockerfile-hadolint*
 ale-dockerfile-options	ale-dockerfile.txt	/*ale-dockerfile-options*
+ale-elixir-dialyxir	ale-elixir.txt	/*ale-elixir-dialyxir*
 ale-elixir-mix	ale-elixir.txt	/*ale-elixir-mix*
 ale-elixir-options	ale-elixir.txt	/*ale-elixir-options*
 ale-elm-elm-format	ale-elm.txt	/*ale-elm-elm-format*
@@ -163,6 +164,8 @@ ale-javascript-prettier-eslint	ale-javascript.txt	/*ale-javascript-prettier-esli
 ale-javascript-prettier-standard	ale-javascript.txt	/*ale-javascript-prettier-standard*
 ale-javascript-standard	ale-javascript.txt	/*ale-javascript-standard*
 ale-javascript-xo	ale-javascript.txt	/*ale-javascript-xo*
+ale-json-fixjson	ale-json.txt	/*ale-json-fixjson*
+ale-json-jq	ale-json.txt	/*ale-json-jq*
 ale-json-jsonlint	ale-json.txt	/*ale-json-jsonlint*
 ale-json-options	ale-json.txt	/*ale-json-options*
 ale-json-prettier	ale-json.txt	/*ale-json-prettier*
@@ -184,9 +187,11 @@ ale-llvm-options	ale-llvm.txt	/*ale-llvm-options*
 ale-loclist-format	ale.txt	/*ale-loclist-format*
 ale-lsp	ale.txt	/*ale-lsp*
 ale-lsp-linters	ale.txt	/*ale-lsp-linters*
+ale-lua-luac	ale-lua.txt	/*ale-lua-luac*
 ale-lua-luacheck	ale-lua.txt	/*ale-lua-luacheck*
 ale-lua-options	ale-lua.txt	/*ale-lua-options*
 ale-markdown-options	ale-markdown.txt	/*ale-markdown-options*
+ale-markdown-prettier	ale-markdown.txt	/*ale-markdown-prettier*
 ale-markdown-write-good	ale-markdown.txt	/*ale-markdown-write-good*
 ale-navigation-commands	ale.txt	/*ale-navigation-commands*
 ale-nroff-options	ale-nroff.txt	/*ale-nroff-options*
@@ -429,6 +434,11 @@ b:ale_javascript_standard_use_global	ale-javascript.txt	/*b:ale_javascript_stand
 b:ale_javascript_xo_executable	ale-javascript.txt	/*b:ale_javascript_xo_executable*
 b:ale_javascript_xo_options	ale-javascript.txt	/*b:ale_javascript_xo_options*
 b:ale_javascript_xo_use_global	ale-javascript.txt	/*b:ale_javascript_xo_use_global*
+b:ale_json_fixjson_executable	ale-json.txt	/*b:ale_json_fixjson_executable*
+b:ale_json_fixjson_options	ale-json.txt	/*b:ale_json_fixjson_options*
+b:ale_json_jq_executable	ale-json.txt	/*b:ale_json_jq_executable*
+b:ale_json_jq_options	ale-json.txt	/*b:ale_json_jq_options*
+b:ale_json_jq_use_global	ale-json.txt	/*b:ale_json_jq_use_global*
 b:ale_keep_list_window_open	ale.txt	/*b:ale_keep_list_window_open*
 b:ale_lacheck_executable	ale-tex.txt	/*b:ale_lacheck_executable*
 b:ale_less_lessc_executable	ale-less.txt	/*b:ale_less_lessc_executable*
@@ -442,6 +452,7 @@ b:ale_linters	ale.txt	/*b:ale_linters*
 b:ale_list_window_size	ale.txt	/*b:ale_list_window_size*
 b:ale_llvm_llc_executable	ale-llvm.txt	/*b:ale_llvm_llc_executable*
 b:ale_loclist_msg_format	ale.txt	/*b:ale_loclist_msg_format*
+b:ale_lua_luac_executable	ale-lua.txt	/*b:ale_lua_luac_executable*
 b:ale_lua_luacheck_executable	ale-lua.txt	/*b:ale_lua_luacheck_executable*
 b:ale_lua_luacheck_options	ale-lua.txt	/*b:ale_lua_luacheck_options*
 b:ale_max_signs	ale.txt	/*b:ale_max_signs*
@@ -709,6 +720,11 @@ g:ale_javascript_standard_use_global	ale-javascript.txt	/*g:ale_javascript_stand
 g:ale_javascript_xo_executable	ale-javascript.txt	/*g:ale_javascript_xo_executable*
 g:ale_javascript_xo_options	ale-javascript.txt	/*g:ale_javascript_xo_options*
 g:ale_javascript_xo_use_global	ale-javascript.txt	/*g:ale_javascript_xo_use_global*
+g:ale_json_fixjson_executable	ale-json.txt	/*g:ale_json_fixjson_executable*
+g:ale_json_fixjson_options	ale-json.txt	/*g:ale_json_fixjson_options*
+g:ale_json_jq_executable	ale-json.txt	/*g:ale_json_jq_executable*
+g:ale_json_jq_options	ale-json.txt	/*g:ale_json_jq_options*
+g:ale_json_jq_use_global	ale-json.txt	/*g:ale_json_jq_use_global*
 g:ale_keep_list_window_open	ale.txt	/*g:ale_keep_list_window_open*
 g:ale_kotlin_kotlinc_classpath	ale-kotlin.txt	/*g:ale_kotlin_kotlinc_classpath*
 g:ale_kotlin_kotlinc_config_file	ale-kotlin.txt	/*g:ale_kotlin_kotlinc_config_file*
@@ -738,6 +754,7 @@ g:ale_linters_explicit	ale.txt	/*g:ale_linters_explicit*
 g:ale_list_window_size	ale.txt	/*g:ale_list_window_size*
 g:ale_llvm_llc_executable	ale-llvm.txt	/*g:ale_llvm_llc_executable*
 g:ale_loclist_msg_format	ale.txt	/*g:ale_loclist_msg_format*
+g:ale_lua_luac_executable	ale-lua.txt	/*g:ale_lua_luac_executable*
 g:ale_lua_luacheck_executable	ale-lua.txt	/*g:ale_lua_luacheck_executable*
 g:ale_lua_luacheck_options	ale-lua.txt	/*g:ale_lua_luacheck_options*
 g:ale_max_buffer_history_size	ale.txt	/*g:ale_max_buffer_history_size*
