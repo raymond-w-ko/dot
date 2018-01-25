@@ -436,6 +436,7 @@ b:ale_javascript_xo_options	ale-javascript.txt	/*b:ale_javascript_xo_options*
 b:ale_javascript_xo_use_global	ale-javascript.txt	/*b:ale_javascript_xo_use_global*
 b:ale_json_fixjson_executable	ale-json.txt	/*b:ale_json_fixjson_executable*
 b:ale_json_fixjson_options	ale-json.txt	/*b:ale_json_fixjson_options*
+b:ale_json_fixjson_use_global	ale-json.txt	/*b:ale_json_fixjson_use_global*
 b:ale_json_jq_executable	ale-json.txt	/*b:ale_json_jq_executable*
 b:ale_json_jq_options	ale-json.txt	/*b:ale_json_jq_options*
 b:ale_json_jq_use_global	ale-json.txt	/*b:ale_json_jq_use_global*
@@ -722,6 +723,7 @@ g:ale_javascript_xo_options	ale-javascript.txt	/*g:ale_javascript_xo_options*
 g:ale_javascript_xo_use_global	ale-javascript.txt	/*g:ale_javascript_xo_use_global*
 g:ale_json_fixjson_executable	ale-json.txt	/*g:ale_json_fixjson_executable*
 g:ale_json_fixjson_options	ale-json.txt	/*g:ale_json_fixjson_options*
+g:ale_json_fixjson_use_global	ale-json.txt	/*g:ale_json_fixjson_use_global*
 g:ale_json_jq_executable	ale-json.txt	/*g:ale_json_jq_executable*
 g:ale_json_jq_options	ale-json.txt	/*g:ale_json_jq_options*
 g:ale_json_jq_use_global	ale-json.txt	/*g:ale_json_jq_use_global*
