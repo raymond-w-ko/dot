@@ -217,6 +217,8 @@ ale-php-phpcbf	ale-php.txt	/*ale-php-phpcbf*
 ale-php-phpcs	ale-php.txt	/*ale-php-phpcs*
 ale-php-phpmd	ale-php.txt	/*ale-php-phpmd*
 ale-php-phpstan	ale-php.txt	/*ale-php-phpstan*
+ale-po-options	ale-po.txt	/*ale-po-options*
+ale-po-write-good	ale-po.txt	/*ale-po-write-good*
 ale-pod-options	ale-pod.txt	/*ale-pod-options*
 ale-pod-write-good	ale-pod.txt	/*ale-pod-write-good*
 ale-proto-options	ale-proto.txt	/*ale-proto-options*
@@ -440,7 +442,6 @@ b:ale_json_fixjson_options	ale-json.txt	/*b:ale_json_fixjson_options*
 b:ale_json_fixjson_use_global	ale-json.txt	/*b:ale_json_fixjson_use_global*
 b:ale_json_jq_executable	ale-json.txt	/*b:ale_json_jq_executable*
 b:ale_json_jq_options	ale-json.txt	/*b:ale_json_jq_options*
-b:ale_json_jq_use_global	ale-json.txt	/*b:ale_json_jq_use_global*
 b:ale_keep_list_window_open	ale.txt	/*b:ale_keep_list_window_open*
 b:ale_lacheck_executable	ale-tex.txt	/*b:ale_lacheck_executable*
 b:ale_less_lessc_executable	ale-less.txt	/*b:ale_less_lessc_executable*
@@ -727,7 +728,6 @@ g:ale_json_fixjson_options	ale-json.txt	/*g:ale_json_fixjson_options*
 g:ale_json_fixjson_use_global	ale-json.txt	/*g:ale_json_fixjson_use_global*
 g:ale_json_jq_executable	ale-json.txt	/*g:ale_json_jq_executable*
 g:ale_json_jq_options	ale-json.txt	/*g:ale_json_jq_options*
-g:ale_json_jq_use_global	ale-json.txt	/*g:ale_json_jq_use_global*
 g:ale_keep_list_window_open	ale.txt	/*g:ale_keep_list_window_open*
 g:ale_kotlin_kotlinc_classpath	ale-kotlin.txt	/*g:ale_kotlin_kotlinc_classpath*
 g:ale_kotlin_kotlinc_config_file	ale-kotlin.txt	/*g:ale_kotlin_kotlinc_config_file*
