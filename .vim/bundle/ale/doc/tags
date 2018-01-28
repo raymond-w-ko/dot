@@ -127,6 +127,7 @@ ale-go-to-definition	ale.txt	/*ale-go-to-definition*
 ale-graphql-eslint	ale-graphql.txt	/*ale-graphql-eslint*
 ale-graphql-gqlint	ale-graphql.txt	/*ale-graphql-gqlint*
 ale-graphql-options	ale-graphql.txt	/*ale-graphql-options*
+ale-graphql-prettier	ale-graphql.txt	/*ale-graphql-prettier*
 ale-handlebars-embertemplatelint	ale-handlebars.txt	/*ale-handlebars-embertemplatelint*
 ale-handlebars-options	ale-handlebars.txt	/*ale-handlebars-options*
 ale-haskell-brittany	ale-haskell.txt	/*ale-haskell-brittany*
