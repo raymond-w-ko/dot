@@ -23,6 +23,7 @@ Vital.Assertion-introduction	vital/Assertion.txt	/*Vital.Assertion-introduction*
 Vital.Assertion.define()	vital/Assertion.txt	/*Vital.Assertion.define()*
 Vital.Async.Promise	vital/Async/Promise.txt	/*Vital.Async.Promise*
 Vital.Async.Promise-Promise.catch()	vital/Async/Promise.txt	/*Vital.Async.Promise-Promise.catch()*
+Vital.Async.Promise-Promise.finally()	vital/Async/Promise.txt	/*Vital.Async.Promise-Promise.finally()*
 Vital.Async.Promise-Promise.then()	vital/Async/Promise.txt	/*Vital.Async.Promise-Promise.then()*
 Vital.Async.Promise-contents	vital/Async/Promise.txt	/*Vital.Async.Promise-contents*
 Vital.Async.Promise-example	vital/Async/Promise.txt	/*Vital.Async.Promise-example*
