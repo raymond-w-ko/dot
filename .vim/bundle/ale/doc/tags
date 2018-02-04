@@ -304,6 +304,8 @@ ale-vim-help-options	ale-vim-help.txt	/*ale-vim-help-options*
 ale-vim-help-write-good	ale-vim-help.txt	/*ale-vim-help-write-good*
 ale-vim-options	ale-vim.txt	/*ale-vim-options*
 ale-vim-vint	ale-vim.txt	/*ale-vim-vint*
+ale-vue-options	ale-vue.txt	/*ale-vue-options*
+ale-vue-prettier	ale-vue.txt	/*ale-vue-prettier*
 ale-write-good-options	ale.txt	/*ale-write-good-options*
 ale-xhtml-options	ale-xhtml.txt	/*ale-xhtml-options*
 ale-xhtml-write-good	ale-xhtml.txt	/*ale-xhtml-write-good*

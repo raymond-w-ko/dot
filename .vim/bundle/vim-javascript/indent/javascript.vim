@@ -314,8 +314,8 @@ function s:IsContOne(cont)
 endfunction
 
 function s:IsSwitch()
-  call call('cursor',b:js_cache[1:])
-  return search('\m\C\%#.\_s*\%(\%(\/\/.*\_$\|\/\*\_.\{-}\*\/\)\@>\_s*\)*\%(case\|default\)\>','nWc'.s:z)
+  return search('\m\C\%'.join(b:js_cache[1:],'l\%').
+        \ 'c{\_s*\%(\%(\/\/.*\_$\|\/\*\_.\{-}\*\/\)\@>\_s*\)*\%(case\|default\)\>','nW'.s:z)
 endfunction
 
 " https://github.com/sweet-js/sweet.js/wiki/design#give-lookbehind-to-the-reader
@@ -468,6 +468,10 @@ function GetJavascriptIndent()
     return num_ind
   elseif num
     return s:Nat(num_ind + get(l:,'case_offset',s:sw()) + l:switch_offset + b_l + is_op)
+  endif
+  let nest = get(get(b:,'hi_indent',{}),'blocklnr')
+  if nest
+    return indent(nest) + s:sw() + b_l + is_op
   endif
   return b_l + is_op
 endfunction
