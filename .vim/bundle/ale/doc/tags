@@ -519,6 +519,7 @@ b:ale_python_pyls_executable	ale-python.txt	/*b:ale_python_pyls_executable*
 b:ale_python_pyls_use_global	ale-python.txt	/*b:ale_python_pyls_use_global*
 b:ale_python_yapf_executable	ale-python.txt	/*b:ale_python_yapf_executable*
 b:ale_python_yapf_use_global	ale-python.txt	/*b:ale_python_yapf_use_global*
+b:ale_r_lintr_lint_package	ale-r.txt	/*b:ale_r_lintr_lint_package*
 b:ale_r_lintr_options	ale-r.txt	/*b:ale_r_lintr_options*
 b:ale_reason_ols_executable	ale-reasonml.txt	/*b:ale_reason_ols_executable*
 b:ale_reason_ols_use_global	ale-reasonml.txt	/*b:ale_reason_ols_use_global*
@@ -827,6 +828,7 @@ g:ale_python_pyls_executable	ale-python.txt	/*g:ale_python_pyls_executable*
 g:ale_python_pyls_use_global	ale-python.txt	/*g:ale_python_pyls_use_global*
 g:ale_python_yapf_executable	ale-python.txt	/*g:ale_python_yapf_executable*
 g:ale_python_yapf_use_global	ale-python.txt	/*g:ale_python_yapf_use_global*
+g:ale_r_lintr_lint_package	ale-r.txt	/*g:ale_r_lintr_lint_package*
 g:ale_r_lintr_options	ale-r.txt	/*g:ale_r_lintr_options*
 g:ale_reason_ols_executable	ale-reasonml.txt	/*g:ale_reason_ols_executable*
 g:ale_reason_ols_use_global	ale-reasonml.txt	/*g:ale_reason_ols_use_global*
