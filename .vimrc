@@ -2115,7 +2115,7 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gw :Gwrite<CR>
-nnoremap <leader>gc :Gcommit<CR>
+nnoremap <leader>gc :Gcommit --verbose<CR>
 nnoremap <leader>gp :Gpush<CR>
 
 " }}}
