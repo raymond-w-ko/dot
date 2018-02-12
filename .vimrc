@@ -1028,6 +1028,7 @@ function! FindFileInProjectDirectory()
     execute ':CtrlP ' . EscapePathname(MyGetProjectDirectory())
 endfunction
 nnoremap <leader>p :call FindFileInProjectDirectory()<CR>
+nnoremap <C-p> :call FindFileInProjectDirectory()<CR>
 
 nnoremap <leader>b :CtrlPBuffer<CR>
 
