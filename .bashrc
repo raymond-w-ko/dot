@@ -196,6 +196,9 @@ dockerclean() {
   docker rm -v $(docker ps --filter status=exited -q 2>/dev/null) 2>/dev/null
   docker rmi $(docker images --filter dangling=true -q 2>/dev/null) 2>/dev/null
 }
+dockercleanstoppedimages() {
+  docker ps -aq --no-trunc | xargs docker rm
+}
 
 # custom work aliases
 alias omegacomplete='cd ~/.vim/bundle/omegacomplete'
