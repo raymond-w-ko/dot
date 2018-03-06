@@ -30,6 +30,7 @@ ALEPrevious	ale.txt	/*ALEPrevious*
 ALEPreviousWrap	ale.txt	/*ALEPreviousWrap*
 ALEReset	ale.txt	/*ALEReset*
 ALEResetBuffer	ale.txt	/*ALEResetBuffer*
+ALEStopAllLSPs	ale.txt	/*ALEStopAllLSPs*
 ALEStyleError	ale.txt	/*ALEStyleError*
 ALEStyleErrorSign	ale.txt	/*ALEStyleErrorSign*
 ALEStyleWarning	ale.txt	/*ALEStyleWarning*
