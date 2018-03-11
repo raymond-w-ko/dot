@@ -342,6 +342,7 @@ b:ale_c_clangtidy_executable	ale-c.txt	/*b:ale_c_clangtidy_executable*
 b:ale_c_clangtidy_options	ale-c.txt	/*b:ale_c_clangtidy_options*
 b:ale_c_cppcheck_executable	ale-c.txt	/*b:ale_c_cppcheck_executable*
 b:ale_c_cppcheck_options	ale-c.txt	/*b:ale_c_cppcheck_options*
+b:ale_c_flawfinder_error_severity	ale-c.txt	/*b:ale_c_flawfinder_error_severity*
 b:ale_c_flawfinder_executable	ale-c.txt	/*b:ale_c_flawfinder_executable*
 b:ale_c_flawfinder_minlevel	ale-c.txt	/*b:ale_c_flawfinder_minlevel*
 b:ale_c_gcc_executable	ale-c.txt	/*b:ale_c_gcc_executable*
@@ -635,6 +636,7 @@ g:ale_c_clangtidy_executable	ale-c.txt	/*g:ale_c_clangtidy_executable*
 g:ale_c_clangtidy_options	ale-c.txt	/*g:ale_c_clangtidy_options*
 g:ale_c_cppcheck_executable	ale-c.txt	/*g:ale_c_cppcheck_executable*
 g:ale_c_cppcheck_options	ale-c.txt	/*g:ale_c_cppcheck_options*
+g:ale_c_flawfinder_error_severity	ale-c.txt	/*g:ale_c_flawfinder_error_severity*
 g:ale_c_flawfinder_executable	ale-c.txt	/*g:ale_c_flawfinder_executable*
 g:ale_c_flawfinder_minlevel	ale-c.txt	/*g:ale_c_flawfinder_minlevel*
 g:ale_c_gcc_executable	ale-c.txt	/*g:ale_c_gcc_executable*
