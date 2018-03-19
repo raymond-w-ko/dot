@@ -11,6 +11,8 @@ ALEErrorLine	ale.txt	/*ALEErrorLine*
 ALEErrorSign	ale.txt	/*ALEErrorSign*
 ALEFirst	ale.txt	/*ALEFirst*
 ALEFix	ale.txt	/*ALEFix*
+ALEFixPost-autocmd	ale.txt	/*ALEFixPost-autocmd*
+ALEFixPre-autocmd	ale.txt	/*ALEFixPre-autocmd*
 ALEFixSuggest	ale.txt	/*ALEFixSuggest*
 ALEGoToDefinition	ale.txt	/*ALEGoToDefinition*
 ALEGoToDefinitionInTab	ale.txt	/*ALEGoToDefinitionInTab*
@@ -102,6 +104,7 @@ ale-dockerfile-hadolint	ale-dockerfile.txt	/*ale-dockerfile-hadolint*
 ale-dockerfile-options	ale-dockerfile.txt	/*ale-dockerfile-options*
 ale-elixir-dialyxir	ale-elixir.txt	/*ale-elixir-dialyxir*
 ale-elixir-mix	ale-elixir.txt	/*ale-elixir-mix*
+ale-elixir-mix-format	ale-elixir.txt	/*ale-elixir-mix-format*
 ale-elixir-options	ale-elixir.txt	/*ale-elixir-options*
 ale-elm-elm-format	ale-elm.txt	/*ale-elm-elm-format*
 ale-elm-elm-make	ale-elm.txt	/*ale-elm-elm-make*
@@ -261,6 +264,7 @@ ale-ruby-rails_best_practices	ale-ruby.txt	/*ale-ruby-rails_best_practices*
 ale-ruby-reek	ale-ruby.txt	/*ale-ruby-reek*
 ale-ruby-rubocop	ale-ruby.txt	/*ale-ruby-rubocop*
 ale-ruby-ruby	ale-ruby.txt	/*ale-ruby-ruby*
+ale-ruby-rufo	ale-ruby.txt	/*ale-ruby-rufo*
 ale-rust-cargo	ale-rust.txt	/*ale-rust-cargo*
 ale-rust-options	ale-rust.txt	/*ale-rust-options*
 ale-rust-rls	ale-rust.txt	/*ale-rust-rls*
@@ -382,6 +386,7 @@ b:ale_dockerfile_hadolint_image	ale-dockerfile.txt	/*b:ale_dockerfile_hadolint_i
 b:ale_dockerfile_hadolint_use_docker	ale-dockerfile.txt	/*b:ale_dockerfile_hadolint_use_docker*
 b:ale_echo_delay	ale.txt	/*b:ale_echo_delay*
 b:ale_echo_msg_format	ale.txt	/*b:ale_echo_msg_format*
+b:ale_elixir_mix_format_options	ale-elixir.txt	/*b:ale_elixir_mix_format_options*
 b:ale_elixir_mix_options	ale-elixir.txt	/*b:ale_elixir_mix_options*
 b:ale_elm_format_executable	ale-elm.txt	/*b:ale_elm_format_executable*
 b:ale_elm_format_options	ale-elm.txt	/*b:ale_elm_format_options*
@@ -560,6 +565,7 @@ b:ale_ruby_reek_show_wiki_link	ale-ruby.txt	/*b:ale_ruby_reek_show_wiki_link*
 b:ale_ruby_rubocop_executable	ale-ruby.txt	/*b:ale_ruby_rubocop_executable*
 b:ale_ruby_rubocop_options	ale-ruby.txt	/*b:ale_ruby_rubocop_options*
 b:ale_ruby_ruby_executable	ale-ruby.txt	/*b:ale_ruby_ruby_executable*
+b:ale_ruby_rufo_executable	ale-ruby.txt	/*b:ale_ruby_rufo_executable*
 b:ale_rust_cargo_check_all_targets	ale-rust.txt	/*b:ale_rust_cargo_check_all_targets*
 b:ale_rust_cargo_default_feature_behavior	ale-rust.txt	/*b:ale_rust_cargo_default_feature_behavior*
 b:ale_rust_cargo_include_features	ale-rust.txt	/*b:ale_rust_cargo_include_features*
@@ -685,6 +691,7 @@ g:ale_echo_msg_error_str	ale.txt	/*g:ale_echo_msg_error_str*
 g:ale_echo_msg_format	ale.txt	/*g:ale_echo_msg_format*
 g:ale_echo_msg_info_str	ale.txt	/*g:ale_echo_msg_info_str*
 g:ale_echo_msg_warning_str	ale.txt	/*g:ale_echo_msg_warning_str*
+g:ale_elixir_mix_format_options	ale-elixir.txt	/*g:ale_elixir_mix_format_options*
 g:ale_elixir_mix_options	ale-elixir.txt	/*g:ale_elixir_mix_options*
 g:ale_elm_format_executable	ale-elm.txt	/*g:ale_elm_format_executable*
 g:ale_elm_format_options	ale-elm.txt	/*g:ale_elm_format_options*
@@ -886,6 +893,7 @@ g:ale_ruby_reek_show_wiki_link	ale-ruby.txt	/*g:ale_ruby_reek_show_wiki_link*
 g:ale_ruby_rubocop_executable	ale-ruby.txt	/*g:ale_ruby_rubocop_executable*
 g:ale_ruby_rubocop_options	ale-ruby.txt	/*g:ale_ruby_rubocop_options*
 g:ale_ruby_ruby_executable	ale-ruby.txt	/*g:ale_ruby_ruby_executable*
+g:ale_ruby_rufo_executable	ale-ruby.txt	/*g:ale_ruby_rufo_executable*
 g:ale_rust_cargo_check_all_targets	ale-rust.txt	/*g:ale_rust_cargo_check_all_targets*
 g:ale_rust_cargo_default_feature_behavior	ale-rust.txt	/*g:ale_rust_cargo_default_feature_behavior*
 g:ale_rust_cargo_include_features	ale-rust.txt	/*g:ale_rust_cargo_include_features*
