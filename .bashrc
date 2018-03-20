@@ -304,6 +304,11 @@ else
       fi
     fi
   fi
+  if [[ "$unameString" == 'Darwin' ]]; then
+    if hash docker-machine 2>/dev/null; then
+      eval $(docker-machine env default)
+    fi
+  fi
   if hash cowsay 2>/dev/null; then
     if hash fortune 2>/dev/null; then
       fortune | cowsay -W 70 2>/dev/null
