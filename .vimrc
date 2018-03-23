@@ -2156,6 +2156,7 @@ augroup MyVimrc
   au FileType javascript setlocal cinoptions=g0,N-s,(0,u0,Ws,l1,j1,J1
   if executable("prettier") 
     autocmd FileType javascript nnoremap <buffer> <Leader>f :call MyJavascriptFormatter()<CR>
+    autocmd FileType javascript.jsx nnoremap <buffer> <Leader>f :call MyJavascriptFormatter()<CR>
   endif
   
   au FileType markdown setlocal textwidth=80
