@@ -1874,6 +1874,7 @@ let g:ale_linters = {
     \ "c": [],
     \ "cpp": [],
     \ }
+let g:ale_python_flake8_executable = 'python3'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " detectindent
