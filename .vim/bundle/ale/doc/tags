@@ -203,6 +203,7 @@ ale-lua-options	ale-lua.txt	/*ale-lua-options*
 ale-markdown-mdl	ale-markdown.txt	/*ale-markdown-mdl*
 ale-markdown-options	ale-markdown.txt	/*ale-markdown-options*
 ale-markdown-prettier	ale-markdown.txt	/*ale-markdown-prettier*
+ale-markdown-textlint	ale-markdown.txt	/*ale-markdown-textlint*
 ale-markdown-write-good	ale-markdown.txt	/*ale-markdown-write-good*
 ale-navigation-commands	ale.txt	/*ale-navigation-commands*
 ale-nroff-options	ale-nroff.txt	/*ale-nroff-options*
@@ -303,6 +304,7 @@ ale-tex-options	ale-tex.txt	/*ale-tex-options*
 ale-texinfo-options	ale-texinfo.txt	/*ale-texinfo-options*
 ale-texinfo-write-good	ale-texinfo.txt	/*ale-texinfo-write-good*
 ale-text-options	ale-text.txt	/*ale-text-options*
+ale-text-textlint	ale-text.txt	/*ale-text-textlint*
 ale-text-write-good	ale-text.txt	/*ale-text-write-good*
 ale-thrift-options	ale-thrift.txt	/*ale-thrift-options*
 ale-thrift-thrift	ale-thrift.txt	/*ale-thrift-thrift*
@@ -596,6 +598,9 @@ b:ale_terraform_tflint_executable	ale-terraform.txt	/*b:ale_terraform_tflint_exe
 b:ale_terraform_tflint_options	ale-terraform.txt	/*b:ale_terraform_tflint_options*
 b:ale_tex_chktex_executable	ale-tex.txt	/*b:ale_tex_chktex_executable*
 b:ale_tex_chktex_options	ale-tex.txt	/*b:ale_tex_chktex_options*
+b:ale_textlint_executable	ale-text.txt	/*b:ale_textlint_executable*
+b:ale_textlint_options	ale-text.txt	/*b:ale_textlint_options*
+b:ale_textlint_use_global	ale-text.txt	/*b:ale_textlint_use_global*
 b:ale_thrift_thrift_executable	ale-thrift.txt	/*b:ale_thrift_thrift_executable*
 b:ale_thrift_thrift_generators	ale-thrift.txt	/*b:ale_thrift_thrift_generators*
 b:ale_thrift_thrift_includes	ale-thrift.txt	/*b:ale_thrift_thrift_includes*
@@ -938,6 +943,9 @@ g:ale_terraform_tflint_executable	ale-terraform.txt	/*g:ale_terraform_tflint_exe
 g:ale_terraform_tflint_options	ale-terraform.txt	/*g:ale_terraform_tflint_options*
 g:ale_tex_chktex_executable	ale-tex.txt	/*g:ale_tex_chktex_executable*
 g:ale_tex_chktex_options	ale-tex.txt	/*g:ale_tex_chktex_options*
+g:ale_textlint_executable	ale-text.txt	/*g:ale_textlint_executable*
+g:ale_textlint_options	ale-text.txt	/*g:ale_textlint_options*
+g:ale_textlint_use_global	ale-text.txt	/*g:ale_textlint_use_global*
 g:ale_thrift_thrift_executable	ale-thrift.txt	/*g:ale_thrift_thrift_executable*
 g:ale_thrift_thrift_generators	ale-thrift.txt	/*g:ale_thrift_thrift_generators*
 g:ale_thrift_thrift_includes	ale-thrift.txt	/*g:ale_thrift_thrift_includes*
