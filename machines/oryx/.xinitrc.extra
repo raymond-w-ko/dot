@@ -1,0 +1,31 @@
+#!/bin/bash
+
+rm -f "/tmp/rko_temp1_input"
+ln -s /sys/devices/platform/coretemp.0/hwmon/hwmon*/temp1_input "/tmp/rko_temp1_input"
+
+TOUCHPAD="SynPS/2 Synaptics TouchPad"
+xinput set-int-prop "$TOUCHPAD" "Device Accel Profile" 32 2 
+xinput set-float-prop "$TOUCHPAD" "Device Accel Constant Deceleration" 7.5
+xinput set-float-prop "$TOUCHPAD" "Device Accel Adaptive Deceleration" 1.5
+# may palm accidentally hits this too often
+synclient VertEdgeScroll=0
+
+# this causes a signficant amount of wakeups in powertop
+# but ma spoon^H^H^H^H^Hhands are too big
+killall syndaemon
+syndaemon -t -k -i 1 -d &
+
+# compton-garnetius-git
+
+  # --vsync opengl \
+
+compton --config /dev/null -b \
+  --backend glx \
+  --unredir-if-possible \
+  --paint-on-overlay \
+  --xrender-sync --xrender-sync-fence
+
+# always full GPU speed
+# dropped laptop and broke something, cooling not working 100%
+(sleep 2 && DISPLAY=":0.0" nvidia-settings --load-config-only) &
+#(sleep 5 && DISPLAY=":0.0" nvidia-settings -a [gpu:0]/GPUPowerMizerMode=1) &
