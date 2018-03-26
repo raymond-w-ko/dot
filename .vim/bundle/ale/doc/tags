@@ -581,6 +581,7 @@ b:ale_sass_stylelint_executable	ale-sass.txt	/*b:ale_sass_stylelint_executable*
 b:ale_sass_stylelint_use_global	ale-sass.txt	/*b:ale_sass_stylelint_use_global*
 b:ale_scss_stylelint_executable	ale-scss.txt	/*b:ale_scss_stylelint_executable*
 b:ale_scss_stylelint_use_global	ale-scss.txt	/*b:ale_scss_stylelint_use_global*
+b:ale_set_balloons	ale.txt	/*b:ale_set_balloons*
 b:ale_sh_shell_default_shell	ale-sh.txt	/*b:ale_sh_shell_default_shell*
 b:ale_sh_shellcheck_exclusions	ale-sh.txt	/*b:ale_sh_shellcheck_exclusions*
 b:ale_sh_shellcheck_executable	ale-sh.txt	/*b:ale_sh_shellcheck_executable*
