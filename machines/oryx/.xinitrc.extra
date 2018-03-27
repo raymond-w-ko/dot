@@ -15,15 +15,11 @@ synclient VertEdgeScroll=0
 killall syndaemon
 syndaemon -t -k -i 1 -d &
 
-# compton-garnetius-git
-
-  # --vsync opengl \
-
-compton --config /dev/null -b \
-  --backend glx \
-  --unredir-if-possible \
-  --paint-on-overlay \
-  --xrender-sync --xrender-sync-fence
+# compton --config /dev/null -b \
+#   --backend glx \
+#   --unredir-if-possible \
+#   --paint-on-overlay \
+#   --xrender-sync --xrender-sync-fence
 
 # always full GPU speed
 # dropped laptop and broke something, cooling not working 100%
