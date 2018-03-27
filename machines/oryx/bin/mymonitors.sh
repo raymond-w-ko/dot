@@ -58,7 +58,7 @@ nvidia-settings --load-config-only
 
 # load color profile and DPMS settings
 if [ "$isMainExternalDpConnected" -eq 1 ] && [ "$isLidOpen" -eq 0 ]; then
-  dispwin -d 1 "/home/rko/.local/share/icc/SE42UMS #1 2017-04-05 10-34 2.2 F-S XYZLUT+MTX.icc"
+  dispwin -d 1 "/home/rko/.local/share/icc/SE42UMS #1 2018-03-27 13-00 D6500 2.2 F-S XYZLUT+MTX.icc"
   xset s off -dpms
 else
   xset s 3600 3600 +dpms
