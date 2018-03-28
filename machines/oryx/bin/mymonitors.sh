@@ -8,6 +8,13 @@ echo isHdmiConnected: $isHdmiConnected
 echo isMainExternalDpConnected: $isMainExternalDpConnected
 echo isLidOpen: $isLidOpen
 
+INTERNAL_CONNECTOR="DP-0"
+
+# proper
+# MODE="3840x2160_60.00"
+# xrandr --rmmode "$MODE"
+# xrandr --newmode "$MODE" 712.75  3840 4160 4576 5312  2160 2163 2168 2237 -hsync +vsync
+# reduced blanking
 MODE="3840x2160_R"
 xrandr --rmmode "$MODE"
 xrandr --newmode "$MODE" 533.00  3840 3888 3920 4000  2160 2163 2168 2222 +hsync -vsync
@@ -16,33 +23,33 @@ if [ "$isMainExternalDpConnected" -eq 1 ] && [ "$isLidOpen" -eq 1 ]; then
   echo "DisplayPort and Laptop Screen"
   xrandr --addmode DP-1 "$MODE"
   xrandr \
-    --output DP-0 --auto \
-    --output DP-1 --primary --right-of DP-0 --mode "$MODE"
+    --output $INTERNAL_CONNECTOR --auto \
+    --output DP-1 --primary --right-of $INTERNAL_CONNECTOR --mode "$MODE"
 elif [ "$isMainExternalDpConnected" -eq 1 ] && [ "$isLidOpen" -eq 0 ]; then
   echo "DisplayPort Only"
   xrandr --addmode DP-1 "$MODE"
   xrandr \
-    --output DP-0 --off \
+    --output $INTERNAL_CONNECTOR --off \
     --output DP-1 --primary --mode "$MODE"
 elif [ "$isHdmiConnected" -eq 1 ] && [ "$isLidOpen" -eq 1 ]; then
   echo "HDMI and Laptop Screen"
   xrandr --addmode HDMI-0 "$MODE"
   xrandr \
-    --output DP-0 --auto \
-    --output HDMI-0 --primary --right-of DP-0 --mode "$MODE"
+    --output $INTERNAL_CONNECTOR --auto \
+    --output HDMI-0 --primary --right-of $INTERNAL_CONNECTOR --mode "$MODE"
 elif [ "$isHdmiConnected" -eq 1 ] && [ "$isLidOpen" -eq 0 ]; then
   echo "HDMI only"
   xrandr --addmode HDMI-0 "$MODE"
   # xrandr \
-  #   --output DP-0 --off \
+  #   --output $INTERNAL_CONNECTOR --off \
   #   --output HDMI-0 --primary --mode "$MODE"
   xrandr \
-    --output DP-0 --off \
-    --output HDMI-0 --primary --auto
+    --output $INTERNAL_CONNECTOR --off \
+    --output HDMI-0 --primary --mode "$MODE"
 else
   echo "No monitors connected"
   xrandr \
-    --output DP-0 --auto --primary \
+    --output $INTERNAL_CONNECTOR --auto --primary \
     --output DP-1 --off \
     --output DP-2 --off \
     --output DP-3 --off \
@@ -58,7 +65,7 @@ nvidia-settings --load-config-only
 
 # load color profile and DPMS settings
 if [ "$isMainExternalDpConnected" -eq 1 ] && [ "$isLidOpen" -eq 0 ]; then
-  dispwin -d 1 "/home/rko/.local/share/icc/SE42UMS #1 2018-03-27 13-00 D6500 2.2 F-S XYZLUT+MTX.icc"
+  # dispwin -d 1 "/home/rko/.local/share/icc/SE42UMS #1 2018-03-27 13-00 D6500 2.2 F-S XYZLUT+MTX.icc"
   xset s off -dpms
 else
   xset s 3600 3600 +dpms
