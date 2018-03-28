@@ -353,6 +353,7 @@ b:ale_c_flawfinder_executable	ale-c.txt	/*b:ale_c_flawfinder_executable*
 b:ale_c_flawfinder_minlevel	ale-c.txt	/*b:ale_c_flawfinder_minlevel*
 b:ale_c_gcc_executable	ale-c.txt	/*b:ale_c_gcc_executable*
 b:ale_c_gcc_options	ale-c.txt	/*b:ale_c_gcc_options*
+b:ale_c_parse_makefile	ale-c.txt	/*b:ale_c_parse_makefile*
 b:ale_chef_foodcritic_executable	ale-chef.txt	/*b:ale_chef_foodcritic_executable*
 b:ale_chef_foodcritic_options	ale-chef.txt	/*b:ale_chef_foodcritic_options*
 b:ale_cmake_cmakelint_executable	ale-cmake.txt	/*b:ale_cmake_cmakelint_executable*
@@ -653,6 +654,7 @@ g:ale_c_flawfinder_executable	ale-c.txt	/*g:ale_c_flawfinder_executable*
 g:ale_c_flawfinder_minlevel	ale-c.txt	/*g:ale_c_flawfinder_minlevel*
 g:ale_c_gcc_executable	ale-c.txt	/*g:ale_c_gcc_executable*
 g:ale_c_gcc_options	ale-c.txt	/*g:ale_c_gcc_options*
+g:ale_c_parse_makefile	ale-c.txt	/*g:ale_c_parse_makefile*
 g:ale_cache_executable_check_failures	ale.txt	/*g:ale_cache_executable_check_failures*
 g:ale_change_sign_column_color	ale.txt	/*g:ale_change_sign_column_color*
 g:ale_chef_foodcritic_executable	ale-chef.txt	/*g:ale_chef_foodcritic_executable*

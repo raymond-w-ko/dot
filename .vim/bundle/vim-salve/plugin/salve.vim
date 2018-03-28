@@ -94,13 +94,14 @@ function! s:detect(file) abort
     let previous = ""
     while root !=# previous
       if filereadable(root . '/project.clj') && join(readfile(root . '/project.clj', '', 50)) =~# '(\s*defproject\%(\s*{{\)\@!'
-        let b:salve = { "local_manifest": root.'/project.clj',
-                          \ "global_manifest": expand('~/.lein/profiles.clj'),
-                          \ "root": root,
-                          \ "compiler": "lein",
-                          \ "repl_cmd": "lein repl",
-                          \ "classpath_cmd": "lein -o classpath",
-                          \ "start_cmd": "lein run" }
+        let b:salve = {
+              \ "local_manifest": root.'/project.clj',
+              \ "global_manifest": expand('~/.lein/profiles.clj'),
+              \ "root": root,
+              \ "compiler": "lein",
+              \ "repl_cmd": "lein repl",
+              \ "classpath_cmd": "lein -o classpath",
+              \ "start_cmd": "lein run"}
         let b:java_root = root
         break
       elseif filereadable(root . '/build.boot')
@@ -109,13 +110,14 @@ function! s:detect(file) abort
         else
           let boot_home = expand('~/.boot')
         endif
-        let b:salve = { "local_manifest": root.'/build.boot',
-                          \ "global_manifest": boot_home.'/.profile.boot',
-                          \ "root": root,
-                          \ "compiler": "boot",
-                          \ "repl_cmd": "boot repl",
-                          \ "classpath_cmd": "boot show --fake-classpath",
-                          \ "start_cmd": "boot repl -s" }
+        let b:salve = {
+              \ "local_manifest": root.'/build.boot',
+              \ "global_manifest": boot_home.'/.profile.boot',
+              \ "root": root,
+              \ "compiler": "boot",
+              \ "repl_cmd": "boot repl",
+              \ "classpath_cmd": "boot show --fake-classpath",
+              \ "start_cmd": "boot repl -s"}
         let b:java_root = root
         break
       endif
@@ -219,8 +221,8 @@ function! s:projectionist_detect() abort
   call projectionist#append(b:salve.root, projections)
   let projections = {}
 
-  let proj = {'type': 'test', 'alternate': map(copy(main), 'v:val."/{}.clj"')}
-  let proj = {'type': 'test', 'alternate': map(copy(main), 'v:val."/{}.cljc"')}
+  let proj = {'type': 'test', 'alternate': map(copy(main), 'v:val."/{}.clj"') +
+        \ map(copy(main), 'v:val."/{}.cljc"')}
   for path in test
     let projections[path.'/*_test.clj'] = proj
     let projections[path.'/*_test.cljc'] = proj
