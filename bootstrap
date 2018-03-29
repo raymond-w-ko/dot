@@ -121,7 +121,7 @@ if [ -z "$1" ]; then
 fi
 
 pushd "machines/$1"
-for dotfile in $($FIND . -maxdepth 1 -regex '.*/\..+') ; do
+for dotfile in $($FIND . -maxdepth 1 -type f -regex '.*/\..+') ; do
   FILENAME=$(basename $dotfile)
   echo $FILENAME
   SRC=$BASE_SCRIPT_DIR/machines/$1/$FILENAME
@@ -130,6 +130,20 @@ for dotfile in $($FIND . -maxdepth 1 -regex '.*/\..+') ; do
   safe_delete_existing_file "$DST"
   $DRYRUN ln -s "$SRC" "$DST"
 done
+if [[ -d "./.config" ]]; then
+  pushd .config
+  for dotfile in $($FIND . -maxdepth 1 -type f) ; do
+    FILENAME=$(basename $dotfile)
+    SRC=$BASE_SCRIPT_DIR/machines/$1/.config/$FILENAME
+    DST=$HOME/.config/$FILENAME
+    echo $SRC
+    echo $DST
+    if [ ! -e "$HOME/$SRC" ]; then echo could not find "$SRC"; exit 1; fi
+    safe_delete_existing_file "$DST"
+    $DRYRUN ln -s "../$SRC" "$DST"
+  done
+  popd
+fi
 popd
 echo
 
