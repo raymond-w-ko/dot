@@ -14,5 +14,5 @@ if [ $ULX != "-1" -o $ULY != "-1" ]; then
 
   xdotool mousemove --window $WINDOW $NX $NY
 
-  flash-win.sh
+  # flash-win.sh
 fi
