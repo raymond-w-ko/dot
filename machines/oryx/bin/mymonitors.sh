@@ -9,6 +9,7 @@ echo isMainExternalDpConnected: $isMainExternalDpConnected
 echo isLidOpen: $isLidOpen
 
 INTERNAL_CONNECTOR="DP-0"
+NO_PANNING="--panning 0x0"
 
 # proper
 # MODE="3840x2160_60.00"
@@ -23,33 +24,32 @@ if [ "$isMainExternalDpConnected" -eq 1 ] && [ "$isLidOpen" -eq 1 ]; then
   echo "DisplayPort and Laptop Screen"
   xrandr --addmode DP-1 "$MODE"
   xrandr \
-    --output $INTERNAL_CONNECTOR --auto \
-    --output DP-1 --primary --right-of $INTERNAL_CONNECTOR --mode "$MODE"
+    --output $INTERNAL_CONNECTOR --auto $NO_PANNING \
+    --output DP-1 --primary --right-of $INTERNAL_CONNECTOR --mode "$MODE" $NO_PANNING
 elif [ "$isMainExternalDpConnected" -eq 1 ] && [ "$isLidOpen" -eq 0 ]; then
   echo "DisplayPort Only"
   xrandr --addmode DP-1 "$MODE"
   xrandr \
     --output $INTERNAL_CONNECTOR --off \
-    --output DP-1 --primary --mode "$MODE"
+    --output DP-1 --primary --mode "$MODE" $NO_PANNING
 elif [ "$isHdmiConnected" -eq 1 ] && [ "$isLidOpen" -eq 1 ]; then
   echo "HDMI and Laptop Screen"
   xrandr --addmode HDMI-0 "$MODE"
   xrandr \
-    --output $INTERNAL_CONNECTOR --auto \
-    --output HDMI-0 --primary --right-of $INTERNAL_CONNECTOR --mode "$MODE"
+    --output $INTERNAL_CONNECTOR --auto $NO_PANNING \
+    --output HDMI-0 --primary --right-of $INTERNAL_CONNECTOR --mode "$MODE" $NO_PANNING
 elif [ "$isHdmiConnected" -eq 1 ] && [ "$isLidOpen" -eq 0 ]; then
   echo "HDMI only"
   xrandr --addmode HDMI-0 "$MODE"
-  # xrandr \
-  #   --output $INTERNAL_CONNECTOR --off \
-  #   --output HDMI-0 --primary --mode "$MODE"
   xrandr \
     --output $INTERNAL_CONNECTOR --off \
-    --output HDMI-0 --primary --mode "$MODE"
+    --output HDMI-0 --primary --mode "$MODE" $NO_PANNING
 else
   echo "No monitors connected"
+  xrandr --rmmode "$MODE"
   xrandr \
-    --output $INTERNAL_CONNECTOR --auto --primary \
+    --output $INTERNAL_CONNECTOR --auto --primary $NO_PANNING \
+    --output HDMI-0 --off \
     --output DP-1 --off \
     --output DP-2 --off \
     --output DP-3 --off \
