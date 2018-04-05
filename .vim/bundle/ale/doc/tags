@@ -205,6 +205,8 @@ ale-markdown-options	ale-markdown.txt	/*ale-markdown-options*
 ale-markdown-prettier	ale-markdown.txt	/*ale-markdown-prettier*
 ale-markdown-textlint	ale-markdown.txt	/*ale-markdown-textlint*
 ale-markdown-write-good	ale-markdown.txt	/*ale-markdown-write-good*
+ale-mercury-mmc	ale-mercury.txt	/*ale-mercury-mmc*
+ale-mercury-options	ale-mercury.txt	/*ale-mercury-options*
 ale-navigation-commands	ale.txt	/*ale-navigation-commands*
 ale-nroff-options	ale-nroff.txt	/*ale-nroff-options*
 ale-nroff-write-good	ale-nroff.txt	/*ale-nroff-write-good*
@@ -495,6 +497,8 @@ b:ale_markdown_mdl_executable	ale-markdown.txt	/*b:ale_markdown_mdl_executable*
 b:ale_markdown_mdl_options	ale-markdown.txt	/*b:ale_markdown_mdl_options*
 b:ale_max_signs	ale.txt	/*b:ale_max_signs*
 b:ale_maximum_file_size	ale.txt	/*b:ale_maximum_file_size*
+b:ale_mercury_mmc_executable	ale-mercury.txt	/*b:ale_mercury_mmc_executable*
+b:ale_mercury_mmc_options	ale-mercury.txt	/*b:ale_mercury_mmc_options*
 b:ale_objc_clang_options	ale-objc.txt	/*b:ale_objc_clang_options*
 b:ale_objcpp_clang_options	ale-objcpp.txt	/*b:ale_objcpp_clang_options*
 b:ale_ocaml_ols_executable	ale-ocaml.txt	/*b:ale_ocaml_ols_executable*
@@ -824,6 +828,8 @@ g:ale_markdown_mdl_options	ale-markdown.txt	/*g:ale_markdown_mdl_options*
 g:ale_max_buffer_history_size	ale.txt	/*g:ale_max_buffer_history_size*
 g:ale_max_signs	ale.txt	/*g:ale_max_signs*
 g:ale_maximum_file_size	ale.txt	/*g:ale_maximum_file_size*
+g:ale_mercury_mmc_executable	ale-mercury.txt	/*g:ale_mercury_mmc_executable*
+g:ale_mercury_mmc_options	ale-mercury.txt	/*g:ale_mercury_mmc_options*
 g:ale_objc_clang_options	ale-objc.txt	/*g:ale_objc_clang_options*
 g:ale_objcpp_clang_options	ale-objcpp.txt	/*g:ale_objcpp_clang_options*
 g:ale_ocaml_ols_executable	ale-ocaml.txt	/*g:ale_ocaml_ols_executable*
