@@ -444,6 +444,7 @@ b:ale_java_checkstyle_options	ale-java.txt	/*b:ale_java_checkstyle_options*
 b:ale_java_google_java_format_executable	ale-java.txt	/*b:ale_java_google_java_format_executable*
 b:ale_java_google_java_format_options	ale-java.txt	/*b:ale_java_google_java_format_options*
 b:ale_java_javac_classpath	ale-java.txt	/*b:ale_java_javac_classpath*
+b:ale_java_javac_executable	ale-java.txt	/*b:ale_java_javac_executable*
 b:ale_java_javac_options	ale-java.txt	/*b:ale_java_javac_options*
 b:ale_javascript_eslint_executable	ale-javascript.txt	/*b:ale_javascript_eslint_executable*
 b:ale_javascript_eslint_options	ale-javascript.txt	/*b:ale_javascript_eslint_options*
@@ -513,6 +514,7 @@ b:ale_perl_perlcritic_executable	ale-perl.txt	/*b:ale_perl_perlcritic_executable
 b:ale_perl_perlcritic_options	ale-perl.txt	/*b:ale_perl_perlcritic_options*
 b:ale_perl_perlcritic_profile	ale-perl.txt	/*b:ale_perl_perlcritic_profile*
 b:ale_php_cs_fixer_executable	ale-php.txt	/*b:ale_php_cs_fixer_executable*
+b:ale_php_cs_fixer_options	ale-php.txt	/*b:ale_php_cs_fixer_options*
 b:ale_php_cs_fixer_use_global	ale-php.txt	/*b:ale_php_cs_fixer_use_global*
 b:ale_php_hackfmt_options	ale-php.txt	/*b:ale_php_hackfmt_options*
 b:ale_php_langserver_executable	ale-php.txt	/*b:ale_php_langserver_executable*
@@ -628,6 +630,7 @@ b:ale_typescript_tsserver_config_path	ale-typescript.txt	/*b:ale_typescript_tsse
 b:ale_typescript_tsserver_executable	ale-typescript.txt	/*b:ale_typescript_tsserver_executable*
 b:ale_typescript_tsserver_use_global	ale-typescript.txt	/*b:ale_typescript_tsserver_use_global*
 b:ale_verilog_verilator_options	ale-verilog.txt	/*b:ale_verilog_verilator_options*
+b:ale_vim_vint_executable	ale-vim.txt	/*b:ale_vim_vint_executable*
 b:ale_vim_vint_show_style_issues	ale-vim.txt	/*b:ale_vim_vint_show_style_issues*
 b:ale_virtualenv_dir_names	ale.txt	/*b:ale_virtualenv_dir_names*
 b:ale_warn_about_trailing_blank_lines	ale.txt	/*b:ale_warn_about_trailing_blank_lines*
@@ -763,6 +766,7 @@ g:ale_java_checkstyle_options	ale-java.txt	/*g:ale_java_checkstyle_options*
 g:ale_java_google_java_format_executable	ale-java.txt	/*g:ale_java_google_java_format_executable*
 g:ale_java_google_java_format_options	ale-java.txt	/*g:ale_java_google_java_format_options*
 g:ale_java_javac_classpath	ale-java.txt	/*g:ale_java_javac_classpath*
+g:ale_java_javac_executable	ale-java.txt	/*g:ale_java_javac_executable*
 g:ale_java_javac_options	ale-java.txt	/*g:ale_java_javac_options*
 g:ale_javascript_eslint_executable	ale-javascript.txt	/*g:ale_javascript_eslint_executable*
 g:ale_javascript_eslint_options	ale-javascript.txt	/*g:ale_javascript_eslint_options*
@@ -851,6 +855,7 @@ g:ale_perl_perlcritic_options	ale-perl.txt	/*g:ale_perl_perlcritic_options*
 g:ale_perl_perlcritic_profile	ale-perl.txt	/*g:ale_perl_perlcritic_profile*
 g:ale_perl_perlcritic_showrules	ale-perl.txt	/*g:ale_perl_perlcritic_showrules*
 g:ale_php_cs_fixer_executable	ale-php.txt	/*g:ale_php_cs_fixer_executable*
+g:ale_php_cs_fixer_options	ale-php.txt	/*g:ale_php_cs_fixer_options*
 g:ale_php_cs_fixer_use_global	ale-php.txt	/*g:ale_php_cs_fixer_use_global*
 g:ale_php_hackfmt_options	ale-php.txt	/*g:ale_php_hackfmt_options*
 g:ale_php_langserver_executable	ale-php.txt	/*g:ale_php_langserver_executable*
@@ -980,6 +985,7 @@ g:ale_typescript_tsserver_config_path	ale-typescript.txt	/*g:ale_typescript_tsse
 g:ale_typescript_tsserver_executable	ale-typescript.txt	/*g:ale_typescript_tsserver_executable*
 g:ale_typescript_tsserver_use_global	ale-typescript.txt	/*g:ale_typescript_tsserver_use_global*
 g:ale_verilog_verilator_options	ale-verilog.txt	/*g:ale_verilog_verilator_options*
+g:ale_vim_vint_executable	ale-vim.txt	/*g:ale_vim_vint_executable*
 g:ale_vim_vint_show_style_issues	ale-vim.txt	/*g:ale_vim_vint_show_style_issues*
 g:ale_virtualenv_dir_names	ale.txt	/*g:ale_virtualenv_dir_names*
 g:ale_warn_about_trailing_blank_lines	ale.txt	/*g:ale_warn_about_trailing_blank_lines*
