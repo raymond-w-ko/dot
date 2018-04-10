@@ -101,6 +101,9 @@ alias yup="$NICE_PROG yaourt -Syua --noconfirm"
 alias y="$NICE_PROG yaourt"
 alias adu="sudo apt-get update && sudo apt-get dist-upgrade"
 alias bb="backblaze-b2"
+if [[ -f "/usr/local/bin/b2" ]]; then
+  alias bb="/usr/local/bin/b2"
+fi
 if [[ -f "$HOME/.local/bin/b2" ]]; then
   alias bb="$HOME/.local/bin/b2"
 fi
