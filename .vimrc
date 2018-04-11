@@ -294,7 +294,7 @@ set wildignore+=*.pvr,*.ktx
 set wildignore+=*.ncb,*.suo,*.user,*.vcproj,*.vcxproj,*.out,*.sln,*.pdb
 set wildignore+=*.manifest,*.dep,*.idb,*.ipch,*.o,*.obj
 " GCC
-set wildignore+=*.d,*.a
+set wildignore+=*.d,*.a,*.o
 " Gamebryo Binaries
 set wildignore+=*.nif,*.kf,*.kfm,*.nsb
 " compiled cached bytecodes
@@ -2105,7 +2105,8 @@ let g:startify_files_number = 32
 augroup my_dirvish_events
   autocmd!
   " sort: folders at top, alphabetical, case-insensitive.
-  let g:dirvish_mode = ':sort ir /^.*[^\/]$/'
+  " let g:dirvish_mode = ':sort ir /^.*[^\/]$/'
+  let g:dirvish_mode = 1
 
   " Map `gr` to reload.
   autocmd FileType dirvish nnoremap <silent><buffer> gr :<C-U>Dirvish %<CR>
