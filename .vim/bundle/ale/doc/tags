@@ -163,6 +163,7 @@ ale-java-checkstyle	ale-java.txt	/*ale-java-checkstyle*
 ale-java-google-java-format	ale-java.txt	/*ale-java-google-java-format*
 ale-java-javac	ale-java.txt	/*ale-java-javac*
 ale-java-options	ale-java.txt	/*ale-java-options*
+ale-java-pmd	ale-java.txt	/*ale-java-pmd*
 ale-javascript-eslint	ale-javascript.txt	/*ale-javascript-eslint*
 ale-javascript-flow	ale-javascript.txt	/*ale-javascript-flow*
 ale-javascript-importjs	ale-javascript.txt	/*ale-javascript-importjs*
@@ -446,6 +447,7 @@ b:ale_java_google_java_format_options	ale-java.txt	/*b:ale_java_google_java_form
 b:ale_java_javac_classpath	ale-java.txt	/*b:ale_java_javac_classpath*
 b:ale_java_javac_executable	ale-java.txt	/*b:ale_java_javac_executable*
 b:ale_java_javac_options	ale-java.txt	/*b:ale_java_javac_options*
+b:ale_java_pmd_options	ale-java.txt	/*b:ale_java_pmd_options*
 b:ale_javascript_eslint_executable	ale-javascript.txt	/*b:ale_javascript_eslint_executable*
 b:ale_javascript_eslint_options	ale-javascript.txt	/*b:ale_javascript_eslint_options*
 b:ale_javascript_eslint_suppress_eslintignore	ale-javascript.txt	/*b:ale_javascript_eslint_suppress_eslintignore*
@@ -768,6 +770,7 @@ g:ale_java_google_java_format_options	ale-java.txt	/*g:ale_java_google_java_form
 g:ale_java_javac_classpath	ale-java.txt	/*g:ale_java_javac_classpath*
 g:ale_java_javac_executable	ale-java.txt	/*g:ale_java_javac_executable*
 g:ale_java_javac_options	ale-java.txt	/*g:ale_java_javac_options*
+g:ale_java_pmd_options	ale-java.txt	/*g:ale_java_pmd_options*
 g:ale_javascript_eslint_executable	ale-javascript.txt	/*g:ale_javascript_eslint_executable*
 g:ale_javascript_eslint_options	ale-javascript.txt	/*g:ale_javascript_eslint_options*
 g:ale_javascript_eslint_suppress_eslintignore	ale-javascript.txt	/*g:ale_javascript_eslint_suppress_eslintignore*
@@ -984,6 +987,7 @@ g:ale_typescript_tslint_use_global	ale-typescript.txt	/*g:ale_typescript_tslint_
 g:ale_typescript_tsserver_config_path	ale-typescript.txt	/*g:ale_typescript_tsserver_config_path*
 g:ale_typescript_tsserver_executable	ale-typescript.txt	/*g:ale_typescript_tsserver_executable*
 g:ale_typescript_tsserver_use_global	ale-typescript.txt	/*g:ale_typescript_tsserver_use_global*
+g:ale_use_global_executables	ale.txt	/*g:ale_use_global_executables*
 g:ale_verilog_verilator_options	ale-verilog.txt	/*g:ale_verilog_verilator_options*
 g:ale_vim_vint_executable	ale-vim.txt	/*g:ale_vim_vint_executable*
 g:ale_vim_vint_show_style_issues	ale-vim.txt	/*g:ale_vim_vint_show_style_issues*
