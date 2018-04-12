@@ -1,7 +1,7 @@
 #!/bin/bash
 
 isHdmiConnected=$(xrandr | grep 'HDMI-0 connected' | wc -l)
-isMainExternalDpConnected=$(xrandr | grep 'HDMI-0 connected' | wc -l)
+isMainExternalDpConnected=$(xrandr | grep 'DP-1 connected' | wc -l)
 isLidOpen=$(cat /proc/acpi/button/lid/LID*/state | grep 'open' | wc -l)
 
 echo isHdmiConnected: $isHdmiConnected
@@ -66,6 +66,9 @@ nvidia-settings --load-config-only
 # load color profile and DPMS settings
 if [ "$isMainExternalDpConnected" -eq 1 ] && [ "$isLidOpen" -eq 0 ]; then
   # dispwin -d 1 "/home/rko/.local/share/icc/SE42UMS #1 2018-03-27 13-00 D6500 2.2 F-S XYZLUT+MTX.icc"
+  echo "Turning off screen blank"
+  xset s off -dpms
+elif [ "$isHdmiConnected" -eq 1 ] && [ "$isLidOpen" -eq 0 ]; then
   echo "Turning off screen blank"
   xset s off -dpms
 else
