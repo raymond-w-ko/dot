@@ -8,6 +8,12 @@ if exists("g:loaded_fireplace") || v:version < 700 || &cp
 endif
 let g:loaded_fireplace = 1
 
+" Available when using CIDER:
+" * clojure.pprint/pprint
+" * cider.nrepl.middleware.pprint/fipp-pprint
+" * cider.nrepl.middleware.pprint/puget-pprint
+let g:fireplace_pprint_fn = 'cider.nrepl.middleware.pprint/fipp-pprint'
+
 " Section: File type
 
 augroup fireplace_file_type
@@ -792,7 +798,7 @@ function! s:temp_response(response) abort
     let output = map(split(a:response.out, "\n"), '";".v:val')
   endif
   if has_key(a:response, 'value')
-    let output += [a:response.value]
+    let output += split(a:response.value, "\n")
   endif
   let temp = tempname().'.clj'
   call writefile(output, temp)
@@ -1052,8 +1058,25 @@ function! s:printop(type) abort
   call feedkeys("\<Plug>FireplacePrintLast")
 endfunction
 
+function! s:add_pprint_opts(msg)
+  let a:msg.pprint = 1
+  let a:msg.pprint_fn = g:fireplace_pprint_fn
+  let l:max_right_margin = get(g:, 'fireplace_print_right_margin', &columns)
+  let a:msg.print_right_margin = min([l:max_right_margin, &columns])
+  if exists("g:fireplace_print_length")
+    let a:msg.print_length = g:fireplace_print_length
+  endif
+  if exists("g:fireplace_print_level")
+    let a:msg.print_level = g:fireplace_print_level
+  endif
+  if exists("g:fireplace_print_meta")
+    let a:msg.print_meta = g:fireplace_print_meta
+  endif
+  return a:msg
+endfunction
+
 function! s:print_last() abort
-  call fireplace#echo_session_eval(s:todo, {'file_path': s:buffer_path()})
+  call fireplace#echo_session_eval(s:todo, s:add_pprint_opts({'file_path': s:buffer_path()}))
   return ''
 endfunction
 
@@ -1125,7 +1148,7 @@ function! s:Eval(bang, line1, line2, count, args) abort
     catch /^Clojure:/
     endtry
   else
-    call fireplace#echo_session_eval(expr, options)
+    call fireplace#echo_session_eval(expr, s:add_pprint_opts(options))
   endif
   return ''
 endfunction
