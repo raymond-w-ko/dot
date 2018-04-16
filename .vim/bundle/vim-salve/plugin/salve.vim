@@ -105,19 +105,15 @@ function! s:detect(file) abort
         let b:java_root = root
         break
       elseif filereadable(root . '/build.boot')
-        if $BOOT_HOME
-          let boot_home = $BOOT_HOME
-        else
-          let boot_home = expand('~/.boot')
-        endif
+        let boot_home = len($BOOT_HOME) ? $BOOT_HOME : expand('~/.boot')
         let b:salve = {
               \ "local_manifest": root.'/build.boot',
-              \ "global_manifest": boot_home.'/.profile.boot',
+              \ "global_manifest": boot_home.'/profile.boot',
               \ "root": root,
               \ "compiler": "boot",
               \ "repl_cmd": "boot repl",
               \ "classpath_cmd": "boot show --fake-classpath",
-              \ "start_cmd": "boot repl -s"}
+              \ "start_cmd": "boot repl"}
         let b:java_root = root
         break
       endif
@@ -132,11 +128,11 @@ function! s:split(path) abort
   return split(a:path, has('win32') ? ';' : ':')
 endfunction
 
-function! s:scrape_path(root) abort
+function! s:scrape_path() abort
   let cd = exists('*haslocaldir') && haslocaldir() ? 'lcd' : 'cd'
   let cwd = getcwd()
   try
-    execute cd fnameescape(a:root)
+    execute cd fnameescape(b:salve.root)
     let path = matchstr(system(b:salve.classpath_cmd), "[^\n]*\\ze\n*$")
     if v:shell_error
       return []
@@ -170,7 +166,7 @@ function! s:path() abort
   endif
 
   if !exists('path')
-    let path = s:scrape_path(b:salve.root)
+    let path = s:scrape_path()
     if empty(path)
       let path = map(['test', 'src', 'dev-resources', 'resources'], 'b:salve.root."/".v:val')
     endif
@@ -185,9 +181,12 @@ function! s:activate() abort
     return
   endif
   command! -buffer -bar -bang -nargs=* Console call s:repl(<bang>0, <q-args>)
-  execute "compiler ".b:salve.compiler
+  execute 'compiler' b:salve.compiler
   let &l:errorformat .= ',' . escape('chdir '.b:salve.root, '\,')
-  let &l:errorformat .= ',' . escape('classpath,'.join(s:path()), '\,')
+  let &l:errorformat .= ',' . escape('classpath,'.join(s:path(), ','), '\,')
+  if get(b:, 'dispatch') =~# ':RunTests '
+    let &l:errorformat .= ',%\&buffer=test ' . matchstr(b:dispatch, ':RunTests \zs.*')
+  endif
 endfunction
 
 function! s:projectionist_detect() abort
