@@ -9,6 +9,7 @@ ALEEnableBuffer	ale.txt	/*ALEEnableBuffer*
 ALEError	ale.txt	/*ALEError*
 ALEErrorLine	ale.txt	/*ALEErrorLine*
 ALEErrorSign	ale.txt	/*ALEErrorSign*
+ALEFindReferences	ale.txt	/*ALEFindReferences*
 ALEFirst	ale.txt	/*ALEFirst*
 ALEFix	ale.txt	/*ALEFix*
 ALEFixPost-autocmd	ale.txt	/*ALEFixPost-autocmd*
@@ -114,6 +115,7 @@ ale-erlang-options	ale-erlang.txt	/*ale-erlang-options*
 ale-erlang-syntaxerl	ale-erlang.txt	/*ale-erlang-syntaxerl*
 ale-eruby-options	ale-eruby.txt	/*ale-eruby-options*
 ale-eslint-nested-configuration-files	ale-javascript.txt	/*ale-eslint-nested-configuration-files*
+ale-find-references	ale.txt	/*ale-find-references*
 ale-fish-options	ale-fish.txt	/*ale-fish-options*
 ale-fix	ale.txt	/*ale-fix*
 ale-fix-configuration	ale.txt	/*ale-fix-configuration*
@@ -222,6 +224,7 @@ ale-options	ale.txt	/*ale-options*
 ale-perl-options	ale-perl.txt	/*ale-perl-options*
 ale-perl-perl	ale-perl.txt	/*ale-perl-perl*
 ale-perl-perlcritic	ale-perl.txt	/*ale-perl-perlcritic*
+ale-perl-perltidy	ale-perl.txt	/*ale-perl-perltidy*
 ale-php-hack	ale-php.txt	/*ale-php-hack*
 ale-php-hackfmt	ale-php.txt	/*ale-php-hackfmt*
 ale-php-langserver	ale-php.txt	/*ale-php-langserver*
@@ -516,6 +519,7 @@ b:ale_perl_perl_options	ale-perl.txt	/*b:ale_perl_perl_options*
 b:ale_perl_perlcritic_executable	ale-perl.txt	/*b:ale_perl_perlcritic_executable*
 b:ale_perl_perlcritic_options	ale-perl.txt	/*b:ale_perl_perlcritic_options*
 b:ale_perl_perlcritic_profile	ale-perl.txt	/*b:ale_perl_perlcritic_profile*
+b:ale_perl_perltidy_options	ale-perl.txt	/*b:ale_perl_perltidy_options*
 b:ale_php_cs_fixer_executable	ale-php.txt	/*b:ale_php_cs_fixer_executable*
 b:ale_php_cs_fixer_options	ale-php.txt	/*b:ale_php_cs_fixer_options*
 b:ale_php_cs_fixer_use_global	ale-php.txt	/*b:ale_php_cs_fixer_use_global*
@@ -860,6 +864,7 @@ g:ale_perl_perlcritic_executable	ale-perl.txt	/*g:ale_perl_perlcritic_executable
 g:ale_perl_perlcritic_options	ale-perl.txt	/*g:ale_perl_perlcritic_options*
 g:ale_perl_perlcritic_profile	ale-perl.txt	/*g:ale_perl_perlcritic_profile*
 g:ale_perl_perlcritic_showrules	ale-perl.txt	/*g:ale_perl_perlcritic_showrules*
+g:ale_perl_perltidy_options	ale-perl.txt	/*g:ale_perl_perltidy_options*
 g:ale_php_cs_fixer_executable	ale-php.txt	/*g:ale_php_cs_fixer_executable*
 g:ale_php_cs_fixer_options	ale-php.txt	/*g:ale_php_cs_fixer_options*
 g:ale_php_cs_fixer_use_global	ale-php.txt	/*g:ale_php_cs_fixer_use_global*
