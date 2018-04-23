@@ -312,7 +312,11 @@ else
       eval $(docker-machine env default)
     fi
   fi
-  if hash cowsay 2>/dev/null; then
+  if hash tewisay 2>/dev/null; then
+    if hash fortune 2>/dev/null; then
+      fortune | tewisay -f teh 2>/dev/null
+    fi
+  elif hash cowsay 2>/dev/null; then
     if hash fortune 2>/dev/null; then
       fortune | cowsay -W 70 2>/dev/null
     fi
