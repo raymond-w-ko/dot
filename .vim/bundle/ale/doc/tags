@@ -17,6 +17,7 @@ ALEFixPre-autocmd	ale.txt	/*ALEFixPre-autocmd*
 ALEFixSuggest	ale.txt	/*ALEFixSuggest*
 ALEGoToDefinition	ale.txt	/*ALEGoToDefinition*
 ALEGoToDefinitionInTab	ale.txt	/*ALEGoToDefinitionInTab*
+ALEHover	ale.txt	/*ALEHover*
 ALEInfo	ale.txt	/*ALEInfo*
 ALEInfo-highlight	ale.txt	/*ALEInfo-highlight*
 ALEInfo.	ale.txt	/*ALEInfo.*
@@ -54,6 +55,7 @@ ale#engine#ManageFile()	ale.txt	/*ale#engine#ManageFile()*
 ale#fix#registry#Add()	ale.txt	/*ale#fix#registry#Add()*
 ale#linter#Define()	ale.txt	/*ale#linter#Define()*
 ale#linter#Get()	ale.txt	/*ale#linter#Get()*
+ale#linter#PreventLoading()	ale.txt	/*ale#linter#PreventLoading()*
 ale#statusline#Count()	ale.txt	/*ale#statusline#Count()*
 ale-api	ale.txt	/*ale-api*
 ale-asciidoc-options	ale-asciidoc.txt	/*ale-asciidoc-options*
@@ -148,6 +150,7 @@ ale-haskell-hfmt	ale-haskell.txt	/*ale-haskell-hfmt*
 ale-haskell-options	ale-haskell.txt	/*ale-haskell-options*
 ale-haskell-stack-build	ale-haskell.txt	/*ale-haskell-stack-build*
 ale-highlights	ale.txt	/*ale-highlights*
+ale-hover	ale.txt	/*ale-hover*
 ale-html-htmlhint	ale-html.txt	/*ale-html-htmlhint*
 ale-html-options	ale-html.txt	/*ale-html-options*
 ale-html-tidy	ale-html.txt	/*ale-html-tidy*
@@ -194,6 +197,7 @@ ale-less-stylelint	ale-less.txt	/*ale-less-stylelint*
 ale-lint	ale.txt	/*ale-lint*
 ale-lint-file	ale.txt	/*ale-lint-file*
 ale-lint-file-linters	ale.txt	/*ale-lint-file-linters*
+ale-linter-loading-behavior	ale.txt	/*ale-linter-loading-behavior*
 ale-linter-loading-behaviour	ale.txt	/*ale-linter-loading-behaviour*
 ale-llvm-llc	ale-llvm.txt	/*ale-llvm-llc*
 ale-llvm-options	ale-llvm.txt	/*ale-llvm-options*
