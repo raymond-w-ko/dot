@@ -150,6 +150,7 @@ class SimpleHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         f.close()
         self.send_header("Content-Length", max(raw_content_length, compressed_content_length))
         self.send_header("Last-Modified", self.date_time_string(fs.st_mtime))
+        self.send_header("Access-Control-Allow-Origin", "*")
         self.end_headers()
         return content
 
