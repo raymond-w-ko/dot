@@ -24,6 +24,7 @@ ALEInfo.	ale.txt	/*ALEInfo.*
 ALEInfoLine	ale.txt	/*ALEInfoLine*
 ALEInfoSign	ale.txt	/*ALEInfoSign*
 ALEInfoToClipboard	ale.txt	/*ALEInfoToClipboard*
+ALEJobStarted-autocmd	ale.txt	/*ALEJobStarted-autocmd*
 ALELast	ale.txt	/*ALELast*
 ALELint	ale.txt	/*ALELint*
 ALELintPost-autocmd	ale.txt	/*ALELintPost-autocmd*
@@ -429,10 +430,10 @@ b:ale_glsl_glslls_logfile	ale-glsl.txt	/*b:ale_glsl_glslls_logfile*
 b:ale_go_gobuild_options	ale-go.txt	/*b:ale_go_gobuild_options*
 b:ale_go_gofmt_options	ale-go.txt	/*b:ale_go_gofmt_options*
 b:ale_go_gometalinter_executable	ale-go.txt	/*b:ale_go_gometalinter_executable*
+b:ale_go_gometalinter_lint_package	ale-go.txt	/*b:ale_go_gometalinter_lint_package*
 b:ale_go_gometalinter_options	ale-go.txt	/*b:ale_go_gometalinter_options*
-b:ale_go_gometalinter_package	ale-go.txt	/*b:ale_go_gometalinter_package*
+b:ale_go_staticcheck_lint_package	ale-go.txt	/*b:ale_go_staticcheck_lint_package*
 b:ale_go_staticcheck_options	ale-go.txt	/*b:ale_go_staticcheck_options*
-b:ale_go_staticcheck_package	ale-go.txt	/*b:ale_go_staticcheck_package*
 b:ale_handlebars_embertemplatelint_executable	ale-handlebars.txt	/*b:ale_handlebars_embertemplatelint_executable*
 b:ale_handlebars_embertemplatelint_use_global	ale-handlebars.txt	/*b:ale_handlebars_embertemplatelint_use_global*
 b:ale_haskell_brittany_executable	ale-haskell.txt	/*b:ale_haskell_brittany_executable*
@@ -753,10 +754,10 @@ g:ale_glsl_glslls_logfile	ale-glsl.txt	/*g:ale_glsl_glslls_logfile*
 g:ale_go_gobuild_options	ale-go.txt	/*g:ale_go_gobuild_options*
 g:ale_go_gofmt_options	ale-go.txt	/*g:ale_go_gofmt_options*
 g:ale_go_gometalinter_executable	ale-go.txt	/*g:ale_go_gometalinter_executable*
+g:ale_go_gometalinter_lint_package	ale-go.txt	/*g:ale_go_gometalinter_lint_package*
 g:ale_go_gometalinter_options	ale-go.txt	/*g:ale_go_gometalinter_options*
-g:ale_go_gometalinter_package	ale-go.txt	/*g:ale_go_gometalinter_package*
+g:ale_go_staticcheck_lint_package	ale-go.txt	/*g:ale_go_staticcheck_lint_package*
 g:ale_go_staticcheck_options	ale-go.txt	/*g:ale_go_staticcheck_options*
-g:ale_go_staticcheck_package	ale-go.txt	/*g:ale_go_staticcheck_package*
 g:ale_handlebars_embertemplatelint_executable	ale-handlebars.txt	/*g:ale_handlebars_embertemplatelint_executable*
 g:ale_handlebars_embertemplatelint_use_global	ale-handlebars.txt	/*g:ale_handlebars_embertemplatelint_use_global*
 g:ale_haskell_brittany_executable	ale-haskell.txt	/*g:ale_haskell_brittany_executable*
