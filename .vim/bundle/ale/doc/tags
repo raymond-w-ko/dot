@@ -373,6 +373,7 @@ b:ale_chef_foodcritic_options	ale-chef.txt	/*b:ale_chef_foodcritic_options*
 b:ale_cmake_cmakelint_executable	ale-cmake.txt	/*b:ale_cmake_cmakelint_executable*
 b:ale_cmake_cmakelint_options	ale-cmake.txt	/*b:ale_cmake_cmakelint_options*
 b:ale_command_wrapper	ale.txt	/*b:ale_command_wrapper*
+b:ale_completion_excluded_words	ale.txt	/*b:ale_completion_excluded_words*
 b:ale_cpp_clang_executable	ale-cpp.txt	/*b:ale_cpp_clang_executable*
 b:ale_cpp_clang_options	ale-cpp.txt	/*b:ale_cpp_clang_options*
 b:ale_cpp_clangcheck_executable	ale-cpp.txt	/*b:ale_cpp_clangcheck_executable*
@@ -691,6 +692,7 @@ g:ale_cmake_cmakelint_options	ale-cmake.txt	/*g:ale_cmake_cmakelint_options*
 g:ale_command_wrapper	ale.txt	/*g:ale_command_wrapper*
 g:ale_completion_delay	ale.txt	/*g:ale_completion_delay*
 g:ale_completion_enabled	ale.txt	/*g:ale_completion_enabled*
+g:ale_completion_excluded_words	ale.txt	/*g:ale_completion_excluded_words*
 g:ale_completion_max_suggestions	ale.txt	/*g:ale_completion_max_suggestions*
 g:ale_cpp_clang_executable	ale-cpp.txt	/*g:ale_cpp_clang_executable*
 g:ale_cpp_clang_options	ale-cpp.txt	/*g:ale_cpp_clang_options*
