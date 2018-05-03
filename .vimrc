@@ -2125,6 +2125,11 @@ nnoremap <leader>gp :Gpush<CR>
 
 " }}}
 " filetype specific settings {{{
+function! MyJsonFormatter()
+  let view = winsaveview()
+  execute "%!python -m json.tool"
+  call winrestview(view)
+endfunction
 function! MyJavascriptFormatter()
   let view = winsaveview()
   execute "%!prettier --stdin --trailing-comma es5"
@@ -2158,6 +2163,7 @@ augroup MyVimrc
   au FileType javascript setlocal iskeyword+=$
   au FileType javascript setlocal cinoptions=g0,N-s,(0,u0,Ws,l1,j1,J1
   if executable("prettier") 
+    autocmd FileType json nnoremap <buffer> <Leader>f :call MyJsonFormatter()<CR>
     autocmd FileType javascript nnoremap <buffer> <Leader>f :call MyJavascriptFormatter()<CR>
     autocmd FileType javascript.jsx nnoremap <buffer> <Leader>f :call MyJavascriptFormatter()<CR>
   endif
