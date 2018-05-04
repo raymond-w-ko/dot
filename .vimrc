@@ -109,6 +109,7 @@ Plug 'jpalardy/vim-slime'
 " misc filetypes
 Plug 'rhysd/vim-clang-format'
 Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'aklt/plantuml-syntax'
 
 call plug#end()
 
