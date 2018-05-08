@@ -1,0 +1,3 @@
+#!/bin/bash
+export CR_RENDER_FORCE_PRESENT_MAIN_THREAD=0
+exec VirtualBox
