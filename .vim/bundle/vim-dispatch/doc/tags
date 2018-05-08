@@ -1,6 +1,7 @@
 b:dispatch	dispatch.txt	/*b:dispatch*
 b:start	dispatch.txt	/*b:start*
 dispatch	dispatch.txt	/*dispatch*
+dispatch-:AbortDispatch	dispatch.txt	/*dispatch-:AbortDispatch*
 dispatch-:Copen	dispatch.txt	/*dispatch-:Copen*
 dispatch-:Dispatch	dispatch.txt	/*dispatch-:Dispatch*
 dispatch-:FocusDispatch	dispatch.txt	/*dispatch-:FocusDispatch*
