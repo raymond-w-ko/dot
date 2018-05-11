@@ -314,7 +314,9 @@ else
   fi
   if hash tewisay 2>/dev/null; then
     if hash fortune 2>/dev/null; then
-      fortune | tewisay -f teh 2>/dev/null
+      TEWSISAY_VARIATIONS=("te" "teh" "tes" "tewat")
+      TEWI=${TEWSISAY_VARIATIONS[$(( $RANDOM % ${#TEWSISAY_VARIATIONS[@]} + 1 ))]}
+      fortune | tewisay -f $TEWI 2>/dev/null
     fi
   elif hash cowsay 2>/dev/null; then
     if hash fortune 2>/dev/null; then
