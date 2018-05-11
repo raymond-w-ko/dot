@@ -70,6 +70,7 @@ Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-haystack'
+Plug 'tpope/vim-apathy'
 
 " Hayabusa + friends
 Plug 'easymotion/vim-easymotion'
