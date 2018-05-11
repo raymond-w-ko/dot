@@ -2099,7 +2099,7 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 " vim-startify
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:startify_session_dir="~/sessions/"
-let g:startify_files_number = 32
+let g:startify_files_number = 16
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-dirvish
