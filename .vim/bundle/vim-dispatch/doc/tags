@@ -8,10 +8,10 @@ dispatch-:FocusDispatch	dispatch.txt	/*dispatch-:FocusDispatch*
 dispatch-:Make	dispatch.txt	/*dispatch-:Make*
 dispatch-:Spawn	dispatch.txt	/*dispatch-:Spawn*
 dispatch-:Start	dispatch.txt	/*dispatch-:Start*
+dispatch-`!	dispatch.txt	/*dispatch-`!*
+dispatch-`<CR>	dispatch.txt	/*dispatch-`<CR>*
+dispatch-`<Space>	dispatch.txt	/*dispatch-`<Space>*
 dispatch-commands	dispatch.txt	/*dispatch-commands*
-dispatch-d!	dispatch.txt	/*dispatch-d!*
-dispatch-d<CR>	dispatch.txt	/*dispatch-d<CR>*
-dispatch-d<Space>	dispatch.txt	/*dispatch-d<Space>*
 dispatch-m!	dispatch.txt	/*dispatch-m!*
 dispatch-m<CR>	dispatch.txt	/*dispatch-m<CR>*
 dispatch-m<Space>	dispatch.txt	/*dispatch-m<Space>*
