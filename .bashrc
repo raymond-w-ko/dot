@@ -96,9 +96,7 @@ alias openports='ss --all --numeric --processes --ipv4 --ipv6'
 alias n19='nice -n 19'
 alias n="$NICE_PROG"
 alias makepkg="$NICE_PROG makepkg"
-alias yaourt="$NICE_PROG yaourt"
-alias yup="$NICE_PROG yaourt -Syua --noconfirm"
-alias y="$NICE_PROG yaourt"
+alias y="$NICE_PROG yay"
 alias adu="sudo apt-get update && sudo apt-get dist-upgrade"
 alias bb="backblaze-b2"
 if [[ -f "/usr/local/bin/b2" ]]; then
