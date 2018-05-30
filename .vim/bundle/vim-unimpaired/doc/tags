@@ -6,6 +6,7 @@
 >p	unimpaired.txt	/*>p*
 [<C-L>	unimpaired.txt	/*[<C-L>*
 [<C-Q>	unimpaired.txt	/*[<C-Q>*
+[<C-T>	unimpaired.txt	/*[<C-T>*
 [<Space>	unimpaired.txt	/*[<Space>*
 [A	unimpaired.txt	/*[A*
 [B	unimpaired.txt	/*[B*
@@ -42,6 +43,7 @@
 [yy	unimpaired.txt	/*[yy*
 ]<C-L>	unimpaired.txt	/*]<C-L>*
 ]<C-Q>	unimpaired.txt	/*]<C-Q>*
+]<C-T>	unimpaired.txt	/*]<C-T>*
 ]<Space>	unimpaired.txt	/*]<Space>*
 ]A	unimpaired.txt	/*]A*
 ]B	unimpaired.txt	/*]B*

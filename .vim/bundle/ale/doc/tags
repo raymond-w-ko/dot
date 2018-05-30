@@ -536,7 +536,9 @@ b:ale_php_cs_fixer_use_global	ale-php.txt	/*b:ale_php_cs_fixer_use_global*
 b:ale_php_hackfmt_options	ale-php.txt	/*b:ale_php_hackfmt_options*
 b:ale_php_langserver_executable	ale-php.txt	/*b:ale_php_langserver_executable*
 b:ale_php_langserver_use_global	ale-php.txt	/*b:ale_php_langserver_use_global*
+b:ale_php_phan_executable	ale-php.txt	/*b:ale_php_phan_executable*
 b:ale_php_phan_minimum_severity	ale-php.txt	/*b:ale_php_phan_minimum_severity*
+b:ale_php_phan_use_client	ale-php.txt	/*b:ale_php_phan_use_client*
 b:ale_php_phpcbf_executable	ale-php.txt	/*b:ale_php_phpcbf_executable*
 b:ale_php_phpcbf_standard	ale-php.txt	/*b:ale_php_phpcbf_standard*
 b:ale_php_phpcbf_use_global	ale-php.txt	/*b:ale_php_phpcbf_use_global*
@@ -561,6 +563,7 @@ b:ale_python_autopep8_use_global	ale-python.txt	/*b:ale_python_autopep8_use_glob
 b:ale_python_black_executable	ale-python.txt	/*b:ale_python_black_executable*
 b:ale_python_black_options	ale-python.txt	/*b:ale_python_black_options*
 b:ale_python_black_use_global	ale-python.txt	/*b:ale_python_black_use_global*
+b:ale_python_flake8_change_directory	ale-python.txt	/*b:ale_python_flake8_change_directory*
 b:ale_python_flake8_executable	ale-python.txt	/*b:ale_python_flake8_executable*
 b:ale_python_flake8_options	ale-python.txt	/*b:ale_python_flake8_options*
 b:ale_python_flake8_use_global	ale-python.txt	/*b:ale_python_flake8_use_global*
@@ -740,7 +743,6 @@ g:ale_elm_format_options	ale-elm.txt	/*g:ale_elm_format_options*
 g:ale_elm_format_use_global	ale-elm.txt	/*g:ale_elm_format_use_global*
 g:ale_elm_make_executable	ale-elm.txt	/*g:ale_elm_make_executable*
 g:ale_elm_make_use_global	ale-elm.txt	/*g:ale_elm_make_use_global*
-g:ale_emit_conflict_warnings	ale.txt	/*g:ale_emit_conflict_warnings*
 g:ale_enabled	ale.txt	/*g:ale_enabled*
 g:ale_erlang_erlc_options	ale-erlang.txt	/*g:ale_erlang_erlc_options*
 g:ale_erlang_syntaxerl_executable	ale-erlang.txt	/*g:ale_erlang_syntaxerl_executable*
@@ -885,7 +887,9 @@ g:ale_php_cs_fixer_use_global	ale-php.txt	/*g:ale_php_cs_fixer_use_global*
 g:ale_php_hackfmt_options	ale-php.txt	/*g:ale_php_hackfmt_options*
 g:ale_php_langserver_executable	ale-php.txt	/*g:ale_php_langserver_executable*
 g:ale_php_langserver_use_global	ale-php.txt	/*g:ale_php_langserver_use_global*
+g:ale_php_phan_executable	ale-php.txt	/*g:ale_php_phan_executable*
 g:ale_php_phan_minimum_severity	ale-php.txt	/*g:ale_php_phan_minimum_severity*
+g:ale_php_phan_use_client	ale-php.txt	/*g:ale_php_phan_use_client*
 g:ale_php_phpcbf_executable	ale-php.txt	/*g:ale_php_phpcbf_executable*
 g:ale_php_phpcbf_standard	ale-php.txt	/*g:ale_php_phpcbf_standard*
 g:ale_php_phpcbf_use_global	ale-php.txt	/*g:ale_php_phpcbf_use_global*
@@ -911,6 +915,7 @@ g:ale_python_autopep8_use_global	ale-python.txt	/*g:ale_python_autopep8_use_glob
 g:ale_python_black_executable	ale-python.txt	/*g:ale_python_black_executable*
 g:ale_python_black_options	ale-python.txt	/*g:ale_python_black_options*
 g:ale_python_black_use_global	ale-python.txt	/*g:ale_python_black_use_global*
+g:ale_python_flake8_change_directory	ale-python.txt	/*g:ale_python_flake8_change_directory*
 g:ale_python_flake8_executable	ale-python.txt	/*g:ale_python_flake8_executable*
 g:ale_python_flake8_options	ale-python.txt	/*g:ale_python_flake8_options*
 g:ale_python_flake8_use_global	ale-python.txt	/*g:ale_python_flake8_use_global*
