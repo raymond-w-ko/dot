@@ -264,6 +264,7 @@ ale-python-prospector	ale-python.txt	/*ale-python-prospector*
 ale-python-pycodestyle	ale-python.txt	/*ale-python-pycodestyle*
 ale-python-pylint	ale-python.txt	/*ale-python-pylint*
 ale-python-pyls	ale-python.txt	/*ale-python-pyls*
+ale-python-root	ale-python.txt	/*ale-python-root*
 ale-python-yapf	ale-python.txt	/*ale-python-yapf*
 ale-qml-options	ale-qml.txt	/*ale-qml-options*
 ale-qml-qmlfmt	ale-qml.txt	/*ale-qml-qmlfmt*
