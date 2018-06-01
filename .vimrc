@@ -2134,12 +2134,7 @@ function! MyJsonFormatter()
 endfunction
 function! MyJavascriptFormatter()
   let view = winsaveview()
-  execute "%!prettier --stdin --trailing-comma es5"
-  call winrestview(view)
-endfunction
-function! MyJavascriptFormatterNoTrailing()
-  let view = winsaveview()
-  execute "%!prettier --stdin --trailing-comma none"
+  execute "%!prettier --stdin --parser babylon --trailing-comma es5"
   call winrestview(view)
 endfunction
 augroup MyVimrc
