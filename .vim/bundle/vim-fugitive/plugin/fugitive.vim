@@ -3,7 +3,7 @@
 " Version:      2.3
 " GetLatestVimScripts: 2975 1 :AutoInstall: fugitive.vim
 
-if exists('g:loaded_fugitive') || &cp
+if exists('g:loaded_fugitive')
   finish
 endif
 let g:loaded_fugitive = 1
@@ -298,11 +298,6 @@ augroup fugitive
   autocmd FileReadCmd fugitive://**//[0-9a-f][0-9a-f]* exe fugitive#FileRead()
 
   autocmd User Flags call Hoist('buffer', function('FugitiveStatusline'))
-
-  autocmd User Fugitive
-        \ if &filetype =~# '^git\%(commit\)\=$' && &foldtext ==# 'foldtext()' |
-        \    set foldtext=fugitive#Foldtext() |
-        \ endif
 augroup END
 
 " Section: Initialization
@@ -3222,3 +3217,11 @@ endfunction
 function! fugitive#foldtext() abort
   return fugitive#Foldtext()
 endfunction
+
+augroup fugitive_folding
+  autocmd!
+  autocmd User Fugitive
+        \ if &filetype =~# '^git\%(commit\)\=$' && &foldtext ==# 'foldtext()' |
+        \    set foldtext=fugitive#Foldtext() |
+        \ endif
+augroup END

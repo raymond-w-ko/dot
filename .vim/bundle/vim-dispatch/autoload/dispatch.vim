@@ -172,7 +172,7 @@ function! dispatch#vim_executable() abort
   return s:vim
 endfunction
 
-function dispatch#has_callback() abort
+function! dispatch#has_callback() abort
   if has('clientserver') && !empty(v:servername)
     return 1
   elseif !exists('*job_start') && !exists('*jobstart')
@@ -379,6 +379,9 @@ function! dispatch#spawn(command, ...) abort
         \ 'expanded': dispatch#expand(command),
         \ 'title': '',
         \ }, a:0 ? a:1 : {})
+  if empty(a:command)
+    call extend(request, {'wait': 'never'}, 'keep')
+  endif
   let g:dispatch_last_start = request
   if empty(request.title)
     let request.title = substitute(fnamemodify(matchstr(request.command, '\%(\\.\|\S\)\+'), ':t:r'), '\\\(\s\)', '\1', 'g')
@@ -641,7 +644,7 @@ function! dispatch#compile_command(bang, args, count) abort
 
   if args =~# '^:\S'
     call dispatch#autowrite()
-    if a:count
+    if a:count > 0
       let args = substitute(args, '^:[%0]\=\ze\a', ':' . a:count, '')
     endif
     return s:wrapcd(get(request, 'directory', getcwd()),
@@ -1088,6 +1091,9 @@ endfunction
 function! s:cwindow(request, all, copen) abort
   call s:cgetfile(a:request, a:all)
   let height = get(g:, 'dispatch_quickfix_height', 10)
+  if height <= 0
+    return
+  endif
   let was_qf = s:is_quickfix()
   execute 'botright' (a:copen ? 'copen' : 'cwindow') height
   if !was_qf && s:is_quickfix() && a:copen !=# -2
