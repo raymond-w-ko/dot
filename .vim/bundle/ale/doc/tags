@@ -291,6 +291,7 @@ ale-rust-rustfmt	ale-rust.txt	/*ale-rust-rustfmt*
 ale-sass-options	ale-sass.txt	/*ale-sass-options*
 ale-sass-stylelint	ale-sass.txt	/*ale-sass-stylelint*
 ale-scala-options	ale-scala.txt	/*ale-scala-options*
+ale-scala-scalafmt	ale-scala.txt	/*ale-scala-scalafmt*
 ale-scala-scalastyle	ale-scala.txt	/*ale-scala-scalastyle*
 ale-scss-options	ale-scss.txt	/*ale-scss-options*
 ale-scss-prettier	ale-scss.txt	/*ale-scss-prettier*
@@ -605,6 +606,8 @@ b:ale_ruby_rubocop_options	ale-ruby.txt	/*b:ale_ruby_rubocop_options*
 b:ale_ruby_ruby_executable	ale-ruby.txt	/*b:ale_ruby_ruby_executable*
 b:ale_ruby_rufo_executable	ale-ruby.txt	/*b:ale_ruby_rufo_executable*
 b:ale_rust_cargo_check_all_targets	ale-rust.txt	/*b:ale_rust_cargo_check_all_targets*
+b:ale_rust_cargo_check_examples	ale-rust.txt	/*b:ale_rust_cargo_check_examples*
+b:ale_rust_cargo_check_tests	ale-rust.txt	/*b:ale_rust_cargo_check_tests*
 b:ale_rust_cargo_default_feature_behavior	ale-rust.txt	/*b:ale_rust_cargo_default_feature_behavior*
 b:ale_rust_cargo_include_features	ale-rust.txt	/*b:ale_rust_cargo_include_features*
 b:ale_rust_cargo_use_check	ale-rust.txt	/*b:ale_rust_cargo_use_check*
@@ -615,6 +618,8 @@ b:ale_rust_rustc_options	ale-rust.txt	/*b:ale_rust_rustc_options*
 b:ale_rust_rustfmt_options	ale-rust.txt	/*b:ale_rust_rustfmt_options*
 b:ale_sass_stylelint_executable	ale-sass.txt	/*b:ale_sass_stylelint_executable*
 b:ale_sass_stylelint_use_global	ale-sass.txt	/*b:ale_sass_stylelint_use_global*
+b:ale_scala_scalafmt_executable	ale-scala.txt	/*b:ale_scala_scalafmt_executable*
+b:ale_scala_scalafmt_options	ale-scala.txt	/*b:ale_scala_scalafmt_options*
 b:ale_scss_stylelint_executable	ale-scss.txt	/*b:ale_scss_stylelint_executable*
 b:ale_scss_stylelint_use_global	ale-scss.txt	/*b:ale_scss_stylelint_use_global*
 b:ale_set_balloons	ale.txt	/*b:ale_set_balloons*
@@ -957,6 +962,8 @@ g:ale_ruby_rubocop_options	ale-ruby.txt	/*g:ale_ruby_rubocop_options*
 g:ale_ruby_ruby_executable	ale-ruby.txt	/*g:ale_ruby_ruby_executable*
 g:ale_ruby_rufo_executable	ale-ruby.txt	/*g:ale_ruby_rufo_executable*
 g:ale_rust_cargo_check_all_targets	ale-rust.txt	/*g:ale_rust_cargo_check_all_targets*
+g:ale_rust_cargo_check_examples	ale-rust.txt	/*g:ale_rust_cargo_check_examples*
+g:ale_rust_cargo_check_tests	ale-rust.txt	/*g:ale_rust_cargo_check_tests*
 g:ale_rust_cargo_default_feature_behavior	ale-rust.txt	/*g:ale_rust_cargo_default_feature_behavior*
 g:ale_rust_cargo_include_features	ale-rust.txt	/*g:ale_rust_cargo_include_features*
 g:ale_rust_cargo_use_check	ale-rust.txt	/*g:ale_rust_cargo_use_check*
@@ -967,6 +974,8 @@ g:ale_rust_rustc_options	ale-rust.txt	/*g:ale_rust_rustc_options*
 g:ale_rust_rustfmt_options	ale-rust.txt	/*g:ale_rust_rustfmt_options*
 g:ale_sass_stylelint_executable	ale-sass.txt	/*g:ale_sass_stylelint_executable*
 g:ale_sass_stylelint_use_global	ale-sass.txt	/*g:ale_sass_stylelint_use_global*
+g:ale_scala_scalafmt_executable	ale-scala.txt	/*g:ale_scala_scalafmt_executable*
+g:ale_scala_scalafmt_options	ale-scala.txt	/*g:ale_scala_scalafmt_options*
 g:ale_scala_scalastyle_options	ale-scala.txt	/*g:ale_scala_scalastyle_options*
 g:ale_scalastyle_config_loc	ale-scala.txt	/*g:ale_scalastyle_config_loc*
 g:ale_scss_stylelint_executable	ale-scss.txt	/*g:ale_scss_stylelint_executable*
