@@ -262,6 +262,7 @@ ale-python-mypy	ale-python.txt	/*ale-python-mypy*
 ale-python-options	ale-python.txt	/*ale-python-options*
 ale-python-prospector	ale-python.txt	/*ale-python-prospector*
 ale-python-pycodestyle	ale-python.txt	/*ale-python-pycodestyle*
+ale-python-pyflakes	ale-python.txt	/*ale-python-pyflakes*
 ale-python-pylint	ale-python.txt	/*ale-python-pylint*
 ale-python-pyls	ale-python.txt	/*ale-python-pyls*
 ale-python-root	ale-python.txt	/*ale-python-root*
@@ -581,6 +582,7 @@ b:ale_python_prospector_use_global	ale-python.txt	/*b:ale_python_prospector_use_
 b:ale_python_pycodestyle_executable	ale-python.txt	/*b:ale_python_pycodestyle_executable*
 b:ale_python_pycodestyle_options	ale-python.txt	/*b:ale_python_pycodestyle_options*
 b:ale_python_pycodestyle_use_global	ale-python.txt	/*b:ale_python_pycodestyle_use_global*
+b:ale_python_pyflakes_executable	ale-python.txt	/*b:ale_python_pyflakes_executable*
 b:ale_python_pylint_change_directory	ale-python.txt	/*b:ale_python_pylint_change_directory*
 b:ale_python_pylint_executable	ale-python.txt	/*b:ale_python_pylint_executable*
 b:ale_python_pylint_options	ale-python.txt	/*b:ale_python_pylint_options*
@@ -937,6 +939,7 @@ g:ale_python_prospector_use_global	ale-python.txt	/*g:ale_python_prospector_use_
 g:ale_python_pycodestyle_executable	ale-python.txt	/*g:ale_python_pycodestyle_executable*
 g:ale_python_pycodestyle_options	ale-python.txt	/*g:ale_python_pycodestyle_options*
 g:ale_python_pycodestyle_use_global	ale-python.txt	/*g:ale_python_pycodestyle_use_global*
+g:ale_python_pyflakes_executable	ale-python.txt	/*g:ale_python_pyflakes_executable*
 g:ale_python_pylint_change_directory	ale-python.txt	/*g:ale_python_pylint_change_directory*
 g:ale_python_pylint_executable	ale-python.txt	/*g:ale_python_pylint_executable*
 g:ale_python_pylint_options	ale-python.txt	/*g:ale_python_pylint_options*
