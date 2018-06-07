@@ -91,6 +91,7 @@ ale-cpp-clangformat	ale-cpp.txt	/*ale-cpp-clangformat*
 ale-cpp-clangtidy	ale-cpp.txt	/*ale-cpp-clangtidy*
 ale-cpp-cppcheck	ale-cpp.txt	/*ale-cpp-cppcheck*
 ale-cpp-cpplint	ale-cpp.txt	/*ale-cpp-cpplint*
+ale-cpp-cquery	ale-cpp.txt	/*ale-cpp-cquery*
 ale-cpp-flawfinder	ale-cpp.txt	/*ale-cpp-flawfinder*
 ale-cpp-gcc	ale-cpp.txt	/*ale-cpp-gcc*
 ale-cpp-options	ale-cpp.txt	/*ale-cpp-options*
@@ -390,6 +391,8 @@ b:ale_cpp_cppcheck_executable	ale-cpp.txt	/*b:ale_cpp_cppcheck_executable*
 b:ale_cpp_cppcheck_options	ale-cpp.txt	/*b:ale_cpp_cppcheck_options*
 b:ale_cpp_cpplint_executable	ale-cpp.txt	/*b:ale_cpp_cpplint_executable*
 b:ale_cpp_cpplint_options	ale-cpp.txt	/*b:ale_cpp_cpplint_options*
+b:ale_cpp_cquery_cache_directory	ale-cpp.txt	/*b:ale_cpp_cquery_cache_directory*
+b:ale_cpp_cquery_executable	ale-cpp.txt	/*b:ale_cpp_cquery_executable*
 b:ale_cpp_flawfinder_executable	ale-cpp.txt	/*b:ale_cpp_flawfinder_executable*
 b:ale_cpp_flawfinder_minlevel	ale-cpp.txt	/*b:ale_cpp_flawfinder_minlevel*
 b:ale_cpp_gcc_executable	ale-cpp.txt	/*b:ale_cpp_gcc_executable*
@@ -721,6 +724,8 @@ g:ale_cpp_cppcheck_executable	ale-cpp.txt	/*g:ale_cpp_cppcheck_executable*
 g:ale_cpp_cppcheck_options	ale-cpp.txt	/*g:ale_cpp_cppcheck_options*
 g:ale_cpp_cpplint_executable	ale-cpp.txt	/*g:ale_cpp_cpplint_executable*
 g:ale_cpp_cpplint_options	ale-cpp.txt	/*g:ale_cpp_cpplint_options*
+g:ale_cpp_cquery_cache_directory	ale-cpp.txt	/*g:ale_cpp_cquery_cache_directory*
+g:ale_cpp_cquery_executable	ale-cpp.txt	/*g:ale_cpp_cquery_executable*
 g:ale_cpp_flawfinder_executable	ale-cpp.txt	/*g:ale_cpp_flawfinder_executable*
 g:ale_cpp_flawfinder_minlevel	ale-cpp.txt	/*g:ale_cpp_flawfinder_minlevel*
 g:ale_cpp_gcc_executable	ale-cpp.txt	/*g:ale_cpp_gcc_executable*
