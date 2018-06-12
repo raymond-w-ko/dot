@@ -564,6 +564,12 @@ Vital.Deprecated.ProcessManager-principle	vital/Deprecated/ProcessManager.txt	/*
 Vital.Deprecated.ProcessManager-usage	vital/Deprecated/ProcessManager.txt	/*Vital.Deprecated.ProcessManager-usage*
 Vital.Deprecated.ProcessManager.state()	vital/Deprecated/ProcessManager.txt	/*Vital.Deprecated.ProcessManager.state()*
 Vital.Deprecated.ProcessManager.touch()	vital/Deprecated/ProcessManager.txt	/*Vital.Deprecated.ProcessManager.touch()*
+Vital.Deprecated.Text.Sexp	vital/Deprecated/Text/Sexp.txt	/*Vital.Deprecated.Text.Sexp*
+Vital.Deprecated.Text.Sexp-contents	vital/Deprecated/Text/Sexp.txt	/*Vital.Deprecated.Text.Sexp-contents*
+Vital.Deprecated.Text.Sexp-functions	vital/Deprecated/Text/Sexp.txt	/*Vital.Deprecated.Text.Sexp-functions*
+Vital.Deprecated.Text.Sexp-interface	vital/Deprecated/Text/Sexp.txt	/*Vital.Deprecated.Text.Sexp-interface*
+Vital.Deprecated.Text.Sexp-introduction	vital/Deprecated/Text/Sexp.txt	/*Vital.Deprecated.Text.Sexp-introduction*
+Vital.Deprecated.Text.Sexp.parse()	vital/Deprecated/Text/Sexp.txt	/*Vital.Deprecated.Text.Sexp.parse()*
 Vital.Experimental.Functor	vital/Experimental/Functor.txt	/*Vital.Experimental.Functor*
 Vital.Experimental.Functor-contents	vital/Experimental/Functor.txt	/*Vital.Experimental.Functor-contents*
 Vital.Experimental.Functor-functions	vital/Experimental/Functor.txt	/*Vital.Experimental.Functor-functions*
@@ -1036,12 +1042,6 @@ Vital.Text.Parser-interface	vital/Text/Parser.txt	/*Vital.Text.Parser-interface*
 Vital.Text.Parser-introduction	vital/Text/Parser.txt	/*Vital.Text.Parser-introduction*
 Vital.Text.Parser-objects	vital/Text/Parser.txt	/*Vital.Text.Parser-objects*
 Vital.Text.Parser.parser()	vital/Text/Parser.txt	/*Vital.Text.Parser.parser()*
-Vital.Text.Sexp	vital/Text/Sexp.txt	/*Vital.Text.Sexp*
-Vital.Text.Sexp-contents	vital/Text/Sexp.txt	/*Vital.Text.Sexp-contents*
-Vital.Text.Sexp-functions	vital/Text/Sexp.txt	/*Vital.Text.Sexp-functions*
-Vital.Text.Sexp-interface	vital/Text/Sexp.txt	/*Vital.Text.Sexp-interface*
-Vital.Text.Sexp-introduction	vital/Text/Sexp.txt	/*Vital.Text.Sexp-introduction*
-Vital.Text.Sexp.parse()	vital/Text/Sexp.txt	/*Vital.Text.Sexp.parse()*
 Vital.Text.TOML	vital/Text/TOML.txt	/*Vital.Text.TOML*
 Vital.Text.TOML-contents	vital/Text/TOML.txt	/*Vital.Text.TOML-contents*
 Vital.Text.TOML-functions	vital/Text/TOML.txt	/*Vital.Text.TOML-functions*
@@ -1446,6 +1446,7 @@ vital/Data/Tree.txt	vital/Data/Tree.txt	/*vital\/Data\/Tree.txt*
 vital/Database/SQLite.txt	vital/Database/SQLite.txt	/*vital\/Database\/SQLite.txt*
 vital/DateTime.txt	vital/DateTime.txt	/*vital\/DateTime.txt*
 vital/Deprecated.ProcessManager.txt	vital/Deprecated/ProcessManager.txt	/*vital\/Deprecated.ProcessManager.txt*
+vital/Deprecated/Text/Sexp.txt	vital/Deprecated/Text/Sexp.txt	/*vital\/Deprecated\/Text\/Sexp.txt*
 vital/Experimental/Functor.txt	vital/Experimental/Functor.txt	/*vital\/Experimental\/Functor.txt*
 vital/Hash/MD5.txt	vital/Hash/MD5.txt	/*vital\/Hash\/MD5.txt*
 vital/Interpreter/Brainf__k.txt	vital/Interpreter/Brainf__k.txt	/*vital\/Interpreter\/Brainf__k.txt*
@@ -1478,7 +1479,6 @@ vital/Text/INI.txt	vital/Text/INI.txt	/*vital\/Text\/INI.txt*
 vital/Text/LTSV.txt	vital/Text/LTSV.txt	/*vital\/Text\/LTSV.txt*
 vital/Text/Lexer.txt	vital/Text/Lexer.txt	/*vital\/Text\/Lexer.txt*
 vital/Text/Parser.txt	vital/Text/Parser.txt	/*vital\/Text\/Parser.txt*
-vital/Text/Sexp.txt	vital/Text/Sexp.txt	/*vital\/Text\/Sexp.txt*
 vital/Text/TOML.txt	vital/Text/TOML.txt	/*vital\/Text\/TOML.txt*
 vital/Text/Table.txt	vital/Text/Table.txt	/*vital\/Text\/Table.txt*
 vital/Vim/Buffer.txt	vital/Vim/Buffer.txt	/*vital\/Vim\/Buffer.txt*
