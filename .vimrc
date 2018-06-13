@@ -2139,7 +2139,7 @@ function! MyJavascriptFormatter()
 endfunction
 function! MyPythonFormatter()
   let view = winsaveview()
-  execute "%!black -"
+  execute "%!black -q -"
   call winrestview(view)
 endfunction
 augroup MyVimrc
