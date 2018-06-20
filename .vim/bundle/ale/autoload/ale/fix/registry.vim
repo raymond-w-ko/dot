@@ -51,7 +51,7 @@ let s:default_registry = {
 \   },
 \   'prettier': {
 \       'function': 'ale#fixers#prettier#Fix',
-\       'suggested_filetypes': ['javascript', 'typescript', 'json', 'css', 'scss', 'less', 'markdown', 'graphql', 'vue'],
+\       'suggested_filetypes': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'json5', 'graphql', 'markdown', 'vue'],
 \       'description': 'Apply prettier to a file.',
 \   },
 \   'prettier_eslint': {
@@ -199,6 +199,11 @@ let s:default_registry = {
 \       'function': 'ale#fixers#xo#Fix',
 \       'suggested_filetypes': ['javascript'],
 \       'description': 'Fix JavaScript files using xo --fix.',
+\   },
+\   'qmlfmt': {
+\       'function': 'ale#fixers#qmlfmt#Fix',
+\       'suggested_filetypes': ['qml'],
+\       'description': 'Fix QML files with qmlfmt.',
 \   },
 \}
 

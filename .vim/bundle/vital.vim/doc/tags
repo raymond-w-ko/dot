@@ -555,15 +555,6 @@ Vital.Deprecated.Lua.Prelude.from_lua()	vital/Deprecated/Lua/Prelude.txt	/*Vital
 Vital.Deprecated.Lua.Prelude.luafile_of()	vital/Deprecated/Lua/Prelude.txt	/*Vital.Deprecated.Lua.Prelude.luafile_of()*
 Vital.Deprecated.Lua.Prelude.map()	vital/Deprecated/Lua/Prelude.txt	/*Vital.Deprecated.Lua.Prelude.map()*
 Vital.Deprecated.Lua.Prelude.to_lua()	vital/Deprecated/Lua/Prelude.txt	/*Vital.Deprecated.Lua.Prelude.to_lua()*
-Vital.Deprecated.ProcessManager	vital/Deprecated/ProcessManager.txt	/*Vital.Deprecated.ProcessManager*
-Vital.Deprecated.ProcessManager-contents	vital/Deprecated/ProcessManager.txt	/*Vital.Deprecated.ProcessManager-contents*
-Vital.Deprecated.ProcessManager-functions	vital/Deprecated/ProcessManager.txt	/*Vital.Deprecated.ProcessManager-functions*
-Vital.Deprecated.ProcessManager-interface	vital/Deprecated/ProcessManager.txt	/*Vital.Deprecated.ProcessManager-interface*
-Vital.Deprecated.ProcessManager-introduction	vital/Deprecated/ProcessManager.txt	/*Vital.Deprecated.ProcessManager-introduction*
-Vital.Deprecated.ProcessManager-principle	vital/Deprecated/ProcessManager.txt	/*Vital.Deprecated.ProcessManager-principle*
-Vital.Deprecated.ProcessManager-usage	vital/Deprecated/ProcessManager.txt	/*Vital.Deprecated.ProcessManager-usage*
-Vital.Deprecated.ProcessManager.state()	vital/Deprecated/ProcessManager.txt	/*Vital.Deprecated.ProcessManager.state()*
-Vital.Deprecated.ProcessManager.touch()	vital/Deprecated/ProcessManager.txt	/*Vital.Deprecated.ProcessManager.touch()*
 Vital.Deprecated.Text.Sexp	vital/Deprecated/Text/Sexp.txt	/*Vital.Deprecated.Text.Sexp*
 Vital.Deprecated.Text.Sexp-contents	vital/Deprecated/Text/Sexp.txt	/*Vital.Deprecated.Text.Sexp-contents*
 Vital.Deprecated.Text.Sexp-functions	vital/Deprecated/Text/Sexp.txt	/*Vital.Deprecated.Text.Sexp-functions*
@@ -1445,7 +1436,6 @@ vital/Data/String/Interpolation.txt	vital/Data/String/Interpolation.txt	/*vital\
 vital/Data/Tree.txt	vital/Data/Tree.txt	/*vital\/Data\/Tree.txt*
 vital/Database/SQLite.txt	vital/Database/SQLite.txt	/*vital\/Database\/SQLite.txt*
 vital/DateTime.txt	vital/DateTime.txt	/*vital\/DateTime.txt*
-vital/Deprecated.ProcessManager.txt	vital/Deprecated/ProcessManager.txt	/*vital\/Deprecated.ProcessManager.txt*
 vital/Deprecated/Text/Sexp.txt	vital/Deprecated/Text/Sexp.txt	/*vital\/Deprecated\/Text\/Sexp.txt*
 vital/Experimental/Functor.txt	vital/Experimental/Functor.txt	/*vital\/Experimental\/Functor.txt*
 vital/Hash/MD5.txt	vital/Hash/MD5.txt	/*vital\/Hash\/MD5.txt*

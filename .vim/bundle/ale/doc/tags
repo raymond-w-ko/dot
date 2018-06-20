@@ -76,6 +76,8 @@ ale-chef-foodcritic	ale-chef.txt	/*ale-chef-foodcritic*
 ale-chef-options	ale-chef.txt	/*ale-chef-options*
 ale-clojure-joker	ale-clojure.txt	/*ale-clojure-joker*
 ale-clojure-options	ale-clojure.txt	/*ale-clojure-options*
+ale-cloudformation-cfn-python-lint	ale-cloudformation.txt	/*ale-cloudformation-cfn-python-lint*
+ale-cloudformation-options	ale-cloudformation.txt	/*ale-cloudformation-options*
 ale-cmake-cmakelint	ale-cmake.txt	/*ale-cmake-cmakelint*
 ale-cmake-options	ale-cmake.txt	/*ale-cmake-options*
 ale-command-chain	ale.txt	/*ale-command-chain*
