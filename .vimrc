@@ -788,10 +788,22 @@ nnoremap <leader>dw :call ToggleDiffWhitespace()<CR>
 " }}}
 " Text Objects {{{
 " Shortcut for []
-"onoremap id i[
-"onoremap ad a[
-"vnoremap id i[
-"vnoremap ad a[
+onoremap id i[
+onoremap ad a[
+vnoremap id i[
+vnoremap ad a[
+
+" Shortcut for ()
+onoremap ip i(
+onoremap ap a(
+vnoremap ip i(
+vnoremap ap a(
+
+" Shortcut for {}
+onoremap ib i{
+onoremap ab a{
+vnoremap ib i{
+vnoremap ab a{
 
 " Next and Last
 
