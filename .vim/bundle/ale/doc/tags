@@ -300,6 +300,7 @@ ale-scala-scalastyle	ale-scala.txt	/*ale-scala-scalastyle*
 ale-scss-options	ale-scss.txt	/*ale-scss-options*
 ale-scss-prettier	ale-scss.txt	/*ale-scss-prettier*
 ale-scss-stylelint	ale-scss.txt	/*ale-scss-stylelint*
+ale-sh-language-server	ale-sh.txt	/*ale-sh-language-server*
 ale-sh-options	ale-sh.txt	/*ale-sh-options*
 ale-sh-shell	ale-sh.txt	/*ale-sh-shell*
 ale-sh-shellcheck	ale-sh.txt	/*ale-sh-shellcheck*
@@ -632,6 +633,8 @@ b:ale_scss_stylelint_executable	ale-scss.txt	/*b:ale_scss_stylelint_executable*
 b:ale_scss_stylelint_use_global	ale-scss.txt	/*b:ale_scss_stylelint_use_global*
 b:ale_set_balloons	ale.txt	/*b:ale_set_balloons*
 b:ale_set_balloons_legacy_echo	ale.txt	/*b:ale_set_balloons_legacy_echo*
+b:ale_sh_language_server_executable	ale-sh.txt	/*b:ale_sh_language_server_executable*
+b:ale_sh_language_server_use_global	ale-sh.txt	/*b:ale_sh_language_server_use_global*
 b:ale_sh_shell_default_shell	ale-sh.txt	/*b:ale_sh_shell_default_shell*
 b:ale_sh_shellcheck_exclusions	ale-sh.txt	/*b:ale_sh_shellcheck_exclusions*
 b:ale_sh_shellcheck_executable	ale-sh.txt	/*b:ale_sh_shellcheck_executable*
@@ -998,6 +1001,8 @@ g:ale_set_highlights	ale.txt	/*g:ale_set_highlights*
 g:ale_set_loclist	ale.txt	/*g:ale_set_loclist*
 g:ale_set_quickfix	ale.txt	/*g:ale_set_quickfix*
 g:ale_set_signs	ale.txt	/*g:ale_set_signs*
+g:ale_sh_language_server_executable	ale-sh.txt	/*g:ale_sh_language_server_executable*
+g:ale_sh_language_server_use_global	ale-sh.txt	/*g:ale_sh_language_server_use_global*
 g:ale_sh_shell_default_shell	ale-sh.txt	/*g:ale_sh_shell_default_shell*
 g:ale_sh_shellcheck_exclusions	ale-sh.txt	/*g:ale_sh_shellcheck_exclusions*
 g:ale_sh_shellcheck_executable	ale-sh.txt	/*g:ale_sh_shellcheck_executable*
