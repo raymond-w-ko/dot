@@ -512,6 +512,7 @@ b:ale_less_stylelint_use_global	ale-less.txt	/*b:ale_less_stylelint_use_global*
 b:ale_linted	ale.txt	/*b:ale_linted*
 b:ale_linter_aliases	ale.txt	/*b:ale_linter_aliases*
 b:ale_linters	ale.txt	/*b:ale_linters*
+b:ale_linters_ignore	ale.txt	/*b:ale_linters_ignore*
 b:ale_list_vertical	ale.txt	/*b:ale_list_vertical*
 b:ale_list_window_size	ale.txt	/*b:ale_list_window_size*
 b:ale_llvm_llc_executable	ale-llvm.txt	/*b:ale_llvm_llc_executable*
@@ -866,6 +867,7 @@ g:ale_lint_on_text_changed	ale.txt	/*g:ale_lint_on_text_changed*
 g:ale_linter_aliases	ale.txt	/*g:ale_linter_aliases*
 g:ale_linters	ale.txt	/*g:ale_linters*
 g:ale_linters_explicit	ale.txt	/*g:ale_linters_explicit*
+g:ale_linters_ignore	ale.txt	/*g:ale_linters_ignore*
 g:ale_list_vertical	ale.txt	/*g:ale_list_vertical*
 g:ale_list_window_size	ale.txt	/*g:ale_list_window_size*
 g:ale_llvm_llc_executable	ale-llvm.txt	/*g:ale_llvm_llc_executable*
@@ -1053,3 +1055,4 @@ g:ale_yaml_swaglint_executable	ale-yaml.txt	/*g:ale_yaml_swaglint_executable*
 g:ale_yaml_swaglint_use_global	ale-yaml.txt	/*g:ale_yaml_swaglint_use_global*
 g:ale_yaml_yamllint_executable	ale-yaml.txt	/*g:ale_yaml_yamllint_executable*
 g:ale_yaml_yamllint_options	ale-yaml.txt	/*g:ale_yaml_yamllint_options*
+g:html_tidy_use_global	ale-html.txt	/*g:html_tidy_use_global*
