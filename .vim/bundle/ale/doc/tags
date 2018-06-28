@@ -107,6 +107,11 @@ ale-cuda-nvcc	ale-cuda.txt	/*ale-cuda-nvcc*
 ale-cuda-options	ale-cuda.txt	/*ale-cuda-options*
 ale-dart-dartanalyzer	ale-dart.txt	/*ale-dart-dartanalyzer*
 ale-dart-options	ale-dart.txt	/*ale-dart-options*
+ale-design-goals	ale-development.txt	/*ale-design-goals*
+ale-development	ale-development.txt	/*ale-development*
+ale-development-contents	ale-development.txt	/*ale-development-contents*
+ale-development-introduction	ale-development.txt	/*ale-development-introduction*
+ale-development.txt	ale-development.txt	/*ale-development.txt*
 ale-dockerfile-hadolint	ale-dockerfile.txt	/*ale-dockerfile-hadolint*
 ale-dockerfile-options	ale-dockerfile.txt	/*ale-dockerfile-options*
 ale-elixir-dialyxir	ale-elixir.txt	/*ale-elixir-dialyxir*
@@ -257,6 +262,8 @@ ale-pug-options	ale-pug.txt	/*ale-pug-options*
 ale-pug-puglint	ale-pug.txt	/*ale-pug-puglint*
 ale-puppet-options	ale-puppet.txt	/*ale-puppet-options*
 ale-puppet-puppetlint	ale-puppet.txt	/*ale-puppet-puppetlint*
+ale-pyrex-cython	ale-pyrex.txt	/*ale-pyrex-cython*
+ale-pyrex-options	ale-pyrex.txt	/*ale-pyrex-options*
 ale-python-autopep8	ale-python.txt	/*ale-python-autopep8*
 ale-python-black	ale-python.txt	/*ale-python-black*
 ale-python-flake8	ale-python.txt	/*ale-python-flake8*
@@ -567,6 +574,8 @@ b:ale_pug_puglint_options	ale-pug.txt	/*b:ale_pug_puglint_options*
 b:ale_pug_puglint_use_global	ale-pug.txt	/*b:ale_pug_puglint_use_global*
 b:ale_puppet_puppetlint_executable	ale-puppet.txt	/*b:ale_puppet_puppetlint_executable*
 b:ale_puppet_puppetlint_options	ale-puppet.txt	/*b:ale_puppet_puppetlint_options*
+b:ale_pyrex_cython_executable	ale-pyrex.txt	/*b:ale_pyrex_cython_executable*
+b:ale_pyrex_cython_options	ale-pyrex.txt	/*b:ale_pyrex_cython_options*
 b:ale_python_autopep8_executable	ale-python.txt	/*b:ale_python_autopep8_executable*
 b:ale_python_autopep8_options	ale-python.txt	/*b:ale_python_autopep8_options*
 b:ale_python_autopep8_use_global	ale-python.txt	/*b:ale_python_autopep8_use_global*
@@ -614,6 +623,7 @@ b:ale_ruby_rubocop_executable	ale-ruby.txt	/*b:ale_ruby_rubocop_executable*
 b:ale_ruby_rubocop_options	ale-ruby.txt	/*b:ale_ruby_rubocop_options*
 b:ale_ruby_ruby_executable	ale-ruby.txt	/*b:ale_ruby_ruby_executable*
 b:ale_ruby_rufo_executable	ale-ruby.txt	/*b:ale_ruby_rufo_executable*
+b:ale_rust_cargo_avoid_whole_workspace	ale-rust.txt	/*b:ale_rust_cargo_avoid_whole_workspace*
 b:ale_rust_cargo_check_all_targets	ale-rust.txt	/*b:ale_rust_cargo_check_all_targets*
 b:ale_rust_cargo_check_examples	ale-rust.txt	/*b:ale_rust_cargo_check_examples*
 b:ale_rust_cargo_check_tests	ale-rust.txt	/*b:ale_rust_cargo_check_tests*
@@ -929,6 +939,8 @@ g:ale_pug_puglint_options	ale-pug.txt	/*g:ale_pug_puglint_options*
 g:ale_pug_puglint_use_global	ale-pug.txt	/*g:ale_pug_puglint_use_global*
 g:ale_puppet_puppetlint_executable	ale-puppet.txt	/*g:ale_puppet_puppetlint_executable*
 g:ale_puppet_puppetlint_options	ale-puppet.txt	/*g:ale_puppet_puppetlint_options*
+g:ale_pyrex_cython_executable	ale-pyrex.txt	/*g:ale_pyrex_cython_executable*
+g:ale_pyrex_cython_options	ale-pyrex.txt	/*g:ale_pyrex_cython_options*
 g:ale_python_autopep8_executable	ale-python.txt	/*g:ale_python_autopep8_executable*
 g:ale_python_autopep8_options	ale-python.txt	/*g:ale_python_autopep8_options*
 g:ale_python_autopep8_use_global	ale-python.txt	/*g:ale_python_autopep8_use_global*
@@ -976,6 +988,7 @@ g:ale_ruby_rubocop_executable	ale-ruby.txt	/*g:ale_ruby_rubocop_executable*
 g:ale_ruby_rubocop_options	ale-ruby.txt	/*g:ale_ruby_rubocop_options*
 g:ale_ruby_ruby_executable	ale-ruby.txt	/*g:ale_ruby_ruby_executable*
 g:ale_ruby_rufo_executable	ale-ruby.txt	/*g:ale_ruby_rufo_executable*
+g:ale_rust_cargo_avoid_whole_workspace	ale-rust.txt	/*g:ale_rust_cargo_avoid_whole_workspace*
 g:ale_rust_cargo_check_all_targets	ale-rust.txt	/*g:ale_rust_cargo_check_all_targets*
 g:ale_rust_cargo_check_examples	ale-rust.txt	/*g:ale_rust_cargo_check_examples*
 g:ale_rust_cargo_check_tests	ale-rust.txt	/*g:ale_rust_cargo_check_tests*
