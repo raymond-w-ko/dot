@@ -278,6 +278,7 @@ ale-python-pycodestyle	ale-python.txt	/*ale-python-pycodestyle*
 ale-python-pyflakes	ale-python.txt	/*ale-python-pyflakes*
 ale-python-pylint	ale-python.txt	/*ale-python-pylint*
 ale-python-pyls	ale-python.txt	/*ale-python-pyls*
+ale-python-pyre	ale-python.txt	/*ale-python-pyre*
 ale-python-root	ale-python.txt	/*ale-python-root*
 ale-python-yapf	ale-python.txt	/*ale-python-yapf*
 ale-qml-options	ale-qml.txt	/*ale-qml-options*
@@ -610,6 +611,8 @@ b:ale_python_pylint_options	ale-python.txt	/*b:ale_python_pylint_options*
 b:ale_python_pylint_use_global	ale-python.txt	/*b:ale_python_pylint_use_global*
 b:ale_python_pyls_executable	ale-python.txt	/*b:ale_python_pyls_executable*
 b:ale_python_pyls_use_global	ale-python.txt	/*b:ale_python_pyls_use_global*
+b:ale_python_pyre_executable	ale-python.txt	/*b:ale_python_pyre_executable*
+b:ale_python_pyre_use_global	ale-python.txt	/*b:ale_python_pyre_use_global*
 b:ale_python_yapf_executable	ale-python.txt	/*b:ale_python_yapf_executable*
 b:ale_python_yapf_use_global	ale-python.txt	/*b:ale_python_yapf_use_global*
 b:ale_qml_qmlfmt_executable	ale-qml.txt	/*b:ale_qml_qmlfmt_executable*
@@ -977,6 +980,8 @@ g:ale_python_pylint_options	ale-python.txt	/*g:ale_python_pylint_options*
 g:ale_python_pylint_use_global	ale-python.txt	/*g:ale_python_pylint_use_global*
 g:ale_python_pyls_executable	ale-python.txt	/*g:ale_python_pyls_executable*
 g:ale_python_pyls_use_global	ale-python.txt	/*g:ale_python_pyls_use_global*
+g:ale_python_pyre_executable	ale-python.txt	/*g:ale_python_pyre_executable*
+g:ale_python_pyre_use_global	ale-python.txt	/*g:ale_python_pyre_use_global*
 g:ale_python_yapf_executable	ale-python.txt	/*g:ale_python_yapf_executable*
 g:ale_python_yapf_use_global	ale-python.txt	/*g:ale_python_yapf_use_global*
 g:ale_qml_qmlfmt_executable	ale-qml.txt	/*g:ale_qml_qmlfmt_executable*
