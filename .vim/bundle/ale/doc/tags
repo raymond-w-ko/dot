@@ -356,6 +356,7 @@ ale-vim-options	ale-vim.txt	/*ale-vim-options*
 ale-vim-vint	ale-vim.txt	/*ale-vim-vint*
 ale-vue-options	ale-vue.txt	/*ale-vue-options*
 ale-vue-prettier	ale-vue.txt	/*ale-vue-prettier*
+ale-vue-vls	ale-vue.txt	/*ale-vue-vls*
 ale-write-good-options	ale.txt	/*ale-write-good-options*
 ale-xhtml-options	ale-xhtml.txt	/*ale-xhtml-options*
 ale-xhtml-write-good	ale-xhtml.txt	/*ale-xhtml-write-good*
@@ -593,6 +594,7 @@ b:ale_python_flake8_executable	ale-python.txt	/*b:ale_python_flake8_executable*
 b:ale_python_flake8_options	ale-python.txt	/*b:ale_python_flake8_options*
 b:ale_python_flake8_use_global	ale-python.txt	/*b:ale_python_flake8_use_global*
 b:ale_python_isort_executable	ale-python.txt	/*b:ale_python_isort_executable*
+b:ale_python_isort_options	ale-python.txt	/*b:ale_python_isort_options*
 b:ale_python_isort_use_global	ale-python.txt	/*b:ale_python_isort_use_global*
 b:ale_python_mypy_executable	ale-python.txt	/*b:ale_python_mypy_executable*
 b:ale_python_mypy_ignore_invalid_syntax	ale-python.txt	/*b:ale_python_mypy_ignore_invalid_syntax*
@@ -690,6 +692,8 @@ b:ale_verilog_verilator_options	ale-verilog.txt	/*b:ale_verilog_verilator_option
 b:ale_vim_vint_executable	ale-vim.txt	/*b:ale_vim_vint_executable*
 b:ale_vim_vint_show_style_issues	ale-vim.txt	/*b:ale_vim_vint_show_style_issues*
 b:ale_virtualenv_dir_names	ale.txt	/*b:ale_virtualenv_dir_names*
+b:ale_vue_vls_executable	ale-vue.txt	/*b:ale_vue_vls_executable*
+b:ale_vue_vls_use_global	ale-vue.txt	/*b:ale_vue_vls_use_global*
 b:ale_warn_about_trailing_blank_lines	ale.txt	/*b:ale_warn_about_trailing_blank_lines*
 b:ale_warn_about_trailing_whitespace	ale.txt	/*b:ale_warn_about_trailing_whitespace*
 b:ale_windows_node_executable_path	ale.txt	/*b:ale_windows_node_executable_path*
@@ -962,6 +966,7 @@ g:ale_python_flake8_executable	ale-python.txt	/*g:ale_python_flake8_executable*
 g:ale_python_flake8_options	ale-python.txt	/*g:ale_python_flake8_options*
 g:ale_python_flake8_use_global	ale-python.txt	/*g:ale_python_flake8_use_global*
 g:ale_python_isort_executable	ale-python.txt	/*g:ale_python_isort_executable*
+g:ale_python_isort_options	ale-python.txt	/*g:ale_python_isort_options*
 g:ale_python_isort_use_global	ale-python.txt	/*g:ale_python_isort_use_global*
 g:ale_python_mypy_executable	ale-python.txt	/*g:ale_python_mypy_executable*
 g:ale_python_mypy_ignore_invalid_syntax	ale-python.txt	/*g:ale_python_mypy_ignore_invalid_syntax*
@@ -1073,6 +1078,8 @@ g:ale_verilog_verilator_options	ale-verilog.txt	/*g:ale_verilog_verilator_option
 g:ale_vim_vint_executable	ale-vim.txt	/*g:ale_vim_vint_executable*
 g:ale_vim_vint_show_style_issues	ale-vim.txt	/*g:ale_vim_vint_show_style_issues*
 g:ale_virtualenv_dir_names	ale.txt	/*g:ale_virtualenv_dir_names*
+g:ale_vue_vls_executable	ale-vue.txt	/*g:ale_vue_vls_executable*
+g:ale_vue_vls_use_global	ale-vue.txt	/*g:ale_vue_vls_use_global*
 g:ale_warn_about_trailing_blank_lines	ale.txt	/*g:ale_warn_about_trailing_blank_lines*
 g:ale_warn_about_trailing_whitespace	ale.txt	/*g:ale_warn_about_trailing_whitespace*
 g:ale_windows_node_executable_path	ale.txt	/*g:ale_windows_node_executable_path*
