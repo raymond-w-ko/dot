@@ -263,6 +263,7 @@ ale-proto-options	ale-proto.txt	/*ale-proto-options*
 ale-proto-protoc-gen-lint	ale-proto.txt	/*ale-proto-protoc-gen-lint*
 ale-pug-options	ale-pug.txt	/*ale-pug-options*
 ale-pug-puglint	ale-pug.txt	/*ale-pug-puglint*
+ale-puppet-languageserver	ale-puppet.txt	/*ale-puppet-languageserver*
 ale-puppet-options	ale-puppet.txt	/*ale-puppet-options*
 ale-puppet-puppetlint	ale-puppet.txt	/*ale-puppet-puppetlint*
 ale-pyrex-cython	ale-pyrex.txt	/*ale-pyrex-cython*
@@ -579,6 +580,7 @@ b:ale_pony_ponyc_options	ale-pony.txt	/*b:ale_pony_ponyc_options*
 b:ale_pug_puglint_executable	ale-pug.txt	/*b:ale_pug_puglint_executable*
 b:ale_pug_puglint_options	ale-pug.txt	/*b:ale_pug_puglint_options*
 b:ale_pug_puglint_use_global	ale-pug.txt	/*b:ale_pug_puglint_use_global*
+b:ale_puppet_languageserver_executable	ale-puppet.txt	/*b:ale_puppet_languageserver_executable*
 b:ale_puppet_puppetlint_executable	ale-puppet.txt	/*b:ale_puppet_puppetlint_executable*
 b:ale_puppet_puppetlint_options	ale-puppet.txt	/*b:ale_puppet_puppetlint_options*
 b:ale_pyrex_cython_executable	ale-pyrex.txt	/*b:ale_pyrex_cython_executable*
@@ -951,6 +953,7 @@ g:ale_proto_protoc_gen_lint_options	ale-proto.txt	/*g:ale_proto_protoc_gen_lint_
 g:ale_pug_puglint_executable	ale-pug.txt	/*g:ale_pug_puglint_executable*
 g:ale_pug_puglint_options	ale-pug.txt	/*g:ale_pug_puglint_options*
 g:ale_pug_puglint_use_global	ale-pug.txt	/*g:ale_pug_puglint_use_global*
+g:ale_puppet_languageserver_executable	ale-puppet.txt	/*g:ale_puppet_languageserver_executable*
 g:ale_puppet_puppetlint_executable	ale-puppet.txt	/*g:ale_puppet_puppetlint_executable*
 g:ale_puppet_puppetlint_options	ale-puppet.txt	/*g:ale_puppet_puppetlint_options*
 g:ale_pyrex_cython_executable	ale-pyrex.txt	/*g:ale_pyrex_cython_executable*

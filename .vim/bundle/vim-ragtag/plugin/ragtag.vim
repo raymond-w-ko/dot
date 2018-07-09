@@ -58,6 +58,11 @@ function! s:Init()
     imap <script> <buffer> <C-X>! <!DOCTYPE html>
   endif
 
+  if empty(&l:define)
+    let &l:define = '\<id=["'']\='
+    let b:undo_ftplugin = get(b:undo_ftplugin, 'exe') . '|setl def='
+  endif
+
   imap <silent> <buffer> <C-X># <C-R>=<SID>charsetTag()<CR>
   inoremap <silent> <buffer> <SID>HtmlComplete <C-R>=<SID>htmlEn()<CR><C-X><C-O><C-P><C-R>=<SID>htmlDis()<CR><C-N>
   imap     <buffer> <C-X>H <SID>HtmlComplete
@@ -258,20 +263,6 @@ function! s:reindent()
   endif
   return ""
 endfun
-
-function! s:doctypeSeek()
-  if !exists("b:ragtag_doctype_index")
-    if exists("b:allml_doctype_index")
-      let b:ragtag_doctype_index = b:allml_doctype_index
-    elseif s:isFiletype('xhtml') || s:isFiletype('eruby')
-      let b:ragtag_doctype_index = 10
-    elseif !s:isFiletype('xml')
-      let b:ragtag_doctype_index = 7
-    endif
-  endif
-  let index = b:ragtag_doctype_index - 1
-  return (index < 0 ? s:repeat("\<C-P>",-index) : s:repeat("\<C-N>",index))
-endfunction
 
 function! s:stylesheetType()
   if s:subtype() == 'html5'
