@@ -2149,6 +2149,11 @@ function! MyJavascriptFormatter()
   execute "%!prettier --stdin --parser babylon --trailing-comma es5"
   call winrestview(view)
 endfunction
+function! MyScssFormatter()
+  let view = winsaveview()
+  execute "%!prettier --stdin --parser scss --trailing-comma es5"
+  call winrestview(view)
+endfunction
 function! MyPythonFormatter()
   let view = winsaveview()
   execute "%!black -q -"
@@ -2180,6 +2185,7 @@ augroup MyVimrc
     autocmd FileType json nnoremap <buffer> <Leader>f :call MyJsonFormatter()<CR>
     autocmd FileType javascript nnoremap <buffer> <Leader>f :call MyJavascriptFormatter()<CR>
     autocmd FileType javascript.jsx nnoremap <buffer> <Leader>f :call MyJavascriptFormatter()<CR>
+    autocmd FileType scss nnoremap <buffer> <Leader>f :call MyScssFormatter()<CR>
     autocmd FileType python nnoremap <buffer> <Leader>f :call MyPythonFormatter()<CR>
   endif
   
