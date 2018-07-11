@@ -39,7 +39,7 @@ export CCACHE_SLOPPINESS=pch_defines,time_macros
 if [[ $(uname -s) == CYGWIN* ]]; then
   export PATH="$HOME/vim/bin:$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/lib/lapack"
 else
-  export PATH="/opt/aws/bin:/opt/mono/bin:/opt/dropbox"
+  export PATH="/opt/aws/bin:/opt/mono/bin"
   export PATH="/usr/lib/ccache/bin:/opt/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl:$PATH"
   export PATH="/usr/local/opt/node@8/bin:$PATH"
   export PATH="$HOME/npm-global/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/.local/bin:$HOME/vim/bin:$HOME/bin:$HOME/go/bin:$PATH"
