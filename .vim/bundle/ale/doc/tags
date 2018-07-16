@@ -46,8 +46,11 @@ ALEWarning	ale.txt	/*ALEWarning*
 ALEWarningLine	ale.txt	/*ALEWarningLine*
 ALEWarningSign	ale.txt	/*ALEWarningSign*
 ale	ale.txt	/*ale*
+ale#Env()	ale.txt	/*ale#Env()*
+ale#Pad()	ale.txt	/*ale#Pad()*
 ale#Queue()	ale.txt	/*ale#Queue()*
 ale#engine#CreateDirectory()	ale.txt	/*ale#engine#CreateDirectory()*
+ale#engine#CreateFile()	ale.txt	/*ale#engine#CreateFile()*
 ale#engine#EscapeCommandPart()	ale.txt	/*ale#engine#EscapeCommandPart()*
 ale#engine#GetLoclist()	ale.txt	/*ale#engine#GetLoclist()*
 ale#engine#IsCheckingBuffer()	ale.txt	/*ale#engine#IsCheckingBuffer()*
@@ -113,6 +116,7 @@ ale-design-goals	ale-development.txt	/*ale-design-goals*
 ale-development	ale-development.txt	/*ale-development*
 ale-development-contents	ale-development.txt	/*ale-development-contents*
 ale-development-introduction	ale-development.txt	/*ale-development-introduction*
+ale-development-linter-tests	ale-development.txt	/*ale-development-linter-tests*
 ale-development-tests	ale-development.txt	/*ale-development-tests*
 ale-development.txt	ale-development.txt	/*ale-development.txt*
 ale-dockerfile-hadolint	ale-dockerfile.txt	/*ale-dockerfile-hadolint*
@@ -199,6 +203,7 @@ ale-json-options	ale-json.txt	/*ale-json-options*
 ale-json-prettier	ale-json.txt	/*ale-json-prettier*
 ale-kotlin-kotlinc	ale-kotlin.txt	/*ale-kotlin-kotlinc*
 ale-kotlin-ktlint	ale-kotlin.txt	/*ale-kotlin-ktlint*
+ale-kotlin-languageserver	ale-kotlin.txt	/*ale-kotlin-languageserver*
 ale-kotlin-options	ale-kotlin.txt	/*ale-kotlin-options*
 ale-latex-options	ale-latex.txt	/*ale-latex-options*
 ale-latex-write-good	ale-latex.txt	/*ale-latex-write-good*
@@ -222,6 +227,7 @@ ale-lua-options	ale-lua.txt	/*ale-lua-options*
 ale-markdown-mdl	ale-markdown.txt	/*ale-markdown-mdl*
 ale-markdown-options	ale-markdown.txt	/*ale-markdown-options*
 ale-markdown-prettier	ale-markdown.txt	/*ale-markdown-prettier*
+ale-markdown-remark-lint	ale-markdown.txt	/*ale-markdown-remark-lint*
 ale-markdown-textlint	ale-markdown.txt	/*ale-markdown-textlint*
 ale-markdown-write-good	ale-markdown.txt	/*ale-markdown-write-good*
 ale-mercury-mmc	ale-mercury.txt	/*ale-mercury-mmc*
@@ -538,6 +544,9 @@ b:ale_lua_luacheck_executable	ale-lua.txt	/*b:ale_lua_luacheck_executable*
 b:ale_lua_luacheck_options	ale-lua.txt	/*b:ale_lua_luacheck_options*
 b:ale_markdown_mdl_executable	ale-markdown.txt	/*b:ale_markdown_mdl_executable*
 b:ale_markdown_mdl_options	ale-markdown.txt	/*b:ale_markdown_mdl_options*
+b:ale_markdown_remark_lint_executable	ale-markdown.txt	/*b:ale_markdown_remark_lint_executable*
+b:ale_markdown_remark_lint_options	ale-markdown.txt	/*b:ale_markdown_remark_lint_options*
+b:ale_markdown_remark_lint_use_global	ale-markdown.txt	/*b:ale_markdown_remark_lint_use_global*
 b:ale_max_signs	ale.txt	/*b:ale_max_signs*
 b:ale_maximum_file_size	ale.txt	/*b:ale_maximum_file_size*
 b:ale_mercury_mmc_executable	ale-mercury.txt	/*b:ale_mercury_mmc_executable*
@@ -651,6 +660,8 @@ b:ale_sass_stylelint_executable	ale-sass.txt	/*b:ale_sass_stylelint_executable*
 b:ale_sass_stylelint_use_global	ale-sass.txt	/*b:ale_sass_stylelint_use_global*
 b:ale_scala_scalafmt_executable	ale-scala.txt	/*b:ale_scala_scalafmt_executable*
 b:ale_scala_scalafmt_options	ale-scala.txt	/*b:ale_scala_scalafmt_options*
+b:ale_scala_scalastyle_config	ale-scala.txt	/*b:ale_scala_scalastyle_config*
+b:ale_scala_scalastyle_options	ale-scala.txt	/*b:ale_scala_scalastyle_options*
 b:ale_scss_stylelint_executable	ale-scss.txt	/*b:ale_scss_stylelint_executable*
 b:ale_scss_stylelint_use_global	ale-scss.txt	/*b:ale_scss_stylelint_use_global*
 b:ale_set_balloons	ale.txt	/*b:ale_set_balloons*
@@ -880,6 +891,7 @@ g:ale_kotlin_kotlinc_sourcepath	ale-kotlin.txt	/*g:ale_kotlin_kotlinc_sourcepath
 g:ale_kotlin_kotlinc_use_module_file	ale-kotlin.txt	/*g:ale_kotlin_kotlinc_use_module_file*
 g:ale_kotlin_ktlint_executable	ale-kotlin.txt	/*g:ale_kotlin_ktlint_executable*
 g:ale_kotlin_ktlint_rulesets	ale-kotlin.txt	/*g:ale_kotlin_ktlint_rulesets*
+g:ale_kotlin_languageserver_executable	ale-kotlin.txt	/*g:ale_kotlin_languageserver_executable*
 g:ale_lacheck_executable	ale-tex.txt	/*g:ale_lacheck_executable*
 g:ale_less_lessc_executable	ale-less.txt	/*g:ale_less_lessc_executable*
 g:ale_less_lessc_options	ale-less.txt	/*g:ale_less_lessc_options*
@@ -906,6 +918,9 @@ g:ale_lua_luacheck_executable	ale-lua.txt	/*g:ale_lua_luacheck_executable*
 g:ale_lua_luacheck_options	ale-lua.txt	/*g:ale_lua_luacheck_options*
 g:ale_markdown_mdl_executable	ale-markdown.txt	/*g:ale_markdown_mdl_executable*
 g:ale_markdown_mdl_options	ale-markdown.txt	/*g:ale_markdown_mdl_options*
+g:ale_markdown_remark_lint_executable	ale-markdown.txt	/*g:ale_markdown_remark_lint_executable*
+g:ale_markdown_remark_lint_options	ale-markdown.txt	/*g:ale_markdown_remark_lint_options*
+g:ale_markdown_remark_lint_use_global	ale-markdown.txt	/*g:ale_markdown_remark_lint_use_global*
 g:ale_max_buffer_history_size	ale.txt	/*g:ale_max_buffer_history_size*
 g:ale_max_signs	ale.txt	/*g:ale_max_signs*
 g:ale_maximum_file_size	ale.txt	/*g:ale_maximum_file_size*
@@ -1024,8 +1039,8 @@ g:ale_sass_stylelint_executable	ale-sass.txt	/*g:ale_sass_stylelint_executable*
 g:ale_sass_stylelint_use_global	ale-sass.txt	/*g:ale_sass_stylelint_use_global*
 g:ale_scala_scalafmt_executable	ale-scala.txt	/*g:ale_scala_scalafmt_executable*
 g:ale_scala_scalafmt_options	ale-scala.txt	/*g:ale_scala_scalafmt_options*
+g:ale_scala_scalastyle_config	ale-scala.txt	/*g:ale_scala_scalastyle_config*
 g:ale_scala_scalastyle_options	ale-scala.txt	/*g:ale_scala_scalastyle_options*
-g:ale_scalastyle_config_loc	ale-scala.txt	/*g:ale_scalastyle_config_loc*
 g:ale_scss_stylelint_executable	ale-scss.txt	/*g:ale_scss_stylelint_executable*
 g:ale_scss_stylelint_use_global	ale-scss.txt	/*g:ale_scss_stylelint_use_global*
 g:ale_set_balloons	ale.txt	/*g:ale_set_balloons*
