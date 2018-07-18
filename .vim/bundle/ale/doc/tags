@@ -214,6 +214,7 @@ ale-less-stylelint	ale-less.txt	/*ale-less-stylelint*
 ale-lint	ale.txt	/*ale-lint*
 ale-lint-file	ale.txt	/*ale-lint-file*
 ale-lint-file-linters	ale.txt	/*ale-lint-file-linters*
+ale-lint-settings-on-startup	ale.txt	/*ale-lint-settings-on-startup*
 ale-linter-loading-behavior	ale.txt	/*ale-linter-loading-behavior*
 ale-linter-loading-behaviour	ale.txt	/*ale-linter-loading-behaviour*
 ale-llvm-llc	ale-llvm.txt	/*ale-llvm-llc*
