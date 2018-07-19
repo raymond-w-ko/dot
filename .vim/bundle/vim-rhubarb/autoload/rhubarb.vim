@@ -218,7 +218,7 @@ endfunction
 " Section: Fugitive :Gbrowse support
 
 function! rhubarb#fugitive_url(opts, ...) abort
-  if a:0 || type(a:opts) != type({}) || !has_key(a:opts, 'repo')
+  if a:0 || type(a:opts) != type({})
     return ''
   endif
   let root = rhubarb#homepage_for_url(get(a:opts, 'remote'))
@@ -238,7 +238,7 @@ function! rhubarb#fugitive_url(opts, ...) abort
     return root
   endif
   if a:opts.commit =~# '^\d\=$'
-    let commit = a:opts.repo.rev_parse('HEAD')
+    return ''
   else
     let commit = a:opts.commit
   endif
