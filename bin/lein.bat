@@ -154,7 +154,8 @@ if "x%HTTP_CLIENT%" == "x" goto TRY_POWERSHELL
 call powershell -? >nul 2>&1
 if NOT ERRORLEVEL 0 goto TRY_WGET
     set LAST_HTTP_CLIENT=powershell
-    powershell -Command "& {param($a,$f) $client = New-Object System.Net.WebClient;  $client.Proxy.Credentials =[System.Net.CredentialCache]::DefaultNetworkCredentials; $client.DownloadFile($a, $f)}" ""%2"" ""%1""
+    rem By default: Win7 = PS2, Win 8.0 = PS3 (maybe?), Win 8.1 = PS4, Win10 = PS5
+    powershell -Command "& {param($a,$f) if (($PSVersionTable.PSVersion | Select-Object -ExpandProperty Major) -lt 4) { exit 111; } else { $client = New-Object System.Net.WebClient; [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; $client.Proxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; $client.DownloadFile($a, $f); }}" ""%2"" ""%1""
     SET RC=%ERRORLEVEL%
     goto EXITRC
 
