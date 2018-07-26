@@ -73,6 +73,7 @@ ale-c-clangd	ale-c.txt	/*ale-c-clangd*
 ale-c-clangformat	ale-c.txt	/*ale-c-clangformat*
 ale-c-clangtidy	ale-c.txt	/*ale-c-clangtidy*
 ale-c-cppcheck	ale-c.txt	/*ale-c-cppcheck*
+ale-c-cquery	ale-c.txt	/*ale-c-cquery*
 ale-c-flawfinder	ale-c.txt	/*ale-c-flawfinder*
 ale-c-gcc	ale-c.txt	/*ale-c-gcc*
 ale-c-options	ale-c.txt	/*ale-c-options*
@@ -291,6 +292,7 @@ ale-python-pylint	ale-python.txt	/*ale-python-pylint*
 ale-python-pyls	ale-python.txt	/*ale-python-pyls*
 ale-python-pyre	ale-python.txt	/*ale-python-pyre*
 ale-python-root	ale-python.txt	/*ale-python-root*
+ale-python-vulture	ale-python.txt	/*ale-python-vulture*
 ale-python-yapf	ale-python.txt	/*ale-python-yapf*
 ale-qml-options	ale-qml.txt	/*ale-qml-options*
 ale-qml-qmlfmt	ale-qml.txt	/*ale-qml-qmlfmt*
@@ -396,6 +398,8 @@ b:ale_c_clangtidy_executable	ale-c.txt	/*b:ale_c_clangtidy_executable*
 b:ale_c_clangtidy_options	ale-c.txt	/*b:ale_c_clangtidy_options*
 b:ale_c_cppcheck_executable	ale-c.txt	/*b:ale_c_cppcheck_executable*
 b:ale_c_cppcheck_options	ale-c.txt	/*b:ale_c_cppcheck_options*
+b:ale_c_cquery_cache_directory	ale-c.txt	/*b:ale_c_cquery_cache_directory*
+b:ale_c_cquery_executable	ale-c.txt	/*b:ale_c_cquery_executable*
 b:ale_c_flawfinder_error_severity	ale-c.txt	/*b:ale_c_flawfinder_error_severity*
 b:ale_c_flawfinder_executable	ale-c.txt	/*b:ale_c_flawfinder_executable*
 b:ale_c_flawfinder_minlevel	ale-c.txt	/*b:ale_c_flawfinder_minlevel*
@@ -635,6 +639,9 @@ b:ale_python_pyls_executable	ale-python.txt	/*b:ale_python_pyls_executable*
 b:ale_python_pyls_use_global	ale-python.txt	/*b:ale_python_pyls_use_global*
 b:ale_python_pyre_executable	ale-python.txt	/*b:ale_python_pyre_executable*
 b:ale_python_pyre_use_global	ale-python.txt	/*b:ale_python_pyre_use_global*
+b:ale_python_vulture_change_directory	ale-python.txt	/*b:ale_python_vulture_change_directory*
+b:ale_python_vulture_executable	ale-python.txt	/*b:ale_python_vulture_executable*
+b:ale_python_vulture_use_global	ale-python.txt	/*b:ale_python_vulture_use_global*
 b:ale_python_yapf_executable	ale-python.txt	/*b:ale_python_yapf_executable*
 b:ale_python_yapf_use_global	ale-python.txt	/*b:ale_python_yapf_use_global*
 b:ale_qml_qmlfmt_executable	ale-qml.txt	/*b:ale_qml_qmlfmt_executable*
@@ -748,6 +755,8 @@ g:ale_c_clangtidy_executable	ale-c.txt	/*g:ale_c_clangtidy_executable*
 g:ale_c_clangtidy_options	ale-c.txt	/*g:ale_c_clangtidy_options*
 g:ale_c_cppcheck_executable	ale-c.txt	/*g:ale_c_cppcheck_executable*
 g:ale_c_cppcheck_options	ale-c.txt	/*g:ale_c_cppcheck_options*
+g:ale_c_cquery_cache_directory	ale-c.txt	/*g:ale_c_cquery_cache_directory*
+g:ale_c_cquery_executable	ale-c.txt	/*g:ale_c_cquery_executable*
 g:ale_c_flawfinder_error_severity	ale-c.txt	/*g:ale_c_flawfinder_error_severity*
 g:ale_c_flawfinder_executable	ale-c.txt	/*g:ale_c_flawfinder_executable*
 g:ale_c_flawfinder_minlevel	ale-c.txt	/*g:ale_c_flawfinder_minlevel*
@@ -1019,6 +1028,9 @@ g:ale_python_pyls_executable	ale-python.txt	/*g:ale_python_pyls_executable*
 g:ale_python_pyls_use_global	ale-python.txt	/*g:ale_python_pyls_use_global*
 g:ale_python_pyre_executable	ale-python.txt	/*g:ale_python_pyre_executable*
 g:ale_python_pyre_use_global	ale-python.txt	/*g:ale_python_pyre_use_global*
+g:ale_python_vulture_change_directory	ale-python.txt	/*g:ale_python_vulture_change_directory*
+g:ale_python_vulture_executable	ale-python.txt	/*g:ale_python_vulture_executable*
+g:ale_python_vulture_use_global	ale-python.txt	/*g:ale_python_vulture_use_global*
 g:ale_python_yapf_executable	ale-python.txt	/*g:ale_python_yapf_executable*
 g:ale_python_yapf_use_global	ale-python.txt	/*g:ale_python_yapf_use_global*
 g:ale_qml_qmlfmt_executable	ale-qml.txt	/*g:ale_qml_qmlfmt_executable*
