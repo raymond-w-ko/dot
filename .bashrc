@@ -1,6 +1,5 @@
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-
 # If not running interactively, don't do anything
 [[ "$-" != *i* ]] && return
 
@@ -9,6 +8,8 @@ if hash zsh 2>/dev/null; then
     exec zsh
   fi
 fi
+
+source /etc/profile
 
 ## workaround for handling TERM variable in multiple tmux sessions properly from http://sourceforge.net/p/tmux/mailman/message/32751663/ by Nicholas Marriott
 # if [[ -n ${TMUX} && -n ${commands[tmux]} ]];then
@@ -39,7 +40,7 @@ export CCACHE_SLOPPINESS=pch_defines,time_macros
 if [[ $(uname -s) == CYGWIN* ]]; then
   export PATH="$HOME/vim/bin:$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/lib/lapack"
 else
-  export PATH="/opt/aws/bin:/opt/mono/bin"
+  export PATH="/opt/aws/bin:/opt/mono/bin:$PATH"
   export PATH="/usr/lib/ccache/bin:/opt/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl:$PATH"
   export PATH="/usr/local/opt/node@8/bin:$PATH"
   export PATH="$HOME/npm-global/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/.local/bin:$HOME/vim/bin:$HOME/bin:$HOME/go/bin:$PATH"
