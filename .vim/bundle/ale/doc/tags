@@ -90,6 +90,7 @@ ale-command-chain	ale.txt	/*ale-command-chain*
 ale-command-format-strings	ale.txt	/*ale-command-format-strings*
 ale-commands	ale.txt	/*ale-commands*
 ale-completion	ale.txt	/*ale-completion*
+ale-completion-completopt-bug	ale.txt	/*ale-completion-completopt-bug*
 ale-contact	ale.txt	/*ale-contact*
 ale-contents	ale.txt	/*ale-contents*
 ale-cool-down	ale.txt	/*ale-cool-down*

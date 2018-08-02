@@ -55,6 +55,7 @@ fugitive-c_CTRL-R_CTRL-G	fugitive.txt	/*fugitive-c_CTRL-R_CTRL-G*
 fugitive-commands	fugitive.txt	/*fugitive-commands*
 fugitive-mappings	fugitive.txt	/*fugitive-mappings*
 fugitive-o	fugitive.txt	/*fugitive-o*
+fugitive-object	fugitive.txt	/*fugitive-object*
 fugitive-revision	fugitive.txt	/*fugitive-revision*
 fugitive-statusline	fugitive.txt	/*fugitive-statusline*
 fugitive-y_CTRL-G	fugitive.txt	/*fugitive-y_CTRL-G*
