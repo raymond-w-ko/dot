@@ -161,6 +161,10 @@ ale-graphql-eslint	ale-graphql.txt	/*ale-graphql-eslint*
 ale-graphql-gqlint	ale-graphql.txt	/*ale-graphql-gqlint*
 ale-graphql-options	ale-graphql.txt	/*ale-graphql-options*
 ale-graphql-prettier	ale-graphql.txt	/*ale-graphql-prettier*
+ale-hack-hack	ale-hack.txt	/*ale-hack-hack*
+ale-hack-hackfmt	ale-hack.txt	/*ale-hack-hackfmt*
+ale-hack-hhast	ale-hack.txt	/*ale-hack-hhast*
+ale-hack-options	ale-hack.txt	/*ale-hack-options*
 ale-handlebars-embertemplatelint	ale-handlebars.txt	/*ale-handlebars-embertemplatelint*
 ale-handlebars-options	ale-handlebars.txt	/*ale-handlebars-options*
 ale-haskell-brittany	ale-haskell.txt	/*ale-haskell-brittany*
@@ -168,6 +172,7 @@ ale-haskell-cabal-ghc	ale-haskell.txt	/*ale-haskell-cabal-ghc*
 ale-haskell-ghc	ale-haskell.txt	/*ale-haskell-ghc*
 ale-haskell-hdevtools	ale-haskell.txt	/*ale-haskell-hdevtools*
 ale-haskell-hfmt	ale-haskell.txt	/*ale-haskell-hfmt*
+ale-haskell-hie	ale-haskell.txt	/*ale-haskell-hie*
 ale-haskell-options	ale-haskell.txt	/*ale-haskell-options*
 ale-haskell-stack-build	ale-haskell.txt	/*ale-haskell-stack-build*
 ale-highlights	ale.txt	/*ale-highlights*
@@ -179,6 +184,7 @@ ale-html-write-good	ale-html.txt	/*ale-html-write-good*
 ale-idris-idris	ale-idris.txt	/*ale-idris-idris*
 ale-idris-options	ale-idris.txt	/*ale-idris-options*
 ale-integration-glsl	ale-glsl.txt	/*ale-integration-glsl*
+ale-integration-hack	ale-hack.txt	/*ale-integration-hack*
 ale-integration-kotlin	ale-kotlin.txt	/*ale-integration-kotlin*
 ale-integration-rust	ale-rust.txt	/*ale-integration-rust*
 ale-integration-spec	ale-spec.txt	/*ale-integration-spec*
@@ -255,8 +261,6 @@ ale-perl-options	ale-perl.txt	/*ale-perl-options*
 ale-perl-perl	ale-perl.txt	/*ale-perl-perl*
 ale-perl-perlcritic	ale-perl.txt	/*ale-perl-perlcritic*
 ale-perl-perltidy	ale-perl.txt	/*ale-perl-perltidy*
-ale-php-hack	ale-php.txt	/*ale-php-hack*
-ale-php-hackfmt	ale-php.txt	/*ale-php-hackfmt*
 ale-php-langserver	ale-php.txt	/*ale-php-langserver*
 ale-php-options	ale-php.txt	/*ale-php-options*
 ale-php-phan	ale-php.txt	/*ale-php-phan*
@@ -481,6 +485,9 @@ b:ale_go_gometalinter_lint_package	ale-go.txt	/*b:ale_go_gometalinter_lint_packa
 b:ale_go_gometalinter_options	ale-go.txt	/*b:ale_go_gometalinter_options*
 b:ale_go_staticcheck_lint_package	ale-go.txt	/*b:ale_go_staticcheck_lint_package*
 b:ale_go_staticcheck_options	ale-go.txt	/*b:ale_go_staticcheck_options*
+b:ale_hack_hack_executable	ale-hack.txt	/*b:ale_hack_hack_executable*
+b:ale_hack_hackfmt_options	ale-hack.txt	/*b:ale_hack_hackfmt_options*
+b:ale_hack_hhast_executable	ale-hack.txt	/*b:ale_hack_hhast_executable*
 b:ale_handlebars_embertemplatelint_executable	ale-handlebars.txt	/*b:ale_handlebars_embertemplatelint_executable*
 b:ale_handlebars_embertemplatelint_use_global	ale-handlebars.txt	/*b:ale_handlebars_embertemplatelint_use_global*
 b:ale_haskell_brittany_executable	ale-haskell.txt	/*b:ale_haskell_brittany_executable*
@@ -489,6 +496,7 @@ b:ale_haskell_ghc_options	ale-haskell.txt	/*b:ale_haskell_ghc_options*
 b:ale_haskell_hdevtools_executable	ale-haskell.txt	/*b:ale_haskell_hdevtools_executable*
 b:ale_haskell_hdevtools_options	ale-haskell.txt	/*b:ale_haskell_hdevtools_options*
 b:ale_haskell_hfmt_executable	ale-haskell.txt	/*b:ale_haskell_hfmt_executable*
+b:ale_haskell_hie_executable	ale-haskell.txt	/*b:ale_haskell_hie_executable*
 b:ale_haskell_stack_build_options	ale-haskell.txt	/*b:ale_haskell_stack_build_options*
 b:ale_html_htmlhint_executable	ale-html.txt	/*b:ale_html_htmlhint_executable*
 b:ale_html_htmlhint_options	ale-html.txt	/*b:ale_html_htmlhint_options*
@@ -582,7 +590,6 @@ b:ale_perl_perltidy_options	ale-perl.txt	/*b:ale_perl_perltidy_options*
 b:ale_php_cs_fixer_executable	ale-php.txt	/*b:ale_php_cs_fixer_executable*
 b:ale_php_cs_fixer_options	ale-php.txt	/*b:ale_php_cs_fixer_options*
 b:ale_php_cs_fixer_use_global	ale-php.txt	/*b:ale_php_cs_fixer_use_global*
-b:ale_php_hackfmt_options	ale-php.txt	/*b:ale_php_hackfmt_options*
 b:ale_php_langserver_executable	ale-php.txt	/*b:ale_php_langserver_executable*
 b:ale_php_langserver_use_global	ale-php.txt	/*b:ale_php_langserver_use_global*
 b:ale_php_phan_executable	ale-php.txt	/*b:ale_php_phan_executable*
@@ -848,6 +855,9 @@ g:ale_go_gometalinter_lint_package	ale-go.txt	/*g:ale_go_gometalinter_lint_packa
 g:ale_go_gometalinter_options	ale-go.txt	/*g:ale_go_gometalinter_options*
 g:ale_go_staticcheck_lint_package	ale-go.txt	/*g:ale_go_staticcheck_lint_package*
 g:ale_go_staticcheck_options	ale-go.txt	/*g:ale_go_staticcheck_options*
+g:ale_hack_hack_executable	ale-hack.txt	/*g:ale_hack_hack_executable*
+g:ale_hack_hackfmt_options	ale-hack.txt	/*g:ale_hack_hackfmt_options*
+g:ale_hack_hhast_executable	ale-hack.txt	/*g:ale_hack_hhast_executable*
 g:ale_handlebars_embertemplatelint_executable	ale-handlebars.txt	/*g:ale_handlebars_embertemplatelint_executable*
 g:ale_handlebars_embertemplatelint_use_global	ale-handlebars.txt	/*g:ale_handlebars_embertemplatelint_use_global*
 g:ale_haskell_brittany_executable	ale-haskell.txt	/*g:ale_haskell_brittany_executable*
@@ -856,6 +866,7 @@ g:ale_haskell_ghc_options	ale-haskell.txt	/*g:ale_haskell_ghc_options*
 g:ale_haskell_hdevtools_executable	ale-haskell.txt	/*g:ale_haskell_hdevtools_executable*
 g:ale_haskell_hdevtools_options	ale-haskell.txt	/*g:ale_haskell_hdevtools_options*
 g:ale_haskell_hfmt_executable	ale-haskell.txt	/*g:ale_haskell_hfmt_executable*
+g:ale_haskell_hie_executable	ale-haskell.txt	/*g:ale_haskell_hie_executable*
 g:ale_haskell_stack_build_options	ale-haskell.txt	/*g:ale_haskell_stack_build_options*
 g:ale_history_enabled	ale.txt	/*g:ale_history_enabled*
 g:ale_history_log_output	ale.txt	/*g:ale_history_log_output*
@@ -971,7 +982,6 @@ g:ale_perl_perltidy_options	ale-perl.txt	/*g:ale_perl_perltidy_options*
 g:ale_php_cs_fixer_executable	ale-php.txt	/*g:ale_php_cs_fixer_executable*
 g:ale_php_cs_fixer_options	ale-php.txt	/*g:ale_php_cs_fixer_options*
 g:ale_php_cs_fixer_use_global	ale-php.txt	/*g:ale_php_cs_fixer_use_global*
-g:ale_php_hackfmt_options	ale-php.txt	/*g:ale_php_hackfmt_options*
 g:ale_php_langserver_executable	ale-php.txt	/*g:ale_php_langserver_executable*
 g:ale_php_langserver_use_global	ale-php.txt	/*g:ale_php_langserver_use_global*
 g:ale_php_phan_executable	ale-php.txt	/*g:ale_php_phan_executable*
