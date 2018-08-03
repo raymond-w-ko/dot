@@ -9,6 +9,7 @@ if hash zsh 2>/dev/null; then
   fi
 fi
 
+export PATH=
 source /etc/profile
 
 ## workaround for handling TERM variable in multiple tmux sessions properly from http://sourceforge.net/p/tmux/mailman/message/32751663/ by Nicholas Marriott
