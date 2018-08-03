@@ -1,6 +1,10 @@
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+# ensure a consistent environment
+export PATH=
+source /etc/profile
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
