@@ -2,7 +2,11 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 # ensure a consistent environment
-export PATH=
+if [[ $(uname -s) == CYGWIN* ]]; then
+  true
+else
+  export PATH=
+fi
 source /etc/profile
 
 # Path to your oh-my-zsh installation.
