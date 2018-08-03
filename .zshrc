@@ -2,7 +2,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 # ensure a consistent environment
-if [[ $(uname -s) == CYGWIN* ]]; then
+if grep -qE "(Microsoft|WSL)" /proc/version &> /dev/null ; then
   true
 else
   export PATH=
