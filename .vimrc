@@ -237,6 +237,7 @@ set ttimeoutlen=256    " needed to avoid leaving insert mode delay for vim-airli
 set sessionoptions-=folds
 set sessionoptions-=curdir
 set sessionoptions-=sesdir
+set sessionoptions-=localoptions
 
 set cinoptions=
 set cinoptions+=:0
