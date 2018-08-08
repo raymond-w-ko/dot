@@ -44,8 +44,8 @@ function! s:repo_homepage() abort
   if exists('b:rhubarb_homepage')
     return b:rhubarb_homepage
   endif
-  if exists('*fugitive#RemoteUrl')
-    let remote = fugitive#RemoteUrl()
+  if exists('*FugitiveRemoteUrl')
+    let remote = FugitiveRemoteUrl()
   else
     let remote = fugitive#repo().config('remote.origin.url')
   endif
@@ -214,6 +214,8 @@ function! rhubarb#omnifunc(findstart,base) abort
       endif
       return map(issues, '{"word": prefix.v:val.number, "abbr": "#".v:val.number, "menu": v:val.title, "info": substitute(v:val.body,"\\r","","g")}')
     endif
+  catch /^rhubarb:.*is not a GitHub repository/
+    return []
   catch /^\%(fugitive\|rhubarb\):/
     echoerr v:errmsg
   endtry
