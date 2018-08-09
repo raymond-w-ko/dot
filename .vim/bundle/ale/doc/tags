@@ -381,6 +381,7 @@ ale-xhtml-write-good	ale-xhtml.txt	/*ale-xhtml-write-good*
 ale-xml-options	ale-xml.txt	/*ale-xml-options*
 ale-xml-xmllint	ale-xml.txt	/*ale-xml-xmllint*
 ale-yaml-options	ale-yaml.txt	/*ale-yaml-options*
+ale-yaml-prettier	ale-yaml.txt	/*ale-yaml-prettier*
 ale-yaml-swaglint	ale-yaml.txt	/*ale-yaml-swaglint*
 ale-yaml-yamllint	ale-yaml.txt	/*ale-yaml-yamllint*
 ale-yang-lsp	ale-yang.txt	/*ale-yang-lsp*
