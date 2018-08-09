@@ -7,8 +7,6 @@ if grep -qE "(Microsoft|WSL)" /proc/version &> /dev/null ; then
 else
   export PATH=
 fi
-source /etc/profile
-
 # Append our default paths
 appendpath () {
     case ":$PATH:" in
@@ -23,6 +21,8 @@ appendpath '/usr/local/bin'
 appendpath '/usr/bin'
 appendpath '/bin'
 unset appendpath
+
+source /etc/profile
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
