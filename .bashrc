@@ -35,14 +35,55 @@ export HISTSIZE=32768
 export HISTCONTROL=ignoreboth:erasedups
 
 export CCACHE_SLOPPINESS=pch_defines,time_macros
+
+appendpath () {
+    case ":$PATH:" in
+        *:"$1":*)
+            ;;
+        *)
+            PATH="${PATH:+$PATH:}$1"
+    esac
+}
+prependpath () {
+    case ":$PATH:" in
+        *:"$1":*)
+            ;;
+        *)
+            PATH="$1${PATH:+:$PATH}"
+    esac
+}
 if [[ $(uname -s) == CYGWIN* ]]; then
-  export PATH="$HOME/vim/bin:$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/lib/lapack"
+  prependpath "/usr/lib/lapack"
+  prependpath "/sbin"
+  prependpath "/usr/sbin"
+  prependpath "/bin"
+  prependpath "/usr/bin"
+  prependpath "/usr/local/bin"
+  prependpath "$HOME/bin"
+  prependpath "$HOME/vim/bin"
 else
-  export PATH="/opt/aws/bin:/opt/mono/bin:$PATH"
-  export PATH="/usr/lib/ccache/bin:/opt/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl:$PATH"
-  export PATH="/usr/local/opt/node@8/bin:$PATH"
-  export PATH="$HOME/npm-global/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/.local/bin:$HOME/vim/bin:$HOME/bin:$HOME/go/bin:$PATH"
+  prependpath "/opt/mono/bin"
+  prependpath "/opt/aws/bin"
+  prependpath "/usr/bin/core_perl"
+  prependpath "/sbin"
+  prependpath "/usr/sbin"
+  prependpath "/usr/local/sbin"
+  prependpath "/bin"
+  prependpath "/usr/bin"
+  prependpath "/usr/local/bin"
+  prependpath "/opt/local/bin"
+  prependpath "/usr/lib/ccache/bin"
+  prependpath "/usr/local/opt/node@8/bin"
+  prependpath "$HOME/npm-global/bin"
+  prependpath "$HOME/.config/yarn/global/node_modules/.bin"
+  prependpath "$HOME/.local/bin"
+  prependpath "$HOME/vim/bin"
+  prependpath "$HOME/go/bin"
+  prependpath "$HOME/dot/bin"
+  prependpath "$HOME/bin"
 fi
+unset appendpath
+unset prependpath
 
 . ~/.bash.d/add_dot_extra_paths.sh
 
