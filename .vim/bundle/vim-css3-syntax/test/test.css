@@ -49,20 +49,13 @@
   display: scrollbar;
   display: panner;
   display: marquee;
-  display: ruby;
-  display: ruby-base;
-  display: ruby-text;
-  display: ruby-base-group;
-  display: ruby-text-group;
+  display: discard;
   display: decendants;
   display: block-within-page;
-  display: fit-content;
-  display: complex;
   display: margin-edge;
   display: border-edge;
   display: padding-edge;
   display: content-edge;
-  display: available;
 }
 
 .break-3 {
@@ -228,7 +221,11 @@
   display: flow;
   display: flow-root;
   display: contents;
-  display: discard;
+  display: ruby;
+  display: ruby-base;
+  display: ruby-text;
+  display: ruby-base-group;
+  display: ruby-text-group;
 }
 
 .exclusions-3 {
@@ -426,7 +423,7 @@ template {
   dominant-baseline: auto;
   alignment-baseline: auto;
   baseline-shift: auto;
-  something-or-other: auto;
+  inline-sizing: auto;
   initial-letters: auto;
   initial-letters-align: auto;
   initial-letters-wrap: auto;
