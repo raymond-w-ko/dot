@@ -84,7 +84,12 @@ fi
 export ZLE_REMOVE_SUFFIX_CHARS=""
 
 # User configuration
-
+fpath=(
+  /usr/local/share/zsh-completions
+  /usr/local/share/zsh/site-functions
+  /usr/share/zsh/site-functions
+  $fpath
+)
 source $ZSH/oh-my-zsh.sh
 
 # oh-my-bug!
