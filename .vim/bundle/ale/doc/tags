@@ -154,6 +154,7 @@ ale-glsl-options	ale-glsl.txt	/*ale-glsl-options*
 ale-go-gobuild	ale-go.txt	/*ale-go-gobuild*
 ale-go-gofmt	ale-go.txt	/*ale-go-gofmt*
 ale-go-gometalinter	ale-go.txt	/*ale-go-gometalinter*
+ale-go-govet	ale-go.txt	/*ale-go-govet*
 ale-go-options	ale-go.txt	/*ale-go-options*
 ale-go-staticcheck	ale-go.txt	/*ale-go-staticcheck*
 ale-go-to-definition	ale.txt	/*ale-go-to-definition*
@@ -486,6 +487,7 @@ b:ale_go_gofmt_options	ale-go.txt	/*b:ale_go_gofmt_options*
 b:ale_go_gometalinter_executable	ale-go.txt	/*b:ale_go_gometalinter_executable*
 b:ale_go_gometalinter_lint_package	ale-go.txt	/*b:ale_go_gometalinter_lint_package*
 b:ale_go_gometalinter_options	ale-go.txt	/*b:ale_go_gometalinter_options*
+b:ale_go_govet_options	ale-go.txt	/*b:ale_go_govet_options*
 b:ale_go_staticcheck_lint_package	ale-go.txt	/*b:ale_go_staticcheck_lint_package*
 b:ale_go_staticcheck_options	ale-go.txt	/*b:ale_go_staticcheck_options*
 b:ale_hack_hack_executable	ale-hack.txt	/*b:ale_hack_hack_executable*
@@ -857,6 +859,7 @@ g:ale_go_gofmt_options	ale-go.txt	/*g:ale_go_gofmt_options*
 g:ale_go_gometalinter_executable	ale-go.txt	/*g:ale_go_gometalinter_executable*
 g:ale_go_gometalinter_lint_package	ale-go.txt	/*g:ale_go_gometalinter_lint_package*
 g:ale_go_gometalinter_options	ale-go.txt	/*g:ale_go_gometalinter_options*
+g:ale_go_govet_options	ale-go.txt	/*g:ale_go_govet_options*
 g:ale_go_staticcheck_lint_package	ale-go.txt	/*g:ale_go_staticcheck_lint_package*
 g:ale_go_staticcheck_options	ale-go.txt	/*g:ale_go_staticcheck_options*
 g:ale_hack_hack_executable	ale-hack.txt	/*g:ale_hack_hack_executable*
