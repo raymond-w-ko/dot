@@ -44,7 +44,7 @@ function! FugitiveReal(...) abort
 endfunction
 
 function! FugitiveRoute(...) abort
-  return fugitive#Route(a:0 ? a:1 : '', FugitiveGitDir(a:0 > 1 ? a:2 : -1))
+  return fugitive#Route(a:0 ? a:1 : ':/', FugitiveGitDir(a:0 > 1 ? a:2 : -1))
 endfunction
 
 function! FugitivePath(...) abort
@@ -205,7 +205,7 @@ function! FugitiveGenerate(...) abort
 endfunction
 
 function! s:Slash(path) abort
-  if &shell =~? 'cmd' || exists('+shellslash') && !&shellslash
+  if exists('+shellslash')
     return tr(a:path, '\', '/')
   else
     return a:path

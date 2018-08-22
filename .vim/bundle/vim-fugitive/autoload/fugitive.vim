@@ -40,7 +40,7 @@ function! s:Uniq(list) abort
 endfunction
 
 function! s:winshell() abort
-  return &shell =~? 'cmd' || exists('+shellslash') && !&shellslash
+  return has('win32') && &shellcmdflag !~# '^-'
 endfunction
 
 function! s:shellesc(arg) abort
@@ -61,14 +61,6 @@ function! s:fnameescape(file) abort
   endif
 endfunction
 
-function! s:tempname() abort
-  let temp = resolve(tempname())
-  if has('win32')
-    let temp = fnamemodify(fnamemodify(temp, ':h'), ':p').fnamemodify(temp, ':t')
-  endif
-  return temp
-endfunction
-
 function! s:throw(string) abort
   let v:errmsg = 'fugitive: '.a:string
   throw v:errmsg
@@ -82,7 +74,7 @@ function! s:warn(str) abort
 endfunction
 
 function! s:Slash(path) abort
-  if s:winshell()
+  if exists('+shellslash')
     return tr(a:path, '\', '/')
   else
     return a:path
@@ -95,6 +87,14 @@ function! s:PlatformSlash(path) abort
   else
     return a:path
   endif
+endfunction
+
+function! s:Resolve(path) abort
+  let path = resolve(a:path)
+  if has('win32')
+    let path = s:PlatformSlash(fnamemodify(fnamemodify(path, ':h'), ':p') . fnamemodify(path, ':t'))
+  endif
+  return path
 endfunction
 
 function! s:cpath(path, ...) abort
@@ -269,7 +269,7 @@ function! fugitive#Head(...) abort
 endfunction
 
 function! fugitive#RevParse(rev, ...) abort
-  let hash = system(s:Prepare(a:0 ? a:1 : b:git_dir, 'rev-parse', '--verify', a:rev))[0:-2]
+  let hash = system(s:Prepare(a:0 ? a:1 : b:git_dir, 'rev-parse', '--verify', a:rev, '--'))[0:-2]
   if !v:shell_error && hash =~# '^\x\{40\}$'
     return hash
   endif
@@ -300,7 +300,7 @@ function! fugitive#RemoteUrl(...) abort
   if fugitive#GitVersion() =~# '^[01]\.\|^2\.[0-6]\.'
     return fugitive#Config('remote.' . remote . '.url')
   endif
-  let cmd = s:Prepare(dir, 'remote', 'get-url', remote)
+  let cmd = s:Prepare(dir, 'remote', 'get-url', remote, '--')
   let out = substitute(system(cmd), "\n$", '', '')
   return v:shell_error ? '' : out
 endfunction
@@ -500,7 +500,7 @@ function! fugitive#Path(url, ...) abort
 endfunction
 
 function! s:Relative(...) abort
-  return fugitive#Path(@%, a:0 ? a:1 : './')
+  return fugitive#Path(@%, a:0 ? a:1 : ':(top)')
 endfunction
 
 function! fugitive#Route(object, ...) abort
@@ -508,7 +508,7 @@ function! fugitive#Route(object, ...) abort
     let prefix = matchstr(a:object, '^[~$]\i*')
     let owner = expand(prefix)
     return s:PlatformSlash((len(owner) ? owner : prefix) . strpart(a:object, len(prefix)))
-  elseif s:Slash(a:object) =~# '^/\|^\%(\a\a\+:\).*\%(//\|::\)' || (has('win32') ? '^\a:/' : '')
+  elseif s:Slash(a:object) =~# '^$\|^/\|^\%(\a\a\+:\).*\%(//\|::\)' . (has('win32') ? '\|^\a:/' : '')
     return s:PlatformSlash(a:object)
   elseif s:Slash(a:object) =~# '^\.\.\=\%(/\|$\)'
     return s:PlatformSlash(simplify(getcwd() . '/' . a:object))
@@ -521,20 +521,26 @@ function! fugitive#Route(object, ...) abort
       return fnamemodify(len(file) ? file : a:object, ':p')
     endif
   endif
-  let rev = a:object
+  let rev = s:Slash(a:object)
   let tree = s:Tree(dir)
   let base = len(tree) ? tree : 'fugitive://' . dir . '//0'
-  if rev =~# '^\%(\./\)\=\.git$' && empty(tree)
-    let f = dir
-  elseif rev =~# '^\%(\./\)\=\.git/'
-    let f = substitute(rev, '\C^\%(\./\)\=\.git', '', '')
+  if rev ==# '.git'
+    let f = len(tree) ? tree . '/.git' : dir
+  elseif rev =~# '^\.git/'
+    let f = substitute(rev, '^\.git', '', '')
     let cdir = fugitive#CommonDir(dir)
-    if cdir !=# dir && (f =~# '^/\%(config\|info\|hooks\|objects\|refs\|worktrees\)' || !filereadable(f) && filereadable(cdir . f))
-      let f = cdir . f
+    if f =~# '^/\.\./\.\.\%(/\|$\)'
+      let f = simplify(len(tree) ? tree . f[3:-1] : dir . f)
+    elseif f =~# '^/\.\.\%(/\|$\)'
+      let f = base . f[3:-1]
+    elseif cdir !=# dir && (
+          \ f =~# '^/\%(config\|hooks\|info\|logs/refs\|objects\|refs\|worktrees\)\%(/\|$\)' ||
+          \ f !~# '^/logs$\|/\w*HEAD$' && getftime(dir . f) < 0 && getftime(cdir . f) >= 0)
+      let f = simplify(cdir . f)
     else
-      let f = dir . f
+      let f = simplify(dir . f)
     endif
-  elseif rev =~# '^$\|^:/$'
+  elseif rev ==# ':/'
     let f = base
   elseif rev =~# '^\.\%(/\|$\)'
     let f = base . rev[1:-1]
@@ -589,7 +595,7 @@ function! fugitive#Route(object, ...) abort
         endif
       endif
       if commit !~# '^[0-9a-f]\{40\}$'
-        let commit = system(s:Prepare(dir, 'rev-parse', '--verify', commit))[0:-2]
+        let commit = system(s:Prepare(dir, 'rev-parse', '--verify', commit, '--'))[0:-2]
         let commit = v:shell_error ? '' : commit
       endif
       if len(commit)
@@ -775,7 +781,7 @@ function! fugitive#getfsize(url) abort
   let entry = s:PathInfo(a:url)
   if entry[4] == -2 && entry[2] ==# 'blob' && len(entry[3])
     let dir = s:DirCommitFile(a:url)[0]
-    let size = +system(s:Prepare(dir, 'cat-file', '-s', entry[3]))
+    let size = +system(s:Prepare(dir, 'cat-file', '-s', entry[3], '--'))
     let entry[4] = v:shell_error ? -1 : size
   endif
   return entry[4]
@@ -858,23 +864,23 @@ function! s:BlobTemp(url) abort
     return ''
   endif
   if !has_key(s:blobdirs, dir)
-    let s:blobdirs[dir] = s:tempname()
+    let s:blobdirs[dir] = tempname()
   endif
-  let tempfile = s:PlatformSlash(s:blobdirs[dir] . '/' . commit . file)
+  let tempfile = s:blobdirs[dir] . '/' . commit . file
   let tempparent = fnamemodify(tempfile, ':h')
   if !isdirectory(tempparent)
     call mkdir(tempparent, 'p')
   endif
   if commit =~# '^\d$' || !filereadable(tempfile)
     let rev = s:DirRev(a:url)[1]
-    let command = s:Prepare(dir, 'cat-file', 'blob', rev)
+    let command = s:Prepare(dir, 'cat-file', 'blob', rev, '--')
     call s:TempCmd(tempfile, command)
     if v:shell_error
       call delete(tempfile)
       return ''
     endif
   endif
-  return tempfile
+  return s:Resolve(tempfile)
 endfunction
 
 function! fugitive#readfile(url, ...) abort
@@ -894,7 +900,7 @@ function! fugitive#writefile(lines, url, ...) abort
   let [dir, commit, file] = s:DirCommitFile(url)
   let entry = s:PathInfo(url)
   if commit =~# '^\d$' && entry[2] !=# 'tree'
-    let temp = s:tempname()
+    let temp = tempname()
     if a:0 && a:1 =~# 'a' && entry[2] ==# 'blob'
       call writefile(fugitive#readfile(url, 'b'), temp, 'b')
     endif
@@ -1158,14 +1164,15 @@ endfunction
 " Section: Buffer auto-commands
 
 function! s:ReplaceCmd(cmd) abort
-  let tmp = tempname()
-  let err = s:TempCmd(tmp, a:cmd)
+  let temp = tempname()
+  let err = s:TempCmd(temp, a:cmd)
   if v:shell_error
-    call s:throw((len(err) ? err : filereadable(tmp) ? join(readfile(tmp), ' ') : 'unknown error running ' . a:cmd))
+    call s:throw((len(err) ? err : filereadable(temp) ? join(readfile(temp), ' ') : 'unknown error running ' . a:cmd))
   endif
+  let temp = s:Resolve(temp)
   let fn = expand('%:p')
   silent exe 'doau BufReadPre '.s:fnameescape(fn)
-  silent exe 'keepalt file '.tmp
+  silent exe 'keepalt file '.temp
   try
     silent noautocmd edit!
   finally
@@ -1173,8 +1180,8 @@ function! s:ReplaceCmd(cmd) abort
       silent exe 'keepalt file '.s:fnameescape(fn)
     catch /^Vim\%((\a\+)\)\=:E302:/
     endtry
-    call delete(tmp)
-    if fnamemodify(bufname('$'), ':p') ==# tmp
+    call delete(temp)
+    if s:cpath(fnamemodify(bufname('$'), ':p'), temp)
       silent execute 'bwipeout '.bufnr('$')
     endif
     silent exe 'doau BufReadPost '.s:fnameescape(fn)
@@ -1288,9 +1295,9 @@ function! fugitive#FileReadCmd(...) abort
     return 'noautocmd ' . line . 'read ' . s:fnameescape(amatch)
   endif
   if rev !~# ':'
-    let cmd = s:Prepare(dir, 'log', '--pretty=format:%B', '-1', rev)
+    let cmd = s:Prepare(dir, 'log', '--pretty=format:%B', '-1', rev, '--')
   else
-    let cmd = s:Prepare(dir, 'cat-file', '-p', rev)
+    let cmd = s:Prepare(dir, 'cat-file', '-p', rev, '--')
   endif
   return line . 'read !' . escape(cmd, '!#%')
 endfunction
@@ -1307,19 +1314,14 @@ function! fugitive#FileWriteCmd(...) abort
     if commit !~# '^[0-3]$' || !v:cmdbang && (line("'[") != 1 || line("']") != line('$'))
       return "noautocmd '[,']write" . (v:cmdbang ? '!' : '') . ' ' . s:fnameescape(amatch)
     endif
-    silent execute "'[,']write !".s:Prepare(dir, 'hash-object', '-w', '--stdin').' > '.tmp
+    silent execute "'[,']write !".s:Prepare(dir, 'hash-object', '-w', '--stdin', '--').' > '.tmp
     let sha1 = readfile(tmp)[0]
-    let old_mode = matchstr(system(s:Prepare(dir, 'ls-files', '--stage', file[1:-1])), '^\d\+')
-    if old_mode == ''
+    let old_mode = matchstr(system(s:Prepare(dir, 'ls-files', '--stage', '--', '.' . file)), '^\d\+')
+    if empty(old_mode)
       let old_mode = executable(s:Tree(dir) . file) ? '100755' : '100644'
     endif
     let info = old_mode.' '.sha1.' '.commit."\t".file[1:-1]
-    call writefile([info],tmp)
-    if s:winshell()
-      let error = s:System('type '.s:gsub(tmp,'/','\\').'|'.s:Prepare(dir, 'update-index', '--index-info'))
-    else
-      let error = s:System(s:Prepare(dir, 'update-index', '--index-info').' < '.tmp)
-    endif
+    let error = system(s:Prepare(dir, 'update-index', '--index-info'), info . "\n")
     if v:shell_error == 0
       setlocal nomodified
       if exists('#' . autype . 'WritePost')
@@ -2231,7 +2233,7 @@ function! s:EditParse(args) abort
   let pre = []
   let args = copy(a:args)
   while !empty(args) && args[0] =~# '^+'
-    call add(pre, escape(remove(args, 0), ' |"') . ' ')
+    call add(pre, ' ' . escape(remove(args, 0), ' |"'))
   endwhile
   if len(args)
     let file = join(args)
@@ -2276,7 +2278,7 @@ function! s:Edit(cmd, bang, mods, args, ...) abort
   let mods = a:mods ==# '<mods>' ? '' : a:mods
 
   if a:bang
-    let temp = s:tempname()
+    let temp = tempname()
     let cd = exists('*haslocaldir') && haslocaldir() ? 'lcd' : 'cd'
     let cwd = getcwd()
     try
@@ -2288,6 +2290,7 @@ function! s:Edit(cmd, bang, mods, args, ...) abort
     finally
       execute cd s:fnameescape(cwd)
     endtry
+    let temp = s:Resolve(temp)
     let s:temp_files[s:cpath(temp)] = { 'dir': b:git_dir, 'filetype': 'git' }
     if a:cmd ==# 'edit'
       call s:BlurStatus()
@@ -2309,7 +2312,7 @@ function! s:Edit(cmd, bang, mods, args, ...) abort
   if a:cmd ==# 'edit'
     call s:BlurStatus()
   endif
-  return mods . ' ' . a:cmd . ' ' . pre . s:fnameescape(file)
+  return mods . ' ' . a:cmd . pre . ' ' . s:fnameescape(file)
 endfunction
 
 function! s:Read(count, line1, line2, range, bang, mods, args, ...) abort
@@ -2344,7 +2347,10 @@ function! s:Read(count, line1, line2, range, bang, mods, args, ...) abort
   catch /^fugitive:/
     return 'echoerr v:errmsg'
   endtry
-  return mods . ' ' . after . 'read ' . pre . s:fnameescape(file) . '|' . delete . 'diffupdate' . (a:count < 0 ? '|' . line('.') : '')
+  if file =~# '^fugitive:' && after is# 0
+    return 'exe ' .string(mods . ' ' . fugitive#FileReadCmd(file, 0, pre)) . '|diffupdate'
+  endif
+  return mods . ' ' . after . 'read' . pre . ' ' . s:fnameescape(file) . '|' . delete . 'diffupdate' . (a:count < 0 ? '|' . line('.') : '')
 endfunction
 
 function! s:EditRunComplete(A,L,P) abort
@@ -2903,7 +2909,7 @@ function! s:Blame(bang, line1, line2, count, mods, args) abort
         let cwd = getcwd()
         execute cd s:fnameescape(tree)
       endif
-      let error = s:tempname()
+      let error = tempname()
       let temp = error.'.fugitiveblame'
       if &shell =~# 'csh'
         silent! execute '%write !('.basecmd.' > '.temp.') >& '.error
@@ -2947,6 +2953,7 @@ function! s:Blame(bang, line1, line2, count, mods, args) abort
         endif
         let top = line('w0') + &scrolloff
         let current = line('.')
+        let temp = s:Resolve(temp)
         let s:temp_files[s:cpath(temp)] = { 'dir': b:git_dir, 'filetype': 'fugitiveblame', 'args': cmd, 'bufnr': bufnr }
         exe 'keepalt leftabove vsplit '.temp
         let b:fugitive_blamed_bufnr = bufnr
@@ -3258,9 +3265,9 @@ function! s:Browse(bang,line1,count,...) abort
           let remotehead = cdir . '/refs/remotes/' . remote . '/' . merge
           let commit = filereadable(remotehead) ? get(readfile(remotehead), 0, '') : ''
           if a:count && !a:0 && commit =~# '^\x\{40\}$'
-            let blame_list = s:tempname()
+            let blame_list = tempname()
             call writefile([commit, ''], blame_list, 'b')
-            let blame_in = s:tempname()
+            let blame_in = tempname()
             silent exe '%write' blame_in
             let blame = split(s:TreeChomp('blame', '--contents', blame_in, '-L', a:line1.','.a:count, '-S', blame_list, '-s', '--show-number', './' . path), "\n")
             if !v:shell_error
