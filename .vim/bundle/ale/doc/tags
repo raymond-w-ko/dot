@@ -200,6 +200,7 @@ ale-introduction	ale.txt	/*ale-introduction*
 ale-java-checkstyle	ale-java.txt	/*ale-java-checkstyle*
 ale-java-google-java-format	ale-java.txt	/*ale-java-google-java-format*
 ale-java-javac	ale-java.txt	/*ale-java-javac*
+ale-java-javalsp	ale-java.txt	/*ale-java-javalsp*
 ale-java-options	ale-java.txt	/*ale-java-options*
 ale-java-pmd	ale-java.txt	/*ale-java-pmd*
 ale-javascript-eslint	ale-javascript.txt	/*ale-javascript-eslint*
@@ -262,6 +263,7 @@ ale-objcpp-clang	ale-objcpp.txt	/*ale-objcpp-clang*
 ale-objcpp-clangd	ale-objcpp.txt	/*ale-objcpp-clangd*
 ale-objcpp-options	ale-objcpp.txt	/*ale-objcpp-options*
 ale-ocaml-merlin	ale-ocaml.txt	/*ale-ocaml-merlin*
+ale-ocaml-ocamlformat	ale-ocaml.txt	/*ale-ocaml-ocamlformat*
 ale-ocaml-ols	ale-ocaml.txt	/*ale-ocaml-ols*
 ale-ocaml-options	ale-ocaml.txt	/*ale-ocaml-options*
 ale-options	ale.txt	/*ale-options*
@@ -289,6 +291,7 @@ ale-pug-options	ale-pug.txt	/*ale-pug-options*
 ale-pug-puglint	ale-pug.txt	/*ale-pug-puglint*
 ale-puppet-languageserver	ale-puppet.txt	/*ale-puppet-languageserver*
 ale-puppet-options	ale-puppet.txt	/*ale-puppet-options*
+ale-puppet-puppet	ale-puppet.txt	/*ale-puppet-puppet*
 ale-puppet-puppetlint	ale-puppet.txt	/*ale-puppet-puppetlint*
 ale-pyrex-cython	ale-pyrex.txt	/*ale-pyrex-cython*
 ale-pyrex-options	ale-pyrex.txt	/*ale-pyrex-options*
@@ -324,6 +327,7 @@ ale-ruby-reek	ale-ruby.txt	/*ale-ruby-reek*
 ale-ruby-rubocop	ale-ruby.txt	/*ale-ruby-rubocop*
 ale-ruby-ruby	ale-ruby.txt	/*ale-ruby-ruby*
 ale-ruby-rufo	ale-ruby.txt	/*ale-ruby-rufo*
+ale-ruby-solargraph	ale-ruby.txt	/*ale-ruby-solargraph*
 ale-rust-cargo	ale-rust.txt	/*ale-rust-cargo*
 ale-rust-options	ale-rust.txt	/*ale-rust-options*
 ale-rust-rls	ale-rust.txt	/*ale-rust-rls*
@@ -533,6 +537,7 @@ b:ale_java_google_java_format_options	ale-java.txt	/*b:ale_java_google_java_form
 b:ale_java_javac_classpath	ale-java.txt	/*b:ale_java_javac_classpath*
 b:ale_java_javac_executable	ale-java.txt	/*b:ale_java_javac_executable*
 b:ale_java_javac_options	ale-java.txt	/*b:ale_java_javac_options*
+b:ale_java_javalsp_jar	ale-java.txt	/*b:ale_java_javalsp_jar*
 b:ale_java_pmd_options	ale-java.txt	/*b:ale_java_pmd_options*
 b:ale_javascript_eslint_executable	ale-javascript.txt	/*b:ale_javascript_eslint_executable*
 b:ale_javascript_eslint_options	ale-javascript.txt	/*b:ale_javascript_eslint_options*
@@ -604,6 +609,8 @@ b:ale_objc_clangd_options	ale-objc.txt	/*b:ale_objc_clangd_options*
 b:ale_objcpp_clang_options	ale-objcpp.txt	/*b:ale_objcpp_clang_options*
 b:ale_objcpp_clangd_executable	ale-objcpp.txt	/*b:ale_objcpp_clangd_executable*
 b:ale_objcpp_clangd_options	ale-objcpp.txt	/*b:ale_objcpp_clangd_options*
+b:ale_ocaml_ocamlformat_executable	ale-ocaml.txt	/*b:ale_ocaml_ocamlformat_executable*
+b:ale_ocaml_ocamlformat_options	ale-ocaml.txt	/*b:ale_ocaml_ocamlformat_options*
 b:ale_ocaml_ols_executable	ale-ocaml.txt	/*b:ale_ocaml_ols_executable*
 b:ale_ocaml_ols_use_global	ale-ocaml.txt	/*b:ale_ocaml_ols_use_global*
 b:ale_open_list	ale.txt	/*b:ale_open_list*
@@ -639,6 +646,8 @@ b:ale_pug_puglint_executable	ale-pug.txt	/*b:ale_pug_puglint_executable*
 b:ale_pug_puglint_options	ale-pug.txt	/*b:ale_pug_puglint_options*
 b:ale_pug_puglint_use_global	ale-pug.txt	/*b:ale_pug_puglint_use_global*
 b:ale_puppet_languageserver_executable	ale-puppet.txt	/*b:ale_puppet_languageserver_executable*
+b:ale_puppet_puppet_executable	ale-puppet.txt	/*b:ale_puppet_puppet_executable*
+b:ale_puppet_puppet_options	ale-puppet.txt	/*b:ale_puppet_puppet_options*
 b:ale_puppet_puppetlint_executable	ale-puppet.txt	/*b:ale_puppet_puppetlint_executable*
 b:ale_puppet_puppetlint_options	ale-puppet.txt	/*b:ale_puppet_puppetlint_options*
 b:ale_pyrex_cython_executable	ale-pyrex.txt	/*b:ale_pyrex_cython_executable*
@@ -696,6 +705,8 @@ b:ale_ruby_rubocop_executable	ale-ruby.txt	/*b:ale_ruby_rubocop_executable*
 b:ale_ruby_rubocop_options	ale-ruby.txt	/*b:ale_ruby_rubocop_options*
 b:ale_ruby_ruby_executable	ale-ruby.txt	/*b:ale_ruby_ruby_executable*
 b:ale_ruby_rufo_executable	ale-ruby.txt	/*b:ale_ruby_rufo_executable*
+b:ale_ruby_solargraph_host	ale-ruby.txt	/*b:ale_ruby_solargraph_host*
+b:ale_ruby_solargraph_port	ale-ruby.txt	/*b:ale_ruby_solargraph_port*
 b:ale_rust_cargo_avoid_whole_workspace	ale-rust.txt	/*b:ale_rust_cargo_avoid_whole_workspace*
 b:ale_rust_cargo_check_all_targets	ale-rust.txt	/*b:ale_rust_cargo_check_all_targets*
 b:ale_rust_cargo_check_examples	ale-rust.txt	/*b:ale_rust_cargo_check_examples*
@@ -766,6 +777,7 @@ b:ale_writegood_executable	ale.txt	/*b:ale_writegood_executable*
 b:ale_writegood_options	ale.txt	/*b:ale_writegood_options*
 b:ale_writegood_use_global	ale.txt	/*b:ale_writegood_use_global*
 b:ale_xml_xmllint_executable	ale-xml.txt	/*b:ale_xml_xmllint_executable*
+b:ale_xml_xmllint_indentsize	ale-xml.txt	/*b:ale_xml_xmllint_indentsize*
 b:ale_xml_xmllint_options	ale-xml.txt	/*b:ale_xml_xmllint_options*
 b:ale_yaml_swaglint_executable	ale-yaml.txt	/*b:ale_yaml_swaglint_executable*
 b:ale_yaml_swaglint_use_global	ale-yaml.txt	/*b:ale_yaml_swaglint_use_global*
@@ -922,6 +934,7 @@ g:ale_java_google_java_format_options	ale-java.txt	/*g:ale_java_google_java_form
 g:ale_java_javac_classpath	ale-java.txt	/*g:ale_java_javac_classpath*
 g:ale_java_javac_executable	ale-java.txt	/*g:ale_java_javac_executable*
 g:ale_java_javac_options	ale-java.txt	/*g:ale_java_javac_options*
+g:ale_java_javalsp_jar	ale-java.txt	/*g:ale_java_javalsp_jar*
 g:ale_java_pmd_options	ale-java.txt	/*g:ale_java_pmd_options*
 g:ale_javascript_eslint_executable	ale-javascript.txt	/*g:ale_javascript_eslint_executable*
 g:ale_javascript_eslint_options	ale-javascript.txt	/*g:ale_javascript_eslint_options*
@@ -1010,6 +1023,8 @@ g:ale_objc_clangd_options	ale-objc.txt	/*g:ale_objc_clangd_options*
 g:ale_objcpp_clang_options	ale-objcpp.txt	/*g:ale_objcpp_clang_options*
 g:ale_objcpp_clangd_executable	ale-objcpp.txt	/*g:ale_objcpp_clangd_executable*
 g:ale_objcpp_clangd_options	ale-objcpp.txt	/*g:ale_objcpp_clangd_options*
+g:ale_ocaml_ocamlformat_executable	ale-ocaml.txt	/*g:ale_ocaml_ocamlformat_executable*
+g:ale_ocaml_ocamlformat_options	ale-ocaml.txt	/*g:ale_ocaml_ocamlformat_options*
 g:ale_ocaml_ols_executable	ale-ocaml.txt	/*g:ale_ocaml_ols_executable*
 g:ale_ocaml_ols_use_global	ale-ocaml.txt	/*g:ale_ocaml_ols_use_global*
 g:ale_open_list	ale.txt	/*g:ale_open_list*
@@ -1049,6 +1064,8 @@ g:ale_pug_puglint_executable	ale-pug.txt	/*g:ale_pug_puglint_executable*
 g:ale_pug_puglint_options	ale-pug.txt	/*g:ale_pug_puglint_options*
 g:ale_pug_puglint_use_global	ale-pug.txt	/*g:ale_pug_puglint_use_global*
 g:ale_puppet_languageserver_executable	ale-puppet.txt	/*g:ale_puppet_languageserver_executable*
+g:ale_puppet_puppet_executable	ale-puppet.txt	/*g:ale_puppet_puppet_executable*
+g:ale_puppet_puppet_options	ale-puppet.txt	/*g:ale_puppet_puppet_options*
 g:ale_puppet_puppetlint_executable	ale-puppet.txt	/*g:ale_puppet_puppetlint_executable*
 g:ale_puppet_puppetlint_options	ale-puppet.txt	/*g:ale_puppet_puppetlint_options*
 g:ale_pyrex_cython_executable	ale-pyrex.txt	/*g:ale_pyrex_cython_executable*
@@ -1106,6 +1123,8 @@ g:ale_ruby_rubocop_executable	ale-ruby.txt	/*g:ale_ruby_rubocop_executable*
 g:ale_ruby_rubocop_options	ale-ruby.txt	/*g:ale_ruby_rubocop_options*
 g:ale_ruby_ruby_executable	ale-ruby.txt	/*g:ale_ruby_ruby_executable*
 g:ale_ruby_rufo_executable	ale-ruby.txt	/*g:ale_ruby_rufo_executable*
+g:ale_ruby_solargraph_host	ale-ruby.txt	/*g:ale_ruby_solargraph_host*
+g:ale_ruby_solargraph_port	ale-ruby.txt	/*g:ale_ruby_solargraph_port*
 g:ale_rust_cargo_avoid_whole_workspace	ale-rust.txt	/*g:ale_rust_cargo_avoid_whole_workspace*
 g:ale_rust_cargo_check_all_targets	ale-rust.txt	/*g:ale_rust_cargo_check_all_targets*
 g:ale_rust_cargo_check_examples	ale-rust.txt	/*g:ale_rust_cargo_check_examples*
@@ -1188,6 +1207,7 @@ g:ale_writegood_executable	ale.txt	/*g:ale_writegood_executable*
 g:ale_writegood_options	ale.txt	/*g:ale_writegood_options*
 g:ale_writegood_use_global	ale.txt	/*g:ale_writegood_use_global*
 g:ale_xml_xmllint_executable	ale-xml.txt	/*g:ale_xml_xmllint_executable*
+g:ale_xml_xmllint_indentsize	ale-xml.txt	/*g:ale_xml_xmllint_indentsize*
 g:ale_xml_xmllint_options	ale-xml.txt	/*g:ale_xml_xmllint_options*
 g:ale_yaml_swaglint_executable	ale-yaml.txt	/*g:ale_yaml_swaglint_executable*
 g:ale_yaml_swaglint_use_global	ale-yaml.txt	/*g:ale_yaml_swaglint_use_global*
