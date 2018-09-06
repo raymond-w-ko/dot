@@ -336,6 +336,7 @@ ale-rust-rustfmt	ale-rust.txt	/*ale-rust-rustfmt*
 ale-sass-options	ale-sass.txt	/*ale-sass-options*
 ale-sass-stylelint	ale-sass.txt	/*ale-sass-stylelint*
 ale-scala-options	ale-scala.txt	/*ale-scala-options*
+ale-scala-sbtserver	ale-scala.txt	/*ale-scala-sbtserver*
 ale-scala-scalafmt	ale-scala.txt	/*ale-scala-scalafmt*
 ale-scala-scalastyle	ale-scala.txt	/*ale-scala-scalastyle*
 ale-scss-options	ale-scss.txt	/*ale-scss-options*
@@ -721,6 +722,8 @@ b:ale_rust_rustc_options	ale-rust.txt	/*b:ale_rust_rustc_options*
 b:ale_rust_rustfmt_options	ale-rust.txt	/*b:ale_rust_rustfmt_options*
 b:ale_sass_stylelint_executable	ale-sass.txt	/*b:ale_sass_stylelint_executable*
 b:ale_sass_stylelint_use_global	ale-sass.txt	/*b:ale_sass_stylelint_use_global*
+b:ale_scala_sbtserver_address	ale-scala.txt	/*b:ale_scala_sbtserver_address*
+b:ale_scala_sbtserver_project_root	ale-scala.txt	/*b:ale_scala_sbtserver_project_root*
 b:ale_scala_scalafmt_executable	ale-scala.txt	/*b:ale_scala_scalafmt_executable*
 b:ale_scala_scalafmt_options	ale-scala.txt	/*b:ale_scala_scalafmt_options*
 b:ale_scala_scalastyle_config	ale-scala.txt	/*b:ale_scala_scalastyle_config*
@@ -1139,6 +1142,8 @@ g:ale_rust_rustc_options	ale-rust.txt	/*g:ale_rust_rustc_options*
 g:ale_rust_rustfmt_options	ale-rust.txt	/*g:ale_rust_rustfmt_options*
 g:ale_sass_stylelint_executable	ale-sass.txt	/*g:ale_sass_stylelint_executable*
 g:ale_sass_stylelint_use_global	ale-sass.txt	/*g:ale_sass_stylelint_use_global*
+g:ale_scala_sbtserver_address	ale-scala.txt	/*g:ale_scala_sbtserver_address*
+g:ale_scala_sbtserver_project_root	ale-scala.txt	/*g:ale_scala_sbtserver_project_root*
 g:ale_scala_scalafmt_executable	ale-scala.txt	/*g:ale_scala_scalafmt_executable*
 g:ale_scala_scalafmt_options	ale-scala.txt	/*g:ale_scala_scalafmt_options*
 g:ale_scala_scalastyle_config	ale-scala.txt	/*g:ale_scala_scalastyle_config*
