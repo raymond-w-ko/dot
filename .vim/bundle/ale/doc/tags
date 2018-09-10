@@ -77,6 +77,7 @@ ale-c-cquery	ale-c.txt	/*ale-c-cquery*
 ale-c-flawfinder	ale-c.txt	/*ale-c-flawfinder*
 ale-c-gcc	ale-c.txt	/*ale-c-gcc*
 ale-c-options	ale-c.txt	/*ale-c-options*
+ale-c-uncrustify	ale-c.txt	/*ale-c-uncrustify*
 ale-chef-foodcritic	ale-chef.txt	/*ale-chef-foodcritic*
 ale-chef-options	ale-chef.txt	/*ale-chef-options*
 ale-clojure-joker	ale-clojure.txt	/*ale-clojure-joker*
@@ -106,14 +107,18 @@ ale-cpp-cquery	ale-cpp.txt	/*ale-cpp-cquery*
 ale-cpp-flawfinder	ale-cpp.txt	/*ale-cpp-flawfinder*
 ale-cpp-gcc	ale-cpp.txt	/*ale-cpp-gcc*
 ale-cpp-options	ale-cpp.txt	/*ale-cpp-options*
+ale-cpp-uncrustify	ale-cpp.txt	/*ale-cpp-uncrustify*
 ale-cs-mcs	ale-cs.txt	/*ale-cs-mcs*
 ale-cs-mcsc	ale-cs.txt	/*ale-cs-mcsc*
 ale-cs-options	ale-cs.txt	/*ale-cs-options*
+ale-cs-uncrustify	ale-cs.txt	/*ale-cs-uncrustify*
 ale-css-options	ale-css.txt	/*ale-css-options*
 ale-css-prettier	ale-css.txt	/*ale-css-prettier*
 ale-css-stylelint	ale-css.txt	/*ale-css-stylelint*
 ale-cuda-nvcc	ale-cuda.txt	/*ale-cuda-nvcc*
 ale-cuda-options	ale-cuda.txt	/*ale-cuda-options*
+ale-d-options	ale-d.txt	/*ale-d-options*
+ale-d-uncrustify	ale-d.txt	/*ale-d-uncrustify*
 ale-dart-dartanalyzer	ale-dart.txt	/*ale-dart-dartanalyzer*
 ale-dart-dartfmt	ale-dart.txt	/*ale-dart-dartfmt*
 ale-dart-options	ale-dart.txt	/*ale-dart-options*
@@ -205,6 +210,7 @@ ale-java-javac	ale-java.txt	/*ale-java-javac*
 ale-java-javalsp	ale-java.txt	/*ale-java-javalsp*
 ale-java-options	ale-java.txt	/*ale-java-options*
 ale-java-pmd	ale-java.txt	/*ale-java-pmd*
+ale-java-uncrustify	ale-java.txt	/*ale-java-uncrustify*
 ale-javascript-eslint	ale-javascript.txt	/*ale-javascript-eslint*
 ale-javascript-flow	ale-javascript.txt	/*ale-javascript-flow*
 ale-javascript-importjs	ale-javascript.txt	/*ale-javascript-importjs*
@@ -261,14 +267,18 @@ ale-nroff-write-good	ale-nroff.txt	/*ale-nroff-write-good*
 ale-objc-clang	ale-objc.txt	/*ale-objc-clang*
 ale-objc-clangd	ale-objc.txt	/*ale-objc-clangd*
 ale-objc-options	ale-objc.txt	/*ale-objc-options*
+ale-objc-uncrustify	ale-objc.txt	/*ale-objc-uncrustify*
 ale-objcpp-clang	ale-objcpp.txt	/*ale-objcpp-clang*
 ale-objcpp-clangd	ale-objcpp.txt	/*ale-objcpp-clangd*
 ale-objcpp-options	ale-objcpp.txt	/*ale-objcpp-options*
+ale-objcpp-uncrustify	ale-objcpp.txt	/*ale-objcpp-uncrustify*
 ale-ocaml-merlin	ale-ocaml.txt	/*ale-ocaml-merlin*
 ale-ocaml-ocamlformat	ale-ocaml.txt	/*ale-ocaml-ocamlformat*
 ale-ocaml-ols	ale-ocaml.txt	/*ale-ocaml-ols*
 ale-ocaml-options	ale-ocaml.txt	/*ale-ocaml-options*
 ale-options	ale.txt	/*ale-options*
+ale-pawn-options	ale-pawn.txt	/*ale-pawn-options*
+ale-pawn-uncrustify	ale-pawn.txt	/*ale-pawn-uncrustify*
 ale-perl-options	ale-perl.txt	/*ale-perl-options*
 ale-perl-perl	ale-perl.txt	/*ale-perl-perl*
 ale-perl-perlcritic	ale-perl.txt	/*ale-perl-perlcritic*
@@ -358,6 +368,8 @@ ale-solidity-solium	ale-solidity.txt	/*ale-solidity-solium*
 ale-spec-options	ale-spec.txt	/*ale-spec-options*
 ale-spec-rpmlint	ale-spec.txt	/*ale-spec-rpmlint*
 ale-special-thanks	ale.txt	/*ale-special-thanks*
+ale-sql-options	ale-sql.txt	/*ale-sql-options*
+ale-sql-sqlfmt	ale-sql.txt	/*ale-sql-sqlfmt*
 ale-stylus-options	ale-stylus.txt	/*ale-stylus-options*
 ale-stylus-stylelint	ale-stylus.txt	/*ale-stylus-stylelint*
 ale-support	ale.txt	/*ale-support*
@@ -380,6 +392,8 @@ ale-typescript-options	ale-typescript.txt	/*ale-typescript-options*
 ale-typescript-prettier	ale-typescript.txt	/*ale-typescript-prettier*
 ale-typescript-tslint	ale-typescript.txt	/*ale-typescript-tslint*
 ale-typescript-tsserver	ale-typescript.txt	/*ale-typescript-tsserver*
+ale-vala-options	ale-vala.txt	/*ale-vala-options*
+ale-vala-uncrustify	ale-vala.txt	/*ale-vala-uncrustify*
 ale-verilog-iverilog	ale-verilog.txt	/*ale-verilog-iverilog*
 ale-verilog-options	ale-verilog.txt	/*ale-verilog-options*
 ale-verilog-verilator	ale-verilog.txt	/*ale-verilog-verilator*
@@ -430,6 +444,8 @@ b:ale_c_gcc_executable	ale-c.txt	/*b:ale_c_gcc_executable*
 b:ale_c_gcc_options	ale-c.txt	/*b:ale_c_gcc_options*
 b:ale_c_parse_compile_commands	ale-c.txt	/*b:ale_c_parse_compile_commands*
 b:ale_c_parse_makefile	ale-c.txt	/*b:ale_c_parse_makefile*
+b:ale_c_uncrustify_executable	ale-c.txt	/*b:ale_c_uncrustify_executable*
+b:ale_c_uncrustify_options	ale-c.txt	/*b:ale_c_uncrustify_options*
 b:ale_chef_foodcritic_executable	ale-chef.txt	/*b:ale_chef_foodcritic_executable*
 b:ale_chef_foodcritic_options	ale-chef.txt	/*b:ale_chef_foodcritic_options*
 b:ale_cmake_cmakelint_executable	ale-cmake.txt	/*b:ale_cmake_cmakelint_executable*
@@ -749,6 +765,8 @@ b:ale_sh_shfmt_options	ale-sh.txt	/*b:ale_sh_shfmt_options*
 b:ale_sml_smlnj_cm_file	ale-sml.txt	/*b:ale_sml_smlnj_cm_file*
 b:ale_spec_rpmlint_executable	ale-spec.txt	/*b:ale_spec_rpmlint_executable*
 b:ale_spec_rpmlint_options	ale-spec.txt	/*b:ale_spec_rpmlint_options*
+b:ale_sql_sqlfmt_executable	ale-sql.txt	/*b:ale_sql_sqlfmt_executable*
+b:ale_sql_sqlfmt_options	ale-sql.txt	/*b:ale_sql_sqlfmt_options*
 b:ale_stylus_stylelint_executable	ale-stylus.txt	/*b:ale_stylus_stylelint_executable*
 b:ale_stylus_stylelint_options	ale-stylus.txt	/*b:ale_stylus_stylelint_options*
 b:ale_stylus_stylelint_use_global	ale-stylus.txt	/*b:ale_stylus_stylelint_use_global*
@@ -823,6 +841,8 @@ g:ale_c_gcc_executable	ale-c.txt	/*g:ale_c_gcc_executable*
 g:ale_c_gcc_options	ale-c.txt	/*g:ale_c_gcc_options*
 g:ale_c_parse_compile_commands	ale-c.txt	/*g:ale_c_parse_compile_commands*
 g:ale_c_parse_makefile	ale-c.txt	/*g:ale_c_parse_makefile*
+g:ale_c_uncrustify_executable	ale-c.txt	/*g:ale_c_uncrustify_executable*
+g:ale_c_uncrustify_options	ale-c.txt	/*g:ale_c_uncrustify_options*
 g:ale_cache_executable_check_failures	ale.txt	/*g:ale_cache_executable_check_failures*
 g:ale_change_sign_column_color	ale.txt	/*g:ale_change_sign_column_color*
 g:ale_chef_foodcritic_executable	ale-chef.txt	/*g:ale_chef_foodcritic_executable*
@@ -1185,6 +1205,8 @@ g:ale_sign_warning	ale.txt	/*g:ale_sign_warning*
 g:ale_sml_smlnj_cm_file	ale-sml.txt	/*g:ale_sml_smlnj_cm_file*
 g:ale_spec_rpmlint_executable	ale-spec.txt	/*g:ale_spec_rpmlint_executable*
 g:ale_spec_rpmlint_options	ale-spec.txt	/*g:ale_spec_rpmlint_options*
+g:ale_sql_sqlfmt_executable	ale-sql.txt	/*g:ale_sql_sqlfmt_executable*
+g:ale_sql_sqlfmt_options	ale-sql.txt	/*g:ale_sql_sqlfmt_options*
 g:ale_stylus_stylelint_executable	ale-stylus.txt	/*g:ale_stylus_stylelint_executable*
 g:ale_stylus_stylelint_options	ale-stylus.txt	/*g:ale_stylus_stylelint_options*
 g:ale_stylus_stylelint_use_global	ale-stylus.txt	/*g:ale_stylus_stylelint_use_global*
