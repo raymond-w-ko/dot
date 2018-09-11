@@ -227,6 +227,8 @@ ale-json-jq	ale-json.txt	/*ale-json-jq*
 ale-json-jsonlint	ale-json.txt	/*ale-json-jsonlint*
 ale-json-options	ale-json.txt	/*ale-json-options*
 ale-json-prettier	ale-json.txt	/*ale-json-prettier*
+ale-julia-languageserver	ale-julia.txt	/*ale-julia-languageserver*
+ale-julia-options	ale-julia.txt	/*ale-julia-options*
 ale-kotlin-kotlinc	ale-kotlin.txt	/*ale-kotlin-kotlinc*
 ale-kotlin-ktlint	ale-kotlin.txt	/*ale-kotlin-ktlint*
 ale-kotlin-languageserver	ale-kotlin.txt	/*ale-kotlin-languageserver*
@@ -597,6 +599,7 @@ b:ale_json_fixjson_options	ale-json.txt	/*b:ale_json_fixjson_options*
 b:ale_json_fixjson_use_global	ale-json.txt	/*b:ale_json_fixjson_use_global*
 b:ale_json_jq_executable	ale-json.txt	/*b:ale_json_jq_executable*
 b:ale_json_jq_options	ale-json.txt	/*b:ale_json_jq_options*
+b:ale_julia_executable	ale-julia.txt	/*b:ale_julia_executable*
 b:ale_keep_list_window_open	ale.txt	/*b:ale_keep_list_window_open*
 b:ale_lacheck_executable	ale-tex.txt	/*b:ale_lacheck_executable*
 b:ale_less_lessc_executable	ale-less.txt	/*b:ale_less_lessc_executable*
@@ -1005,6 +1008,7 @@ g:ale_json_fixjson_options	ale-json.txt	/*g:ale_json_fixjson_options*
 g:ale_json_fixjson_use_global	ale-json.txt	/*g:ale_json_fixjson_use_global*
 g:ale_json_jq_executable	ale-json.txt	/*g:ale_json_jq_executable*
 g:ale_json_jq_options	ale-json.txt	/*g:ale_json_jq_options*
+g:ale_julia_executable	ale-julia.txt	/*g:ale_julia_executable*
 g:ale_keep_list_window_open	ale.txt	/*g:ale_keep_list_window_open*
 g:ale_kotlin_kotlinc_classpath	ale-kotlin.txt	/*g:ale_kotlin_kotlinc_classpath*
 g:ale_kotlin_kotlinc_config_file	ale-kotlin.txt	/*g:ale_kotlin_kotlinc_config_file*
