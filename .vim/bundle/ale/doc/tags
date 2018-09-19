@@ -734,8 +734,7 @@ b:ale_ruby_rubocop_executable	ale-ruby.txt	/*b:ale_ruby_rubocop_executable*
 b:ale_ruby_rubocop_options	ale-ruby.txt	/*b:ale_ruby_rubocop_options*
 b:ale_ruby_ruby_executable	ale-ruby.txt	/*b:ale_ruby_ruby_executable*
 b:ale_ruby_rufo_executable	ale-ruby.txt	/*b:ale_ruby_rufo_executable*
-b:ale_ruby_solargraph_host	ale-ruby.txt	/*b:ale_ruby_solargraph_host*
-b:ale_ruby_solargraph_port	ale-ruby.txt	/*b:ale_ruby_solargraph_port*
+b:ale_ruby_solargraph_executable	ale-ruby.txt	/*b:ale_ruby_solargraph_executable*
 b:ale_rust_cargo_avoid_whole_workspace	ale-rust.txt	/*b:ale_rust_cargo_avoid_whole_workspace*
 b:ale_rust_cargo_check_all_targets	ale-rust.txt	/*b:ale_rust_cargo_check_all_targets*
 b:ale_rust_cargo_check_examples	ale-rust.txt	/*b:ale_rust_cargo_check_examples*
@@ -1168,8 +1167,7 @@ g:ale_ruby_rubocop_executable	ale-ruby.txt	/*g:ale_ruby_rubocop_executable*
 g:ale_ruby_rubocop_options	ale-ruby.txt	/*g:ale_ruby_rubocop_options*
 g:ale_ruby_ruby_executable	ale-ruby.txt	/*g:ale_ruby_ruby_executable*
 g:ale_ruby_rufo_executable	ale-ruby.txt	/*g:ale_ruby_rufo_executable*
-g:ale_ruby_solargraph_host	ale-ruby.txt	/*g:ale_ruby_solargraph_host*
-g:ale_ruby_solargraph_port	ale-ruby.txt	/*g:ale_ruby_solargraph_port*
+g:ale_ruby_solargraph_executable	ale-ruby.txt	/*g:ale_ruby_solargraph_executable*
 g:ale_rust_cargo_avoid_whole_workspace	ale-rust.txt	/*g:ale_rust_cargo_avoid_whole_workspace*
 g:ale_rust_cargo_check_all_targets	ale-rust.txt	/*g:ale_rust_cargo_check_all_targets*
 g:ale_rust_cargo_check_examples	ale-rust.txt	/*g:ale_rust_cargo_check_examples*
