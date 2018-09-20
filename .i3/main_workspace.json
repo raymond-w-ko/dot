@@ -1,59 +1,10 @@
 // vim:ts=4:sw=4:et
 {
     // this is a manually added container to restore the vertical split
-    "layout": "splitv",
+    "layout": "splith",
     "percent": 0.5,
     "type": "con",
     "nodes": [
-		{
-			"border": "pixel",
-			"floating": "auto_off",
-			"layout": "splith",
-			"percent": 0.5,
-			"type": "con",
-			"nodes": [
-				{
-					"border": "pixel",
-					"current_border_width": 0,
-					"floating": "auto_off",
-					"geometry": {
-						"height": 2159,
-						"width": 3839,
-						"x": 0,
-						"y": 0
-					},
-					"name": "i3: Layout saving in i3 - Google Chrome",
-					"percent": 0.5,
-					"swallows": [
-						{
-							"class": "^Google\\-chrome$",
-							"instance": "^google\\-chrome$"
-						}
-					],
-					"type": "con"
-				},
-				{
-					"border": "pixel",
-					"current_border_width": 0,
-					"floating": "auto_off",
-					"geometry": {
-						"height": 268,
-						"width": 404,
-						"x": 0,
-						"y": 0
-					},
-					"name": "i3-save-tree",
-					"percent": 0.5,
-					"swallows": [
-						{
-							"class": "^xterm\\-256color$",
-							"instance": "^xterm\\-256color$"
-						}
-					],
-					"type": "con"
-				}
-			]
-		},
         {
             "border": "pixel",
             "floating": "auto_off",
@@ -66,17 +17,21 @@
                     "current_border_width": 0,
                     "floating": "auto_off",
                     "geometry": {
-                        "height": 2160,
-                        "width": 3840,
-                        "x": 0,
-                        "y": 0
+                       "height": 2158,
+                       "width": 400,
+                       "x": 1,
+                       "y": 1
                     },
-                    "name": "Inbox - admin@syandus.com - Mozilla Thunderbird",
-                    "percent": 0.5,
+                    "name": "Tabs Outliner",
+                    "percent": 0.100520833333333,
                     "swallows": [
-                        {
-                            "class": "^Thunderbird$"
-                        }
+                       {
+                       // "class": "^Google\\-chrome$",
+                       // "title": "^Tabs\\ Outliner$",
+                       // "transient_for": "^$",
+                       // "window_role": "^pop\\-up$",
+                       "instance": "^crx_eggkanocgddhmamlbiijnphhppkpkmkl$"
+                       }
                     ],
                     "type": "con"
                 },
@@ -85,18 +40,69 @@
                     "current_border_width": 0,
                     "floating": "auto_off",
                     "geometry": {
-                        "height": 268,
-                        "width": 404,
-                        "x": 0,
-                        "y": 0
+                       "height": 2160,
+                       "width": 1000,
+                       "x": 1925,
+                       "y": 0
                     },
-                    "name": "~",
+                    "name": "i3: Layout saving in i3 - Google Chrome",
+                    "percent": 0.899479166666667,
+                    "swallows": [
+                       {
+                       // "class": "^Google\\-chrome$",
+                       // "title": "^i3\\:\\ Layout\\ saving\\ in\\ i3\\ \\-\\ Google\\ Chrome$",
+                       // "transient_for": "^$",
+                       // "window_role": "^browser$",
+                       "instance": "^google\\-chrome$"
+                       }
+                    ],
+                    "type": "con"
+                }
+            ]
+        },
+        {
+            "border": "pixel",
+            "floating": "auto_off",
+            "layout": "splitv",
+            "percent": 0.5,
+            "type": "con",
+            "nodes": [
+                {
+                    "border": "pixel",
+                    "current_border_width": 0,
+                    "floating": "auto_off",
+                    "geometry": {
+                       "height": 268,
+                       "width": 404,
+                       "x": 0,
+                       "y": 0
+                    },
+                    "name": "i3-save-tree",
                     "percent": 0.5,
                     "swallows": [
-                        {
-                            "class": "^xterm\\-256color$",
-                            "instance": "^xterm\\-256color$"
-                        }
+                       {
+                       "class": "^xterm\\-256color$",
+                       "instance": "^xterm\\-256color$"
+                       }
+                    ],
+                    "type": "con"
+                },
+                {
+                    "border": "pixel",
+                    "current_border_width": 0,
+                    "floating": "auto_off",
+                    "geometry": {
+                       "height": 2160,
+                       "width": 3840,
+                       "x": 0,
+                       "y": 0
+                    },
+                    "name": "Templates - raymond.ko@syandus.com - Mozilla Thunderbird",
+                    "percent": 0.5,
+                    "swallows": [
+                       {
+                       "class": "^Thunderbird$"
+                       }
                     ],
                     "type": "con"
                 }
