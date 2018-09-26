@@ -245,6 +245,7 @@ ale-lint-file-linters	ale.txt	/*ale-lint-file-linters*
 ale-lint-settings-on-startup	ale.txt	/*ale-lint-settings-on-startup*
 ale-linter-loading-behavior	ale.txt	/*ale-linter-loading-behavior*
 ale-linter-loading-behaviour	ale.txt	/*ale-linter-loading-behaviour*
+ale-linting-interrupts-mapping	ale.txt	/*ale-linting-interrupts-mapping*
 ale-llvm-llc	ale-llvm.txt	/*ale-llvm-llc*
 ale-llvm-options	ale-llvm.txt	/*ale-llvm-options*
 ale-loclist-format	ale.txt	/*ale-loclist-format*
