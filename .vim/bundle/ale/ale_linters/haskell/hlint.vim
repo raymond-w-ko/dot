@@ -32,14 +32,15 @@ endfunction
 function! ale_linters#haskell#hlint#GetCommand(buffer) abort
     let l:hlintopts = '--color=never --json'
 
-    return '%e'
+    return ale#handlers#hlint#GetExecutable(a:buffer)
     \      . ' ' . ale#Var(a:buffer, 'haskell_hlint_options')
-    \      . ' ' . l:hlintopts . ' -'
+    \      . ' ' . l:hlintopts
+    \      . ' -'
 endfunction
 
 call ale#linter#Define('haskell', {
 \   'name': 'hlint',
 \   'executable_callback': ale#VarFunc('haskell_hlint_executable'),
-\   'command_callback': 'ale_linters#haskell#hlint#GetCommand',
+\   'command_callback': 'ale_linters#haskell#hlint#GetCommand' ,
 \   'callback': 'ale_linters#haskell#hlint#Handle',
 \})

@@ -1,5 +1,6 @@
 Before:
   call ale#assert#SetUpLinterTest('haskell', 'hlint')
+
   let b:base_opts = '--color=never --json -'
 
 After:
