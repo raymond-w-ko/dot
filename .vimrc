@@ -23,6 +23,7 @@ endif
 Plug 'raymond-w-ko/scrollfix'
 Plug 'raymond-w-ko/vim-eslisp'
 Plug 'raymond-w-ko/vim-lua-indent'
+Plug 'raymond-w-ko/vim-fireplace'
 if has("python") || has("python3")
   Plug 'raymond-w-ko/omegacomplete.vim'
 endif
@@ -100,7 +101,6 @@ if !has('win32unix')
   Plug 'tpope/vim-salve'
 endif
 Plug 'tpope/vim-classpath'
-Plug 'tpope/vim-fireplace'
 Plug 'guns/vim-sexp'
 Plug 'guns/vim-clojure-static'
 Plug 'guns/slamhound'
