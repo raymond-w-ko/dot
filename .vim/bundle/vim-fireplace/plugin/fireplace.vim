@@ -31,7 +31,7 @@ for py_ver in s:python_version
     " and /usr/bin/python2
     if executable(_py)
       let g:fireplace#_pyexe = _py
-    elseif executable(_py)
+    elseif executable("python")
       let g:fireplace#_pyexe = "python"
     else
       let g:fireplace#_pyexe = ""
@@ -104,15 +104,15 @@ function! fireplace#jar_contents(path) abort
       let s:zipinfo = 'zipinfo -1 '
     elseif executable('jar')
       let s:zipinfo = 'jar tf '
-    elseif executable(fireplace#_pyexe)
-      let s:zipinfo = fireplace#_pyexe . ' -c '.shellescape('import zipfile, sys; print chr(10).join(zipfile.ZipFile(sys.argv[1]).namelist())').' '
+    elseif executable(g:fireplace#_pyexe)
+      let s:zipinfo = g:fireplace#_pyexe . ' -c '.shellescape('import zipfile, sys; print chr(10).join(zipfile.ZipFile(sys.argv[1]).namelist())').' '
     else
     endif
   endif
 
-  if !has_key(s:jar_contents, a:path) && has(fireplace#_py) && !$FIREPLACE_NO_IF_PYTHON
-    exe fireplace#_py . " import vim, zipfile"
-    exe fireplace#_py . 'vim.command("let s:jar_contents[a:path] = split(''" + "\n".join(zipfile.ZipFile(vim.eval(''a:path'')).namelist()) + "'', \"\n\")")'
+  if !has_key(s:jar_contents, a:path) && has(g:fireplace#_py) && !$FIREPLACE_NO_IF_PYTHON
+    exe g:fireplace#_py . " import vim, zipfile"
+    exe g:fireplace#_py . ' vim.command("let s:jar_contents[a:path] = split(''" + "\n".join(zipfile.ZipFile(vim.eval(''a:path'')).namelist()) + "'', \"\n\")")'
   elseif !has_key(s:jar_contents, a:path) && !empty(s:zipinfo)
     let s:jar_contents[a:path] = split(system(s:zipinfo.shellescape(a:path)), "\n")
     if v:shell_error
