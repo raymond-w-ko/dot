@@ -7,4 +7,4 @@
                        [cljfmt "0.6.1"]]
         :repl-options {:init (require 'cljfmt.core)}
         :aliases {"slamhound" ["run" "-m" "slam.hound"]}
-        :ultra {:color-scheme :solarized_dark}} }
+        }}
