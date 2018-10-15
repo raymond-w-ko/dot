@@ -23,7 +23,7 @@ endif
 Plug 'raymond-w-ko/scrollfix'
 Plug 'raymond-w-ko/vim-eslisp'
 Plug 'raymond-w-ko/vim-lua-indent'
-Plug 'raymond-w-ko/vim-fireplace'
+Plug 'raymond-w-ko/vim-fireplace', {'branch': 'debug'}
 if has("python") || has("python3")
   Plug 'raymond-w-ko/omegacomplete.vim'
 endif
