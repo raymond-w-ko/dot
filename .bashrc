@@ -74,6 +74,7 @@ else
   prependpath "/opt/local/bin"
   prependpath "/usr/lib/ccache/bin"
   prependpath "/usr/local/opt/node@8/bin"
+  prependpath "/opt/tastyworks"
   prependpath "$HOME/npm-global/bin"
   prependpath "$HOME/.config/yarn/global/node_modules/.bin"
   prependpath "$HOME/.local/bin"
