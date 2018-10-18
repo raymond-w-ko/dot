@@ -61,6 +61,8 @@ ale#linter#Define()	ale.txt	/*ale#linter#Define()*
 ale#linter#Get()	ale.txt	/*ale#linter#Get()*
 ale#linter#PreventLoading()	ale.txt	/*ale#linter#PreventLoading()*
 ale#statusline#Count()	ale.txt	/*ale#statusline#Count()*
+ale-ansible-ansible-lint	ale-ansible.txt	/*ale-ansible-ansible-lint*
+ale-ansible-options	ale-ansible.txt	/*ale-ansible-options*
 ale-api	ale.txt	/*ale-api*
 ale-asciidoc-options	ale-asciidoc.txt	/*ale-asciidoc-options*
 ale-asciidoc-write-good	ale-asciidoc.txt	/*ale-asciidoc-write-good*
@@ -119,6 +121,7 @@ ale-css-prettier	ale-css.txt	/*ale-css-prettier*
 ale-css-stylelint	ale-css.txt	/*ale-css-stylelint*
 ale-cuda-nvcc	ale-cuda.txt	/*ale-cuda-nvcc*
 ale-cuda-options	ale-cuda.txt	/*ale-cuda-options*
+ale-d-dls	ale-d.txt	/*ale-d-dls*
 ale-d-options	ale-d.txt	/*ale-d-options*
 ale-d-uncrustify	ale-d.txt	/*ale-d-uncrustify*
 ale-dart-dartanalyzer	ale-dart.txt	/*ale-dart-dartanalyzer*
@@ -427,6 +430,7 @@ ale-yang-options	ale-yang.txt	/*ale-yang-options*
 ale.txt	ale.txt	/*ale.txt*
 b:ale-c-flawfinder	ale-c.txt	/*b:ale-c-flawfinder*
 b:ale-cpp-flawfinder	ale-cpp.txt	/*b:ale-cpp-flawfinder*
+b:ale_ansible_ansible_lint_executable	ale-ansible.txt	/*b:ale_ansible_ansible_lint_executable*
 b:ale_asm_gcc_executable	ale-asm.txt	/*b:ale_asm_gcc_executable*
 b:ale_asm_gcc_options	ale-asm.txt	/*b:ale_asm_gcc_options*
 b:ale_awk_gawk_executable	ale-awk.txt	/*b:ale_awk_gawk_executable*
@@ -497,6 +501,7 @@ b:ale_css_stylelint_options	ale-css.txt	/*b:ale_css_stylelint_options*
 b:ale_css_stylelint_use_global	ale-css.txt	/*b:ale_css_stylelint_use_global*
 b:ale_cuda_nvcc_executable	ale-cuda.txt	/*b:ale_cuda_nvcc_executable*
 b:ale_cuda_nvcc_options	ale-cuda.txt	/*b:ale_cuda_nvcc_options*
+b:ale_d_dls_executable	ale-d.txt	/*b:ale_d_dls_executable*
 b:ale_dart_dartanalyzer_executable	ale-dart.txt	/*b:ale_dart_dartanalyzer_executable*
 b:ale_dart_dartfmt_executable	ale-dart.txt	/*b:ale_dart_dartfmt_executable*
 b:ale_dart_dartfmt_options	ale-dart.txt	/*b:ale_dart_dartfmt_options*
@@ -847,6 +852,7 @@ b:ale_yang_lsp_executable	ale-yang.txt	/*b:ale_yang_lsp_executable*
 g:airline#extensions#ale#enabled	ale.txt	/*g:airline#extensions#ale#enabled*
 g:ale-c-flawfinder	ale-c.txt	/*g:ale-c-flawfinder*
 g:ale-cpp-flawfinder	ale-cpp.txt	/*g:ale-cpp-flawfinder*
+g:ale_ansible_ansible_lint_executable	ale-ansible.txt	/*g:ale_ansible_ansible_lint_executable*
 g:ale_asm_gcc_executable	ale-asm.txt	/*g:ale_asm_gcc_executable*
 g:ale_asm_gcc_options	ale-asm.txt	/*g:ale_asm_gcc_options*
 g:ale_awk_gawk_executable	ale-awk.txt	/*g:ale_awk_gawk_executable*
@@ -924,6 +930,7 @@ g:ale_css_stylelint_use_global	ale-css.txt	/*g:ale_css_stylelint_use_global*
 g:ale_cuda_nvcc_executable	ale-cuda.txt	/*g:ale_cuda_nvcc_executable*
 g:ale_cuda_nvcc_options	ale-cuda.txt	/*g:ale_cuda_nvcc_options*
 g:ale_cursor_detail	ale.txt	/*g:ale_cursor_detail*
+g:ale_d_dls_executable	ale-d.txt	/*g:ale_d_dls_executable*
 g:ale_dart_dartanalyzer_executable	ale-dart.txt	/*g:ale_dart_dartanalyzer_executable*
 g:ale_dart_dartfmt_executable	ale-dart.txt	/*g:ale_dart_dartfmt_executable*
 g:ale_dart_dartfmt_options	ale-dart.txt	/*g:ale_dart_dartfmt_options*
