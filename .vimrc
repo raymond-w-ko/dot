@@ -23,7 +23,6 @@ endif
 Plug 'raymond-w-ko/scrollfix'
 Plug 'raymond-w-ko/vim-eslisp'
 Plug 'raymond-w-ko/vim-lua-indent'
-Plug 'raymond-w-ko/vim-fireplace', {'branch': 'debug'}
 if has("python") || has("python3")
   Plug 'raymond-w-ko/omegacomplete.vim'
 endif
@@ -95,18 +94,22 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'othree/csscomplete.vim'
 Plug 'groenewege/vim-less'
 
-" Clojure / Lisp
-if !has('win32unix')
-  " this plugin makes any file access extremely slow...
-  Plug 'tpope/vim-salve'
-endif
-Plug 'tpope/vim-classpath'
-Plug 'guns/vim-sexp'
-Plug 'guns/vim-clojure-static'
-Plug 'guns/slamhound'
-Plug 'tpope/vim-sexp-mappings-for-regular-people'
-Plug 'venantius/vim-cljfmt'
+" universal REPL
 Plug 'jpalardy/vim-slime'
+
+" clojure
+" the way of fireplace
+" Plug 'raymond-w-ko/vim-fireplace', {'branch': 'debug'}
+" if !has('win32unix') " this plugin makes any file access extremely slow...
+"   Plug 'tpope/vim-salve'
+" endif
+" Plug 'tpope/vim-classpath'
+" Plug 'guns/slamhound'
+" Plug 'venantius/vim-cljfmt'
+" universal
+Plug 'guns/vim-clojure-static'
+Plug 'guns/vim-sexp'
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
 
 " misc filetypes
 Plug 'rhysd/vim-clang-format'
