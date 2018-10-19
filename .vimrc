@@ -98,7 +98,7 @@ Plug 'groenewege/vim-less'
 Plug 'jpalardy/vim-slime'
 
 " clojure
-" the way of fireplace
+  " the way of fireplace
 " Plug 'raymond-w-ko/vim-fireplace', {'branch': 'debug'}
 " if !has('win32unix') " this plugin makes any file access extremely slow...
 "   Plug 'tpope/vim-salve'
@@ -106,7 +106,9 @@ Plug 'jpalardy/vim-slime'
 " Plug 'tpope/vim-classpath'
 " Plug 'guns/slamhound'
 " Plug 'venantius/vim-cljfmt'
-" universal
+  " plasmaplace
+Plug 'raymond-w-ko/vim-plasmaplace'
+  " universal
 Plug 'guns/vim-clojure-static'
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
