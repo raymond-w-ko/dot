@@ -202,6 +202,7 @@ Vital.Data.Either-term-either	vital/Data/Either.txt	/*Vital.Data.Either-term-eit
 Vital.Data.Either-term-left	vital/Data/Either.txt	/*Vital.Data.Either-term-left*
 Vital.Data.Either-term-right	vital/Data/Either.txt	/*Vital.Data.Either-term-right*
 Vital.Data.Either.apply()	vital/Data/Either.txt	/*Vital.Data.Either.apply()*
+Vital.Data.Either.bimap()	vital/Data/Either.txt	/*Vital.Data.Either.bimap()*
 Vital.Data.Either.bind()	vital/Data/Either.txt	/*Vital.Data.Either.bind()*
 Vital.Data.Either.flat_map()	vital/Data/Either.txt	/*Vital.Data.Either.flat_map()*
 Vital.Data.Either.from_left()	vital/Data/Either.txt	/*Vital.Data.Either.from_left()*
@@ -212,6 +213,7 @@ Vital.Data.Either.is_right()	vital/Data/Either.txt	/*Vital.Data.Either.is_right(
 Vital.Data.Either.join()	vital/Data/Either.txt	/*Vital.Data.Either.join()*
 Vital.Data.Either.left()	vital/Data/Either.txt	/*Vital.Data.Either.left()*
 Vital.Data.Either.map()	vital/Data/Either.txt	/*Vital.Data.Either.map()*
+Vital.Data.Either.map_left()	vital/Data/Either.txt	/*Vital.Data.Either.map_left()*
 Vital.Data.Either.null_to_left()	vital/Data/Either.txt	/*Vital.Data.Either.null_to_left()*
 Vital.Data.Either.return()	vital/Data/Either.txt	/*Vital.Data.Either.return()*
 Vital.Data.Either.right()	vital/Data/Either.txt	/*Vital.Data.Either.right()*
