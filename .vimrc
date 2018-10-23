@@ -86,6 +86,10 @@ Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/gv.vim'
 
+" LucHermitte
+Plug 'LucHermitte/lh-vim-lib'
+Plug 'LucHermitte/alternate-lite'
+
 " Web Development
 Plug '2072/PHP-Indenting-for-VIm'
 Plug 'pangloss/vim-javascript'
@@ -1055,12 +1059,12 @@ nnoremap <C-p> :call FindFileInProjectDirectory()<CR>
 nnoremap <leader>b :CtrlPBuffer<CR>
 
 function! MyAlternateFunction()
-    let old_buf_nr = bufnr('%')
+    " let old_buf_nr = bufnr('%')
     A
-    let new_buf_nr = bufnr('%')
-    "if (old_buf_nr != new_buf_nr)
-        "call CenterCursorAesthetically()
-    "endif
+    " let new_buf_nr = bufnr('%')
+    " if (old_buf_nr != new_buf_nr)
+    "     call CenterCursorAesthetically()
+    " endif
 endfunction
 nnoremap <leader>a :call MyAlternateFunction()<CR>
 nnoremap <leader><leader> <C-^>
