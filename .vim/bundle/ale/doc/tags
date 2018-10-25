@@ -194,6 +194,8 @@ ale-haskell-hlint	ale-haskell.txt	/*ale-haskell-hlint*
 ale-haskell-options	ale-haskell.txt	/*ale-haskell-options*
 ale-haskell-stack-build	ale-haskell.txt	/*ale-haskell-stack-build*
 ale-haskell-stylish-haskell	ale-haskell.txt	/*ale-haskell-stylish-haskell*
+ale-hcl-options	ale-hcl.txt	/*ale-hcl-options*
+ale-hcl-terraform-fmt	ale-hcl.txt	/*ale-hcl-terraform-fmt*
 ale-highlights	ale.txt	/*ale-highlights*
 ale-hover	ale.txt	/*ale-hover*
 ale-html-htmlhint	ale-html.txt	/*ale-html-htmlhint*
@@ -294,6 +296,8 @@ ale-perl-options	ale-perl.txt	/*ale-perl-options*
 ale-perl-perl	ale-perl.txt	/*ale-perl-perl*
 ale-perl-perlcritic	ale-perl.txt	/*ale-perl-perlcritic*
 ale-perl-perltidy	ale-perl.txt	/*ale-perl-perltidy*
+ale-perl6-options	ale-perl6.txt	/*ale-perl6-options*
+ale-perl6-perl6	ale-perl6.txt	/*ale-perl6-perl6*
 ale-php-langserver	ale-php.txt	/*ale-php-langserver*
 ale-php-options	ale-php.txt	/*ale-php-options*
 ale-php-phan	ale-php.txt	/*ale-php-phan*
@@ -387,6 +391,7 @@ ale-stylus-stylelint	ale-stylus.txt	/*ale-stylus-stylelint*
 ale-support	ale.txt	/*ale-support*
 ale-tcl-nagelfar	ale-tcl.txt	/*ale-tcl-nagelfar*
 ale-tcl-options	ale-tcl.txt	/*ale-tcl-options*
+ale-terraform-fmt	ale-terraform.txt	/*ale-terraform-fmt*
 ale-terraform-options	ale-terraform.txt	/*ale-terraform-options*
 ale-terraform-tflint	ale-terraform.txt	/*ale-terraform-tflint*
 ale-tex-chktex	ale-tex.txt	/*ale-tex-chktex*
@@ -663,6 +668,8 @@ b:ale_ocaml_ocamlformat_options	ale-ocaml.txt	/*b:ale_ocaml_ocamlformat_options*
 b:ale_ocaml_ols_executable	ale-ocaml.txt	/*b:ale_ocaml_ols_executable*
 b:ale_ocaml_ols_use_global	ale-ocaml.txt	/*b:ale_ocaml_ols_use_global*
 b:ale_open_list	ale.txt	/*b:ale_open_list*
+b:ale_perl6_perl6_executable	ale-perl6.txt	/*b:ale_perl6_perl6_executable*
+b:ale_perl6_perl6_options	ale-perl6.txt	/*b:ale_perl6_perl6_options*
 b:ale_perl_perl_executable	ale-perl.txt	/*b:ale_perl_perl_executable*
 b:ale_perl_perl_options	ale-perl.txt	/*b:ale_perl_perl_options*
 b:ale_perl_perlcritic_executable	ale-perl.txt	/*b:ale_perl_perlcritic_executable*
@@ -811,6 +818,8 @@ b:ale_stylus_stylelint_options	ale-stylus.txt	/*b:ale_stylus_stylelint_options*
 b:ale_stylus_stylelint_use_global	ale-stylus.txt	/*b:ale_stylus_stylelint_use_global*
 b:ale_tcl_nagelfar_executable	ale-tcl.txt	/*b:ale_tcl_nagelfar_executable*
 b:ale_tcl_nagelfar_options	ale-tcl.txt	/*b:ale_tcl_nagelfar_options*
+b:ale_terraform_fmt_executable	ale-terraform.txt	/*b:ale_terraform_fmt_executable*
+b:ale_terraform_fmt_options	ale-terraform.txt	/*b:ale_terraform_fmt_options*
 b:ale_terraform_tflint_executable	ale-terraform.txt	/*b:ale_terraform_tflint_executable*
 b:ale_terraform_tflint_options	ale-terraform.txt	/*b:ale_terraform_tflint_options*
 b:ale_tex_chktex_executable	ale-tex.txt	/*b:ale_tex_chktex_executable*
@@ -1119,6 +1128,8 @@ g:ale_ocaml_ols_use_global	ale-ocaml.txt	/*g:ale_ocaml_ols_use_global*
 g:ale_open_list	ale.txt	/*g:ale_open_list*
 g:ale_pattern_options	ale.txt	/*g:ale_pattern_options*
 g:ale_pattern_options_enabled	ale.txt	/*g:ale_pattern_options_enabled*
+g:ale_perl6_perl6_executable	ale-perl6.txt	/*g:ale_perl6_perl6_executable*
+g:ale_perl6_perl6_options	ale-perl6.txt	/*g:ale_perl6_perl6_options*
 g:ale_perl_perl_executable	ale-perl.txt	/*g:ale_perl_perl_executable*
 g:ale_perl_perl_options	ale-perl.txt	/*g:ale_perl_perl_options*
 g:ale_perl_perlcritic_executable	ale-perl.txt	/*g:ale_perl_perlcritic_executable*
@@ -1280,6 +1291,8 @@ g:ale_stylus_stylelint_options	ale-stylus.txt	/*g:ale_stylus_stylelint_options*
 g:ale_stylus_stylelint_use_global	ale-stylus.txt	/*g:ale_stylus_stylelint_use_global*
 g:ale_tcl_nagelfar_executable	ale-tcl.txt	/*g:ale_tcl_nagelfar_executable*
 g:ale_tcl_nagelfar_options	ale-tcl.txt	/*g:ale_tcl_nagelfar_options*
+g:ale_terraform_fmt_executable	ale-terraform.txt	/*g:ale_terraform_fmt_executable*
+g:ale_terraform_fmt_options	ale-terraform.txt	/*g:ale_terraform_fmt_options*
 g:ale_terraform_tflint_executable	ale-terraform.txt	/*g:ale_terraform_tflint_executable*
 g:ale_terraform_tflint_options	ale-terraform.txt	/*g:ale_terraform_tflint_options*
 g:ale_tex_chktex_executable	ale-tex.txt	/*g:ale_tex_chktex_executable*
