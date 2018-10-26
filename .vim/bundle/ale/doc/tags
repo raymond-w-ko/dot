@@ -134,6 +134,7 @@ ale-development-introduction	ale-development.txt	/*ale-development-introduction*
 ale-development-linter-tests	ale-development.txt	/*ale-development-linter-tests*
 ale-development-tests	ale-development.txt	/*ale-development-tests*
 ale-development.txt	ale-development.txt	/*ale-development.txt*
+ale-dockerfile-dockerfile_lint	ale-dockerfile.txt	/*ale-dockerfile-dockerfile_lint*
 ale-dockerfile-hadolint	ale-dockerfile.txt	/*ale-dockerfile-hadolint*
 ale-dockerfile-options	ale-dockerfile.txt	/*ale-dockerfile-options*
 ale-elixir-dialyxir	ale-elixir.txt	/*ale-elixir-dialyxir*
@@ -313,6 +314,8 @@ ale-pod-options	ale-pod.txt	/*ale-pod-options*
 ale-pod-write-good	ale-pod.txt	/*ale-pod-write-good*
 ale-pony-options	ale-pony.txt	/*ale-pony-options*
 ale-pony-ponyc	ale-pony.txt	/*ale-pony-ponyc*
+ale-prolog-options	ale-prolog.txt	/*ale-prolog-options*
+ale-prolog-swipl	ale-prolog.txt	/*ale-prolog-swipl*
 ale-proto-options	ale-proto.txt	/*ale-proto-options*
 ale-proto-protoc-gen-lint	ale-proto.txt	/*ale-proto-protoc-gen-lint*
 ale-pug-options	ale-pug.txt	/*ale-pug-options*
@@ -510,6 +513,8 @@ b:ale_d_dls_executable	ale-d.txt	/*b:ale_d_dls_executable*
 b:ale_dart_dartanalyzer_executable	ale-dart.txt	/*b:ale_dart_dartanalyzer_executable*
 b:ale_dart_dartfmt_executable	ale-dart.txt	/*b:ale_dart_dartfmt_executable*
 b:ale_dart_dartfmt_options	ale-dart.txt	/*b:ale_dart_dartfmt_options*
+b:ale_dockerfile_dockerfile_lint_executable	ale-dockerfile.txt	/*b:ale_dockerfile_dockerfile_lint_executable*
+b:ale_dockerfile_dockerfile_lint_options	ale-dockerfile.txt	/*b:ale_dockerfile_dockerfile_lint_options*
 b:ale_dockerfile_hadolint_image	ale-dockerfile.txt	/*b:ale_dockerfile_hadolint_image*
 b:ale_dockerfile_hadolint_use_docker	ale-dockerfile.txt	/*b:ale_dockerfile_hadolint_use_docker*
 b:ale_echo_delay	ale.txt	/*b:ale_echo_delay*
@@ -699,6 +704,11 @@ b:ale_php_phpstan_level	ale-php.txt	/*b:ale_php_phpstan_level*
 b:ale_php_psalm_executable	ale-php.txt	/*b:ale_php_psalm_executable*
 b:ale_pony_ponyc_executable	ale-pony.txt	/*b:ale_pony_ponyc_executable*
 b:ale_pony_ponyc_options	ale-pony.txt	/*b:ale_pony_ponyc_options*
+b:ale_prolog_swipl_alarm	ale-prolog.txt	/*b:ale_prolog_swipl_alarm*
+b:ale_prolog_swipl_alarm_handler	ale-prolog.txt	/*b:ale_prolog_swipl_alarm_handler*
+b:ale_prolog_swipl_executable	ale-prolog.txt	/*b:ale_prolog_swipl_executable*
+b:ale_prolog_swipl_load	ale-prolog.txt	/*b:ale_prolog_swipl_load*
+b:ale_prolog_swipl_timeout	ale-prolog.txt	/*b:ale_prolog_swipl_timeout*
 b:ale_pug_puglint_executable	ale-pug.txt	/*b:ale_pug_puglint_executable*
 b:ale_pug_puglint_options	ale-pug.txt	/*b:ale_pug_puglint_options*
 b:ale_pug_puglint_use_global	ale-pug.txt	/*b:ale_pug_puglint_use_global*
@@ -784,6 +794,7 @@ b:ale_rust_cargo_include_features	ale-rust.txt	/*b:ale_rust_cargo_include_featur
 b:ale_rust_cargo_use_check	ale-rust.txt	/*b:ale_rust_cargo_use_check*
 b:ale_rust_cargo_use_clippy	ale-rust.txt	/*b:ale_rust_cargo_use_clippy*
 b:ale_rust_ignore_error_codes	ale-rust.txt	/*b:ale_rust_ignore_error_codes*
+b:ale_rust_ignore_secondary_spans	ale-rust.txt	/*b:ale_rust_ignore_secondary_spans*
 b:ale_rust_rls_executable	ale-rust.txt	/*b:ale_rust_rls_executable*
 b:ale_rust_rls_toolchain	ale-rust.txt	/*b:ale_rust_rls_toolchain*
 b:ale_rust_rustc_options	ale-rust.txt	/*b:ale_rust_rustc_options*
@@ -945,6 +956,8 @@ g:ale_d_dls_executable	ale-d.txt	/*g:ale_d_dls_executable*
 g:ale_dart_dartanalyzer_executable	ale-dart.txt	/*g:ale_dart_dartanalyzer_executable*
 g:ale_dart_dartfmt_executable	ale-dart.txt	/*g:ale_dart_dartfmt_executable*
 g:ale_dart_dartfmt_options	ale-dart.txt	/*g:ale_dart_dartfmt_options*
+g:ale_dockerfile_dockerfile_lint_executable	ale-dockerfile.txt	/*g:ale_dockerfile_dockerfile_lint_executable*
+g:ale_dockerfile_dockerfile_lint_options	ale-dockerfile.txt	/*g:ale_dockerfile_dockerfile_lint_options*
 g:ale_dockerfile_hadolint_image	ale-dockerfile.txt	/*g:ale_dockerfile_hadolint_image*
 g:ale_dockerfile_hadolint_use_docker	ale-dockerfile.txt	/*g:ale_dockerfile_hadolint_use_docker*
 g:ale_echo_cursor	ale.txt	/*g:ale_echo_cursor*
@@ -1160,6 +1173,11 @@ g:ale_php_phpstan_level	ale-php.txt	/*g:ale_php_phpstan_level*
 g:ale_php_psalm_executable	ale-php.txt	/*g:ale_php_psalm_executable*
 g:ale_pony_ponyc_executable	ale-pony.txt	/*g:ale_pony_ponyc_executable*
 g:ale_pony_ponyc_options	ale-pony.txt	/*g:ale_pony_ponyc_options*
+g:ale_prolog_swipl_alarm	ale-prolog.txt	/*g:ale_prolog_swipl_alarm*
+g:ale_prolog_swipl_alarm_handler	ale-prolog.txt	/*g:ale_prolog_swipl_alarm_handler*
+g:ale_prolog_swipl_executable	ale-prolog.txt	/*g:ale_prolog_swipl_executable*
+g:ale_prolog_swipl_load	ale-prolog.txt	/*g:ale_prolog_swipl_load*
+g:ale_prolog_swipl_timeout	ale-prolog.txt	/*g:ale_prolog_swipl_timeout*
 g:ale_proto_protoc_gen_lint_options	ale-proto.txt	/*g:ale_proto_protoc_gen_lint_options*
 g:ale_pug_puglint_executable	ale-pug.txt	/*g:ale_pug_puglint_executable*
 g:ale_pug_puglint_options	ale-pug.txt	/*g:ale_pug_puglint_options*
@@ -1246,6 +1264,7 @@ g:ale_rust_cargo_include_features	ale-rust.txt	/*g:ale_rust_cargo_include_featur
 g:ale_rust_cargo_use_check	ale-rust.txt	/*g:ale_rust_cargo_use_check*
 g:ale_rust_cargo_use_clippy	ale-rust.txt	/*g:ale_rust_cargo_use_clippy*
 g:ale_rust_ignore_error_codes	ale-rust.txt	/*g:ale_rust_ignore_error_codes*
+g:ale_rust_ignore_secondary_spans	ale-rust.txt	/*g:ale_rust_ignore_secondary_spans*
 g:ale_rust_rls_executable	ale-rust.txt	/*g:ale_rust_rls_executable*
 g:ale_rust_rls_toolchain	ale-rust.txt	/*g:ale_rust_rls_toolchain*
 g:ale_rust_rustc_options	ale-rust.txt	/*g:ale_rust_rustc_options*
