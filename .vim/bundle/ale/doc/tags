@@ -12,7 +12,9 @@ ALEErrorSign	ale.txt	/*ALEErrorSign*
 ALEFindReferences	ale.txt	/*ALEFindReferences*
 ALEFirst	ale.txt	/*ALEFirst*
 ALEFix	ale.txt	/*ALEFix*
+ALEFixPost	ale.txt	/*ALEFixPost*
 ALEFixPost-autocmd	ale.txt	/*ALEFixPost-autocmd*
+ALEFixPre	ale.txt	/*ALEFixPre*
 ALEFixPre-autocmd	ale.txt	/*ALEFixPre-autocmd*
 ALEFixSuggest	ale.txt	/*ALEFixSuggest*
 ALEGoToDefinition	ale.txt	/*ALEGoToDefinition*
@@ -24,10 +26,13 @@ ALEInfo.	ale.txt	/*ALEInfo.*
 ALEInfoLine	ale.txt	/*ALEInfoLine*
 ALEInfoSign	ale.txt	/*ALEInfoSign*
 ALEInfoToClipboard	ale.txt	/*ALEInfoToClipboard*
+ALEJobStarted	ale.txt	/*ALEJobStarted*
 ALEJobStarted-autocmd	ale.txt	/*ALEJobStarted-autocmd*
 ALELast	ale.txt	/*ALELast*
 ALELint	ale.txt	/*ALELint*
+ALELintPost	ale.txt	/*ALELintPost*
 ALELintPost-autocmd	ale.txt	/*ALELintPost-autocmd*
+ALELintPre	ale.txt	/*ALELintPre*
 ALELintPre-autocmd	ale.txt	/*ALELintPre-autocmd*
 ALENext	ale.txt	/*ALENext*
 ALENextWrap	ale.txt	/*ALENextWrap*
@@ -42,6 +47,8 @@ ALEStyleWarning	ale.txt	/*ALEStyleWarning*
 ALEStyleWarningSign	ale.txt	/*ALEStyleWarningSign*
 ALEToggle	ale.txt	/*ALEToggle*
 ALEToggleBuffer	ale.txt	/*ALEToggleBuffer*
+ALEWantResults	ale.txt	/*ALEWantResults*
+ALEWantResults-autocmd	ale.txt	/*ALEWantResults-autocmd*
 ALEWarning	ale.txt	/*ALEWarning*
 ALEWarningLine	ale.txt	/*ALEWarningLine*
 ALEWarningSign	ale.txt	/*ALEWarningSign*
@@ -60,6 +67,8 @@ ale#fix#registry#Add()	ale.txt	/*ale#fix#registry#Add()*
 ale#linter#Define()	ale.txt	/*ale#linter#Define()*
 ale#linter#Get()	ale.txt	/*ale#linter#Get()*
 ale#linter#PreventLoading()	ale.txt	/*ale#linter#PreventLoading()*
+ale#other_source#ShowResults()	ale.txt	/*ale#other_source#ShowResults()*
+ale#other_source#StartChecking()	ale.txt	/*ale#other_source#StartChecking()*
 ale#statusline#Count()	ale.txt	/*ale#statusline#Count()*
 ale-ansible-ansible-lint	ale-ansible.txt	/*ale-ansible-ansible-lint*
 ale-ansible-options	ale-ansible.txt	/*ale-ansible-options*
@@ -252,6 +261,7 @@ ale-less-stylelint	ale-less.txt	/*ale-less-stylelint*
 ale-lint	ale.txt	/*ale-lint*
 ale-lint-file	ale.txt	/*ale-lint-file*
 ale-lint-file-linters	ale.txt	/*ale-lint-file-linters*
+ale-lint-other-sources	ale.txt	/*ale-lint-other-sources*
 ale-lint-settings-on-startup	ale.txt	/*ale-lint-settings-on-startup*
 ale-linter-loading-behavior	ale.txt	/*ale-linter-loading-behavior*
 ale-linter-loading-behaviour	ale.txt	/*ale-linter-loading-behaviour*
@@ -1339,6 +1349,7 @@ g:ale_vim_vint_show_style_issues	ale-vim.txt	/*g:ale_vim_vint_show_style_issues*
 g:ale_virtualenv_dir_names	ale.txt	/*g:ale_virtualenv_dir_names*
 g:ale_vue_vls_executable	ale-vue.txt	/*g:ale_vue_vls_executable*
 g:ale_vue_vls_use_global	ale-vue.txt	/*g:ale_vue_vls_use_global*
+g:ale_want_results_buffer	ale.txt	/*g:ale_want_results_buffer*
 g:ale_warn_about_trailing_blank_lines	ale.txt	/*g:ale_warn_about_trailing_blank_lines*
 g:ale_warn_about_trailing_whitespace	ale.txt	/*g:ale_warn_about_trailing_whitespace*
 g:ale_windows_node_executable_path	ale.txt	/*g:ale_windows_node_executable_path*
