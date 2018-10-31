@@ -45,6 +45,7 @@ ALEStyleError	ale.txt	/*ALEStyleError*
 ALEStyleErrorSign	ale.txt	/*ALEStyleErrorSign*
 ALEStyleWarning	ale.txt	/*ALEStyleWarning*
 ALEStyleWarningSign	ale.txt	/*ALEStyleWarningSign*
+ALESymbolSearch	ale.txt	/*ALESymbolSearch*
 ALEToggle	ale.txt	/*ALEToggle*
 ALEToggleBuffer	ale.txt	/*ALEToggleBuffer*
 ALEWantResults	ale.txt	/*ALEWantResults*
@@ -402,6 +403,7 @@ ale-sql-sqlfmt	ale-sql.txt	/*ale-sql-sqlfmt*
 ale-stylus-options	ale-stylus.txt	/*ale-stylus-options*
 ale-stylus-stylelint	ale-stylus.txt	/*ale-stylus-stylelint*
 ale-support	ale.txt	/*ale-support*
+ale-symbol-search	ale.txt	/*ale-symbol-search*
 ale-tcl-nagelfar	ale-tcl.txt	/*ale-tcl-nagelfar*
 ale-tcl-options	ale-tcl.txt	/*ale-tcl-options*
 ale-terraform-fmt	ale-terraform.txt	/*ale-terraform-fmt*
