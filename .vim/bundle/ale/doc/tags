@@ -159,6 +159,7 @@ ale-erlang-erlc	ale-erlang.txt	/*ale-erlang-erlc*
 ale-erlang-options	ale-erlang.txt	/*ale-erlang-options*
 ale-erlang-syntaxerl	ale-erlang.txt	/*ale-erlang-syntaxerl*
 ale-eruby-options	ale-eruby.txt	/*ale-eruby-options*
+ale-eruby-ruumba	ale-eruby.txt	/*ale-eruby-ruumba*
 ale-eslint-nested-configuration-files	ale-javascript.txt	/*ale-eslint-nested-configuration-files*
 ale-find-references	ale.txt	/*ale-find-references*
 ale-fish-options	ale-fish.txt	/*ale-fish-options*
@@ -313,6 +314,7 @@ ale-perl6-perl6	ale-perl6.txt	/*ale-perl6-perl6*
 ale-php-langserver	ale-php.txt	/*ale-php-langserver*
 ale-php-options	ale-php.txt	/*ale-php-options*
 ale-php-phan	ale-php.txt	/*ale-php-phan*
+ale-php-php	ale-php.txt	/*ale-php-php*
 ale-php-php-cs-fixer	ale-php.txt	/*ale-php-php-cs-fixer*
 ale-php-phpcbf	ale-php.txt	/*ale-php-phpcbf*
 ale-php-phpcs	ale-php.txt	/*ale-php-phpcs*
@@ -531,6 +533,7 @@ b:ale_dockerfile_hadolint_image	ale-dockerfile.txt	/*b:ale_dockerfile_hadolint_i
 b:ale_dockerfile_hadolint_use_docker	ale-dockerfile.txt	/*b:ale_dockerfile_hadolint_use_docker*
 b:ale_echo_delay	ale.txt	/*b:ale_echo_delay*
 b:ale_echo_msg_format	ale.txt	/*b:ale_echo_msg_format*
+b:ale_elixir_elixir_ls_config	ale-elixir.txt	/*b:ale_elixir_elixir_ls_config*
 b:ale_elixir_elixir_ls_release	ale-elixir.txt	/*b:ale_elixir_elixir_ls_release*
 b:ale_elixir_mix_format_options	ale-elixir.txt	/*b:ale_elixir_mix_format_options*
 b:ale_elixir_mix_options	ale-elixir.txt	/*b:ale_elixir_mix_options*
@@ -542,6 +545,7 @@ b:ale_elm_make_use_global	ale-elm.txt	/*b:ale_elm_make_use_global*
 b:ale_enabled	ale.txt	/*b:ale_enabled*
 b:ale_erlang_erlc_options	ale-erlang.txt	/*b:ale_erlang_erlc_options*
 b:ale_erlang_syntaxerl_executable	ale-erlang.txt	/*b:ale_erlang_syntaxerl_executable*
+b:ale_eruby_ruumba_executable	ale-eruby.txt	/*b:ale_eruby_ruumba_executable*
 b:ale_fix_on_save	ale.txt	/*b:ale_fix_on_save*
 b:ale_fixers	ale.txt	/*b:ale_fixers*
 b:ale_fortran_gcc_executable	ale-fortran.txt	/*b:ale_fortran_gcc_executable*
@@ -701,6 +705,7 @@ b:ale_php_langserver_use_global	ale-php.txt	/*b:ale_php_langserver_use_global*
 b:ale_php_phan_executable	ale-php.txt	/*b:ale_php_phan_executable*
 b:ale_php_phan_minimum_severity	ale-php.txt	/*b:ale_php_phan_minimum_severity*
 b:ale_php_phan_use_client	ale-php.txt	/*b:ale_php_phan_use_client*
+b:ale_php_php_executable	ale-php.txt	/*b:ale_php_php_executable*
 b:ale_php_phpcbf_executable	ale-php.txt	/*b:ale_php_phpcbf_executable*
 b:ale_php_phpcbf_standard	ale-php.txt	/*b:ale_php_phpcbf_standard*
 b:ale_php_phpcbf_use_global	ale-php.txt	/*b:ale_php_phpcbf_use_global*
@@ -795,6 +800,7 @@ b:ale_ruby_rubocop_executable	ale-ruby.txt	/*b:ale_ruby_rubocop_executable*
 b:ale_ruby_rubocop_options	ale-ruby.txt	/*b:ale_ruby_rubocop_options*
 b:ale_ruby_ruby_executable	ale-ruby.txt	/*b:ale_ruby_ruby_executable*
 b:ale_ruby_rufo_executable	ale-ruby.txt	/*b:ale_ruby_rufo_executable*
+b:ale_ruby_ruumba_options	ale-eruby.txt	/*b:ale_ruby_ruumba_options*
 b:ale_ruby_solargraph_executable	ale-ruby.txt	/*b:ale_ruby_solargraph_executable*
 b:ale_rust_cargo_avoid_whole_workspace	ale-rust.txt	/*b:ale_rust_cargo_avoid_whole_workspace*
 b:ale_rust_cargo_check_all_targets	ale-rust.txt	/*b:ale_rust_cargo_check_all_targets*
@@ -978,6 +984,7 @@ g:ale_echo_msg_error_str	ale.txt	/*g:ale_echo_msg_error_str*
 g:ale_echo_msg_format	ale.txt	/*g:ale_echo_msg_format*
 g:ale_echo_msg_info_str	ale.txt	/*g:ale_echo_msg_info_str*
 g:ale_echo_msg_warning_str	ale.txt	/*g:ale_echo_msg_warning_str*
+g:ale_elixir_elixir_ls_config	ale-elixir.txt	/*g:ale_elixir_elixir_ls_config*
 g:ale_elixir_elixir_ls_release	ale-elixir.txt	/*g:ale_elixir_elixir_ls_release*
 g:ale_elixir_mix_format_options	ale-elixir.txt	/*g:ale_elixir_mix_format_options*
 g:ale_elixir_mix_options	ale-elixir.txt	/*g:ale_elixir_mix_options*
@@ -989,6 +996,7 @@ g:ale_elm_make_use_global	ale-elm.txt	/*g:ale_elm_make_use_global*
 g:ale_enabled	ale.txt	/*g:ale_enabled*
 g:ale_erlang_erlc_options	ale-erlang.txt	/*g:ale_erlang_erlc_options*
 g:ale_erlang_syntaxerl_executable	ale-erlang.txt	/*g:ale_erlang_syntaxerl_executable*
+g:ale_eruby_ruumba_executable	ale-eruby.txt	/*g:ale_eruby_ruumba_executable*
 g:ale_fix_on_save	ale.txt	/*g:ale_fix_on_save*
 g:ale_fixers	ale.txt	/*g:ale_fixers*
 g:ale_fortran_gcc_executable	ale-fortran.txt	/*g:ale_fortran_gcc_executable*
@@ -1170,6 +1178,7 @@ g:ale_php_langserver_use_global	ale-php.txt	/*g:ale_php_langserver_use_global*
 g:ale_php_phan_executable	ale-php.txt	/*g:ale_php_phan_executable*
 g:ale_php_phan_minimum_severity	ale-php.txt	/*g:ale_php_phan_minimum_severity*
 g:ale_php_phan_use_client	ale-php.txt	/*g:ale_php_phan_use_client*
+g:ale_php_php_executable	ale-php.txt	/*g:ale_php_php_executable*
 g:ale_php_phpcbf_executable	ale-php.txt	/*g:ale_php_phpcbf_executable*
 g:ale_php_phpcbf_standard	ale-php.txt	/*g:ale_php_phpcbf_standard*
 g:ale_php_phpcbf_use_global	ale-php.txt	/*g:ale_php_phpcbf_use_global*
@@ -1265,6 +1274,7 @@ g:ale_ruby_rubocop_executable	ale-ruby.txt	/*g:ale_ruby_rubocop_executable*
 g:ale_ruby_rubocop_options	ale-ruby.txt	/*g:ale_ruby_rubocop_options*
 g:ale_ruby_ruby_executable	ale-ruby.txt	/*g:ale_ruby_ruby_executable*
 g:ale_ruby_rufo_executable	ale-ruby.txt	/*g:ale_ruby_rufo_executable*
+g:ale_ruby_ruumba_options	ale-eruby.txt	/*g:ale_ruby_ruumba_options*
 g:ale_ruby_solargraph_executable	ale-ruby.txt	/*g:ale_ruby_solargraph_executable*
 g:ale_rust_cargo_avoid_whole_workspace	ale-rust.txt	/*g:ale_rust_cargo_avoid_whole_workspace*
 g:ale_rust_cargo_check_all_targets	ale-rust.txt	/*g:ale_rust_cargo_check_all_targets*
