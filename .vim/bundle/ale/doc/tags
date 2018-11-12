@@ -180,6 +180,7 @@ ale-go-gobuild	ale-go.txt	/*ale-go-gobuild*
 ale-go-gofmt	ale-go.txt	/*ale-go-gofmt*
 ale-go-golangci-lint	ale-go.txt	/*ale-go-golangci-lint*
 ale-go-golangserver	ale-go.txt	/*ale-go-golangserver*
+ale-go-golint	ale-go.txt	/*ale-go-golint*
 ale-go-gometalinter	ale-go.txt	/*ale-go-gometalinter*
 ale-go-govet	ale-go.txt	/*ale-go-govet*
 ale-go-options	ale-go.txt	/*ale-go-options*
@@ -212,6 +213,7 @@ ale-highlights	ale.txt	/*ale-highlights*
 ale-hover	ale.txt	/*ale-hover*
 ale-html-htmlhint	ale-html.txt	/*ale-html-htmlhint*
 ale-html-options	ale-html.txt	/*ale-html-options*
+ale-html-prettier	ale-html.txt	/*ale-html-prettier*
 ale-html-stylelint	ale-html.txt	/*ale-html-stylelint*
 ale-html-tidy	ale-html.txt	/*ale-html-tidy*
 ale-html-write-good	ale-html.txt	/*ale-html-write-good*
@@ -568,6 +570,8 @@ b:ale_go_gofmt_options	ale-go.txt	/*b:ale_go_gofmt_options*
 b:ale_go_golangci_lint_executable	ale-go.txt	/*b:ale_go_golangci_lint_executable*
 b:ale_go_golangci_lint_options	ale-go.txt	/*b:ale_go_golangci_lint_options*
 b:ale_go_golangci_lint_package	ale-go.txt	/*b:ale_go_golangci_lint_package*
+b:ale_go_golint_executable	ale-go.txt	/*b:ale_go_golint_executable*
+b:ale_go_golint_options	ale-go.txt	/*b:ale_go_golint_options*
 b:ale_go_gometalinter_executable	ale-go.txt	/*b:ale_go_gometalinter_executable*
 b:ale_go_gometalinter_lint_package	ale-go.txt	/*b:ale_go_gometalinter_lint_package*
 b:ale_go_gometalinter_options	ale-go.txt	/*b:ale_go_gometalinter_options*
@@ -873,6 +877,7 @@ b:ale_verilog_verilator_options	ale-verilog.txt	/*b:ale_verilog_verilator_option
 b:ale_vim_vint_executable	ale-vim.txt	/*b:ale_vim_vint_executable*
 b:ale_vim_vint_show_style_issues	ale-vim.txt	/*b:ale_vim_vint_show_style_issues*
 b:ale_virtualenv_dir_names	ale.txt	/*b:ale_virtualenv_dir_names*
+b:ale_virtualtext_delay	ale.txt	/*b:ale_virtualtext_delay*
 b:ale_vue_vls_executable	ale-vue.txt	/*b:ale_vue_vls_executable*
 b:ale_vue_vls_use_global	ale-vue.txt	/*b:ale_vue_vls_use_global*
 b:ale_warn_about_trailing_blank_lines	ale.txt	/*b:ale_warn_about_trailing_blank_lines*
@@ -1019,6 +1024,8 @@ g:ale_go_gofmt_options	ale-go.txt	/*g:ale_go_gofmt_options*
 g:ale_go_golangci_lint_executable	ale-go.txt	/*g:ale_go_golangci_lint_executable*
 g:ale_go_golangci_lint_options	ale-go.txt	/*g:ale_go_golangci_lint_options*
 g:ale_go_golangci_lint_package	ale-go.txt	/*g:ale_go_golangci_lint_package*
+g:ale_go_golint_executable	ale-go.txt	/*g:ale_go_golint_executable*
+g:ale_go_golint_options	ale-go.txt	/*g:ale_go_golint_options*
 g:ale_go_gometalinter_executable	ale-go.txt	/*g:ale_go_gometalinter_executable*
 g:ale_go_gometalinter_lint_package	ale-go.txt	/*g:ale_go_gometalinter_lint_package*
 g:ale_go_gometalinter_options	ale-go.txt	/*g:ale_go_gometalinter_options*
@@ -1359,6 +1366,9 @@ g:ale_verilog_verilator_options	ale-verilog.txt	/*g:ale_verilog_verilator_option
 g:ale_vim_vint_executable	ale-vim.txt	/*g:ale_vim_vint_executable*
 g:ale_vim_vint_show_style_issues	ale-vim.txt	/*g:ale_vim_vint_show_style_issues*
 g:ale_virtualenv_dir_names	ale.txt	/*g:ale_virtualenv_dir_names*
+g:ale_virtualtext_cursor	ale.txt	/*g:ale_virtualtext_cursor*
+g:ale_virtualtext_delay	ale.txt	/*g:ale_virtualtext_delay*
+g:ale_virtualtext_prefix	ale.txt	/*g:ale_virtualtext_prefix*
 g:ale_vue_vls_executable	ale-vue.txt	/*g:ale_vue_vls_executable*
 g:ale_vue_vls_use_global	ale-vue.txt	/*g:ale_vue_vls_use_global*
 g:ale_want_results_buffer	ale.txt	/*g:ale_want_results_buffer*
