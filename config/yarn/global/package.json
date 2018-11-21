@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "babel-eslint": "10.0.1",
+    "bcrypt-cli": "1.1.0",
+    "bs-platform": "4.0.7",
+    "electron-packager": "12.2.0",
+    "eslint": "5.9.0",
+    "eslint_d": "7.1.1",
+    "eslisp": "0.7.6",
+    "eslisp-camelify": "0.4.0",
+    "eslisp-propertify": "0.3.0",
+    "gulp": "3.9.1",
+    "i3-style": "^0.10.0",
+    "javascript-obfuscator": "0.18.1",
+    "lumo-cljs": "1.9.0",
+    "modernizr": "3.6.0",
+    "npm-check-updates": "2.14.3",
+    "prettier": "1.15.2",
+    "tape": "4.9.1",
+    "uglify-js": "3.4.9",
+    "yamljs": "0.3.0"
+  }
+}

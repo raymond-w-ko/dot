@@ -33,6 +33,9 @@
 /config/ranger/history
 /config/ranger/tagged
 
+/config/yarn/global/yarn.lock
+/config/yarn/global/node_modules
+
 # vim plugins
 .git
 /.vim/bundle/omegacomplete.vim/python/omegacomplete/core/all.cpp
