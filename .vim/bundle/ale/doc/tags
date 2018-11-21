@@ -48,6 +48,11 @@ ALEStyleWarningSign	ale.txt	/*ALEStyleWarningSign*
 ALESymbolSearch	ale.txt	/*ALESymbolSearch*
 ALEToggle	ale.txt	/*ALEToggle*
 ALEToggleBuffer	ale.txt	/*ALEToggleBuffer*
+ALEVirtualTextError	ale.txt	/*ALEVirtualTextError*
+ALEVirtualTextInfo	ale.txt	/*ALEVirtualTextInfo*
+ALEVirtualTextStyleError	ale.txt	/*ALEVirtualTextStyleError*
+ALEVirtualTextStyleWarning	ale.txt	/*ALEVirtualTextStyleWarning*
+ALEVirtualTextWarning	ale.txt	/*ALEVirtualTextWarning*
 ALEWantResults	ale.txt	/*ALEWantResults*
 ALEWantResults-autocmd	ale.txt	/*ALEWantResults-autocmd*
 ALEWarning	ale.txt	/*ALEWarning*
@@ -71,6 +76,8 @@ ale#linter#PreventLoading()	ale.txt	/*ale#linter#PreventLoading()*
 ale#other_source#ShowResults()	ale.txt	/*ale#other_source#ShowResults()*
 ale#other_source#StartChecking()	ale.txt	/*ale#other_source#StartChecking()*
 ale#statusline#Count()	ale.txt	/*ale#statusline#Count()*
+ale-ada-gcc	ale-ada.txt	/*ale-ada-gcc*
+ale-ada-options	ale-ada.txt	/*ale-ada-options*
 ale-ansible-ansible-lint	ale-ansible.txt	/*ale-ansible-ansible-lint*
 ale-ansible-options	ale-ansible.txt	/*ale-ansible-options*
 ale-api	ale.txt	/*ale-api*
@@ -454,6 +461,8 @@ ale-yang-options	ale-yang.txt	/*ale-yang-options*
 ale.txt	ale.txt	/*ale.txt*
 b:ale-c-flawfinder	ale-c.txt	/*b:ale-c-flawfinder*
 b:ale-cpp-flawfinder	ale-cpp.txt	/*b:ale-cpp-flawfinder*
+b:ale_ada_gcc_executable	ale-ada.txt	/*b:ale_ada_gcc_executable*
+b:ale_ada_gcc_options	ale-ada.txt	/*b:ale_ada_gcc_options*
 b:ale_ansible_ansible_lint_executable	ale-ansible.txt	/*b:ale_ansible_ansible_lint_executable*
 b:ale_asm_gcc_executable	ale-asm.txt	/*b:ale_asm_gcc_executable*
 b:ale_asm_gcc_options	ale-asm.txt	/*b:ale_asm_gcc_options*
@@ -897,6 +906,8 @@ b:ale_yang_lsp_executable	ale-yang.txt	/*b:ale_yang_lsp_executable*
 g:airline#extensions#ale#enabled	ale.txt	/*g:airline#extensions#ale#enabled*
 g:ale-c-flawfinder	ale-c.txt	/*g:ale-c-flawfinder*
 g:ale-cpp-flawfinder	ale-cpp.txt	/*g:ale-cpp-flawfinder*
+g:ale_ada_gcc_executable	ale-ada.txt	/*g:ale_ada_gcc_executable*
+g:ale_ada_gcc_options	ale-ada.txt	/*g:ale_ada_gcc_options*
 g:ale_ansible_ansible_lint_executable	ale-ansible.txt	/*g:ale_ansible_ansible_lint_executable*
 g:ale_asm_gcc_executable	ale-asm.txt	/*g:ale_asm_gcc_executable*
 g:ale_asm_gcc_options	ale-asm.txt	/*g:ale_asm_gcc_options*
