@@ -16,30 +16,35 @@
                json
                "]"
                escape-suffix)]
-   (.write *out* s)))
+   (print s)))
 
-(defmacro capture-stack [form]
+(defn log-stack [e]
+  (vim-call "scratch"
+            (pr-str
+             (with-out-str
+              (clojure.stacktrace/print-stack-trace e)))))
+
+(comment
+ defmacro capture-stack [form]
   `(try
     ~form
     (catch Exception e#
-      (vim-call "scratch"
-                (pr-str
-                 (with-out-str
-                  (clojure.stacktrace/print-stack-trace e#)))))))
+      )))
 
-(defmacro Doc [sym]
-  `(capture-stack
-    (let [s# (with-out-str (clojure.repl/doc ~sym))]
-      (vim-call "scratch" (pr-str s#)))))
+(defn Doc [s]
+  (vim-call "scratch" (pr-str s)))
 
 (defn Require [namespace- reload-level]
-  (capture-stack
-   (let [s (with-out-str (clojure.core/require namespace- reload-level))
+  (try
+   (let [s (with-out-str #?(:clj (clojure.core/require namespace- reload-level)
+                            :cljs "TODO"))
          cmd (str "(plasmaplace/Require "
                   namespace-
                   " "
                   reload-level
                   ")\n")]
-     (vim-call "scratch" (pr-str (str cmd s))))))
+     (vim-call "scratch" (pr-str (str cmd s))))
+   (catch #?(:clj Exception :cljs js/Error) e
+     (log-stack e))))
 
 (vim-call "scratch" (pr-str "Clojure REPL loaded. Have fun!"))
