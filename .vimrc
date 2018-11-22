@@ -101,6 +101,9 @@ Plug 'groenewege/vim-less'
 " universal REPL
 Plug 'jpalardy/vim-slime'
 
+" reason lang
+Plug 'reasonml-editor/vim-reason-plus'
+
 " clojure
   " the way of fireplace
 " Plug 'raymond-w-ko/vim-fireplace', {'branch': 'debug'}
