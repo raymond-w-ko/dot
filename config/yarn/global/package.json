@@ -4,6 +4,7 @@
     "bcrypt-cli": "1.1.0",
     "bs-platform": "4.0.7",
     "electron-packager": "12.2.0",
+    "electron-prebuilt": "1.4.13",
     "eslint": "5.9.0",
     "eslint_d": "7.1.1",
     "eslisp": "0.7.6",
