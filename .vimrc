@@ -2107,6 +2107,10 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS noci
 " vim-sexp
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:sexp_filetypes = 'clojure,scheme,lisp,timl,eslisp'
+" Toggle this for vim-sexp to not go into insert mode after wrapping something
+let g:sexp_insert_after_wrap = 0
+" Toggle this to disable automatically creating closing brackets and quotes
+let g:sexp_enable_insert_mode_mappings = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-jsx
