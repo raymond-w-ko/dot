@@ -195,7 +195,7 @@ call s:HL('FoldColumn',     s:color_delta,       s:palette.black,     'none')
 call s:HL('Folded',         s:color_delta,       s:palette.black,     'none')
 
 " PARENTHESIS
-call s:HL('MatchParen',     s:palette.black,     s:palette.cyan,      'none')
+call s:HL('MatchParen',     s:palette.white,     s:palette.red,      'none')
 
 " POPUP
 call s:HL('Pmenu',          s:palette.white,     s:palette.gray10,    'none')
