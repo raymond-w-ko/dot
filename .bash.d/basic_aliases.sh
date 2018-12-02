@@ -41,6 +41,8 @@ alias vr="vim -R"
 alias vs="vim -S"
 alias rmr="rm -r"
 alias rmri="rm -r -i"
+alias r="ranger"
+alias sr="sudo ranger"
 
 alias ..='cd ..'
 alias ..2='cd ../..'

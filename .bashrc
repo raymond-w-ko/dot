@@ -20,6 +20,7 @@ fi
 #   esac
 # fi
 
+
 if [[ "$SHELL" == bash ]]; then
   # attempts to correct bad "cd" target
   shopt -s cdspell
@@ -34,6 +35,7 @@ fi
 export HISTSIZE=32768
 export HISTCONTROL=ignoreboth:erasedups
 
+export GPG_TTY=$(tty)
 export CCACHE_SLOPPINESS=pch_defines,time_macros
 
 appendpath () {
@@ -126,9 +128,11 @@ fi
 
 # aliases
 alias dot="cd $HOME/dot"
+alias SS="sudo systemctl"
 alias sdr='screen -U -D -R'
 # covered by oh-my-zsh, but I do not want to type argument
 alias ta='tmux attach -d'
+alias psref="gpg-connect-agent RELOADAGENT /bye" # refresh gpg
 alias genctags='/usr/bin/find . -regex ".*\.\(c\|h\|hpp\|cc\|cpp\)" -print | /usr/bin/ctags --c++-kinds=+px --fields=+aimSz --languages=c++ --sort=yes -L -'
 alias killpngcolorpofile='find . -type f -name "*.png" -exec convert {} -strip {} \;'
 alias iotop='sudo iotop -oP'
@@ -294,6 +298,7 @@ sbscd() {
   cd "$remote_path"
 }
 
+stty -ixon # disable ctrl-s and ctrl-q
 if hash stty 2>/dev/null; then
   stty stop undef
   stty start undef
