@@ -87,6 +87,8 @@ ale-asm-gcc	ale-asm.txt	/*ale-asm-gcc*
 ale-asm-options	ale-asm.txt	/*ale-asm-options*
 ale-awk-gawk	ale-awk.txt	/*ale-awk-gawk*
 ale-awk-options	ale-awk.txt	/*ale-awk-options*
+ale-bib-bibclean	ale-bib.txt	/*ale-bib-bibclean*
+ale-bib-options	ale-bib.txt	/*ale-bib-options*
 ale-c-ccls	ale-c.txt	/*ale-c-ccls*
 ale-c-clang	ale-c.txt	/*ale-c-clang*
 ale-c-clangd	ale-c.txt	/*ale-c-clangd*
@@ -358,6 +360,7 @@ ale-python-mypy	ale-python.txt	/*ale-python-mypy*
 ale-python-options	ale-python.txt	/*ale-python-options*
 ale-python-prospector	ale-python.txt	/*ale-python-prospector*
 ale-python-pycodestyle	ale-python.txt	/*ale-python-pycodestyle*
+ale-python-pydocstyle	ale-python.txt	/*ale-python-pydocstyle*
 ale-python-pyflakes	ale-python.txt	/*ale-python-pyflakes*
 ale-python-pylint	ale-python.txt	/*ale-python-pylint*
 ale-python-pyls	ale-python.txt	/*ale-python-pyls*
@@ -389,6 +392,7 @@ ale-rust-rls	ale-rust.txt	/*ale-rust-rls*
 ale-rust-rustc	ale-rust.txt	/*ale-rust-rustc*
 ale-rust-rustfmt	ale-rust.txt	/*ale-rust-rustfmt*
 ale-sass-options	ale-sass.txt	/*ale-sass-options*
+ale-sass-sasslint	ale-sass.txt	/*ale-sass-sasslint*
 ale-sass-stylelint	ale-sass.txt	/*ale-sass-stylelint*
 ale-scala-options	ale-scala.txt	/*ale-scala-options*
 ale-scala-sbtserver	ale-scala.txt	/*ale-scala-sbtserver*
@@ -396,6 +400,7 @@ ale-scala-scalafmt	ale-scala.txt	/*ale-scala-scalafmt*
 ale-scala-scalastyle	ale-scala.txt	/*ale-scala-scalastyle*
 ale-scss-options	ale-scss.txt	/*ale-scss-options*
 ale-scss-prettier	ale-scss.txt	/*ale-scss-prettier*
+ale-scss-sasslint	ale-scss.txt	/*ale-scss-sasslint*
 ale-scss-stylelint	ale-scss.txt	/*ale-scss-stylelint*
 ale-sh-language-server	ale-sh.txt	/*ale-sh-language-server*
 ale-sh-options	ale-sh.txt	/*ale-sh-options*
@@ -782,6 +787,10 @@ b:ale_python_pycodestyle_auto_pipenv	ale-python.txt	/*b:ale_python_pycodestyle_a
 b:ale_python_pycodestyle_executable	ale-python.txt	/*b:ale_python_pycodestyle_executable*
 b:ale_python_pycodestyle_options	ale-python.txt	/*b:ale_python_pycodestyle_options*
 b:ale_python_pycodestyle_use_global	ale-python.txt	/*b:ale_python_pycodestyle_use_global*
+b:ale_python_pydocstyle_auto_pipenv	ale-python.txt	/*b:ale_python_pydocstyle_auto_pipenv*
+b:ale_python_pydocstyle_executable	ale-python.txt	/*b:ale_python_pydocstyle_executable*
+b:ale_python_pydocstyle_options	ale-python.txt	/*b:ale_python_pydocstyle_options*
+b:ale_python_pydocstyle_use_global	ale-python.txt	/*b:ale_python_pydocstyle_use_global*
 b:ale_python_pyflakes_auto_pipenv	ale-python.txt	/*b:ale_python_pyflakes_auto_pipenv*
 b:ale_python_pyflakes_executable	ale-python.txt	/*b:ale_python_pyflakes_executable*
 b:ale_python_pylint_auto_pipenv	ale-python.txt	/*b:ale_python_pylint_auto_pipenv*
@@ -843,6 +852,9 @@ b:ale_scala_scalafmt_executable	ale-scala.txt	/*b:ale_scala_scalafmt_executable*
 b:ale_scala_scalafmt_options	ale-scala.txt	/*b:ale_scala_scalafmt_options*
 b:ale_scala_scalastyle_config	ale-scala.txt	/*b:ale_scala_scalastyle_config*
 b:ale_scala_scalastyle_options	ale-scala.txt	/*b:ale_scala_scalastyle_options*
+b:ale_scss_sasslint_executable	ale-scss.txt	/*b:ale_scss_sasslint_executable*
+b:ale_scss_sasslint_options	ale-scss.txt	/*b:ale_scss_sasslint_options*
+b:ale_scss_sasslint_use_global	ale-scss.txt	/*b:ale_scss_sasslint_use_global*
 b:ale_scss_stylelint_executable	ale-scss.txt	/*b:ale_scss_stylelint_executable*
 b:ale_scss_stylelint_options	ale-scss.txt	/*b:ale_scss_stylelint_options*
 b:ale_scss_stylelint_use_global	ale-scss.txt	/*b:ale_scss_stylelint_use_global*
@@ -918,6 +930,8 @@ g:ale_asm_gcc_executable	ale-asm.txt	/*g:ale_asm_gcc_executable*
 g:ale_asm_gcc_options	ale-asm.txt	/*g:ale_asm_gcc_options*
 g:ale_awk_gawk_executable	ale-awk.txt	/*g:ale_awk_gawk_executable*
 g:ale_awk_gawk_options	ale-awk.txt	/*g:ale_awk_gawk_options*
+g:ale_bib_bibclean_executable	ale-bib.txt	/*g:ale_bib_bibclean_executable*
+g:ale_bib_bibclean_options	ale-bib.txt	/*g:ale_bib_bibclean_options*
 g:ale_c_build_dir	ale-c.txt	/*g:ale_c_build_dir*
 g:ale_c_build_dir_names	ale-c.txt	/*g:ale_c_build_dir_names*
 g:ale_c_ccls_executable	ale-c.txt	/*g:ale_c_ccls_executable*
@@ -1264,6 +1278,10 @@ g:ale_python_pycodestyle_auto_pipenv	ale-python.txt	/*g:ale_python_pycodestyle_a
 g:ale_python_pycodestyle_executable	ale-python.txt	/*g:ale_python_pycodestyle_executable*
 g:ale_python_pycodestyle_options	ale-python.txt	/*g:ale_python_pycodestyle_options*
 g:ale_python_pycodestyle_use_global	ale-python.txt	/*g:ale_python_pycodestyle_use_global*
+g:ale_python_pydocstyle_auto_pipenv	ale-python.txt	/*g:ale_python_pydocstyle_auto_pipenv*
+g:ale_python_pydocstyle_executable	ale-python.txt	/*g:ale_python_pydocstyle_executable*
+g:ale_python_pydocstyle_options	ale-python.txt	/*g:ale_python_pydocstyle_options*
+g:ale_python_pydocstyle_use_global	ale-python.txt	/*g:ale_python_pydocstyle_use_global*
 g:ale_python_pyflakes_auto_pipenv	ale-python.txt	/*g:ale_python_pyflakes_auto_pipenv*
 g:ale_python_pyflakes_executable	ale-python.txt	/*g:ale_python_pyflakes_executable*
 g:ale_python_pylint_auto_pipenv	ale-python.txt	/*g:ale_python_pylint_auto_pipenv*
@@ -1325,6 +1343,9 @@ g:ale_scala_scalafmt_executable	ale-scala.txt	/*g:ale_scala_scalafmt_executable*
 g:ale_scala_scalafmt_options	ale-scala.txt	/*g:ale_scala_scalafmt_options*
 g:ale_scala_scalastyle_config	ale-scala.txt	/*g:ale_scala_scalastyle_config*
 g:ale_scala_scalastyle_options	ale-scala.txt	/*g:ale_scala_scalastyle_options*
+g:ale_scss_sasslint_executable	ale-scss.txt	/*g:ale_scss_sasslint_executable*
+g:ale_scss_sasslint_options	ale-scss.txt	/*g:ale_scss_sasslint_options*
+g:ale_scss_sasslint_use_global	ale-scss.txt	/*g:ale_scss_sasslint_use_global*
 g:ale_scss_stylelint_executable	ale-scss.txt	/*g:ale_scss_stylelint_executable*
 g:ale_scss_stylelint_options	ale-scss.txt	/*g:ale_scss_stylelint_options*
 g:ale_scss_stylelint_use_global	ale-scss.txt	/*g:ale_scss_stylelint_use_global*
