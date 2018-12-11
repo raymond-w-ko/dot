@@ -4,6 +4,7 @@
 ALEDetail	ale.txt	/*ALEDetail*
 ALEDisable	ale.txt	/*ALEDisable*
 ALEDisableBuffer	ale.txt	/*ALEDisableBuffer*
+ALEDocumentation	ale.txt	/*ALEDocumentation*
 ALEEnable	ale.txt	/*ALEEnable*
 ALEEnableBuffer	ale.txt	/*ALEEnableBuffer*
 ALEError	ale.txt	/*ALEError*
@@ -386,6 +387,7 @@ ale-ruby-rubocop	ale-ruby.txt	/*ale-ruby-rubocop*
 ale-ruby-ruby	ale-ruby.txt	/*ale-ruby-ruby*
 ale-ruby-rufo	ale-ruby.txt	/*ale-ruby-rufo*
 ale-ruby-solargraph	ale-ruby.txt	/*ale-ruby-solargraph*
+ale-ruby-standardrb	ale-ruby.txt	/*ale-ruby-standardrb*
 ale-rust-cargo	ale-rust.txt	/*ale-rust-cargo*
 ale-rust-options	ale-rust.txt	/*ale-rust-options*
 ale-rust-rls	ale-rust.txt	/*ale-rust-rls*
@@ -829,6 +831,8 @@ b:ale_ruby_ruby_executable	ale-ruby.txt	/*b:ale_ruby_ruby_executable*
 b:ale_ruby_rufo_executable	ale-ruby.txt	/*b:ale_ruby_rufo_executable*
 b:ale_ruby_ruumba_options	ale-eruby.txt	/*b:ale_ruby_ruumba_options*
 b:ale_ruby_solargraph_executable	ale-ruby.txt	/*b:ale_ruby_solargraph_executable*
+b:ale_ruby_standardrb_executable	ale-ruby.txt	/*b:ale_ruby_standardrb_executable*
+b:ale_ruby_standardrb_options	ale-ruby.txt	/*b:ale_ruby_standardrb_options*
 b:ale_rust_cargo_avoid_whole_workspace	ale-rust.txt	/*b:ale_rust_cargo_avoid_whole_workspace*
 b:ale_rust_cargo_check_all_targets	ale-rust.txt	/*b:ale_rust_cargo_check_all_targets*
 b:ale_rust_cargo_check_examples	ale-rust.txt	/*b:ale_rust_cargo_check_examples*
@@ -1320,6 +1324,8 @@ g:ale_ruby_ruby_executable	ale-ruby.txt	/*g:ale_ruby_ruby_executable*
 g:ale_ruby_rufo_executable	ale-ruby.txt	/*g:ale_ruby_rufo_executable*
 g:ale_ruby_ruumba_options	ale-eruby.txt	/*g:ale_ruby_ruumba_options*
 g:ale_ruby_solargraph_executable	ale-ruby.txt	/*g:ale_ruby_solargraph_executable*
+g:ale_ruby_standardrb_executable	ale-ruby.txt	/*g:ale_ruby_standardrb_executable*
+g:ale_ruby_standardrb_options	ale-ruby.txt	/*g:ale_ruby_standardrb_options*
 g:ale_rust_cargo_avoid_whole_workspace	ale-rust.txt	/*g:ale_rust_cargo_avoid_whole_workspace*
 g:ale_rust_cargo_check_all_targets	ale-rust.txt	/*g:ale_rust_cargo_check_all_targets*
 g:ale_rust_cargo_check_examples	ale-rust.txt	/*g:ale_rust_cargo_check_examples*
