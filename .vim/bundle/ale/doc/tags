@@ -19,7 +19,9 @@ ALEFixPre	ale.txt	/*ALEFixPre*
 ALEFixPre-autocmd	ale.txt	/*ALEFixPre-autocmd*
 ALEFixSuggest	ale.txt	/*ALEFixSuggest*
 ALEGoToDefinition	ale.txt	/*ALEGoToDefinition*
+ALEGoToDefinitionInSplit	ale.txt	/*ALEGoToDefinitionInSplit*
 ALEGoToDefinitionInTab	ale.txt	/*ALEGoToDefinitionInTab*
+ALEGoToDefinitionInVSplit	ale.txt	/*ALEGoToDefinitionInVSplit*
 ALEHover	ale.txt	/*ALEHover*
 ALEInfo	ale.txt	/*ALEInfo*
 ALEInfo-highlight	ale.txt	/*ALEInfo-highlight*
