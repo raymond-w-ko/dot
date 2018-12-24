@@ -342,7 +342,8 @@ function! fugitive#Config(...) abort
   let dir = get(b:, 'git_dir', '')
   let name = ''
   if a:0 >= 2 && type(a:2) == type({})
-    return len(a:1) ? get(get(a:2, a:1, []), 0, '') : a:2
+    let name = substitute(a:1, '^[^.]\+\|[^.]\+$', '\L&', 'g')
+    return len(a:1) ? get(get(a:2, name, []), 0, '') : a:2
   elseif a:0 >= 2
     let dir = a:2
     let name = a:1
@@ -1345,15 +1346,17 @@ function! s:ReplaceCmd(cmd, ...) abort
   endif
   let temp = s:Resolve(temp)
   let fn = expand('%:p')
-  silent exe 'doau BufReadPre '.s:fnameescape(fn)
   silent exe 'keepalt file '.temp
+  let modelines = &modelines
   try
+    set modelines=0
     if a:0
       silent noautocmd edit!
     else
       silent edit!
     endif
   finally
+    let &modelines = modelines
     try
       silent exe 'keepalt file '.s:fnameescape(fn)
     catch /^Vim\%((\a\+)\)\=:E302:/
@@ -1362,7 +1365,6 @@ function! s:ReplaceCmd(cmd, ...) abort
     if s:cpath(fnamemodify(bufname('$'), ':p'), temp)
       silent execute 'bwipeout '.bufnr('$')
     endif
-    silent exe 'doau BufReadPost '.s:fnameescape(fn)
   endtry
 endfunction
 
@@ -1374,6 +1376,7 @@ function! fugitive#BufReadStatus() abort
   let b:fugitive_display_format = b:fugitive_display_format % 2
   let b:fugitive_type = 'index'
   try
+    silent doautocmd BufReadPre
     let cmd = [fnamemodify(amatch, ':h')]
     setlocal noro ma nomodeline
     if s:cpath(fnamemodify($GIT_INDEX_FILE !=# '' ? $GIT_INDEX_FILE : b:git_dir . '/index', ':p')) !=# s:cpath(amatch)
@@ -1389,6 +1392,7 @@ function! fugitive#BufReadStatus() abort
             \ 'status']
     endif
     call s:ReplaceCmd(call('fugitive#Prepare', cmd), 1)
+    silent doautocmd BufReadPost
     if b:fugitive_display_format
       if &filetype !=# 'git'
         set filetype=git
@@ -1419,7 +1423,6 @@ function! fugitive#BufReadStatus() abort
     nnoremap <buffer> <silent> a :<C-U>let b:fugitive_display_format += 1<Bar>exe fugitive#BufReadStatus()<CR>
     nnoremap <buffer> <silent> i :<C-U>let b:fugitive_display_format -= 1<Bar>exe fugitive#BufReadStatus()<CR>
     nnoremap <buffer> <silent> C :<C-U>Gcommit<CR>:echohl WarningMsg<Bar>echo ':Gstatus C is deprecated in favor of cc'<Bar>echohl NONE<CR>
-    nnoremap <buffer> <silent> cA :<C-U>Gcommit --amend --reuse-message=HEAD<CR>:echohl WarningMsg<Bar>echo ':Gstatus cA is deprecated in favor of ce'<Bar>echohl NONE<CR>
     nnoremap <buffer> <silent> ca :<C-U>Gcommit --amend<CR>
     nnoremap <buffer> <silent> cc :<C-U>Gcommit<CR>
     nnoremap <buffer> <silent> ce :<C-U>Gcommit --amend --no-edit<CR>
@@ -1439,10 +1442,12 @@ function! fugitive#BufReadStatus() abort
     nnoremap <buffer> <silent> q :<C-U>if bufnr('$') == 1<Bar>quit<Bar>else<Bar>bdelete<Bar>endif<CR>
     nnoremap <buffer> <silent> r :<C-U>edit<CR>
     nnoremap <buffer> <silent> R :<C-U>edit<CR>
-    nnoremap <buffer> <silent> U :<C-U>execute <SID>StageUndo()<CR>
+    nnoremap <buffer> <silent> U :<C-U>echoerr 'Changed to g<Bar>'<CR>
+    nnoremap <buffer> <silent> g<Bar> :<C-U>execute <SID>StageUndo()<CR>
     nnoremap <buffer>          . : <C-R>=<SID>fnameescape(<SID>StatusCfile())<CR><Home>
     nnoremap <buffer> <silent> g?   :help fugitive-:Gstatus<CR>
     nnoremap <buffer> <silent> <F1> :help fugitive-:Gstatus<CR>
+    return ''
   catch /^fugitive:/
     return 'echoerr v:errmsg'
   endtry
@@ -1518,7 +1523,7 @@ function! fugitive#BufReadCmd(...) abort
         unlet b:fugitive_type
         if rev =~# '^:\d:'
           let &readonly = !filewritable(dir . '/index')
-          return 'silent doautocmd BufNewFile '.s:fnameescape(amatch)
+          return 'silent doautocmd BufNewFile'
         else
           setlocal readonly nomodifiable
           return 'echo ' . string(error)
@@ -1541,6 +1546,7 @@ function! fugitive#BufReadCmd(...) abort
     setlocal endofline
 
     try
+      silent doautocmd BufReadPre
       if b:fugitive_type ==# 'tree'
         let b:fugitive_display_format = b:fugitive_display_format % 2
         if b:fugitive_display_format
@@ -1581,17 +1587,12 @@ function! fugitive#BufReadCmd(...) abort
         call s:ReplaceCmd([dir, 'ls-files', '--stage'])
       elseif b:fugitive_type ==# 'blob'
         call s:ReplaceCmd([dir, 'cat-file', b:fugitive_type, rev])
-        setlocal nomodeline
       endif
     finally
       keepjumps call setpos('.',pos)
       setlocal nomodified noswapfile
-      if rev !~# '^:.:'
-        setlocal nomodifiable
-      else
-        let &modifiable = b:fugitive_type !=# 'tree'
-      endif
-      let &readonly = !&modifiable || !filewritable(dir . '/index')
+      let modifiable = rev =~# '^:.:' && b:fugitive_type !=# 'tree'
+      let &readonly = !modifiable || !filewritable(dir . '/index')
       if &bufhidden ==# ''
         setlocal bufhidden=delete
       endif
@@ -1604,7 +1605,8 @@ function! fugitive#BufReadCmd(...) abort
       endif
     endtry
 
-    return ''
+    return 'silent doautocmd' . (v:version >= 704 ? ' <nomodeline>' : '') .
+          \ ' BufReadPost' . (modifiable ? '' : '|setl nomodifiable')
   catch /^fugitive:/
     return 'echoerr v:errmsg'
   endtry
@@ -1753,6 +1755,7 @@ augroup fugitive_status
   autocmd!
   if !has('win32')
     autocmd FocusGained,ShellCmdPost * call fugitive#ReloadStatus()
+    autocmd QuickFixCmdPost *-*make* call fugitive#ReloadStatus()
     autocmd BufDelete term://* call fugitive#ReloadStatus()
   endif
 augroup END
@@ -3527,6 +3530,10 @@ function! s:ContainingCommit() abort
   return empty(commit) ? 'HEAD' : commit
 endfunction
 
+function! s:SquashArgument() abort
+  return s:Owner(@%)
+endfunction
+
 function! s:NavigateUp(count) abort
   let rev = substitute(s:DirRev(@%)[1], '^$', ':', 'g')
   let c = a:count
@@ -3575,6 +3582,9 @@ function! fugitive#MapJumps(...) abort
     nnoremap <buffer> <silent> cS    :<C-U>exe 'Gvsplit ' . <SID>fnameescape(<SID>ContainingCommit())<CR>
     nnoremap <buffer> <silent> cO    :<C-U>exe 'Gtabedit ' . <SID>fnameescape(<SID>ContainingCommit())<CR>
     nnoremap <buffer> <silent> cp    :<C-U>exe 'Gpedit ' . <SID>fnameescape(<SID>ContainingCommit())<CR>
+    nnoremap <buffer>          cf    :<C-U>Gcommit --fixup=<C-R>=<SID>SquashArgument()<CR>
+    nnoremap <buffer>          cs    :<C-U>Gcommit --squash=<C-R>=<SID>SquashArgument()<CR>
+    nnoremap <buffer>          cA    :<C-U>Gcommit --edit --squash=<C-R>=<SID>SquashArgument()<CR>
     nmap     <buffer>          .     <SID>: <Plug><cfile><Home>
   endif
 endfunction
