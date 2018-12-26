@@ -92,6 +92,11 @@ function! s:str(string) abort
   return '"' . escape(a:string, '"\') . '"'
 endfunction
 
+" turn in memory string to python (read)-able string, newlines allowed
+function! s:pystr(string) abort
+  return '"""' . escape(a:string, '"\') . '"""'
+endfunction
+
 " quote a clojure symbol
 function! s:qsym(symbol) abort
   if a:symbol =~# '^[[:alnum:]?*!+/=<>.:-]\+$'
@@ -189,12 +194,9 @@ function! s:EvalMotion(type, ...) abort
     silent exe "normal! `[v`]y"
   endif
 
-  let repl_buf = s:create_or_get_repl()
-  let pending_output = s:repl_to_scratch_pending_output[repl_buf]
-  call extend(pending_output, split(@@, "\n"))
-  call add(pending_output, "")
-  let cmd = printf('(try (plasmaplace/vim-call "scratch" (pr-str (with-out-str %s))) (catch #?(:clj Exception :cljs :default) e (plasmaplace/log-stack e)))', @@)
-  call s:to_repl(repl_buf, cmd)
+  let ns = s:qsym(plasmaplace#ns())
+  let cmd = printf("plasmaplace.Eval(%s, %s)", s:pystr(ns), s:pystr(@@))
+  call plasmaplace#py(cmd)
 
   let &selection = sel_save
   let @@ = reg_save
@@ -213,17 +215,14 @@ function! s:Macroexpand(type, ...) abort
     silent exe "normal! `[v`]y"
   endif
 
-  let repl_buf = s:create_or_get_repl()
-  let pending_output = s:repl_to_scratch_pending_output[repl_buf]
-  let echoed_cmd = "(macroexpand\n'" . @@ . ")"
-  call extend(pending_output, split(echoed_cmd, "\n"))
-  call add(pending_output, "")
-  let cmd = printf('(try (plasmaplace/vim-call "scratch" (pr-str (str (macroexpand (quote %s))))) (catch #?(:clj Exception :cljs :default) e (plasmaplace/log-stack e)))', @@)
-  call s:to_repl(repl_buf, cmd)
+  let ns = s:qsym(plasmaplace#ns())
+  let cmd = printf("plasmaplace.Macroexpand(%s, %s)", s:pystr(ns), s:pystr(@@))
+  call plasmaplace#py(cmd)
 
   let &selection = sel_save
   let @@ = reg_save
 endfunction
+
 function! s:Macroexpand1(type, ...) abort
   let sel_save = &selection
   let &selection = "inclusive"
@@ -237,13 +236,9 @@ function! s:Macroexpand1(type, ...) abort
     silent exe "normal! `[v`]y"
   endif
 
-  let repl_buf = s:create_or_get_repl()
-  let pending_output = s:repl_to_scratch_pending_output[repl_buf]
-  let echoed_cmd = "(macroexpand-1\n'" . @@ . ")"
-  call extend(pending_output, split(echoed_cmd, "\n"))
-  call add(pending_output, "")
-  let cmd = printf('(try (plasmaplace/vim-call "scratch" (pr-str (str (macroexpand-1 (quote %s))))) (catch #?(:clj Exception :cljs :default) e (plasmaplace/log-stack e)))', @@)
-  call s:to_repl(repl_buf, cmd)
+  let ns = s:qsym(plasmaplace#ns())
+  let cmd = printf("plasmaplace.Macroexpand1(%s, %s)", s:pystr(ns), s:pystr(@@))
+  call plasmaplace#py(cmd)
 
   let &selection = sel_save
   let @@ = reg_save
@@ -252,44 +247,27 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " main
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! s:SwitchToNs(...) abort
-  if a:0 > 0
-    let ns = a:1
-  else
-    let ns = plasmaplace#ns()
-  endif
-  let ns = s:qsym(ns)
-
-  let repl_buf = s:create_or_get_repl()
-  let cmd = printf("(in-ns %s)", ns)
-  call s:to_repl(repl_buf, cmd)
-endfunction
-
 function! s:Require(bang, echo, ns) abort
+  if expand("%:e" ==# "cljs")
+    return
+  endif
   if &autowrite || &autowriteall
     silent! wall
   endif
 
-  " used to reload plasmaplace code in case of refresh
-  let project_dir = s:get_project_path()
-  if s:get_project_type(project_dir) == "shadow-cljs"
-    call s:LoadCode()
-    return
-  endif
-
-  let ns = a:ns
-
-  let repl_buf = s:create_or_get_repl()
-  if ns ==# ""
-    let ns = plasmaplace#ns()
-  endif
   let reload_level = ":reload"
   if a:bang
     let reload_level .= "-all"
   endif
+
+  let ns = a:ns
+  if ns ==# ""
+    let ns = plasmaplace#ns()
+  endif
   let ns = s:qsym(ns)
-  let cmd = printf("(plasmaplace/Require %s %s)", ns, reload_level)
-  call s:to_repl(repl_buf, cmd)
+
+  let cmd = printf("plasmaplace.Require(%s, %s)", s:pystr(ns), s:pystr(reload_level))
+  call plasmaplace#py(cmd)
   if a:echo
     echo cmd
   endif
@@ -318,11 +296,78 @@ endfunction
 
 nnoremap <Plug>PlasmaplaceK :<C-R>=<SID>K()<CR><CR>
 
+""""""""""""""""""""""""""""""""""""""""
+
+function! s:RunTests(bang, count, ...) abort
+  if &autowrite || &autowriteall
+    silent! wall
+  endif
+  if a:count < 0
+    let pre = ''
+    if a:0
+      let expr = ['(clojure.test/run-all-tests #"'.join(a:000, '|').'")']
+    else
+      let expr = ['(clojure.test/run-all-tests)']
+    endif
+  else
+    if a:0 && a:000 !=# [plasmaplace#ns()]
+      let args = a:000
+    else
+      let args = [plasmaplace#ns()]
+      if a:count
+        let pattern = '^\s*(def\k*\s\+\(\h\k*\)'
+        let line = search(pattern, 'bcWn')
+        if line
+          let args[0] .= '/' . matchlist(getline(line), pattern)[1]
+        endif
+      endif
+    endif
+    let reqs = map(copy(args), '"''".v:val')
+    let pre = '(clojure.core/require '.substitute(join(reqs, ' '), '/\k\+', '', 'g').' :reload) '
+    let expr = []
+    let vars = filter(copy(reqs), 'v:val =~# "/"')
+    let nses = filter(copy(reqs), 'v:val !~# "/"')
+    if len(vars) == 1
+      call add(expr, '(clojure.test/test-vars [#' . vars[0] . '])')
+    elseif !empty(vars)
+      call add(expr, join(['(clojure.test/test-vars'] + map(vars, '"#".v:val'), ' ').')')
+    endif
+    if !empty(nses)
+      call add(expr, join(['(clojure.test/run-tests'] + nses, ' ').')')
+    endif
+  endif
+  let code = join(expr, ' ')
+  call plasmaplace#py(printf("plasmaplace.RunTests(%s)", s:pystr(code)))
+  echo code
+endfunction
+
+""""""""""""""""""""""""""""""""""""""""
+
+function! s:cleanup_active_sessions() abort
+  call plasmaplace#py("plasmaplace.cleanup_active_sessions()")
+endfunction
+
+function! s:DeleteOtherNreplSessions() abort
+  call plasmaplace#py("plasmaplace.DeleteOtherNreplSessions()")
+endfunction
+
+""""""""""""""""""""""""""""""""""""""""
+
 function! s:setup_commands() abort
+  command! -buffer -bar DeleteOtherNreplSessions :exe s:DeleteOtherNreplSessions()
+
   command! -buffer -bar -bang -nargs=? Require :exe s:Require(<bang>0, 1, <q-args>)
   command! -buffer -bar -nargs=1 Doc :exe s:Doc(<q-args>)
   setlocal keywordprg=:Doc
+
+  command! -buffer -bar -bang -range=0 -nargs=* RunTests
+        \ call s:RunTests(<bang>0, <line1> == 0 ? -1 : <count>, <f-args>)
+  command! -buffer -bang -nargs=* RunAllTests
+        \ call s:RunTests(<bang>0, -1, <f-args>)
 endfunction
+
+""""""""""""""""""""""""""""""""""""""""
+
 function! s:setup_keybinds() abort
   " nmap <buffer> cqp <Plug>PlasmaplaceShowRepl
   " nmap <buffer> cqc <Plug>PlasmaplaceShowRepl
@@ -339,6 +384,9 @@ function! s:setup_keybinds() abort
   nmap <buffer> cpp cpaf
   nmap <buffer> cmm cmaf
   nmap <buffer> c1mm c1maf
+
+  " tests
+  nmap <buffer> cpr :<C-R>=expand('%:e') ==# 'cljs' ? 'Require' : 'RunTests'<CR><CR>
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -347,4 +395,5 @@ augroup plasmaplace
   autocmd!
   autocmd FileType clojure call s:setup_commands()
   autocmd FileType clojure call s:setup_keybinds()
+  autocmd VimLeave * call s:cleanup_active_sessions()
 augroup END

@@ -152,7 +152,7 @@ class REPL:
 
         self._write({"op": "ls-sessions"})
         sessions = self._read()
-        sessions = sessions["sessions"]
+        self.existing_sessions = sessions["sessions"]
 
         self.root_session = None
         self.root_session = self.acquire_session()
@@ -167,9 +167,12 @@ class REPL:
         startup_lines = ["connected to nREPL"]
         startup_lines += ["host: " + self.host]
         startup_lines += ["port: " + str(self.port)]
-        startup_lines += ["existing sessions: " + str(sessions)]
+        startup_lines += ["existing sessions: " + str(self.existing_sessions)]
         startup_lines += ["current session: " + self.root_session]
         self.to_scratch(startup_lines)
+
+        # NOTE: does not trigger!
+        # atexit.register(self.close_session, self.root_session)
 
     # TODO
     def is_closed():
@@ -233,8 +236,8 @@ class REPL:
         msg = self._read()
         return msg["new-session"]
 
-    def close_session(self, session):
-        if session == self.root_session:
+    def close_session(self, session, exiting=False):
+        if session == self.root_session and not exiting:
             return
         self._write({"op": "close", "session": session})
         msg = self._read()
@@ -262,6 +265,10 @@ class REPL:
         except Empty:
             print("plasmaplace timed out while waiting for scratch update")
 
+    def delete_other_nrepl_sessions(self):
+        for session in self.existing_sessions:
+            self.close_session(session)
+
 
 JOB_COUNTER = 0
 
@@ -273,18 +280,24 @@ def fetch_job_number():
     return str(n)
 
 
-def out_msg_to_lines(msg):
-    return msg["out"].split("\n")
+def extract_out_msg(msg):
+    return msg["out"]
+
+
+def out_to_lines(out):
+    lines = [";; OUT:"]
+    lines += out.split("\n")
+    return lines
 
 
 def ex_msg_to_lines(msg):
-    lines = ["EX:"]
+    lines = [";; EX:"]
     lines += msg["ex"].split("\n")
     return lines
 
 
 def err_msg_to_lines(msg):
-    lines = ["ERR:"]
+    lines = [";; ERR:"]
     lines += msg["err"].split("\n")
     return lines
 
@@ -309,31 +322,31 @@ def is_done_msg(msg):
     return status[0] == "done"
 
 
-class DocJob(threading.Thread):
-    def __init__(self, repl, ns, symbol):
+class BaseJob(threading.Thread):
+    def __init__(self, repl):
         threading.Thread.__init__(self)
-        self.daemon = True
 
         self.repl = repl
-        self.ns = ns
-        self.symbol = symbol
-        self.id = "doc-job-" + fetch_job_number()
-        self.session = self.repl.acquire_session()
+
         self.input_queue = Queue()
+        self.wait_queue = Queue()
+        self.out = []
         self.lines = []
 
-        self.repl.register_job(self)
-
-    def wait_for_output(self, silent=False, eval_value=False):
+    def wait_for_output(self, silent=False, eval_value=False, debug=False):
         while True:
             msg = self.input_queue.get(block=True)
+            if debug:
+                print(msg)
             if is_done_msg(msg):
+                out = "".join(self.out)
+                self.lines += out_to_lines(out)
                 break
             else:
                 if silent:
                     pass
                 elif "out" in msg:
-                    self.lines += out_msg_to_lines(msg)
+                    self.out.append(extract_out_msg(msg))
                 elif "ex" in msg:
                     self.lines += ex_msg_to_lines(msg)
                 elif "err" in msg:
@@ -342,6 +355,23 @@ class DocJob(threading.Thread):
                     self.lines += value_msg_to_lines(msg, eval_value)
                 else:
                     self.lines += [str(msg)]
+
+    def wait(self):
+        self.wait_queue.get(block=True)
+        self.repl.wait_for_scratch_update()
+
+
+class DocJob(BaseJob):
+    def __init__(self, repl, ns, symbol):
+        BaseJob.__init__(self, repl)
+        self.daemon = True
+
+        self.ns = ns
+        self.symbol = symbol
+        self.id = "doc-job-" + fetch_job_number()
+        self.session = self.repl.acquire_session()
+
+        self.repl.register_job(self)
 
     def run(self):
         code = "(in-ns %s)" % (self.ns)
@@ -357,6 +387,154 @@ class DocJob(threading.Thread):
         self.repl.append_to_scratch(self.lines)
         self.repl.close_session(self.session)
         self.repl.unregister_job(self)
+        self.wait_queue.put("done")
+
+
+class MacroexpandJob(BaseJob):
+    def __init__(self, repl, ns, form):
+        BaseJob.__init__(self, repl)
+        self.daemon = True
+
+        self.repl = repl
+        self.ns = ns
+        self.form = form
+        self.id = "macroexpand-job-" + fetch_job_number()
+        self.session = self.repl.acquire_session()
+
+        self.repl.register_job(self)
+
+    def run(self):
+        code = "(in-ns %s)" % (self.ns)
+        self.lines += [code]
+        self.repl.eval(self.id, self.session, code)
+        self.wait_for_output(silent=True)
+
+        code = "(macroexpand (quote\n%s))" % (self.form)
+        self.repl.eval(self.id, self.session, code)
+        code = code.split("\n")
+        self.lines += code
+        self.wait_for_output(eval_value=False, debug=False)
+
+        self.repl.append_to_scratch(self.lines)
+        self.repl.close_session(self.session)
+        self.repl.unregister_job(self)
+        self.wait_queue.put("done")
+
+
+class Macroexpand1Job(BaseJob):
+    def __init__(self, repl, ns, form):
+        BaseJob.__init__(self, repl)
+        self.daemon = True
+
+        self.repl = repl
+        self.ns = ns
+        self.form = form
+        self.id = "macroexpand-1-job-" + fetch_job_number()
+        self.session = self.repl.acquire_session()
+
+        self.repl.register_job(self)
+
+    def run(self):
+        code = "(in-ns %s)" % (self.ns)
+        self.lines += [code]
+        self.repl.eval(self.id, self.session, code)
+        self.wait_for_output(silent=True)
+
+        code = "(macroexpand-1 (quote\n%s))" % (self.form)
+        self.repl.eval(self.id, self.session, code)
+        code = code.split("\n")
+        self.lines += code
+        self.wait_for_output(eval_value=False, debug=False)
+
+        self.repl.append_to_scratch(self.lines)
+        self.repl.close_session(self.session)
+        self.repl.unregister_job(self)
+        self.wait_queue.put("done")
+
+
+class EvalJob(BaseJob):
+    def __init__(self, repl, ns, form):
+        BaseJob.__init__(self, repl)
+        self.daemon = True
+
+        self.repl = repl
+        self.ns = ns
+        self.form = form
+        self.id = "eval-job-" + fetch_job_number()
+        self.session = self.repl.acquire_session()
+
+        self.repl.register_job(self)
+
+    def run(self):
+        code = "(in-ns %s)" % (self.ns)
+        self.lines += [code]
+        self.repl.eval(self.id, self.session, code)
+        self.wait_for_output(silent=True)
+
+        code = "%s" % (self.form)
+        self.repl.eval(self.id, self.session, code)
+        code = code.split("\n")
+        self.lines += [";; CODE:"]
+        self.lines += code
+        self.wait_for_output(eval_value=False, debug=False)
+
+        self.repl.append_to_scratch(self.lines)
+        self.repl.close_session(self.session)
+        self.repl.unregister_job(self)
+        self.wait_queue.put("done")
+
+
+class RequireJob(BaseJob):
+    def __init__(self, repl, ns, reload_level):
+        BaseJob.__init__(self, repl)
+        self.daemon = True
+
+        self.repl = repl
+        self.ns = ns
+        self.reload_level = reload_level
+        self.id = "require-job-" + fetch_job_number()
+        self.session = self.repl.acquire_session()
+
+        self.repl.register_job(self)
+
+    def run(self):
+        code = "(clojure.core/require %s %s)" % (self.ns, self.reload_level)
+        self.repl.eval(self.id, self.session, code)
+        code = code.split("\n")
+        self.lines += [";; CODE:"]
+        self.lines += code
+        self.wait_for_output(eval_value=False, debug=False)
+
+        self.repl.append_to_scratch(self.lines)
+        self.repl.close_session(self.session)
+        self.repl.unregister_job(self)
+        self.wait_queue.put("done")
+
+
+class RunTestsJob(BaseJob):
+    def __init__(self, repl, form):
+        BaseJob.__init__(self, repl)
+        self.daemon = True
+
+        self.repl = repl
+        self.form = form
+        self.id = "run-tests-job-" + fetch_job_number()
+        self.session = self.repl.acquire_session()
+
+        self.repl.register_job(self)
+
+    def run(self):
+        code = self.form
+        self.repl.eval(self.id, self.session, code)
+        code = code.split("\n")
+        self.lines += [";; CODE:"]
+        self.lines += code
+        self.wait_for_output(eval_value=False, debug=False)
+
+        self.repl.append_to_scratch(self.lines)
+        self.repl.close_session(self.session)
+        self.repl.unregister_job(self)
+        self.wait_queue.put("done")
 
 
 ###############################################################################
@@ -419,7 +597,55 @@ def Doc(ns, symbol):
     repl = create_or_get_repl()
     job = DocJob(repl, ns, symbol)
     job.start()
-    repl.wait_for_scratch_update()
+    job.wait()
+
+
+def Macroexpand(ns, form):
+    repl = create_or_get_repl()
+    job = MacroexpandJob(repl, ns, form)
+    job.start()
+    job.wait()
+
+
+def Macroexpand1(ns, form):
+    repl = create_or_get_repl()
+    job = Macroexpand1Job(repl, ns, form)
+    job.start()
+    job.wait()
+
+
+def Eval(ns, form):
+    repl = create_or_get_repl()
+    job = EvalJob(repl, ns, form)
+    job.start()
+    job.wait()
+
+
+def Require(ns, reload_level):
+    repl = create_or_get_repl()
+    job = RequireJob(repl, ns, reload_level)
+    job.start()
+    job.wait()
+
+
+def RunTests(form):
+    repl = create_or_get_repl()
+    job = RunTestsJob(repl, form)
+    job.start()
+    job.wait()
+
+
+def DeleteOtherNreplSessions():
+    repl = create_or_get_repl()
+    repl.delete_other_nrepl_sessions()
+
+
+def cleanup_active_sessions():
+    global REPLS
+    for project_key, repl in REPLS.items():
+        repl.close_session(repl.root_session, True)
+        repl.close()
+    REPLS.clear()
 
 
 if __name__ == "__main__":
