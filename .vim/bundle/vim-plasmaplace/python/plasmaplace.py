@@ -4,16 +4,27 @@ import re
 import os
 import sys
 import socket
-import select
+import ast
+
+# import select
 import threading
 
 if sys.version_info[0] >= 3:
-    from queue import Queue
+    from queue import Queue, Empty
 else:
-    from Queue import Queue
+    from Queue import Queue, Empty
 
 
 REPLS = {}
+
+
+def spawn_thread(f):
+    t = threading.Thread(target=f)
+    t.daemon = True
+    t.start()
+
+
+###############################################################################
 
 
 def get_current_buf_path():
@@ -114,8 +125,12 @@ class REPL:
     def __init__(self, project_key, project_path, host, port):
         self.project_key = project_key
         self.project_path = project_path
+        self.project_type = get_project_type(self.project_path)
         self.host = host
         self.port = int(port)
+
+        self.pending_lines = Queue()
+        self.jobs = {}
 
         cmd = 'let scratch_buf = s:create_or_get_scratch("%s")' % project_key
         vim.command(cmd)
@@ -135,11 +150,26 @@ class REPL:
         t2.daemon = True
         t2.start()
 
-        self._write({"op": "ls-sessions", "id": "foo"})
-        msg = self._read()
-        self.session = msg["sessions"][0]
+        self._write({"op": "ls-sessions"})
+        sessions = self._read()
+        sessions = sessions["sessions"]
 
-        self.to_scratch(["connected to session: ", self.session])
+        self.root_session = None
+        self.root_session = self.acquire_session()
+
+        if self.project_type == "shadow-cljs":
+            self.eval(
+                "switch-to-cljs-repl",
+                self.root_session,
+                "(shadow/nrepl-select :browser)",
+            )
+
+        startup_lines = ["connected to nREPL"]
+        startup_lines += ["host: " + self.host]
+        startup_lines += ["port: " + str(self.port)]
+        startup_lines += ["existing sessions: " + str(sessions)]
+        startup_lines += ["current session: " + self.root_session]
+        self.to_scratch(startup_lines)
 
     # TODO
     def is_closed():
@@ -160,15 +190,19 @@ class REPL:
                 self.socket.sendall(payload)
 
     def _consume(self):
-        while True:
-            f = self.socket.makefile()
-            while len(select.select([f], [], [], 0.1)[0]) == 0:
-                self.poll()
-            try:
+        f = self.socket.makefile()
+        try:
+            while True:
                 ret = bdecode(f)
-                self.output_queue.put(ret, block=True)
-            finally:
-                f.close()
+                if isinstance(ret, dict) and "id" in ret:
+                    id = ret["id"]
+                    if id in self.jobs:
+                        job = self.jobs[id]
+                        job.input_queue.put(ret, block=True)
+                else:
+                    self.output_queue.put(ret, block=True)
+        finally:
+            f.close()
 
     def _write(self, cmd):
         cmd = bencode(cmd)
@@ -178,8 +212,8 @@ class REPL:
         ret = self.output_queue.get(block=block, timeout=1)
         return ret
 
-    def eval(self, id, code):
-        payload = {"op": "eval", "session": self.session, "id": id, "code": code}
+    def eval(self, id, session, code):
+        payload = {"op": "eval", "session": session, "id": id, "code": code}
         self._write(payload)
 
     def to_scratch(self, lines):
@@ -190,6 +224,139 @@ class REPL:
         vim.command(
             "call plasmaplace#center_scratch_buf(%d, %d)" % (scratch_buf, top_line_num)
         )
+
+    def acquire_session(self):
+        cmd = {"op": "clone"}
+        if self.root_session is not None:
+            cmd["session"] = self.root_session
+        self._write(cmd)
+        msg = self._read()
+        return msg["new-session"]
+
+    def close_session(self, session):
+        if session == self.root_session:
+            return
+        self._write({"op": "close", "session": session})
+        msg = self._read()
+        assert (
+            "status" in msg
+            and msg["status"][0] == "done"
+            and msg["status"][1] == "session-closed"
+        )
+
+    def register_job(self, job):
+        id = job.id
+        self.jobs[id] = job
+
+    def unregister_job(self, job):
+        id = job.id
+        del self.jobs[id]
+
+    def append_to_scratch(self, lines):
+        self.pending_lines.put(lines)
+
+    def wait_for_scratch_update(self, timeout=1.0):
+        try:
+            lines = self.pending_lines.get(block=True, timeout=1)
+            self.to_scratch(lines)
+        except Empty:
+            print("plasmaplace timed out while waiting for scratch update")
+
+
+JOB_COUNTER = 0
+
+
+def fetch_job_number():
+    global JOB_COUNTER
+    n = JOB_COUNTER
+    JOB_COUNTER += 1
+    return str(n)
+
+
+def out_msg_to_lines(msg):
+    return msg["out"].split("\n")
+
+
+def ex_msg_to_lines(msg):
+    lines = ["EX:"]
+    lines += msg["ex"].split("\n")
+    return lines
+
+
+def err_msg_to_lines(msg):
+    lines = ["ERR:"]
+    lines += msg["err"].split("\n")
+    return lines
+
+
+def value_msg_to_lines(msg, eval_value):
+    lines = [";; VALUE:"]
+    value = msg["value"]
+    if eval_value:
+        value = ast.literal_eval(value)
+    lines += value.split("\n")
+    return lines
+
+
+def is_done_msg(msg):
+    if not isinstance(msg, dict):
+        return False
+    if "status" not in msg:
+        return False
+    status = msg["status"]
+    if not isinstance(status, list):
+        return False
+    return status[0] == "done"
+
+
+class DocJob(threading.Thread):
+    def __init__(self, repl, ns, symbol):
+        threading.Thread.__init__(self)
+        self.daemon = True
+
+        self.repl = repl
+        self.ns = ns
+        self.symbol = symbol
+        self.id = "doc-job-" + fetch_job_number()
+        self.session = self.repl.acquire_session()
+        self.input_queue = Queue()
+        self.lines = []
+
+        self.repl.register_job(self)
+
+    def wait_for_output(self, silent=False, eval_value=False):
+        while True:
+            msg = self.input_queue.get(block=True)
+            if is_done_msg(msg):
+                break
+            else:
+                if silent:
+                    pass
+                elif "out" in msg:
+                    self.lines += out_msg_to_lines(msg)
+                elif "ex" in msg:
+                    self.lines += ex_msg_to_lines(msg)
+                elif "err" in msg:
+                    self.lines += err_msg_to_lines(msg)
+                elif "value" in msg:
+                    self.lines += value_msg_to_lines(msg, eval_value)
+                else:
+                    self.lines += [str(msg)]
+
+    def run(self):
+        code = "(in-ns %s)" % (self.ns)
+        self.lines += [code]
+        self.repl.eval(self.id, self.session, code)
+        self.wait_for_output(silent=True)
+
+        code = "(with-out-str (clojure.repl/doc %s))" % (self.symbol)
+        self.lines += [code]
+        self.repl.eval(self.id, self.session, code)
+        self.wait_for_output(eval_value=True)
+
+        self.repl.append_to_scratch(self.lines)
+        self.repl.close_session(self.session)
+        self.repl.unregister_job(self)
 
 
 ###############################################################################
@@ -245,6 +412,14 @@ def create_or_get_repl():
         REPLS[project_key] = REPL(
             project_key, project_path, "localhost", get_nrepl_port(project_path)
         )
+    return REPLS[project_key]
+
+
+def Doc(ns, symbol):
+    repl = create_or_get_repl()
+    job = DocJob(repl, ns, symbol)
+    job.start()
+    repl.wait_for_scratch_update()
 
 
 if __name__ == "__main__":

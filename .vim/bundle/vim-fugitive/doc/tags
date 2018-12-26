@@ -47,11 +47,11 @@ fugitive-<CR>	fugitive.txt	/*fugitive-<CR>*
 fugitive-C	fugitive.txt	/*fugitive-C*
 fugitive-O	fugitive.txt	/*fugitive-O*
 fugitive-P	fugitive.txt	/*fugitive-P*
-fugitive-S	fugitive.txt	/*fugitive-S*
 fugitive-a	fugitive.txt	/*fugitive-a*
 fugitive-about	fugitive.txt	/*fugitive-about*
 fugitive-c_CTRL-R_CTRL-G	fugitive.txt	/*fugitive-c_CTRL-R_CTRL-G*
 fugitive-commands	fugitive.txt	/*fugitive-commands*
+fugitive-gO	fugitive.txt	/*fugitive-gO*
 fugitive-mappings	fugitive.txt	/*fugitive-mappings*
 fugitive-o	fugitive.txt	/*fugitive-o*
 fugitive-object	fugitive.txt	/*fugitive-object*
