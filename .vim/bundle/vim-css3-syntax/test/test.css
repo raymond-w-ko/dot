@@ -43,6 +43,9 @@
 }
 
 .box-3 {
+  margin-trim: auto;
+  display: in-flow;
+  /* .block-3 */
   clear-after: auto;
   float-displace: auto;
   indent-edge-reset: auto;
@@ -61,6 +64,11 @@
 .break-3 {
   display: recto;
   display: verso;
+}
+
+.break-4 {
+  margin-break: auto;
+  display: keep;
 }
 
 .cascade-3 {
@@ -557,6 +565,7 @@ mask {
 .motion-1 {
   offset-path: auto;
   offset-distance: auto;
+  offset-position: auto;
   offset-anchor: auto;
   offset-rotate: auto;
   offset: auto;
