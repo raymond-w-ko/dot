@@ -1,0 +1,13 @@
+#!/bin/bash
+_TMUX_SHELL=zsh
+tmux new-session -d $_TMUX_SHELL
+tmux split-window -h $_TMUX_SHELL
+tmux new-window $_TMUX_SHELL
+tmux split-window -h $_TMUX_SHELL
+tmux split-window -h $_TMUX_SHELL
+tmux split-window -h $_TMUX_SHELL
+tmux new-window $_TMUX_SHELL
+tmux new-window $_TMUX_SHELL
+tmux new-window $_TMUX_SHELL
+tmux selectw -t 1
+tmux -2 attach-session -d
