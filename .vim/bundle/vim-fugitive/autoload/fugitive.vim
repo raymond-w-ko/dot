@@ -1489,8 +1489,8 @@ function! fugitive#BufReadStatus() abort
     nnoremap <buffer> <silent> ds :<C-U>execute <SID>StageDiff('Gsdiff')<CR>
     nnoremap <buffer> <silent> dp :<C-U>execute <SID>StageDiffEdit()<CR>
     nnoremap <buffer> <silent> dv :<C-U>execute <SID>StageDiff('Gvdiff')<CR>
-    nnoremap <buffer> <silent> p :<C-U>execute <SID>StagePatch(line('.'),line('.')+v:count1-1)<CR>
-    xnoremap <buffer> <silent> p :<C-U>execute <SID>StagePatch(line("'<"),line("'>"))<CR>
+    nnoremap <buffer> <silent> p :<C-U>echoerr 'Use P'<CR>
+    xnoremap <buffer> <silent> p :<C-U>echoerr 'Use P'<CR>
     nnoremap <buffer> <silent> P :<C-U>execute <SID>StagePatch(line('.'),line('.')+v:count1-1)<CR>
     xnoremap <buffer> <silent> P :<C-U>execute <SID>StagePatch(line("'<"),line("'>"))<CR>
     nnoremap <buffer> <silent> q :<C-U>if bufnr('$') == 1<Bar>quit<Bar>else<Bar>bdelete<Bar>endif<CR>
@@ -1849,6 +1849,7 @@ function! fugitive#ReloadStatus(...) abort
             endif
           finally
             if exists('restorewinnr')
+              unlet restorewinnr
               wincmd p
             endif
             execute 'tabnext '.mytab
@@ -2301,14 +2302,21 @@ function! s:Merge(cmd, bang, mods, args) abort
       let &l:makeprg = g:fugitive_git_executable.' diff-files --name-status --diff-filter=U'
     else
       let &l:makeprg = s:sub(s:UserCommand() . ' ' . a:cmd .
-            \ (a:args =~# ' \%(--no-edit\|--abort\|-m\)\>' || a:cmd =~# '^rebase' ? '' : ' --edit') .
+            \ (' ' . a:args =~# ' \%(--no-edit\|--abort\|-m\)\>' || a:cmd =~# '^rebase' ? '' : ' --edit') .
+            \ (' ' . a:args =~# ' --autosquash\>' && a:cmd =~# '^rebase' ? ' --interactive' : '') .
             \ ' ' . a:args, ' *$', '')
+    endif
+    if !empty($GIT_SEQUENCE_EDITOR) || has('win32')
+      let old_sequence_editor = $GIT_SEQUENCE_EDITOR
+      let $GIT_SEQUENCE_EDITOR = 'true'
+    else
+      let &l:makeprg = 'env GIT_SEQUENCE_EDITOR=true ' . &l:makeprg
     endif
     if !empty($GIT_EDITOR) || has('win32')
       let old_editor = $GIT_EDITOR
       let $GIT_EDITOR = 'false'
     else
-      let &l:makeprg = 'env GIT_EDITOR=false ' . &l:makeprg
+      let &l:makeprg = 'env GIT_EDITOR=false ' . substitute(&l:makeprg, '^env ', '', '')
     endif
     silent noautocmd make!
   catch /^Vim\%((\a\+)\)\=:E211/
@@ -2318,6 +2326,9 @@ function! s:Merge(cmd, bang, mods, args) abort
     let [&l:mp, &l:efm] = [mp, efm]
     if exists('old_editor')
       let $GIT_EDITOR = old_editor
+    endif
+    if exists('old_sequence_editor')
+      let $GIT_SEQUENCE_EDITOR = old_editor
     endif
     execute cdback
   endtry
