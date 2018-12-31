@@ -10,4 +10,4 @@ tmux new-window $_TMUX_SHELL
 tmux new-window $_TMUX_SHELL
 tmux new-window $_TMUX_SHELL
 tmux selectw -t 1
-tmux -2 attach-session -d
+exec tmux -2 attach-session -d
