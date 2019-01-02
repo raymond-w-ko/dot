@@ -1845,6 +1845,7 @@ call s:command("-bar -bang -nargs=? -complete=customlist,s:DirComplete Glcd :exe
 " Section: :Gstatus
 
 call s:command("-bar -bang -range=-1 Gstatus :execute s:Status(<bang>0, <count>, '<mods>')")
+call s:command("-bar -bang -range=-1 G       :execute s:Status(<bang>0, <count>, '<mods>')")
 augroup fugitive_status
   autocmd!
   if !has('win32')
@@ -2466,10 +2467,10 @@ endfunction
 augroup fugitive_merge
   autocmd!
   autocmd VimLeavePre,BufDelete git-rebase-todo
-        \ if &bufhidden ==# 'wipe' |
+        \ if getbufvar(+expand('<abuf>'), '&bufhidden') ==# 'wipe' |
         \   call s:RebaseClean(expand('<afile>')) |
-        \   if getfsize(fugitive#Find('.git/rebase-merge/done')) == 0 |
-        \     let s:rebase_continue = b:git_dir |
+        \   if getfsize(FugitiveFind('.git/rebase-merge/done', +expand('<abuf>'))) == 0 |
+        \     let s:rebase_continue = FugitiveGitDir(+expand('<abuf>')) |
         \   endif |
         \ endif
   autocmd BufEnter *
@@ -3779,12 +3780,12 @@ function! fugitive#MapJumps(...) abort
     nnoremap <buffer> <silent> P     :<C-U>exe 'Gedit ' . <SID>fnameescape(<SID>ContainingCommit().'^'.v:count1.<SID>Relative(':'))<CR>
     nnoremap <buffer> <silent> ~     :<C-U>exe 'Gedit ' . <SID>fnameescape(<SID>ContainingCommit().'~'.v:count1.<SID>Relative(':'))<CR>
     nnoremap <buffer> <silent> C     :<C-U>exe 'Gedit ' . <SID>fnameescape(<SID>ContainingCommit())<CR>
-    nnoremap <buffer> <silent> cc    :<C-U>exe 'Gedit ' . <SID>fnameescape(<SID>ContainingCommit())<CR>
-    nnoremap <buffer> <silent> co    :<C-U>exe 'Gsplit ' . <SID>fnameescape(<SID>ContainingCommit())<CR>
-    nnoremap <buffer> <silent> cS    :<C-U>echoerr 'Use cgO'<CR>
-    nnoremap <buffer> <silent> cgO   :<C-U>exe 'Gvsplit ' . <SID>fnameescape(<SID>ContainingCommit())<CR>
-    nnoremap <buffer> <silent> cO    :<C-U>exe 'Gtabedit ' . <SID>fnameescape(<SID>ContainingCommit())<CR>
-    nnoremap <buffer> <silent> cp    :<C-U>exe 'Gpedit ' . <SID>fnameescape(<SID>ContainingCommit())<CR>
+    nnoremap <buffer> <silent> cc    :<C-U>echoerr 'Use C'<CR>
+    nnoremap <buffer> <silent> co    :<C-U>echoerr 'Use CTRL-W C'<CR>
+    nnoremap <buffer> <silent> <C-W>C :<C-U>exe 'Gsplit ' . <SID>fnameescape(<SID>ContainingCommit())<CR>
+    nnoremap <buffer> <silent> cp    :<C-U>echoerr 'Use gC'<CR>
+    nnoremap <buffer> <silent> gC    :<C-U>exe 'Gpedit ' . <SID>fnameescape(<SID>ContainingCommit())<CR>
+    nnoremap <buffer> <silent> gc    :<C-U>exe 'Gpedit ' . <SID>fnameescape(<SID>ContainingCommit())<CR>
     nnoremap <buffer>          cf    :<C-U>Gcommit --fixup=<C-R>=<SID>SquashArgument()<CR>
     nnoremap <buffer>          cs    :<C-U>Gcommit --squash=<C-R>=<SID>SquashArgument()<CR>
     nnoremap <buffer>          cA    :<C-U>Gcommit --edit --squash=<C-R>=<SID>SquashArgument()<CR>
