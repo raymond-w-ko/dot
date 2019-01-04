@@ -767,6 +767,7 @@ b:ale_python_auto_pipenv	ale-python.txt	/*b:ale_python_auto_pipenv*
 b:ale_python_autopep8_executable	ale-python.txt	/*b:ale_python_autopep8_executable*
 b:ale_python_autopep8_options	ale-python.txt	/*b:ale_python_autopep8_options*
 b:ale_python_autopep8_use_global	ale-python.txt	/*b:ale_python_autopep8_use_global*
+b:ale_python_black_auto_pipenv	ale-python.txt	/*b:ale_python_black_auto_pipenv*
 b:ale_python_black_executable	ale-python.txt	/*b:ale_python_black_executable*
 b:ale_python_black_options	ale-python.txt	/*b:ale_python_black_options*
 b:ale_python_black_use_global	ale-python.txt	/*b:ale_python_black_use_global*
@@ -1260,6 +1261,7 @@ g:ale_python_auto_pipenv	ale-python.txt	/*g:ale_python_auto_pipenv*
 g:ale_python_autopep8_executable	ale-python.txt	/*g:ale_python_autopep8_executable*
 g:ale_python_autopep8_options	ale-python.txt	/*g:ale_python_autopep8_options*
 g:ale_python_autopep8_use_global	ale-python.txt	/*g:ale_python_autopep8_use_global*
+g:ale_python_black_auto_pipenv	ale-python.txt	/*g:ale_python_black_auto_pipenv*
 g:ale_python_black_executable	ale-python.txt	/*g:ale_python_black_executable*
 g:ale_python_black_options	ale-python.txt	/*g:ale_python_black_options*
 g:ale_python_black_use_global	ale-python.txt	/*g:ale_python_black_use_global*
@@ -1370,6 +1372,8 @@ g:ale_sh_shellcheck_exclusions	ale-sh.txt	/*g:ale_sh_shellcheck_exclusions*
 g:ale_sh_shellcheck_executable	ale-sh.txt	/*g:ale_sh_shellcheck_executable*
 g:ale_sh_shellcheck_options	ale-sh.txt	/*g:ale_sh_shellcheck_options*
 g:ale_sh_shfmt_options	ale-sh.txt	/*g:ale_sh_shfmt_options*
+g:ale_shell	ale.txt	/*g:ale_shell*
+g:ale_shell_arguments	ale.txt	/*g:ale_shell_arguments*
 g:ale_sign_column_always	ale.txt	/*g:ale_sign_column_always*
 g:ale_sign_error	ale.txt	/*g:ale_sign_error*
 g:ale_sign_info	ale.txt	/*g:ale_sign_info*
