@@ -6,6 +6,7 @@ tmux new-window $_TMUX_SHELL
 tmux split-window -h $_TMUX_SHELL
 tmux split-window -h $_TMUX_SHELL
 tmux split-window -h $_TMUX_SHELL
+tmux select-layout even-horizontal
 tmux new-window $_TMUX_SHELL
 tmux new-window $_TMUX_SHELL
 tmux new-window $_TMUX_SHELL
