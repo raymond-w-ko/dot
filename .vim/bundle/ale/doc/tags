@@ -1,6 +1,7 @@
 :ALEDetail	ale.txt	/*:ALEDetail*
 :ALEInfo	ale.txt	/*:ALEInfo*
 :ALELint	ale.txt	/*:ALELint*
+ALEComplete	ale.txt	/*ALEComplete*
 ALEDetail	ale.txt	/*ALEDetail*
 ALEDisable	ale.txt	/*ALEDisable*
 ALEDisableBuffer	ale.txt	/*ALEDisableBuffer*
