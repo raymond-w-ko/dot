@@ -623,7 +623,7 @@ function! fugitive#Path(url, ...) abort
     let file = '/.git'.url[strlen(dir) : -1]
   elseif len(tree) && s:cpath(url[0 : len(tree)]) ==# s:cpath(tree . '/')
     let file = url[len(tree) : -1]
-  elseif s:cpath(url) ==# s:cpath(tree) || len(argdir) && empty(file)
+  elseif s:cpath(url) ==# s:cpath(tree)
     let file = '/'
   endif
   if empty(file) && a:1 =~# '^$\|^[.:]/$'
@@ -1718,16 +1718,17 @@ function! fugitive#BufReadCmd(...) abort
       if &bufhidden ==# ''
         setlocal bufhidden=delete
       endif
+      let &l:modifiable = modifiable
       if b:fugitive_type !=# 'blob'
         setlocal filetype=git foldmethod=syntax
         nnoremap <buffer> <silent> a :<C-U>let b:fugitive_display_format += v:count1<Bar>exe fugitive#BufReadCmd(@%)<CR>
         nnoremap <buffer> <silent> i :<C-U>let b:fugitive_display_format -= v:count1<Bar>exe fugitive#BufReadCmd(@%)<CR>
       else
-        let &modifiable = modifiable
         call fugitive#MapJumps()
       endif
     endtry
 
+    setlocal modifiable
     return 'silent doautocmd' . (v:version >= 704 ? ' <nomodeline>' : '') .
           \ ' BufReadPost' . (modifiable ? '' : '|setl nomodifiable')
   catch /^fugitive:/
@@ -2835,10 +2836,17 @@ function! s:Log(cmd, bang, line1, line2, ...) abort
   let grepprg = &grepprg
   try
     let cdback = s:Cd(s:Tree())
+    let format = before =~# ' -g\| --walk-reflogs' ? '%gD %gs' : g:fugitive_summary_format
     let &grepprg = escape(s:UserCommand() . ' --no-pager log --no-color ' .
-          \ s:shellesc('--pretty=format:fugitive://'.b:git_dir.'//%H'.path.'::'.g:fugitive_summary_format), '%#')
+          \ s:shellesc('--pretty=format:fugitive://'.b:git_dir.'//%H'.path.'::'.format), '%#')
     let &grepformat = '%Cdiff %.%#,%C--- %.%#,%C+++ %.%#,%Z@@ -%\d%\+\,%\d%\+ +%l\,%\d%\+ @@,%-G-%.%#,%-G+%.%#,%-G %.%#,%A%f::%m,%-G%.%#'
     exe a:cmd . (a:bang ? '! ' : ' ') . s:ShellExpand(before . after)
+    if len(path) && a:line2 == -1
+      redraw
+      echohl WarningMsg
+      echo ':Glog will soon default to all files. Use :0Glog to target current file'
+      echohl NONE
+    endif
   finally
     let &grepformat = grepformat
     let &grepprg = grepprg

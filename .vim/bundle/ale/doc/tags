@@ -188,6 +188,7 @@ ale-gitcommit-options	ale-gitcommit.txt	/*ale-gitcommit-options*
 ale-glsl-glslang	ale-glsl.txt	/*ale-glsl-glslang*
 ale-glsl-glslls	ale-glsl.txt	/*ale-glsl-glslls*
 ale-glsl-options	ale-glsl.txt	/*ale-glsl-options*
+ale-go-bingo	ale-go.txt	/*ale-go-bingo*
 ale-go-gobuild	ale-go.txt	/*ale-go-gobuild*
 ale-go-gofmt	ale-go.txt	/*ale-go-gofmt*
 ale-go-golangci-lint	ale-go.txt	/*ale-go-golangci-lint*
@@ -584,6 +585,8 @@ b:ale_glsl_glslang_executable	ale-glsl.txt	/*b:ale_glsl_glslang_executable*
 b:ale_glsl_glslang_options	ale-glsl.txt	/*b:ale_glsl_glslang_options*
 b:ale_glsl_glslls_executable	ale-glsl.txt	/*b:ale_glsl_glslls_executable*
 b:ale_glsl_glslls_logfile	ale-glsl.txt	/*b:ale_glsl_glslls_logfile*
+b:ale_go_bingo_executable	ale-go.txt	/*b:ale_go_bingo_executable*
+b:ale_go_bingo_options	ale-go.txt	/*b:ale_go_bingo_options*
 b:ale_go_go_options	ale-go.txt	/*b:ale_go_go_options*
 b:ale_go_gobuild_options	ale-go.txt	/*b:ale_go_gobuild_options*
 b:ale_go_gofmt_options	ale-go.txt	/*b:ale_go_gofmt_options*
@@ -1055,6 +1058,8 @@ g:ale_glsl_glslang_executable	ale-glsl.txt	/*g:ale_glsl_glslang_executable*
 g:ale_glsl_glslang_options	ale-glsl.txt	/*g:ale_glsl_glslang_options*
 g:ale_glsl_glslls_executable	ale-glsl.txt	/*g:ale_glsl_glslls_executable*
 g:ale_glsl_glslls_logfile	ale-glsl.txt	/*g:ale_glsl_glslls_logfile*
+g:ale_go_bingo_executable	ale-go.txt	/*g:ale_go_bingo_executable*
+g:ale_go_bingo_options	ale-go.txt	/*g:ale_go_bingo_options*
 g:ale_go_go_options	ale-go.txt	/*g:ale_go_go_options*
 g:ale_go_gobuild_options	ale-go.txt	/*g:ale_go_gobuild_options*
 g:ale_go_gofmt_options	ale-go.txt	/*g:ale_go_gofmt_options*
