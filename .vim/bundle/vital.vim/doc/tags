@@ -303,6 +303,7 @@ Vital.Data.List.map()	vital/Data/List.txt	/*Vital.Data.List.map()*
 Vital.Data.List.map_accum()	vital/Data/List.txt	/*Vital.Data.List.map_accum()*
 Vital.Data.List.max_by()	vital/Data/List.txt	/*Vital.Data.List.max_by()*
 Vital.Data.List.min_by()	vital/Data/List.txt	/*Vital.Data.List.min_by()*
+Vital.Data.List.new()	vital/Data/List.txt	/*Vital.Data.List.new()*
 Vital.Data.List.or()	vital/Data/List.txt	/*Vital.Data.List.or()*
 Vital.Data.List.partition()	vital/Data/List.txt	/*Vital.Data.List.partition()*
 Vital.Data.List.permutations()	vital/Data/List.txt	/*Vital.Data.List.permutations()*

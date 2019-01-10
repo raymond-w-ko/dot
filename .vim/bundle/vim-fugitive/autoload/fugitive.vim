@@ -1400,6 +1400,9 @@ function! fugitive#BufReadStatus() abort
       let file = line[3:-1]
       let files = file
       let i += 1
+      if line[2] !=# ' '
+        continue
+      endif
       if line[0:1] =~# '[RC]'
         let files = output[i] . ' -> ' . file
         let i += 1
@@ -1882,37 +1885,36 @@ call s:command("-bar -bang -range=-1 G       :execute s:Status(<bang>0, <count>,
 augroup fugitive_status
   autocmd!
   if !has('win32')
-    autocmd FocusGained,ShellCmdPost * call fugitive#ReloadStatus()
-    autocmd QuickFixCmdPost c*file call fugitive#ReloadStatus()
-    autocmd BufDelete term://* call fugitive#ReloadStatus()
+    autocmd ShellCmdPost        * call fugitive#ReloadStatus()
+    autocmd QuickFixCmdPost c*ile call fugitive#ReloadStatus()
+    autocmd FocusGained         * call fugitive#ReloadStatus()
+    autocmd BufDelete    term://* call fugitive#ReloadStatus()
   endif
 augroup END
 
 function! s:Status(bang, count, mods) abort
   try
-    let dir = b:git_dir
-    let mods = a:mods ==# '<mods>' || empty(a:mods) ? 'leftabove' : a:mods
+    let mods = a:mods ==# '<mods>' || empty(a:mods) ? '' : a:mods . ' '
+    if mods !~# 'aboveleft|belowright\|leftabove\|rightbelow\|topleft\|botright'
+      let mods = 'topleft ' . mods
+    endif
     let file = fugitive#Find(':')
+    let arg = ' +setl\ foldmethod=syntax\ foldlevel=1\|let\ w:fugitive_status=FugitiveGitDir() ' .
+          \ s:fnameescape(file)
     for winnr in range(1, winnr('$'))
       if s:cpath(file, fnamemodify(bufname(winbufnr(winnr)), ':p'))
         exe winnr . 'wincmd w'
-        let w:fugitive_status = dir
+        let w:fugitive_status = FugitiveGitDir()
         return s:ReloadStatus()
       endif
     endfor
-    let wide = winwidth(0) >= 160
     if a:count ==# 0
-      exe mods 'Gedit :'
+      return mods . 'edit' . (a:bang ? '!' : '') . arg
     elseif a:bang
-      exe mods (a:count ==# -1 && wide ? 'vert' : '') 'Gpedit :'
-      wincmd P
-    elseif a:count ==# -1 && wide
-      exe mods 'Gvsplit :'
+      return mods . 'pedit' . arg . '|wincmd P'
     else
-      exe mods a:count > 0 ? a:count : '' 'Gsplit :'
+      return mods . (a:count > 0 ? a:count : '') . 'split' . arg
     endif
-    let w:fugitive_status = dir
-    setlocal foldmethod=syntax foldlevel=1
   catch /^fugitive:/
     return 'echoerr v:errmsg'
   endtry
@@ -2858,7 +2860,7 @@ endfunction
 
 function! s:UsableWin(nr) abort
   return a:nr && !getwinvar(a:nr, '&previewwindow') &&
-        \ empty(getwinvar(a:nr, 'fugitive_status')) &&
+        \ (empty(getwinvar(a:nr, 'fugitive_status')) || getwinvar(a:nr, 'fugitive_type') !=# 'index') &&
         \ index(['gitrebase', 'gitcommit'], getbufvar(winbufnr(a:nr), '&filetype')) < 0 &&
         \ index(['nofile','help','quickfix'], getbufvar(winbufnr(a:nr), '&buftype')) < 0
 endfunction
@@ -2887,8 +2889,7 @@ function! s:BlurStatus() abort
     if len(winnrs)
       exe winnrs[0].'wincmd w'
     else
-      let wide = winwidth(0) >= 160
-      exe 'rightbelow' (winwidth(0) >= 160 ? 'vert' : '') 'new'
+      belowright new
     endif
     if &diff
       let mywinnr = winnr()
@@ -3181,7 +3182,7 @@ function! s:Dispatch(bang, args)
     else
       silent noautocmd make!
       redraw!
-      return 'call fugitive#Cwindow()'
+      return 'call fugitive#Cwindow()|call fugitive#ReloadStatus()'
     endif
     return ''
   finally
