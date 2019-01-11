@@ -86,6 +86,7 @@ ale-ansible-ansible-lint	ale-ansible.txt	/*ale-ansible-ansible-lint*
 ale-ansible-options	ale-ansible.txt	/*ale-ansible-options*
 ale-api	ale.txt	/*ale-api*
 ale-asciidoc-options	ale-asciidoc.txt	/*ale-asciidoc-options*
+ale-asciidoc-textlint	ale-asciidoc.txt	/*ale-asciidoc-textlint*
 ale-asciidoc-write-good	ale-asciidoc.txt	/*ale-asciidoc-write-good*
 ale-asm-gcc	ale-asm.txt	/*ale-asm-gcc*
 ale-asm-options	ale-asm.txt	/*ale-asm-options*
