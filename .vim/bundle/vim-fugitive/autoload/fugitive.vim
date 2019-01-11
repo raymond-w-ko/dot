@@ -1895,7 +1895,7 @@ augroup END
 function! s:Status(bang, count, mods) abort
   try
     let mods = a:mods ==# '<mods>' || empty(a:mods) ? '' : a:mods . ' '
-    if mods !~# 'aboveleft|belowright\|leftabove\|rightbelow\|topleft\|botright'
+    if mods !~# 'aboveleft\|belowright\|leftabove\|rightbelow\|topleft\|botright'
       let mods = 'topleft ' . mods
     endif
     let file = fugitive#Find(':')
@@ -3178,7 +3178,7 @@ function! s:Dispatch(bang, args)
     let &l:errorformat = s:common_efm
     let &l:makeprg = substitute(s:UserCommand() . ' ' . a:args, '\s\+$', '', '')
     if exists(':Make') == 2
-      noautocmd Make
+      Make
     else
       silent noautocmd make!
       redraw!
