@@ -385,6 +385,7 @@ ale-reasonml-ols	ale-reasonml.txt	/*ale-reasonml-ols*
 ale-reasonml-options	ale-reasonml.txt	/*ale-reasonml-options*
 ale-reasonml-refmt	ale-reasonml.txt	/*ale-reasonml-refmt*
 ale-restructuredtext-options	ale-restructuredtext.txt	/*ale-restructuredtext-options*
+ale-restructuredtext-textlint	ale-restructuredtext.txt	/*ale-restructuredtext-textlint*
 ale-restructuredtext-write-good	ale-restructuredtext.txt	/*ale-restructuredtext-write-good*
 ale-ruby-brakeman	ale-ruby.txt	/*ale-ruby-brakeman*
 ale-ruby-options	ale-ruby.txt	/*ale-ruby-options*
