@@ -46,6 +46,7 @@ Plug 'maximbaz/lightline-ale'
 Plug 'sjl/gundo.vim'
 Plug 'majutsushi/tagbar'
 Plug 'justinmk/vim-dirvish'
+Plug 'zhimsel/vim-stay'
 
 " Tim Pope
 Plug 'tpope/vim-sensible'
@@ -250,6 +251,8 @@ set sessionoptions-=folds
 set sessionoptions-=curdir
 set sessionoptions-=sesdir
 set sessionoptions-=localoptions
+
+set viewoptions=cursor,folds,slash,unix
 
 set cinoptions=
 set cinoptions+=:0
