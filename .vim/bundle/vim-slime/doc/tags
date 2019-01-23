@@ -14,6 +14,7 @@ g:slime_target	vim-slime.txt	/*g:slime_target*
 slime	vim-slime.txt	/*slime*
 slime-author	vim-slime.txt	/*slime-author*
 slime-configuration	vim-slime.txt	/*slime-configuration*
+slime-kitty	vim-slime.txt	/*slime-kitty*
 slime-neovim	vim-slime.txt	/*slime-neovim*
 slime-requirements	vim-slime.txt	/*slime-requirements*
 slime-screen	vim-slime.txt	/*slime-screen*

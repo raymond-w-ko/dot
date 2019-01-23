@@ -23,6 +23,10 @@ ALEGoToDefinition	ale.txt	/*ALEGoToDefinition*
 ALEGoToDefinitionInSplit	ale.txt	/*ALEGoToDefinitionInSplit*
 ALEGoToDefinitionInTab	ale.txt	/*ALEGoToDefinitionInTab*
 ALEGoToDefinitionInVSplit	ale.txt	/*ALEGoToDefinitionInVSplit*
+ALEGoToTypeDefinition	ale.txt	/*ALEGoToTypeDefinition*
+ALEGoToTypeDefinitionInSplit	ale.txt	/*ALEGoToTypeDefinitionInSplit*
+ALEGoToTypeDefinitionInTab	ale.txt	/*ALEGoToTypeDefinitionInTab*
+ALEGoToTypeDefinitionInVSplit	ale.txt	/*ALEGoToTypeDefinitionInVSplit*
 ALEHover	ale.txt	/*ALEHover*
 ALEInfo	ale.txt	/*ALEInfo*
 ALEInfo-highlight	ale.txt	/*ALEInfo-highlight*
@@ -203,6 +207,7 @@ ale-go-govet	ale-go.txt	/*ale-go-govet*
 ale-go-options	ale-go.txt	/*ale-go-options*
 ale-go-staticcheck	ale-go.txt	/*ale-go-staticcheck*
 ale-go-to-definition	ale.txt	/*ale-go-to-definition*
+ale-go-to-type-definition	ale.txt	/*ale-go-to-type-definition*
 ale-graphql-eslint	ale-graphql.txt	/*ale-graphql-eslint*
 ale-graphql-gqlint	ale-graphql.txt	/*ale-graphql-gqlint*
 ale-graphql-options	ale-graphql.txt	/*ale-graphql-options*
@@ -813,6 +818,7 @@ b:ale_python_pylint_executable	ale-python.txt	/*b:ale_python_pylint_executable*
 b:ale_python_pylint_options	ale-python.txt	/*b:ale_python_pylint_options*
 b:ale_python_pylint_use_global	ale-python.txt	/*b:ale_python_pylint_use_global*
 b:ale_python_pyls_auto_pipenv	ale-python.txt	/*b:ale_python_pyls_auto_pipenv*
+b:ale_python_pyls_config	ale-python.txt	/*b:ale_python_pyls_config*
 b:ale_python_pyls_executable	ale-python.txt	/*b:ale_python_pyls_executable*
 b:ale_python_pyls_use_global	ale-python.txt	/*b:ale_python_pyls_use_global*
 b:ale_python_pyre_auto_pipenv	ale-python.txt	/*b:ale_python_pyre_auto_pipenv*
@@ -1309,6 +1315,7 @@ g:ale_python_pylint_executable	ale-python.txt	/*g:ale_python_pylint_executable*
 g:ale_python_pylint_options	ale-python.txt	/*g:ale_python_pylint_options*
 g:ale_python_pylint_use_global	ale-python.txt	/*g:ale_python_pylint_use_global*
 g:ale_python_pyls_auto_pipenv	ale-python.txt	/*g:ale_python_pyls_auto_pipenv*
+g:ale_python_pyls_config	ale-python.txt	/*g:ale_python_pyls_config*
 g:ale_python_pyls_executable	ale-python.txt	/*g:ale_python_pyls_executable*
 g:ale_python_pyls_use_global	ale-python.txt	/*g:ale_python_pyls_use_global*
 g:ale_python_pyre_auto_pipenv	ale-python.txt	/*g:ale_python_pyre_auto_pipenv*
