@@ -54,6 +54,7 @@ else
     --output DP-2 --off \
     --output DP-3 --off \
     --output DP-4 --off
+  killall compton
 fi
 
 #$configure_i3_workspaces.sh
@@ -76,6 +77,5 @@ else
 fi
 
 if [[ -d ~/wallpapers ]]; then
-  wallpaper=$(find ~/wallpapers -type f | shuf -n 1)
-  feh --bg-center "$wallpaper"
+  feh --recursive --randomize --bg-fill ~/wallpapers
 fi
