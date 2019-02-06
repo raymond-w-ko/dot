@@ -146,6 +146,7 @@ runtime! plugin/sensible.vim
 
 if has('win32')
   let s:data_dir="$APPDATA/Vim"
+  set viewdir=$APPDATA/Vim/view
 elseif match(system('uname'), "Darwin") > -1
   let s:data_dir='~/Library/Vim'
 elseif empty($XDG_DATA_HOME)
