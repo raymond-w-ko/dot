@@ -126,6 +126,13 @@ else
   NICE_PROG="nice -n 19"
 fi
 
+if hash fzf 2>/dev/null; then
+  alias f="fzf"
+fi
+if hash fd 2>/dev/null; then
+  export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git --exclude .fzf --exclude .svn'
+fi
+
 # aliases
 alias dot="cd $HOME/dot"
 alias SS="sudo systemctl"

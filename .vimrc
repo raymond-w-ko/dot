@@ -27,14 +27,19 @@ if has("python") || has("python3")
   Plug 'raymond-w-ko/omegacomplete.vim'
 endif
 
+" finders
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'FelikZ/ctrlp-py-matcher'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+
+" potpourri
 Plug 'vim-jp/vital.vim'
 Plug 'kana/vim-operator-user'
 Plug 'qpkorr/vim-bufkill'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'Konfekt/FastFold'
 Plug 'itchyny/lightline.vim'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'mhinz/vim-startify'
 if has('python3') || has('python')
   Plug 'SirVer/ultisnips'
@@ -1045,25 +1050,32 @@ if has("unix")
 elseif has("win32")
     if isdirectory('C:/cygwin/home/rko')
         exe 'nnoremap <leader>ev :e C:/cygwin/home/rko/dot/.vimrc<CR>'
-        exe 'nnoremap <leader>gc :CtrlP C:/cygwin/home/rko/dot/.vim/config<CR>'
     endif
     if isdirectory('C:/cygwin64/home/rko')
         exe 'nnoremap <leader>ev :e C:/cygwin64/home/rko/dot/.vimrc<CR>'
-        exe 'nnoremap <leader>gc :CtrlP C:/cygwin64/home/rko/dot/.vim/config<CR>'
     endif
     if isdirectory('C:/cygwin/home/root')
         exe 'nnoremap <leader>ev :e C:/cygwin/home/root/dot/.vimrc<CR>'
-        exe 'nnoremap <leader>gc :CtrlP C:/cygwin/home/root/dot/.vim/config<CR>'
     endif
 endif
 
-function! FindFileInProjectDirectory()
-    execute ':CtrlP ' . EscapePathname(MyGetProjectDirectory())
-endfunction
+if executable("fzf")
+  function! FindFileInProjectDirectory()
+      execute ':Files ' . EscapePathname(MyGetProjectDirectory())
+  endfunction
+
+  " use fzf
+  nnoremap <leader>b :Buffers<CR>
+else
+  " use ctrlp.vim
+  function! FindFileInProjectDirectory()
+      execute ':CtrlP ' . EscapePathname(MyGetProjectDirectory())
+  endfunction
+
+  nnoremap <leader>b :CtrlPBuffer<CR>
+endif
 nnoremap <leader>p :call FindFileInProjectDirectory()<CR>
 nnoremap <C-p> :call FindFileInProjectDirectory()<CR>
-
-nnoremap <leader>b :CtrlPBuffer<CR>
 
 function! MyAlternateFunction()
     " let old_buf_nr = bufnr('%')
@@ -1697,6 +1709,11 @@ if !has("python") && !has("python3")
 else
   let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" fzf.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " lightline
