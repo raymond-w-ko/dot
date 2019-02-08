@@ -306,6 +306,21 @@ if exists('&wildignorecase')
   set wildignorecase
 endif
 
+" Ps = 0  -> blinking block.
+" Ps = 1  -> blinking block (default).
+" Ps = 2  -> steady block.
+" Ps = 3  -> blinking underline.
+" Ps = 4  -> steady underline.
+" Ps = 5  -> blinking bar (xterm).
+" Ps = 6  -> steady bar (xterm).
+" cursor options
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+" reset cursor on start:
+augroup MyVimrc
+  au VimEnter * silent !echo -ne "\e[2 q"
+augroup END
+
 " binaries with a 99.9% chance of not being edited
 set wildignore+=*.exe,*.dll
 " media files in a binary format
