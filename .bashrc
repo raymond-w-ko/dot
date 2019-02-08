@@ -130,6 +130,7 @@ if hash fzf 2>/dev/null; then
   alias f="fzf"
 fi
 if hash fd 2>/dev/null; then
+  export FZF_DEFAULT_OPTS="--no-bold"
   export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git --exclude .fzf --exclude .svn'
 fi
 
