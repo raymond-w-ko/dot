@@ -665,7 +665,6 @@ b:ale_java_javac_classpath	ale-java.txt	/*b:ale_java_javac_classpath*
 b:ale_java_javac_executable	ale-java.txt	/*b:ale_java_javac_executable*
 b:ale_java_javac_options	ale-java.txt	/*b:ale_java_javac_options*
 b:ale_java_javalsp_executable	ale-java.txt	/*b:ale_java_javalsp_executable*
-b:ale_java_javalsp_jar	ale-java.txt	/*b:ale_java_javalsp_jar*
 b:ale_java_pmd_options	ale-java.txt	/*b:ale_java_pmd_options*
 b:ale_javascript_eslint_executable	ale-javascript.txt	/*b:ale_javascript_eslint_executable*
 b:ale_javascript_eslint_options	ale-javascript.txt	/*b:ale_javascript_eslint_options*
@@ -1162,7 +1161,6 @@ g:ale_java_javac_classpath	ale-java.txt	/*g:ale_java_javac_classpath*
 g:ale_java_javac_executable	ale-java.txt	/*g:ale_java_javac_executable*
 g:ale_java_javac_options	ale-java.txt	/*g:ale_java_javac_options*
 g:ale_java_javalsp_executable	ale-java.txt	/*g:ale_java_javalsp_executable*
-g:ale_java_javalsp_jar	ale-java.txt	/*g:ale_java_javalsp_jar*
 g:ale_java_pmd_options	ale-java.txt	/*g:ale_java_pmd_options*
 g:ale_javascript_eslint_executable	ale-javascript.txt	/*g:ale_javascript_eslint_executable*
 g:ale_javascript_eslint_options	ale-javascript.txt	/*g:ale_javascript_eslint_options*
