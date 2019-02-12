@@ -87,6 +87,7 @@ ale#statusline#Count()	ale.txt	/*ale#statusline#Count()*
 ale#statusline#FirstProblem()	ale.txt	/*ale#statusline#FirstProblem()*
 ale-ada-gcc	ale-ada.txt	/*ale-ada-gcc*
 ale-ada-options	ale-ada.txt	/*ale-ada-options*
+ale-alex-options	ale.txt	/*ale-alex-options*
 ale-ansible-ansible-lint	ale-ansible.txt	/*ale-ansible-ansible-lint*
 ale-ansible-options	ale-ansible.txt	/*ale-ansible-options*
 ale-api	ale.txt	/*ale-api*
@@ -380,6 +381,7 @@ ale-python-prospector	ale-python.txt	/*ale-python-prospector*
 ale-python-pycodestyle	ale-python.txt	/*ale-python-pycodestyle*
 ale-python-pydocstyle	ale-python.txt	/*ale-python-pydocstyle*
 ale-python-pyflakes	ale-python.txt	/*ale-python-pyflakes*
+ale-python-pylama	ale-python.txt	/*ale-python-pylama*
 ale-python-pylint	ale-python.txt	/*ale-python-pylint*
 ale-python-pyls	ale-python.txt	/*ale-python-pyls*
 ale-python-pyre	ale-python.txt	/*ale-python-pyre*
@@ -443,6 +445,8 @@ ale-stylus-stylelint	ale-stylus.txt	/*ale-stylus-stylelint*
 ale-sugarss-options	ale-sugarss.txt	/*ale-sugarss-options*
 ale-sugarss-stylelint	ale-sugarss.txt	/*ale-sugarss-stylelint*
 ale-support	ale.txt	/*ale-support*
+ale-supported-languages-and-tools.txt	ale-supported-languages-and-tools.txt	/*ale-supported-languages-and-tools.txt*
+ale-supported-list	ale-supported-languages-and-tools.txt	/*ale-supported-list*
 ale-symbol-search	ale.txt	/*ale-symbol-search*
 ale-tcl-nagelfar	ale-tcl.txt	/*ale-tcl-nagelfar*
 ale-tcl-options	ale-tcl.txt	/*ale-tcl-options*
@@ -499,6 +503,8 @@ b:ale-c-flawfinder	ale-c.txt	/*b:ale-c-flawfinder*
 b:ale-cpp-flawfinder	ale-cpp.txt	/*b:ale-cpp-flawfinder*
 b:ale_ada_gcc_executable	ale-ada.txt	/*b:ale_ada_gcc_executable*
 b:ale_ada_gcc_options	ale-ada.txt	/*b:ale_ada_gcc_options*
+b:ale_alex_executable	ale.txt	/*b:ale_alex_executable*
+b:ale_alex_use_global	ale.txt	/*b:ale_alex_use_global*
 b:ale_ansible_ansible_lint_executable	ale-ansible.txt	/*b:ale_ansible_ansible_lint_executable*
 b:ale_asm_gcc_executable	ale-asm.txt	/*b:ale_asm_gcc_executable*
 b:ale_asm_gcc_options	ale-asm.txt	/*b:ale_asm_gcc_options*
@@ -802,6 +808,7 @@ b:ale_python_bandit_executable	ale-python.txt	/*b:ale_python_bandit_executable*
 b:ale_python_bandit_options	ale-python.txt	/*b:ale_python_bandit_options*
 b:ale_python_bandit_use_global	ale-python.txt	/*b:ale_python_bandit_use_global*
 b:ale_python_black_auto_pipenv	ale-python.txt	/*b:ale_python_black_auto_pipenv*
+b:ale_python_black_change_directory	ale-python.txt	/*b:ale_python_black_change_directory*
 b:ale_python_black_executable	ale-python.txt	/*b:ale_python_black_executable*
 b:ale_python_black_options	ale-python.txt	/*b:ale_python_black_options*
 b:ale_python_black_use_global	ale-python.txt	/*b:ale_python_black_use_global*
@@ -832,6 +839,11 @@ b:ale_python_pydocstyle_options	ale-python.txt	/*b:ale_python_pydocstyle_options
 b:ale_python_pydocstyle_use_global	ale-python.txt	/*b:ale_python_pydocstyle_use_global*
 b:ale_python_pyflakes_auto_pipenv	ale-python.txt	/*b:ale_python_pyflakes_auto_pipenv*
 b:ale_python_pyflakes_executable	ale-python.txt	/*b:ale_python_pyflakes_executable*
+b:ale_python_pylama_auto_pipenv	ale-python.txt	/*b:ale_python_pylama_auto_pipenv*
+b:ale_python_pylama_change_directory	ale-python.txt	/*b:ale_python_pylama_change_directory*
+b:ale_python_pylama_executable	ale-python.txt	/*b:ale_python_pylama_executable*
+b:ale_python_pylama_options	ale-python.txt	/*b:ale_python_pylama_options*
+b:ale_python_pylama_use_global	ale-python.txt	/*b:ale_python_pylama_use_global*
 b:ale_python_pylint_auto_pipenv	ale-python.txt	/*b:ale_python_pylint_auto_pipenv*
 b:ale_python_pylint_change_directory	ale-python.txt	/*b:ale_python_pylint_change_directory*
 b:ale_python_pylint_executable	ale-python.txt	/*b:ale_python_pylint_executable*
@@ -846,6 +858,7 @@ b:ale_python_pyre_executable	ale-python.txt	/*b:ale_python_pyre_executable*
 b:ale_python_pyre_use_global	ale-python.txt	/*b:ale_python_pyre_use_global*
 b:ale_python_vulture_change_directory	ale-python.txt	/*b:ale_python_vulture_change_directory*
 b:ale_python_vulture_executable	ale-python.txt	/*b:ale_python_vulture_executable*
+b:ale_python_vulture_options	ale-python.txt	/*b:ale_python_vulture_options*
 b:ale_python_vulture_use_global	ale-python.txt	/*b:ale_python_vulture_use_global*
 b:ale_python_yapf_executable	ale-python.txt	/*b:ale_python_yapf_executable*
 b:ale_python_yapf_use_global	ale-python.txt	/*b:ale_python_yapf_use_global*
@@ -905,6 +918,7 @@ b:ale_set_balloons_legacy_echo	ale.txt	/*b:ale_set_balloons_legacy_echo*
 b:ale_sh_language_server_executable	ale-sh.txt	/*b:ale_sh_language_server_executable*
 b:ale_sh_language_server_use_global	ale-sh.txt	/*b:ale_sh_language_server_use_global*
 b:ale_sh_shell_default_shell	ale-sh.txt	/*b:ale_sh_shell_default_shell*
+b:ale_sh_shellcheck_dialect	ale-sh.txt	/*b:ale_sh_shellcheck_dialect*
 b:ale_sh_shellcheck_exclusions	ale-sh.txt	/*b:ale_sh_shellcheck_exclusions*
 b:ale_sh_shellcheck_executable	ale-sh.txt	/*b:ale_sh_shellcheck_executable*
 b:ale_sh_shellcheck_options	ale-sh.txt	/*b:ale_sh_shellcheck_options*
@@ -980,6 +994,8 @@ g:ale-c-flawfinder	ale-c.txt	/*g:ale-c-flawfinder*
 g:ale-cpp-flawfinder	ale-cpp.txt	/*g:ale-cpp-flawfinder*
 g:ale_ada_gcc_executable	ale-ada.txt	/*g:ale_ada_gcc_executable*
 g:ale_ada_gcc_options	ale-ada.txt	/*g:ale_ada_gcc_options*
+g:ale_alex_executable	ale.txt	/*g:ale_alex_executable*
+g:ale_alex_use_global	ale.txt	/*g:ale_alex_use_global*
 g:ale_ansible_ansible_lint_executable	ale-ansible.txt	/*g:ale_ansible_ansible_lint_executable*
 g:ale_asm_gcc_executable	ale-asm.txt	/*g:ale_asm_gcc_executable*
 g:ale_asm_gcc_options	ale-asm.txt	/*g:ale_asm_gcc_options*
@@ -1320,6 +1336,7 @@ g:ale_python_bandit_executable	ale-python.txt	/*g:ale_python_bandit_executable*
 g:ale_python_bandit_options	ale-python.txt	/*g:ale_python_bandit_options*
 g:ale_python_bandit_use_global	ale-python.txt	/*g:ale_python_bandit_use_global*
 g:ale_python_black_auto_pipenv	ale-python.txt	/*g:ale_python_black_auto_pipenv*
+g:ale_python_black_change_directory	ale-python.txt	/*g:ale_python_black_change_directory*
 g:ale_python_black_executable	ale-python.txt	/*g:ale_python_black_executable*
 g:ale_python_black_options	ale-python.txt	/*g:ale_python_black_options*
 g:ale_python_black_use_global	ale-python.txt	/*g:ale_python_black_use_global*
@@ -1350,6 +1367,11 @@ g:ale_python_pydocstyle_options	ale-python.txt	/*g:ale_python_pydocstyle_options
 g:ale_python_pydocstyle_use_global	ale-python.txt	/*g:ale_python_pydocstyle_use_global*
 g:ale_python_pyflakes_auto_pipenv	ale-python.txt	/*g:ale_python_pyflakes_auto_pipenv*
 g:ale_python_pyflakes_executable	ale-python.txt	/*g:ale_python_pyflakes_executable*
+g:ale_python_pylama_auto_pipenv	ale-python.txt	/*g:ale_python_pylama_auto_pipenv*
+g:ale_python_pylama_change_directory	ale-python.txt	/*g:ale_python_pylama_change_directory*
+g:ale_python_pylama_executable	ale-python.txt	/*g:ale_python_pylama_executable*
+g:ale_python_pylama_options	ale-python.txt	/*g:ale_python_pylama_options*
+g:ale_python_pylama_use_global	ale-python.txt	/*g:ale_python_pylama_use_global*
 g:ale_python_pylint_auto_pipenv	ale-python.txt	/*g:ale_python_pylint_auto_pipenv*
 g:ale_python_pylint_change_directory	ale-python.txt	/*g:ale_python_pylint_change_directory*
 g:ale_python_pylint_executable	ale-python.txt	/*g:ale_python_pylint_executable*
@@ -1364,6 +1386,7 @@ g:ale_python_pyre_executable	ale-python.txt	/*g:ale_python_pyre_executable*
 g:ale_python_pyre_use_global	ale-python.txt	/*g:ale_python_pyre_use_global*
 g:ale_python_vulture_change_directory	ale-python.txt	/*g:ale_python_vulture_change_directory*
 g:ale_python_vulture_executable	ale-python.txt	/*g:ale_python_vulture_executable*
+g:ale_python_vulture_options	ale-python.txt	/*g:ale_python_vulture_options*
 g:ale_python_vulture_use_global	ale-python.txt	/*g:ale_python_vulture_use_global*
 g:ale_python_yapf_executable	ale-python.txt	/*g:ale_python_yapf_executable*
 g:ale_python_yapf_use_global	ale-python.txt	/*g:ale_python_yapf_use_global*
@@ -1427,6 +1450,7 @@ g:ale_set_signs	ale.txt	/*g:ale_set_signs*
 g:ale_sh_language_server_executable	ale-sh.txt	/*g:ale_sh_language_server_executable*
 g:ale_sh_language_server_use_global	ale-sh.txt	/*g:ale_sh_language_server_use_global*
 g:ale_sh_shell_default_shell	ale-sh.txt	/*g:ale_sh_shell_default_shell*
+g:ale_sh_shellcheck_dialect	ale-sh.txt	/*g:ale_sh_shellcheck_dialect*
 g:ale_sh_shellcheck_exclusions	ale-sh.txt	/*g:ale_sh_shellcheck_exclusions*
 g:ale_sh_shellcheck_executable	ale-sh.txt	/*g:ale_sh_shellcheck_executable*
 g:ale_sh_shellcheck_options	ale-sh.txt	/*g:ale_sh_shellcheck_options*
