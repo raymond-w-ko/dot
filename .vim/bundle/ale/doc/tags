@@ -248,9 +248,9 @@ ale-idris-options	ale-idris.txt	/*ale-idris-options*
 ale-integration-glsl	ale-glsl.txt	/*ale-integration-glsl*
 ale-integration-hack	ale-hack.txt	/*ale-integration-hack*
 ale-integration-kotlin	ale-kotlin.txt	/*ale-integration-kotlin*
+ale-integration-options	ale.txt	/*ale-integration-options*
 ale-integration-rust	ale-rust.txt	/*ale-integration-rust*
 ale-integration-spec	ale-spec.txt	/*ale-integration-spec*
-ale-integrations	ale.txt	/*ale-integrations*
 ale-integrations-local-executables	ale.txt	/*ale-integrations-local-executables*
 ale-introduction	ale.txt	/*ale-introduction*
 ale-ispc-ispc	ale-ispc.txt	/*ale-ispc-ispc*
@@ -334,6 +334,7 @@ ale-ocaml-ocamlformat	ale-ocaml.txt	/*ale-ocaml-ocamlformat*
 ale-ocaml-ols	ale-ocaml.txt	/*ale-ocaml-ols*
 ale-ocaml-options	ale-ocaml.txt	/*ale-ocaml-options*
 ale-options	ale.txt	/*ale-options*
+ale-other-integration-options	ale.txt	/*ale-other-integration-options*
 ale-pawn-options	ale-pawn.txt	/*ale-pawn-options*
 ale-pawn-uncrustify	ale-pawn.txt	/*ale-pawn-uncrustify*
 ale-perl-options	ale-perl.txt	/*ale-perl-options*
