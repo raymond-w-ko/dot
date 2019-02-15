@@ -33,4 +33,4 @@
   Mod4 + p
 
 "take_screenshot_of_currently_focused_window.sh"
-  Mod1 + Print
+  Print
