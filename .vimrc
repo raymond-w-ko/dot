@@ -1607,12 +1607,11 @@ function! s:SetupHelpTab()
 endfunction
 
 function! s:SetupParenthesesHightlight()
-  highlight SubtleParentheses ctermfg=240 guifg=#585858
+  " highlight SubtleParentheses ctermfg=240 guifg=#585858
+  " syntax match SubtleParentheses /)}]/ containedin=ALL
+  " syntax match SubtleParentheses /)}]/ contained
+
   highlight link gitMergeConflict Error
-
-  syntax match SubtleParentheses /)}]/ containedin=ALL
-  syntax match SubtleParentheses /)}]/ contained
-
   syntax match gitMergeConflict /^=======$/ containedin=ALL
   syntax match gitMergeConflict /^<<<<<<< .\+$/ containedin=ALL
   syntax match gitMergeConflict /^>>>>>>> .\+$/ containedin=ALL
