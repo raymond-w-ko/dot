@@ -179,6 +179,7 @@ set noswapfile  " computers are pretty reliable nowadays
 let mapleader = "\<Space>"
 let maplocalleader = ","
 
+syntax off
 set fileformats=unix,dos
 set autowrite
 set autowriteall
