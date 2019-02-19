@@ -179,7 +179,10 @@ set noswapfile  " computers are pretty reliable nowadays
 let mapleader = "\<Space>"
 let maplocalleader = ","
 
-syntax off
+if !exists("g:rko_already_turned_syntax_off")
+  syntax off
+  let g:rko_already_turned_syntax_off=1
+endif
 set fileformats=unix,dos
 set autowrite
 set autowriteall
@@ -1611,6 +1614,57 @@ function! s:SetupParenthesesHightlight()
   " highlight SubtleParentheses ctermfg=240 guifg=#585858
   " syntax match SubtleParentheses /)}]/ containedin=ALL
   " syntax match SubtleParentheses /)}]/ contained
+endfunction
+
+let s:double_quote_string_filestypes = {
+    \ "javascript.jsx": 1,
+    \ "clojure": 1,
+    \ "make": 1,
+    \ "c": 1,
+    \ "cpp": 1,
+    \ "python": 1,
+    \ }
+let s:double_slash_comment_filestypes = {
+    \ "javascript.jsx": 1,
+    \ "c": 1,
+    \ "cpp": 1,
+    \ }
+let s:python_style_comment_filestypes = {
+    \ "python": 1,
+    \ }
+let s:c_comment_filestypes = {
+    \ "javascript.jsx": 1,
+    \ "c": 1,
+    \ "cpp": 1,
+    \ }
+let s:c_preprocessor_comment_filestypes = {
+    \ "c": 1,
+    \ "cpp": 1,
+    \ }
+function! s:SetupBasicSyntaxHighlights()
+  if has_key(s:double_quote_string_filestypes, &filetype)
+    syntax region rkoBasicString start=/\v"/ skip=/\v\\./ end=/\v"/
+  endif
+  if has_key(s:double_slash_comment_filestypes, &filetype)
+    syntax region rkoBasicComment start=/\v\/\// end=/\v$/
+  endif
+  if has_key(s:python_style_comment_filestypes, &filetype)
+    syntax region rkoBasicComment start=/\v#/ end=/\v$/
+  endif
+  if has_key(s:c_comment_filestypes, &filetype)
+    syntax region rkoBasicComment start=/\v\/\*/ end=/\v\*\//
+  endif
+  if has_key(s:c_preprocessor_comment_filestypes, &filetype)
+    syntax region rkoMultilineComment start=/\v^\s*#if/ end=/^\s*#end/
+  endif
+  highlight link rkoBasicString String
+  highlight link rkoBasicComment Comment
+  highlight link rkoMultilineComment Comment
+
+  syntax region rkoVersionControlDelete start=/\v^-/ end=/\v$/
+  highlight link rkoVersionControlDelete DiffDelete
+  syntax region rkoVersionControlAdd start=/\v^\+/ end=/\v$/
+  highlight link rkoVersionControlAdd DiffAdd
 
   highlight link gitMergeConflict Error
   syntax match gitMergeConflict /^=======$/ containedin=ALL
@@ -1657,6 +1711,7 @@ augroup MyVimrc
 
   " de-emphasized parentheses
   autocmd Syntax * call s:SetupParenthesesHightlight()
+  autocmd FileType * call s:SetupBasicSyntaxHighlights()
 augroup END
 
 " }}}
