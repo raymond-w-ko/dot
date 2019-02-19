@@ -2206,7 +2206,7 @@ function! MyJsonFormatter()
 endfunction
 function! MyJavascriptFormatter()
   let view = winsaveview()
-  execute "%!prettier --stdin --parser babylon --trailing-comma es5"
+  execute "%!prettier --stdin --parser babel --trailing-comma es5"
   call winrestview(view)
 endfunction
 function! MyScssFormatter()
