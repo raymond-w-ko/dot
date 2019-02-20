@@ -1623,6 +1623,7 @@ let s:double_quote_string_filestypes = {
     \ "c": 1,
     \ "cpp": 1,
     \ "python": 1,
+    \ "vim": 1,
     \ }
 let s:double_slash_comment_filestypes = {
     \ "javascript.jsx": 1,
@@ -1646,13 +1647,16 @@ let s:version_control_filetypes = {
     \ }
 function! s:SetupBasicSyntaxHighlights()
   if has_key(s:double_quote_string_filestypes, &filetype)
-    syntax region rkoBasicString start=/\v"/ skip=/\v\\./ end=/\v"/
+    syntax region rkoBasicString start=/\v"+/ skip=/\v\\./ end=/\v"+/
   endif
   if has_key(s:double_slash_comment_filestypes, &filetype)
     syntax region rkoBasicComment start=/\v\/\// end=/\v$/
   endif
   if has_key(s:python_style_comment_filestypes, &filetype)
     syntax region rkoBasicComment start=/\v#/ end=/\v$/
+  endif
+  if &filetype == "vim"
+    syn match  rkoBasicComment +"[^"]\+$+
   endif
   if has_key(s:c_comment_filestypes, &filetype)
     syntax region rkoBasicComment start=/\v\/\*/ end=/\v\*\//
