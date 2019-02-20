@@ -1641,6 +1641,9 @@ let s:c_preprocessor_comment_filestypes = {
     \ "c": 1,
     \ "cpp": 1,
     \ }
+let s:version_control_filetypes = {
+    \ "gitcommit": 1,
+    \ }
 function! s:SetupBasicSyntaxHighlights()
   if has_key(s:double_quote_string_filestypes, &filetype)
     syntax region rkoBasicString start=/\v"/ skip=/\v\\./ end=/\v"/
@@ -1661,9 +1664,11 @@ function! s:SetupBasicSyntaxHighlights()
   highlight link rkoBasicComment Comment
   highlight link rkoMultilineComment Comment
 
-  syntax region rkoVersionControlDelete start=/\v^-/ end=/\v$/
+  if has_key(s:version_control_filetypes, &filetype)
+    syntax region rkoVersionControlDelete start=/\v^-/ end=/\v$/
+    syntax region rkoVersionControlAdd start=/\v^\+/ end=/\v$/
+  endif
   highlight link rkoVersionControlDelete DiffDelete
-  syntax region rkoVersionControlAdd start=/\v^\+/ end=/\v$/
   highlight link rkoVersionControlAdd DiffAdd
 
   highlight link gitMergeConflict Error
