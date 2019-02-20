@@ -807,6 +807,7 @@ b:ale_python_autopep8_use_global	ale-python.txt	/*b:ale_python_autopep8_use_glob
 b:ale_python_bandit_auto_pipenv	ale-python.txt	/*b:ale_python_bandit_auto_pipenv*
 b:ale_python_bandit_executable	ale-python.txt	/*b:ale_python_bandit_executable*
 b:ale_python_bandit_options	ale-python.txt	/*b:ale_python_bandit_options*
+b:ale_python_bandit_use_config	ale-python.txt	/*b:ale_python_bandit_use_config*
 b:ale_python_bandit_use_global	ale-python.txt	/*b:ale_python_bandit_use_global*
 b:ale_python_black_auto_pipenv	ale-python.txt	/*b:ale_python_black_auto_pipenv*
 b:ale_python_black_change_directory	ale-python.txt	/*b:ale_python_black_change_directory*
@@ -1335,6 +1336,7 @@ g:ale_python_autopep8_use_global	ale-python.txt	/*g:ale_python_autopep8_use_glob
 g:ale_python_bandit_auto_pipenv	ale-python.txt	/*g:ale_python_bandit_auto_pipenv*
 g:ale_python_bandit_executable	ale-python.txt	/*g:ale_python_bandit_executable*
 g:ale_python_bandit_options	ale-python.txt	/*g:ale_python_bandit_options*
+g:ale_python_bandit_use_config	ale-python.txt	/*g:ale_python_bandit_use_config*
 g:ale_python_bandit_use_global	ale-python.txt	/*g:ale_python_bandit_use_global*
 g:ale_python_black_auto_pipenv	ale-python.txt	/*g:ale_python_black_auto_pipenv*
 g:ale_python_black_change_directory	ale-python.txt	/*g:ale_python_black_change_directory*
