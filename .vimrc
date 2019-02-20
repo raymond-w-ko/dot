@@ -1647,7 +1647,10 @@ let s:version_control_filetypes = {
     \ }
 function! s:SetupBasicSyntaxHighlights()
   if has_key(s:double_quote_string_filestypes, &filetype)
-    syntax region rkoBasicString start=/\v"+/ skip=/\v\\./ end=/\v"+/
+    syntax region rkoBasicString start=/\v"/ skip=/\v\\"/ end=/\v"/
+  endif
+  if &filetype == "python"
+    syntax region rkoMultiLineString start=/\v"""/ end=/\v"""/
   endif
   if has_key(s:double_slash_comment_filestypes, &filetype)
     syntax region rkoBasicComment start=/\v\/\// end=/\v$/
@@ -1665,6 +1668,7 @@ function! s:SetupBasicSyntaxHighlights()
     syntax region rkoMultilineComment start=/\v^\s*#if/ end=/^\s*#end/
   endif
   highlight link rkoBasicString String
+  highlight link rkoMultiLineString String
   highlight link rkoBasicComment Comment
   highlight link rkoMultilineComment Comment
 
