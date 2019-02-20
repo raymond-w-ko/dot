@@ -1646,6 +1646,13 @@ let s:version_control_filetypes = {
     \ "gitcommit": 1,
     \ }
 function! s:SetupBasicSyntaxHighlights()
+  silent! syntax clear rkoBasicString
+  silent! syntax clear rkoBasicComment
+  silent! syntax clear rkoMultiLineString
+  silent! syntax clear rkoVersionControlDelete
+  silent! syntax clear rkoVersionControlAdd
+  silent! syntax clear gitMergeConflict
+
   if has_key(s:double_quote_string_filestypes, &filetype)
     syntax region rkoBasicString start=/\v"/ skip=/\v\\"/ end=/\v"/
   endif
@@ -1659,7 +1666,7 @@ function! s:SetupBasicSyntaxHighlights()
     syntax region rkoBasicComment start=/\v#/ end=/\v$/
   endif
   if &filetype == "vim"
-    syn match  rkoBasicComment +"[^"]\+$+
+    syn match rkoBasicComment +"[^"]\+$+
   endif
   if has_key(s:c_comment_filestypes, &filetype)
     syntax region rkoBasicComment start=/\v\/\*/ end=/\v\*\//
