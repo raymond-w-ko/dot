@@ -1633,6 +1633,9 @@ let s:double_slash_comment_filestypes = {
 let s:python_style_comment_filestypes = {
     \ "python": 1,
     \ }
+let s:lisp_style_comment_filestypes = {
+    \ "clojure": 1,
+    \ }
 let s:c_comment_filestypes = {
     \ "javascript.jsx": 1,
     \ "c": 1,
@@ -1664,6 +1667,9 @@ function! s:SetupBasicSyntaxHighlights()
   endif
   if has_key(s:python_style_comment_filestypes, &filetype)
     syntax region rkoBasicComment start=/\v#/ end=/\v$/
+  endif
+  if has_key(s:lisp_style_comment_filestypes, &filetype)
+    syntax region rkoBasicComment start=/\v;+/ end=/\v$/
   endif
   if &filetype == "vim"
     syn match rkoBasicComment +"[^"]\+$+
