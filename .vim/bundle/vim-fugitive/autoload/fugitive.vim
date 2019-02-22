@@ -1408,7 +1408,7 @@ function! fugitive#BufReadStatus() abort
     endif
 
     let b:fugitive_status = {'Staged': {}, 'Unstaged': {}}
-    let [staged, unstaged] = [[], []]
+    let [staged, unstaged, untracked] = [[], [], []]
     let i = 0
     while i < len(output)
       let line = output[i]
@@ -1426,11 +1426,15 @@ function! fugitive#BufReadStatus() abort
         call add(staged, {'type': 'File', 'status': line[0], 'filename': files})
         let b:fugitive_status['Staged'][files] = line[0]
       endif
-      if line[1] !~# '[ !#]'
+      if line[1] =~# '?'
+        call add(untracked, {'type': 'File', 'status': line[1], 'filename': files})
+        let b:fugitive_status['Unstaged'][files] = line[1]
+      elseif line[1] !~# '[ !#]'
         call add(unstaged, {'type': 'File', 'status': line[1], 'filename': files})
         let b:fugitive_status['Unstaged'][files] = line[1]
       endif
     endwhile
+    let unstaged = extend(untracked, unstaged)
 
     for dict in staged
       let b:fugitive_status['Staged'][dict.filename] = dict.status
@@ -1563,6 +1567,8 @@ function! fugitive#BufReadStatus() abort
     nnoremap <buffer> <silent> ds :<C-U>execute <SID>StageDiff('Gsdiff')<CR>
     nnoremap <buffer> <silent> dp :<C-U>execute <SID>StageDiffEdit()<CR>
     nnoremap <buffer> <silent> dv :<C-U>execute <SID>StageDiff('Gvdiff')<CR>
+    nnoremap <buffer> <silent> J :<C-U>execute <SID>StageNext(v:count1)<CR>
+    nnoremap <buffer> <silent> K :<C-U>execute <SID>StagePrevious(v:count1)<CR>
     nnoremap <buffer> <silent> P :<C-U>execute <SID>StagePatch(line('.'),line('.')+v:count1-1)<CR>
     xnoremap <buffer> <silent> P :<C-U>execute <SID>StagePatch(line("'<"),line("'>"))<CR>
     nnoremap <buffer> <silent> q :<C-U>if bufnr('$') == 1<Bar>quit<Bar>else<Bar>bdelete<Bar>endif<CR>
@@ -1820,7 +1826,7 @@ function! s:Git(bang, mods, args) abort
   let args = matchstr(a:args,'\v\C.{-}%($|\\@<!%(\\\\)*\|)@=')
   let after = matchstr(a:args, '\v\C\\@<!%(\\\\)*\zs\|.*')
   let tree = s:Tree()
-  if has('win32')
+  if !s:CanAutoReloadStatus()
     let after = '|call fugitive#ReloadStatus()' . after
   endif
   if exists(':terminal') && has('nvim') && !get(g:, 'fugitive_force_bang_command')
@@ -1897,15 +1903,6 @@ call s:command("-bar -bang -nargs=? -complete=customlist,s:DirComplete Glcd :exe
 
 call s:command("-bar -bang -range=-1 Gstatus :execute s:Status(<bang>0, <count>, '<mods>')")
 call s:command("-bar -bang -range=-1 G       :execute s:Status(<bang>0, <count>, '<mods>')")
-augroup fugitive_status
-  autocmd!
-  if !has('win32')
-    autocmd ShellCmdPost        * call fugitive#ReloadStatus()
-    autocmd QuickFixCmdPost c*ile call fugitive#ReloadStatus()
-    autocmd FocusGained         * call fugitive#ReloadStatus()
-    autocmd BufDelete    term://* call fugitive#ReloadStatus()
-  endif
-augroup END
 
 function! s:Status(bang, count, mods) abort
   try
@@ -2040,6 +2037,24 @@ function! fugitive#ReloadStatus(...) abort
     unlet! s:reloading_status
   endtry
 endfunction
+
+function! s:CanAutoReloadStatus() abort
+  return get(g:, 'fugitive_autoreload_status', !has('win32'))
+endfunction
+
+function! s:AutoReloadStatus(...) abort
+  if s:CanAutoReloadStatus()
+    return call('fugitive#ReloadStatus', a:000)
+  endif
+endfunction
+
+augroup fugitive_status
+  autocmd!
+  autocmd ShellCmdPost         * call s:AutoReloadStatus()
+  autocmd QuickFixCmdPost c*file call s:AutoReloadStatus()
+  autocmd FocusGained          * call s:AutoReloadStatus()
+  autocmd BufDelete     term://* call s:AutoReloadStatus()
+augroup END
 
 function! s:StageInfo(...) abort
   let lnum = a:0 ? a:1 : line('.')
