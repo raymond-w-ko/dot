@@ -1632,6 +1632,7 @@ let s:double_slash_comment_filestypes = {
     \ }
 let s:python_style_comment_filestypes = {
     \ "python": 1,
+    \ "gitcommit": 1,
     \ }
 let s:lisp_style_comment_filestypes = {
     \ "clojure": 1,
