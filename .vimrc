@@ -1623,12 +1623,17 @@ let s:double_quote_string_filestypes = {
     \ "c": 1,
     \ "cpp": 1,
     \ "python": 1,
+    \ "css": 1,
+    \ "scss": 1,
+    \ "html": 1,
     \ "vim": 1,
     \ }
 let s:double_slash_comment_filestypes = {
     \ "javascript.jsx": 1,
     \ "c": 1,
     \ "cpp": 1,
+    \ "css": 1,
+    \ "scss": 1,
     \ }
 let s:python_style_comment_filestypes = {
     \ "python": 1,
@@ -1641,6 +1646,8 @@ let s:c_comment_filestypes = {
     \ "javascript.jsx": 1,
     \ "c": 1,
     \ "cpp": 1,
+    \ "css": 1,
+    \ "scss": 1,
     \ }
 let s:c_preprocessor_comment_filestypes = {
     \ "c": 1,
