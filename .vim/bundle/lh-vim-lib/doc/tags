@@ -27,10 +27,10 @@ _to_string()	lh-vim-lib.txt	/*_to_string()*
 assertion-list	lh-vim-lib.txt	/*assertion-list*
 bdc-debug	lh-vim-lib.txt	/*bdc-debug*
 check_paths()	lh-vim-lib.txt	/*check_paths()*
-dbc-abort	lh-vim-lib.txt	/*dbc-abort*
 dbc-ignore	lh-vim-lib.txt	/*dbc-ignore*
 dbc-mode	lh-vim-lib.txt	/*dbc-mode*
 dbc-stacktrace	lh-vim-lib.txt	/*dbc-stacktrace*
+dbc-stop	lh-vim-lib.txt	/*dbc-stop*
 g:lh#option#unset	lh-vim-lib.txt	/*g:lh#option#unset*
 g:lh#project#varname	lh-vim-lib.txt	/*g:lh#project#varname*
 g:lh#project.auto_chdir	lh-vim-lib.txt	/*g:lh#project.auto_chdir*
