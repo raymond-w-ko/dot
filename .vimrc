@@ -2270,6 +2270,7 @@ augroup my_dirvish_events
   " sort: folders at top, alphabetical, case-insensitive.
   " let g:dirvish_mode = ':sort ir /^.*[^\/]$/'
   let g:dirvish_mode = 1
+  let g:dirvish_relative_paths = 1
 
   " Map `gr` to reload.
   autocmd FileType dirvish nnoremap <silent><buffer> gr :<C-U>Dirvish %<CR>
