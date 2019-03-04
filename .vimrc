@@ -442,6 +442,8 @@ function! s:IsProjectDirectory(directory)
     return 1
   elseif isdirectory(a:directory . "/.hg")
     return 1
+  elseif filereadable(a:directory . "/shadow-cljs.edn")
+    return 1
   elseif has_key(g:my_project_directories, a:directory)
     return 1
   else
