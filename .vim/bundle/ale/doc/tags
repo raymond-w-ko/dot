@@ -75,6 +75,7 @@ ale#command#CreateFile()	ale.txt	/*ale#command#CreateFile()*
 ale#command#EscapeCommandPart()	ale.txt	/*ale#command#EscapeCommandPart()*
 ale#command#ManageDirectory()	ale.txt	/*ale#command#ManageDirectory()*
 ale#command#ManageFile()	ale.txt	/*ale#command#ManageFile()*
+ale#command#Run()	ale.txt	/*ale#command#Run()*
 ale#engine#GetLoclist()	ale.txt	/*ale#engine#GetLoclist()*
 ale#engine#IsCheckingBuffer()	ale.txt	/*ale#engine#IsCheckingBuffer()*
 ale#fix#registry#Add()	ale.txt	/*ale#fix#registry#Add()*
@@ -121,7 +122,6 @@ ale-cmake-cmakeformat	ale-cmake.txt	/*ale-cmake-cmakeformat*
 ale-cmake-cmakelint	ale-cmake.txt	/*ale-cmake-cmakelint*
 ale-cmake-options	ale-cmake.txt	/*ale-cmake-options*
 ale-coding-standards	ale-development.txt	/*ale-coding-standards*
-ale-command-chain	ale.txt	/*ale-command-chain*
 ale-command-format-strings	ale.txt	/*ale-command-format-strings*
 ale-commands	ale.txt	/*ale-commands*
 ale-completion	ale.txt	/*ale-completion*
@@ -897,6 +897,7 @@ b:ale_rust_cargo_use_check	ale-rust.txt	/*b:ale_rust_cargo_use_check*
 b:ale_rust_cargo_use_clippy	ale-rust.txt	/*b:ale_rust_cargo_use_clippy*
 b:ale_rust_ignore_error_codes	ale-rust.txt	/*b:ale_rust_ignore_error_codes*
 b:ale_rust_ignore_secondary_spans	ale-rust.txt	/*b:ale_rust_ignore_secondary_spans*
+b:ale_rust_rls_config	ale-rust.txt	/*b:ale_rust_rls_config*
 b:ale_rust_rls_executable	ale-rust.txt	/*b:ale_rust_rls_executable*
 b:ale_rust_rls_toolchain	ale-rust.txt	/*b:ale_rust_rls_toolchain*
 b:ale_rust_rustc_options	ale-rust.txt	/*b:ale_rust_rustc_options*
@@ -1426,6 +1427,7 @@ g:ale_rust_cargo_use_check	ale-rust.txt	/*g:ale_rust_cargo_use_check*
 g:ale_rust_cargo_use_clippy	ale-rust.txt	/*g:ale_rust_cargo_use_clippy*
 g:ale_rust_ignore_error_codes	ale-rust.txt	/*g:ale_rust_ignore_error_codes*
 g:ale_rust_ignore_secondary_spans	ale-rust.txt	/*g:ale_rust_ignore_secondary_spans*
+g:ale_rust_rls_config	ale-rust.txt	/*g:ale_rust_rls_config*
 g:ale_rust_rls_executable	ale-rust.txt	/*g:ale_rust_rls_executable*
 g:ale_rust_rls_toolchain	ale-rust.txt	/*g:ale_rust_rls_toolchain*
 g:ale_rust_rustc_options	ale-rust.txt	/*g:ale_rust_rustc_options*
