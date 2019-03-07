@@ -1671,7 +1671,7 @@ function! s:SetupBasicSyntaxHighlights()
     syntax region rkoBasicString start=/\v"/ skip=/\v\\"/ end=/\v"/
   endif
   if &filetype == "python"
-    syntax region rkoMultiLineString start=/\v"""/ end=/\v"""/
+    syntax region rkoMultiLineString start=/\v"""/ end=/\v"""/ keepend
   endif
   if has_key(s:double_slash_comment_filestypes, &filetype)
     syntax region rkoBasicComment start=/\v\/\// end=/\v$/
