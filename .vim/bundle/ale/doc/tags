@@ -125,7 +125,7 @@ ale-coding-standards	ale-development.txt	/*ale-coding-standards*
 ale-command-format-strings	ale.txt	/*ale-command-format-strings*
 ale-commands	ale.txt	/*ale-commands*
 ale-completion	ale.txt	/*ale-completion*
-ale-completion-completopt-bug	ale.txt	/*ale-completion-completopt-bug*
+ale-completion-completeopt-bug	ale.txt	/*ale-completion-completeopt-bug*
 ale-contact	ale.txt	/*ale-contact*
 ale-contents	ale.txt	/*ale-contents*
 ale-cool-down	ale.txt	/*ale-cool-down*
@@ -150,6 +150,7 @@ ale-cs-uncrustify	ale-cs.txt	/*ale-cs-uncrustify*
 ale-css-options	ale-css.txt	/*ale-css-options*
 ale-css-prettier	ale-css.txt	/*ale-css-prettier*
 ale-css-stylelint	ale-css.txt	/*ale-css-stylelint*
+ale-cuda-clangformat	ale-cuda.txt	/*ale-cuda-clangformat*
 ale-cuda-nvcc	ale-cuda.txt	/*ale-cuda-nvcc*
 ale-cuda-options	ale-cuda.txt	/*ale-cuda-options*
 ale-d-dls	ale-d.txt	/*ale-d-dls*
@@ -284,6 +285,7 @@ ale-kotlin-kotlinc	ale-kotlin.txt	/*ale-kotlin-kotlinc*
 ale-kotlin-ktlint	ale-kotlin.txt	/*ale-kotlin-ktlint*
 ale-kotlin-languageserver	ale-kotlin.txt	/*ale-kotlin-languageserver*
 ale-kotlin-options	ale-kotlin.txt	/*ale-kotlin-options*
+ale-languagetool-options	ale.txt	/*ale-languagetool-options*
 ale-latex-options	ale-latex.txt	/*ale-latex-options*
 ale-latex-textlint	ale-latex.txt	/*ale-latex-textlint*
 ale-latex-write-good	ale-latex.txt	/*ale-latex-write-good*
@@ -711,6 +713,7 @@ b:ale_json_jq_options	ale-json.txt	/*b:ale_json_jq_options*
 b:ale_julia_executable	ale-julia.txt	/*b:ale_julia_executable*
 b:ale_keep_list_window_open	ale.txt	/*b:ale_keep_list_window_open*
 b:ale_lacheck_executable	ale-tex.txt	/*b:ale_lacheck_executable*
+b:ale_languagetool_executable	ale.txt	/*b:ale_languagetool_executable*
 b:ale_less_lessc_executable	ale-less.txt	/*b:ale_less_lessc_executable*
 b:ale_less_lessc_options	ale-less.txt	/*b:ale_less_lessc_options*
 b:ale_less_lessc_use_global	ale-less.txt	/*b:ale_less_lessc_use_global*
@@ -1230,6 +1233,7 @@ g:ale_kotlin_ktlint_options	ale-kotlin.txt	/*g:ale_kotlin_ktlint_options*
 g:ale_kotlin_ktlint_rulesets	ale-kotlin.txt	/*g:ale_kotlin_ktlint_rulesets*
 g:ale_kotlin_languageserver_executable	ale-kotlin.txt	/*g:ale_kotlin_languageserver_executable*
 g:ale_lacheck_executable	ale-tex.txt	/*g:ale_lacheck_executable*
+g:ale_languagetool_executable	ale.txt	/*g:ale_languagetool_executable*
 g:ale_less_lessc_executable	ale-less.txt	/*g:ale_less_lessc_executable*
 g:ale_less_lessc_options	ale-less.txt	/*g:ale_less_lessc_options*
 g:ale_less_lessc_use_global	ale-less.txt	/*g:ale_less_lessc_use_global*
