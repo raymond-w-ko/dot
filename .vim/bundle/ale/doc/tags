@@ -171,6 +171,7 @@ ale-development.txt	ale-development.txt	/*ale-development.txt*
 ale-dockerfile-dockerfile_lint	ale-dockerfile.txt	/*ale-dockerfile-dockerfile_lint*
 ale-dockerfile-hadolint	ale-dockerfile.txt	/*ale-dockerfile-hadolint*
 ale-dockerfile-options	ale-dockerfile.txt	/*ale-dockerfile-options*
+ale-elixir-credo	ale-elixir.txt	/*ale-elixir-credo*
 ale-elixir-dialyxir	ale-elixir.txt	/*ale-elixir-dialyxir*
 ale-elixir-elixir-ls	ale-elixir.txt	/*ale-elixir-elixir-ls*
 ale-elixir-mix	ale-elixir.txt	/*ale-elixir-mix*
@@ -1098,6 +1099,7 @@ g:ale_echo_msg_error_str	ale.txt	/*g:ale_echo_msg_error_str*
 g:ale_echo_msg_format	ale.txt	/*g:ale_echo_msg_format*
 g:ale_echo_msg_info_str	ale.txt	/*g:ale_echo_msg_info_str*
 g:ale_echo_msg_warning_str	ale.txt	/*g:ale_echo_msg_warning_str*
+g:ale_elixir_credo_strict	ale-elixir.txt	/*g:ale_elixir_credo_strict*
 g:ale_elixir_elixir_ls_config	ale-elixir.txt	/*g:ale_elixir_elixir_ls_config*
 g:ale_elixir_elixir_ls_release	ale-elixir.txt	/*g:ale_elixir_elixir_ls_release*
 g:ale_elixir_mix_format_options	ale-elixir.txt	/*g:ale_elixir_mix_format_options*
