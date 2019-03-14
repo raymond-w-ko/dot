@@ -20,6 +20,7 @@ else
 endif
 
 " my plugins
+Plug 'raymond-w-ko/vim-colors-solarized'
 Plug 'raymond-w-ko/scrollfix'
 Plug 'raymond-w-ko/vim-eslisp'
 Plug 'raymond-w-ko/vim-lua-indent'
@@ -631,8 +632,9 @@ endif
 if !exists("g:already_set_color_scheme") && !($TERM == "linux")
     set background=dark
 
-    let base16colorspace=256
-    colorscheme preto
+    " let base16colorspace=256
+    " colorscheme preto
+    colorscheme solarized
 
     let g:already_set_color_scheme=1
 endif
@@ -1630,6 +1632,9 @@ let s:double_quote_string_filestypes = {
     \ "html": 1,
     \ "vim": 1,
     \ }
+let s:no_escape_double_quote_string_filestypes = {
+    \ "make": 1,
+    \ }
 let s:double_slash_comment_filestypes = {
     \ "javascript.jsx": 1,
     \ "c": 1,
@@ -1668,7 +1673,10 @@ function! s:SetupBasicSyntaxHighlights()
   silent! syntax clear gitMergeConflict
 
   if has_key(s:double_quote_string_filestypes, &filetype)
-    syntax region rkoBasicString start=/\v"/ skip=/\v\\"/ end=/\v"/
+    syntax region rkoBasicString start=/\v"/ skip=/\v(\\\\)|(\\")/ end=/\v"/
+  endif
+  if has_key(s:no_escape_double_quote_string_filestypes, &filetype)
+    syntax region rkoBasicString start=/\v"/ end=/\v"/
   endif
   if &filetype == "python"
     syn region rkoMultiLineString
@@ -1827,7 +1835,7 @@ endif
 " lightline
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:lightline = {
-    \ 'colorscheme': 'wombat',
+    \ 'colorscheme': 'solarized',
     \ 'mode_map': { 'c': 'NORMAL' },
     \ 'active': {
     \   'left': [
