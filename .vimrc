@@ -1990,13 +1990,13 @@ let g:niji_dark_colours = [
 " omegacomplete
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:omegacomplete_normal_hi_cmds=[
-    \ "hi Pmenu guifg=#00ff00 guibg=#002b36 gui=none ctermbg=0 ctermfg=46 cterm=none",
-    \ "hi PmenuSel guifg=#002b36 guibg=#00ff00 gui=none ctermbg=46 ctermfg=0 cterm=none",
+    \ "hi Pmenu guifg=#00ff00 guibg=#002b36 gui=none ctermbg=0 ctermfg=46 term=none cterm=none",
+    \ "hi PmenuSel guifg=#002b36 guibg=#00ff00 gui=none ctermbg=46 ctermfg=0 term=none cterm=none",
     \ ]
 
 let g:omegacomplete_corrections_hi_cmds=[
-    \ "hi Pmenu guifg=#ffff00 guibg=#002b36 gui=none ctermbg=0 ctermfg=226 cterm=none",
-    \ "hi PmenuSel guifg=#002b36 guibg=#ffff00 gui=none ctermbg=226 ctermfg=0 cterm=none",
+    \ "hi Pmenu guifg=#ffff00 guibg=#002b36 gui=none ctermbg=0 ctermfg=226 term=none cterm=none",
+    \ "hi PmenuSel guifg=#002b36 guibg=#ffff00 gui=none ctermbg=226 ctermfg=0 term=none cterm=none",
     \ ]
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
