@@ -1698,12 +1698,16 @@ function! s:SetupBasicSyntaxHighlights()
     syntax region rkoBasicComment start=/\v\/\*/ end=/\v\*\//
   endif
   if has_key(s:c_preprocessor_comment_filestypes, &filetype)
-    syntax region rkoMultilineComment start=/\v^\s*#if/ end=/^\s*#end/
+    syntax region rkoCPreprocessorIf start=/\v^\s*#if/ end=/$/
+    syntax region rkoCPreprocessorEndif start=/\v^\s*#\s*endif/ end=/$/
+    syntax region rkoCPreprocessorDefine start=/\v^\s*#\s*define/ end=/$/
   endif
   highlight link rkoBasicString String
   highlight link rkoMultiLineString String
   highlight link rkoBasicComment Comment
-  highlight link rkoMultilineComment Comment
+  highlight link rkoCPreprocessorIf PreProc
+  highlight link rkoCPreprocessorEndif PreProc
+  highlight link rkoCPreprocessorDefine PreProc
 
   if has_key(s:version_control_filetypes, &filetype)
     syntax region rkoVersionControlDelete start=/\v^-/ end=/\v$/
