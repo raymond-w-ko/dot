@@ -178,6 +178,7 @@ ale-elixir-mix	ale-elixir.txt	/*ale-elixir-mix*
 ale-elixir-mix-format	ale-elixir.txt	/*ale-elixir-mix-format*
 ale-elixir-options	ale-elixir.txt	/*ale-elixir-options*
 ale-elm-elm-format	ale-elm.txt	/*ale-elm-elm-format*
+ale-elm-elm-lsp	ale-elm.txt	/*ale-elm-elm-lsp*
 ale-elm-elm-make	ale-elm.txt	/*ale-elm-elm-make*
 ale-elm-options	ale-elm.txt	/*ale-elm-options*
 ale-erlang-erlc	ale-erlang.txt	/*ale-erlang-erlc*
@@ -599,6 +600,8 @@ b:ale_elixir_mix_options	ale-elixir.txt	/*b:ale_elixir_mix_options*
 b:ale_elm_format_executable	ale-elm.txt	/*b:ale_elm_format_executable*
 b:ale_elm_format_options	ale-elm.txt	/*b:ale_elm_format_options*
 b:ale_elm_format_use_global	ale-elm.txt	/*b:ale_elm_format_use_global*
+b:ale_elm_lsp_executable	ale-elm.txt	/*b:ale_elm_lsp_executable*
+b:ale_elm_lsp_use_global	ale-elm.txt	/*b:ale_elm_lsp_use_global*
 b:ale_elm_make_executable	ale-elm.txt	/*b:ale_elm_make_executable*
 b:ale_elm_make_use_global	ale-elm.txt	/*b:ale_elm_make_use_global*
 b:ale_enabled	ale.txt	/*b:ale_enabled*
@@ -711,6 +714,8 @@ b:ale_json_fixjson_use_global	ale-json.txt	/*b:ale_json_fixjson_use_global*
 b:ale_json_jq_executable	ale-json.txt	/*b:ale_json_jq_executable*
 b:ale_json_jq_filters	ale-json.txt	/*b:ale_json_jq_filters*
 b:ale_json_jq_options	ale-json.txt	/*b:ale_json_jq_options*
+b:ale_json_jsonlint_executable	ale-json.txt	/*b:ale_json_jsonlint_executable*
+b:ale_json_jsonlint_use_global	ale-json.txt	/*b:ale_json_jsonlint_use_global*
 b:ale_julia_executable	ale-julia.txt	/*b:ale_julia_executable*
 b:ale_keep_list_window_open	ale.txt	/*b:ale_keep_list_window_open*
 b:ale_lacheck_executable	ale-tex.txt	/*b:ale_lacheck_executable*
@@ -1107,6 +1112,8 @@ g:ale_elixir_mix_options	ale-elixir.txt	/*g:ale_elixir_mix_options*
 g:ale_elm_format_executable	ale-elm.txt	/*g:ale_elm_format_executable*
 g:ale_elm_format_options	ale-elm.txt	/*g:ale_elm_format_options*
 g:ale_elm_format_use_global	ale-elm.txt	/*g:ale_elm_format_use_global*
+g:ale_elm_lsp_executable	ale-elm.txt	/*g:ale_elm_lsp_executable*
+g:ale_elm_lsp_use_global	ale-elm.txt	/*g:ale_elm_lsp_use_global*
 g:ale_elm_make_executable	ale-elm.txt	/*g:ale_elm_make_executable*
 g:ale_elm_make_use_global	ale-elm.txt	/*g:ale_elm_make_use_global*
 g:ale_enabled	ale.txt	/*g:ale_enabled*
@@ -1221,6 +1228,8 @@ g:ale_json_fixjson_use_global	ale-json.txt	/*g:ale_json_fixjson_use_global*
 g:ale_json_jq_executable	ale-json.txt	/*g:ale_json_jq_executable*
 g:ale_json_jq_filters	ale-json.txt	/*g:ale_json_jq_filters*
 g:ale_json_jq_options	ale-json.txt	/*g:ale_json_jq_options*
+g:ale_json_jsonlint_executable	ale-json.txt	/*g:ale_json_jsonlint_executable*
+g:ale_json_jsonlint_use_global	ale-json.txt	/*g:ale_json_jsonlint_use_global*
 g:ale_julia_executable	ale-julia.txt	/*g:ale_julia_executable*
 g:ale_keep_list_window_open	ale.txt	/*g:ale_keep_list_window_open*
 g:ale_kotlin_kotlinc_classpath	ale-kotlin.txt	/*g:ale_kotlin_kotlinc_classpath*
