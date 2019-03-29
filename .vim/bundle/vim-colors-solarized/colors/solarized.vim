@@ -672,7 +672,7 @@ exe "hi! CursorLine"     .s:fmt_uopt   .s:fg_none   .s:bg_base02  .s:sp_base1
 exe "hi! ColorColumn"    .s:fmt_none   .s:fg_none   .s:bg_base02
 exe "hi! Cursor"         .s:fmt_none   .s:fg_base03 .' ctermbg=046 guibg=#00ff00'
 hi! link lCursor Cursor
-exe "hi! MatchParen"     .s:fmt_bold   .s:fg_base0    .s:bg_red
+exe "hi! MatchParen"     .s:fmt_none   .s:fg_base0    .s:bg_red
 
 "}}}
 " vim syntax highlighting "{{{
