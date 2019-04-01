@@ -363,6 +363,8 @@ ale-pod-options	ale-pod.txt	/*ale-pod-options*
 ale-pod-write-good	ale-pod.txt	/*ale-pod-write-good*
 ale-pony-options	ale-pony.txt	/*ale-pony-options*
 ale-pony-ponyc	ale-pony.txt	/*ale-pony-ponyc*
+ale-powershell-options	ale-powershell.txt	/*ale-powershell-options*
+ale-powershell-psscriptanalyzer	ale-powershell.txt	/*ale-powershell-psscriptanalyzer*
 ale-prolog-options	ale-prolog.txt	/*ale-prolog-options*
 ale-prolog-swipl	ale-prolog.txt	/*ale-prolog-swipl*
 ale-proto-options	ale-proto.txt	/*ale-proto-options*
@@ -794,6 +796,9 @@ b:ale_php_phpstan_level	ale-php.txt	/*b:ale_php_phpstan_level*
 b:ale_php_psalm_executable	ale-php.txt	/*b:ale_php_psalm_executable*
 b:ale_pony_ponyc_executable	ale-pony.txt	/*b:ale_pony_ponyc_executable*
 b:ale_pony_ponyc_options	ale-pony.txt	/*b:ale_pony_ponyc_options*
+b:ale_powershell_psscriptanalyzer_exclusions	ale-powershell.txt	/*b:ale_powershell_psscriptanalyzer_exclusions*
+b:ale_powershell_psscriptanalyzer_executable	ale-powershell.txt	/*b:ale_powershell_psscriptanalyzer_executable*
+b:ale_powershell_psscriptanalyzer_module	ale-powershell.txt	/*b:ale_powershell_psscriptanalyzer_module*
 b:ale_prolog_swipl_alarm	ale-prolog.txt	/*b:ale_prolog_swipl_alarm*
 b:ale_prolog_swipl_alarm_handler	ale-prolog.txt	/*b:ale_prolog_swipl_alarm_handler*
 b:ale_prolog_swipl_executable	ale-prolog.txt	/*b:ale_prolog_swipl_executable*
@@ -1329,6 +1334,9 @@ g:ale_php_phpstan_level	ale-php.txt	/*g:ale_php_phpstan_level*
 g:ale_php_psalm_executable	ale-php.txt	/*g:ale_php_psalm_executable*
 g:ale_pony_ponyc_executable	ale-pony.txt	/*g:ale_pony_ponyc_executable*
 g:ale_pony_ponyc_options	ale-pony.txt	/*g:ale_pony_ponyc_options*
+g:ale_powershell_psscriptanalyzer_exclusions	ale-powershell.txt	/*g:ale_powershell_psscriptanalyzer_exclusions*
+g:ale_powershell_psscriptanalyzer_executable	ale-powershell.txt	/*g:ale_powershell_psscriptanalyzer_executable*
+g:ale_powershell_psscriptanalyzer_module	ale-powershell.txt	/*g:ale_powershell_psscriptanalyzer_module*
 g:ale_prolog_swipl_alarm	ale-prolog.txt	/*g:ale_prolog_swipl_alarm*
 g:ale_prolog_swipl_alarm_handler	ale-prolog.txt	/*g:ale_prolog_swipl_alarm_handler*
 g:ale_prolog_swipl_executable	ale-prolog.txt	/*g:ale_prolog_swipl_executable*
