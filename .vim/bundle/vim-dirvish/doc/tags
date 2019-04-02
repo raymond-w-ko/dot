@@ -1,6 +1,9 @@
 :Shdo	dirvish.txt	/*:Shdo*
 Z!	dirvish.txt	/*Z!*
 dirvish	dirvish.txt	/*dirvish*
+dirvish#add_icon_fn()	dirvish.txt	/*dirvish#add_icon_fn()*
+dirvish#open()	dirvish.txt	/*dirvish#open()*
+dirvish#remove_icon_fn()	dirvish.txt	/*dirvish#remove_icon_fn()*
 dirvish-:Dirvish	dirvish.txt	/*dirvish-:Dirvish*
 dirvish-:Shdo	dirvish.txt	/*dirvish-:Shdo*
 dirvish-Z!	dirvish.txt	/*dirvish-Z!*
