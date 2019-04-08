@@ -68,6 +68,7 @@ ALEWarningLine	ale.txt	/*ALEWarningLine*
 ALEWarningSign	ale.txt	/*ALEWarningSign*
 ale	ale.txt	/*ale*
 ale#Env()	ale.txt	/*ale#Env()*
+ale#Has()	ale.txt	/*ale#Has()*
 ale#Pad()	ale.txt	/*ale#Pad()*
 ale#Queue()	ale.txt	/*ale#Queue()*
 ale#command#CreateDirectory()	ale.txt	/*ale#command#CreateDirectory()*
@@ -164,6 +165,7 @@ ale-dev	ale-development.txt	/*ale-dev*
 ale-dev-tests	ale-development.txt	/*ale-dev-tests*
 ale-development	ale-development.txt	/*ale-development*
 ale-development-contents	ale-development.txt	/*ale-development-contents*
+ale-development-fixer-tests	ale-development.txt	/*ale-development-fixer-tests*
 ale-development-introduction	ale-development.txt	/*ale-development-introduction*
 ale-development-linter-tests	ale-development.txt	/*ale-development-linter-tests*
 ale-development-tests	ale-development.txt	/*ale-development-tests*
