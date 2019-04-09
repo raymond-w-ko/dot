@@ -456,6 +456,8 @@ ale-sugarss-stylelint	ale-sugarss.txt	/*ale-sugarss-stylelint*
 ale-support	ale.txt	/*ale-support*
 ale-supported-languages-and-tools.txt	ale-supported-languages-and-tools.txt	/*ale-supported-languages-and-tools.txt*
 ale-supported-list	ale-supported-languages-and-tools.txt	/*ale-supported-list*
+ale-swift-options	ale-swift.txt	/*ale-swift-options*
+ale-swift-sourcekitlsp	ale-swift.txt	/*ale-swift-sourcekitlsp*
 ale-symbol-search	ale.txt	/*ale-symbol-search*
 ale-tcl-nagelfar	ale-tcl.txt	/*ale-tcl-nagelfar*
 ale-tcl-options	ale-tcl.txt	/*ale-tcl-options*
@@ -944,6 +946,7 @@ b:ale_sh_shellcheck_executable	ale-sh.txt	/*b:ale_sh_shellcheck_executable*
 b:ale_sh_shellcheck_options	ale-sh.txt	/*b:ale_sh_shellcheck_options*
 b:ale_sh_shfmt_options	ale-sh.txt	/*b:ale_sh_shfmt_options*
 b:ale_sml_smlnj_cm_file	ale-sml.txt	/*b:ale_sml_smlnj_cm_file*
+b:ale_sourcekit_lsp_executable	ale-swift.txt	/*b:ale_sourcekit_lsp_executable*
 b:ale_spec_rpmlint_executable	ale-spec.txt	/*b:ale_spec_rpmlint_executable*
 b:ale_spec_rpmlint_options	ale-spec.txt	/*b:ale_spec_rpmlint_options*
 b:ale_sql_sqlfmt_executable	ale-sql.txt	/*b:ale_sql_sqlfmt_executable*
@@ -1497,6 +1500,7 @@ g:ale_sign_style_error	ale.txt	/*g:ale_sign_style_error*
 g:ale_sign_style_warning	ale.txt	/*g:ale_sign_style_warning*
 g:ale_sign_warning	ale.txt	/*g:ale_sign_warning*
 g:ale_sml_smlnj_cm_file	ale-sml.txt	/*g:ale_sml_smlnj_cm_file*
+g:ale_sourcekit_lsp_executable	ale-swift.txt	/*g:ale_sourcekit_lsp_executable*
 g:ale_spec_rpmlint_executable	ale-spec.txt	/*g:ale_spec_rpmlint_executable*
 g:ale_spec_rpmlint_options	ale-spec.txt	/*g:ale_spec_rpmlint_options*
 g:ale_sql_sqlfmt_executable	ale-sql.txt	/*g:ale_sql_sqlfmt_executable*
