@@ -113,8 +113,10 @@ ale-c-flawfinder	ale-c.txt	/*ale-c-flawfinder*
 ale-c-gcc	ale-c.txt	/*ale-c-gcc*
 ale-c-options	ale-c.txt	/*ale-c-options*
 ale-c-uncrustify	ale-c.txt	/*ale-c-uncrustify*
+ale-chef-cookstyle	ale-chef.txt	/*ale-chef-cookstyle*
 ale-chef-foodcritic	ale-chef.txt	/*ale-chef-foodcritic*
 ale-chef-options	ale-chef.txt	/*ale-chef-options*
+ale-clojure-clj-kondo	ale-clojure.txt	/*ale-clojure-clj-kondo*
 ale-clojure-joker	ale-clojure.txt	/*ale-clojure-joker*
 ale-clojure-options	ale-clojure.txt	/*ale-clojure-options*
 ale-cloudformation-cfn-python-lint	ale-cloudformation.txt	/*ale-cloudformation-cfn-python-lint*
@@ -211,6 +213,7 @@ ale-go-golangci-lint	ale-go.txt	/*ale-go-golangci-lint*
 ale-go-golangserver	ale-go.txt	/*ale-go-golangserver*
 ale-go-golint	ale-go.txt	/*ale-go-golint*
 ale-go-gometalinter	ale-go.txt	/*ale-go-gometalinter*
+ale-go-gopls	ale-go.txt	/*ale-go-gopls*
 ale-go-govet	ale-go.txt	/*ale-go-govet*
 ale-go-options	ale-go.txt	/*ale-go-options*
 ale-go-staticcheck	ale-go.txt	/*ale-go-staticcheck*
@@ -547,6 +550,8 @@ b:ale_c_parse_compile_commands	ale-c.txt	/*b:ale_c_parse_compile_commands*
 b:ale_c_parse_makefile	ale-c.txt	/*b:ale_c_parse_makefile*
 b:ale_c_uncrustify_executable	ale-c.txt	/*b:ale_c_uncrustify_executable*
 b:ale_c_uncrustify_options	ale-c.txt	/*b:ale_c_uncrustify_options*
+b:ale_chef_cookstyle_executable	ale-chef.txt	/*b:ale_chef_cookstyle_executable*
+b:ale_chef_cookstyle_options	ale-chef.txt	/*b:ale_chef_cookstyle_options*
 b:ale_chef_foodcritic_executable	ale-chef.txt	/*b:ale_chef_foodcritic_executable*
 b:ale_chef_foodcritic_options	ale-chef.txt	/*b:ale_chef_foodcritic_options*
 b:ale_cmake_cmakeformat_executable	ale-cmake.txt	/*b:ale_cmake_cmakeformat_executable*
@@ -644,6 +649,8 @@ b:ale_go_golint_options	ale-go.txt	/*b:ale_go_golint_options*
 b:ale_go_gometalinter_executable	ale-go.txt	/*b:ale_go_gometalinter_executable*
 b:ale_go_gometalinter_lint_package	ale-go.txt	/*b:ale_go_gometalinter_lint_package*
 b:ale_go_gometalinter_options	ale-go.txt	/*b:ale_go_gometalinter_options*
+b:ale_go_gopls_executable	ale-go.txt	/*b:ale_go_gopls_executable*
+b:ale_go_gopls_options	ale-go.txt	/*b:ale_go_gopls_options*
 b:ale_go_govet_options	ale-go.txt	/*b:ale_go_govet_options*
 b:ale_go_langserver_executable	ale-go.txt	/*b:ale_go_langserver_executable*
 b:ale_go_langserver_options	ale-go.txt	/*b:ale_go_langserver_options*
@@ -1054,6 +1061,8 @@ g:ale_c_uncrustify_executable	ale-c.txt	/*g:ale_c_uncrustify_executable*
 g:ale_c_uncrustify_options	ale-c.txt	/*g:ale_c_uncrustify_options*
 g:ale_cache_executable_check_failures	ale.txt	/*g:ale_cache_executable_check_failures*
 g:ale_change_sign_column_color	ale.txt	/*g:ale_change_sign_column_color*
+g:ale_chef_cookstyle_executable	ale-chef.txt	/*g:ale_chef_cookstyle_executable*
+g:ale_chef_cookstyle_options	ale-chef.txt	/*g:ale_chef_cookstyle_options*
 g:ale_chef_foodcritic_executable	ale-chef.txt	/*g:ale_chef_foodcritic_executable*
 g:ale_chef_foodcritic_options	ale-chef.txt	/*g:ale_chef_foodcritic_options*
 g:ale_close_preview_on_insert	ale.txt	/*g:ale_close_preview_on_insert*
@@ -1161,6 +1170,8 @@ g:ale_go_golint_options	ale-go.txt	/*g:ale_go_golint_options*
 g:ale_go_gometalinter_executable	ale-go.txt	/*g:ale_go_gometalinter_executable*
 g:ale_go_gometalinter_lint_package	ale-go.txt	/*g:ale_go_gometalinter_lint_package*
 g:ale_go_gometalinter_options	ale-go.txt	/*g:ale_go_gometalinter_options*
+g:ale_go_gopls_executable	ale-go.txt	/*g:ale_go_gopls_executable*
+g:ale_go_gopls_options	ale-go.txt	/*g:ale_go_gopls_options*
 g:ale_go_govet_options	ale-go.txt	/*g:ale_go_govet_options*
 g:ale_go_langserver_executable	ale-go.txt	/*g:ale_go_langserver_executable*
 g:ale_go_langserver_options	ale-go.txt	/*g:ale_go_langserver_options*
