@@ -150,6 +150,7 @@ ale-cs-mcs	ale-cs.txt	/*ale-cs-mcs*
 ale-cs-mcsc	ale-cs.txt	/*ale-cs-mcsc*
 ale-cs-options	ale-cs.txt	/*ale-cs-options*
 ale-cs-uncrustify	ale-cs.txt	/*ale-cs-uncrustify*
+ale-css-fecs	ale-css.txt	/*ale-css-fecs*
 ale-css-options	ale-css.txt	/*ale-css-options*
 ale-css-prettier	ale-css.txt	/*ale-css-prettier*
 ale-css-stylelint	ale-css.txt	/*ale-css-stylelint*
@@ -245,6 +246,7 @@ ale-hcl-options	ale-hcl.txt	/*ale-hcl-options*
 ale-hcl-terraform-fmt	ale-hcl.txt	/*ale-hcl-terraform-fmt*
 ale-highlights	ale.txt	/*ale-highlights*
 ale-hover	ale.txt	/*ale-hover*
+ale-html-fecs	ale-html.txt	/*ale-html-fecs*
 ale-html-htmlhint	ale-html.txt	/*ale-html-htmlhint*
 ale-html-options	ale-html.txt	/*ale-html-options*
 ale-html-prettier	ale-html.txt	/*ale-html-prettier*
@@ -264,6 +266,7 @@ ale-introduction	ale.txt	/*ale-introduction*
 ale-ispc-ispc	ale-ispc.txt	/*ale-ispc-ispc*
 ale-ispc-options	ale-ispc.txt	/*ale-ispc-options*
 ale-java-checkstyle	ale-java.txt	/*ale-java-checkstyle*
+ale-java-eclipselsp	ale-java.txt	/*ale-java-eclipselsp*
 ale-java-google-java-format	ale-java.txt	/*ale-java-google-java-format*
 ale-java-javac	ale-java.txt	/*ale-java-javac*
 ale-java-javalsp	ale-java.txt	/*ale-java-javalsp*
@@ -271,6 +274,7 @@ ale-java-options	ale-java.txt	/*ale-java-options*
 ale-java-pmd	ale-java.txt	/*ale-java-pmd*
 ale-java-uncrustify	ale-java.txt	/*ale-java-uncrustify*
 ale-javascript-eslint	ale-javascript.txt	/*ale-javascript-eslint*
+ale-javascript-fecs	ale-javascript.txt	/*ale-javascript-fecs*
 ale-javascript-flow	ale-javascript.txt	/*ale-javascript-flow*
 ale-javascript-importjs	ale-javascript.txt	/*ale-javascript-importjs*
 ale-javascript-jscs	ale-javascript.txt	/*ale-javascript-jscs*
@@ -369,6 +373,7 @@ ale-pod-write-good	ale-pod.txt	/*ale-pod-write-good*
 ale-pony-options	ale-pony.txt	/*ale-pony-options*
 ale-pony-ponyc	ale-pony.txt	/*ale-pony-ponyc*
 ale-powershell-options	ale-powershell.txt	/*ale-powershell-options*
+ale-powershell-powershell	ale-powershell.txt	/*ale-powershell-powershell*
 ale-powershell-psscriptanalyzer	ale-powershell.txt	/*ale-powershell-psscriptanalyzer*
 ale-prolog-options	ale-prolog.txt	/*ale-prolog-options*
 ale-prolog-swipl	ale-prolog.txt	/*ale-prolog-swipl*
@@ -470,6 +475,7 @@ ale-terraform-tflint	ale-terraform.txt	/*ale-terraform-tflint*
 ale-tests	ale-development.txt	/*ale-tests*
 ale-tex-chktex	ale-tex.txt	/*ale-tex-chktex*
 ale-tex-lacheck	ale-tex.txt	/*ale-tex-lacheck*
+ale-tex-latexindent	ale-tex.txt	/*ale-tex-latexindent*
 ale-tex-options	ale-tex.txt	/*ale-tex-options*
 ale-texinfo-options	ale-texinfo.txt	/*ale-texinfo-options*
 ale-texinfo-write-good	ale-texinfo.txt	/*ale-texinfo-write-good*
@@ -686,6 +692,8 @@ b:ale_idris_idris_options	ale-idris.txt	/*b:ale_idris_idris_options*
 b:ale_ispc_ispc_executable	ale-ispc.txt	/*b:ale_ispc_ispc_executable*
 b:ale_ispc_ispc_options	ale-ispc.txt	/*b:ale_ispc_ispc_options*
 b:ale_java_checkstyle_options	ale-java.txt	/*b:ale_java_checkstyle_options*
+b:ale_java_eclipse_executable	ale-java.txt	/*b:ale_java_eclipse_executable*
+b:ale_java_eclipselsp_path	ale-java.txt	/*b:ale_java_eclipselsp_path*
 b:ale_java_google_java_format_executable	ale-java.txt	/*b:ale_java_google_java_format_executable*
 b:ale_java_google_java_format_options	ale-java.txt	/*b:ale_java_google_java_format_options*
 b:ale_java_javac_classpath	ale-java.txt	/*b:ale_java_javac_classpath*
@@ -698,6 +706,8 @@ b:ale_javascript_eslint_options	ale-javascript.txt	/*b:ale_javascript_eslint_opt
 b:ale_javascript_eslint_suppress_eslintignore	ale-javascript.txt	/*b:ale_javascript_eslint_suppress_eslintignore*
 b:ale_javascript_eslint_suppress_missing_config	ale-javascript.txt	/*b:ale_javascript_eslint_suppress_missing_config*
 b:ale_javascript_eslint_use_global	ale-javascript.txt	/*b:ale_javascript_eslint_use_global*
+b:ale_javascript_fecs_executable	ale-javascript.txt	/*b:ale_javascript_fecs_executable*
+b:ale_javascript_fecs_use_global	ale-javascript.txt	/*b:ale_javascript_fecs_use_global*
 b:ale_javascript_flow_executable	ale-javascript.txt	/*b:ale_javascript_flow_executable*
 b:ale_javascript_flow_use_global	ale-javascript.txt	/*b:ale_javascript_flow_use_global*
 b:ale_javascript_flow_use_home_config	ale-javascript.txt	/*b:ale_javascript_flow_use_home_config*
@@ -808,6 +818,7 @@ b:ale_php_phpstan_level	ale-php.txt	/*b:ale_php_phpstan_level*
 b:ale_php_psalm_executable	ale-php.txt	/*b:ale_php_psalm_executable*
 b:ale_pony_ponyc_executable	ale-pony.txt	/*b:ale_pony_ponyc_executable*
 b:ale_pony_ponyc_options	ale-pony.txt	/*b:ale_pony_ponyc_options*
+b:ale_powershell_powershell_executable	ale-powershell.txt	/*b:ale_powershell_powershell_executable*
 b:ale_powershell_psscriptanalyzer_exclusions	ale-powershell.txt	/*b:ale_powershell_psscriptanalyzer_exclusions*
 b:ale_powershell_psscriptanalyzer_executable	ale-powershell.txt	/*b:ale_powershell_psscriptanalyzer_executable*
 b:ale_powershell_psscriptanalyzer_module	ale-powershell.txt	/*b:ale_powershell_psscriptanalyzer_module*
@@ -972,6 +983,8 @@ b:ale_terraform_tflint_executable	ale-terraform.txt	/*b:ale_terraform_tflint_exe
 b:ale_terraform_tflint_options	ale-terraform.txt	/*b:ale_terraform_tflint_options*
 b:ale_tex_chktex_executable	ale-tex.txt	/*b:ale_tex_chktex_executable*
 b:ale_tex_chktex_options	ale-tex.txt	/*b:ale_tex_chktex_options*
+b:ale_tex_latexindent_executable	ale-tex.txt	/*b:ale_tex_latexindent_executable*
+b:ale_tex_latexindent_options	ale-tex.txt	/*b:ale_tex_latexindent_options*
 b:ale_textlint_executable	ale-text.txt	/*b:ale_textlint_executable*
 b:ale_textlint_options	ale-text.txt	/*b:ale_textlint_options*
 b:ale_textlint_use_global	ale-text.txt	/*b:ale_textlint_use_global*
@@ -1209,6 +1222,8 @@ g:ale_idris_idris_options	ale-idris.txt	/*g:ale_idris_idris_options*
 g:ale_ispc_ispc_executable	ale-ispc.txt	/*g:ale_ispc_ispc_executable*
 g:ale_ispc_ispc_options	ale-ispc.txt	/*g:ale_ispc_ispc_options*
 g:ale_java_checkstyle_options	ale-java.txt	/*g:ale_java_checkstyle_options*
+g:ale_java_eclipse_executable	ale-java.txt	/*g:ale_java_eclipse_executable*
+g:ale_java_eclipselsp_path	ale-java.txt	/*g:ale_java_eclipselsp_path*
 g:ale_java_google_java_format_executable	ale-java.txt	/*g:ale_java_google_java_format_executable*
 g:ale_java_google_java_format_options	ale-java.txt	/*g:ale_java_google_java_format_options*
 g:ale_java_javac_classpath	ale-java.txt	/*g:ale_java_javac_classpath*
@@ -1221,6 +1236,8 @@ g:ale_javascript_eslint_options	ale-javascript.txt	/*g:ale_javascript_eslint_opt
 g:ale_javascript_eslint_suppress_eslintignore	ale-javascript.txt	/*g:ale_javascript_eslint_suppress_eslintignore*
 g:ale_javascript_eslint_suppress_missing_config	ale-javascript.txt	/*g:ale_javascript_eslint_suppress_missing_config*
 g:ale_javascript_eslint_use_global	ale-javascript.txt	/*g:ale_javascript_eslint_use_global*
+g:ale_javascript_fecs_executable	ale-javascript.txt	/*g:ale_javascript_fecs_executable*
+g:ale_javascript_fecs_use_global	ale-javascript.txt	/*g:ale_javascript_fecs_use_global*
 g:ale_javascript_flow_executable	ale-javascript.txt	/*g:ale_javascript_flow_executable*
 g:ale_javascript_flow_use_global	ale-javascript.txt	/*g:ale_javascript_flow_use_global*
 g:ale_javascript_flow_use_home_config	ale-javascript.txt	/*g:ale_javascript_flow_use_home_config*
@@ -1352,6 +1369,7 @@ g:ale_php_phpstan_level	ale-php.txt	/*g:ale_php_phpstan_level*
 g:ale_php_psalm_executable	ale-php.txt	/*g:ale_php_psalm_executable*
 g:ale_pony_ponyc_executable	ale-pony.txt	/*g:ale_pony_ponyc_executable*
 g:ale_pony_ponyc_options	ale-pony.txt	/*g:ale_pony_ponyc_options*
+g:ale_powershell_powershell_executable	ale-powershell.txt	/*g:ale_powershell_powershell_executable*
 g:ale_powershell_psscriptanalyzer_exclusions	ale-powershell.txt	/*g:ale_powershell_psscriptanalyzer_exclusions*
 g:ale_powershell_psscriptanalyzer_executable	ale-powershell.txt	/*g:ale_powershell_psscriptanalyzer_executable*
 g:ale_powershell_psscriptanalyzer_module	ale-powershell.txt	/*g:ale_powershell_psscriptanalyzer_module*
@@ -1530,6 +1548,8 @@ g:ale_terraform_tflint_executable	ale-terraform.txt	/*g:ale_terraform_tflint_exe
 g:ale_terraform_tflint_options	ale-terraform.txt	/*g:ale_terraform_tflint_options*
 g:ale_tex_chktex_executable	ale-tex.txt	/*g:ale_tex_chktex_executable*
 g:ale_tex_chktex_options	ale-tex.txt	/*g:ale_tex_chktex_options*
+g:ale_tex_latexindent_executable	ale-tex.txt	/*g:ale_tex_latexindent_executable*
+g:ale_tex_latexindent_options	ale-tex.txt	/*g:ale_tex_latexindent_options*
 g:ale_textlint_executable	ale-text.txt	/*g:ale_textlint_executable*
 g:ale_textlint_options	ale-text.txt	/*g:ale_textlint_options*
 g:ale_textlint_use_global	ale-text.txt	/*g:ale_textlint_use_global*

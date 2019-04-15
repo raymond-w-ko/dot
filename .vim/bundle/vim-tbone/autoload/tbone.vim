@@ -1,7 +1,7 @@
 " autoload/tbone.vim
 " Maintainer:   Tim Pope <http://tpo.pe/>
 
-if exists("g:autoloaded_tbone") || v:version < 700 || &cp
+if exists('g:autoloaded_tbone') || v:version < 700 || &compatible
   finish
 endif
 let g:autoloaded_tbone = 1
@@ -18,11 +18,10 @@ function! tbone#session(...) abort
   endif
 endfunction
 
-function! tbone#qualify(target)
+function! tbone#qualify(target) abort
   let target = substitute(a:target, "\n$", '', '')
-  let session = get(g:, 'tmux_session', '')
   if target =~# '^:'
-    return session . target
+    return get(g:, 'tmux_session', '') . target
   elseif target =~# '^\%([^$!]\|[+-]\d*\|{.*}\)$'
     return get(g:, 'tmux_session', '') . ':.' . target
   elseif target =~# ':' || target =~# '^%' || !exists('g:tmux_session')
@@ -333,10 +332,9 @@ function! tbone#write_command(bang, line1, line2, count, ...) abort
     return 'echoerr '.string('Target pane required')
   endif
 
-  let keys = join(filter(map(
+  let keys = join(map(
         \ getline(a:line1, a:line2),
         \ 'substitute(v:val,"^\\s*","","")'),
-        \ "!empty(v:val)"),
         \ "\r")
   if a:count > 0
     let keys = get(g:, 'tbone_write_initialization', '').keys."\r"
