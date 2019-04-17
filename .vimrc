@@ -1765,6 +1765,7 @@ augroup MyVimrc
   " de-emphasized parentheses
   autocmd Syntax * call s:SetupParenthesesHightlight()
   autocmd FileType * call s:SetupBasicSyntaxHighlights()
+  autocmd BufEnter * :syntax sync fromstart
 augroup END
 
 " }}}
