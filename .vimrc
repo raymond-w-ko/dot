@@ -1675,6 +1675,7 @@ function! s:SetupBasicSyntaxHighlights()
 
   if has_key(s:double_quote_string_filestypes, &filetype)
     syntax region rkoBasicString start=/\v"/ skip=/\v(\\\\)|(\\")/ end=/\v"/
+    syntax region rkoBasicString start=/\v'/ skip=/\v(\\\\)|(\\')/ end=/\v'/
   endif
   if has_key(s:no_escape_double_quote_string_filestypes, &filetype)
     syntax region rkoBasicString start=/\v"/ end=/\v"/
