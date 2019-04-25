@@ -163,6 +163,7 @@ ale-d-uncrustify	ale-d.txt	/*ale-d-uncrustify*
 ale-dart-dartanalyzer	ale-dart.txt	/*ale-dart-dartanalyzer*
 ale-dart-dartfmt	ale-dart.txt	/*ale-dart-dartfmt*
 ale-dart-options	ale-dart.txt	/*ale-dart-options*
+ale-deoplete-integration	ale.txt	/*ale-deoplete-integration*
 ale-design-goals	ale-development.txt	/*ale-design-goals*
 ale-dev	ale-development.txt	/*ale-dev*
 ale-dev-tests	ale-development.txt	/*ale-dev-tests*
@@ -409,6 +410,7 @@ ale-qml-options	ale-qml.txt	/*ale-qml-options*
 ale-qml-qmlfmt	ale-qml.txt	/*ale-qml-qmlfmt*
 ale-r-lintr	ale-r.txt	/*ale-r-lintr*
 ale-r-options	ale-r.txt	/*ale-r-options*
+ale-r-styler	ale-r.txt	/*ale-r-styler*
 ale-reasonml-merlin	ale-reasonml.txt	/*ale-reasonml-merlin*
 ale-reasonml-ols	ale-reasonml.txt	/*ale-reasonml-ols*
 ale-reasonml-options	ale-reasonml.txt	/*ale-reasonml-options*
@@ -905,6 +907,7 @@ b:ale_python_yapf_use_global	ale-python.txt	/*b:ale_python_yapf_use_global*
 b:ale_qml_qmlfmt_executable	ale-qml.txt	/*b:ale_qml_qmlfmt_executable*
 b:ale_r_lintr_lint_package	ale-r.txt	/*b:ale_r_lintr_lint_package*
 b:ale_r_lintr_options	ale-r.txt	/*b:ale_r_lintr_options*
+b:ale_r_styler_options	ale-r.txt	/*b:ale_r_styler_options*
 b:ale_reason_ols_executable	ale-reasonml.txt	/*b:ale_reason_ols_executable*
 b:ale_reason_ols_use_global	ale-reasonml.txt	/*b:ale_reason_ols_use_global*
 b:ale_reasonml_refmt_executable	ale-reasonml.txt	/*b:ale_reasonml_refmt_executable*
@@ -1458,6 +1461,7 @@ g:ale_python_yapf_use_global	ale-python.txt	/*g:ale_python_yapf_use_global*
 g:ale_qml_qmlfmt_executable	ale-qml.txt	/*g:ale_qml_qmlfmt_executable*
 g:ale_r_lintr_lint_package	ale-r.txt	/*g:ale_r_lintr_lint_package*
 g:ale_r_lintr_options	ale-r.txt	/*g:ale_r_lintr_options*
+g:ale_r_styler_options	ale-r.txt	/*g:ale_r_styler_options*
 g:ale_reason_ols_executable	ale-reasonml.txt	/*g:ale_reason_ols_executable*
 g:ale_reason_ols_use_global	ale-reasonml.txt	/*g:ale_reason_ols_use_global*
 g:ale_reasonml_refmt_executable	ale-reasonml.txt	/*g:ale_reasonml_refmt_executable*
