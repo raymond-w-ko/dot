@@ -1,2 +1,2 @@
 #!/bin/sh
-exec google-chrome-stable "$@"
+exec google-chrome-stable "$@" --force-dark-mode
