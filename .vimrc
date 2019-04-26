@@ -682,7 +682,7 @@ nnoremap <silent> <leader>l :nohlsearch<CR>:let @/=''<CR>:call clearmatches()<CR
 "nnoremap g, g,zz
 
 " Don't move on *, superseded by vim-asterisk
-"nnoremap * *<c-o>
+" nnoremap * *<c-o>
 " nnoremap <silent> * :set nohls<CR>:let @/='\C\<<C-R>=expand('<cword>')<CR>\>'<CR>:set hls<CR>
 
 " Visual Mode */# from Scrooloose {{{
@@ -1630,7 +1630,6 @@ let s:double_quote_string_filestypes = {
     \ "css": 1,
     \ "scss": 1,
     \ "html": 1,
-    \ "vim": 1,
     \ }
 let s:no_escape_double_quote_string_filestypes = {
     \ "make": 1,
@@ -1666,6 +1665,7 @@ let s:version_control_filetypes = {
     \ "gitcommit": 1,
     \ }
 function! s:SetupBasicSyntaxHighlights()
+  syntax clear
   silent! syntax clear rkoBasicString
   silent! syntax clear rkoBasicComment
   silent! syntax clear rkoMultiLineString
@@ -1673,10 +1673,16 @@ function! s:SetupBasicSyntaxHighlights()
   silent! syntax clear rkoVersionControlAdd
   silent! syntax clear gitMergeConflict
 
+  if &filetype == "vim"
+    syntax region rkoBasicString start=/\v"/ skip=/\v(\\\\)|(\\")/ end=/\v("|$)/ keepend
+    syntax region rkoBasicString start=/\v'/ skip=/\v(\\')/ end=/\v('|$)/ keepend
+  endif
+
   if has_key(s:double_quote_string_filestypes, &filetype)
     syntax region rkoBasicString start=/\v"/ skip=/\v(\\\\)|(\\")/ end=/\v"/
     syntax region rkoBasicString start=/\v'/ skip=/\v(\\\\)|(\\')/ end=/\v'/
   endif
+
   if has_key(s:no_escape_double_quote_string_filestypes, &filetype)
     syntax region rkoBasicString start=/\v"/ end=/\v"/
   endif
@@ -1692,9 +1698,6 @@ function! s:SetupBasicSyntaxHighlights()
   endif
   if has_key(s:lisp_style_comment_filestypes, &filetype)
     syntax region rkoBasicComment start=/\v;+/ end=/\v$/
-  endif
-  if &filetype == "vim"
-    syn match rkoBasicComment +"[^"]\+$+
   endif
   if has_key(s:c_comment_filestypes, &filetype)
     syntax region rkoBasicComment start=/\v\/\*/ end=/\v\*\//
