@@ -627,6 +627,7 @@ if filereadable('/dev/clipboard')
     let @@ = reg_save
   endfunction
 endif
+
 " }}}
 " GUI {{{
 if !exists("g:already_set_color_scheme") && !($TERM == "linux")
@@ -672,18 +673,37 @@ set sidescrolloff=1
 
 nnoremap <silent> <leader>l :nohlsearch<CR>:let @/=''<CR>:call clearmatches()<CR>
 
-" mutally exclusive I think
-"set scrolloff=9999
-"nnoremap <silent> zz :call CenterCursorAesthetically()<CR>
-"nmap n nzzzv
-"nmap N Nzzzv
-"nmap G Gzz
-"nnoremap g; g;zz
-"nnoremap g, g,zz
-
-" Don't move on *, superseded by vim-asterisk
-" nnoremap * *<c-o>
-" nnoremap <silent> * :set nohls<CR>:let @/='\C\<<C-R>=expand('<cword>')<CR>\>'<CR>:set hls<CR>
+function! s:get_visual_selection()
+  " Why is this not a built-in Vim script function?!
+  let [line_start, column_start] = getpos("'<")[1:2]
+  let [line_end, column_end] = getpos("'>")[1:2]
+  let lines = getline(line_start, line_end)
+  if len(lines) == 0
+    return ''
+  endif
+  let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
+  let lines[0] = lines[0][column_start - 1:]
+  return join(lines, "\n")
+endfunction
+function! s:selection()
+  try
+    let a_save = @a
+    normal! gv"ay
+    return @a
+  finally
+    let @a = a_save
+  endtry
+endfunction
+function! s:FindWordInProject()
+  let needle = s:get_visual_selection()
+  let dir = MyGetProjectDirectory()
+  let cmd = "cd " . dir
+  exe cmd
+  let cmd = "Rg " . needle
+  execute cmd
+endfunction
+nnoremap <leader>r :call <SID>FindWordInProject()<CR>
+vnoremap <leader>r :call <SID>FindWordInProject()<CR>
 
 " Visual Mode */# from Scrooloose {{{
 " function! s:VisualModeSetSearch()
@@ -2167,8 +2187,8 @@ hi link EasyMotionShade Comment
 
 nmap s <Plug>(easymotion-overwin-f2)
 
-map <Leader>f <Plug>(easymotion-bd-fl)
-nmap <Leader>f <Plug>(easymotion-overwin-f)
+" map <Leader>f <Plug>(easymotion-bd-fl)
+" nmap <Leader>f <Plug>(easymotion-overwin-f)
 
 " Move to line
 map <Leader>L <Plug>(easymotion-bd-jk)
