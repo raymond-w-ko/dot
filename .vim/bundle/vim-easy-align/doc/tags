@@ -72,6 +72,7 @@ easy-align-tldr-one-minute-guide	easy_align.txt	/*easy-align-tldr-one-minute-gui
 easy-align-toc	easy_align.txt	/*easy-align-toc*
 easy-align-usage	easy_align.txt	/*easy-align-usage*
 easy-align-using-regular-expressions	easy_align.txt	/*easy-align-using-regular-expressions*
+easy-align.txt	easy_align.txt	/*easy-align.txt*
 easyalign	easy_align.txt	/*easyalign*
 g:easy_align_bang_interactive_modes	easy_align.txt	/*g:easy_align_bang_interactive_modes*
 g:easy_align_bypass_fold	easy_align.txt	/*g:easy_align_bypass_fold*

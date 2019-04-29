@@ -83,6 +83,14 @@ Vital.ConcurrentProcess.of()	vital/ConcurrentProcess.txt	/*Vital.ConcurrentProce
 Vital.ConcurrentProcess.queue()	vital/ConcurrentProcess.txt	/*Vital.ConcurrentProcess.queue()*
 Vital.ConcurrentProcess.shutdown()	vital/ConcurrentProcess.txt	/*Vital.ConcurrentProcess.shutdown()*
 Vital.ConcurrentProcess.tick()	vital/ConcurrentProcess.txt	/*Vital.ConcurrentProcess.tick()*
+Vital.Data.Base32	vital/Data/Base32.txt	/*Vital.Data.Base32*
+Vital.Data.Base32-contents	vital/Data/Base32.txt	/*Vital.Data.Base32-contents*
+Vital.Data.Base32-functions	vital/Data/Base32.txt	/*Vital.Data.Base32-functions*
+Vital.Data.Base32-interface	vital/Data/Base32.txt	/*Vital.Data.Base32-interface*
+Vital.Data.Base32-introduction	vital/Data/Base32.txt	/*Vital.Data.Base32-introduction*
+Vital.Data.Base32.decode()	vital/Data/Base32.txt	/*Vital.Data.Base32.decode()*
+Vital.Data.Base32.encode()	vital/Data/Base32.txt	/*Vital.Data.Base32.encode()*
+Vital.Data.Base32.encodebin()	vital/Data/Base32.txt	/*Vital.Data.Base32.encodebin()*
 Vital.Data.Base64	vital/Data/Base64.txt	/*Vital.Data.Base64*
 Vital.Data.Base64-contents	vital/Data/Base64.txt	/*Vital.Data.Base64-contents*
 Vital.Data.Base64-functions	vital/Data/Base64.txt	/*Vital.Data.Base64-functions*
@@ -1430,6 +1438,7 @@ vital/Assertion.txt	vital/Assertion.txt	/*vital\/Assertion.txt*
 vital/Async/Promise.txt	vital/Async/Promise.txt	/*vital\/Async\/Promise.txt*
 vital/Bitwise.txt	vital/Bitwise.txt	/*vital\/Bitwise.txt*
 vital/ConcurrentProcess.txt	vital/ConcurrentProcess.txt	/*vital\/ConcurrentProcess.txt*
+vital/Data/Base32.txt	vital/Data/Base32.txt	/*vital\/Data\/Base32.txt*
 vital/Data/Base64.txt	vital/Data/Base64.txt	/*vital\/Data\/Base64.txt*
 vital/Data/BigNum.txt	vital/Data/BigNum.txt	/*vital\/Data\/BigNum.txt*
 vital/Data/Closure.txt	vital/Data/Closure.txt	/*vital\/Data\/Closure.txt*
