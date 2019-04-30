@@ -1005,6 +1005,7 @@ b:ale_typescript_tslint_use_global	ale-typescript.txt	/*b:ale_typescript_tslint_
 b:ale_typescript_tsserver_config_path	ale-typescript.txt	/*b:ale_typescript_tsserver_config_path*
 b:ale_typescript_tsserver_executable	ale-typescript.txt	/*b:ale_typescript_tsserver_executable*
 b:ale_typescript_tsserver_use_global	ale-typescript.txt	/*b:ale_typescript_tsserver_use_global*
+b:ale_update_tagstack	ale.txt	/*b:ale_update_tagstack*
 b:ale_verilog_verilator_options	ale-verilog.txt	/*b:ale_verilog_verilator_options*
 b:ale_verilog_vlog_executable	ale-verilog.txt	/*b:ale_verilog_vlog_executable*
 b:ale_verilog_vlog_options	ale-verilog.txt	/*b:ale_verilog_vlog_options*
@@ -1572,6 +1573,7 @@ g:ale_typescript_tslint_use_global	ale-typescript.txt	/*g:ale_typescript_tslint_
 g:ale_typescript_tsserver_config_path	ale-typescript.txt	/*g:ale_typescript_tsserver_config_path*
 g:ale_typescript_tsserver_executable	ale-typescript.txt	/*g:ale_typescript_tsserver_executable*
 g:ale_typescript_tsserver_use_global	ale-typescript.txt	/*g:ale_typescript_tsserver_use_global*
+g:ale_update_tagstack	ale.txt	/*g:ale_update_tagstack*
 g:ale_use_global_executables	ale.txt	/*g:ale_use_global_executables*
 g:ale_verilog_verilator_options	ale-verilog.txt	/*g:ale_verilog_verilator_options*
 g:ale_verilog_vlog_executable	ale-verilog.txt	/*g:ale_verilog_vlog_executable*

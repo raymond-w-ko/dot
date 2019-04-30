@@ -589,7 +589,10 @@ Vital.Hash.MD5-contents	vital/Hash/MD5.txt	/*Vital.Hash.MD5-contents*
 Vital.Hash.MD5-functions	vital/Hash/MD5.txt	/*Vital.Hash.MD5-functions*
 Vital.Hash.MD5-interface	vital/Hash/MD5.txt	/*Vital.Hash.MD5-interface*
 Vital.Hash.MD5-introduction	vital/Hash/MD5.txt	/*Vital.Hash.MD5-introduction*
+Vital.Hash.MD5.digest()	vital/Hash/MD5.txt	/*Vital.Hash.MD5.digest()*
+Vital.Hash.MD5.digest_raw()	vital/Hash/MD5.txt	/*Vital.Hash.MD5.digest_raw()*
 Vital.Hash.MD5.sum()	vital/Hash/MD5.txt	/*Vital.Hash.MD5.sum()*
+Vital.Hash.MD5.sum_raw()	vital/Hash/MD5.txt	/*Vital.Hash.MD5.sum_raw()*
 Vital.Interpreter.Brainf__k	vital/Interpreter/Brainf__k.txt	/*Vital.Interpreter.Brainf__k*
 Vital.Interpreter.Brainf__k-contents	vital/Interpreter/Brainf__k.txt	/*Vital.Interpreter.Brainf__k-contents*
 Vital.Interpreter.Brainf__k-functions	vital/Interpreter/Brainf__k.txt	/*Vital.Interpreter.Brainf__k-functions*
