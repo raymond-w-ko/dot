@@ -233,6 +233,7 @@ ale-handlebars-embertemplatelint	ale-handlebars.txt	/*ale-handlebars-embertempla
 ale-handlebars-options	ale-handlebars.txt	/*ale-handlebars-options*
 ale-haskell-brittany	ale-haskell.txt	/*ale-haskell-brittany*
 ale-haskell-cabal-ghc	ale-haskell.txt	/*ale-haskell-cabal-ghc*
+ale-haskell-floskell	ale-haskell.txt	/*ale-haskell-floskell*
 ale-haskell-ghc	ale-haskell.txt	/*ale-haskell-ghc*
 ale-haskell-ghc-mod	ale-haskell.txt	/*ale-haskell-ghc-mod*
 ale-haskell-hdevtools	ale-haskell.txt	/*ale-haskell-hdevtools*
@@ -672,6 +673,7 @@ b:ale_handlebars_embertemplatelint_executable	ale-handlebars.txt	/*b:ale_handleb
 b:ale_handlebars_embertemplatelint_use_global	ale-handlebars.txt	/*b:ale_handlebars_embertemplatelint_use_global*
 b:ale_haskell_brittany_executable	ale-haskell.txt	/*b:ale_haskell_brittany_executable*
 b:ale_haskell_cabal_ghc_options	ale-haskell.txt	/*b:ale_haskell_cabal_ghc_options*
+b:ale_haskell_floskell_executable	ale-haskell.txt	/*b:ale_haskell_floskell_executable*
 b:ale_haskell_ghc_mod_executable	ale-haskell.txt	/*b:ale_haskell_ghc_mod_executable*
 b:ale_haskell_ghc_options	ale-haskell.txt	/*b:ale_haskell_ghc_options*
 b:ale_haskell_hdevtools_executable	ale-haskell.txt	/*b:ale_haskell_hdevtools_executable*
@@ -962,6 +964,7 @@ b:ale_set_balloons_legacy_echo	ale.txt	/*b:ale_set_balloons_legacy_echo*
 b:ale_sh_language_server_executable	ale-sh.txt	/*b:ale_sh_language_server_executable*
 b:ale_sh_language_server_use_global	ale-sh.txt	/*b:ale_sh_language_server_use_global*
 b:ale_sh_shell_default_shell	ale-sh.txt	/*b:ale_sh_shell_default_shell*
+b:ale_sh_shellcheck_change_directory	ale-sh.txt	/*b:ale_sh_shellcheck_change_directory*
 b:ale_sh_shellcheck_dialect	ale-sh.txt	/*b:ale_sh_shellcheck_dialect*
 b:ale_sh_shellcheck_exclusions	ale-sh.txt	/*b:ale_sh_shellcheck_exclusions*
 b:ale_sh_shellcheck_executable	ale-sh.txt	/*b:ale_sh_shellcheck_executable*
@@ -1203,6 +1206,7 @@ g:ale_handlebars_embertemplatelint_executable	ale-handlebars.txt	/*g:ale_handleb
 g:ale_handlebars_embertemplatelint_use_global	ale-handlebars.txt	/*g:ale_handlebars_embertemplatelint_use_global*
 g:ale_haskell_brittany_executable	ale-haskell.txt	/*g:ale_haskell_brittany_executable*
 g:ale_haskell_cabal_ghc_options	ale-haskell.txt	/*g:ale_haskell_cabal_ghc_options*
+g:ale_haskell_floskell_executable	ale-haskell.txt	/*g:ale_haskell_floskell_executable*
 g:ale_haskell_ghc_mod_executable	ale-haskell.txt	/*g:ale_haskell_ghc_mod_executable*
 g:ale_haskell_ghc_options	ale-haskell.txt	/*g:ale_haskell_ghc_options*
 g:ale_haskell_hdevtools_executable	ale-haskell.txt	/*g:ale_haskell_hdevtools_executable*
@@ -1521,6 +1525,7 @@ g:ale_set_signs	ale.txt	/*g:ale_set_signs*
 g:ale_sh_language_server_executable	ale-sh.txt	/*g:ale_sh_language_server_executable*
 g:ale_sh_language_server_use_global	ale-sh.txt	/*g:ale_sh_language_server_use_global*
 g:ale_sh_shell_default_shell	ale-sh.txt	/*g:ale_sh_shell_default_shell*
+g:ale_sh_shellcheck_change_directory	ale-sh.txt	/*g:ale_sh_shellcheck_change_directory*
 g:ale_sh_shellcheck_dialect	ale-sh.txt	/*g:ale_sh_shellcheck_dialect*
 g:ale_sh_shellcheck_exclusions	ale-sh.txt	/*g:ale_sh_shellcheck_exclusions*
 g:ale_sh_shellcheck_executable	ale-sh.txt	/*g:ale_sh_shellcheck_executable*
