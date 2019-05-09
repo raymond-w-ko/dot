@@ -897,6 +897,7 @@ b:ale_python_pylint_change_directory	ale-python.txt	/*b:ale_python_pylint_change
 b:ale_python_pylint_executable	ale-python.txt	/*b:ale_python_pylint_executable*
 b:ale_python_pylint_options	ale-python.txt	/*b:ale_python_pylint_options*
 b:ale_python_pylint_use_global	ale-python.txt	/*b:ale_python_pylint_use_global*
+b:ale_python_pylint_use_msg_id	ale-python.txt	/*b:ale_python_pylint_use_msg_id*
 b:ale_python_pyls_auto_pipenv	ale-python.txt	/*b:ale_python_pyls_auto_pipenv*
 b:ale_python_pyls_config	ale-python.txt	/*b:ale_python_pyls_config*
 b:ale_python_pyls_executable	ale-python.txt	/*b:ale_python_pyls_executable*
@@ -1457,6 +1458,7 @@ g:ale_python_pylint_change_directory	ale-python.txt	/*g:ale_python_pylint_change
 g:ale_python_pylint_executable	ale-python.txt	/*g:ale_python_pylint_executable*
 g:ale_python_pylint_options	ale-python.txt	/*g:ale_python_pylint_options*
 g:ale_python_pylint_use_global	ale-python.txt	/*g:ale_python_pylint_use_global*
+g:ale_python_pylint_use_msg_id	ale-python.txt	/*g:ale_python_pylint_use_msg_id*
 g:ale_python_pyls_auto_pipenv	ale-python.txt	/*g:ale_python_pyls_auto_pipenv*
 g:ale_python_pyls_config	ale-python.txt	/*g:ale_python_pyls_config*
 g:ale_python_pyls_executable	ale-python.txt	/*g:ale_python_pyls_executable*
