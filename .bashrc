@@ -341,6 +341,10 @@ if [[ -f /usr/bin/virtualenvwrapper.sh ]]; then
   source /usr/bin/virtualenvwrapper.sh
 fi
 
+if [[ -f ~/.bashrc.local ]]; then
+  source ~/.bashrc.local
+fi
+
 if [[ ! -d /mnt/c/Windows && -z $DISPLAY && $(tty) == /dev/tty1 ]]; then
   # we can't completely redirect stderr to a file otherwise root-less X breaks
   # I'm guessing it is determining the VTTY from the stderr file descriptor
