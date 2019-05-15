@@ -162,4 +162,5 @@ function prompt_rko_setup {
   PS1="${(j::)ps1}"
 }
 prompt_rko_setup
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 source $HOME/.bashrc
