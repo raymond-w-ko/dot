@@ -481,6 +481,7 @@ ale-tex-chktex	ale-tex.txt	/*ale-tex-chktex*
 ale-tex-lacheck	ale-tex.txt	/*ale-tex-lacheck*
 ale-tex-latexindent	ale-tex.txt	/*ale-tex-latexindent*
 ale-tex-options	ale-tex.txt	/*ale-tex-options*
+ale-tex-texlab	ale-tex.txt	/*ale-tex-texlab*
 ale-texinfo-options	ale-texinfo.txt	/*ale-texinfo-options*
 ale-texinfo-write-good	ale-texinfo.txt	/*ale-texinfo-write-good*
 ale-text-options	ale-text.txt	/*ale-text-options*
@@ -569,6 +570,7 @@ b:ale_cmake_cmakeformat_options	ale-cmake.txt	/*b:ale_cmake_cmakeformat_options*
 b:ale_cmake_cmakelint_executable	ale-cmake.txt	/*b:ale_cmake_cmakelint_executable*
 b:ale_cmake_cmakelint_options	ale-cmake.txt	/*b:ale_cmake_cmakelint_options*
 b:ale_command_wrapper	ale.txt	/*b:ale_command_wrapper*
+b:ale_completion_enabled	ale.txt	/*b:ale_completion_enabled*
 b:ale_completion_excluded_words	ale.txt	/*b:ale_completion_excluded_words*
 b:ale_cpp_ccls_executable	ale-cpp.txt	/*b:ale_cpp_ccls_executable*
 b:ale_cpp_ccls_init_options	ale-cpp.txt	/*b:ale_cpp_ccls_init_options*
@@ -821,6 +823,7 @@ b:ale_php_phpcs_standard	ale-php.txt	/*b:ale_php_phpcs_standard*
 b:ale_php_phpcs_use_global	ale-php.txt	/*b:ale_php_phpcs_use_global*
 b:ale_php_phpmd_executable	ale-php.txt	/*b:ale_php_phpmd_executable*
 b:ale_php_phpmd_ruleset	ale-php.txt	/*b:ale_php_phpmd_ruleset*
+b:ale_php_phpstan_autoload	ale-php.txt	/*b:ale_php_phpstan_autoload*
 b:ale_php_phpstan_configuration	ale-php.txt	/*b:ale_php_phpstan_configuration*
 b:ale_php_phpstan_executable	ale-php.txt	/*b:ale_php_phpstan_executable*
 b:ale_php_phpstan_level	ale-php.txt	/*b:ale_php_phpstan_level*
@@ -997,6 +1000,8 @@ b:ale_tex_chktex_executable	ale-tex.txt	/*b:ale_tex_chktex_executable*
 b:ale_tex_chktex_options	ale-tex.txt	/*b:ale_tex_chktex_options*
 b:ale_tex_latexindent_executable	ale-tex.txt	/*b:ale_tex_latexindent_executable*
 b:ale_tex_latexindent_options	ale-tex.txt	/*b:ale_tex_latexindent_options*
+b:ale_tex_texlab_executable	ale-tex.txt	/*b:ale_tex_texlab_executable*
+b:ale_tex_texlab_options	ale-tex.txt	/*b:ale_tex_texlab_options*
 b:ale_textlint_executable	ale-text.txt	/*b:ale_textlint_executable*
 b:ale_textlint_options	ale-text.txt	/*b:ale_textlint_options*
 b:ale_textlint_use_global	ale-text.txt	/*b:ale_textlint_use_global*
@@ -1381,6 +1386,7 @@ g:ale_php_phpcs_standard	ale-php.txt	/*g:ale_php_phpcs_standard*
 g:ale_php_phpcs_use_global	ale-php.txt	/*g:ale_php_phpcs_use_global*
 g:ale_php_phpmd_executable	ale-php.txt	/*g:ale_php_phpmd_executable*
 g:ale_php_phpmd_ruleset	ale-php.txt	/*g:ale_php_phpmd_ruleset*
+g:ale_php_phpstan_autoload	ale-php.txt	/*g:ale_php_phpstan_autoload*
 g:ale_php_phpstan_configuration	ale-php.txt	/*g:ale_php_phpstan_configuration*
 g:ale_php_phpstan_executable	ale-php.txt	/*g:ale_php_phpstan_executable*
 g:ale_php_phpstan_level	ale-php.txt	/*g:ale_php_phpstan_level*
@@ -1571,6 +1577,8 @@ g:ale_tex_chktex_executable	ale-tex.txt	/*g:ale_tex_chktex_executable*
 g:ale_tex_chktex_options	ale-tex.txt	/*g:ale_tex_chktex_options*
 g:ale_tex_latexindent_executable	ale-tex.txt	/*g:ale_tex_latexindent_executable*
 g:ale_tex_latexindent_options	ale-tex.txt	/*g:ale_tex_latexindent_options*
+g:ale_tex_texlab_executable	ale-tex.txt	/*g:ale_tex_texlab_executable*
+g:ale_tex_texlab_options	ale-tex.txt	/*g:ale_tex_texlab_options*
 g:ale_textlint_executable	ale-text.txt	/*g:ale_textlint_executable*
 g:ale_textlint_options	ale-text.txt	/*g:ale_textlint_options*
 g:ale_textlint_use_global	ale-text.txt	/*g:ale_textlint_use_global*
