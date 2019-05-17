@@ -77,6 +77,7 @@ ale#command#EscapeCommandPart()	ale.txt	/*ale#command#EscapeCommandPart()*
 ale#command#ManageDirectory()	ale.txt	/*ale#command#ManageDirectory()*
 ale#command#ManageFile()	ale.txt	/*ale#command#ManageFile()*
 ale#command#Run()	ale.txt	/*ale#command#Run()*
+ale#completion#OmniFunc()	ale.txt	/*ale#completion#OmniFunc()*
 ale#engine#GetLoclist()	ale.txt	/*ale#engine#GetLoclist()*
 ale#engine#IsCheckingBuffer()	ale.txt	/*ale#engine#IsCheckingBuffer()*
 ale#fix#registry#Add()	ale.txt	/*ale#fix#registry#Add()*
@@ -163,7 +164,6 @@ ale-d-uncrustify	ale-d.txt	/*ale-d-uncrustify*
 ale-dart-dartanalyzer	ale-dart.txt	/*ale-dart-dartanalyzer*
 ale-dart-dartfmt	ale-dart.txt	/*ale-dart-dartfmt*
 ale-dart-options	ale-dart.txt	/*ale-dart-options*
-ale-deoplete-integration	ale.txt	/*ale-deoplete-integration*
 ale-design-goals	ale-development.txt	/*ale-design-goals*
 ale-dev	ale-development.txt	/*ale-dev*
 ale-dev-tests	ale-development.txt	/*ale-dev-tests*
