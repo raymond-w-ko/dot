@@ -187,6 +187,7 @@ ale-elm-elm-format	ale-elm.txt	/*ale-elm-elm-format*
 ale-elm-elm-lsp	ale-elm.txt	/*ale-elm-elm-lsp*
 ale-elm-elm-make	ale-elm.txt	/*ale-elm-elm-make*
 ale-elm-options	ale-elm.txt	/*ale-elm-options*
+ale-erlang-dialyzer	ale-erlang.txt	/*ale-erlang-dialyzer*
 ale-erlang-erlc	ale-erlang.txt	/*ale-erlang-erlc*
 ale-erlang-options	ale-erlang.txt	/*ale-erlang-options*
 ale-erlang-syntaxerl	ale-erlang.txt	/*ale-erlang-syntaxerl*
@@ -629,6 +630,9 @@ b:ale_elm_lsp_use_global	ale-elm.txt	/*b:ale_elm_lsp_use_global*
 b:ale_elm_make_executable	ale-elm.txt	/*b:ale_elm_make_executable*
 b:ale_elm_make_use_global	ale-elm.txt	/*b:ale_elm_make_use_global*
 b:ale_enabled	ale.txt	/*b:ale_enabled*
+b:ale_erlang_dialyzer_executable	ale-erlang.txt	/*b:ale_erlang_dialyzer_executable*
+b:ale_erlang_dialyzer_plt_file	ale-erlang.txt	/*b:ale_erlang_dialyzer_plt_file*
+b:ale_erlang_dialyzer_rebar3_profile	ale-erlang.txt	/*b:ale_erlang_dialyzer_rebar3_profile*
 b:ale_erlang_erlc_options	ale-erlang.txt	/*b:ale_erlang_erlc_options*
 b:ale_erlang_syntaxerl_executable	ale-erlang.txt	/*b:ale_erlang_syntaxerl_executable*
 b:ale_eruby_ruumba_executable	ale-eruby.txt	/*b:ale_eruby_ruumba_executable*
@@ -1169,6 +1173,9 @@ g:ale_elm_lsp_use_global	ale-elm.txt	/*g:ale_elm_lsp_use_global*
 g:ale_elm_make_executable	ale-elm.txt	/*g:ale_elm_make_executable*
 g:ale_elm_make_use_global	ale-elm.txt	/*g:ale_elm_make_use_global*
 g:ale_enabled	ale.txt	/*g:ale_enabled*
+g:ale_erlang_dialyzer_executable	ale-erlang.txt	/*g:ale_erlang_dialyzer_executable*
+g:ale_erlang_dialyzer_plt_file	ale-erlang.txt	/*g:ale_erlang_dialyzer_plt_file*
+g:ale_erlang_dialyzer_rebar3_profile	ale-erlang.txt	/*g:ale_erlang_dialyzer_rebar3_profile*
 g:ale_erlang_erlc_options	ale-erlang.txt	/*g:ale_erlang_erlc_options*
 g:ale_erlang_syntaxerl_executable	ale-erlang.txt	/*g:ale_erlang_syntaxerl_executable*
 g:ale_eruby_ruumba_executable	ale-eruby.txt	/*g:ale_eruby_ruumba_executable*
