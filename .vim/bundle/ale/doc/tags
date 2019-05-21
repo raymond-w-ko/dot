@@ -164,6 +164,7 @@ ale-d-uncrustify	ale-d.txt	/*ale-d-uncrustify*
 ale-dart-dartanalyzer	ale-dart.txt	/*ale-dart-dartanalyzer*
 ale-dart-dartfmt	ale-dart.txt	/*ale-dart-dartfmt*
 ale-dart-options	ale-dart.txt	/*ale-dart-options*
+ale-deoplete-integration	ale.txt	/*ale-deoplete-integration*
 ale-design-goals	ale-development.txt	/*ale-design-goals*
 ale-dev	ale-development.txt	/*ale-dev*
 ale-dev-tests	ale-development.txt	/*ale-dev-tests*
