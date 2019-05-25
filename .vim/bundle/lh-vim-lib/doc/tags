@@ -372,6 +372,7 @@ lh#string#as()	lh-vim-lib.txt	/*lh#string#as()*
 lh#string#count_char()	lh-vim-lib.txt	/*lh#string#count_char()*
 lh#string#matches()	lh-vim-lib.txt	/*lh#string#matches()*
 lh#string#matchstrpos()	lh-vim-lib.txt	/*lh#string#matchstrpos()*
+lh#string#or()	lh-vim-lib.txt	/*lh#string#or()*
 lh#string#substitute_unless()	lh-vim-lib.txt	/*lh#string#substitute_unless()*
 lh#string#trim()	lh-vim-lib.txt	/*lh#string#trim()*
 lh#syntax#NameAt()	lh-vim-lib.txt	/*lh#syntax#NameAt()*
