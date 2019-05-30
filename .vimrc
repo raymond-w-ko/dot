@@ -20,13 +20,16 @@ else
 endif
 
 " my plugins
-Plug 'raymond-w-ko/vim-colors-solarized'
+" Plug 'raymond-w-ko/vim-colors-solarized'
 Plug 'raymond-w-ko/scrollfix'
 Plug 'raymond-w-ko/vim-eslisp'
 Plug 'raymond-w-ko/vim-lua-indent'
 if has("python") || has("python3")
   Plug 'raymond-w-ko/omegacomplete.vim'
 endif
+
+" colorscheme
+Plug 'lifepillar/vim-solarized8'
 
 " finders
 Plug 'ctrlpvim/ctrlp.vim'
@@ -630,12 +633,18 @@ endif
 
 " }}}
 " GUI {{{
+if (has("termguicolors"))
+  set termguicolors
+endif
+" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 if !exists("g:already_set_color_scheme") && !($TERM == "linux")
     set background=dark
 
     " let base16colorspace=256
     " colorscheme preto
-    colorscheme solarized
+
+    colorscheme solarized8_flat
 
     let g:already_set_color_scheme=1
 endif
@@ -1723,7 +1732,9 @@ function! s:SetupBasicSyntaxHighlights()
     syntax region rkoBasicComment start=/\v\/\*/ end=/\v\*\//
   endif
   if has_key(s:c_preprocessor_comment_filestypes, &filetype)
-    syntax region rkoCPreprocessorIf start=/\v^\s*#if/ end=/$/
+    syntax region rkoCPreprocessorComment start=/\v^\s*#if\s0/ end=/#endif$/
+    syntax region rkoCPreprocessorIf start=/\v^\s*#if\s[a-zA-Z]+/ end=/$/
+    syntax region rkoCPreprocessorIf start=/\v^\s*#ifdef/ end=/$/
     syntax region rkoCPreprocessorElse start=/\v^\s*#else/ end=/$/
     syntax region rkoCPreprocessorEndif start=/\v^\s*#\s*endif/ end=/$/
     syntax region rkoCPreprocessorDefine start=/\v^\s*#\s*define/ end=/$/
@@ -1731,6 +1742,7 @@ function! s:SetupBasicSyntaxHighlights()
   highlight link rkoBasicString String
   highlight link rkoMultiLineString String
   highlight link rkoBasicComment Comment
+  highlight link rkoCPreprocessorComment Comment
   highlight link rkoCPreprocessorIf PreProc
   highlight link rkoCPreprocessorElse PreProc
   highlight link rkoCPreprocessorEndif PreProc
@@ -2408,7 +2420,8 @@ function! FindAndRunMakefile()
 
     let makefile = current_dir . '/Makefile'
     if filereadable(makefile)
-      execute "!make -f Makefile " . '-C ' . current_dir
+      let make_cmd = "make -f Makefile " . '-C ' . current_dir
+      exe "botright vertical term " . make_cmd
       return
     endif
 
