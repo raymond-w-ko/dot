@@ -84,6 +84,7 @@ ale#fix#registry#Add()	ale.txt	/*ale#fix#registry#Add()*
 ale#linter#Define()	ale.txt	/*ale#linter#Define()*
 ale#linter#Get()	ale.txt	/*ale#linter#Get()*
 ale#linter#PreventLoading()	ale.txt	/*ale#linter#PreventLoading()*
+ale#lsp_linter#SendRequest()	ale.txt	/*ale#lsp_linter#SendRequest()*
 ale#other_source#ShowResults()	ale.txt	/*ale#other_source#ShowResults()*
 ale#other_source#StartChecking()	ale.txt	/*ale#other_source#StartChecking()*
 ale#statusline#Count()	ale.txt	/*ale#statusline#Count()*
