@@ -707,6 +707,8 @@ b:ale_idris_idris_executable	ale-idris.txt	/*b:ale_idris_idris_executable*
 b:ale_idris_idris_options	ale-idris.txt	/*b:ale_idris_idris_options*
 b:ale_ispc_ispc_executable	ale-ispc.txt	/*b:ale_ispc_ispc_executable*
 b:ale_ispc_ispc_options	ale-ispc.txt	/*b:ale_ispc_ispc_options*
+b:ale_java_checkstyle_config	ale-java.txt	/*b:ale_java_checkstyle_config*
+b:ale_java_checkstyle_executable	ale-java.txt	/*b:ale_java_checkstyle_executable*
 b:ale_java_checkstyle_options	ale-java.txt	/*b:ale_java_checkstyle_options*
 b:ale_java_eclipse_config_path	ale-java.txt	/*b:ale_java_eclipse_config_path*
 b:ale_java_eclipse_executable	ale-java.txt	/*b:ale_java_eclipse_executable*
@@ -1257,6 +1259,8 @@ g:ale_idris_idris_executable	ale-idris.txt	/*g:ale_idris_idris_executable*
 g:ale_idris_idris_options	ale-idris.txt	/*g:ale_idris_idris_options*
 g:ale_ispc_ispc_executable	ale-ispc.txt	/*g:ale_ispc_ispc_executable*
 g:ale_ispc_ispc_options	ale-ispc.txt	/*g:ale_ispc_ispc_options*
+g:ale_java_checkstyle_config	ale-java.txt	/*g:ale_java_checkstyle_config*
+g:ale_java_checkstyle_executable	ale-java.txt	/*g:ale_java_checkstyle_executable*
 g:ale_java_checkstyle_options	ale-java.txt	/*g:ale_java_checkstyle_options*
 g:ale_java_eclipse_config_path	ale-java.txt	/*g:ale_java_eclipse_config_path*
 g:ale_java_eclipse_executable	ale-java.txt	/*g:ale_java_eclipse_executable*
