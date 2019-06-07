@@ -122,8 +122,8 @@ endfunction
 function! s:efm_query(key, format) abort
   let matches = []
   let efm = ',' . a:format
-  let pattern = '\C,%\\&\(' .
-        \ (type(a:key) == type('') ? a:key : join(a:key, '\|')) .
+  let pattern = '\c,%\\&\(' . substitute(
+        \ type(a:key) == type('') ? a:key : join(a:key, '\|'), '_', '_\=', 'g') .
         \ '\)=\(\%(\\.\|[^\,]\)*\)'
   let pos = 0
   while 1
@@ -343,8 +343,8 @@ function! dispatch#isolate(request, keep, ...) abort
   return 'env -i ' . join(map(copy(keep), 'v:val."=\"$". v:val ."\" "'), '') . &shell . ' ' . temp
 endfunction
 
-function! s:current_compiler() abort
-  return get((empty(&l:makeprg) ? g: : b:), 'current_compiler', '')
+function! s:current_compiler(...) abort
+  return get((empty(&l:makeprg) ? g: : b:), 'current_compiler', a:0 ? a:1 : '')
 endfunction
 
 function! s:set_current_compiler(name) abort
@@ -435,6 +435,18 @@ function! dispatch#spawn_command(bang, command, count, ...) abort
   return ''
 endfunction
 
+function! s:compiler_getcwd() abort
+  let modelines = &modelines
+  try
+    let &modelines = 0
+    silent doautocmd QuickFixCmdPre dispatch-make-complete
+    return getcwd()
+  finally
+    silent doautocmd QuickFixCmdPost dispatch-make-complete
+    let &modelines = modelines
+  endtry
+endfunction
+
 function! s:parse_start(command, count) abort
   let [command, opts] = s:extract_opts(a:command)
   if empty(command) && a:count >= 0
@@ -445,6 +457,15 @@ function! s:parse_start(command, count) abort
   if empty(command) && type(get(b:, 'start')) == type('')
     let command = b:start
     let [command, opts] = s:extract_opts(command, opts)
+  elseif empty(command) && len(s:efm_literal(['start', 'default_start'], &errorformat))
+    let task = s:efm_literal(['start', 'default_start'], &errorformat)
+    let command = &makeprg . ' ' . task
+    if !has_key(opts, 'title')
+      let opts.title = s:current_compiler('make') . ' ' . task
+    endif
+    if !has_key(opts, 'directory')
+      let opts.directory = s:compiler_getcwd()
+    endif
   endif
   return [command, opts]
 endfunction
@@ -796,14 +817,14 @@ function! dispatch#compile_command(bang, args, count, ...) abort
   endif
   let request.format = substitute(request.format, ',%-G%\.%#\%($\|,\@=\)', '', '')
 
-  for [key, regexp] in s:efm_regexps(['terminal'], request.format)
+  for [key, regexp] in s:efm_regexps(['terminal', 'force_start', 'force_spawn'], request.format)
     if has_key(request, 'args') && request.args =~# regexp
       let title = request.compiler
       if regexp =~# '\\\@<!\\ze'
         let title .= ' ' . matchstr(request.args, regexp)
       endif
       let title = get(request, 'title', title)
-      return 'Start' . (a:bang ? '!' : '') .
+      return (key =~? 'spawn' ? 'Spawn' : 'Start') . (a:bang ? '!' : '') .
             \ ' -title=' . escape(title, '\ ') .
             \ ' ' . request.command
     endif
@@ -972,7 +993,12 @@ function! dispatch#focus_command(bang, args, count, ...) abort
     let b:Dispatch = args
     let [what, why] = dispatch#focus()
     echo 'Set buffer local focus to ' . what
-  elseif a:bang
+  elseif a:0 && a:1 =~# '\<tab\>'
+    let t:Dispatch = args
+    unlet! b:Dispatch w:Dispatch
+    let [what, why] = dispatch#focus(a:count)
+    echo 'Set tab local focus to ' . what
+  elseif a:bang || a:0 && a:1 =~# '\<vert\>'
     let w:Dispatch = args
     unlet! b:Dispatch
     let [what, why] = dispatch#focus(a:count)
@@ -1131,7 +1157,7 @@ function! dispatch#complete(file, ...) abort
       let label = 'Complete:'
     endif
     if !request.background && !get(request, 'aborted')
-      call s:cwindow(request, 0, status)
+      call s:cwindow(request, 0, status, '')
       redraw!
     endif
     echo label '!'.request.expanded s:postfix(request)
@@ -1174,7 +1200,7 @@ endfunction
 
 " Section: Quickfix window
 
-function! dispatch#copen(bang) abort
+function! dispatch#copen(bang, mods, ...) abort
   if empty(s:makes)
     return 'echoerr ' . string('No dispatches yet')
   endif
@@ -1182,7 +1208,7 @@ function! dispatch#copen(bang) abort
   if !dispatch#completed(request) && filereadable(request.file . '.complete')
     let request.completed = 1
   endif
-  call s:cwindow(request, a:bang, -2)
+  call s:cwindow(request, a:bang, -2, a:mods ==# '<mods>' ? '' : a:mods)
 endfunction
 
 function! s:is_quickfix(...) abort
@@ -1232,14 +1258,18 @@ function! s:cgetfile(request, ...) abort
   endtry
 endfunction
 
-function! s:cwindow(request, all, copen) abort
+function! s:cwindow(request, all, copen, mods) abort
   call s:cgetfile(a:request, a:all)
   let height = get(g:, 'dispatch_quickfix_height', 10)
   if height <= 0
     return
   endif
   let was_qf = s:is_quickfix()
-  execute 'botright' (a:copen ? 'copen' : 'cwindow') height
+  let mods = a:mods
+  if mods !~# 'aboveleft\|belowright\|leftabove\|rightbelow\|topleft\|botright'
+    let mods = 'botright ' . mods
+  endif
+  execute (mods) (a:copen ? 'copen' : 'cwindow') height
   if !was_qf && s:is_quickfix() && a:copen !=# -2
     wincmd p
   endif
