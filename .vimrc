@@ -644,6 +644,7 @@ if !exists("g:already_set_color_scheme") && !($TERM == "linux")
     " let base16colorspace=256
     " colorscheme preto
 
+    let g:solarized_italics = 0
     colorscheme solarized8_flat
 
     let g:already_set_color_scheme=1
