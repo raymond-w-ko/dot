@@ -416,6 +416,7 @@ ale-qml-qmlfmt	ale-qml.txt	/*ale-qml-qmlfmt*
 ale-r-lintr	ale-r.txt	/*ale-r-lintr*
 ale-r-options	ale-r.txt	/*ale-r-options*
 ale-r-styler	ale-r.txt	/*ale-r-styler*
+ale-reasonml-language-server	ale-reasonml.txt	/*ale-reasonml-language-server*
 ale-reasonml-merlin	ale-reasonml.txt	/*ale-reasonml-merlin*
 ale-reasonml-ols	ale-reasonml.txt	/*ale-reasonml-ols*
 ale-reasonml-options	ale-reasonml.txt	/*ale-reasonml-options*
@@ -552,6 +553,7 @@ b:ale_c_clangformat_executable	ale-c.txt	/*b:ale_c_clangformat_executable*
 b:ale_c_clangformat_options	ale-c.txt	/*b:ale_c_clangformat_options*
 b:ale_c_clangtidy_checks	ale-c.txt	/*b:ale_c_clangtidy_checks*
 b:ale_c_clangtidy_executable	ale-c.txt	/*b:ale_c_clangtidy_executable*
+b:ale_c_clangtidy_extra_options	ale-c.txt	/*b:ale_c_clangtidy_extra_options*
 b:ale_c_clangtidy_options	ale-c.txt	/*b:ale_c_clangtidy_options*
 b:ale_c_cppcheck_executable	ale-c.txt	/*b:ale_c_cppcheck_executable*
 b:ale_c_cppcheck_options	ale-c.txt	/*b:ale_c_cppcheck_options*
@@ -587,6 +589,7 @@ b:ale_cpp_clangd_executable	ale-cpp.txt	/*b:ale_cpp_clangd_executable*
 b:ale_cpp_clangd_options	ale-cpp.txt	/*b:ale_cpp_clangd_options*
 b:ale_cpp_clangtidy_checks	ale-cpp.txt	/*b:ale_cpp_clangtidy_checks*
 b:ale_cpp_clangtidy_executable	ale-cpp.txt	/*b:ale_cpp_clangtidy_executable*
+b:ale_cpp_clangtidy_extra_options	ale-cpp.txt	/*b:ale_cpp_clangtidy_extra_options*
 b:ale_cpp_clangtidy_options	ale-cpp.txt	/*b:ale_cpp_clangtidy_options*
 b:ale_cpp_clazy_checks	ale-cpp.txt	/*b:ale_cpp_clazy_checks*
 b:ale_cpp_clazy_executable	ale-cpp.txt	/*b:ale_cpp_clazy_executable*
@@ -930,6 +933,7 @@ b:ale_qml_qmlfmt_executable	ale-qml.txt	/*b:ale_qml_qmlfmt_executable*
 b:ale_r_lintr_lint_package	ale-r.txt	/*b:ale_r_lintr_lint_package*
 b:ale_r_lintr_options	ale-r.txt	/*b:ale_r_lintr_options*
 b:ale_r_styler_options	ale-r.txt	/*b:ale_r_styler_options*
+b:ale_reason_ls_executable	ale-reasonml.txt	/*b:ale_reason_ls_executable*
 b:ale_reason_ols_executable	ale-reasonml.txt	/*b:ale_reason_ols_executable*
 b:ale_reason_ols_use_global	ale-reasonml.txt	/*b:ale_reason_ols_use_global*
 b:ale_reasonml_refmt_executable	ale-reasonml.txt	/*b:ale_reasonml_refmt_executable*
@@ -1091,6 +1095,7 @@ g:ale_c_clangformat_executable	ale-c.txt	/*g:ale_c_clangformat_executable*
 g:ale_c_clangformat_options	ale-c.txt	/*g:ale_c_clangformat_options*
 g:ale_c_clangtidy_checks	ale-c.txt	/*g:ale_c_clangtidy_checks*
 g:ale_c_clangtidy_executable	ale-c.txt	/*g:ale_c_clangtidy_executable*
+g:ale_c_clangtidy_extra_options	ale-c.txt	/*g:ale_c_clangtidy_extra_options*
 g:ale_c_clangtidy_options	ale-c.txt	/*g:ale_c_clangtidy_options*
 g:ale_c_cppcheck_executable	ale-c.txt	/*g:ale_c_cppcheck_executable*
 g:ale_c_cppcheck_options	ale-c.txt	/*g:ale_c_cppcheck_options*
@@ -1131,6 +1136,7 @@ g:ale_cpp_clangd_executable	ale-cpp.txt	/*g:ale_cpp_clangd_executable*
 g:ale_cpp_clangd_options	ale-cpp.txt	/*g:ale_cpp_clangd_options*
 g:ale_cpp_clangtidy_checks	ale-cpp.txt	/*g:ale_cpp_clangtidy_checks*
 g:ale_cpp_clangtidy_executable	ale-cpp.txt	/*g:ale_cpp_clangtidy_executable*
+g:ale_cpp_clangtidy_extra_options	ale-cpp.txt	/*g:ale_cpp_clangtidy_extra_options*
 g:ale_cpp_clangtidy_options	ale-cpp.txt	/*g:ale_cpp_clangtidy_options*
 g:ale_cpp_clazy_checks	ale-cpp.txt	/*g:ale_cpp_clazy_checks*
 g:ale_cpp_clazy_executable	ale-cpp.txt	/*g:ale_cpp_clazy_executable*
@@ -1504,6 +1510,7 @@ g:ale_qml_qmlfmt_executable	ale-qml.txt	/*g:ale_qml_qmlfmt_executable*
 g:ale_r_lintr_lint_package	ale-r.txt	/*g:ale_r_lintr_lint_package*
 g:ale_r_lintr_options	ale-r.txt	/*g:ale_r_lintr_options*
 g:ale_r_styler_options	ale-r.txt	/*g:ale_r_styler_options*
+g:ale_reason_ls_executable	ale-reasonml.txt	/*g:ale_reason_ls_executable*
 g:ale_reason_ols_executable	ale-reasonml.txt	/*g:ale_reason_ols_executable*
 g:ale_reason_ols_use_global	ale-reasonml.txt	/*g:ale_reason_ols_use_global*
 g:ale_reasonml_refmt_executable	ale-reasonml.txt	/*g:ale_reasonml_refmt_executable*
@@ -1657,3 +1664,5 @@ g:ale_yaml_yamllint_executable	ale-yaml.txt	/*g:ale_yaml_yamllint_executable*
 g:ale_yaml_yamllint_options	ale-yaml.txt	/*g:ale_yaml_yamllint_options*
 g:ale_yang_lsp_executable	ale-yang.txt	/*g:ale_yang_lsp_executable*
 g:html_tidy_use_global	ale-html.txt	/*g:html_tidy_use_global*
+must	ale-reasonml.txt	/*must*
+must	ale-reasonml.txt	/*must*
