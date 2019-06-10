@@ -1664,5 +1664,3 @@ g:ale_yaml_yamllint_executable	ale-yaml.txt	/*g:ale_yaml_yamllint_executable*
 g:ale_yaml_yamllint_options	ale-yaml.txt	/*g:ale_yaml_yamllint_options*
 g:ale_yang_lsp_executable	ale-yang.txt	/*g:ale_yang_lsp_executable*
 g:html_tidy_use_global	ale-html.txt	/*g:html_tidy_use_global*
-must	ale-reasonml.txt	/*must*
-must	ale-reasonml.txt	/*must*
