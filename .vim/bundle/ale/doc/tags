@@ -408,6 +408,7 @@ ale-python-pylama	ale-python.txt	/*ale-python-pylama*
 ale-python-pylint	ale-python.txt	/*ale-python-pylint*
 ale-python-pyls	ale-python.txt	/*ale-python-pyls*
 ale-python-pyre	ale-python.txt	/*ale-python-pyre*
+ale-python-reorder_python_imports	ale-python.txt	/*ale-python-reorder_python_imports*
 ale-python-root	ale-python.txt	/*ale-python-root*
 ale-python-vulture	ale-python.txt	/*ale-python-vulture*
 ale-python-yapf	ale-python.txt	/*ale-python-yapf*
@@ -773,6 +774,7 @@ b:ale_less_lessc_use_global	ale-less.txt	/*b:ale_less_lessc_use_global*
 b:ale_less_stylelint_executable	ale-less.txt	/*b:ale_less_stylelint_executable*
 b:ale_less_stylelint_options	ale-less.txt	/*b:ale_less_stylelint_options*
 b:ale_less_stylelint_use_global	ale-less.txt	/*b:ale_less_stylelint_use_global*
+b:ale_lint_on_insert_leave	ale.txt	/*b:ale_lint_on_insert_leave*
 b:ale_linted	ale.txt	/*b:ale_linted*
 b:ale_linter_aliases	ale.txt	/*b:ale_linter_aliases*
 b:ale_linters	ale.txt	/*b:ale_linters*
@@ -923,6 +925,9 @@ b:ale_python_pyls_use_global	ale-python.txt	/*b:ale_python_pyls_use_global*
 b:ale_python_pyre_auto_pipenv	ale-python.txt	/*b:ale_python_pyre_auto_pipenv*
 b:ale_python_pyre_executable	ale-python.txt	/*b:ale_python_pyre_executable*
 b:ale_python_pyre_use_global	ale-python.txt	/*b:ale_python_pyre_use_global*
+b:ale_python_reorder_python_imports_executable	ale-python.txt	/*b:ale_python_reorder_python_imports_executable*
+b:ale_python_reorder_python_imports_options	ale-python.txt	/*b:ale_python_reorder_python_imports_options*
+b:ale_python_reorder_python_imports_use_global	ale-python.txt	/*b:ale_python_reorder_python_imports_use_global*
 b:ale_python_vulture_change_directory	ale-python.txt	/*b:ale_python_vulture_change_directory*
 b:ale_python_vulture_executable	ale-python.txt	/*b:ale_python_vulture_executable*
 b:ale_python_vulture_options	ale-python.txt	/*b:ale_python_vulture_options*
@@ -1500,6 +1505,9 @@ g:ale_python_pyls_use_global	ale-python.txt	/*g:ale_python_pyls_use_global*
 g:ale_python_pyre_auto_pipenv	ale-python.txt	/*g:ale_python_pyre_auto_pipenv*
 g:ale_python_pyre_executable	ale-python.txt	/*g:ale_python_pyre_executable*
 g:ale_python_pyre_use_global	ale-python.txt	/*g:ale_python_pyre_use_global*
+g:ale_python_reorder_python_imports_executable	ale-python.txt	/*g:ale_python_reorder_python_imports_executable*
+g:ale_python_reorder_python_imports_options	ale-python.txt	/*g:ale_python_reorder_python_imports_options*
+g:ale_python_reorder_python_imports_use_global	ale-python.txt	/*g:ale_python_reorder_python_imports_use_global*
 g:ale_python_vulture_change_directory	ale-python.txt	/*g:ale_python_vulture_change_directory*
 g:ale_python_vulture_executable	ale-python.txt	/*g:ale_python_vulture_executable*
 g:ale_python_vulture_options	ale-python.txt	/*g:ale_python_vulture_options*
