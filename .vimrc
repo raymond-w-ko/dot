@@ -2422,7 +2422,9 @@ function! FindAndRunMakefile()
     let makefile = current_dir . '/Makefile'
     if filereadable(makefile)
       let make_cmd = "make -f Makefile " . '-C ' . current_dir
-      exe "botright vertical term " . make_cmd
+      exe "botright term " . make_cmd
+      resize 16
+      nnoremap <buffer> q :q<cr>
       return
     endif
 
