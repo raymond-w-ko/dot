@@ -234,6 +234,7 @@ ale-hack-hhast	ale-hack.txt	/*ale-hack-hhast*
 ale-hack-options	ale-hack.txt	/*ale-hack-options*
 ale-handlebars-embertemplatelint	ale-handlebars.txt	/*ale-handlebars-embertemplatelint*
 ale-handlebars-options	ale-handlebars.txt	/*ale-handlebars-options*
+ale-handlebars-prettier	ale-handlebars.txt	/*ale-handlebars-prettier*
 ale-haskell-brittany	ale-haskell.txt	/*ale-haskell-brittany*
 ale-haskell-cabal-ghc	ale-haskell.txt	/*ale-haskell-cabal-ghc*
 ale-haskell-floskell	ale-haskell.txt	/*ale-haskell-floskell*
