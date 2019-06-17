@@ -392,6 +392,8 @@ ale-puppet-languageserver	ale-puppet.txt	/*ale-puppet-languageserver*
 ale-puppet-options	ale-puppet.txt	/*ale-puppet-options*
 ale-puppet-puppet	ale-puppet.txt	/*ale-puppet-puppet*
 ale-puppet-puppetlint	ale-puppet.txt	/*ale-puppet-puppetlint*
+ale-purescript-language-server	ale-purescript.txt	/*ale-purescript-language-server*
+ale-purescript-options	ale-purescript.txt	/*ale-purescript-options*
 ale-pyrex-cython	ale-pyrex.txt	/*ale-pyrex-cython*
 ale-pyrex-options	ale-pyrex.txt	/*ale-pyrex-options*
 ale-python-autopep8	ale-python.txt	/*ale-python-autopep8*
