@@ -3,4 +3,4 @@ set -e
 set -x
 CREDENTIALS=$HOME/.ssh/jeffcred
 OPTIONS=rw,credentials=$CREDENTIALS,workgroup=WORKGROUP,soft,vers=2.1,echo_interval=5,uid=1000,iocharset=utf8
-sudo mount -v -t cifs //DESKTOP-JEFF/Art /mnt/jeff -o $OPTIONS
+sudo mount -v -t cifs //192.168.1.155/Art /mnt/jeff -o $OPTIONS
