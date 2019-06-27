@@ -4,6 +4,7 @@ g:solarized_italics	solarized8.txt	/*g:solarized_italics*
 g:solarized_old_cursor_style	solarized8.txt	/*g:solarized_old_cursor_style*
 g:solarized_statusline	solarized8.txt	/*g:solarized_statusline*
 g:solarized_termtrans	solarized8.txt	/*g:solarized_termtrans*
+g:solarized_use16	solarized8.txt	/*g:solarized_use16*
 g:solarized_visibility	solarized8.txt	/*g:solarized_visibility*
 solarized8-license	solarized8.txt	/*solarized8-license*
 solarized8-options	solarized8.txt	/*solarized8-options*
