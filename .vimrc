@@ -28,6 +28,9 @@ if has("python") || has("python3")
   Plug 'raymond-w-ko/omegacomplete.vim'
 endif
 
+" colorscheme
+Plug 'lifepillar/vim-colortemplate'
+
 " finders
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'FelikZ/ctrlp-py-matcher'
