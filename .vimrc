@@ -20,16 +20,13 @@ else
 endif
 
 " my plugins
-" Plug 'raymond-w-ko/vim-colors-solarized'
+Plug 'raymond-w-ko/vim-solarized8'
 Plug 'raymond-w-ko/scrollfix'
 Plug 'raymond-w-ko/vim-eslisp'
 Plug 'raymond-w-ko/vim-lua-indent'
 if has("python") || has("python3")
   Plug 'raymond-w-ko/omegacomplete.vim'
 endif
-
-" colorscheme
-Plug 'lifepillar/vim-solarized8'
 
 " finders
 Plug 'ctrlpvim/ctrlp.vim'
