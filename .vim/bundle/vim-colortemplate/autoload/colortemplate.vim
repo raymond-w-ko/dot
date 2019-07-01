@@ -207,7 +207,7 @@ fun! s:add_error(path, line, col, msg)
 endf
 
 fun! s:add_warning(path, line, col, msg)
-  if get(g:, 'colortemplate_warnings', 1)
+  if s:getopt('warnings')
     call setqflist([{'filename': a:path, 'lnum' : a:line, 'col': a:col, 'text' : a:msg, 'type' : 'W'}], 'a')
   endif
 endf
@@ -521,6 +521,13 @@ endf
 fun! s:add_gui_attr(hg, attrlist)
   call extend(a:hg['gui'], a:attrlist)
   call uniq(sort(a:hg['gui']))
+endf
+
+" Vacuous highlight groups have `omit` in all parts
+fun! s:is_hi_group_vacuous(hg)
+  return a:hg['fg'] ==# 'omit' && a:hg['bg'] ==# 'omit' &&
+        \ ((a:hg['sp'] ==# 'omit' && a:hg['gui'] ==# 'omit')
+        \ || (a:hg['term'] ==# 'omit'))
 endf
 " }}}
 " Color pairs {{{
@@ -918,6 +925,32 @@ fun! s:auxfile(path)
   return s:auxfiles[a:path]
 endf
 " }}}
+" Colortemplate options {{{
+let s:defaultoptvalue = {
+      \ 'creator':        1,
+      \ 'quiet':          1,
+      \ 'source_comment': 1,
+      \ 'timestamp':      1,
+      \ 'warnings':       1
+      \ }
+
+fun! s:init_colortemplate_options()
+  let s:optvalue = {}
+endf
+
+fun! s:destroy_colortemplate_options()
+  unlet s:optvalue
+endf
+
+fun! s:setopt(name, value)
+  let s:optvalue[a:name] = a:value
+endf
+
+fun! s:getopt(name)
+  return get(s:optvalue, a:name,
+        \ get(g:, 'colortemplate_'.a:name, s:defaultoptvalue[a:name]))
+endf
+" }}}
 " Init/clear data structures {{{
 fun! s:init_data_structures()
   let g:colortemplate_exit_status = 0
@@ -928,6 +961,7 @@ fun! s:init_data_structures()
   call s:init_metadata()
   call s:init_colorscheme_definition()
   call s:init_aux_files()
+  call s:init_colortemplate_options()
 endf
 
 fun! s:destroy_data_structures()
@@ -938,6 +972,7 @@ fun! s:destroy_data_structures()
   call s:destroy_metadata()
   call s:destroy_colorscheme_definition()
   call s:destroy_aux_files()
+  call s:destroy_colortemplate_options()
 endf
 " }}}
 " }}}
@@ -1493,13 +1528,13 @@ fun! s:quickly_parse_color_line()
 endf
 
 fun! s:parse_verbatim_line()
+  call s:add_source_line(s:getl())
   if s:getl() =~? '\m^\s*endverbatim'
     call s:stop_verbatim()
     if s:getl() !~? '\m^\s*endverbatim\s*$'
       throw "Extra characters after 'endverbatim'"
     endif
   else
-    call s:add_source_line(s:getl())
     for l:v in s:active_variants()
       call s:add_verbatim_item(l:v, s:active_section(),
             \ { 'line': s:getl(), 'linenr': s:linenr(), 'file': s:currfile() })
@@ -1535,6 +1570,7 @@ fun! s:parse_line()
   endif
   if s:token.kind ==# 'WORD'
     if s:token.value ==? 'verbatim'
+      call s:add_source_line(s:getl())
       call s:start_verbatim()
       if s:token.next().kind !=# 'EOL'
         throw "Extra characters after 'verbatim'"
@@ -1553,9 +1589,11 @@ fun! s:parse_line()
     elseif s:getl() =~# '\m^[^#]*:' " Look ahead
       call s:parse_key_value_pair()
     else
+      call s:add_source_line(s:getl())
       call s:parse_hi_group_def()
     endif
   elseif s:token.kind ==# 'CMD'
+    call s:add_source_line(s:getl())
     call s:parse_command(s:token.value)
   else
     throw 'Unexpected token at start of line'
@@ -1588,13 +1626,14 @@ fun! s:parse_key_value_pair()
     call s:add_warning(s:currfile(), s:linenr(), s:token.pos,
           \ "The 'Terminal colors' key has been deprecated and is a no-op now")
   elseif l:key ==# 'termcolors'
-    call s:add_source_line(s:getl())
     call s:parse_term_colors()
   elseif l:key ==# 'neovim'
     if s:token.next().value !~# '\m^y\%[es]\|n\%[o]\|1\|0$'
       throw "Neovim key can only be 'yes' or 'no'"
     endif
     call s:set_supports_neovim()
+  elseif l:key ==# 'colortemplateoptions'
+    call s:parse_colortemplate_options()
   else " Assume that the value is a path and may contain any characters
     let l:val = matchstr(s:getl(), '\s*\zs.\{-}\s*$', s:token.pos)
     if empty(l:val)
@@ -1609,10 +1648,10 @@ fun! s:parse_key_value_pair()
 endf
 
 fun! s:parse_background_directive()
+  call s:add_source_line(s:getl())
   if s:token.next().kind !=# 'WORD' || s:token.value !~# '\m^\%(dark\|light\|any\)$'
     throw "Background can only be 'dark', 'light' or 'any'"
   endif
-  call s:add_source_line(s:getl())
   if s:is_global_preamble() " Background in preamble implies Variant: gui 256
     call s:set_active_variants([s:GUI, '256'])
   endif
@@ -1759,6 +1798,7 @@ fun! s:parse_base_16_value()
 endf
 
 fun! s:parse_term_colors()
+  call s:add_source_line(s:getl())
   while s:token.next().is_edible()
     if !s:is_color_defined(s:token.value, s:active_section())
       throw 'Undefined color name: ' . s:token.value
@@ -1768,8 +1808,6 @@ fun! s:parse_term_colors()
 endf
 
 fun! s:parse_hi_group_def()
-  call s:add_source_line(s:getl())
-
   if s:getl() =~# '\m->' " Look ahead
     return s:parse_linked_group_def()
   endif
@@ -1898,12 +1936,30 @@ fun! s:parse_command(cmd)
     throw a:cmd.' without if'
   endif
   let l:text = matchstr(s:getl(), '^\s*#\zs.\{-}\s*$')
-  call s:add_source_line(l:text)
   for l:v in s:active_variants()
     call s:add_verbatim_item(l:v, s:active_section(),
           \ { 'line': l:text, 'linenr': s:linenr(), 'file': s:currfile() })
   endfor
   call s:stop_verbatim()
+endf
+
+fun! s:parse_colortemplate_options()
+  while s:token.next().is_edible()
+    if s:token.kind !=# 'WORD'
+      throw 'Expected option name'
+    endif
+    let l:opt = s:token.value
+    if l:opt !~# '\m^\%(creator\|quiet\|source_comment\|timestamp\|warnings\)$'
+      throw 'Invalid option name: '.l:opt
+    endif
+    if s:token.next().kind !=# '='
+      throw "Expected = symbol after option name"
+    endif
+    if s:token.next().kind !=# 'NUM'
+      throw 'Option value must be a number'
+    endif
+    call s:setopt(l:opt, s:token.value)
+  endwhile
 endf
 " }}} Parser
 " Init/clear parser {{{
@@ -1993,8 +2049,7 @@ fun! s:eval(item, col, section)
       " When guifg=NONE and guibg=NONE, Vim uses the values of ctermfg/ctermbg
       " See https://github.com/lifepillar/vim-colortemplate/issues/15.
       " See also https://github.com/vim/vim/issues/1740
-      return 'hi ' . s:hi_name(l:v)
-            \ . s:hi_item('guifg', l:fg)
+      let l:def = s:hi_item('guifg', l:fg)
             \ . s:hi_item('guibg', l:bg)
             \ . s:hi_item('guisp', l:sp)
             \ . (l:attr ==# 'omit'
@@ -2007,8 +2062,7 @@ fun! s:eval(item, col, section)
       let l:fg = s:fg256(l:v, a:section)
       let l:bg = s:bg256(l:v, a:section)
       let l:attr = s:term_attr(l:v)
-      return 'hi ' . s:hi_name(l:v)
-            \ . s:hi_item('ctermfg', l:fg)
+      let l:def = s:hi_item('ctermfg', l:fg)
             \ . s:hi_item('ctermbg', l:bg)
             \ . s:hi_item('cterm', l:attr)
             \ . s:hi_item('start', s:terminal_code(l:v, 'start'))
@@ -2017,19 +2071,22 @@ fun! s:eval(item, col, section)
       let l:fg = s:fg16(l:v, a:section)
       let l:bg = s:bg16(l:v, a:section)
       let l:attr = s:term_attr(l:v)
-      return 'hi ' . s:hi_name(l:v)
-            \ . s:hi_item('ctermfg', l:fg)
+      let l:def = s:hi_item('ctermfg', l:fg)
             \ . s:hi_item('ctermbg', l:bg)
             \ . s:hi_item('cterm', l:attr)
             \ . s:hi_item('start', s:terminal_code(l:v, 'start'))
             \ . s:hi_item('stop', s:terminal_code(l:v, 'stop'))
     elseif a:col > 0
       let l:attr = s:term_attr(l:v)
-      return 'hi ' . s:hi_name(l:v)
-            \ . s:hi_item('cterm', l:attr)
+      let l:def = s:hi_item('term', l:attr)
             \ . s:hi_item('start', s:terminal_code(l:v, 'start'))
             \ . s:hi_item('stop', s:terminal_code(l:v, 'stop'))
     endif
+    if empty(l:def)
+      call s:add_generic_error('Vacuous definition for '.s:hi_name(l:v)
+            \ . ' ('.(a:col > 256 ? 'GUI' : a:col.' colors').', '.a:section.' background)')
+    endif
+    return 'hi ' . s:hi_name(l:v) . l:def
   elseif s:is_linked_type(a:item)
     return 'hi! link ' . l:v[0] . ' ' . l:v[1]
   elseif s:is_verb_type(a:item)
@@ -2066,10 +2123,10 @@ fun! s:print_header(bufnr)
     call s:put(a:bufnr,       '" Website:      ' . s:website()                 )
   endif
   call s:put  (a:bufnr,       '" License:      ' . s:license()                 )
-  if get(g:, 'colortemplate_timestamp', 1)
+  if s:getopt('timestamp')
     call s:put  (a:bufnr,       '" Last Updated: ' . strftime("%c")            )
   endif
-  if get(g:, 'colortemplate_creator', 1)
+  if s:getopt('creator')
     call s:put  (a:bufnr,       ''                                               )
     call s:put  (a:bufnr,       '" Generated by Colortemplate v' . s:VERSION   )
   endif
@@ -2174,11 +2231,16 @@ endf
 
 " Prints source as comment, for provenance
 fun! s:print_source_code(bufnr)
-  if get(g:, 'colortemplate_source_comment', 1)
+  let l:sc = s:getopt('source_comment')
+  if l:sc == 1
     for l:line in s:source_lines()
-      if l:line !~# '\m^\s*$'
+      if l:line =~? '\m^\s*\%(Background\|Color\|Term\s\+colors\)\s*:'
         call s:put(a:bufnr, '" '.l:line)
       endif
+    endfor
+  elseif l:sc == 2
+    for l:line in s:source_lines()
+      call s:put(a:bufnr, '" '.l:line)
     endfor
   endif
 endf
@@ -2263,7 +2325,7 @@ fun! colortemplate#outdir()
 endf
 
 fun! colortemplate#setoutdir(newdir)
-  let l:newdir = simplify(fnamemodify(a:newdir, ':p'))
+  let l:newdir = substitute(simplify(fnamemodify(a:newdir, ':p')), "[\\/]$", "", "")
   if !isdirectory(l:newdir)
     call s:print_error_msg('Directory does not exist', 0)
     return
@@ -2272,6 +2334,9 @@ fun! colortemplate#setoutdir(newdir)
     return
   endif
   let b:colortemplate_outdir = l:newdir
+  if get(g:, 'colortemplate_rtp', 1)
+    execute 'set runtimepath^='.b:colortemplate_outdir
+  endif
 endf
 
 fun! colortemplate#askoutdir()
@@ -2374,7 +2439,7 @@ fun! colortemplate#make(...)
     let l:outpath = s:generate_colorscheme(l:outdir, l:overwrite)
     call s:generate_aux_files(l:outdir, l:overwrite)
     call s:show_errors('Build error')
-    if !get(g:, 'colortemplate_quiet', 1)
+    if !s:getopt('quiet')
       call colortemplate#view_source()
     endif
   catch /.*/
