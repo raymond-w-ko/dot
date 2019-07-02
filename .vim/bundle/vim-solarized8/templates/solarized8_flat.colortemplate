@@ -86,7 +86,7 @@ Include: _dark_terminal.colortemplate
 #if get(g:, '@optionprefix_old_cursor_style', 0)
   Cursor             base03            base0
 #else
-  Cursor             base3             blue
+  Cursor             base3             puregreen
 #endif
 # }}}
 # Diff mode (dark) {{{
