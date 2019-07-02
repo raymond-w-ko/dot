@@ -1,4 +1,4 @@
-" Name:         Test 42
+" Name:         Test 29
 " Author:       y
 " Maintainer:   w
 " License:      Vim License (see `:help license`)
@@ -10,18 +10,18 @@ if exists('syntax_on')
   syntax reset
 endif
 
-let g:colors_name = 'test42'
+let g:colors_name = 'test29'
 
 let s:t_Co = exists('&t_Co') && !empty(&t_Co) && &t_Co > 1 ? &t_Co : 2
 
 if (has('termguicolors') && &termguicolors) || has('gui_running')
-  hi Normal guifg='ghost white' guibg=BlanchedAlmond guisp=NONE gui=NONE cterm=NONE
+  hi Normal guifg=#ffffff guibg=#000000 guisp=NONE gui=NONE cterm=NONE
   unlet s:t_Co
   finish
 endif
 
 if s:t_Co >= 256
-  hi Normal ctermfg=231 ctermbg=223 cterm=NONE
+  hi Normal ctermfg=255 ctermbg=16 cterm=NONE
   if !has('patch-8.0.0616') " Fix for Vim bug
     set background=dark
   endif

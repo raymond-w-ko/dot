@@ -298,9 +298,9 @@ fun! Test_CT_invalid_gui_value_bis()
   Colortemplate!
   let l:qflist = getqflist()
   call assert_equal(5, len(l:qflist))
-  call assert_equal('Unknown RGB color name: cmyk', l:qflist[0]['text'])
+  call assert_equal('Expected number or tilde', l:qflist[0]['text'])
   call assert_equal(8, l:qflist[0]['lnum'])
-  call assert_equal(13, l:qflist[0]['col'])
+  call assert_equal(17, l:qflist[0]['col'])
   call assert_equal("Undefined color name: black", l:qflist[1]['text'])
   call assert_equal(10, l:qflist[1]['lnum'])
   call assert_equal(14, l:qflist[1]['col'])
@@ -475,18 +475,13 @@ fun! Test_CT_verbatim_interpolation()
   call s:assert_build('test28')
 endf
 
-fun! Test_CT_wrong_keyword_in_doc()
-  edit test29.txt
-  Colortemplate!
-  let l:qflist = getqflist()
-  call assert_equal(1, len(l:qflist))
-  call assert_equal("Undefined @ value", l:qflist[0]['text'])
-  call assert_equal(7, l:qflist[0]['lnum'])
-  call assert_equal(1, l:qflist[0]['col'])
-  cclose
-  bwipe test29.txt
-  " Delete output file (this is created because the error is in the help)
-  call delete(s:testdir.'/colors/test29.vim')
+fun! Test_CT_doc_interpolation()
+  call s:assert_build('test29')
+  " Check help file
+  let l:fail = assert_equalfile(s:testdir.'/expected/test29.txt', s:testdir.'/doc/test29.txt')
+  if !l:fail
+    call delete(s:testdir.'/doc/test29.txt')
+  endif
 endf
 
 fun! Test_CT_keyword_followed_by_underscore_in_doc()
