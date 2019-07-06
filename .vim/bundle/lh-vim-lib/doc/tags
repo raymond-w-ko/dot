@@ -414,6 +414,7 @@ lh#window#getid()	lh-vim-lib.txt	/*lh#window#getid()*
 lh#window#gotoid()	lh-vim-lib.txt	/*lh#window#gotoid()*
 lh#window#new()	lh-vim-lib.txt	/*lh#window#new()*
 lh#window#split()	lh-vim-lib.txt	/*lh#window#split()*
+lh#window#text_width()	lh-vim-lib.txt	/*lh#window#text_width()*
 lh-vim-lib.txt	lh-vim-lib.txt	/*lh-vim-lib.txt*
 lhvl#DbC	lh-vim-lib.txt	/*lhvl#DbC*
 lhvl#buffer	lh-vim-lib.txt	/*lhvl#buffer*
