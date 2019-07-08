@@ -155,11 +155,6 @@ Vital.Data.Closure.is_binding_supported()	vital/Data/Closure.txt	/*Vital.Data.Cl
 Vital.Data.Closure.is_callable()	vital/Data/Closure.txt	/*Vital.Data.Closure.is_callable()*
 Vital.Data.Closure.is_closure()	vital/Data/Closure.txt	/*Vital.Data.Closure.is_closure()*
 Vital.Data.Closure.sweep_functions()	vital/Data/Closure.txt	/*Vital.Data.Closure.sweep_functions()*
-Vital.Data.Collection	vital/Data/Collection.txt	/*Vital.Data.Collection*
-Vital.Data.Collection-contents	vital/Data/Collection.txt	/*Vital.Data.Collection-contents*
-Vital.Data.Collection-functions	vital/Data/Collection.txt	/*Vital.Data.Collection-functions*
-Vital.Data.Collection-interface	vital/Data/Collection.txt	/*Vital.Data.Collection-interface*
-Vital.Data.Collection-introduction	vital/Data/Collection.txt	/*Vital.Data.Collection-introduction*
 Vital.Data.Counter	vital/Data/Counter.txt	/*Vital.Data.Counter*
 Vital.Data.Counter-Counter	vital/Data/Counter.txt	/*Vital.Data.Counter-Counter*
 Vital.Data.Counter-Counter.add()	vital/Data/Counter.txt	/*Vital.Data.Counter-Counter.add()*
@@ -1470,7 +1465,6 @@ vital/Data/Base32.txt	vital/Data/Base32.txt	/*vital\/Data\/Base32.txt*
 vital/Data/Base64.txt	vital/Data/Base64.txt	/*vital\/Data\/Base64.txt*
 vital/Data/BigNum.txt	vital/Data/BigNum.txt	/*vital\/Data\/BigNum.txt*
 vital/Data/Closure.txt	vital/Data/Closure.txt	/*vital\/Data\/Closure.txt*
-vital/Data/Collection.txt	vital/Data/Collection.txt	/*vital\/Data\/Collection.txt*
 vital/Data/Counter.txt	vital/Data/Counter.txt	/*vital\/Data\/Counter.txt*
 vital/Data/Dict.txt	vital/Data/Dict.txt	/*vital\/Data\/Dict.txt*
 vital/Data/Either.txt	vital/Data/Either.txt	/*vital\/Data\/Either.txt*

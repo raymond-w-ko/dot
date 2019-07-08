@@ -3,8 +3,8 @@
 " Author:	John Wellesz <John.wellesz (AT) gmail (DOT) com>
 " URL:		https://www.2072productions.com/vim/indent/php.vim
 " Home:		https://github.com/2072/PHP-Indenting-for-VIm
-" Last Change:	2019 Jully 1st
-" Version:	1.69
+" Last Change:	2019 Jully 7th
+" Version:	1.70
 "
 "
 "	Type :help php-indent for available options
@@ -39,6 +39,10 @@
 "
 "	or simply 'let' the option PHP_removeCRwhenUnix to 1 and the script will
 "	silently remove them when VIM load this script (at each bufread).
+"
+" Changes: 1.70         - Rename PHP_IndentFunctionParameters to PHP_IndentFunctionCallParameters and
+"			  also implement PHP_IndentFunctionDeclarationParameters.
+"			- Update documentation.  
 "
 " Changes: 1.69         - Fix vim/vim#4562 where Vim would freeze on multiline-string declarations ending with a comma.
 "			- Fix #69: Indenting was incorrect for closures with single-line `use` statements.
@@ -484,10 +488,16 @@ else
     let b:PHP_vintage_case_default_indent = 0
 endif
 
-if exists("PHP_IndentFunctionParameters ")
-    let b:PHP_IndentFunctionParameters = PHP_IndentFunctionParameters
+if exists("PHP_IndentFunctionCallParameters")
+    let b:PHP_IndentFunctionCallParameters = PHP_IndentFunctionCallParameters
 else
-    let b:PHP_IndentFunctionParameters = 0
+    let b:PHP_IndentFunctionCallParameters = 0
+endif
+
+if exists("PHP_IndentFunctionDeclarationParameters")
+    let b:PHP_IndentFunctionDeclarationParameters = PHP_IndentFunctionDeclarationParameters
+else
+    let b:PHP_IndentFunctionDeclarationParameters = 0
 endif
 
 let b:PHP_lastindented = 0
@@ -539,7 +549,9 @@ let s:endline = '\s*\%(//.*\|#.*\|/\*.*\*/\s*\)\=$'
 let s:PHP_validVariable = '[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*'
 let s:notPhpHereDoc = '\%(break\|return\|continue\|exit\|die\|else\|end\%(if\|while\|for\|foreach\|switch\)\)'
 let s:blockstart = '\%(\%(\%(}\s*\)\=else\%(\s\+\)\=\)\=if\>\|\%(}\s*\)\?else\>\|do\>\|while\>\|switch\>\|case\>\|default\>\|for\%(each\)\=\>\|declare\>\|class\>\|trait\>\|\%()\s*\)\=use\>\|interface\>\|abstract\>\|final\>\|try\>\|\%(}\s*\)\=catch\>\|\%(}\s*\)\=finally\>\)'
-let s:functionDecl = '\<function\>\%(\s\+&\='.s:PHP_validVariable.'\)\=\s*(.*'
+let s:functionDeclPrefix = '\<function\>\%(\s\+&\='.s:PHP_validVariable.'\)\=\s*('
+let s:functionDecl = s:functionDeclPrefix.'.*'
+let s:multilineFunctionDecl = s:functionDeclPrefix.s:endline
 let s:arrayDecl = '\<array\>\s*(.*'
 let s:multilineFunctionCall = s:PHP_validVariable.'\s*('.s:endline
 " Unstated line?
@@ -1219,7 +1231,7 @@ function! GetPhpIndent()
 	    endif
 
 	    " was last line a very bad idea? (multiline string definition)
-	elseif last_line =~ '^[^''"`]\+[''"`]$' && lastline !~ '^\s*\%(//\|#\|/\*.*\*/\s*$\)' " a string identifier with nothing after it and no other string identifier before
+	elseif last_line =~ '^[^''"`]\+[''"`]$' && last_line !~ '^\s*\%(//\|#\|/\*.*\*/\s*$\)' " a string identifier with nothing after it and no other string identifier before
 	    " DEBUG call DebugPrintReturn( 'mls dcl')
 	    let b:InPHPcode = -1
 	    let b:InPHPcode_tofind = substitute( last_line, '^.*\([''"`]\).*$', '^[^\1]*\1[;,]$', '')
@@ -1620,8 +1632,12 @@ function! GetPhpIndent()
 		" DEBUG call DebugPrintReturn(1454. '  +1 indent: '.ind)
 	    endif
 
-	    if b:PHP_IndentFunctionParameters && last_line =~ s:multilineFunctionCall && last_line !~ s:structureHead && last_line !~ s:arrayDecl
-		let ind = ind + b:PHP_IndentFunctionParameters * shiftwidth()
+	    if b:PHP_IndentFunctionCallParameters && last_line =~ s:multilineFunctionCall && last_line !~ s:structureHead && last_line !~ s:arrayDecl
+		let ind = ind + b:PHP_IndentFunctionCallParameters * shiftwidth()
+	    endif
+
+	    if b:PHP_IndentFunctionDeclarationParameters && last_line =~ s:multilineFunctionDecl
+		let ind = ind + b:PHP_IndentFunctionDeclarationParameters * shiftwidth()
 	    endif
 
 	    if b:PHP_BracesAtCodeLevel || b:PHP_vintage_case_default_indent == 1

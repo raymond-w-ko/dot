@@ -1,4 +1,6 @@
 PHP_BracesAtCodeLevel	PHPIndent.txt	/*PHP_BracesAtCodeLevel*
+PHP_IndentFunctionCallParameters	PHPIndent.txt	/*PHP_IndentFunctionCallParameters*
+PHP_IndentFunctionDeclarationParameters	PHPIndent.txt	/*PHP_IndentFunctionDeclarationParameters*
 PHP_autoformatcomment	PHPIndent.txt	/*PHP_autoformatcomment*
 PHP_default_indenting	PHPIndent.txt	/*PHP_default_indenting*
 PHP_noArrowMatching	PHPIndent.txt	/*PHP_noArrowMatching*
