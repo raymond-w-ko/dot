@@ -69,6 +69,8 @@ fugitive_CTRL-W_C	fugitive.txt	/*fugitive_CTRL-W_C*
 fugitive_O	fugitive.txt	/*fugitive_O*
 fugitive_P	fugitive.txt	/*fugitive_P*
 fugitive_X	fugitive.txt	/*fugitive_X*
+fugitive_[[	fugitive.txt	/*fugitive_[[*
+fugitive_]]	fugitive.txt	/*fugitive_]]*
 fugitive_c	fugitive.txt	/*fugitive_c*
 fugitive_c_CTRL-R_CTRL-G	fugitive.txt	/*fugitive_c_CTRL-R_CTRL-G*
 fugitive_dd	fugitive.txt	/*fugitive_dd*
