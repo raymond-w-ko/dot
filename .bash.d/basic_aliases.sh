@@ -20,20 +20,20 @@ if [[ "$unameString" == 'Darwin' ]]; then
       alias ll='ls -Glha'
     fi
 else
-    alias ls='ls --color=never -F'
-    alias l='ls --color=never -lhF'
-    alias lt='ls --color=never -lhtF'
-    alias ll='ls --color=never -lhaF'
+    alias ls='ls --color=auto -F'
+    alias l='ls --color=auto -lhF'
+    alias lt='ls --color=auto -lhtF'
+    alias ll='ls --color=auto -lhaF'
     
     export GREP_COLOR='1;32'
 
     # fix ls colors especially for directories and files that are globally
     # readable and writeable, they are completely unreadable by default
-    # if [ -r "$HOME/src/dircolors-solarized/dircolors.256dark" ]; then
-    #   eval `dircolors $HOME/src/dircolors-solarized/dircolors.256dark`
-    # else
-    #   eval `dircolors -b`
-    # fi
+    if [ -r "$HOME/src/dircolors-solarized/dircolors.256dark" ]; then
+      eval `dircolors $HOME/src/dircolors-solarized/dircolors.256dark`
+    else
+      eval `dircolors -b`
+    fi
 fi
 
 alias v=vim
