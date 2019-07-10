@@ -1661,6 +1661,16 @@ let s:double_quote_string_filestypes = {
     \ "scss": 1,
     \ "html": 1,
     \ }
+let s:single_quote_string_filestypes = {
+    \ "javascript.jsx": 1,
+    \ "make": 1,
+    \ "c": 1,
+    \ "cpp": 1,
+    \ "python": 1,
+    \ "css": 1,
+    \ "scss": 1,
+    \ "html": 1,
+    \ }
 let s:no_escape_double_quote_string_filestypes = {
     \ "make": 1,
     \ }
@@ -1710,6 +1720,8 @@ function! s:SetupBasicSyntaxHighlights()
 
   if has_key(s:double_quote_string_filestypes, &filetype)
     syntax region rkoBasicString start=/\v"/ skip=/\v(\\\\)|(\\")/ end=/\v"/
+  endif
+  if has_key(s:single_quote_string_filestypes, &filetype)
     syntax region rkoBasicString start=/\v'/ skip=/\v(\\\\)|(\\')/ end=/\v'/
   endif
 
