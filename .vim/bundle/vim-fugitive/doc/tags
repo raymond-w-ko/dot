@@ -7,6 +7,8 @@ fugitive-:G	fugitive.txt	/*fugitive-:G*
 fugitive-:Gblame	fugitive.txt	/*fugitive-:Gblame*
 fugitive-:Gbrowse	fugitive.txt	/*fugitive-:Gbrowse*
 fugitive-:Gcd	fugitive.txt	/*fugitive-:Gcd*
+fugitive-:Gcgrep	fugitive.txt	/*fugitive-:Gcgrep*
+fugitive-:Gclog	fugitive.txt	/*fugitive-:Gclog*
 fugitive-:Gcommit	fugitive.txt	/*fugitive-:Gcommit*
 fugitive-:Gdelete	fugitive.txt	/*fugitive-:Gdelete*
 fugitive-:Gdiffsplit	fugitive.txt	/*fugitive-:Gdiffsplit*
