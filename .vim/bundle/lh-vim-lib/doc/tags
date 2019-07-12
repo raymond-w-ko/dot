@@ -347,6 +347,7 @@ lh#python#best_still_avail()	lh-vim-lib.txt	/*lh#python#best_still_avail()*
 lh#python#can_import()	lh-vim-lib.txt	/*lh#python#can_import()*
 lh#python#external_can_import()	lh-vim-lib.txt	/*lh#python#external_can_import()*
 lh#python#has()	lh-vim-lib.txt	/*lh#python#has()*
+lh#qf#get_metrics()	lh-vim-lib.txt	/*lh#qf#get_metrics()*
 lh#qf#get_title()	lh-vim-lib.txt	/*lh#qf#get_title()*
 lh#qf#get_winnr()	lh-vim-lib.txt	/*lh#qf#get_winnr()*
 lh#qf#is_displayed()	lh-vim-lib.txt	/*lh#qf#is_displayed()*
