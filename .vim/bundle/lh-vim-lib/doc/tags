@@ -134,6 +134,7 @@ lh#encoding#iconv()	lh-vim-lib.txt	/*lh#encoding#iconv()*
 lh#encoding#previous_character()	lh-vim-lib.txt	/*lh#encoding#previous_character()*
 lh#encoding#strlen()	lh-vim-lib.txt	/*lh#encoding#strlen()*
 lh#encoding#strpart()	lh-vim-lib.txt	/*lh#encoding#strpart()*
+lh#env#expand_all()	lh-vim-lib.txt	/*lh#env#expand_all()*
 lh#event#RegisterForOneExecutionAt()	lh-vim-lib.txt	/*lh#event#RegisterForOneExecutionAt()*
 lh#event#register_for_one_execution_at()	lh-vim-lib.txt	/*lh#event#register_for_one_execution_at()*
 lh#exception#callstack()	lh-vim-lib.txt	/*lh#exception#callstack()*
