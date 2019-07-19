@@ -58,6 +58,8 @@ fugitive-revision	fugitive.txt	/*fugitive-revision*
 fugitive-staging-mappings	fugitive.txt	/*fugitive-staging-mappings*
 fugitive-statusline	fugitive.txt	/*fugitive-statusline*
 fugitive.txt	fugitive.txt	/*fugitive.txt*
+fugitive_(	fugitive.txt	/*fugitive_(*
+fugitive_)	fugitive.txt	/*fugitive_)*
 fugitive_-	fugitive.txt	/*fugitive_-*
 fugitive_.	fugitive.txt	/*fugitive_.*
 fugitive_<	fugitive.txt	/*fugitive_<*
@@ -67,7 +69,6 @@ fugitive_>	fugitive.txt	/*fugitive_>*
 fugitive_C	fugitive.txt	/*fugitive_C*
 fugitive_CTRL-N	fugitive.txt	/*fugitive_CTRL-N*
 fugitive_CTRL-P	fugitive.txt	/*fugitive_CTRL-P*
-fugitive_CTRL-W_C	fugitive.txt	/*fugitive_CTRL-W_C*
 fugitive_O	fugitive.txt	/*fugitive_O*
 fugitive_P	fugitive.txt	/*fugitive_P*
 fugitive_X	fugitive.txt	/*fugitive_X*
