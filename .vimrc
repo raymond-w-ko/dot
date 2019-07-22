@@ -216,7 +216,7 @@ set splitbelow
 set splitright
 set title
 set showtabline=2
-set cmdheight=2
+set cmdheight=3
 set completeopt+=menu
 set completeopt+=menuone
 set completeopt+=preview
