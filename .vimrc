@@ -1779,10 +1779,10 @@ endfunction
 
 augroup MyVimrc
   " only show cursorline if a window has focus
-  " this noticably slows down VIM in files with complicated syntax hilighting,
+  " this noticably slows down VIM in files with complicated syntax highlighting,
   " like PHP, so disable it for now.
-  " au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  " au WinLeave * setlocal nocursorline
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
 
   "au VimEnter,WinEnter,BufWinEnter * setlocal cursorcolumn
   "au WinLeave * setlocal nocursorcolumn
