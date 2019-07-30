@@ -11,6 +11,7 @@ ALEEnableBuffer	ale.txt	/*ALEEnableBuffer*
 ALEError	ale.txt	/*ALEError*
 ALEErrorLine	ale.txt	/*ALEErrorLine*
 ALEErrorSign	ale.txt	/*ALEErrorSign*
+ALEErrorSignLineNr	ale.txt	/*ALEErrorSignLineNr*
 ALEFindReferences	ale.txt	/*ALEFindReferences*
 ALEFirst	ale.txt	/*ALEFirst*
 ALEFix	ale.txt	/*ALEFix*
@@ -33,6 +34,7 @@ ALEInfo-highlight	ale.txt	/*ALEInfo-highlight*
 ALEInfo.	ale.txt	/*ALEInfo.*
 ALEInfoLine	ale.txt	/*ALEInfoLine*
 ALEInfoSign	ale.txt	/*ALEInfoSign*
+ALEInfoSignLineNr	ale.txt	/*ALEInfoSignLineNr*
 ALEInfoToClipboard	ale.txt	/*ALEInfoToClipboard*
 ALEJobStarted	ale.txt	/*ALEJobStarted*
 ALEJobStarted-autocmd	ale.txt	/*ALEJobStarted-autocmd*
@@ -51,8 +53,10 @@ ALEResetBuffer	ale.txt	/*ALEResetBuffer*
 ALEStopAllLSPs	ale.txt	/*ALEStopAllLSPs*
 ALEStyleError	ale.txt	/*ALEStyleError*
 ALEStyleErrorSign	ale.txt	/*ALEStyleErrorSign*
+ALEStyleErrorSignLineNr	ale.txt	/*ALEStyleErrorSignLineNr*
 ALEStyleWarning	ale.txt	/*ALEStyleWarning*
 ALEStyleWarningSign	ale.txt	/*ALEStyleWarningSign*
+ALEStyleWarningSignLineNr	ale.txt	/*ALEStyleWarningSignLineNr*
 ALESymbolSearch	ale.txt	/*ALESymbolSearch*
 ALEToggle	ale.txt	/*ALEToggle*
 ALEToggleBuffer	ale.txt	/*ALEToggleBuffer*
@@ -66,6 +70,7 @@ ALEWantResults-autocmd	ale.txt	/*ALEWantResults-autocmd*
 ALEWarning	ale.txt	/*ALEWarning*
 ALEWarningLine	ale.txt	/*ALEWarningLine*
 ALEWarningSign	ale.txt	/*ALEWarningSign*
+ALEWarningSignLineNr	ale.txt	/*ALEWarningSignLineNr*
 ale	ale.txt	/*ale*
 ale#Env()	ale.txt	/*ale#Env()*
 ale#Has()	ale.txt	/*ale#Has()*
@@ -187,7 +192,7 @@ ale-elixir-mix	ale-elixir.txt	/*ale-elixir-mix*
 ale-elixir-mix-format	ale-elixir.txt	/*ale-elixir-mix-format*
 ale-elixir-options	ale-elixir.txt	/*ale-elixir-options*
 ale-elm-elm-format	ale-elm.txt	/*ale-elm-elm-format*
-ale-elm-elm-lsp	ale-elm.txt	/*ale-elm-elm-lsp*
+ale-elm-elm-ls	ale-elm.txt	/*ale-elm-elm-ls*
 ale-elm-elm-make	ale-elm.txt	/*ale-elm-elm-make*
 ale-elm-options	ale-elm.txt	/*ale-elm-options*
 ale-erlang-dialyzer	ale-erlang.txt	/*ale-erlang-dialyzer*
@@ -644,8 +649,11 @@ b:ale_elixir_mix_options	ale-elixir.txt	/*b:ale_elixir_mix_options*
 b:ale_elm_format_executable	ale-elm.txt	/*b:ale_elm_format_executable*
 b:ale_elm_format_options	ale-elm.txt	/*b:ale_elm_format_options*
 b:ale_elm_format_use_global	ale-elm.txt	/*b:ale_elm_format_use_global*
-b:ale_elm_lsp_executable	ale-elm.txt	/*b:ale_elm_lsp_executable*
-b:ale_elm_lsp_use_global	ale-elm.txt	/*b:ale_elm_lsp_use_global*
+b:ale_elm_ls_elm_format_path	ale-elm.txt	/*b:ale_elm_ls_elm_format_path*
+b:ale_elm_ls_elm_path	ale-elm.txt	/*b:ale_elm_ls_elm_path*
+b:ale_elm_ls_elm_test_path	ale-elm.txt	/*b:ale_elm_ls_elm_test_path*
+b:ale_elm_ls_executable	ale-elm.txt	/*b:ale_elm_ls_executable*
+b:ale_elm_ls_use_global	ale-elm.txt	/*b:ale_elm_ls_use_global*
 b:ale_elm_make_executable	ale-elm.txt	/*b:ale_elm_make_executable*
 b:ale_elm_make_use_global	ale-elm.txt	/*b:ale_elm_make_use_global*
 b:ale_enabled	ale.txt	/*b:ale_enabled*
@@ -1210,8 +1218,11 @@ g:ale_elixir_mix_options	ale-elixir.txt	/*g:ale_elixir_mix_options*
 g:ale_elm_format_executable	ale-elm.txt	/*g:ale_elm_format_executable*
 g:ale_elm_format_options	ale-elm.txt	/*g:ale_elm_format_options*
 g:ale_elm_format_use_global	ale-elm.txt	/*g:ale_elm_format_use_global*
-g:ale_elm_lsp_executable	ale-elm.txt	/*g:ale_elm_lsp_executable*
-g:ale_elm_lsp_use_global	ale-elm.txt	/*g:ale_elm_lsp_use_global*
+g:ale_elm_ls_elm_format_path	ale-elm.txt	/*g:ale_elm_ls_elm_format_path*
+g:ale_elm_ls_elm_path	ale-elm.txt	/*g:ale_elm_ls_elm_path*
+g:ale_elm_ls_elm_test_path	ale-elm.txt	/*g:ale_elm_ls_elm_test_path*
+g:ale_elm_ls_executable	ale-elm.txt	/*g:ale_elm_ls_executable*
+g:ale_elm_ls_use_global	ale-elm.txt	/*g:ale_elm_ls_use_global*
 g:ale_elm_make_executable	ale-elm.txt	/*g:ale_elm_make_executable*
 g:ale_elm_make_use_global	ale-elm.txt	/*g:ale_elm_make_use_global*
 g:ale_enabled	ale.txt	/*g:ale_enabled*
