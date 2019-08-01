@@ -948,6 +948,7 @@ map Y y$
 
 " fastest way to save a file
 nnoremap <silent> <leader>w :wall<CR>
+nnoremap <CR> :w<CR>
 
 " some convenience mappings for Vim autocomplete
 inoremap <C-l> <C-x><C-l>
@@ -1050,8 +1051,15 @@ function! s:SetupPairBindings()
     inoremap <silent><buffer> θ ""<C-g>U<Left>
     inoremap <silent><buffer> υ <><C-g>U<Left>
     inoremap <silent><buffer> <CR> <C-r>=<SID>MySmarterCR()<CR>
-    
-    inoremap <silent><buffer> <BS> <C-r>=<SID>EmptyPairDeleterBackspace()<CR>
+"
+    if &filetype != "clojure"
+      inoremap <silent><buffer> ( ()<C-g>U<Left>
+      inoremap <silent><buffer> { {}<C-g>U<Left>
+      inoremap <silent><buffer> [ []<C-g>U<Left>
+      inoremap <silent><buffer> " ""<C-g>U<Left>
+      inoremap <silent><buffer> <CR> <C-r>=<SID>MySmarterCR()<CR>
+      inoremap <silent><buffer> <BS> <C-r>=<SID>EmptyPairDeleterBackspace()<CR>
+    endif
   endif
 endfunction
 
@@ -2381,6 +2389,11 @@ function! MyPythonFormatter()
   execute "%!black -q -"
   call winrestview(view)
 endfunction
+function! MyGoFormatter()
+  let view = winsaveview()
+  execute "%!gofmt"
+  call winrestview(view)
+endfunction
 augroup MyVimrc
   au BufWritePost *.vimrc source $MYVIMRC
   au BufWritePost *.gvimrc source $MYGVIMRC
@@ -2409,6 +2422,7 @@ augroup MyVimrc
     autocmd FileType javascript.jsx nnoremap <buffer> <Leader>f :call MyJavascriptFormatter()<CR>
     autocmd FileType scss nnoremap <buffer> <Leader>f :call MyScssFormatter()<CR>
     autocmd FileType python nnoremap <buffer> <Leader>f :call MyPythonFormatter()<CR>
+    autocmd FileType go nnoremap <buffer> <Leader>f :call MyGoFormatter()<CR>
   endif
   
   au FileType markdown setlocal textwidth=80
