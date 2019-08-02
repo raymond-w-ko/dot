@@ -35,6 +35,7 @@ fugitive-:Gread!	fugitive.txt	/*fugitive-:Gread!*
 fugitive-:Grebase	fugitive.txt	/*fugitive-:Grebase*
 fugitive-:Gremove	fugitive.txt	/*fugitive-:Gremove*
 fugitive-:Grename	fugitive.txt	/*fugitive-:Grename*
+fugitive-:Grevert	fugitive.txt	/*fugitive-:Grevert*
 fugitive-:Gsdiff	fugitive.txt	/*fugitive-:Gsdiff*
 fugitive-:Gsplit	fugitive.txt	/*fugitive-:Gsplit*
 fugitive-:Gsplit!	fugitive.txt	/*fugitive-:Gsplit!*
