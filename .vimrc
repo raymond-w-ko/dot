@@ -1102,6 +1102,7 @@ endfunction
 inoremap <Plug>MyPareditForwardUp <C-r>=<SID>MyPareditForwardUp()<CR>
 
 inoremap <expr> χ <SID>MyPareditForwardUp()
+inoremap <expr> <Right> <SID>MyPareditForwardUp()
 
 " Platform specific keybinds
 if has("unix")
