@@ -1821,8 +1821,8 @@ function! fugitive#BufReadStatus() abort
     exe "nnoremap <buffer> <silent>" nowait "u :<C-U>execute <SID>Do('Unstage',0)<CR>"
     exe "xnoremap <buffer> <silent>" nowait "u :<C-U>execute <SID>Do('Unstage',1)<CR>"
     nnoremap <buffer> <silent> U :exe <SID>EchoExec('reset', '-q')<CR>
-    call s:MapEx('gu', "exe <SID>StageJump(v:count, 'Unstaged')")
-    call s:MapEx('gU', "exe <SID>StageJump(v:count, 'Untracked')")
+    call s:MapEx('gu', "exe <SID>StageJump(v:count, 'Untracked', 'Unstaged')")
+    call s:MapEx('gU', "exe <SID>StageJump(v:count, 'Unstaged', 'Untracked')")
     call s:MapEx('gs', "exe <SID>StageJump(v:count, 'Staged')")
     call s:MapEx('gp', "exe <SID>StageJump(v:count, 'Unpushed')")
     call s:MapEx('gP', "exe <SID>StageJump(v:count, 'Unpulled')")
@@ -2248,13 +2248,19 @@ function! s:StatusCommand(line1, line2, range, count, bang, mods, reg, arg, args
 endfunction
 
 function! s:StageJump(offset, section, ...) abort
-  let line = search('^' . a:section, 'nw')
+  let line = search('^\%(' . a:section . '\)', 'nw')
+  if !line && a:0
+    let line = search('^\%(' . a:1 . '\)', 'nw')
+  endif
   if line
     exe line
     if a:offset
       for i in range(a:offset)
-        call search(s:file_pattern . '\|^$')
-        if empty(line('.'))
+        call search(s:file_commit_pattern . '\|^$', 'W')
+        if empty(getline('.')) && a:0 && getline(line('.') + 1) =~# '^\%(' . a:1 . '\)'
+          call search(s:file_commit_pattern . '\|^$', 'W')
+        endif
+        if empty(getline('.'))
           return ''
         endif
       endfor
@@ -2274,7 +2280,7 @@ function! s:StageSeek(info, fallback) abort
   endif
   let line = search('^' . info.section, 'wn')
   if !line
-    for section in get({'Staged': ['Unstaged', 'Untracked'], 'Unstaged': ['Untracked', 'Staged'], 'Untracked': ['Unstaged', 'Stacked']}, info.section, [])
+    for section in get({'Staged': ['Unstaged', 'Untracked'], 'Unstaged': ['Untracked', 'Staged'], 'Untracked': ['Unstaged', 'Staged']}, info.section, [])
       let line = search('^' . section, 'wn')
       if line
         return line + (info.index > 0 ? 1 : 0)
@@ -2667,7 +2673,8 @@ function! s:StageReveal(...) abort
 endfunction
 
 let s:file_pattern = '^[A-Z?] .\|^diff --'
-let s:item_pattern = s:file_pattern . '\|^\%(\l\{3,\} \)\=[0-9a-f]\{4,\} \|^@@'
+let s:file_commit_pattern = s:file_pattern . '\|^\%(\l\{3,\} \)\=[0-9a-f]\{4,\} '
+let s:item_pattern = s:file_commit_pattern . '\|^@@'
 
 function! s:NextHunk(count) abort
   if &filetype ==# 'fugitive' && getline('.') =~# s:file_pattern
@@ -3082,7 +3089,7 @@ function! s:DoToggleUnpulledHeading(heading) abort
 endfunction
 
 function! s:DoUnstageUnpulled(record) abort
-  call feedkeys(':Grebase ' . a:record.commit . '^')
+  call feedkeys(':Grebase ' . a:record.commit)
 endfunction
 
 function! s:DoToggleUnpulled(record) abort
@@ -3090,7 +3097,7 @@ function! s:DoToggleUnpulled(record) abort
 endfunction
 
 function! s:DoUnstageUnpushed(record) abort
-  call s:DoUnstageUnpulled(a:record)
+  call feedkeys(':Grebase --autosquash ' . a:record.commit . '^')
 endfunction
 
 function! s:DoToggleStagedHeading(...) abort
@@ -3476,8 +3483,22 @@ function! s:MergeRebase(cmd, bang, mods, args, ...) abort
       endif
     endif
   endif
-  let [mp, efm] = [&l:mp, &l:efm]
   let had_merge_msg = filereadable(fugitive#Find('.git/MERGE_MSG', dir))
+  let argv = s:UserCommandList(dir)
+  if a:cmd ==# 'pull'
+    let argv += s:AskPassArgs(dir) + ['pull', '--progress']
+  else
+    call add(argv, a:cmd)
+  endif
+  if !s:HasOpt(args, '--no-edit', '--abort', '-m') && a:cmd !=# 'rebase'
+    call add(argv, '--edit')
+  endif
+  if a:cmd ==# 'rebase' && s:HasOpt(args, '--autosquash') && !s:HasOpt(args, '--interactive', '-i')
+    call add(argv, '--interactive')
+  endif
+  call extend(argv, args)
+
+  let [mp, efm] = [&l:mp, &l:efm]
   try
     let cdback = s:Cd(s:Tree(dir))
     let &l:errorformat = ''
@@ -3504,30 +3525,28 @@ function! s:MergeRebase(cmd, bang, mods, args, ...) abort
     if a:cmd =~# '^merge' && empty(args) &&
           \ (had_merge_msg || isdirectory(fugitive#Find('.git/rebase-apply', dir)) ||
           \  !empty(s:TreeChomp(dir, 'diff-files', '--diff-filter=U')))
-      let &l:makeprg = g:fugitive_git_executable.' diff-files --name-status --diff-filter=U'
+      let cmd = g:fugitive_git_executable.' diff-files --name-status --diff-filter=U'
     else
-      let &l:makeprg = s:sub(s:UserCommand() . ' ' . a:cmd .
-            \ (s:HasOpt(args, '--no-edit', '--abort', '-m') || a:cmd =~# '^rebase' ? '' : ' --edit') .
-            \ (s:HasOpt(args, '--autosquash') && a:cmd =~# '^rebase' ? ' --interactive' : '') .
-            \ ' ' . s:shellesc(args), ' *$', '')
+      let cmd = s:shellesc(argv)
     endif
     if !empty($GIT_SEQUENCE_EDITOR) || has('win32')
       let old_sequence_editor = $GIT_SEQUENCE_EDITOR
       let $GIT_SEQUENCE_EDITOR = 'true'
     else
-      let &l:makeprg = 'env GIT_SEQUENCE_EDITOR=true ' . &l:makeprg
+      let cmd = 'env GIT_SEQUENCE_EDITOR=true ' . cmd
     endif
     if !empty($GIT_EDITOR) || has('win32')
       let old_editor = $GIT_EDITOR
       let $GIT_EDITOR = 'false'
     else
-      let &l:makeprg = 'env GIT_EDITOR=false ' . substitute(&l:makeprg, '^env ', '', '')
+      let cmd = 'env GIT_EDITOR=false ' . substitute(cmd, '^env ', '', '')
     endif
     if !has('patch-8.1.0334') && has('terminal') && &autowrite
       let autowrite_was_set = 1
       set noautowrite
       silent! wall
     endif
+    let &l:makeprg = cmd
     silent noautocmd make!
   catch /^Vim\%((\a\+)\)\=:E211/
     let err = v:exception
@@ -3607,7 +3626,7 @@ function! s:RebaseSubcommand(line1, line2, range, bang, mods, args) abort
 endfunction
 
 function! s:PullSubcommand(line1, line2, range, bang, mods, args) abort
-  return s:MergeRebase('pull --progress', a:bang, a:mods, a:args)
+  return s:MergeRebase('pull', a:bang, a:mods, a:args)
 endfunction
 
 augroup fugitive_merge
