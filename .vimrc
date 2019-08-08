@@ -881,6 +881,12 @@ onoremap ac a{
 vnoremap ic i{
 vnoremap ac a{
 
+" Shortcut for ""
+onoremap iq i"
+onoremap aq a"
+vnoremap iq i"
+vnoremap ac a"
+
 " Next and Last
 
 " Motion for "next/last object". For example, "din(" would go to the next "()" pair
@@ -1299,8 +1305,8 @@ function! DoWindowSwap()
 endfunction
 " nnoremap <silent> <leader>wm :call MarkWindowSwap()<CR>
 " nnoremap <silent> <leader>wp :call DoWindowSwap()<CR>
-nnoremap <silent> <Left> :call MarkWindowSwap()<CR><C-w>h:call DoWindowSwap()<CR>
-nnoremap <silent> <Right> :call MarkWindowSwap()<CR><C-w>l:call DoWindowSwap()<CR>
+nnoremap <silent> <S-Left> :call MarkWindowSwap()<CR><C-w>h:call DoWindowSwap()<CR>
+nnoremap <silent> <S-Right> :call MarkWindowSwap()<CR><C-w>l:call DoWindowSwap()<CR>
 
 nnoremap <leader>tq 1gt
 nnoremap <leader>tw 2gt
@@ -2336,6 +2342,9 @@ nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+
+nnoremap <silent> <Left> :TmuxNavigateLeft<cr>
+nnoremap <silent> <Right> :TmuxNavigateRight<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-startify
