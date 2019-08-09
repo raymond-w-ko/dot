@@ -2426,14 +2426,12 @@ augroup MyVimrc
   au FileType css,less,scss setlocal iskeyword+=-
   au FileType javascript setlocal iskeyword+=$
   au FileType javascript setlocal cinoptions=g0,N-s,(0,u0,Ws,l1,j1,J1
-  if executable("prettier") 
-    autocmd FileType json nnoremap <buffer> <Leader>f :call MyJsonFormatter()<CR>
-    autocmd FileType javascript nnoremap <buffer> <Leader>f :call MyJavascriptFormatter()<CR>
-    autocmd FileType javascript.jsx nnoremap <buffer> <Leader>f :call MyJavascriptFormatter()<CR>
-    autocmd FileType scss nnoremap <buffer> <Leader>f :call MyScssFormatter()<CR>
-    autocmd FileType python nnoremap <buffer> <Leader>f :call MyPythonFormatter()<CR>
-    autocmd FileType go nnoremap <buffer> <Leader>f :call MyGoFormatter()<CR>
-  endif
+  autocmd FileType json nnoremap <buffer> <Leader>f :call MyJsonFormatter()<CR>
+  autocmd FileType javascript nnoremap <buffer> <Leader>f :call MyJavascriptFormatter()<CR>
+  autocmd FileType javascript.jsx nnoremap <buffer> <Leader>f :call MyJavascriptFormatter()<CR>
+  autocmd FileType scss nnoremap <buffer> <Leader>f :call MyScssFormatter()<CR>
+  autocmd FileType python nnoremap <buffer> <Leader>f :call MyPythonFormatter()<CR>
+  autocmd FileType go nnoremap <buffer> <Leader>f :call MyGoFormatter()<CR>
   
   au FileType markdown setlocal textwidth=80
 
