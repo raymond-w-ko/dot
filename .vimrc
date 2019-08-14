@@ -1988,7 +1988,7 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UltiSnips
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:UltiSnipsExpandTrigger = "κ"
+let g:UltiSnipsExpandTrigger = "<F10>"
 let g:UltiSnipsListSnippets = "<F1>"
 let g:UltiSnipsJumpForwardTrigger = "<C-b>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-z>"
