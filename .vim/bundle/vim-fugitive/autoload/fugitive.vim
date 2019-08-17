@@ -2438,8 +2438,8 @@ endfunction
 augroup fugitive_status
   autocmd!
   autocmd BufWritePost         * call fugitive#ReloadStatus(-1, 0)
-  autocmd ShellCmdPost         * call fugitive#ReloadStatus()
-  autocmd BufDelete     term://* call fugitive#ReloadStatus()
+  autocmd ShellCmdPost     * nested call fugitive#ReloadStatus()
+  autocmd BufDelete term://* nested call fugitive#ReloadStatus()
   if !has('win32')
     autocmd FocusGained        * call fugitive#ReloadStatus(-2, 0)
   endif
@@ -3862,7 +3862,7 @@ function! s:Log(type, bang, line1, count, args, legacy) abort
   if empty(paths + extra) && a:legacy && len(s:Relative('/'))
     let after = '|echohl WarningMsg|echo ' . string('Use :0Glog or :0Gclog for old behavior of targeting current file') . '|echohl NONE' . after
   endif
-  return s:QuickfixStream(listnr, title, s:UserCommand(dir, cmd), !a:bang, s:function('s:LogParse'), state, path, dir) . after
+  return s:QuickfixStream(listnr, title, s:UserCommandList(dir) + cmd, !a:bang, s:function('s:LogParse'), state, path, dir) . after
 endfunction
 
 call s:command("-bang -nargs=? -range=-1 -addr=windows -complete=customlist,s:GrepComplete Ggrep", "grep")
@@ -4416,10 +4416,6 @@ function! s:Diff(autodir, keepfocus, mods, ...) abort
     endif
   endif
   try
-    if &diffopt =~# 'vertical'
-      let diffopt = &diffopt
-      set diffopt-=vertical
-    endif
     if exists('parents') && len(parents) > 1
       let mods = (a:autodir ? s:diff_modifier(len(parents) + 1) : '') . s:Mods(mods, 'leftabove')
       let nr = bufnr('')
@@ -4482,6 +4478,10 @@ function! s:Diff(autodir, keepfocus, mods, ...) abort
       let mods = s:Mods(mods, 'leftabove')
     endif
     let mods = (a:autodir ? s:diff_modifier(2) : '') . mods
+    if &diffopt =~# 'vertical'
+      let diffopt = &diffopt
+      set diffopt-=vertical
+    endif
     execute mods 'diffsplit' s:fnameescape(spec)
     let &l:readonly = &l:readonly
     redraw

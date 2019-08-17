@@ -105,6 +105,7 @@ ale-asciidoc-textlint	ale-asciidoc.txt	/*ale-asciidoc-textlint*
 ale-asciidoc-write-good	ale-asciidoc.txt	/*ale-asciidoc-write-good*
 ale-asm-gcc	ale-asm.txt	/*ale-asm-gcc*
 ale-asm-options	ale-asm.txt	/*ale-asm-options*
+ale-asyncomplete-integration	ale.txt	/*ale-asyncomplete-integration*
 ale-awk-gawk	ale-awk.txt	/*ale-awk-gawk*
 ale-awk-options	ale-awk.txt	/*ale-awk-options*
 ale-bib-bibclean	ale-bib.txt	/*ale-bib-bibclean*
