@@ -707,12 +707,10 @@ endfunction
 function! s:FindWordInProject()
   let needle = s:get_visual_selection()
   let dir = MyGetProjectDirectory()
-  let cmd = "cd " . dir
-  exe cmd
-  let cmd = "Rg " . needle
-  execute cmd
+  wincmd l
+  exe "cd " . dir
+  execute "Rg " . needle
 endfunction
-nnoremap <leader>r :call <SID>FindWordInProject()<CR>
 vnoremap <leader>r :call <SID>FindWordInProject()<CR>
 
 " Visual Mode */# from Scrooloose {{{
