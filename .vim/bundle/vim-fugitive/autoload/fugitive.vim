@@ -146,31 +146,33 @@ endfunction
 let s:nowait = v:version >= 704 ? '<nowait>' : ''
 
 function! s:Map(mode, lhs, rhs, ...) abort
-  let flags = (a:0 ? a:1 : '') . (a:rhs =~# '<Plug>' ? '' : '<script>')
-  let head = a:lhs
-  let tail = ''
-  let keys = get(g:, a:mode.'remap', {})
-  if type(keys) == type([])
-    return
-  endif
-  while !empty(head)
-    if has_key(keys, head)
-      let head = keys[head]
-      if empty(head)
-        return
+  for mode in split(a:mode, '\zs')
+    let flags = (a:0 ? a:1 : '') . (a:rhs =~# '<Plug>' ? '' : '<script>')
+    let head = a:lhs
+    let tail = ''
+    let keys = get(g:, mode.'remap', {})
+    if type(keys) == type([])
+      return
+    endif
+    while !empty(head)
+      if has_key(keys, head)
+        let head = keys[head]
+        if empty(head)
+          return
+        endif
+        break
       endif
-      break
+      let tail = matchstr(head, '<[^<>]*>$\|.$') . tail
+      let head = substitute(head, '<[^<>]*>$\|.$', '', '')
+    endwhile
+    if flags !~# '<unique>' || empty(mapcheck(head.tail, mode))
+      exe mode.'map <buffer>' s:nowait flags head.tail a:rhs
+      if a:0 > 1
+        let b:undo_ftplugin = get(b:, 'undo_ftplugin', 'exe') .
+              \ '|sil! exe "' . mode . 'unmap <buffer> ' . head.tail . '"'
+      endif
     endif
-    let tail = matchstr(head, '<[^<>]*>$\|.$') . tail
-    let head = substitute(head, '<[^<>]*>$\|.$', '', '')
-  endwhile
-  if flags !~# '<unique>' || empty(mapcheck(head.tail, a:mode))
-    exe a:mode.'map <buffer>' s:nowait flags head.tail a:rhs
-    if a:0 > 1
-      let b:undo_ftplugin = get(b:, 'undo_ftplugin', 'exe') .
-            \ '|sil! exe "' . a:mode . 'unmap <buffer> ' . head.tail . '"'
-    endif
-  endif
+  endfor
 endfunction
 
 " Section: Quickfix
@@ -1810,12 +1812,12 @@ function! fugitive#BufReadStatus() abort
     call s:Map('n', 'u', ":<C-U>execute <SID>Do('Unstage',0)<CR>", '<silent>')
     call s:Map('x', 'u', ":<C-U>execute <SID>Do('Unstage',1)<CR>", '<silent>')
     call s:Map('n', 'U', ":exe <SID>EchoExec('reset', '-q')<CR>", '<silent>')
-    call s:MapEx('gu', "exe <SID>StageJump(v:count, 'Untracked', 'Unstaged')")
-    call s:MapEx('gU', "exe <SID>StageJump(v:count, 'Unstaged', 'Untracked')")
-    call s:MapEx('gs', "exe <SID>StageJump(v:count, 'Staged')")
-    call s:MapEx('gp', "exe <SID>StageJump(v:count, 'Unpushed')")
-    call s:MapEx('gP', "exe <SID>StageJump(v:count, 'Unpulled')")
-    call s:MapEx('gr', "exe <SID>StageJump(v:count, 'Rebasing')")
+    call s:MapMotion('gu', "exe <SID>StageJump(v:count, 'Untracked', 'Unstaged')")
+    call s:MapMotion('gU', "exe <SID>StageJump(v:count, 'Unstaged', 'Untracked')")
+    call s:MapMotion('gs', "exe <SID>StageJump(v:count, 'Staged')")
+    call s:MapMotion('gp', "exe <SID>StageJump(v:count, 'Unpushed')")
+    call s:MapMotion('gP', "exe <SID>StageJump(v:count, 'Unpulled')")
+    call s:MapMotion('gr', "exe <SID>StageJump(v:count, 'Rebasing')")
     call s:Map('n', 'C', ":<C-U>Gcommit<CR>:echohl WarningMsg<Bar>echo ':Gstatus C is deprecated in favor of cc'<Bar>echohl NONE<CR>", '<silent>')
     call s:Map('n', 'a', ":<C-U>execute <SID>Do('Toggle',0)<CR>", '<silent>')
     call s:Map('n', 'i', ":<C-U>execute <SID>NextExpandedHunk(v:count1)<CR>", '<silent>')
@@ -2831,6 +2833,23 @@ function! s:PreviousSectionEnd(count) abort
   return search('^.', 'Wb')
 endfunction
 
+function! s:PatchSearchExpr(reverse) abort
+  let line = getline('.')
+  if col('.') ==# 1 && line =~# '^[+-]'
+    if line =~# '^[+-]\{3\} '
+      let pattern = '^[+-]\{3\} ' . substitute(escape(strpart(line, 4), '^$.*[]~\'), '^\w/', '\\w/', '') . '$'
+    else
+      let pattern = '^[+-]\s*' . escape(substitute(strpart(line, 1), '^\s*\|\s*$', '', ''), '^$.*[]~\') . '\s*$'
+    endif
+    if a:reverse
+      return '?' . escape(pattern, '/') . "\<CR>"
+    else
+      return '/' . escape(pattern, '/?') . "\<CR>"
+    endif
+  endif
+  return a:reverse ? '#' : '*'
+endfunction
+
 function! s:StageInline(mode, ...) abort
   if &filetype !=# 'fugitive'
     return ''
@@ -2869,7 +2888,7 @@ function! s:StageInline(mode, ...) abort
       endif
       continue
     endif
-    if !has_key(b:fugitive_diff, info.section) || info.status !~# '^[ADMR]$' || a:mode ==# 'hide'
+    if !has_key(b:fugitive_diff, info.section) || info.status !~# '^[ADMRU]$' || a:mode ==# 'hide'
       continue
     endif
     let mode = ''
@@ -2980,8 +2999,10 @@ function! s:StageApply(info, reverse, extra) abort
       call insert(lines, getline(start))
     endif
   endwhile
-  if start == 0 || getline(start) !~# '^@@ '
-    call s:throw("could not find hunk")
+  if start == 0
+    throw 'fugitive: cold not find hunk'
+  elseif getline(start) !~# '^@@ '
+    throw 'fugitive: cannot apply conflict hunk'
   endif
   let i = b:fugitive_expanded[info.section][info.filename][0]
   let head = []
@@ -3004,42 +3025,48 @@ function! s:StageApply(info, reverse, extra) abort
 endfunction
 
 function! s:StageDelete(lnum1, lnum2, count) abort
-  let info = get(s:Selection(a:lnum1, a:lnum2), 0, {'filename': ''})
-  if empty(info.filename)
-    return ''
-  endif
-  let hash = s:TreeChomp('hash-object', '-w', '--', info.paths[0])
+  let restore = []
+  let err = ''
   try
-    if empty(hash)
-      return ''
-    elseif info.patch
-      call s:StageApply(info, 1, info.section ==# 'Staged' ? ['--index'] : [])
-    elseif info.status ==# '?'
-      call s:TreeChomp('clean', '-f', '--', info.paths[0])
-    elseif a:count == 2
-      call s:TreeChomp('checkout', '--ours', '--', info.paths[0])
-    elseif a:count == 3
-      call s:TreeChomp('checkout', '--theirs', '--', info.paths[0])
-    elseif info.status =~# '[ADU]' &&
-          \ get(b:fugitive_status[info.section ==# 'Staged' ? 'Unstaged' : 'Staged'], info.filename, '') =~# '[AU]'
-      call s:TreeChomp('checkout', info.section ==# 'Staged' ? '--ours' : '--theirs', '--', info.paths[0])
-    elseif info.status ==# 'U'
-      call s:TreeChomp('rm', '--', info.paths[0])
-    elseif info.status ==# 'A'
-      call s:TreeChomp('rm', '-f', '--', info.paths[0])
-    elseif info.section ==# 'Unstaged'
-      call s:TreeChomp('checkout', '--', info.paths[0])
-    else
-      call s:TreeChomp('checkout', 'HEAD^{}', '--', info.paths[0])
-    endif
+    for info in s:Selection(a:lnum1, a:lnum2)
+      if empty(info.paths)
+        continue
+      endif
+      let hash = s:TreeChomp('hash-object', '-w', '--', info.paths[0])
+      if empty(hash)
+        continue
+      endif
+      if info.patch
+        call s:StageApply(info, 1, info.section ==# 'Staged' ? ['--index'] : [])
+      elseif info.status ==# '?'
+        call s:TreeChomp('clean', '-f', '--', info.paths[0])
+      elseif a:count == 2
+        call s:TreeChomp('checkout', '--ours', '--', info.paths[0])
+      elseif a:count == 3
+        call s:TreeChomp('checkout', '--theirs', '--', info.paths[0])
+      elseif info.status =~# '[ADU]' &&
+            \ get(b:fugitive_status[info.section ==# 'Staged' ? 'Unstaged' : 'Staged'], info.filename, '') =~# '[AU]'
+        call s:TreeChomp('checkout', info.section ==# 'Staged' ? '--ours' : '--theirs', '--', info.paths[0])
+      elseif info.status ==# 'U'
+        call s:TreeChomp('rm', '--', info.paths[0])
+      elseif info.status ==# 'A'
+        call s:TreeChomp('rm', '-f', '--', info.paths[0])
+      elseif info.section ==# 'Unstaged'
+        call s:TreeChomp('checkout', '--', info.paths[0])
+      else
+        call s:TreeChomp('checkout', 'HEAD^{}', '--', info.paths[0])
+      endif
+      call add(restore, ':Gsplit ' . s:fnameescape(info.relative[0]) . '|Gread ' . hash[0:6])
+    endfor
   catch /^fugitive:/
-    return 'echoerr ' . string(v:exception)
+    let err = '|echoerr ' . string(v:exception)
   endtry
+  if empty(restore)
+    return err[1:-1]
+  endif
   exe s:ReloadStatus()
   call s:StageReveal()
-  let @@ = hash
-  return 'checktime|redraw|echomsg ' .
-        \ string('To restore, :Gedit ' . info.relative[0] . '|Gread ' . hash[0:6])
+  return 'checktime|redraw|echomsg ' . string('To restore, ' . join(restore, '|')) . err
 endfunction
 
 function! s:StageIgnore(lnum1, lnum2, count) abort
@@ -3755,7 +3782,7 @@ function! s:LogFlushQueue(state) abort
   return queue
 endfunction
 
-function! s:LogParse(state, target, dir, line) abort
+function! s:LogParse(state, dir, line) abort
   if a:state.context ==# 'hunk' && a:line =~# '^[-+ ]'
     return []
   endif
@@ -3771,8 +3798,8 @@ function! s:LogParse(state, target, dir, line) abort
     let queue = s:LogFlushQueue(a:state)
     let a:state.queue = [{
           \ 'valid': 1,
-          \ 'filename': a:state.base . a:target,
-          \ 'module': a:state.base_module . substitute(a:target, '^/', ':', ''),
+          \ 'filename': a:state.base . a:state.target,
+          \ 'module': a:state.base_module . substitute(a:state.target, '^/', ':', ''),
           \ 'text': a:state.message}]
     let a:state.child_found = 0
     return queue
@@ -3784,7 +3811,7 @@ function! s:LogParse(state, target, dir, line) abort
     let a:state.diffing = a:line[5:-1]
   elseif a:line =~# '^@@[^@]*+\d' && has_key(a:state, 'diffing') && has_key(a:state, 'base')
     let a:state.context = 'hunk'
-    if empty(a:target) || a:target ==# a:state.diffing
+    if empty(a:state.target) || a:state.target ==# a:state.diffing
       let a:state.child_found = 1
       call add(a:state.queue, {
             \ 'valid': 1,
@@ -3792,6 +3819,18 @@ function! s:LogParse(state, target, dir, line) abort
             \ 'module': a:state.base_module . substitute(a:state.diffing, '^/', ':', ''),
             \ 'lnum': +matchstr(a:line, '+\zs\d\+'),
             \ 'text': a:state.message . matchstr(a:line, ' @@\+ .\+')})
+    endif
+  elseif a:state.follow &&
+        \ a:line =~# '^ \%(mode change \d\|\%(create\|delete\) mode \d\|\%(rename\|copy\|rewrite\) .* (\d\+%)$\)'
+    let rename = matchstr(a:line, '^ rename \zs.* => .*\ze (\d\+%)$')
+    if len(rename)
+      let rename = rename =~# '{.* => .*}' ? rename : '{' . rename . '}'
+      if a:state.target ==# simplify('/' . substitute(rename, '{.* => \(.*\)}', '\1', ''))
+        let a:state.target = simplify('/' . substitute(rename, '{\(.*\) => .*}', '\1', ''))
+      endif
+    endif
+    if !get(a:state, 'ignore_summary')
+      call add(a:state.queue, {'text': a:line})
     endif
   elseif a:state.context ==# 'commit' || a:state.context ==# 'init'
     call add(a:state.queue, {'text': a:line})
@@ -3823,11 +3862,22 @@ function! s:Log(type, bang, line1, count, args, legacy) abort
   endif
   let range = ''
   let extra = []
+  let state = {'context': 'init', 'child_found': 0, 'queue': [], 'follow': 0}
   if path =~# '^/\.git\%(/\|$\)\|^$'
     let path = ''
   elseif a:line1 == 0
     let range = "0," . (a:count ? a:count : bufnr(''))
     let extra = ['.' . path]
+    if (empty(paths) || paths ==# ['--']) && !s:HasOpt(args, '--no-follow')
+      let state.follow = 1
+      if !s:HasOpt(args, '--follow')
+        call insert(args, '--follow')
+      endif
+      if !s:HasOpt(args, '--summary')
+        call insert(args, '--summary')
+        let state.ignore_summary = 1
+      endif
+    endif
   elseif a:count > 0
     if !s:HasOpt(args, '--merges', '--no-merges')
       call insert(args, '--no-merges')
@@ -3857,12 +3907,12 @@ function! s:Log(type, bang, line1, count, args, legacy) abort
   call extend(cmd,
         \ ['--no-color', '--no-ext-diff', '--pretty=format:fugitive ' . format] +
         \ args + paths + extra)
-  let state = {'context': 'init', 'child_found': 0, 'queue': []}
+  let state.target = path
   let title = (listnr < 0 ? ':Gclog ' : ':Gllog ') . s:fnameescape(args + paths)
   if empty(paths + extra) && a:legacy && len(s:Relative('/'))
     let after = '|echohl WarningMsg|echo ' . string('Use :0Glog or :0Gclog for old behavior of targeting current file') . '|echohl NONE' . after
   endif
-  return s:QuickfixStream(listnr, title, s:UserCommandList(dir) + cmd, !a:bang, s:function('s:LogParse'), state, path, dir) . after
+  return s:QuickfixStream(listnr, title, s:UserCommandList(dir) + cmd, !a:bang, s:function('s:LogParse'), state, dir) . after
 endfunction
 
 call s:command("-bang -nargs=? -range=-1 -addr=windows -complete=customlist,s:GrepComplete Ggrep", "grep")
@@ -4108,6 +4158,7 @@ function! s:WriteCommand(line1, line2, range, count, bang, mods, reg, arg, args)
             silent execute '1,'.last.'delete_'
             silent write!
             silent execute lnum
+            diffupdate
             let did = 1
           finally
             if exists('restorewinnr')
@@ -4115,6 +4166,7 @@ function! s:WriteCommand(line1, line2, range, count, bang, mods, reg, arg, args)
             endif
             execute 'tabnext '.mytab
           endtry
+          break
         endif
       endfor
     endfor
@@ -5359,7 +5411,7 @@ function! s:NavigateUp(count) abort
   return rev
 endfunction
 
-function! s:MapEx(lhs, rhs) abort
+function! s:MapMotion(lhs, rhs) abort
   call s:Map('n', a:lhs, ":<C-U>" . a:rhs . "<CR>", "<silent>")
   call s:Map('o', a:lhs, ":<C-U>" . a:rhs . "<CR>", "<silent>")
   call s:Map('x', a:lhs, ":<C-U>exe 'normal! gv'<Bar>" . a:rhs . "<CR>", "<silent>")
@@ -5381,7 +5433,6 @@ function! fugitive#MapJumps(...) abort
       call s:Map('n', 'dh', ":<C-U>call <SID>DiffClose()<Bar>Ghdiffsplit!<CR>", '<silent>')
       call s:Map('n', 'ds', ":<C-U>call <SID>DiffClose()<Bar>Ghdiffsplit!<CR>", '<silent>')
       call s:Map('n', 'dv', ":<C-U>call <SID>DiffClose()<Bar>Gvdiffsplit!<CR>", '<silent>')
-      call s:Map('n', 'dp', ":<C-U>Git diff !^..! -- %<CR>", '<silent>')
       call s:Map('n', 'd?', ":<C-U>help fugitive_d<CR>", '<silent>')
 
     else
@@ -5400,22 +5451,25 @@ function! fugitive#MapJumps(...) abort
         endif
         nnoremap <buffer> <silent> <C-N> :<C-U>execute <SID>NextItem(v:count1)<CR>
       endif
-      call s:MapEx('(', 'exe <SID>PreviousItem(v:count1)')
-      call s:MapEx(')', 'exe <SID>NextItem(v:count1)')
-      call s:MapEx('K', 'exe <SID>PreviousHunk(v:count1)')
-      call s:MapEx('J', 'exe <SID>NextHunk(v:count1)')
-      call s:MapEx('[c', 'exe <SID>PreviousHunk(v:count1)')
-      call s:MapEx(']c', 'exe <SID>NextHunk(v:count1)')
-      call s:MapEx('[/', 'exe <SID>PreviousFile(v:count1)')
-      call s:MapEx(']/', 'exe <SID>NextFile(v:count1)')
-      call s:MapEx('[m', 'exe <SID>PreviousFile(v:count1)')
-      call s:MapEx(']m', 'exe <SID>NextFile(v:count1)')
-      call s:MapEx('[[', 'exe <SID>PreviousSection(v:count1)')
-      call s:MapEx(']]', 'exe <SID>NextSection(v:count1)')
-      call s:MapEx('[]', 'exe <SID>PreviousSectionEnd(v:count1)')
-      call s:MapEx('][', 'exe <SID>NextSectionEnd(v:count1)')
+      call s:MapMotion('(', 'exe <SID>PreviousItem(v:count1)')
+      call s:MapMotion(')', 'exe <SID>NextItem(v:count1)')
+      call s:MapMotion('K', 'exe <SID>PreviousHunk(v:count1)')
+      call s:MapMotion('J', 'exe <SID>NextHunk(v:count1)')
+      call s:MapMotion('[c', 'exe <SID>PreviousHunk(v:count1)')
+      call s:MapMotion(']c', 'exe <SID>NextHunk(v:count1)')
+      call s:MapMotion('[/', 'exe <SID>PreviousFile(v:count1)')
+      call s:MapMotion(']/', 'exe <SID>NextFile(v:count1)')
+      call s:MapMotion('[m', 'exe <SID>PreviousFile(v:count1)')
+      call s:MapMotion(']m', 'exe <SID>NextFile(v:count1)')
+      call s:MapMotion('[[', 'exe <SID>PreviousSection(v:count1)')
+      call s:MapMotion(']]', 'exe <SID>NextSection(v:count1)')
+      call s:MapMotion('[]', 'exe <SID>PreviousSectionEnd(v:count1)')
+      call s:MapMotion('][', 'exe <SID>NextSectionEnd(v:count1)')
+      call s:Map('nxo', '*', '<SID>PatchSearchExpr(0)', '<expr>')
+      call s:Map('nxo', '#', '<SID>PatchSearchExpr(1)', '<expr>')
     endif
     call s:Map('n', 'S',    ':<C-U>echoerr "Use gO"<CR>', '<silent>')
+    call s:Map('n', 'dq', ":<C-U>call <SID>DiffClose()<CR>", '<silent>')
     call s:Map('n', '-', ":<C-U>exe 'Gedit ' . <SID>fnameescape(<SID>NavigateUp(v:count1))<Bar> if getline(1) =~# '^tree \x\{40,\}$' && empty(getline(2))<Bar>call search('^'.escape(expand('#:t'),'.*[]~\').'/\=$','wc')<Bar>endif<CR>", '<silent>')
     call s:Map('n', 'P',     ":<C-U>exe 'Gedit ' . <SID>fnameescape(<SID>ContainingCommit().'^'.v:count1.<SID>Relative(':'))<CR>", '<silent>')
     call s:Map('n', '~',     ":<C-U>exe 'Gedit ' . <SID>fnameescape(<SID>ContainingCommit().'~'.v:count1.<SID>Relative(':'))<CR>", '<silent>')

@@ -95,6 +95,7 @@ ale#other_source#StartChecking()	ale.txt	/*ale#other_source#StartChecking()*
 ale#statusline#Count()	ale.txt	/*ale#statusline#Count()*
 ale#statusline#FirstProblem()	ale.txt	/*ale#statusline#FirstProblem()*
 ale-ada-gcc	ale-ada.txt	/*ale-ada-gcc*
+ale-ada-gnatpp	ale-ada.txt	/*ale-ada-gnatpp*
 ale-ada-options	ale-ada.txt	/*ale-ada-options*
 ale-alex-options	ale.txt	/*ale-alex-options*
 ale-ansible-ansible-lint	ale-ansible.txt	/*ale-ansible-ansible-lint*
@@ -250,6 +251,7 @@ ale-haskell-ghc-mod	ale-haskell.txt	/*ale-haskell-ghc-mod*
 ale-haskell-hdevtools	ale-haskell.txt	/*ale-haskell-hdevtools*
 ale-haskell-hfmt	ale-haskell.txt	/*ale-haskell-hfmt*
 ale-haskell-hie	ale-haskell.txt	/*ale-haskell-hie*
+ale-haskell-hindent	ale-haskell.txt	/*ale-haskell-hindent*
 ale-haskell-hlint	ale-haskell.txt	/*ale-haskell-hlint*
 ale-haskell-options	ale-haskell.txt	/*ale-haskell-options*
 ale-haskell-stack-build	ale-haskell.txt	/*ale-haskell-stack-build*
@@ -546,6 +548,7 @@ b:ale-c-flawfinder	ale-c.txt	/*b:ale-c-flawfinder*
 b:ale-cpp-flawfinder	ale-cpp.txt	/*b:ale-cpp-flawfinder*
 b:ale_ada_gcc_executable	ale-ada.txt	/*b:ale_ada_gcc_executable*
 b:ale_ada_gcc_options	ale-ada.txt	/*b:ale_ada_gcc_options*
+b:ale_ada_gnatpp_options	ale-ada.txt	/*b:ale_ada_gnatpp_options*
 b:ale_alex_executable	ale.txt	/*b:ale_alex_executable*
 b:ale_alex_use_global	ale.txt	/*b:ale_alex_use_global*
 b:ale_ansible_ansible_lint_executable	ale-ansible.txt	/*b:ale_ansible_ansible_lint_executable*
@@ -716,6 +719,7 @@ b:ale_haskell_hdevtools_executable	ale-haskell.txt	/*b:ale_haskell_hdevtools_exe
 b:ale_haskell_hdevtools_options	ale-haskell.txt	/*b:ale_haskell_hdevtools_options*
 b:ale_haskell_hfmt_executable	ale-haskell.txt	/*b:ale_haskell_hfmt_executable*
 b:ale_haskell_hie_executable	ale-haskell.txt	/*b:ale_haskell_hie_executable*
+b:ale_haskell_hindent_executable	ale-haskell.txt	/*b:ale_haskell_hindent_executable*
 b:ale_haskell_hlint_executable	ale-haskell.txt	/*b:ale_haskell_hlint_executable*
 b:ale_haskell_stack_build_options	ale-haskell.txt	/*b:ale_haskell_stack_build_options*
 b:ale_haskell_stack_ghc_options	ale-haskell.txt	/*b:ale_haskell_stack_ghc_options*
@@ -1103,6 +1107,7 @@ g:ale-c-flawfinder	ale-c.txt	/*g:ale-c-flawfinder*
 g:ale-cpp-flawfinder	ale-cpp.txt	/*g:ale-cpp-flawfinder*
 g:ale_ada_gcc_executable	ale-ada.txt	/*g:ale_ada_gcc_executable*
 g:ale_ada_gcc_options	ale-ada.txt	/*g:ale_ada_gcc_options*
+g:ale_ada_gnatpp_options	ale-ada.txt	/*g:ale_ada_gnatpp_options*
 g:ale_alex_executable	ale.txt	/*g:ale_alex_executable*
 g:ale_alex_use_global	ale.txt	/*g:ale_alex_use_global*
 g:ale_ansible_ansible_lint_executable	ale-ansible.txt	/*g:ale_ansible_ansible_lint_executable*
@@ -1286,6 +1291,7 @@ g:ale_haskell_hdevtools_executable	ale-haskell.txt	/*g:ale_haskell_hdevtools_exe
 g:ale_haskell_hdevtools_options	ale-haskell.txt	/*g:ale_haskell_hdevtools_options*
 g:ale_haskell_hfmt_executable	ale-haskell.txt	/*g:ale_haskell_hfmt_executable*
 g:ale_haskell_hie_executable	ale-haskell.txt	/*g:ale_haskell_hie_executable*
+g:ale_haskell_hindent_executable	ale-haskell.txt	/*g:ale_haskell_hindent_executable*
 g:ale_haskell_hlint_executable	ale-haskell.txt	/*g:ale_haskell_hlint_executable*
 g:ale_haskell_stack_build_options	ale-haskell.txt	/*g:ale_haskell_stack_build_options*
 g:ale_haskell_stack_ghc_options	ale-haskell.txt	/*g:ale_haskell_stack_ghc_options*
