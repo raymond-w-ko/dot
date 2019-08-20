@@ -915,8 +915,8 @@ function! fugitive#Find(object, ...) abort
     let f = 'fugitive://' . dir . '//0/' . rev[1:-1]
   else
     if !exists('f')
-      let commit = substitute(matchstr(rev, '^[^:]\+\|^:.*'), '^@\%($\|[~^]\|@{\)\@=', 'HEAD', '')
-      let file = substitute(matchstr(rev, '^[^:]\+\zs:.*'), '^:', '/', '')
+      let commit = substitute(matchstr(rev, '^[^:.-][^:]*\|^:.*'), '^@\%($\|[~^]\|@{\)\@=', 'HEAD', '')
+      let file = substitute(matchstr(rev, '^[^:.-][^:]*\zs:.*'), '^:', '/', '')
       if file =~# '^/\.\.\=\%(/\|$\)\|^//\|^/\a\+:'
         let file = file =~# '^/\.' ? simplify(getcwd() . file) : file[1:-1]
         if s:cpath(base . '/', (file . '/')[0 : len(base)])
@@ -928,6 +928,11 @@ function! fugitive#Find(object, ...) abort
           endif
           return file
         endif
+      endif
+      let commits = split(commit, '\.\.\.-\@!', 1)
+      if len(commits) == 2
+        call map(commits, 'empty(v:val) || v:val ==# "@" ? "HEAD" : v:val')
+        let commit = matchstr(s:ChompDefault('', [dir, 'merge-base'] + commits + ['--']), '\<[0-9a-f]\{40,\}\>')
       endif
       if commit !~# '^[0-9a-f]\{40,\}$'
         let commit = matchstr(s:ChompDefault('', [dir, 'rev-parse', '--verify', commit, '--']), '\<[0-9a-f]\{40,\}\>')
@@ -1833,7 +1838,7 @@ function! fugitive#BufReadStatus() abort
     call s:Map('n', 'I', ":<C-U>execute <SID>StagePatch(line('.'),line('.'))<CR>", '<silent>')
     call s:Map('x', 'I', ":<C-U>execute <SID>StagePatch(line(\"'<\"),line(\"'>\"))<CR>", '<silent>')
     if empty(mapcheck('q', 'n'))
-      nnoremap <buffer> <silent> q :<C-U>if bufnr('$') == 1<Bar>quit<Bar>else<Bar>bdelete<Bar>endif<CR>
+      nnoremap <buffer> <silent> q :<C-U>if bufnr('$') == 1<Bar>quit<Bar>else<Bar>bdelete<Bar>endif<Bar>echohl WarningMsg<Bar>echo ':Gstatus q is deprecated in favor of gq or the built-in <C-W>q'<Bar>echohl NONE<CR>
     endif
     call s:Map('n', 'gq', ":<C-U>if bufnr('$') == 1<Bar>quit<Bar>else<Bar>bdelete<Bar>endif<CR>", '<silent>')
     call s:Map('n', 'R', ":echohl WarningMsg<Bar>echo 'Reloading is automatic.  Use :e to force'<Bar>echohl NONE<CR>", '<silent>')
@@ -4500,9 +4505,6 @@ function! s:Diff(autodir, keepfocus, mods, ...) abort
           return 'echoerr ' . string(v:exception)
         endtry
       endif
-      if file !~# ':' && file !~# '^/' && s:TreeChomp('cat-file','-t',file) =~# '^\%(tag\|commit\)$'
-        let file = file.s:Relative(':')
-      endif
     elseif exists('parents') && len(parents)
       let file = parents[-1]
     elseif len(commit)
@@ -4514,6 +4516,9 @@ function! s:Diff(autodir, keepfocus, mods, ...) abort
       let file = s:Relative(':0:')
     endif
     let spec = s:Generate(file)
+    if spec =~# '^fugitive:' && empty(s:DirCommitFile(spec)[2])
+      let spec = FugitiveVimPath(spec . s:Relative('/'))
+    endif
     let restore = s:diff_restore()
     let w:fugitive_diff_restore = restore
     if s:CompareAge(commit, s:DirCommitFile(spec)[1]) < 0
