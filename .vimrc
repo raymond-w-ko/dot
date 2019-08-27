@@ -1699,6 +1699,7 @@ let s:python_style_comment_filestypes = {
     \ "gitcommit": 1,
     \ "sh": 1,
     \ "make": 1,
+    \ "yaml": 1,
     \ }
 let s:lisp_style_comment_filestypes = {
     \ "clojure": 1,
