@@ -9,20 +9,11 @@ let g:loaded_plasmaplace = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " global vars
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if !exists("g:plasmaplace_use_vertical_split")
-  let g:plasmaplace_use_vertical_split = 1
-endif
-if !exists("g:plasmaplace_hide_repl_after_create")
-  let g:plasmaplace_hide_repl_after_create = 1
-endif
-if !exists("g:plasmaplace_repl_split_wincmd")
-  let g:plasmaplace_repl_split_wincmd = "L"
-endif
-if !exists("g:plasmaplace_repl_split_cmd")
-  let g:plasmaplace_repl_split_cmd = "botright vertical"
-endif
 if !exists("g:plasmaplace_scratch_split_cmd")
   let g:plasmaplace_scratch_split_cmd = "botright vnew"
+endif
+if !exists("g:plasmaplace_command_timeout_ms")
+  let g:plasmaplace_command_timeout_ms = 4096
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -90,7 +81,7 @@ endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-function! s:get_project_type(path)
+function! s:get_project_type(path) abort
   if filereadable(a:path . "/project.clj")
     return "default"
   elseif filereadable(a:path . "/shadow-cljs.edn")
@@ -101,7 +92,7 @@ function! s:get_project_type(path)
   return 0
 endfunction
 
-function! s:get_project_path()
+function! s:get_project_path() abort
   let path = expand("%:p:h")
   let prev_path = path
   while 1
@@ -117,7 +108,7 @@ function! s:get_project_path()
   endwhile
 endfunction
 
-function! s:get_project_key()
+function! s:get_project_key() abort
   let project_path = s:get_project_path()
   let tokens = split(project_path, '\v\\|\/')
   let token = filter(tokens, 'strlen(v:val) > 0')
@@ -125,7 +116,7 @@ function! s:get_project_key()
   return join(tokens, "_")
 endfunction
 
-function! s:set_local_window_options()
+function! s:set_local_window_options() abort
   setlocal foldcolumn=0
   setlocal nofoldenable
   setlocal number
@@ -162,7 +153,7 @@ function! s:ch_get_id(ch)
   let id = substitute(a:ch, '^channel \(\d\+\) \(open\|closed\)$', '\1', '')
 endfunction
 
-function! plasmaplace#__job_callback(ch, msg)
+function! plasmaplace#__job_callback(ch, msg) abort
   try
     let ch_id = s:ch_get_id(a:ch)
     let project_key = s:channel_id_to_project_key[ch_id]
@@ -172,7 +163,7 @@ function! plasmaplace#__job_callback(ch, msg)
   endtry
 endfunction
 
-function! plasmaplace#__close_callback(ch)
+function! plasmaplace#__close_callback(ch) abort
     let ch_id = s:ch_get_id(a:ch)
     let project_key = s:channel_id_to_project_key[ch_id]
     call remove(s:channel_id_to_project_key, ch_id)
@@ -184,7 +175,11 @@ function! plasmaplace#__close_callback(ch)
 endfunction
 
 " a lot of the wrapper code is adapted from metakirby5/codi.vim
-function! s:handle_message(project_key, msg)
+function! s:handle_message(project_key, msg) abort
+  if has_key(a:msg, "value")
+    return a:msg["value"]
+  endif
+
   " save for later
   let ret_bufnr = bufnr('%')
   let ret_mode = mode()
@@ -204,7 +199,7 @@ function! s:handle_message(project_key, msg)
   keepjumps call cursor(ret_line, ret_col)
 endfunction
 
-function! s:create_or_get_job(project_key)
+function! s:create_or_get_job(project_key) abort
   if has_key(s:jobs, a:project_key)
     return s:jobs[a:project_key]
   endif
@@ -230,10 +225,12 @@ function! s:create_or_get_job(project_key)
       \ "cwd": s:get_project_path(),
       \ "callback": "plasmaplace#__job_callback",
       \ "close_cb": "plasmaplace#__close_callback",
-      \ "err_mode": "raw",
-      \ "err_io": "file",
-      \ "err_name": "/tmp/plasmaplace.log",
       \ }
+  if 0
+    let options["err_mode"] = "raw"
+    let options["err_io"] = "file"
+    let options["err_name"] = "/tmp/plasmaplace.log"
+  endif
   let job = job_start(["python3", s:daemon_path, port_file_path, project_type], options)
   let s:jobs[a:project_key] = job
   let ch = job_getchannel(job)
@@ -241,21 +238,23 @@ function! s:create_or_get_job(project_key)
   let ch_id = s:ch_get_id(ch)
   let s:channel_id_to_project_key[ch_id] = a:project_key
 
-  let response = ch_evalexpr(ch, ["init"])
-  call plasmaplace#__job_callback(ch, response)
+  let options = {"timeout": g:plasmaplace_command_timeout_ms}
+  let msg = ch_evalexpr(ch, ["init"], options)
+  call s:handle_message(a:project_key, msg)
 endfunction
 
-function! s:repl(cmd)
+function! s:repl(cmd) abort
   let project_key = s:get_project_key()
   let scratch = s:create_or_get_scratch(project_key)
   let job = s:create_or_get_job(project_key)
   let ch = s:channels[project_key]
 
-  let response = ch_evalexpr(ch, a:cmd)
-  call plasmaplace#__job_callback(ch, response)
+  let options = {"timeout": g:plasmaplace_command_timeout_ms}
+  let msg = ch_evalexpr(ch, a:cmd, options)
+  return s:handle_message(project_key, msg)
 endfunction
 
-function! s:window_in_tab(aliases, windows)
+function! s:window_in_tab(aliases, windows) abort
   if type(a:aliases) != v:t_list  | return 0 | endif
   if type(a:windows) != v:t_list | return 0 | endif
   for x in a:aliases
@@ -296,8 +295,7 @@ endfunction
 " operator
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! s:EvalLastForm() abort
-  let cmd = printf("plasmaplace.Eval(%s, %s)", s:last_eval_ns, s:last_eval_form)
-  call plasmaplace#py(cmd)
+  call s:repl(["eval", s:last_eval_ns, s:last_eval_form])
 endfunction
 
 function! s:EvalMotion(type, ...) abort
@@ -460,9 +458,14 @@ function! s:RunTests(bang, count, ...) abort
     let vars = filter(copy(reqs), 'v:val =~# "/"')
     let nses = filter(copy(reqs), 'v:val !~# "/"')
     if len(vars) == 1
-      call add(expr, '(clojure.test/test-vars [#' . vars[0] . '])')
+      call add(expr,
+          \ printf('(%s/test-vars [#', test_ns) 
+          \ . vars[0]
+          \ . '])')
     elseif !empty(vars)
-      call add(expr, join(['(clojure.test/test-vars'] + map(vars, '"#".v:val'), ' ').')')
+      call add(expr, join(
+          \ [printf('(%s/test-vars', test_ns)]
+          \ + map(vars, '"#".v:val'), ' ').')')
     endif
     if !empty(nses)
       call add(expr, join([
@@ -470,9 +473,9 @@ function! s:RunTests(bang, count, ...) abort
           \ ] + nses, ' ').')')
     endif
   endif
+
   let code = join(expr, ' ')
-  call plasmaplace#py(printf("plasmaplace.RunTests(%s)", s:pystr(code)))
-  echo code
+  call s:repl(["eval", s:qsym("user"), code])
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""
@@ -500,13 +503,12 @@ endfunction
 
 function! plasmaplace#Cljfmt() abort
   let code = s:get_current_buffer_contents_as_string()
-  let s:formatted_code = []
-  call plasmaplace#py(printf("plasmaplace.Cljfmt(%s)", s:pystr(code)))
+  let formatted_code = s:repl(["cljfmt", code])
 
-  if len(s:formatted_code) > 0
+  if len(formatted_code) > 0
     " save cursor position and many other things
     let l:curw = winsaveview()
-    call s:replace_buffer(s:formatted_code)
+    call s:replace_buffer(formatted_code)
     " restore our cursor/windows positions
     call winrestview(l:curw)
   endif
@@ -516,10 +518,6 @@ endfunction
 
 function! s:DeleteOtherNreplSessions() abort
   call s:repl(["delete_other_nrepl_sessions"])
-endfunction
-
-function! s:FlushScratchBuffer() abort
-  call plasmaplace#py("plasmaplace.FlushScratchBuffer()")
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""
@@ -563,12 +561,20 @@ function! s:setup_keybinds() abort
   nmap <buffer> cpr :RunTests<CR>
 endfunction
 
+function! s:cleanup_daemons() abort
+  for [project_key, ch] in items(s:channels)
+    let options = {"timeout": g:plasmaplace_command_timeout_ms}
+    let msg = ch_evalexpr(ch, ["exit"], options)
+  endfor
+endfunction
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 augroup plasmaplace
   autocmd!
   autocmd FileType clojure call s:setup_commands()
   autocmd FileType clojure call s:setup_keybinds()
+  autocmd VimLeave * call s:cleanup_daemons()
   autocmd BufWritePost *.clj call s:Require(0, 1, "")
   autocmd BufWritePost *.cljs call s:Require(0, 1, "")
   autocmd BufWritePost *.cljc call s:Require(0, 1, "")
