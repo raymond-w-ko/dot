@@ -2041,10 +2041,19 @@ let g:clojure_maxlines = 512
 " https://github.com/bbatsov/clojure-style-guide#align-docstring-lines
 let g:clojure_align_multiline_strings = 0
 
-" these are default values that should be overriden if needed
 let g:clojure_fuzzy_indent = 1
-let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let']
+let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^go-loop$', '^comment$']
 let g:clojure_fuzzy_indent_blacklist = ['-fn$', '\v^with-%(meta|out-str|loading-context)$']
+let g:clojure_special_indent_words = 'deftype,defrecord,reify,proxy,extend-type,extend-protocol,letfn,comment'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-sexp
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:sexp_filetypes = 'clojure,scheme,lisp,timl,eslisp'
+" Toggle this for vim-sexp to not go into insert mode after wrapping something
+let g:sexp_insert_after_wrap = 1
+" Toggle this to disable automatically creating closing brackets and quotes
+let g:sexp_enable_insert_mode_mappings = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-niji
@@ -2313,20 +2322,6 @@ autocmd FileType c,cpp,objc vnoremap <buffer><Leader>f :ClangFormat<CR>
 " csscomplete.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS noci
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-sexp
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:sexp_filetypes = 'clojure,scheme,lisp,timl,eslisp'
-" Toggle this for vim-sexp to not go into insert mode after wrapping something
-let g:sexp_insert_after_wrap = 1
-" Toggle this to disable automatically creating closing brackets and quotes
-let g:sexp_enable_insert_mode_mappings = 1
-
-let g:clojure_fuzzy_indent = 1
-let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^go-loop$']
-let g:clojure_fuzzy_indent_blacklist = ['-fn$', '\v^with-%(meta|out-str|loading-context)$']
-let g:clojure_special_indent_words = 'deftype,defrecord,reify,proxy,extend-type,extend-protocol,letfn'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-jsx
