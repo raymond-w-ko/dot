@@ -24,7 +24,7 @@ unset appendpath
 
 source /etc/profile
 
-if [[ ! -z ""$XDG_RUNTIME_DIR ]]; then
+if [[ ! -z "$XDG_RUNTIME_DIR" ]]; then
   if ! pgrep -u "$USER" ssh-agent > /dev/null; then
     ssh-agent > "$XDG_RUNTIME_DIR/ssh-agent.env"
   fi
