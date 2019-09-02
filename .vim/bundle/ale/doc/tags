@@ -1630,6 +1630,7 @@ g:ale_shell	ale.txt	/*g:ale_shell*
 g:ale_shell_arguments	ale.txt	/*g:ale_shell_arguments*
 g:ale_sign_column_always	ale.txt	/*g:ale_sign_column_always*
 g:ale_sign_error	ale.txt	/*g:ale_sign_error*
+g:ale_sign_highlight_linenrs	ale.txt	/*g:ale_sign_highlight_linenrs*
 g:ale_sign_info	ale.txt	/*g:ale_sign_info*
 g:ale_sign_offset	ale.txt	/*g:ale_sign_offset*
 g:ale_sign_style_error	ale.txt	/*g:ale_sign_style_error*
