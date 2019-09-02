@@ -6,6 +6,12 @@ if exists("g:loaded_plasmaplace") || v:version < 800 || &compatible
 endif
 let g:loaded_plasmaplace = 1
 
+if !has("python3")
+  echoerr "vim-plasmaplace plugin requires python3"
+else
+  python3 import vim
+endif
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " global vars
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -28,7 +34,6 @@ let s:channels = {}
 let s:channel_id_to_project_key = {}
 let s:last_eval_ns = ""
 let s:last_eval_form = ""
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " utils
@@ -79,10 +84,21 @@ function! plasmaplace#ns() abort
   endif
 endfunction
 
-python3 import vim
-function! plasmaplace#get_buffer_num_lines(bufnr) abort
-  let numlines = py3eval('len(vim.buffers[' . a:bufnr . '])')
+" get number of lines in a buffer
+function! plasmaplace#get_buffer_num_lines(buffer) abort
+  let numlines = py3eval('len(vim.buffers[' . a:buffer . '])')
   return numlines
+endfunction
+
+" get channel ID number from channel object
+function! s:ch_get_id(ch) abort
+  let id = substitute(a:ch, '^channel \(\d\+\) \(open\|closed\)$', '\1', '')
+endfunction
+
+function! s:echo_warning(msg)
+  echohl WarningMsg
+  echo a:msg
+  echohl None
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -148,15 +164,11 @@ function! s:create_or_get_scratch(project_key) abort
   call setbufline(bnum, 1, ";; Loading Clojure REPL...")
   nnoremap <buffer> q :q<CR>
   nnoremap <buffer> gq :q<CR>
-  nnoremap <buffer> <CR> :call <SID>ShowRepl()<CR>
+  " nnoremap <buffer> <CR> :call <SID>ShowRepl()<CR>
   let s:repl_scratch_buffers[a:project_key] = bnum
   wincmd p
   redraw
   return bnum
-endfunction
-
-function! s:ch_get_id(ch)
-  let id = substitute(a:ch, '^channel \(\d\+\) \(open\|closed\)$', '\1', '')
 endfunction
 
 function! plasmaplace#__job_callback(ch, msg) abort
@@ -175,21 +187,29 @@ function! plasmaplace#__close_callback(ch) abort
     call remove(s:channel_id_to_project_key, ch_id)
     call remove(s:jobs, project_key)
     call remove(s:channels, project_key)
-    echohl WarningMsg
-    echo printf("plasmaplace daemon died for project: %s", project_key)
-    echohl None
+    call s:echo_warning(printf("plasmaplace daemon died for project: %s", project_key))
+endfunction
+
+function! s:is_invalid_response(msg) abort
+  return type(a:msg) == v:t_string && a:msg ==# ""
 endfunction
 
 " a lot of the wrapper code is adapted from metakirby5/codi.vim
 function! s:handle_message(project_key, msg) abort
-  if has_key(a:msg, "value")
+  if s:is_invalid_response(a:msg)
+    call s:echo_warning("vim-plasmaplace REPL command timed out")
+  elseif has_key(a:msg, "value")
     return a:msg["value"]
   elseif has_key(a:msg, "lines")
-    call s:append_lines_to_scratch(a:project_key, a:msg["lines"])
+    let skip_center = 0
+    if has_key(a:msg, "skip_center")
+      let skip_center = 1
+    endif
+    call s:append_lines_to_scratch(a:project_key, a:msg["lines"], skip_center)
   endif
 endfunction
 
-function! s:append_lines_to_scratch(project_key, lines) abort
+function! s:append_lines_to_scratch(project_key, lines, skip_center) abort
   " save for later
   let ret_bufnr = bufnr('%')
   let ret_mode = mode()
@@ -199,7 +219,9 @@ function! s:append_lines_to_scratch(project_key, lines) abort
   let scratch_bufnr = s:repl_scratch_buffers[a:project_key]
   let top_line_num = plasmaplace#get_buffer_num_lines(scratch_bufnr) + 1
   call appendbufline(scratch_bufnr, "$", a:lines)
-  call plasmaplace#center_scratch_buf( scratch_bufnr, top_line_num)
+  if !a:skip_center
+    call plasmaplace#center_scratch_buf( scratch_bufnr, top_line_num)
+  endif
 
   " restore mode and position
   if ret_mode =~ '[vV]'
@@ -262,6 +284,11 @@ function! s:repl(cmd) abort
 
   let options = {"timeout": g:plasmaplace_command_timeout_ms}
   let msg = ch_evalexpr(ch, a:cmd, options)
+  if !s:is_invalid_response(msg)
+    if a:cmd[0] == "require"
+      let msg["skip_center"] = 1
+    endif
+  endif
   return s:handle_message(project_key, msg)
 endfunction
 
