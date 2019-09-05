@@ -56,6 +56,8 @@ Plug 'sjl/gundo.vim'
 Plug 'majutsushi/tagbar'
 Plug 'justinmk/vim-dirvish'
 Plug 'zhimsel/vim-stay'
+Plug 'godlygeek/tabular'
+Plug 'mattn/emmet-vim'
 
 " Tim Pope
 Plug 'tpope/vim-sensible'
