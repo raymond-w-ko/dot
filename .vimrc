@@ -268,6 +268,7 @@ set sessionoptions-=curdir
 set sessionoptions-=sesdir
 set sessionoptions-=localoptions
 set sessionoptions-=resize
+set sessionoptions-=winresize
 
 set viewoptions=cursor,folds,slash,unix
 
