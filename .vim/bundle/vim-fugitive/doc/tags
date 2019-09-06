@@ -61,13 +61,13 @@ fugitive-:Gr!	fugitive.txt	/*fugitive-:Gr!*
 fugitive-:Gw	fugitive.txt	/*fugitive-:Gw*
 fugitive-about	fugitive.txt	/*fugitive-about*
 fugitive-commands	fugitive.txt	/*fugitive-commands*
-fugitive-global-mappings	fugitive.txt	/*fugitive-global-mappings*
-fugitive-mappings	fugitive.txt	/*fugitive-mappings*
-fugitive-misc-mappings	fugitive.txt	/*fugitive-misc-mappings*
-fugitive-navigation-mappings	fugitive.txt	/*fugitive-navigation-mappings*
+fugitive-global-maps	fugitive.txt	/*fugitive-global-maps*
+fugitive-maps	fugitive.txt	/*fugitive-maps*
+fugitive-misc-maps	fugitive.txt	/*fugitive-misc-maps*
+fugitive-navigation-maps	fugitive.txt	/*fugitive-navigation-maps*
 fugitive-object	fugitive.txt	/*fugitive-object*
 fugitive-revision	fugitive.txt	/*fugitive-revision*
-fugitive-staging-mappings	fugitive.txt	/*fugitive-staging-mappings*
+fugitive-staging-maps	fugitive.txt	/*fugitive-staging-maps*
 fugitive-statusline	fugitive.txt	/*fugitive-statusline*
 fugitive.txt	fugitive.txt	/*fugitive.txt*
 fugitive_#	fugitive.txt	/*fugitive_#*
@@ -133,3 +133,4 @@ fugitive_star	fugitive.txt	/*fugitive_star*
 fugitive_u	fugitive.txt	/*fugitive_u*
 fugitive_y_CTRL-G	fugitive.txt	/*fugitive_y_CTRL-G*
 fugitive_~	fugitive.txt	/*fugitive_~*
+g:fugitive_no_maps	fugitive.txt	/*g:fugitive_no_maps*
