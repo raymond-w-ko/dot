@@ -1763,11 +1763,12 @@ function! s:SetupBasicSyntaxHighlights()
     syntax region rkoBasicComment start=/\v\/\*/ end=/\v\*\//
   endif
   if has_key(s:c_preprocessor_comment_filestypes, &filetype)
-    syntax region rkoCPreprocessorComment start=/\v^\s*#if\s0/ end=/#endif$/
-    syntax region rkoCPreprocessorIf start=/\v^\s*#if\s[a-zA-Z]+/ end=/$/
-    syntax region rkoCPreprocessorIfDef start=/\v^\s*#ifdef/ end=/$/
-    syntax region rkoCPreprocessorElse start=/\v^\s*#else/ end=/$/
-    syntax region rkoCPreprocessorElIf start=/\v^\s*#elif/ end=/$/
+    syntax region rkoCPreprocessorComment start=/\v^\s*#if\s+0/ end=/#endif$/
+    syntax region rkoCPreprocessorIf start=/\v^\s*#\s*if\s+[a-zA-Z]+/ end=/$/
+    syntax region rkoCPreprocessorIfDef start=/\v^\s*#\s*ifdef/ end=/$/
+    syntax region rkoCPreprocessorIfNdef start=/\v^\s*#\s*ifndef/ end=/$/
+    syntax region rkoCPreprocessorElse start=/\v^\s*#\s*else/ end=/$/
+    syntax region rkoCPreprocessorElIf start=/\v^\s*#\s*elif/ end=/$/
     syntax region rkoCPreprocessorEndif start=/\v^\s*#\s*endif/ end=/$/
     syntax region rkoCPreprocessorDefine start=/\v^\s*#\s*define/ end=/$/
   endif
@@ -1777,6 +1778,7 @@ function! s:SetupBasicSyntaxHighlights()
   highlight link rkoCPreprocessorComment Comment
   highlight link rkoCPreprocessorIf PreProc
   highlight link rkoCPreprocessorIfDef PreProc
+  highlight link rkoCPreprocessorIfNdef PreProc
   highlight link rkoCPreprocessorElse PreProc
   highlight link rkoCPreprocessorElIf PreProc
   highlight link rkoCPreprocessorEndif PreProc
