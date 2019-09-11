@@ -167,6 +167,7 @@ ale-css-stylelint	ale-css.txt	/*ale-css-stylelint*
 ale-cuda-clangformat	ale-cuda.txt	/*ale-cuda-clangformat*
 ale-cuda-nvcc	ale-cuda.txt	/*ale-cuda-nvcc*
 ale-cuda-options	ale-cuda.txt	/*ale-cuda-options*
+ale-d-dfmt	ale-d.txt	/*ale-d-dfmt*
 ale-d-dls	ale-d.txt	/*ale-d-dls*
 ale-d-options	ale-d.txt	/*ale-d-options*
 ale-d-uncrustify	ale-d.txt	/*ale-d-uncrustify*
@@ -635,6 +636,7 @@ b:ale_css_stylelint_options	ale-css.txt	/*b:ale_css_stylelint_options*
 b:ale_css_stylelint_use_global	ale-css.txt	/*b:ale_css_stylelint_use_global*
 b:ale_cuda_nvcc_executable	ale-cuda.txt	/*b:ale_cuda_nvcc_executable*
 b:ale_cuda_nvcc_options	ale-cuda.txt	/*b:ale_cuda_nvcc_options*
+b:ale_d_dfmt_options	ale-d.txt	/*b:ale_d_dfmt_options*
 b:ale_d_dls_executable	ale-d.txt	/*b:ale_d_dls_executable*
 b:ale_dart_dartanalyzer_executable	ale-dart.txt	/*b:ale_dart_dartanalyzer_executable*
 b:ale_dart_dartfmt_executable	ale-dart.txt	/*b:ale_dart_dartfmt_executable*
@@ -1202,6 +1204,7 @@ g:ale_css_stylelint_use_global	ale-css.txt	/*g:ale_css_stylelint_use_global*
 g:ale_cuda_nvcc_executable	ale-cuda.txt	/*g:ale_cuda_nvcc_executable*
 g:ale_cuda_nvcc_options	ale-cuda.txt	/*g:ale_cuda_nvcc_options*
 g:ale_cursor_detail	ale.txt	/*g:ale_cursor_detail*
+g:ale_d_dfmt_options	ale-d.txt	/*g:ale_d_dfmt_options*
 g:ale_d_dls_executable	ale-d.txt	/*g:ale_d_dls_executable*
 g:ale_dart_dartanalyzer_executable	ale-dart.txt	/*g:ale_dart_dartanalyzer_executable*
 g:ale_dart_dartfmt_executable	ale-dart.txt	/*g:ale_dart_dartfmt_executable*
