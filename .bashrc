@@ -225,7 +225,7 @@ alias gcsubmodules='git commit -v -m "updated submodule(s)"'
 # alias ga='git add'
 # alias gaa='git add --all'
 # alias gapa='git add --patch'
-# alias gcfxd='git clean -fxd'
+alias gcfxd='git clean -fxd'
 # alias gcfxdrh='git clean -fxd && git reset --hard'
 alias gitrmmissing='git ls-files --deleted -z | xargs -0 git rm'
 
