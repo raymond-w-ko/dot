@@ -46,8 +46,10 @@ ALELintPre	ale.txt	/*ALELintPre*
 ALELintPre-autocmd	ale.txt	/*ALELintPre-autocmd*
 ALENext	ale.txt	/*ALENext*
 ALENextWrap	ale.txt	/*ALENextWrap*
+ALEOrganizeImports	ale.txt	/*ALEOrganizeImports*
 ALEPrevious	ale.txt	/*ALEPrevious*
 ALEPreviousWrap	ale.txt	/*ALEPreviousWrap*
+ALERename	ale.txt	/*ALERename*
 ALEReset	ale.txt	/*ALEReset*
 ALEResetBuffer	ale.txt	/*ALEResetBuffer*
 ALEStopAllLSPs	ale.txt	/*ALEStopAllLSPs*
@@ -481,6 +483,7 @@ ale-special-thanks	ale.txt	/*ale-special-thanks*
 ale-sql-options	ale-sql.txt	/*ale-sql-options*
 ale-sql-pgformatter	ale-sql.txt	/*ale-sql-pgformatter*
 ale-sql-sqlfmt	ale-sql.txt	/*ale-sql-sqlfmt*
+ale-sql-sqlformat	ale-sql.txt	/*ale-sql-sqlformat*
 ale-stylus-options	ale-stylus.txt	/*ale-stylus-options*
 ale-stylus-stylelint	ale-stylus.txt	/*ale-stylus-stylelint*
 ale-sugarss-options	ale-sugarss.txt	/*ale-sugarss-options*
@@ -796,6 +799,7 @@ b:ale_julia_executable	ale-julia.txt	/*b:ale_julia_executable*
 b:ale_keep_list_window_open	ale.txt	/*b:ale_keep_list_window_open*
 b:ale_lacheck_executable	ale-tex.txt	/*b:ale_lacheck_executable*
 b:ale_languagetool_executable	ale.txt	/*b:ale_languagetool_executable*
+b:ale_languagetool_options	ale.txt	/*b:ale_languagetool_options*
 b:ale_less_lessc_executable	ale-less.txt	/*b:ale_less_lessc_executable*
 b:ale_less_lessc_options	ale-less.txt	/*b:ale_less_lessc_options*
 b:ale_less_lessc_use_global	ale-less.txt	/*b:ale_less_lessc_use_global*
@@ -1037,6 +1041,8 @@ b:ale_sql_pgformatter_executable	ale-sql.txt	/*b:ale_sql_pgformatter_executable*
 b:ale_sql_pgformatter_options	ale-sql.txt	/*b:ale_sql_pgformatter_options*
 b:ale_sql_sqlfmt_executable	ale-sql.txt	/*b:ale_sql_sqlfmt_executable*
 b:ale_sql_sqlfmt_options	ale-sql.txt	/*b:ale_sql_sqlfmt_options*
+b:ale_sql_sqlformat_executable	ale-sql.txt	/*b:ale_sql_sqlformat_executable*
+b:ale_sql_sqlformat_options	ale-sql.txt	/*b:ale_sql_sqlformat_options*
 b:ale_stylus_stylelint_executable	ale-stylus.txt	/*b:ale_stylus_stylelint_executable*
 b:ale_stylus_stylelint_options	ale-stylus.txt	/*b:ale_stylus_stylelint_options*
 b:ale_stylus_stylelint_use_global	ale-stylus.txt	/*b:ale_stylus_stylelint_use_global*
@@ -1163,6 +1169,7 @@ g:ale_completion_delay	ale.txt	/*g:ale_completion_delay*
 g:ale_completion_enabled	ale.txt	/*g:ale_completion_enabled*
 g:ale_completion_excluded_words	ale.txt	/*g:ale_completion_excluded_words*
 g:ale_completion_max_suggestions	ale.txt	/*g:ale_completion_max_suggestions*
+g:ale_completion_tsserver_autoimport	ale.txt	/*g:ale_completion_tsserver_autoimport*
 g:ale_cpp_ccls_executable	ale-cpp.txt	/*g:ale_cpp_ccls_executable*
 g:ale_cpp_ccls_init_options	ale-cpp.txt	/*g:ale_cpp_ccls_init_options*
 g:ale_cpp_clang_executable	ale-cpp.txt	/*g:ale_cpp_clang_executable*
@@ -1382,6 +1389,7 @@ g:ale_kotlin_ktlint_rulesets	ale-kotlin.txt	/*g:ale_kotlin_ktlint_rulesets*
 g:ale_kotlin_languageserver_executable	ale-kotlin.txt	/*g:ale_kotlin_languageserver_executable*
 g:ale_lacheck_executable	ale-tex.txt	/*g:ale_lacheck_executable*
 g:ale_languagetool_executable	ale.txt	/*g:ale_languagetool_executable*
+g:ale_languagetool_options	ale.txt	/*g:ale_languagetool_options*
 g:ale_less_lessc_executable	ale-less.txt	/*g:ale_less_lessc_executable*
 g:ale_less_lessc_options	ale-less.txt	/*g:ale_less_lessc_options*
 g:ale_less_lessc_use_global	ale-less.txt	/*g:ale_less_lessc_use_global*
@@ -1567,6 +1575,8 @@ g:ale_reason_ols_executable	ale-reasonml.txt	/*g:ale_reason_ols_executable*
 g:ale_reason_ols_use_global	ale-reasonml.txt	/*g:ale_reason_ols_use_global*
 g:ale_reasonml_refmt_executable	ale-reasonml.txt	/*g:ale_reasonml_refmt_executable*
 g:ale_reasonml_refmt_options	ale-reasonml.txt	/*g:ale_reasonml_refmt_options*
+g:ale_rename_tsserver_find_in_comments	ale.txt	/*g:ale_rename_tsserver_find_in_comments*
+g:ale_rename_tsserver_find_in_strings	ale.txt	/*g:ale_rename_tsserver_find_in_strings*
 g:ale_ruby_brakeman_executable	ale-ruby.txt	/*g:ale_ruby_brakeman_executable*
 g:ale_ruby_brakeman_options	ale-ruby.txt	/*g:ale_ruby_brakeman_options*
 g:ale_ruby_rails_best_practices_executable	ale-ruby.txt	/*g:ale_ruby_rails_best_practices_executable*
@@ -1647,6 +1657,8 @@ g:ale_sql_pgformatter_executable	ale-sql.txt	/*g:ale_sql_pgformatter_executable*
 g:ale_sql_pgformatter_options	ale-sql.txt	/*g:ale_sql_pgformatter_options*
 g:ale_sql_sqlfmt_executable	ale-sql.txt	/*g:ale_sql_sqlfmt_executable*
 g:ale_sql_sqlfmt_options	ale-sql.txt	/*g:ale_sql_sqlfmt_options*
+g:ale_sql_sqlformat_executable	ale-sql.txt	/*g:ale_sql_sqlformat_executable*
+g:ale_sql_sqlformat_options	ale-sql.txt	/*g:ale_sql_sqlformat_options*
 g:ale_stylus_stylelint_executable	ale-stylus.txt	/*g:ale_stylus_stylelint_executable*
 g:ale_stylus_stylelint_options	ale-stylus.txt	/*g:ale_stylus_stylelint_options*
 g:ale_stylus_stylelint_use_global	ale-stylus.txt	/*g:ale_stylus_stylelint_use_global*
