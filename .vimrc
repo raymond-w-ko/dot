@@ -1795,6 +1795,10 @@ function! s:SetupBasicSyntaxHighlights()
   syntax match gitMergeConflict /^=======$/ containedin=ALL
   syntax match gitMergeConflict /^<<<<<<< .\+$/ containedin=ALL
   syntax match gitMergeConflict /^>>>>>>> .\+$/ containedin=ALL
+
+  if &filetype == "clojure"
+    runtime plugin/rko_clojure.vim
+  endif
 endfunction
 
 augroup MyVimrc
