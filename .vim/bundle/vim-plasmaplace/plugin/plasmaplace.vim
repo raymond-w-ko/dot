@@ -203,7 +203,7 @@ function! s:handle_message(project_key, msg) abort
   elseif has_key(a:msg, "lines")
     let skip_center = 0
     if has_key(a:msg, "skip_center")
-      let skip_center = 1
+      let skip_center = a:msg["skip_center"]
     endif
     call s:append_lines_to_scratch(a:project_key, a:msg["lines"], skip_center)
   endif
@@ -267,7 +267,10 @@ function! s:create_or_get_job(project_key) abort
     let options["err_mode"] = "raw"
     let options["err_io"] = "null"
   endif
-  let job = job_start(["python3", s:daemon_path, port_file_path, project_type], options)
+  let job = job_start(
+      \ ["python3", s:daemon_path,
+      \ port_file_path, project_type, g:plasmaplace_command_timeout_ms],
+      \ options)
   let s:jobs[a:project_key] = job
   let ch = job_getchannel(job)
   let s:channels[a:project_key] = ch
@@ -291,11 +294,6 @@ function! s:repl(cmd) abort
   endif
   let msg = ch_evalexpr(ch, a:cmd, options)
 
-  if !s:is_invalid_response(msg)
-    if a:cmd[0] == "require"
-      let msg["skip_center"] = 1
-    endif
-  endif
   return s:handle_message(project_key, msg)
 endfunction
 

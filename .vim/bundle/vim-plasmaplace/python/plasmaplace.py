@@ -7,6 +7,7 @@ import json
 import select
 import threading
 import atexit
+import time
 from queue import Queue
 
 from plasmaplace_utils import bencode, bdecode, get_shadow_browser_target
@@ -16,6 +17,7 @@ PROJECT_PATH = os.getcwd()
 PROJECT_TYPE = None
 SOCKET = None
 SOCKET_FILE = None
+TIMEOUT_MS = 4096
 
 TO_REPL = Queue()
 TO_VIM = Queue()
@@ -65,20 +67,25 @@ def _read():
         sys.exit(1)
 
 
-def to_vim(msg_id: int, msg):
+def to_vim(msg_id: int, msg, do_async=False):
     global TO_VIM
+    if do_async:
+        msg_id = 0
+        msg["async"] = True
     TO_VIM.put([msg_id, msg])
 
 
 ###############################################################################
 
 
-def init(port_file_path, project_type):
+def init(port_file_path, project_type, timeout_ms):
     global PROJECT_TYPE
     global SOCKET
     global SOCKET_FILE
+    global TIMEOUT_MS
 
     PROJECT_TYPE = project_type
+    TIMEOUT_MS = int(TIMEOUT_MS)
 
     with open(port_file_path, "r") as f:
         port = int(f.read().strip())
@@ -150,7 +157,14 @@ def loop():
                 process_command_from_vim(obj)
 
 
+LAST_COMMAND = ""
+LAST_COMMAND_SUCCESSFUL = True
+
+
 def process_command_from_vim(obj):
+    global LAST_COMMAND
+    global LAST_COMMAND_SUCCESSFUL
+
     msg_id, msg = obj
     verb = msg[0]
     args = msg[1:]
@@ -170,16 +184,41 @@ def process_command_from_vim(obj):
     elif verb == "exit":
         sys.exit(0)
     else:
+        start_time = time.time()
+
         f = plasmaplace_commands.dispatcher[verb]
         ret = f(*args)
-        to_vim(msg_id, ret)
+        if not isinstance(msg, dict):
+            if (
+                LAST_COMMAND == "require"
+                and LAST_COMMAND_SUCCESSFUL
+                and verb == "require"
+                and not ret["ex_happened"]
+            ):
+                ret["skip_center"] = True
+            else:
+                ret["skip_center"] = False
+
+            LAST_COMMAND_SUCCESSFUL = not ret["ex_happened"]
+        else:
+            LAST_COMMAND_SUCCESSFUL = False
+        LAST_COMMAND = verb
+
+        end_time = time.time()
+        duration = end_time - start_time
+        duration = int(duration * 1000)
+        _debug(duration)
+        do_async = False
+        if duration > TIMEOUT_MS:
+            do_async = True
+        to_vim(msg_id, ret, do_async)
 
 
 ################################################################################
 
 
-def main(port_file_path, project_type):
-    init(port_file_path, project_type)
+def main(port_file_path, project_type, timeout_ms):
+    init(port_file_path, project_type, timeout_ms)
     try:
         loop()
     except:  # noqa
@@ -187,5 +226,5 @@ def main(port_file_path, project_type):
 
 
 if __name__ == "__main__":
-    _, port_file_path, project_type = sys.argv
-    main(port_file_path, project_type)
+    _, port_file_path, project_type, timeout_ms = sys.argv
+    main(port_file_path, project_type, timeout_ms)
