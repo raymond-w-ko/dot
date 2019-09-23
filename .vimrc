@@ -270,6 +270,7 @@ set sessionoptions-=sesdir
 set sessionoptions-=localoptions
 set sessionoptions-=resize
 set sessionoptions-=winresize
+set sessionoptions-=winsize
 
 set viewoptions=cursor,folds,slash,unix
 
