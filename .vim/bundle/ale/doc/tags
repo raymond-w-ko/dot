@@ -273,6 +273,8 @@ ale-html-tidy	ale-html.txt	/*ale-html-tidy*
 ale-html-write-good	ale-html.txt	/*ale-html-write-good*
 ale-idris-idris	ale-idris.txt	/*ale-idris-idris*
 ale-idris-options	ale-idris.txt	/*ale-idris-options*
+ale-ink-language-server	ale-ink.txt	/*ale-ink-language-server*
+ale-ink-options	ale-ink.txt	/*ale-ink-options*
 ale-integration-glsl	ale-glsl.txt	/*ale-integration-glsl*
 ale-integration-hack	ale-hack.txt	/*ale-integration-hack*
 ale-integration-kotlin	ale-kotlin.txt	/*ale-integration-kotlin*
