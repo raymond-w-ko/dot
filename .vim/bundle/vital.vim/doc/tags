@@ -317,6 +317,7 @@ Vital.Data.List.combinations()	vital/Data/List.txt	/*Vital.Data.List.combination
 Vital.Data.List.concat()	vital/Data/List.txt	/*Vital.Data.List.concat()*
 Vital.Data.List.conj()	vital/Data/List.txt	/*Vital.Data.List.conj()*
 Vital.Data.List.cons()	vital/Data/List.txt	/*Vital.Data.List.cons()*
+Vital.Data.List.count()	vital/Data/List.txt	/*Vital.Data.List.count()*
 Vital.Data.List.drop_while()	vital/Data/List.txt	/*Vital.Data.List.drop_while()*
 Vital.Data.List.filter()	vital/Data/List.txt	/*Vital.Data.List.filter()*
 Vital.Data.List.find()	vital/Data/List.txt	/*Vital.Data.List.find()*
