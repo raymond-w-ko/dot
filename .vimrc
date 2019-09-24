@@ -329,10 +329,10 @@ endif
 " Ps = 6  -> steady bar (xterm).
 " cursor options
 let &t_SI = "\e[6 q"
-let &t_EI = "\e[2 q"
+let &t_EI = "\e[4 q"
 " reset cursor on start:
 augroup MyVimrc
-  au VimEnter * silent !echo -ne "\e[2 q"
+  au VimEnter * silent !echo -ne "\e[4 q"
 augroup END
 
 " binaries with a 99.9% chance of not being edited
