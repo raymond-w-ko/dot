@@ -1651,6 +1651,7 @@ g:ale_sign_error	ale.txt	/*g:ale_sign_error*
 g:ale_sign_highlight_linenrs	ale.txt	/*g:ale_sign_highlight_linenrs*
 g:ale_sign_info	ale.txt	/*g:ale_sign_info*
 g:ale_sign_offset	ale.txt	/*g:ale_sign_offset*
+g:ale_sign_priority	ale.txt	/*g:ale_sign_priority*
 g:ale_sign_style_error	ale.txt	/*g:ale_sign_style_error*
 g:ale_sign_style_warning	ale.txt	/*g:ale_sign_style_warning*
 g:ale_sign_warning	ale.txt	/*g:ale_sign_warning*
