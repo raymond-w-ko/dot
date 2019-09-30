@@ -106,7 +106,8 @@ Plug 'LucHermitte/alternate-lite'
 " Web Development
 Plug '2072/PHP-Indenting-for-VIm'
 Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
+" this package has now been deprecated
+" Plug 'mxw/vim-jsx'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'othree/csscomplete.vim'
 Plug 'groenewege/vim-less'
@@ -2398,7 +2399,7 @@ let g:rainbow_conf = {
 \ 'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
 \ 'separately': {
 \   '*': {},
-\   'javascript.jsx': 0,
+\   'javascript.jsx': {},
 \   'markdown': {
 \     'parentheses_options': 'containedin=markdownCode contained',
 \   },
