@@ -2357,7 +2357,11 @@ nnoremap <silent> <Right> :TmuxNavigateRight<cr>
 " vim-startify
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:startify_session_dir="~/sessions/"
-let g:startify_files_number = 10
+let g:startify_files_number = 16
+let g:startify_session_number = 16
+let g:startify_lists = [
+    \ { 'type': 'sessions',  'header': ['   Sessions']       },
+    \ ]
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-dirvish
