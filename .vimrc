@@ -2393,7 +2393,7 @@ nnoremap <leader>gp :Gpush<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:rainbow_active=1
 let g:rainbow_conf = {
-\ 'guifgs': ['#aaaaaa', '#ff00ff', '#ffff00', '#00ff00', '#0088ff', '#ffffff'],
+\ 'guifgs': ['#008800', '#ff00ff', '#ffff00', '#00ff00', '#0088ff', '#ffffff'],
 \ 'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
 \ 'guis': [''],
 \ 'cterms': [''],
