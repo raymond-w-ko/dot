@@ -47,7 +47,7 @@ Include: _dark_terminal.colortemplate
   ToolbarLine        none              none
 #else " opaque
   Normal             base0             back
-  CursorLine         none              base02
+  CursorLine         none              pureblack
   Terminal           fg                back
   ToolbarButton      base1             base02
   ToolbarLine        none              base02
