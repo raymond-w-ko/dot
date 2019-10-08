@@ -352,6 +352,8 @@ ale-mercury-options	ale-mercury.txt	/*ale-mercury-options*
 ale-nasm-nasm	ale-nasm.txt	/*ale-nasm-nasm*
 ale-nasm-options	ale-nasm.txt	/*ale-nasm-options*
 ale-navigation-commands	ale.txt	/*ale-navigation-commands*
+ale-nix-nixpkgs-fmt	ale-nix.txt	/*ale-nix-nixpkgs-fmt*
+ale-nix-options	ale-nix.txt	/*ale-nix-options*
 ale-nroff-options	ale-nroff.txt	/*ale-nroff-options*
 ale-nroff-write-good	ale-nroff.txt	/*ale-nroff-write-good*
 ale-objc-ccls	ale-objc.txt	/*ale-objc-ccls*
@@ -444,6 +446,7 @@ ale-restructuredtext-options	ale-restructuredtext.txt	/*ale-restructuredtext-opt
 ale-restructuredtext-textlint	ale-restructuredtext.txt	/*ale-restructuredtext-textlint*
 ale-restructuredtext-write-good	ale-restructuredtext.txt	/*ale-restructuredtext-write-good*
 ale-ruby-brakeman	ale-ruby.txt	/*ale-ruby-brakeman*
+ale-ruby-debride	ale-ruby.txt	/*ale-ruby-debride*
 ale-ruby-options	ale-ruby.txt	/*ale-ruby-options*
 ale-ruby-rails_best_practices	ale-ruby.txt	/*ale-ruby-rails_best_practices*
 ale-ruby-reek	ale-ruby.txt	/*ale-ruby-reek*
@@ -461,6 +464,7 @@ ale-rust-rustfmt	ale-rust.txt	/*ale-rust-rustfmt*
 ale-sass-options	ale-sass.txt	/*ale-sass-options*
 ale-sass-sasslint	ale-sass.txt	/*ale-sass-sasslint*
 ale-sass-stylelint	ale-sass.txt	/*ale-sass-stylelint*
+ale-scala-metals	ale-scala.txt	/*ale-scala-metals*
 ale-scala-options	ale-scala.txt	/*ale-scala-options*
 ale-scala-sbtserver	ale-scala.txt	/*ale-scala-sbtserver*
 ale-scala-scalafmt	ale-scala.txt	/*ale-scala-scalafmt*
@@ -662,6 +666,7 @@ b:ale_elixir_mix_options	ale-elixir.txt	/*b:ale_elixir_mix_options*
 b:ale_elm_format_executable	ale-elm.txt	/*b:ale_elm_format_executable*
 b:ale_elm_format_options	ale-elm.txt	/*b:ale_elm_format_options*
 b:ale_elm_format_use_global	ale-elm.txt	/*b:ale_elm_format_use_global*
+b:ale_elm_ls_elm_analyse_trigger	ale-elm.txt	/*b:ale_elm_ls_elm_analyse_trigger*
 b:ale_elm_ls_elm_format_path	ale-elm.txt	/*b:ale_elm_ls_elm_format_path*
 b:ale_elm_ls_elm_path	ale-elm.txt	/*b:ale_elm_ls_elm_path*
 b:ale_elm_ls_elm_test_path	ale-elm.txt	/*b:ale_elm_ls_elm_test_path*
@@ -834,6 +839,8 @@ b:ale_mercury_mmc_executable	ale-mercury.txt	/*b:ale_mercury_mmc_executable*
 b:ale_mercury_mmc_options	ale-mercury.txt	/*b:ale_mercury_mmc_options*
 b:ale_nasm_nasm_executable	ale-nasm.txt	/*b:ale_nasm_nasm_executable*
 b:ale_nasm_nasm_options	ale-nasm.txt	/*b:ale_nasm_nasm_options*
+b:ale_nix_nixpkgsfmt_executable	ale-nix.txt	/*b:ale_nix_nixpkgsfmt_executable*
+b:ale_nix_nixpkgsfmt_options	ale-nix.txt	/*b:ale_nix_nixpkgsfmt_options*
 b:ale_objc_ccls_executable	ale-objc.txt	/*b:ale_objc_ccls_executable*
 b:ale_objc_ccls_init_options	ale-objc.txt	/*b:ale_objc_ccls_init_options*
 b:ale_objc_clang_options	ale-objc.txt	/*b:ale_objc_clang_options*
@@ -981,6 +988,8 @@ b:ale_reasonml_refmt_executable	ale-reasonml.txt	/*b:ale_reasonml_refmt_executab
 b:ale_reasonml_refmt_options	ale-reasonml.txt	/*b:ale_reasonml_refmt_options*
 b:ale_ruby_brakeman_executable	ale-ruby.txt	/*b:ale_ruby_brakeman_executable*
 b:ale_ruby_brakeman_options	ale-ruby.txt	/*b:ale_ruby_brakeman_options*
+b:ale_ruby_debride_executable	ale-ruby.txt	/*b:ale_ruby_debride_executable*
+b:ale_ruby_debride_options	ale-ruby.txt	/*b:ale_ruby_debride_options*
 b:ale_ruby_rails_best_practices_executable	ale-ruby.txt	/*b:ale_ruby_rails_best_practices_executable*
 b:ale_ruby_rails_best_practices_options	ale-ruby.txt	/*b:ale_ruby_rails_best_practices_options*
 b:ale_ruby_reek_executable	ale-ruby.txt	/*b:ale_ruby_reek_executable*
@@ -1014,6 +1023,8 @@ b:ale_rust_rustc_options	ale-rust.txt	/*b:ale_rust_rustc_options*
 b:ale_rust_rustfmt_options	ale-rust.txt	/*b:ale_rust_rustfmt_options*
 b:ale_sass_stylelint_executable	ale-sass.txt	/*b:ale_sass_stylelint_executable*
 b:ale_sass_stylelint_use_global	ale-sass.txt	/*b:ale_sass_stylelint_use_global*
+b:ale_scala_metals_executable	ale-scala.txt	/*b:ale_scala_metals_executable*
+b:ale_scala_metals_project_root	ale-scala.txt	/*b:ale_scala_metals_project_root*
 b:ale_scala_sbtserver_address	ale-scala.txt	/*b:ale_scala_sbtserver_address*
 b:ale_scala_sbtserver_project_root	ale-scala.txt	/*b:ale_scala_sbtserver_project_root*
 b:ale_scala_scalafmt_executable	ale-scala.txt	/*b:ale_scala_scalafmt_executable*
@@ -1240,6 +1251,7 @@ g:ale_elixir_mix_options	ale-elixir.txt	/*g:ale_elixir_mix_options*
 g:ale_elm_format_executable	ale-elm.txt	/*g:ale_elm_format_executable*
 g:ale_elm_format_options	ale-elm.txt	/*g:ale_elm_format_options*
 g:ale_elm_format_use_global	ale-elm.txt	/*g:ale_elm_format_use_global*
+g:ale_elm_ls_elm_analyse_trigger	ale-elm.txt	/*g:ale_elm_ls_elm_analyse_trigger*
 g:ale_elm_ls_elm_format_path	ale-elm.txt	/*g:ale_elm_ls_elm_format_path*
 g:ale_elm_ls_elm_path	ale-elm.txt	/*g:ale_elm_ls_elm_path*
 g:ale_elm_ls_elm_test_path	ale-elm.txt	/*g:ale_elm_ls_elm_test_path*
@@ -1431,6 +1443,8 @@ g:ale_mercury_mmc_executable	ale-mercury.txt	/*g:ale_mercury_mmc_executable*
 g:ale_mercury_mmc_options	ale-mercury.txt	/*g:ale_mercury_mmc_options*
 g:ale_nasm_nasm_executable	ale-nasm.txt	/*g:ale_nasm_nasm_executable*
 g:ale_nasm_nasm_options	ale-nasm.txt	/*g:ale_nasm_nasm_options*
+g:ale_nix_nixpkgsfmt_executable	ale-nix.txt	/*g:ale_nix_nixpkgsfmt_executable*
+g:ale_nix_nixpkgsfmt_options	ale-nix.txt	/*g:ale_nix_nixpkgsfmt_options*
 g:ale_objc_ccls_executable	ale-objc.txt	/*g:ale_objc_ccls_executable*
 g:ale_objc_ccls_init_options	ale-objc.txt	/*g:ale_objc_ccls_init_options*
 g:ale_objc_clang_options	ale-objc.txt	/*g:ale_objc_clang_options*
@@ -1584,6 +1598,8 @@ g:ale_rename_tsserver_find_in_comments	ale.txt	/*g:ale_rename_tsserver_find_in_c
 g:ale_rename_tsserver_find_in_strings	ale.txt	/*g:ale_rename_tsserver_find_in_strings*
 g:ale_ruby_brakeman_executable	ale-ruby.txt	/*g:ale_ruby_brakeman_executable*
 g:ale_ruby_brakeman_options	ale-ruby.txt	/*g:ale_ruby_brakeman_options*
+g:ale_ruby_debride_executable	ale-ruby.txt	/*g:ale_ruby_debride_executable*
+g:ale_ruby_debride_options	ale-ruby.txt	/*g:ale_ruby_debride_options*
 g:ale_ruby_rails_best_practices_executable	ale-ruby.txt	/*g:ale_ruby_rails_best_practices_executable*
 g:ale_ruby_rails_best_practices_options	ale-ruby.txt	/*g:ale_ruby_rails_best_practices_options*
 g:ale_ruby_reek_executable	ale-ruby.txt	/*g:ale_ruby_reek_executable*
@@ -1617,6 +1633,8 @@ g:ale_rust_rustc_options	ale-rust.txt	/*g:ale_rust_rustc_options*
 g:ale_rust_rustfmt_options	ale-rust.txt	/*g:ale_rust_rustfmt_options*
 g:ale_sass_stylelint_executable	ale-sass.txt	/*g:ale_sass_stylelint_executable*
 g:ale_sass_stylelint_use_global	ale-sass.txt	/*g:ale_sass_stylelint_use_global*
+g:ale_scala_metals_executable	ale-scala.txt	/*g:ale_scala_metals_executable*
+g:ale_scala_metals_project_root	ale-scala.txt	/*g:ale_scala_metals_project_root*
 g:ale_scala_sbtserver_address	ale-scala.txt	/*g:ale_scala_sbtserver_address*
 g:ale_scala_sbtserver_project_root	ale-scala.txt	/*g:ale_scala_sbtserver_project_root*
 g:ale_scala_scalafmt_executable	ale-scala.txt	/*g:ale_scala_scalafmt_executable*
