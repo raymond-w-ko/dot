@@ -716,7 +716,6 @@ Vital.Prelude-contents	vital/Prelude.txt	/*Vital.Prelude-contents*
 Vital.Prelude-functions	vital/Prelude.txt	/*Vital.Prelude-functions*
 Vital.Prelude-interface	vital/Prelude.txt	/*Vital.Prelude-interface*
 Vital.Prelude-introduction	vital/Prelude.txt	/*Vital.Prelude-introduction*
-Vital.Prelude.escape_file_searching()	vital/Prelude.txt	/*Vital.Prelude.escape_file_searching()*
 Vital.Prelude.escape_pattern()	vital/Prelude.txt	/*Vital.Prelude.escape_pattern()*
 Vital.Prelude.getchar()	vital/Prelude.txt	/*Vital.Prelude.getchar()*
 Vital.Prelude.getchar_safe()	vital/Prelude.txt	/*Vital.Prelude.getchar_safe()*
@@ -728,6 +727,7 @@ Vital.Prelude.is_cygwin()	vital/Prelude.txt	/*Vital.Prelude.is_cygwin()*
 Vital.Prelude.is_dict()	vital/Prelude.txt	/*Vital.Prelude.is_dict()*
 Vital.Prelude.is_float()	vital/Prelude.txt	/*Vital.Prelude.is_float()*
 Vital.Prelude.is_funcref()	vital/Prelude.txt	/*Vital.Prelude.is_funcref()*
+Vital.Prelude.is_infinity()	vital/Prelude.txt	/*Vital.Prelude.is_infinity()*
 Vital.Prelude.is_list()	vital/Prelude.txt	/*Vital.Prelude.is_list()*
 Vital.Prelude.is_mac()	vital/Prelude.txt	/*Vital.Prelude.is_mac()*
 Vital.Prelude.is_number()	vital/Prelude.txt	/*Vital.Prelude.is_number()*
