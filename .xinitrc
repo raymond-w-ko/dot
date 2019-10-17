@@ -60,5 +60,6 @@ start-pulseaudio-x11
 
 ibus-daemon -drx &
 my_keyboard_settings_daemon.py &
+/usr/bin/xsettingsd &
 
 exec i3
