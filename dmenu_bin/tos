@@ -1,3 +1,4 @@
 #!/bin/sh
 cd $HOME/thinkorswim/
-exec ./run_tos.sh
+export app_java_home=/usr/lib/jvm/java-8-openjdk
+exec ./thinkorswim
