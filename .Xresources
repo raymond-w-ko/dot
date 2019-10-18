@@ -1,4 +1,10 @@
 Xft.dpi:      96
+Xft.autohint: 0
+Xft.lcdfilter: lcdnone
+Xft.hintstyle: hintnone
+Xft.hinting: 0
+Xft.antialias: 1
+Xft.rgba: none
 
 *foreground:  #808080
 *background:  #000000
