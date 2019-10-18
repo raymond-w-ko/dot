@@ -1,6 +1,5 @@
 # Configure our fonts.
 Xft/Antialias 1
-Xft/HintStyle "hintslight"
-Xft/Hinting 1
-Xft/RGBA "rgb"
-Xft/lcdfilter "lcddefault"
+Xft/HintStyle "hintnone"
+Xft/Hinting 0
+Xft/RGBA "none"
