@@ -1245,6 +1245,7 @@ g:ale_echo_delay	ale.txt	/*g:ale_echo_delay*
 g:ale_echo_msg_error_str	ale.txt	/*g:ale_echo_msg_error_str*
 g:ale_echo_msg_format	ale.txt	/*g:ale_echo_msg_format*
 g:ale_echo_msg_info_str	ale.txt	/*g:ale_echo_msg_info_str*
+g:ale_echo_msg_log_str	ale.txt	/*g:ale_echo_msg_log_str*
 g:ale_echo_msg_warning_str	ale.txt	/*g:ale_echo_msg_warning_str*
 g:ale_elixir_credo_strict	ale-elixir.txt	/*g:ale_elixir_credo_strict*
 g:ale_elixir_elixir_ls_config	ale-elixir.txt	/*g:ale_elixir_elixir_ls_config*
@@ -1431,6 +1432,8 @@ g:ale_list_window_size	ale.txt	/*g:ale_list_window_size*
 g:ale_llvm_llc_executable	ale-llvm.txt	/*g:ale_llvm_llc_executable*
 g:ale_loclist_msg_format	ale.txt	/*g:ale_loclist_msg_format*
 g:ale_lsp_root	ale.txt	/*g:ale_lsp_root*
+g:ale_lsp_show_message_format	ale.txt	/*g:ale_lsp_show_message_format*
+g:ale_lsp_show_message_severity	ale.txt	/*g:ale_lsp_show_message_severity*
 g:ale_lua_luac_executable	ale-lua.txt	/*g:ale_lua_luac_executable*
 g:ale_lua_luacheck_executable	ale-lua.txt	/*g:ale_lua_luacheck_executable*
 g:ale_lua_luacheck_options	ale-lua.txt	/*g:ale_lua_luacheck_options*
