@@ -352,6 +352,9 @@ ale-mercury-options	ale-mercury.txt	/*ale-mercury-options*
 ale-nasm-nasm	ale-nasm.txt	/*ale-nasm-nasm*
 ale-nasm-options	ale-nasm.txt	/*ale-nasm-options*
 ale-navigation-commands	ale.txt	/*ale-navigation-commands*
+ale-nim-nimcheck	ale-nim.txt	/*ale-nim-nimcheck*
+ale-nim-nimlsp	ale-nim.txt	/*ale-nim-nimlsp*
+ale-nim-options	ale-nim.txt	/*ale-nim-options*
 ale-nix-nixpkgs-fmt	ale-nix.txt	/*ale-nix-nixpkgs-fmt*
 ale-nix-options	ale-nix.txt	/*ale-nix-options*
 ale-nroff-options	ale-nroff.txt	/*ale-nroff-options*
@@ -1756,3 +1759,4 @@ g:ale_yaml_yamllint_executable	ale-yaml.txt	/*g:ale_yaml_yamllint_executable*
 g:ale_yaml_yamllint_options	ale-yaml.txt	/*g:ale_yaml_yamllint_options*
 g:ale_yang_lsp_executable	ale-yang.txt	/*g:ale_yang_lsp_executable*
 g:html_tidy_use_global	ale-html.txt	/*g:html_tidy_use_global*
+g:nim_nimlsp_nim_sources	ale-nim.txt	/*g:nim_nimlsp_nim_sources*
