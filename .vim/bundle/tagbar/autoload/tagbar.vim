@@ -511,6 +511,11 @@ function! s:CheckExCtagsVersion(output) abort
         return 1
     endif
 
+    if a:output =~ 'Exuberant Ctags compatiable PHP enhancement'
+        call s:debug("Found phpctags, assuming compatibility")
+        return 1
+    endif
+
     if a:output =~ 'Exuberant Ctags Development'
         call tagbar#debug#log("Found development version, assuming compatibility")
         return 1
@@ -862,8 +867,7 @@ function! s:CloseWindow() abort
     call s:ShrinkIfExpanded()
 
     if s:autocommands_done && !s:statusline_in_use
-        autocmd! TagbarAutoCmds
-        let s:autocommands_done = 0
+        call tagbar#StopAutoUpdate()
     endif
 
     call tagbar#debug#log('CloseWindow finished')
@@ -1021,11 +1025,13 @@ function! s:ProcessFile(fname, ftype) abort
     " Parse the ctags output lines
     call tagbar#debug#log('Parsing ctags output')
     let rawtaglist = split(ctags_output, '\n\+')
+    let seen = {}
     for line in rawtaglist
-        " skip comments
-        if line =~# '^!_TAG_'
+        " skip comments and duplicates (can happen when --sort=no)
+        if line =~# '^!_TAG_' || has_key(seen, line)
             continue
         endif
+        let seen[line] = 1
 
         let parts = split(line, ';"')
         if len(parts) == 2 " Is a valid tag line
@@ -1086,7 +1092,14 @@ function! s:ExecuteCtagsOnFile(fname, realfname, typeinfo) abort
         "intended to be in an argument, spaces in a single ctag_args
         "string would be ambiguous. Is the space an argument separator
         "or to be included in the argument
-        let ctags_args  = [ '-f',
+        let ctags_args = []
+        if exists('g:tagbar_ctags_options')
+            for value in g:tagbar_ctags_options
+                call add(ctags_args, '--options='.value)
+            endfor
+        fi
+        let ctags_args  = ctags_args + [
+                          \ '-f',
                           \ '-',
                           \ '--format=2',
                           \ '--excmd=pattern',
@@ -1255,7 +1268,7 @@ function! s:ParseTagline(part1, part2, typeinfo, fileinfo) abort
 endfunction
 
 " s:ProcessTag() {{{2
-function s:ProcessTag(name, filename, pattern, fields, is_split, typeinfo, fileinfo) abort
+function! s:ProcessTag(name, filename, pattern, fields, is_split, typeinfo, fileinfo) abort
     if a:is_split
         let taginfo = tagbar#prototypes#splittag#new(a:name)
     else
@@ -3241,6 +3254,11 @@ endfunction
 
 function! tagbar#RestoreSession() abort
     call s:RestoreSession()
+endfunction
+
+function! tagbar#StopAutoUpdate() abort
+    autocmd! TagbarAutoCmds
+    let s:autocommands_done = 0
 endfunction
 
 " }}}2
