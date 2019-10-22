@@ -303,6 +303,7 @@ function! s:MapKeys() abort
         \ ['togglesort',            'ToggleSort()'],
         \ ['togglecaseinsensitive', 'ToggleCaseInsensitive()'],
         \ ['toggleautoclose',       'ToggleAutoclose()'],
+        \ ['togglepause',           'TogglePause()'],
         \ ['zoomwin',               'ZoomWindow()'],
         \ ['close',                 'CloseWindow()'],
         \ ['help',                  'ToggleHelp()'],
@@ -398,6 +399,7 @@ function! s:CheckForExCtags(silent) abort
         let ctagsbins += ['ctags']
         let ctagsbins += ['ctags.exe']
         let ctagsbins += ['tags']
+        let ctagsbins += ['universal-ctags']
         for ctags in ctagsbins
             if executable(ctags)
                 let g:tagbar_ctags_bin = ctags
@@ -1097,18 +1099,24 @@ function! s:ExecuteCtagsOnFile(fname, realfname, typeinfo) abort
             for value in g:tagbar_ctags_options
                 call add(ctags_args, '--options='.value)
             endfor
-        fi
+        endif
         let ctags_args  = ctags_args + [
                           \ '-f',
                           \ '-',
                           \ '--format=2',
                           \ '--excmd=pattern',
                           \ '--fields=nksSaf',
-                          \ '--extra=',
                           \ '--file-scope=yes',
                           \ '--sort=no',
                           \ '--append=no'
                           \ ]
+
+        " universal-ctags deprecated this argument name
+        if s:ctags_is_uctags
+            let ctags_args += [ '--extras=' ]
+        else
+            let ctags_args += [ '--extra=' ]
+        endif
 
         " verbose if debug enabled
         if tagbar#debug#enabled()
@@ -1845,6 +1853,7 @@ function! s:PrintHelp() abort
         silent  put ='\" ' . s:get_map_str('togglesort') . ': Toggle sort'
         silent  put ='\" ' . s:get_map_str('togglecaseinsensitive') . ': Toggle case insensitive sort option'
         silent  put ='\" ' . s:get_map_str('toggleautoclose') . ': Toggle autoclose option'
+        silent  put ='\" ' . s:get_map_str('togglepause') . ': Toggle pause'
         silent  put ='\" ' . s:get_map_str('zoomwin') . ': Zoom window in/out'
         silent  put ='\" ' . s:get_map_str('close') . ': Close window'
         silent  put ='\" ' . s:get_map_str('help') . ': Toggle help'
@@ -3199,6 +3208,21 @@ function! s:warning(msg) abort
     echohl WarningMsg
     echomsg a:msg
     echohl None
+endfunction
+
+" s:TogglePause() {{{2
+function! s:TogglePause() abort
+    let s:paused = !s:paused
+
+    if s:paused
+        call tagbar#state#set_paused()
+    else
+        let fileinfo = tagbar#state#get_current_file(0)
+        let taginfo = fileinfo.getTags()[0]
+
+        call s:GotoFileWindow(taginfo.fileinfo)
+        call s:AutoUpdate(taginfo.fileinfo.fpath, 1)
+    endif
 endfunction
 
 " TagbarBalloonExpr() {{{2
