@@ -415,6 +415,7 @@ ale-puppet-puppet	ale-puppet.txt	/*ale-puppet-puppet*
 ale-puppet-puppetlint	ale-puppet.txt	/*ale-puppet-puppetlint*
 ale-purescript-language-server	ale-purescript.txt	/*ale-purescript-language-server*
 ale-purescript-options	ale-purescript.txt	/*ale-purescript-options*
+ale-purescript-purty	ale-purescript.txt	/*ale-purescript-purty*
 ale-pyrex-cython	ale-pyrex.txt	/*ale-pyrex-cython*
 ale-pyrex-options	ale-pyrex.txt	/*ale-pyrex-options*
 ale-python-autopep8	ale-python.txt	/*ale-python-autopep8*
@@ -904,6 +905,7 @@ b:ale_prolog_swipl_alarm_handler	ale-prolog.txt	/*b:ale_prolog_swipl_alarm_handl
 b:ale_prolog_swipl_executable	ale-prolog.txt	/*b:ale_prolog_swipl_executable*
 b:ale_prolog_swipl_load	ale-prolog.txt	/*b:ale_prolog_swipl_load*
 b:ale_prolog_swipl_timeout	ale-prolog.txt	/*b:ale_prolog_swipl_timeout*
+b:ale_psalm_langserver_options	ale-php.txt	/*b:ale_psalm_langserver_options*
 b:ale_pug_puglint_executable	ale-pug.txt	/*b:ale_pug_puglint_executable*
 b:ale_pug_puglint_options	ale-pug.txt	/*b:ale_pug_puglint_options*
 b:ale_pug_puglint_use_global	ale-pug.txt	/*b:ale_pug_puglint_use_global*
@@ -912,6 +914,7 @@ b:ale_puppet_puppet_executable	ale-puppet.txt	/*b:ale_puppet_puppet_executable*
 b:ale_puppet_puppet_options	ale-puppet.txt	/*b:ale_puppet_puppet_options*
 b:ale_puppet_puppetlint_executable	ale-puppet.txt	/*b:ale_puppet_puppetlint_executable*
 b:ale_puppet_puppetlint_options	ale-puppet.txt	/*b:ale_puppet_puppetlint_options*
+b:ale_purescript_purty_executable	ale-purescript.txt	/*b:ale_purescript_purty_executable*
 b:ale_pyrex_cython_executable	ale-pyrex.txt	/*b:ale_pyrex_cython_executable*
 b:ale_pyrex_cython_options	ale-pyrex.txt	/*b:ale_pyrex_cython_options*
 b:ale_python_auto_pipenv	ale-python.txt	/*b:ale_python_auto_pipenv*
@@ -1516,6 +1519,7 @@ g:ale_prolog_swipl_executable	ale-prolog.txt	/*g:ale_prolog_swipl_executable*
 g:ale_prolog_swipl_load	ale-prolog.txt	/*g:ale_prolog_swipl_load*
 g:ale_prolog_swipl_timeout	ale-prolog.txt	/*g:ale_prolog_swipl_timeout*
 g:ale_proto_protoc_gen_lint_options	ale-proto.txt	/*g:ale_proto_protoc_gen_lint_options*
+g:ale_psalm_langserver_options	ale-php.txt	/*g:ale_psalm_langserver_options*
 g:ale_pug_puglint_executable	ale-pug.txt	/*g:ale_pug_puglint_executable*
 g:ale_pug_puglint_options	ale-pug.txt	/*g:ale_pug_puglint_options*
 g:ale_pug_puglint_use_global	ale-pug.txt	/*g:ale_pug_puglint_use_global*
@@ -1524,6 +1528,7 @@ g:ale_puppet_puppet_executable	ale-puppet.txt	/*g:ale_puppet_puppet_executable*
 g:ale_puppet_puppet_options	ale-puppet.txt	/*g:ale_puppet_puppet_options*
 g:ale_puppet_puppetlint_executable	ale-puppet.txt	/*g:ale_puppet_puppetlint_executable*
 g:ale_puppet_puppetlint_options	ale-puppet.txt	/*g:ale_puppet_puppetlint_options*
+g:ale_purescript_purty_executable	ale-purescript.txt	/*g:ale_purescript_purty_executable*
 g:ale_pyrex_cython_executable	ale-pyrex.txt	/*g:ale_pyrex_cython_executable*
 g:ale_pyrex_cython_options	ale-pyrex.txt	/*g:ale_pyrex_cython_options*
 g:ale_python_auto_pipenv	ale-python.txt	/*g:ale_python_auto_pipenv*
