@@ -15,7 +15,7 @@ synclient VertEdgeScroll=0
 killall syndaemon
 syndaemon -t -k -i 1 -d &
 
-compton -b &
+picom --experimental-backends -b &
 
 # always full GPU speed
 # dropped laptop and broke something, cooling not working 100%
