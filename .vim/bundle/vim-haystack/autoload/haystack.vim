@@ -180,15 +180,19 @@ endfunction
 
 function! haystack#score(word, query, ...) abort
   let word = type(a:word) == type({}) ? a:word.word : a:word
+  let breaks = len(substitute(substitute(substitute(word,
+        \ '[[:punct:]]*$', '', ''),
+        \ '.\u\l', '@', 'g'),
+        \ '[^[:punct:]]', '', 'g'))
   return haystack#flx_score(word, a:query, a:0 ? a:1 : haystack#slash()) * 10 /
-        \ (1+len(substitute(substitute(word, '.\u\l', '@', 'g'), '[^[:punct:]]', '', 'g')))
+        \ (2+breaks)
 endfunction
 
-if !has('python')
+if !has('pythonx')
   finish
 endif
 
-python << EOF
+pythonx << EOF
 import vim
 from collections import defaultdict
 
@@ -225,5 +229,5 @@ def flx_get_matches(hash, query, gt=-1, qi=0):
 EOF
 
 function! s:get_matches(str, query) abort
-  python vim.command('return ' + flx_vim_encode(flx_get_matches(flx_get_hash_for_str(vim.eval('a:str')), vim.eval('a:query'))))
+  pythonx vim.command('return ' + flx_vim_encode(flx_get_matches(flx_get_hash_for_str(vim.eval('a:str')), vim.eval('a:query'))))
 endfunction
