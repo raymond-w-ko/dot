@@ -355,6 +355,7 @@ ale-nasm-options	ale-nasm.txt	/*ale-nasm-options*
 ale-navigation-commands	ale.txt	/*ale-navigation-commands*
 ale-nim-nimcheck	ale-nim.txt	/*ale-nim-nimcheck*
 ale-nim-nimlsp	ale-nim.txt	/*ale-nim-nimlsp*
+ale-nim-nimpretty	ale-nim.txt	/*ale-nim-nimpretty*
 ale-nim-options	ale-nim.txt	/*ale-nim-options*
 ale-nix-nixpkgs-fmt	ale-nix.txt	/*ale-nix-nixpkgs-fmt*
 ale-nix-options	ale-nix.txt	/*ale-nix-options*
@@ -529,6 +530,7 @@ ale-thrift-thrift	ale-thrift.txt	/*ale-thrift-thrift*
 ale-typescript-eslint	ale-typescript.txt	/*ale-typescript-eslint*
 ale-typescript-options	ale-typescript.txt	/*ale-typescript-options*
 ale-typescript-prettier	ale-typescript.txt	/*ale-typescript-prettier*
+ale-typescript-standard	ale-typescript.txt	/*ale-typescript-standard*
 ale-typescript-tslint	ale-typescript.txt	/*ale-typescript-tslint*
 ale-typescript-tsserver	ale-typescript.txt	/*ale-typescript-tsserver*
 ale-vala-options	ale-vala.txt	/*ale-vala-options*
@@ -845,6 +847,8 @@ b:ale_mercury_mmc_executable	ale-mercury.txt	/*b:ale_mercury_mmc_executable*
 b:ale_mercury_mmc_options	ale-mercury.txt	/*b:ale_mercury_mmc_options*
 b:ale_nasm_nasm_executable	ale-nasm.txt	/*b:ale_nasm_nasm_executable*
 b:ale_nasm_nasm_options	ale-nasm.txt	/*b:ale_nasm_nasm_options*
+b:ale_nim_nimpretty_executable	ale-nim.txt	/*b:ale_nim_nimpretty_executable*
+b:ale_nim_nimpretty_options	ale-nim.txt	/*b:ale_nim_nimpretty_options*
 b:ale_nix_nixpkgsfmt_executable	ale-nix.txt	/*b:ale_nix_nixpkgsfmt_executable*
 b:ale_nix_nixpkgsfmt_options	ale-nix.txt	/*b:ale_nix_nixpkgsfmt_options*
 b:ale_objc_ccls_executable	ale-objc.txt	/*b:ale_objc_ccls_executable*
@@ -1094,6 +1098,9 @@ b:ale_thrift_thrift_generators	ale-thrift.txt	/*b:ale_thrift_thrift_generators*
 b:ale_thrift_thrift_includes	ale-thrift.txt	/*b:ale_thrift_thrift_includes*
 b:ale_thrift_thrift_options	ale-thrift.txt	/*b:ale_thrift_thrift_options*
 b:ale_type_map	ale.txt	/*b:ale_type_map*
+b:ale_typescript_standard_executable	ale-typescript.txt	/*b:ale_typescript_standard_executable*
+b:ale_typescript_standard_options	ale-typescript.txt	/*b:ale_typescript_standard_options*
+b:ale_typescript_standard_use_global	ale-typescript.txt	/*b:ale_typescript_standard_use_global*
 b:ale_typescript_tslint_config_path	ale-typescript.txt	/*b:ale_typescript_tslint_config_path*
 b:ale_typescript_tslint_executable	ale-typescript.txt	/*b:ale_typescript_tslint_executable*
 b:ale_typescript_tslint_ignore_empty_files	ale-typescript.txt	/*b:ale_typescript_tslint_ignore_empty_files*
@@ -1455,6 +1462,8 @@ g:ale_mercury_mmc_executable	ale-mercury.txt	/*g:ale_mercury_mmc_executable*
 g:ale_mercury_mmc_options	ale-mercury.txt	/*g:ale_mercury_mmc_options*
 g:ale_nasm_nasm_executable	ale-nasm.txt	/*g:ale_nasm_nasm_executable*
 g:ale_nasm_nasm_options	ale-nasm.txt	/*g:ale_nasm_nasm_options*
+g:ale_nim_nimpretty_executable	ale-nim.txt	/*g:ale_nim_nimpretty_executable*
+g:ale_nim_nimpretty_options	ale-nim.txt	/*g:ale_nim_nimpretty_options*
 g:ale_nix_nixpkgsfmt_executable	ale-nix.txt	/*g:ale_nix_nixpkgsfmt_executable*
 g:ale_nix_nixpkgsfmt_options	ale-nix.txt	/*g:ale_nix_nixpkgsfmt_options*
 g:ale_objc_ccls_executable	ale-objc.txt	/*g:ale_objc_ccls_executable*
@@ -1725,6 +1734,9 @@ g:ale_thrift_thrift_generators	ale-thrift.txt	/*g:ale_thrift_thrift_generators*
 g:ale_thrift_thrift_includes	ale-thrift.txt	/*g:ale_thrift_thrift_includes*
 g:ale_thrift_thrift_options	ale-thrift.txt	/*g:ale_thrift_thrift_options*
 g:ale_type_map	ale.txt	/*g:ale_type_map*
+g:ale_typescript_standard_executable	ale-typescript.txt	/*g:ale_typescript_standard_executable*
+g:ale_typescript_standard_options	ale-typescript.txt	/*g:ale_typescript_standard_options*
+g:ale_typescript_standard_use_global	ale-typescript.txt	/*g:ale_typescript_standard_use_global*
 g:ale_typescript_tslint_config_path	ale-typescript.txt	/*g:ale_typescript_tslint_config_path*
 g:ale_typescript_tslint_executable	ale-typescript.txt	/*g:ale_typescript_tslint_executable*
 g:ale_typescript_tslint_ignore_empty_files	ale-typescript.txt	/*g:ale_typescript_tslint_ignore_empty_files*
