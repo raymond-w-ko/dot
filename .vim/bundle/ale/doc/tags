@@ -508,6 +508,7 @@ ale-supported-list	ale-supported-languages-and-tools.txt	/*ale-supported-list*
 ale-swift-options	ale-swift.txt	/*ale-swift-options*
 ale-swift-sourcekitlsp	ale-swift.txt	/*ale-swift-sourcekitlsp*
 ale-symbol-search	ale.txt	/*ale-symbol-search*
+ale-symbols	ale.txt	/*ale-symbols*
 ale-tcl-nagelfar	ale-tcl.txt	/*ale-tcl-nagelfar*
 ale-tcl-options	ale-tcl.txt	/*ale-tcl-options*
 ale-terraform-fmt-fixer	ale-terraform.txt	/*ale-terraform-fmt-fixer*
@@ -1200,6 +1201,7 @@ g:ale_completion_delay	ale.txt	/*g:ale_completion_delay*
 g:ale_completion_enabled	ale.txt	/*g:ale_completion_enabled*
 g:ale_completion_excluded_words	ale.txt	/*g:ale_completion_excluded_words*
 g:ale_completion_max_suggestions	ale.txt	/*g:ale_completion_max_suggestions*
+g:ale_completion_symbols	ale.txt	/*g:ale_completion_symbols*
 g:ale_completion_tsserver_autoimport	ale.txt	/*g:ale_completion_tsserver_autoimport*
 g:ale_cpp_ccls_executable	ale-cpp.txt	/*g:ale_cpp_ccls_executable*
 g:ale_cpp_ccls_init_options	ale-cpp.txt	/*g:ale_cpp_ccls_init_options*
