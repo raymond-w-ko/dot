@@ -34,6 +34,7 @@ client.background       #00ff00
 new_window pixel 3
 new_float pixel 3
 hide_edge_borders none
+# floating_minimum_size 640 x 480
 
 focus_follows_mouse no
 
@@ -72,6 +73,9 @@ bindsym $mod+c exec "clipmenu -i -fn Terminus:size=16 -nb '#000000' -nf '#00ff00
 # restore layout
 bindsym $mod+g exec --no-startup-id ~/.i3/load-layout.sh
 bindsym $mod+shift+g [title="^.+- Google Chrome$"] resize set 1600px 0ppt
+
+# move floating container to the center of all outputs
+bindsym $mod+b move position center
 
 # kill focused window
 bindsym $mod+Shift+q kill
