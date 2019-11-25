@@ -163,6 +163,7 @@ lh#has#default_in_getbufvar()	lh-vim-lib.txt	/*lh#has#default_in_getbufvar()*
 lh#has#jobs()	lh-vim-lib.txt	/*lh#has#jobs()*
 lh#has#partials()	lh-vim-lib.txt	/*lh#has#partials()*
 lh#has#patch()	lh-vim-lib.txt	/*lh#has#patch()*
+lh#has#plugin()	lh-vim-lib.txt	/*lh#has#plugin()*
 lh#has#properties_in_qf()	lh-vim-lib.txt	/*lh#has#properties_in_qf()*
 lh#has#vkey()	lh-vim-lib.txt	/*lh#has#vkey()*
 lh#icomplete#new()	lh-vim-lib.txt	/*lh#icomplete#new()*
