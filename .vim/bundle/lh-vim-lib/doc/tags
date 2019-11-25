@@ -125,6 +125,7 @@ lh#dict#get_composed()	lh-vim-lib.txt	/*lh#dict#get_composed()*
 lh#dict#key()	lh-vim-lib.txt	/*lh#dict#key()*
 lh#dict#let()	lh-vim-lib.txt	/*lh#dict#let()*
 lh#dict#need_ref_on()	lh-vim-lib.txt	/*lh#dict#need_ref_on()*
+lh#dict#print_as_tree()	lh-vim-lib.txt	/*lh#dict#print_as_tree()*
 lh#dict#subset()	lh-vim-lib.txt	/*lh#dict#subset()*
 lh#encoding#at()	lh-vim-lib.txt	/*lh#encoding#at()*
 lh#encoding#current_character()	lh-vim-lib.txt	/*lh#encoding#current_character()*
