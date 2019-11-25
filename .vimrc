@@ -1672,6 +1672,7 @@ endfunction
 
 let s:double_quote_string_filestypes = {
     \ "javascript.jsx": 1,
+    \ "javascript": 1,
     \ "clojure": 1,
     \ "make": 1,
     \ "c": 1,
@@ -1683,6 +1684,7 @@ let s:double_quote_string_filestypes = {
     \ }
 let s:single_quote_string_filestypes = {
     \ "javascript.jsx": 1,
+    \ "javascript": 1,
     \ "make": 1,
     \ "c": 1,
     \ "cpp": 1,
@@ -1696,6 +1698,7 @@ let s:no_escape_double_quote_string_filestypes = {
     \ }
 let s:double_slash_comment_filestypes = {
     \ "javascript.jsx": 1,
+    \ "javascript": 1,
     \ "c": 1,
     \ "cpp": 1,
     \ "css": 1,
@@ -1713,6 +1716,7 @@ let s:lisp_style_comment_filestypes = {
     \ }
 let s:c_comment_filestypes = {
     \ "javascript.jsx": 1,
+    \ "javascript": 1,
     \ "c": 1,
     \ "cpp": 1,
     \ "css": 1,
