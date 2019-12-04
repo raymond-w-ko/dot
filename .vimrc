@@ -980,9 +980,7 @@ nnoremap <leader>\ :s/\//\\/<CR>:nohlsearch<CR>
 nnoremap <leader>/ :s/\\/\//<CR>:nohlsearch<CR>
 
 " killing buffers without closing current split
-nnoremap <C-BS> :BD<CR>
-nnoremap  :BD<CR>
-nnoremap <C-\> :BD<CR>
+nnoremap <DEL> :BD<CR>
 
 let s:list_of_pairs = [
     \ ['(', ')'],
