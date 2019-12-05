@@ -315,12 +315,6 @@ sbscd() {
   cd "$remote_path"
 }
 
-list_outdated_python_requirements_txt() {
-  join -t= \
-    <(pip3 list -o --format=freeze) \
-    <(awk -F== '{ print $1 }' ./requirements.txt | sort)
-}
-
 stty -ixon # disable ctrl-s and ctrl-q
 if hash stty 2>/dev/null; then
   stty stop undef
