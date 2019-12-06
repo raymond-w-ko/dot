@@ -379,6 +379,9 @@ lh#string#matchstrpos()	lh-vim-lib.txt	/*lh#string#matchstrpos()*
 lh#string#or()	lh-vim-lib.txt	/*lh#string#or()*
 lh#string#substitute_unless()	lh-vim-lib.txt	/*lh#string#substitute_unless()*
 lh#string#trim()	lh-vim-lib.txt	/*lh#string#trim()*
+lh#switch#new()	lh-vim-lib.txt	/*lh#switch#new()*
+lh#switch-add_case()	lh-vim-lib.txt	/*lh#switch-add_case()*
+lh#switch-evaluate()	lh-vim-lib.txt	/*lh#switch-evaluate()*
 lh#syntax#NameAt()	lh-vim-lib.txt	/*lh#syntax#NameAt()*
 lh#syntax#NameAtMark()	lh-vim-lib.txt	/*lh#syntax#NameAtMark()*
 lh#syntax#Skip()	lh-vim-lib.txt	/*lh#syntax#Skip()*
