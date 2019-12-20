@@ -26,9 +26,10 @@ fzf-vim-commands	fzf-vim.txt	/*fzf-vim-commands*
 fzf-vim-completion-helper	fzf-vim.txt	/*fzf-vim-completion-helper*
 fzf-vim-custom-statusline	fzf-vim.txt	/*fzf-vim-custom-statusline*
 fzf-vim-customization	fzf-vim.txt	/*fzf-vim-customization*
-fzf-vim-example-advanced-rg-command	fzf-vim.txt	/*fzf-vim-example-advanced-rg-command*
+fzf-vim-example-advanced-ripgrep-integration	fzf-vim.txt	/*fzf-vim-example-advanced-ripgrep-integration*
 fzf-vim-example-customizing-files-command	fzf-vim.txt	/*fzf-vim-example-customizing-files-command*
 fzf-vim-example-git-grep-wrapper	fzf-vim.txt	/*fzf-vim-example-git-grep-wrapper*
+fzf-vim-example-rg-command-with-preview-window	fzf-vim.txt	/*fzf-vim-example-rg-command-with-preview-window*
 fzf-vim-fzfheart-vim	fzf-vim.txt	/*fzf-vim-fzfheart-vim*
 fzf-vim-global-options	fzf-vim.txt	/*fzf-vim-global-options*
 fzf-vim-hide-statusline	fzf-vim.txt	/*fzf-vim-hide-statusline*
