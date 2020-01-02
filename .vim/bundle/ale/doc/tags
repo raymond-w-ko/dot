@@ -746,6 +746,7 @@ b:ale_haskell_hlint_executable	ale-haskell.txt	/*b:ale_haskell_hlint_executable*
 b:ale_haskell_stack_build_options	ale-haskell.txt	/*b:ale_haskell_stack_build_options*
 b:ale_haskell_stack_ghc_options	ale-haskell.txt	/*b:ale_haskell_stack_ghc_options*
 b:ale_haskell_stylish_haskell_executable	ale-haskell.txt	/*b:ale_haskell_stylish_haskell_executable*
+b:ale_hover_to_preview	ale.txt	/*b:ale_hover_to_preview*
 b:ale_html_beautify_options	ale-html.txt	/*b:ale_html_beautify_options*
 b:ale_html_htmlhint_executable	ale-html.txt	/*b:ale_html_htmlhint_executable*
 b:ale_html_htmlhint_options	ale-html.txt	/*b:ale_html_htmlhint_options*
@@ -1343,6 +1344,7 @@ g:ale_haskell_stack_ghc_options	ale-haskell.txt	/*g:ale_haskell_stack_ghc_option
 g:ale_haskell_stylish_haskell_executable	ale-haskell.txt	/*g:ale_haskell_stylish_haskell_executable*
 g:ale_history_enabled	ale.txt	/*g:ale_history_enabled*
 g:ale_history_log_output	ale.txt	/*g:ale_history_log_output*
+g:ale_hover_to_preview	ale.txt	/*g:ale_hover_to_preview*
 g:ale_html_beautify_options	ale-html.txt	/*g:ale_html_beautify_options*
 g:ale_html_htmlhint_executable	ale-html.txt	/*g:ale_html_htmlhint_executable*
 g:ale_html_htmlhint_options	ale-html.txt	/*g:ale_html_htmlhint_options*
