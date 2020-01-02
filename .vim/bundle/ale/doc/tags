@@ -949,6 +949,7 @@ b:ale_python_mypy_auto_pipenv	ale-python.txt	/*b:ale_python_mypy_auto_pipenv*
 b:ale_python_mypy_executable	ale-python.txt	/*b:ale_python_mypy_executable*
 b:ale_python_mypy_ignore_invalid_syntax	ale-python.txt	/*b:ale_python_mypy_ignore_invalid_syntax*
 b:ale_python_mypy_options	ale-python.txt	/*b:ale_python_mypy_options*
+b:ale_python_mypy_show_notes	ale-python.txt	/*b:ale_python_mypy_show_notes*
 b:ale_python_mypy_use_global	ale-python.txt	/*b:ale_python_mypy_use_global*
 b:ale_python_prospector_auto_pipenv	ale-python.txt	/*b:ale_python_prospector_auto_pipenv*
 b:ale_python_prospector_executable	ale-python.txt	/*b:ale_python_prospector_executable*
@@ -1570,6 +1571,7 @@ g:ale_python_mypy_auto_pipenv	ale-python.txt	/*g:ale_python_mypy_auto_pipenv*
 g:ale_python_mypy_executable	ale-python.txt	/*g:ale_python_mypy_executable*
 g:ale_python_mypy_ignore_invalid_syntax	ale-python.txt	/*g:ale_python_mypy_ignore_invalid_syntax*
 g:ale_python_mypy_options	ale-python.txt	/*g:ale_python_mypy_options*
+g:ale_python_mypy_show_notes	ale-python.txt	/*g:ale_python_mypy_show_notes*
 g:ale_python_mypy_use_global	ale-python.txt	/*g:ale_python_mypy_use_global*
 g:ale_python_prospector_auto_pipenv	ale-python.txt	/*g:ale_python_prospector_auto_pipenv*
 g:ale_python_prospector_executable	ale-python.txt	/*g:ale_python_prospector_executable*
