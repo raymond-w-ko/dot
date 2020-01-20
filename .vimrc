@@ -2406,6 +2406,7 @@ let g:rainbow_conf = {
 \ 'separately': {
 \   '*': {},
 \   'javascript.jsx': {},
+\   'plasmaplace': 0,
 \   'markdown': {
 \     'parentheses_options': 'containedin=markdownCode contained',
 \   },
