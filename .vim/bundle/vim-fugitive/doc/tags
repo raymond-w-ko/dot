@@ -12,7 +12,6 @@
 :Ggrep	fugitive.txt	/*:Ggrep*
 :Ghdiffsplit	fugitive.txt	/*:Ghdiffsplit*
 :Git	fugitive.txt	/*:Git*
-:Git!	fugitive.txt	/*:Git!*
 :Git-blame	fugitive.txt	/*:Git-blame*
 :Git-commit	fugitive.txt	/*:Git-commit*
 :Git-difftool	fugitive.txt	/*:Git-difftool*
