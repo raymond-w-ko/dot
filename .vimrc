@@ -1689,7 +1689,6 @@ let s:single_quote_string_filestypes = {
     \ "python": 1,
     \ "css": 1,
     \ "scss": 1,
-    \ "html": 1,
     \ }
 let s:no_escape_double_quote_string_filestypes = {
     \ "make": 1,
