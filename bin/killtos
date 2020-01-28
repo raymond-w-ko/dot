@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ps auxww | grep thinkorswim | grep -v grep | awk '{print $2}' | xargs -I % kill -9 %
