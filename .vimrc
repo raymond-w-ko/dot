@@ -2240,7 +2240,7 @@ call add(g:synesthesia_ignored_filetypes, 'xml')
 " vim-easymotion
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
-let g:EasyMotion_do_shade = 0
+let g:EasyMotion_do_shade = 1
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_keys = "dsaklghqwertyuiopzxcvbnmfj"
 
@@ -2250,14 +2250,15 @@ hi EasyMotionTarget2First ctermbg=none ctermfg=46
 hi EasyMotionTarget2Second ctermbg=none ctermfg=46
 hi link EasyMotionShade Comment
 
-nmap s <Plug>(easymotion-overwin-f2)
+nmap s <Plug>(easymotion-s2)
+nmap S <Plug>(easymotion-overwin-f2)
 
 " map <Leader>f <Plug>(easymotion-bd-fl)
 " nmap <Leader>f <Plug>(easymotion-overwin-f)
 
 " Move to line
-map <Leader>L <Plug>(easymotion-bd-jk)
-nmap <Leader>L <Plug>(easymotion-overwin-line)
+" map <Leader>L <Plug>(easymotion-bd-jk)
+" nmap <Leader>L <Plug>(easymotion-overwin-line)
 
 " Move to word
 " conflicts with my save
