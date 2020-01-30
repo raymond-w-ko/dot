@@ -2136,6 +2136,7 @@ let g:ale_linters = {
     \ "jsx": ["eslint"],
     \ "c": [],
     \ "cpp": [],
+    \ "clojure": ["clj-kondo"],
     \ }
 let g:ale_python_flake8_executable = 'python3'
 let g:ale_python_flake8_options = '-m flake8'
@@ -2245,10 +2246,10 @@ let g:EasyMotion_smartcase = 1
 let g:EasyMotion_keys = "dsaklghqwertyuiopzxcvbnmfj"
 
 " easymotion highlight colors
-hi link EasyMotionTarget Error
-hi EasyMotionTarget2First ctermbg=none ctermfg=46
-hi EasyMotionTarget2Second ctermbg=none ctermfg=46
-hi link EasyMotionShade Comment
+" hi link EasyMotionTarget Error
+" hi EasyMotionTarget2First ctermbg=none ctermfg=46
+" hi EasyMotionTarget2Second ctermbg=none ctermfg=46
+" hi link EasyMotionShade Comment
 
 nmap s <Plug>(easymotion-s2)
 nmap S <Plug>(easymotion-overwin-f2)
