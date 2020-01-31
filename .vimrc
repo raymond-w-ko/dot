@@ -1970,12 +1970,27 @@ function! LightLineReadonly()
   " return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '⭤' : ''
 endfunction
 
+function! MyGetShortenedPath()
+  let path = expand('%:p')
+  let idx = strlen(path)
+  for i in range(3)
+    let idx = strridx(path, '/', idx) - 1
+  endfor
+  if idx == - 1
+    let idx = 0
+  else
+    let idx += 1
+  endif
+  let path = path[idx:]
+  return path
+endfunction
+
 function! LightLineFilename()
   return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
       \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
       \  &ft == 'unite' ? unite#get_status_string() :
       \  &ft == 'vimshell' ? vimshell#get_status_string() :
-      \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+      \ '' != expand('%:t') ? MyGetShortenedPath() : '[No Name]') .
       \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
 endfunction
 
