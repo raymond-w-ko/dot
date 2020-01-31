@@ -982,6 +982,12 @@ nnoremap <leader>/ :s/\\/\//<CR>:nohlsearch<CR>
 " killing buffers without closing current split
 nnoremap <DEL> :BD<CR>
 
+" tab navigation
+nnoremap <PageDown> :tabprev<CR>
+nnoremap <PageUp> :tabnext<CR>
+nnoremap [1~ :tabprev<CR>
+nnoremap [4~ :tabnext<CR>
+
 let s:list_of_pairs = [
     \ ['(', ')'],
     \ ['[', ']'],
