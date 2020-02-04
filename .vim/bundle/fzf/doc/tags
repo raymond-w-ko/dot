@@ -7,7 +7,7 @@ fzf-examples	fzf.txt	/*fzf-examples*
 fzf-hide-statusline	fzf.txt	/*fzf-hide-statusline*
 fzf-inside-terminal-buffer	fzf.txt	/*fzf-inside-terminal-buffer*
 fzf-license	fzf.txt	/*fzf-license*
-fzf-starting-fzf-in-neovim-floating-window	fzf.txt	/*fzf-starting-fzf-in-neovim-floating-window*
+fzf-starting-fzf-in-a-popup-window	fzf.txt	/*fzf-starting-fzf-in-a-popup-window*
 fzf-summary	fzf.txt	/*fzf-summary*
 fzf-tips	fzf.txt	/*fzf-tips*
 fzf-toc	fzf.txt	/*fzf-toc*

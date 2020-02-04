@@ -116,19 +116,6 @@ function! s:cpath(path, ...) abort
   return a:0 ? path ==# s:cpath(a:1) : path
 endfunction
 
-function! s:Cd(...) abort
-  let cd = exists('*haslocaldir') && haslocaldir() ? 'lcd' : exists(':tcd') && haslocaldir(-1) ? 'tcd' : 'cd'
-  if !a:0
-    return cd
-  endif
-  let cwd = getcwd()
-  if s:cpath(cwd, a:1)
-    return ''
-  endif
-  exe cd s:fnameescape(a:1)
-  return cd . ' ' . s:fnameescape(cwd)
-endfunction
-
 let s:executables = {}
 
 function! s:executable(binary) abort
@@ -713,18 +700,11 @@ function! s:repo_git_command(...) dict abort
 endfunction
 
 function! s:repo_git_chomp(...) dict abort
-  let git = g:fugitive_git_executable . ' --git-dir='.s:shellesc(self.git_dir)
-  let output = git . join(map(copy(a:000),'" ".s:shellesc(v:val)'),'')
-  return s:sub(system(output), '\n$', '')
+  return s:sub(system(FugitivePrepare(a:000, self.git_dir)), '\n$', '')
 endfunction
 
 function! s:repo_git_chomp_in_tree(...) dict abort
-  let cdback = s:Cd(self.tree())
-  try
-    return call(self.git_chomp, a:000, self)
-  finally
-    execute cdback
-  endtry
+  return call(self.git_chomp, a:000, self)
 endfunction
 
 function! s:repo_rev_parse(rev) dict abort
@@ -5177,29 +5157,38 @@ function! s:BlameSubcommand(line1, count, range, bang, mods, options) abort
         if a:mods =~# '\<tab\>'
           silent tabedit %
         endif
+        let bufnr = bufnr('')
+        let temp_state.bufnr = bufnr
+        let restore = []
         let mods = substitute(a:mods, '\<tab\>', '', 'g')
         for winnr in range(winnr('$'),1,-1)
           if getwinvar(winnr, '&scrollbind')
-            call setwinvar(winnr, '&scrollbind', 0)
+            if !&l:scrollbind
+              call setwinvar(winnr, '&scrollbind', 0)
+            elseif winnr != winnr() && getwinvar(winnr, '&foldenable')
+              call setwinvar(winnr, '&foldenable', 0)
+              call add(restore, 'call setwinvar(bufwinnr('.winbufnr(winnr).'),"&foldenable",1)')
+            endif
           endif
-          if exists('+cursorbind') && getwinvar(winnr, '&cursorbind')
+          if exists('+cursorbind') && !&l:cursorbind && getwinvar(winnr, '&cursorbind')
             call setwinvar(winnr, '&cursorbind', 0)
           endif
           if s:BlameBufnr(winbufnr(winnr)) > 0
             execute winbufnr(winnr).'bdelete'
           endif
         endfor
-        let bufnr = bufnr('')
-        let temp_state.bufnr = bufnr
-        let restore = 'call setwinvar(bufwinnr('.bufnr.'),"&scrollbind",0)'
-        if exists('+cursorbind')
-          let restore .= '|call setwinvar(bufwinnr('.bufnr.'),"&cursorbind",0)'
+        let restore_winnr = 'bufwinnr(' . bufnr . ')'
+        if !&l:scrollbind
+          call add(restore, 'call setwinvar(' . restore_winnr . ',"&scrollbind",0)')
+        endif
+        if exists('+cursorbind') && !&l:cursorbind
+          call add(restore, 'call setwinvar(' . restore_winnr . ',"&cursorbind",0)')
         endif
         if &l:wrap
-          let restore .= '|call setwinvar(bufwinnr('.bufnr.'),"&wrap",1)'
+          call add(restore, 'call setwinvar(' . restore_winnr . ',"&wrap",1)')
         endif
         if &l:foldenable
-          let restore .= '|call setwinvar(bufwinnr('.bufnr.'),"&foldenable",1)'
+          call add(restore, 'call setwinvar(' . restore_winnr . ',"&foldenable",1)')
         endif
         setlocal scrollbind nowrap nofoldenable
         if exists('+cursorbind')
@@ -5208,7 +5197,7 @@ function! s:BlameSubcommand(line1, count, range, bang, mods, options) abort
         let top = line('w0') + &scrolloff
         let current = line('.')
         exe 'silent keepalt' (a:bang ? s:Mods(mods) . 'split' : s:Mods(mods, 'leftabove') . 'vsplit') s:fnameescape(temp)
-        let w:fugitive_leave = restore
+        let w:fugitive_leave = join(restore, '|')
         execute top
         normal! zt
         execute current
