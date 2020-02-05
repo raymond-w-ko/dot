@@ -1808,6 +1808,8 @@ function! s:SetupBasicSyntaxHighlights()
 
   if &filetype == "clojure"
     runtime plugin/rko_clojure.vim
+  elseif &filetype == "dirvish"
+    runtime syntax/dirvish.vim
   endif
 endfunction
 
