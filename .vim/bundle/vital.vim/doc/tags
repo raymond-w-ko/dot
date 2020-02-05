@@ -21,6 +21,15 @@ Vital.Assertion-functions	vital/Assertion.txt	/*Vital.Assertion-functions*
 Vital.Assertion-interface	vital/Assertion.txt	/*Vital.Assertion-interface*
 Vital.Assertion-introduction	vital/Assertion.txt	/*Vital.Assertion-introduction*
 Vital.Assertion.define()	vital/Assertion.txt	/*Vital.Assertion.define()*
+Vital.Async.Later	vital/Async/Later.txt	/*Vital.Async.Later*
+Vital.Async.Later-contents	vital/Async/Later.txt	/*Vital.Async.Later-contents*
+Vital.Async.Later-function	vital/Async/Later.txt	/*Vital.Async.Later-function*
+Vital.Async.Later-introduction	vital/Async/Later.txt	/*Vital.Async.Later-introduction*
+Vital.Async.Later.call()	vital/Async/Later.txt	/*Vital.Async.Later.call()*
+Vital.Async.Later.get_error_handler()	vital/Async/Later.txt	/*Vital.Async.Later.get_error_handler()*
+Vital.Async.Later.get_max_workers()	vital/Async/Later.txt	/*Vital.Async.Later.get_max_workers()*
+Vital.Async.Later.set_error_handler()	vital/Async/Later.txt	/*Vital.Async.Later.set_error_handler()*
+Vital.Async.Later.set_max_workers()	vital/Async/Later.txt	/*Vital.Async.Later.set_max_workers()*
 Vital.Async.Promise	vital/Async/Promise.txt	/*Vital.Async.Promise*
 Vital.Async.Promise-Promise.catch()	vital/Async/Promise.txt	/*Vital.Async.Promise-Promise.catch()*
 Vital.Async.Promise-Promise.finally()	vital/Async/Promise.txt	/*Vital.Async.Promise-Promise.finally()*
@@ -1563,6 +1572,7 @@ Vital.Web.XML-structures	vital/Web/XML.txt	/*Vital.Web.XML-structures*
 Vital.Web.XML.parse()	vital/Web/XML.txt	/*Vital.Web.XML.parse()*
 Vital.Web.XML.parseFile()	vital/Web/XML.txt	/*Vital.Web.XML.parseFile()*
 Vital.Web.XML.parseURL()	vital/Web/XML.txt	/*Vital.Web.XML.parseURL()*
+Vital/Async/Later.txt	vital/Async/Later.txt	/*Vital\/Async\/Later.txt*
 Vitalizer	vitalizer.txt	/*Vitalizer*
 g:vitalizer#vital_dir	vitalizer.txt	/*g:vitalizer#vital_dir*
 vital	vital.txt	/*vital*
