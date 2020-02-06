@@ -198,11 +198,13 @@ When `window` entry is a dictionary, fzf will start in a popup window. The
 following options are allowed:
 
 - Required:
-    - `width` [float]
-    - `height` [float]
+    - `width` [float range [0 ~ 1]]
+    - `height` [float range [0 ~ 1]]
 - Optional:
+    - `yoffset` [float default 0.5 range [0 ~ 1]]
+    - `xoffset` [float default 0.5 range [0 ~ 1]]
     - `highlight` [string default `'Comment'`]: Highlight group for border
-    - `rounded` [boolean default `v:true`]: Use rounded border
+    - `border` [string default `rounded`]: Border style (`rounded` | `sharp` | `horizontal`)
 
 `fzf#wrap`
 ----------
@@ -291,12 +293,14 @@ The latest versions of Vim and Neovim include builtin terminal emulator
 
 ```vim
 " Required:
-" - width [float]
-" - height [float]
+" - width [float range [0 ~ 1]]
+" - height [float range [0 ~ 1]]
 "
 " Optional:
+" - xoffset [float default 0.0 range [0 ~ 1]]
+" - yoffset [float default 0.0 range [0 ~ 1]]
 " - highlight [string default 'Comment']: Highlight group for border
-" - rounded [boolean default v:true]: Use rounded border
+" - border [string default 'rounded']: Border style ('rounded' | 'sharp' | 'horizontal')
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 ```
 
