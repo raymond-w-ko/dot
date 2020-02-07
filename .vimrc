@@ -1977,8 +1977,11 @@ function! MyGetShortenedPath()
   let idx = strlen(path)
   for i in range(3)
     let idx = strridx(path, '/', idx) - 1
+    if idx <= 0
+      break
+    endif
   endfor
-  if idx == - 1
+  if idx <= - 1
     let idx = 0
   else
     let idx += 1
