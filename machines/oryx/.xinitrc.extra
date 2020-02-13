@@ -15,6 +15,7 @@ synclient VertEdgeScroll=0
 killall syndaemon
 syndaemon -t -k -i 1 -d &
 
+numlockx &
 picom --experimental-backends -b &
 
 # always full GPU speed
