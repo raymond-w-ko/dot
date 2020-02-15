@@ -2162,7 +2162,7 @@ let g:ale_linters = {
     \ "jsx": ["eslint"],
     \ "c": [],
     \ "cpp": [],
-    \ "clojure": ["clj-kondo"],
+    \ "clojure": ["joker"],
     \ }
 let g:ale_python_flake8_executable = 'python3'
 let g:ale_python_flake8_options = '-m flake8'
