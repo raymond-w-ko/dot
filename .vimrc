@@ -968,9 +968,8 @@ inoremap <C-l> <C-x><C-l>
 nnoremap Q gqip
 vnoremap Q gq
 
-" not necessary with my custom keyboard
-" nnoremap ' `
-" nnoremap ` '
+nnoremap ' `
+nnoremap ` '
 
 " Substitute
 nnoremap <leader>s :%s//
