@@ -22,6 +22,7 @@ slime-tmux	vim-slime.txt	/*slime-tmux*
 slime-usage	vim-slime.txt	/*slime-usage*
 slime-vimterminal	vim-slime.txt	/*slime-vimterminal*
 slime-whimrepl	vim-slime.txt	/*slime-whimrepl*
+slime-x11	vim-slime.txt	/*slime-x11*
 slime.txt	vim-slime.txt	/*slime.txt*
 v_<c-c><c-c>	vim-slime.txt	/*v_<c-c><c-c>*
 v_CTRL-C_CTRL-C	vim-slime.txt	/*v_CTRL-C_CTRL-C*
