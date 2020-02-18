@@ -2570,7 +2570,7 @@ function! s:StatusCommand(line1, line2, range, count, bang, mods, reg, arg, args
     elseif a:bang
       return mods . 'pedit' . arg . '|wincmd P'
     else
-      return mods . (a:count > 0 ? a:count : '') . 'keepalt split' . arg
+      return mods . 'keepalt ' . (a:count > 0 ? a:count : '') . 'split' . arg
     endif
   catch /^fugitive:/
     return 'echoerr ' . string(v:exception)
@@ -3841,7 +3841,11 @@ function! s:ToolStream(line1, line2, range, bang, mods, options, args, state) ab
   let a:state.mode = 'init'
   let a:state.from = ''
   let a:state.to = ''
-  let exec = s:UserCommandList({'git': a:options.git, 'dir': a:options.dir}) + ['-c', 'diff.context=0'] + a:options.flags + ['--no-pager', 'diff', '--no-ext-diff', '--no-color', '--no-prefix'] + argv
+  let exec = s:UserCommandList({'git': a:options.git, 'dir': a:options.dir})
+  if fugitive#GitVersion(1, 9) || (!s:HasOpt(argv, '--name-status') && !prompt)
+    let exec += ['-c', 'diff.context=0']
+  endif
+  let exec += a:options.flags + ['--no-pager', 'diff', '--no-ext-diff', '--no-color', '--no-prefix'] + argv
   if prompt
     let title = ':Git ' . s:fnameescape(a:options.flags + [a:options.command] + a:options.args)
     return s:QuickfixStream(a:line2, 'difftool', title, exec, !a:bang, s:function('s:ToolParse'), a:state)

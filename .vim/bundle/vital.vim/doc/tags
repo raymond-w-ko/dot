@@ -1078,6 +1078,7 @@ Vital.System.Filepath.abspath()	vital/System/Filepath.txt	/*Vital.System.Filepat
 Vital.System.Filepath.basename()	vital/System/Filepath.txt	/*Vital.System.Filepath.basename()*
 Vital.System.Filepath.contains()	vital/System/Filepath.txt	/*Vital.System.Filepath.contains()*
 Vital.System.Filepath.dirname()	vital/System/Filepath.txt	/*Vital.System.Filepath.dirname()*
+Vital.System.Filepath.expand_home()	vital/System/Filepath.txt	/*Vital.System.Filepath.expand_home()*
 Vital.System.Filepath.from_slash()	vital/System/Filepath.txt	/*Vital.System.Filepath.from_slash()*
 Vital.System.Filepath.is_absolute()	vital/System/Filepath.txt	/*Vital.System.Filepath.is_absolute()*
 Vital.System.Filepath.is_case_tolerant()	vital/System/Filepath.txt	/*Vital.System.Filepath.is_case_tolerant()*
