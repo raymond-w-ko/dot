@@ -87,7 +87,9 @@ lh#assert#value().is_unset()	lh-vim-lib.txt	/*lh#assert#value().is_unset()*
 lh#assert#value().match()	lh-vim-lib.txt	/*lh#assert#value().match()*
 lh#assert#value().not()	lh-vim-lib.txt	/*lh#assert#value().not()*
 lh#assert#value().verifies()	lh-vim-lib.txt	/*lh#assert#value().verifies()*
+lh#async#get_queue()	lh-vim-lib.txt	/*lh#async#get_queue()*
 lh#async#queue()	lh-vim-lib.txt	/*lh#async#queue()*
+lh#async#queue/push_or_start()	lh-vim-lib.txt	/*lh#async#queue\/push_or_start()*
 lh#buffer#Find()	lh-vim-lib.txt	/*lh#buffer#Find()*
 lh#buffer#Jump()	lh-vim-lib.txt	/*lh#buffer#Jump()*
 lh#buffer#Scratch()	lh-vim-lib.txt	/*lh#buffer#Scratch()*
