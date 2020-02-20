@@ -53,6 +53,7 @@ Vital.Async.Promise.all()	vital/Async/Promise.txt	/*Vital.Async.Promise.all()*
 Vital.Async.Promise.is_available()	vital/Async/Promise.txt	/*Vital.Async.Promise.is_available()*
 Vital.Async.Promise.is_promise()	vital/Async/Promise.txt	/*Vital.Async.Promise.is_promise()*
 Vital.Async.Promise.new()	vital/Async/Promise.txt	/*Vital.Async.Promise.new()*
+Vital.Async.Promise.on_unhandled_rejection	vital/Async/Promise.txt	/*Vital.Async.Promise.on_unhandled_rejection*
 Vital.Async.Promise.race()	vital/Async/Promise.txt	/*Vital.Async.Promise.race()*
 Vital.Async.Promise.reject()	vital/Async/Promise.txt	/*Vital.Async.Promise.reject()*
 Vital.Async.Promise.resolve()	vital/Async/Promise.txt	/*Vital.Async.Promise.resolve()*
