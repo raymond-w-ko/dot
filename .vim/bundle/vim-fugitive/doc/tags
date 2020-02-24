@@ -14,7 +14,6 @@
 :Gdiffsplit	fugitive.txt	/*:Gdiffsplit*
 :Gdiffsplit!	fugitive.txt	/*:Gdiffsplit!*
 :Gedit	fugitive.txt	/*:Gedit*
-:Gedit!	fugitive.txt	/*:Gedit!*
 :Gfetch	fugitive.txt	/*:Gfetch*
 :Ggrep	fugitive.txt	/*:Ggrep*
 :Ghdiffsplit	fugitive.txt	/*:Ghdiffsplit*
