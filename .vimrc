@@ -1149,7 +1149,6 @@ if executable("fzf")
       " execute ':Files ' . EscapePathname(MyGetProjectDirectory())
       let dir = MyGetProjectDirectory()
       call fzf#run({
-          \ "source": "find .",
           \ "sink": a:sink,
           \ "options": printf('--prompt "%s"', dir),
           \ "dir": dir,
