@@ -711,12 +711,21 @@ function! s:selection()
     let @a = a_save
   endtry
 endfunction
+function! s:rg_handler(file)
+  let i = stridx(a:file, ":")
+  if i > 0
+    exe "edit " . a:file[0:i - 1]
+  endif
+endfunction
 function! s:FindWordInProject()
   let needle = s:get_visual_selection()
   let dir = MyGetProjectDirectory()
-  wincmd l
-  exe "cd " . dir
-  execute "Rg " . needle
+  call fzf#run({
+      \ "source": "rg -- " . needle,
+      \ "sink": function("s:rg_handler"),
+      \ "options": printf('--color="dark,hl:33,hl+:#ff0000,fg+:235,bg+:#000000,fg+:254,info:254,prompt:37,spinner:108,pointer:235,marker:235" --prompt "%s"', dir),
+      \ "dir": dir,
+      \ "window": {"width": 0.618, "height": 0.618,},})
 endfunction
 vnoremap <leader>r :call <SID>FindWordInProject()<CR>
 
@@ -1136,22 +1145,29 @@ elseif has("win32")
 endif
 
 if executable("fzf")
-  function! FindFileInProjectDirectory()
-      execute ':Files ' . EscapePathname(MyGetProjectDirectory())
+  function! MyFindFileInProjectAndEdit(sink)
+      " execute ':Files ' . EscapePathname(MyGetProjectDirectory())
+      let dir = MyGetProjectDirectory()
+      call fzf#run({
+          \ "source": "find .",
+          \ "sink": a:sink,
+          \ "options": printf('--prompt "%s"', dir),
+          \ "dir": dir,
+          \ "window": {"width": 0.618, "height": 0.618,},})
   endfunction
 
-  " use fzf
   nnoremap <leader>b :Buffers<CR>
+  nnoremap <C-p> :call MyFindFileInProjectAndEdit('edit')<CR>
+  nnoremap <leader>et :call MyFindFileInProjectAndEdit('tabedit')<CR>
 else
   " use ctrlp.vim
-  function! FindFileInProjectDirectory()
+  function! MyFindFileInProjectAndEdit()
       execute ':CtrlP ' . EscapePathname(MyGetProjectDirectory())
   endfunction
 
   nnoremap <leader>b :CtrlPBuffer<CR>
+  nnoremap <C-p> :call MyFindFileInProjectAndEdit()<CR>
 endif
-nnoremap <leader>p :call FindFileInProjectDirectory()<CR>
-nnoremap <C-p> :call FindFileInProjectDirectory()<CR>
 
 function! MyAlternateFunction()
     " let old_buf_nr = bufnr('%')
