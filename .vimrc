@@ -2120,6 +2120,7 @@ let g:omegacomplete_corrections_hi_cmds=[
     \ "hi Pmenu guifg=#ffff00 guibg=#002b36 gui=none ctermbg=0 ctermfg=226 term=none cterm=none",
     \ "hi PmenuSel guifg=#002b36 guibg=#ffff00 gui=none ctermbg=226 ctermfg=0 term=none cterm=none",
     \ ]
+inoremap <expr> <C-s> omegacomplete#toggle_pause_completion()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " syntastic
