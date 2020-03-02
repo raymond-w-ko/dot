@@ -1015,7 +1015,7 @@ void Omegacomplete::genericKeywordCompletion(const std::string& line,
       disambiguate_index < prev_completions_->size()) {
     const CompleteItem& completion = (*prev_completions_)[disambiguate_index];
     result += "[";
-    result += completion.SerializeToVimDict();
+    result += completion.SerializeToVimDict(0);
     result += "]";
     return;
   }
@@ -1110,7 +1110,7 @@ void Omegacomplete::genericKeywordCompletion(const std::string& line,
     if (i > LookupTable::kMaxNumCompletions) {
       break;
     }
-    result += (*final_items)[i].SerializeToVimDict();
+    result += (*final_items)[i].SerializeToVimDict(i);
   }
   result += "]";
 
