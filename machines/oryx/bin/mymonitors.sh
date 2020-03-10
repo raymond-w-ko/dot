@@ -47,3 +47,5 @@ fi
 if [[ -d ~/wallpapers ]]; then
   feh --recursive --randomize --bg-fill ~/wallpapers
 fi
+
+picom --experimental-backends -b
