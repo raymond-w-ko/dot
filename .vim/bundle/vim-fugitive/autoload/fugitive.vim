@@ -420,9 +420,9 @@ function! fugitive#PrepareDirEnvArgv(...) abort
   let i = 0
   while i < len(cmd)
     if cmd[i] =~# '^$\|[\/.]' && cmd[i] !~# '^-'
-      let dir = remove(cmd, 0)
+      let dir = remove(cmd, i)
     elseif cmd[i] =~# '^--git-dir='
-      let dir = remove(cmd, 0)[10:-1]
+      let dir = remove(cmd, i)[10:-1]
     elseif type(cmd[i]) ==# type(0)
       let dir = s:Dir(remove(cmd, i))
     elseif cmd[i] ==# '-c' && len(cmd) > i + 1
@@ -4500,7 +4500,7 @@ function! s:ReadPrepare(line1, count, range, mods) abort
   else
     let pre = ''
   endif
-  return [pre . mods . after . 'read', delete . '|diffupdate' . (a:count < 0 ? '|' . line('.') : '')]
+  return [pre . mods . after . 'read', delete . 'diffupdate' . (a:count < 0 ? '|' . line('.') : '')]
 endfunction
 
 function! s:ReadExec(line1, count, range, mods, env, args, options) abort
@@ -5824,7 +5824,7 @@ endfunction
 
 " Section: Go to file
 
-let s:ref_header = '\%(Head\|Merge\|Rebase\|Upstream\|Pull\|Push\)'
+let s:ref_header = '\%(Merge\|Rebase\|Upstream\|Pull\|Push\)'
 
 nnoremap <SID>: :<C-U><C-R>=v:count ? v:count : ''<CR>
 function! fugitive#MapCfile(...) abort
@@ -6040,7 +6040,7 @@ function! s:StatusCfile(...) abort
     return [lead . info.relative[0]]
   elseif len(info.commit)
     return [info.commit]
-  elseif line =~# '^' . s:ref_header . ': '
+  elseif line =~# '^' . s:ref_header . ': \|^Head: '
     return [matchstr(line, ' \zs.*')]
   else
     return ['']
