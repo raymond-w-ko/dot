@@ -321,6 +321,9 @@ if exists('&wildignorecase')
   set wildignorecase
 endif
 
+" disable bold in terminal
+set t_md=
+
 " Ps = 0  -> blinking block.
 " Ps = 1  -> blinking block (default).
 " Ps = 2  -> steady block.
