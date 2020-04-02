@@ -80,7 +80,7 @@ Include: _dark_terminal.colortemplate
   SpellCap           violet            none              t=underline g=undercurl s=violet
   SpellLocal         yellow            none              t=underline g=undercurl s=yellow
   SpellRare          cyan              none              t=underline g=undercurl s=cyan
-  Title              yellow            none
+  Title              orange            none
 #endif
 # }}}
 # Cursor style (dark) {{{
@@ -144,7 +144,7 @@ Search               yellow            none              reverse
 SignColumn           base0             none
 TabLine              base01            base02
 TabLineFill          base01            base02
-VertSplit            base01            base02
+VertSplit            base02            base02
 Visual               base01            base03            reverse
 VisualNOS            none              base02            reverse
 WarningMsg           orange            none
