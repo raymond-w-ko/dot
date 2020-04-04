@@ -2509,12 +2509,12 @@ function! MyJsonFormatter()
 endfunction
 function! MyJavascriptFormatter()
   let view = winsaveview()
-  execute "%!prettier --stdin --parser babel --trailing-comma es5"
+  execute "%!prettier --parser babel --trailing-comma es5"
   call winrestview(view)
 endfunction
 function! MyScssFormatter()
   let view = winsaveview()
-  execute "%!prettier --stdin --parser scss --trailing-comma es5"
+  execute "%!prettier --parser scss --trailing-comma es5"
   call winrestview(view)
 endfunction
 function! MyPythonFormatter()
