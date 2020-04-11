@@ -2405,10 +2405,15 @@ nnoremap <silent> <Right> :TmuxNavigateRight<cr>
 " vim-startify
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:startify_session_dir="~/sessions/"
-let g:startify_files_number = 16
-let g:startify_session_number = 16
+let g:startify_session_number = 32
+let g:startify_files_number = 64
+
 let g:startify_lists = [
     \ { 'type': 'sessions',  'header': ['   Sessions']       },
+    \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+    \ { 'type': 'files',     'header': ['   MRU']            },
+    \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+    \ { 'type': 'commands',  'header': ['   Commands']       },
     \ ]
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
