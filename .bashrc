@@ -159,13 +159,12 @@ alias n="$NICE_PROG"
 alias makepkg="$NICE_PROG makepkg"
 alias y="$NICE_PROG yay"
 alias adu="sudo apt-get update && sudo apt-get dist-upgrade"
-alias bb="backblaze-b2"
 alias fun="fusermount -u"
 if [[ -f "/usr/local/bin/b2" ]]; then
-  alias bb="/usr/local/bin/b2"
+  alias b2="/usr/local/bin/b2"
 fi
 if [[ -f "$HOME/.local/bin/b2" ]]; then
-  alias bb="$HOME/.local/bin/b2"
+  alias b2="$HOME/.local/bin/b2"
 fi
 findcore() {
   find . -type f -regextype posix-extended -regex '.*/core\.[0-9]+$'
