@@ -264,7 +264,9 @@ endfunction
 function! s:_EscapeText(text)
   if exists("&filetype")
     let custom_escape = "_EscapeText_" . substitute(&filetype, "[.]", "_", "g")
-    if exists("*" . custom_escape)
+    if exists("*SlimeOverride" . custom_escape)
+      let result = call("SlimeOverride" . custom_escape, [a:text])
+    elseif exists("*" . custom_escape)
       let result = call(custom_escape, [a:text])
     end
   end
@@ -349,13 +351,15 @@ endfunction
 function! slime#send_cell(cell_delimiter) abort
   let line_ini = search(a:cell_delimiter, 'bcnW')
   let line_end = search(a:cell_delimiter, 'nW')
-  if !line_ini
-      let line_ini = 1
+
+  " line after delimiter or top of file
+  let line_ini = line_ini ? line_ini + 1 : 1
+  " line before delimiter or bottom of file
+  let line_end = line_end ? line_end - 1 : line("$")
+
+  if line_ini <= line_end
+    call slime#send_range(line_ini, line_end)
   endif
-  if !line_end
-      let line_end = line("$")
-  endif
-  call slime#send_range(line_ini, line_end)
 endfunction
 
 function! slime#store_curpos()
@@ -401,6 +405,10 @@ endfunction
 
 " delegation
 function! s:SlimeDispatch(name, ...)
+  " allow custom override
+  if exists("*SlimeOverride" . a:name)
+    return call("SlimeOverride" . a:name, a:000)
+  end
   let target = substitute(tolower(g:slime_target), '\(.\)', '\u\1', '') " Capitalize
   return call("s:" . target . a:name, a:000)
 endfunction
