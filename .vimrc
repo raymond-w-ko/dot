@@ -994,8 +994,8 @@ nnoremap <leader>/ :s/\\/\//<CR>:nohlsearch<CR>
 nnoremap <DEL> :BD<CR>
 
 " tab navigation
-nnoremap <PageDown> :tabprev<CR>
-nnoremap <PageUp> :tabnext<CR>
+nnoremap <Home> :tabprev<CR>
+nnoremap <End> :tabnext<CR>
 nnoremap [1~ :tabprev<CR>
 nnoremap [4~ :tabnext<CR>
 
