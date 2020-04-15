@@ -21,13 +21,7 @@ ALEFixPre	ale.txt	/*ALEFixPre*
 ALEFixPre-autocmd	ale.txt	/*ALEFixPre-autocmd*
 ALEFixSuggest	ale.txt	/*ALEFixSuggest*
 ALEGoToDefinition	ale.txt	/*ALEGoToDefinition*
-ALEGoToDefinitionInSplit	ale.txt	/*ALEGoToDefinitionInSplit*
-ALEGoToDefinitionInTab	ale.txt	/*ALEGoToDefinitionInTab*
-ALEGoToDefinitionInVSplit	ale.txt	/*ALEGoToDefinitionInVSplit*
 ALEGoToTypeDefinition	ale.txt	/*ALEGoToTypeDefinition*
-ALEGoToTypeDefinitionInSplit	ale.txt	/*ALEGoToTypeDefinitionInSplit*
-ALEGoToTypeDefinitionInTab	ale.txt	/*ALEGoToTypeDefinitionInTab*
-ALEGoToTypeDefinitionInVSplit	ale.txt	/*ALEGoToTypeDefinitionInVSplit*
 ALEHover	ale.txt	/*ALEHover*
 ALEInfo	ale.txt	/*ALEInfo*
 ALEInfo-highlight	ale.txt	/*ALEInfo-highlight*
@@ -50,6 +44,7 @@ ALEOrganizeImports	ale.txt	/*ALEOrganizeImports*
 ALEPrevious	ale.txt	/*ALEPrevious*
 ALEPreviousWrap	ale.txt	/*ALEPreviousWrap*
 ALERename	ale.txt	/*ALERename*
+ALERepeatSelection	ale.txt	/*ALERepeatSelection*
 ALEReset	ale.txt	/*ALEReset*
 ALEResetBuffer	ale.txt	/*ALEResetBuffer*
 ALEStopAllLSPs	ale.txt	/*ALEStopAllLSPs*
@@ -660,6 +655,7 @@ b:ale_d_dls_executable	ale-d.txt	/*b:ale_d_dls_executable*
 b:ale_dart_dartanalyzer_executable	ale-dart.txt	/*b:ale_dart_dartanalyzer_executable*
 b:ale_dart_dartfmt_executable	ale-dart.txt	/*b:ale_dart_dartfmt_executable*
 b:ale_dart_dartfmt_options	ale-dart.txt	/*b:ale_dart_dartfmt_options*
+b:ale_default_navigation	ale.txt	/*b:ale_default_navigation*
 b:ale_disable_lsp	ale.txt	/*b:ale_disable_lsp*
 b:ale_dockerfile_dockerfile_lint_executable	ale-dockerfile.txt	/*b:ale_dockerfile_dockerfile_lint_executable*
 b:ale_dockerfile_dockerfile_lint_options	ale-dockerfile.txt	/*b:ale_dockerfile_dockerfile_lint_options*
@@ -1252,6 +1248,7 @@ g:ale_d_dls_executable	ale-d.txt	/*g:ale_d_dls_executable*
 g:ale_dart_dartanalyzer_executable	ale-dart.txt	/*g:ale_dart_dartanalyzer_executable*
 g:ale_dart_dartfmt_executable	ale-dart.txt	/*g:ale_dart_dartfmt_executable*
 g:ale_dart_dartfmt_options	ale-dart.txt	/*g:ale_dart_dartfmt_options*
+g:ale_default_navigation	ale.txt	/*g:ale_default_navigation*
 g:ale_disable_lsp	ale.txt	/*g:ale_disable_lsp*
 g:ale_dockerfile_dockerfile_lint_executable	ale-dockerfile.txt	/*g:ale_dockerfile_dockerfile_lint_executable*
 g:ale_dockerfile_dockerfile_lint_options	ale-dockerfile.txt	/*g:ale_dockerfile_dockerfile_lint_options*
