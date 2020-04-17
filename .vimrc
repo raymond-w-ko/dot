@@ -2044,10 +2044,10 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UltiSnips
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:UltiSnipsExpandTrigger = "<F10>"
+let g:UltiSnipsExpandTrigger = "<F5>"
 let g:UltiSnipsListSnippets = "<F1>"
-let g:UltiSnipsJumpForwardTrigger = "<C-b>"
-let g:UltiSnipsJumpBackwardTrigger = "<C-z>"
+let g:UltiSnipsJumpForwardTrigger = "<C-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Gundo
