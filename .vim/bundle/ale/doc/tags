@@ -509,6 +509,7 @@ ale-tcl-options	ale-tcl.txt	/*ale-tcl-options*
 ale-terraform-fmt-fixer	ale-terraform.txt	/*ale-terraform-fmt-fixer*
 ale-terraform-options	ale-terraform.txt	/*ale-terraform-options*
 ale-terraform-terraform	ale-terraform.txt	/*ale-terraform-terraform*
+ale-terraform-terraform-lsp	ale-terraform.txt	/*ale-terraform-terraform-lsp*
 ale-terraform-tflint	ale-terraform.txt	/*ale-terraform-tflint*
 ale-tests	ale-development.txt	/*ale-tests*
 ale-tex-chktex	ale-tex.txt	/*ale-tex-chktex*
@@ -543,6 +544,7 @@ ale-vhdl-xvhdl	ale-vhdl.txt	/*ale-vhdl-xvhdl*
 ale-vim-help-options	ale-vim-help.txt	/*ale-vim-help-options*
 ale-vim-help-write-good	ale-vim-help.txt	/*ale-vim-help-write-good*
 ale-vim-options	ale-vim.txt	/*ale-vim-options*
+ale-vim-vimls	ale-vim.txt	/*ale-vim-vimls*
 ale-vim-vint	ale-vim.txt	/*ale-vim-vint*
 ale-vue-options	ale-vue.txt	/*ale-vue-options*
 ale-vue-prettier	ale-vue.txt	/*ale-vue-prettier*
@@ -1081,6 +1083,8 @@ b:ale_tcl_nagelfar_executable	ale-tcl.txt	/*b:ale_tcl_nagelfar_executable*
 b:ale_tcl_nagelfar_options	ale-tcl.txt	/*b:ale_tcl_nagelfar_options*
 b:ale_terraform_fmt_executable	ale-terraform.txt	/*b:ale_terraform_fmt_executable*
 b:ale_terraform_fmt_options	ale-terraform.txt	/*b:ale_terraform_fmt_options*
+b:ale_terraform_langserver_executable	ale-terraform.txt	/*b:ale_terraform_langserver_executable*
+b:ale_terraform_langserver_options	ale-terraform.txt	/*b:ale_terraform_langserver_options*
 b:ale_terraform_terraform_executable	ale-terraform.txt	/*b:ale_terraform_terraform_executable*
 b:ale_terraform_tflint_executable	ale-terraform.txt	/*b:ale_terraform_tflint_executable*
 b:ale_terraform_tflint_options	ale-terraform.txt	/*b:ale_terraform_tflint_options*
@@ -1121,6 +1125,9 @@ b:ale_vhdl_vcom_executable	ale-vhdl.txt	/*b:ale_vhdl_vcom_executable*
 b:ale_vhdl_vcom_options	ale-vhdl.txt	/*b:ale_vhdl_vcom_options*
 b:ale_vhdl_xvhdl_executable	ale-vhdl.txt	/*b:ale_vhdl_xvhdl_executable*
 b:ale_vhdl_xvhdl_options	ale-vhdl.txt	/*b:ale_vhdl_xvhdl_options*
+b:ale_vim_vimls_config	ale-vim.txt	/*b:ale_vim_vimls_config*
+b:ale_vim_vimls_executable	ale-vim.txt	/*b:ale_vim_vimls_executable*
+b:ale_vim_vimls_use_global	ale-vim.txt	/*b:ale_vim_vimls_use_global*
 b:ale_vim_vint_executable	ale-vim.txt	/*b:ale_vim_vint_executable*
 b:ale_vim_vint_show_style_issues	ale-vim.txt	/*b:ale_vim_vint_show_style_issues*
 b:ale_virtualenv_dir_names	ale.txt	/*b:ale_virtualenv_dir_names*
@@ -1722,6 +1729,8 @@ g:ale_tcl_nagelfar_executable	ale-tcl.txt	/*g:ale_tcl_nagelfar_executable*
 g:ale_tcl_nagelfar_options	ale-tcl.txt	/*g:ale_tcl_nagelfar_options*
 g:ale_terraform_fmt_executable	ale-terraform.txt	/*g:ale_terraform_fmt_executable*
 g:ale_terraform_fmt_options	ale-terraform.txt	/*g:ale_terraform_fmt_options*
+g:ale_terraform_langserver_executable	ale-terraform.txt	/*g:ale_terraform_langserver_executable*
+g:ale_terraform_langserver_options	ale-terraform.txt	/*g:ale_terraform_langserver_options*
 g:ale_terraform_terraform_executable	ale-terraform.txt	/*g:ale_terraform_terraform_executable*
 g:ale_terraform_tflint_executable	ale-terraform.txt	/*g:ale_terraform_tflint_executable*
 g:ale_terraform_tflint_options	ale-terraform.txt	/*g:ale_terraform_tflint_options*
@@ -1763,6 +1772,9 @@ g:ale_vhdl_vcom_executable	ale-vhdl.txt	/*g:ale_vhdl_vcom_executable*
 g:ale_vhdl_vcom_options	ale-vhdl.txt	/*g:ale_vhdl_vcom_options*
 g:ale_vhdl_xvhdl_executable	ale-vhdl.txt	/*g:ale_vhdl_xvhdl_executable*
 g:ale_vhdl_xvhdl_options	ale-vhdl.txt	/*g:ale_vhdl_xvhdl_options*
+g:ale_vim_vimls_config	ale-vim.txt	/*g:ale_vim_vimls_config*
+g:ale_vim_vimls_executable	ale-vim.txt	/*g:ale_vim_vimls_executable*
+g:ale_vim_vimls_use_global	ale-vim.txt	/*g:ale_vim_vimls_use_global*
 g:ale_vim_vint_executable	ale-vim.txt	/*g:ale_vim_vint_executable*
 g:ale_vim_vint_show_style_issues	ale-vim.txt	/*g:ale_vim_vint_show_style_issues*
 g:ale_virtualenv_dir_names	ale.txt	/*g:ale_virtualenv_dir_names*
