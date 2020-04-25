@@ -1536,9 +1536,12 @@ function! fugitive#PathComplete(...) abort
 endfunction
 
 function! s:CompleteHeads(dir) abort
+  if empty(a:dir)
+    return []
+  endif
   let dir = fugitive#Find('.git/', a:dir)
   return sort(filter(['HEAD', 'FETCH_HEAD', 'ORIG_HEAD'] + s:merge_heads, 'filereadable(dir . v:val)')) +
-        \ sort(s:LinesError('rev-parse', '--symbolic', '--branches', '--tags', '--remotes')[0])
+        \ sort(s:LinesError([a:dir, 'rev-parse', '--symbolic', '--branches', '--tags', '--remotes'])[0])
 endfunction
 
 function! fugitive#CompleteObject(base, ...) abort
@@ -4167,6 +4170,11 @@ function! s:GrepSubcommand(line1, line2, range, bang, mods, options) abort
   else
     return ''
   endif
+endfunction
+
+function! fugitive#GrepCommand(line1, line2, range, bang, mods, arg) abort
+  return fugitive#Command(a:line1, a:line2, a:range, a:bang, a:mods,
+        \ "grep -O " . a:arg)
 endfunction
 
 let s:log_diff_context = '{"filename": fugitive#Find(v:val . from, a:dir), "lnum": get(offsets, v:key), "module": strpart(v:val, 0, len(a:state.base_module)) . from}'
