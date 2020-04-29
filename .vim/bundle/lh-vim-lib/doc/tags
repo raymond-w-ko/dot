@@ -360,6 +360,7 @@ lh#qf#make_context_map()	lh-vim-lib.txt	/*lh#qf#make_context_map()*
 lh#qf#make_context_map().get()	lh-vim-lib.txt	/*lh#qf#make_context_map().get()*
 lh#qf#make_context_map().get_id()	lh-vim-lib.txt	/*lh#qf#make_context_map().get_id()*
 lh#qf#make_context_map().set()	lh-vim-lib.txt	/*lh#qf#make_context_map().set()*
+lh#qf#set_title()	lh-vim-lib.txt	/*lh#qf#set_title()*
 lh#ref#bind()	lh-vim-lib.txt	/*lh#ref#bind()*
 lh#ref#is_bound()	lh-vim-lib.txt	/*lh#ref#is_bound()*
 lh#stack#new()	lh-vim-lib.txt	/*lh#stack#new()*

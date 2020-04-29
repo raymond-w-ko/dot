@@ -1403,6 +1403,8 @@ Vital.Web.HTTP	vital/Web/HTTP.txt	/*Vital.Web.HTTP*
 Vital.Web.HTTP-client	vital/Web/HTTP.txt	/*Vital.Web.HTTP-client*
 Vital.Web.HTTP-client-curl	vital/Web/HTTP.txt	/*Vital.Web.HTTP-client-curl*
 Vital.Web.HTTP-client-python	vital/Web/HTTP.txt	/*Vital.Web.HTTP-client-python*
+Vital.Web.HTTP-client-python2	vital/Web/HTTP.txt	/*Vital.Web.HTTP-client-python2*
+Vital.Web.HTTP-client-python3	vital/Web/HTTP.txt	/*Vital.Web.HTTP-client-python3*
 Vital.Web.HTTP-client-wget	vital/Web/HTTP.txt	/*Vital.Web.HTTP-client-wget*
 Vital.Web.HTTP-contents	vital/Web/HTTP.txt	/*Vital.Web.HTTP-contents*
 Vital.Web.HTTP-functions	vital/Web/HTTP.txt	/*Vital.Web.HTTP-functions*
