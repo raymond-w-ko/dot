@@ -457,6 +457,7 @@ ale-ruby-rufo	ale-ruby.txt	/*ale-ruby-rufo*
 ale-ruby-solargraph	ale-ruby.txt	/*ale-ruby-solargraph*
 ale-ruby-sorbet	ale-ruby.txt	/*ale-ruby-sorbet*
 ale-ruby-standardrb	ale-ruby.txt	/*ale-ruby-standardrb*
+ale-rust-analyzer	ale-rust.txt	/*ale-rust-analyzer*
 ale-rust-cargo	ale-rust.txt	/*ale-rust-cargo*
 ale-rust-options	ale-rust.txt	/*ale-rust-options*
 ale-rust-rls	ale-rust.txt	/*ale-rust-rls*
@@ -1019,6 +1020,8 @@ b:ale_ruby_sorbet_executable	ale-ruby.txt	/*b:ale_ruby_sorbet_executable*
 b:ale_ruby_sorbet_options	ale-ruby.txt	/*b:ale_ruby_sorbet_options*
 b:ale_ruby_standardrb_executable	ale-ruby.txt	/*b:ale_ruby_standardrb_executable*
 b:ale_ruby_standardrb_options	ale-ruby.txt	/*b:ale_ruby_standardrb_options*
+b:ale_rust_analyzer_config	ale-rust.txt	/*b:ale_rust_analyzer_config*
+b:ale_rust_analyzer_executable	ale-rust.txt	/*b:ale_rust_analyzer_executable*
 b:ale_rust_cargo_avoid_whole_workspace	ale-rust.txt	/*b:ale_rust_cargo_avoid_whole_workspace*
 b:ale_rust_cargo_check_all_targets	ale-rust.txt	/*b:ale_rust_cargo_check_all_targets*
 b:ale_rust_cargo_check_examples	ale-rust.txt	/*b:ale_rust_cargo_check_examples*
@@ -1650,6 +1653,8 @@ g:ale_ruby_sorbet_executable	ale-ruby.txt	/*g:ale_ruby_sorbet_executable*
 g:ale_ruby_sorbet_options	ale-ruby.txt	/*g:ale_ruby_sorbet_options*
 g:ale_ruby_standardrb_executable	ale-ruby.txt	/*g:ale_ruby_standardrb_executable*
 g:ale_ruby_standardrb_options	ale-ruby.txt	/*g:ale_ruby_standardrb_options*
+g:ale_rust_analyzer_config	ale-rust.txt	/*g:ale_rust_analyzer_config*
+g:ale_rust_analyzer_executable	ale-rust.txt	/*g:ale_rust_analyzer_executable*
 g:ale_rust_cargo_avoid_whole_workspace	ale-rust.txt	/*g:ale_rust_cargo_avoid_whole_workspace*
 g:ale_rust_cargo_check_all_targets	ale-rust.txt	/*g:ale_rust_cargo_check_all_targets*
 g:ale_rust_cargo_check_examples	ale-rust.txt	/*g:ale_rust_cargo_check_examples*
