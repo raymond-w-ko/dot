@@ -106,6 +106,8 @@ ale-asm-options	ale-asm.txt	/*ale-asm-options*
 ale-asyncomplete-integration	ale.txt	/*ale-asyncomplete-integration*
 ale-awk-gawk	ale-awk.txt	/*ale-awk-gawk*
 ale-awk-options	ale-awk.txt	/*ale-awk-options*
+ale-bats-options	ale-bats.txt	/*ale-bats-options*
+ale-bats-shellcheck	ale-bats.txt	/*ale-bats-shellcheck*
 ale-bib-bibclean	ale-bib.txt	/*ale-bib-bibclean*
 ale-bib-options	ale-bib.txt	/*ale-bib-options*
 ale-c-ccls	ale-c.txt	/*ale-c-ccls*
