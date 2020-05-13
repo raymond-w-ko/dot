@@ -129,6 +129,7 @@ lh#dict#let()	lh-vim-lib.txt	/*lh#dict#let()*
 lh#dict#need_ref_on()	lh-vim-lib.txt	/*lh#dict#need_ref_on()*
 lh#dict#print_as_tree()	lh-vim-lib.txt	/*lh#dict#print_as_tree()*
 lh#dict#subset()	lh-vim-lib.txt	/*lh#dict#subset()*
+lh#diff#compute()	lh-vim-lib.txt	/*lh#diff#compute()*
 lh#encoding#at()	lh-vim-lib.txt	/*lh#encoding#at()*
 lh#encoding#current_character()	lh-vim-lib.txt	/*lh#encoding#current_character()*
 lh#encoding#does_support()	lh-vim-lib.txt	/*lh#encoding#does_support()*
