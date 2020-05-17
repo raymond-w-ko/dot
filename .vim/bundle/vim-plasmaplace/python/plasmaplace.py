@@ -141,11 +141,18 @@ def switch_to_clojurescript_repl(out):
     global PROJECT_PATH
 
     if PROJECT_TYPE == "shadow-cljs":
-        shadow_browser_target = get_shadow_browser_target(PROJECT_PATH)
         f = plasmaplace_commands.dispatcher["eval"]
-        code = "(shadow/nrepl-select %s)" % (shadow_browser_target)
-        f(None, code)
-        out += [";; switched to shadow-cljs nREPL"]
+
+        shadow_browser_target = get_shadow_browser_target(PROJECT_PATH)
+        if shadow_browser_target:
+            code = "(shadow/nrepl-select %s)" % (shadow_browser_target)
+            f(None, code)
+            out += [";; (shadow/nrepl-select %s)" % (shadow_browser_target, )]
+        else:
+            out += [";; UNABLE TO SELECT NREPL BROWSER TARGET"]
+            out += [";; DEFAULTING to (shadow/node-repl)"]
+            code = "(shadow/node-repl)"
+            f(None, code)
 
 
 def processing_loop():

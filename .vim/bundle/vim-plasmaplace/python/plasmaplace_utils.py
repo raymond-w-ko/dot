@@ -83,7 +83,10 @@ def get_shadow_browser_target(project_path):
     idx = code.index(":builds")
     code = code[idx:]
     m = re.search(r"\s*(\:\w+)\s*\{\:target\s+\:browser.*", code)
-    return m.group(1)
+    if m is None:
+        return None
+    else:
+        return m.group(1)
 
 
 class StreamBuffer:
