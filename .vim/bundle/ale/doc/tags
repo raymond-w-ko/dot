@@ -775,6 +775,7 @@ b:ale_java_google_java_format_options	ale-java.txt	/*b:ale_java_google_java_form
 b:ale_java_javac_classpath	ale-java.txt	/*b:ale_java_javac_classpath*
 b:ale_java_javac_executable	ale-java.txt	/*b:ale_java_javac_executable*
 b:ale_java_javac_options	ale-java.txt	/*b:ale_java_javac_options*
+b:ale_java_javac_sourcepath	ale-java.txt	/*b:ale_java_javac_sourcepath*
 b:ale_java_javalsp_config	ale-java.txt	/*b:ale_java_javalsp_config*
 b:ale_java_javalsp_executable	ale-java.txt	/*b:ale_java_javalsp_executable*
 b:ale_java_pmd_options	ale-java.txt	/*b:ale_java_pmd_options*
@@ -1384,6 +1385,7 @@ g:ale_java_google_java_format_options	ale-java.txt	/*g:ale_java_google_java_form
 g:ale_java_javac_classpath	ale-java.txt	/*g:ale_java_javac_classpath*
 g:ale_java_javac_executable	ale-java.txt	/*g:ale_java_javac_executable*
 g:ale_java_javac_options	ale-java.txt	/*g:ale_java_javac_options*
+g:ale_java_javac_sourcepath	ale-java.txt	/*g:ale_java_javac_sourcepath*
 g:ale_java_javalsp_config	ale-java.txt	/*g:ale_java_javalsp_config*
 g:ale_java_javalsp_executable	ale-java.txt	/*g:ale_java_javalsp_executable*
 g:ale_java_pmd_options	ale-java.txt	/*g:ale_java_pmd_options*
