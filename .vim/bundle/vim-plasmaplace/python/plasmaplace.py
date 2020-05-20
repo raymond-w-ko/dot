@@ -11,7 +11,7 @@ import time
 import queue
 from queue import Queue
 
-from plasmaplace_utils import bencode, bdecode, get_shadow_browser_target
+from plasmaplace_utils import bencode, bdecode, get_shadow_primary_target
 from plasmaplace_exiter import exit_plasmaplace, EXIT_CODE_QUEUE
 import plasmaplace_commands
 
@@ -143,13 +143,13 @@ def switch_to_clojurescript_repl(out):
     if PROJECT_TYPE == "shadow-cljs":
         f = plasmaplace_commands.dispatcher["eval"]
 
-        shadow_browser_target = get_shadow_browser_target(PROJECT_PATH)
-        if shadow_browser_target:
-            code = "(shadow/nrepl-select %s)" % (shadow_browser_target)
+        shadow_primary_target = get_shadow_primary_target(PROJECT_PATH)
+        if shadow_primary_target:
+            code = "(shadow/nrepl-select %s)" % (shadow_primary_target)
             f(None, code)
-            out += [";; (shadow/nrepl-select %s)" % (shadow_browser_target, )]
+            out += [";; (shadow/nrepl-select %s)" % (shadow_primary_target, )]
         else:
-            out += [";; UNABLE TO SELECT NREPL BROWSER TARGET"]
+            out += [";; UNABLE TO SELECT NREPL primary TARGET"]
             out += [";; DEFAULTING to (shadow/node-repl)"]
             code = "(shadow/node-repl)"
             f(None, code)

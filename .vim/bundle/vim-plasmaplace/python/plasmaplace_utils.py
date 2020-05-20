@@ -75,14 +75,14 @@ def bdecode(sock, char=None):
         raise TypeError("unexpected type " + char + "in bdecode data")
 
 
-def get_shadow_browser_target(project_path):
+def get_shadow_primary_target(project_path):
     path = os.path.join(project_path, "shadow-cljs.edn")
     with open(path, "r") as f:
         code = f.read()
     code = code.replace("\n", " ")
     idx = code.index(":builds")
     code = code[idx:]
-    m = re.search(r"\s*(\:\w+)\s*\{\:target\s+\:browser.*", code)
+    m = re.search(r"\s*(\:\w+)\s*\{\:target\s+\:(browser|node-library).*", code)
     if m is None:
         return None
     else:
