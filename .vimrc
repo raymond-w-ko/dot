@@ -12,6 +12,8 @@ if filereadable(expand("$HOME/.has-full-github-access"))
   let g:plug_shallow = 0
 endif
 
+set runtimepath+=$HOME/.vim/bundle/lightline-colorschemes
+
 let s:cywgin_vim_dir = expand("C:/cygwin64/home/$USERNAME/dot/.vim/bundle")
 if isdirectory(s:cywgin_vim_dir)
   call plug#begin(s:cywgin_vim_dir)
@@ -1948,7 +1950,7 @@ endif
 " lightline
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:lightline = {
-    \ 'colorscheme': 'powerlineish',
+    \ 'colorscheme': 'rko',
     \ 'mode_map': { 'c': 'NORMAL' },
     \ 'active': {
     \   'left': [
