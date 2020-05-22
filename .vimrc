@@ -1948,7 +1948,7 @@ endif
 " lightline
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:lightline = {
-    \ 'colorscheme': 'solarized',
+    \ 'colorscheme': 'powerlineish',
     \ 'mode_map': { 'c': 'NORMAL' },
     \ 'active': {
     \   'left': [
