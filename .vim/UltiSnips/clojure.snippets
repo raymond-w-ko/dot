@@ -1,0 +1,23 @@
+snippet nscljs
+(ns foo.bar
+  "TODO: document this namespace"
+	(:require
+   [cljs.test :refer [deftest is]]
+   [promesa.core :as p]
+   [goog.string :as gstring :refer [format]]
+   [goog.string.format]
+   [fipp.edn :refer [pprint] :rename {pprint fipp}]
+   [cljs.pprint :refer [pprint]]
+   [fonda.core :as fonda]
+
+	 [cljs.string :as str]))
+
+
+endsnippet
+
+snippet defn
+(defn fp
+  "TODO: document this function"
+	[xy]
+	nil)
+endsnippet
