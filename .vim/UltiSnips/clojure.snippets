@@ -3,14 +3,21 @@ snippet nscljs
   "TODO: document this namespace"
 	(:require
    [cljs.test :refer [deftest is]]
-   [promesa.core :as p]
+
+	 [clojure.spec.alpha :as s]
+   [orchestra-cljs.spec.test :as stest]
+   [expound.alpha :as expound]
+   [spec-tools.data-spec :as ds]
+
    [goog.string :as gstring :refer [format]]
    [goog.string.format]
    [fipp.edn :refer [pprint] :rename {pprint fipp}]
    [cljs.pprint :refer [pprint]]
+
+   [promesa.core :as p]
    [fonda.core :as fonda]
 
-	 [cljs.string :as str]))
+	 [clojure.string :as str]))
 
 
 endsnippet
