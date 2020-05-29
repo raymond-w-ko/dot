@@ -2402,6 +2402,8 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 
 nnoremap <silent> <Left> :TmuxNavigateLeft<cr>
 nnoremap <silent> <Right> :TmuxNavigateRight<cr>
+nnoremap <silent> <Up> :TmuxNavigateUp<cr>
+nnoremap <silent> <Down> :TmuxNavigateDown<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-startify
