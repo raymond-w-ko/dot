@@ -1844,9 +1844,9 @@ augroup MyVimrc
   "au WinLeave * setlocal nocursorcolumn
 
   " check when cursor stops moving
-  au CursorHold,CursorHoldI * checktime
+  au CursorHold,CursorHoldI * :silent! checktime
   " hack for console VIM so that check for changed files work correctly
-  au FocusGained,BufEnter * checktime
+  au FocusGained,BufEnter * :silent! checktime
 
   " hardcore autochdir
   autocmd BufEnter * silent! lcd %:p:h
