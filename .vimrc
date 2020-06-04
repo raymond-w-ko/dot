@@ -61,6 +61,7 @@ Plug 'zhimsel/vim-stay'
 Plug 'godlygeek/tabular'
 Plug 'mattn/emmet-vim'
 Plug 'luochen1990/rainbow'
+Plug 'tmux-plugins/vim-tmux-focus-events'
 
 " Tim Pope
 Plug 'tpope/vim-sensible'
