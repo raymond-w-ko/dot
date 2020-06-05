@@ -147,7 +147,7 @@
 }
 
 .contain-2 {
-	display: auto;
+	content-visibility: auto;
 }
 
 .content-3 {
@@ -449,13 +449,23 @@ template {
 .inline-3 {
 	dominant-baseline: auto;
 	alignment-baseline: auto;
+	baseline-source: auto;
 	baseline-shift: auto;
+	line-sizing: auto;
+	leading-trim-over: auto;
+	leading-trim-under: auto;
+	leading-trim: auto;
 	inline-sizing: auto;
-	initial-letters: auto;
-	initial-letters-align: auto;
-	initial-letters-wrap: auto;
+	initial-letter: auto;
+	initial-letter-align: auto;
+	initial-letter-wrap: auto;
 	display: mathematical;
 	display: ideographic;
+	display: cap;
+	display: ex;
+	display: ideographic-ink;
+	display: raise;
+	display: sink;
 }
 
 .layout-api-1 {
@@ -595,12 +605,13 @@ mask {
 }
 
 .overflow-3 {
-	max-lines: auto;
-	block-overflow: auto;
-	line-clamp: auto;
-	continue: auto;
+	overflow-clip-margin: auto;
 	overflow-block: auto;
 	overflow-inline: auto;
+	block-ellipsis: auto;
+	line-clamp: auto;
+	max-lines: auto;
+	continue: auto;
 }
 
 .overflow-4::nth-fragment(1) {
