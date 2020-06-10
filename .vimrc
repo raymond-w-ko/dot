@@ -727,7 +727,7 @@ function! s:FindWordInProject()
   let needle = s:get_visual_selection()
   let dir = MyGetProjectDirectory()
   call fzf#run({
-      \ "source": "rg -- " . needle,
+      \ "source": "rg -- '" . needle . "'",
       \ "sink": function("s:rg_handler"),
       \ "options": printf('--color="dark,hl:33,hl+:#ff0000,fg+:235,bg+:#000000,fg+:254,info:254,prompt:37,spinner:108,pointer:235,marker:235" --prompt "%s"', dir),
       \ "dir": dir,
