@@ -50,6 +50,7 @@ anzu-usage	anzu.txt	/*anzu-usage*
 anzu-variables	anzu.txt	/*anzu-variables*
 anzu.txt	anzu.txt	/*anzu.txt*
 g:airline#extensions#anzu#enabled	anzu.txt	/*g:airline#extensions#anzu#enabled*
+g:anzu_airline_section	anzu.txt	/*g:anzu_airline_section*
 g:anzu_bottomtop_word	anzu.txt	/*g:anzu_bottomtop_word*
 g:anzu_enable_CursorHold_AnzuUpdateSearchStatus	anzu.txt	/*g:anzu_enable_CursorHold_AnzuUpdateSearchStatus*
 g:anzu_enable_CursorMoved_AnzuUpdateSearchStatus	anzu.txt	/*g:anzu_enable_CursorMoved_AnzuUpdateSearchStatus*
