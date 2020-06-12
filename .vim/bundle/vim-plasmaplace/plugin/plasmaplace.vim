@@ -413,6 +413,9 @@ function! s:Require(bang, echo, ns) abort
   if expand("%") ==# "project.clj" | return | endif
   if expand("%") ==# "linter.cljc" | return | endif
 
+  let project_path = s:get_project_path()
+  if s:get_project_type(project_path) == "shadow-cljs" | return | endif
+
   if &autowrite || &autowriteall
     silent! wall
   endif
