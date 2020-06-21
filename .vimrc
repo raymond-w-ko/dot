@@ -1780,6 +1780,9 @@ function! s:SetupBasicSyntaxHighlights()
     syn region rkoMultiLineString
         \ start=+[uU]\=\z('''\|"""\)+ end="\z1" keepend
   endif
+  if &filetype == "clojure"
+    syntax match rkoClojureMacro /\v<def(\w|-)+>/ containedin=ALL
+  endif
   if has_key(s:double_slash_comment_filestypes, &filetype)
     syntax region rkoBasicComment start=/\v\/\// end=/\v$/
   endif
@@ -1802,6 +1805,9 @@ function! s:SetupBasicSyntaxHighlights()
     syntax region rkoCPreprocessorEndif start=/\v^\s*#\s*endif/ end=/$/
     syntax region rkoCPreprocessorDefine start=/\v^\s*#\s*define/ end=/$/
   endif
+
+  syntax match rkoTODO /\v<TODO|XXX>/ containedin=ALL
+
   highlight link rkoBasicString String
   highlight link rkoMultiLineString String
   highlight link rkoBasicComment Comment
@@ -1813,6 +1819,7 @@ function! s:SetupBasicSyntaxHighlights()
   highlight link rkoCPreprocessorElIf PreProc
   highlight link rkoCPreprocessorEndif PreProc
   highlight link rkoCPreprocessorDefine PreProc
+  highlight link rkoClojureMacro IncSearch
 
   if has_key(s:version_control_filetypes, &filetype)
     syntax region rkoVersionControlDelete start=/\v^-/ end=/\v$/
@@ -1820,6 +1827,7 @@ function! s:SetupBasicSyntaxHighlights()
   endif
   highlight link rkoVersionControlDelete DiffDelete
   highlight link rkoVersionControlAdd DiffAdd
+  highlight link rkoTODO Cursor
 
   highlight link gitMergeConflict Error
   syntax match gitMergeConflict /^=======$/ containedin=ALL
