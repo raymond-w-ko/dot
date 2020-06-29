@@ -1782,6 +1782,8 @@ function! s:SetupBasicSyntaxHighlights()
   endif
   if &filetype == "clojure"
     syntax match rkoClojureMacro /\v<def(\w|-)+>/ containedin=ALL
+    syntax match rkoClojureMinorMacro /\v<:let>/ containedin=ALL
+    syntax match rkoClojureMinorMacro /\v<:plet>/ containedin=ALL
   endif
   if has_key(s:double_slash_comment_filestypes, &filetype)
     syntax region rkoBasicComment start=/\v\/\// end=/\v$/
@@ -1820,6 +1822,7 @@ function! s:SetupBasicSyntaxHighlights()
   highlight link rkoCPreprocessorEndif PreProc
   highlight link rkoCPreprocessorDefine PreProc
   highlight link rkoClojureMacro IncSearch
+  highlight link rkoClojureMinorMacro Pmenu
 
   if has_key(s:version_control_filetypes, &filetype)
     syntax region rkoVersionControlDelete start=/\v^-/ end=/\v$/
