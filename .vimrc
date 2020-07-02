@@ -1781,7 +1781,9 @@ function! s:SetupBasicSyntaxHighlights()
         \ start=+[uU]\=\z('''\|"""\)+ end="\z1" keepend
   endif
   if &filetype == "clojure"
-    syntax match rkoClojureMacro /\v<def(\w|-)+>/ containedin=ALL
+    syntax match rkoClojureMacro /\v<def-.+>/ containedin=ALL
+    syntax match rkoClojureMacro /\v<defn-.+>/ containedin=ALL
+    syntax match rkoClojureMacro /\v<deftest-.+>/ containedin=ALL
     syntax match rkoClojureMinorMacro /\v<:let>/ containedin=ALL
     syntax match rkoClojureMinorMacro /\v<:plet>/ containedin=ALL
   endif
