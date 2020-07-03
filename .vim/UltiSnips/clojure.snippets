@@ -28,3 +28,8 @@ snippet defn
 	[xy]
 	nil)
 endsnippet
+
+snippet fdefargs
+(s/fdef fp
+  :args (s/cat :args (s/keys :req-un [])))
+endsnippet
