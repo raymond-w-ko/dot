@@ -96,6 +96,7 @@ Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'haya14busa/vim-asterisk'
 " Plug 'haya14busa/is.vim'
 Plug 'osyo-manga/vim-anzu'
+Plug 'kana/vim-arpeggio'
 
 " Junegunn Choi
 Plug 'junegunn/vim-easy-align'
@@ -2194,6 +2195,10 @@ let g:ale_lint_on_text_changed=1
 let g:ale_lint_on_enter=0
 let g:ale_lint_on_save=1
 let g:ale_lint_on_filetype_changed=1
+let g:ale_set_balloons=1
+let g:ale_echo_cursor=1
+let g:ale_cursor_detail=0
+let g:ale_virtualtext_cursor=1
 
 let g:ale_linters = {
     \ "jsx": ["eslint"],
