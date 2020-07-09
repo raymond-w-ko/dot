@@ -1781,9 +1781,9 @@ function! s:SetupBasicSyntaxHighlights()
         \ start=+[uU]\=\z('''\|"""\)+ end="\z1" keepend
   endif
   if &filetype == "clojure"
-    syntax match rkoClojureMacro /\v<def-.+>/ containedin=ALL
-    syntax match rkoClojureMacro /\v<defn-.+>/ containedin=ALL
-    syntax match rkoClojureMacro /\v<deftest-.+>/ containedin=ALL
+    syntax match rkoClojureMacro /\v<def-[a-zA-Z0-9_-].+>/ containedin=ALL
+    syntax match rkoClojureMacro /\v<defn-[a-zA-Z0-9-]+>/ containedin=ALL
+    syntax match rkoClojureMacro /\v<deftest>/ containedin=ALL
     syntax match rkoClojureMinorMacro /\v<:let>/ containedin=ALL
     syntax match rkoClojureMinorMacro /\v<:plet>/ containedin=ALL
   endif
@@ -1810,7 +1810,7 @@ function! s:SetupBasicSyntaxHighlights()
     syntax region rkoCPreprocessorDefine start=/\v^\s*#\s*define/ end=/$/
   endif
 
-  syntax match rkoTODO /\v<TODO|XXX>/ containedin=ALL
+  syntax match rkoTODO /\v<TODO|TODO:|XXX|XXX:|NOTE|NOTE:|WARN|WARN:>/ containedin=ALL
 
   highlight link rkoBasicString String
   highlight link rkoMultiLineString String
@@ -2117,7 +2117,7 @@ let g:clojure_maxlines = 512
 let g:clojure_align_multiline_strings = 0
 
 let g:clojure_fuzzy_indent = 1
-let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^go-loop$', '^comment$', 'fdef$']
+let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^plet', '^go-loop$', '^comment$', 'fdef$']
 let g:clojure_fuzzy_indent_blacklist = ['-fn$', '\v^with-%(meta|out-str|loading-context)$']
 let g:clojure_special_indent_words = 'deftype,defrecord,reify,proxy,extend-type,extend-protocol,letfn,comment'
 
