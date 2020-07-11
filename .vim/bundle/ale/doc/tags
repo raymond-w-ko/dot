@@ -280,6 +280,7 @@ ale-integration-kotlin	ale-kotlin.txt	/*ale-integration-kotlin*
 ale-integration-options	ale.txt	/*ale-integration-options*
 ale-integration-rust	ale-rust.txt	/*ale-integration-rust*
 ale-integration-spec	ale-spec.txt	/*ale-integration-spec*
+ale-integration-zig	ale-zig.txt	/*ale-integration-zig*
 ale-integrations-local-executables	ale.txt	/*ale-integrations-local-executables*
 ale-introduction	ale.txt	/*ale-introduction*
 ale-ispc-ispc	ale-ispc.txt	/*ale-ispc-ispc*
@@ -564,6 +565,8 @@ ale-yaml-swaglint	ale-yaml.txt	/*ale-yaml-swaglint*
 ale-yaml-yamllint	ale-yaml.txt	/*ale-yaml-yamllint*
 ale-yang-lsp	ale-yang.txt	/*ale-yang-lsp*
 ale-yang-options	ale-yang.txt	/*ale-yang-options*
+ale-zig-options	ale-zig.txt	/*ale-zig-options*
+ale-zig-zls	ale-zig.txt	/*ale-zig-zls*
 ale.txt	ale.txt	/*ale.txt*
 b:ale-c-flawfinder	ale-c.txt	/*b:ale-c-flawfinder*
 b:ale-cpp-flawfinder	ale-cpp.txt	/*b:ale-cpp-flawfinder*
@@ -1158,6 +1161,8 @@ b:ale_yaml_swaglint_use_global	ale-yaml.txt	/*b:ale_yaml_swaglint_use_global*
 b:ale_yaml_yamllint_executable	ale-yaml.txt	/*b:ale_yaml_yamllint_executable*
 b:ale_yaml_yamllint_options	ale-yaml.txt	/*b:ale_yaml_yamllint_options*
 b:ale_yang_lsp_executable	ale-yang.txt	/*b:ale_yang_lsp_executable*
+b:ale_zig_zls_config	ale-zig.txt	/*b:ale_zig_zls_config*
+b:ale_zig_zls_executable	ale-zig.txt	/*b:ale_zig_zls_executable*
 g:airline#extensions#ale#enabled	ale.txt	/*g:airline#extensions#ale#enabled*
 g:ale-c-flawfinder	ale-c.txt	/*g:ale-c-flawfinder*
 g:ale-cpp-flawfinder	ale-cpp.txt	/*g:ale-cpp-flawfinder*
@@ -1814,5 +1819,7 @@ g:ale_yaml_swaglint_use_global	ale-yaml.txt	/*g:ale_yaml_swaglint_use_global*
 g:ale_yaml_yamllint_executable	ale-yaml.txt	/*g:ale_yaml_yamllint_executable*
 g:ale_yaml_yamllint_options	ale-yaml.txt	/*g:ale_yaml_yamllint_options*
 g:ale_yang_lsp_executable	ale-yang.txt	/*g:ale_yang_lsp_executable*
+g:ale_zig_zls_config	ale-zig.txt	/*g:ale_zig_zls_config*
+g:ale_zig_zls_executable	ale-zig.txt	/*g:ale_zig_zls_executable*
 g:html_tidy_use_global	ale-html.txt	/*g:html_tidy_use_global*
 g:nim_nimlsp_nim_sources	ale-nim.txt	/*g:nim_nimlsp_nim_sources*

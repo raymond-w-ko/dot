@@ -2,6 +2,7 @@
 :ColortemplateCheck	colortemplate.txt	/*:ColortemplateCheck*
 :ColortemplateOutdir	colortemplate.txt	/*:ColortemplateOutdir*
 :ColortemplateStats	colortemplate.txt	/*:ColortemplateStats*
+:ColortemplateStyle	colortemplate.txt	/*:ColortemplateStyle*
 :Colortemplate[!]	colortemplate.txt	/*:Colortemplate[!]*
 @shortname-options	colortemplate.txt	/*@shortname-options*
 CTRL-L	colortemplate.txt	/*CTRL-L*

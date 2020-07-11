@@ -525,11 +525,11 @@ instance, this template:
 <
 is translated into
 >
-	if get(g:, 'some_option, '0)
+	if get(g:, 'some_option', 0)
 	  let s:color  = '#abcef'
 	endif
 <
-assuming `MyColor` is a color with GUI value `#abcdef`.
+assuming that `MyColor` is a color with GUI value `#abcdef`.
 
 ==============================================================================
 Documentation blocks				*colortemplate-doc-blocks*
@@ -566,15 +566,36 @@ Auxiliary files				       	*colortemplate-auxfiles*
 If you want to generate additional files besides the color scheme itself, you
 may put the content of each file into a separate `auxfile` block. For example:
 >
-	auxfile autoload/airline/themes/mycolorscheme.vim
+	auxfile autoload/airline/themes/@shortname.vim
 	" Anything can go here
 	endauxfile
-
+<
 This will write the content of the auxfile block into the specified file
 (creating the intermediate directories if necessary). The path is mandatory
 and must be a relative path (relative to the output directory). No comment may
 appear in an `auxline` line. The content of an `auxfile` block is interpolated
-as in verbatim blocks. You mau suppress the generation of all auxiliary files
+as in verbatim blocks. As you can see in the example above, the path is also
+interpolated.
+
+Multiple `auxfile` blocks referring to the same path are chained together in
+the order in which they are encountered. For instance:
+>
+	auxfile autoload/foobar.vim
+	" First part of auxiliary file
+	endauxfile
+
+        # Some other code
+
+	auxfile autoload/foobar.vim
+	" Second part of auxiliary file
+	endauxfile
+<
+will result in `autoload/foobar.vim` with the following content:
+>
+	" First part of auxiliary file
+        " Second part of auxiliary file
+<
+You may suppress the generation of all auxiliary files
 (including the help file) with |g:colortemplate_no_aux_files|.
 
 ==============================================================================
@@ -625,12 +646,12 @@ values, presented in the following form:
   red: GUI=#9e0006/rgb(158,0,6) Term=88 #870000/rgb(135,0,0) [delta=4.473285]
 <
 Here, the delta value is the distance between the GUI value (`#9e0006`) and
-the corresponding terminal color (`88`). The used distance is a sophisticated
-variant of the CIELAB ΔE* metric, which takes into account the perceptual
-characteristics of the human eye. Roughly speaking, colors at distance less
-than 2.3 correspond to "just noticeable differences". The greater the
-distance, the greater the discrepancy between the GUI color and its base-256
-counterpart.
+the corresponding terminal color (`88`, which corresponds to `#870000`
+according to xterm tables). The used distance is a sophisticated variant of
+the CIELAB ΔE* metric, which takes into account the perceptual characteristics
+of the human eye. Roughly speaking, colors at distance less than 2.3
+correspond to "just noticeable differences". The greater the distance, the
+greater the discrepancy between the GUI color and its base-256 counterpart.
 
 Keep in mind that the "most similar" terminal color may not necessarily be the
 "best looking" color, because the overall look&feel of a color scheme
@@ -678,10 +699,10 @@ no less than 125.
 ==============================================================================
 Colortemplate mappings				*colortemplate-mappings*
 
-Note: the following mappings are all buffer-local. If you do not want
-Colortemplate to define any mapping, set |g:colortemplate_no_mappings|.
-Colortemplate also honours |g:no_plugin_maps|.
+If you do not want Colortemplate to define any mapping, set
+|g:colortemplate_no_mappings|. Colortemplate also honours |g:no_plugin_maps|.
 
+Buffer-local mappings ~
 							*ga*
 ga			If the cursor is on a `Color` line, display some
 			information about the given color, including [count]
@@ -814,9 +835,21 @@ Set to 0 if you want Colortemplate to report only errors (not recommended).
 ==============================================================================
 Colortemplate commands		       		*colortemplate-commands*
 
-NOTE: all the following commands are available only in buffers whose
-|'filetype'| is set to `colortemplate`.
+Global commands ~
 
+						*:ColortemplateStyle*
+Opens a |popup| window that allows you to dynamically change the style
+attributes of the highlight group under the cursor. Use up and down arrow keys
+to choose an attribute and press space to toggle the attribute. Press `x` or
+click on the upper-right corner of the popup menu to dismiss it. You may drag
+the window around with the mouse. 
+
+Note: Popup menus are available in Vim 8.1.1705 or later.
+
+Note: Global commands are available in any buffer, but only after a template
+has been opened.
+
+Buffer-local commands ~
 						*:Colortemplate[!]*
 Creates a Vim color scheme from the template in the current buffer. If used
 without arguments, the output is written in |b:colortemplate_outdir|. The
@@ -1056,7 +1089,7 @@ Here are some guidelines to develop outstanding hackable color schemes:
   separator character (a vertical bar by default) is visible. The user can
   always suppress (or replace) the separator character with 'fillchars'.
 
-  The rationale for this guideline is that it makes it clear how a windows has
+  The rationale for this guideline is that it makes it clear how a window has
   been split. For example, a vertical split followed by two horizontal splits
   produces this layout:
 >
