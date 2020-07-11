@@ -47,3 +47,5 @@
 
 [include]
 	path = ~/.gitconfig.lfs
+[rebase]
+	autoStash = true
