@@ -1004,6 +1004,8 @@ nnoremap <Home> :tabprev<CR>
 nnoremap <End> :tabnext<CR>
 nnoremap [1~ :tabprev<CR>
 nnoremap [4~ :tabnext<CR>
+call arpeggio#map('n', '', 0, 'er', ':tabprev<CR>')
+call arpeggio#map('n', '', 0, 'ui', ':tabnext<CR>')
 
 let s:list_of_pairs = [
     \ ['(', ')'],
@@ -2210,6 +2212,39 @@ let g:ale_linters = {
     \ }
 let g:ale_python_flake8_executable = 'python3'
 let g:ale_python_flake8_options = '-m flake8'
+
+" ale_linters/sql/sqllint.vim
+" Author: Joe Reynolds <joereynolds952@gmail.co>
+" Description: sql-lint for SQL files.
+"              sql-lint can be found at
+"              https://www.npmjs.com/package/sql-lint
+"              https://github.com/joereynolds/sql-lint
+
+function! ALE_sqldashlint_Handle(buffer, lines) abort
+    " Matches patterns like the following:
+    "
+    " stdin:1 [ER_NO_DB_ERROR] No database selected
+    let l:pattern = '\v^[^:]+:(\d+) (.*)'
+    let l:output = []
+
+    for l:match in ale#util#GetMatches(a:lines, l:pattern)
+        call add(l:output, {
+        \   'lnum': l:match[1] + 0,
+        \   'col': l:match[2] + 0,
+        \   'type': l:match[3][0],
+        \   'text': l:match[0],
+        \})
+    endfor
+
+    return l:output
+endfunction
+
+call ale#linter#Define('sql', {
+\   'name': 'sqldashlint',
+\   'executable': 'sql-lint',
+\   'command': 'sql-lint',
+\   'callback': 'ALE_sqldashlint_Handle',
+\})
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " detectindent
