@@ -725,7 +725,7 @@ function! s:rg_handler(file)
   endif
 endfunction
 function! s:FindWordInProject()
-  let needle = s:get_visual_selection()
+  let needle = getreg('"')
   let dir = MyGetProjectDirectory()
   call fzf#run({
       \ "source": "rg -- '" . needle . "'",
@@ -734,7 +734,7 @@ function! s:FindWordInProject()
       \ "dir": dir,
       \ "window": {"width": 0.618, "height": 0.618,},})
 endfunction
-vnoremap <leader>r :call <SID>FindWordInProject()<CR>
+nnoremap <leader>r :call <SID>FindWordInProject()<CR>
 
 " Visual Mode */# from Scrooloose {{{
 " function! s:VisualModeSetSearch()
@@ -2268,8 +2268,8 @@ let g:BufKillCreateMappings = 0
 let g:clj_fmt_autosave = 0
 
 augroup MyVimrc
-  au FileType clojure nnoremap <buffer> <leader>r :Require<CR>
-  au FileType clojure nnoremap <buffer> <leader>R :Require!<CR>
+  " au FileType clojure nnoremap <buffer> <leader>r :Require<CR>
+  " au FileType clojure nnoremap <buffer> <leader>R :Require!<CR>
   au FileType clojure nnoremap <buffer> <leader>f :Cljfmt<CR>
 augroup END
 
