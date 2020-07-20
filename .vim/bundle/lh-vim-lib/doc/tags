@@ -378,6 +378,7 @@ lh#stack-push	lh-vim-lib.txt	/*lh#stack-push*
 lh#stack-top	lh-vim-lib.txt	/*lh#stack-top*
 lh#string#as()	lh-vim-lib.txt	/*lh#string#as()*
 lh#string#count_char()	lh-vim-lib.txt	/*lh#string#count_char()*
+lh#string#join()	lh-vim-lib.txt	/*lh#string#join()*
 lh#string#matches()	lh-vim-lib.txt	/*lh#string#matches()*
 lh#string#matchstrpos()	lh-vim-lib.txt	/*lh#string#matchstrpos()*
 lh#string#or()	lh-vim-lib.txt	/*lh#string#or()*
