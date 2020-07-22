@@ -62,6 +62,7 @@ Plug 'godlygeek/tabular'
 Plug 'mattn/emmet-vim'
 Plug 'luochen1990/rainbow'
 Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'ap/vim-css-color'
 
 " Tim Pope
 Plug 'tpope/vim-sensible'
@@ -231,14 +232,14 @@ set completeopt+=preview
 set pumheight=16
 " this breaks dirvish
 " set autochdir
-set nolist
 " always try to make the current window 80 columns
 set winwidth=80
 set nojoinspaces
 set maxmempattern=2000000
 set maxmem=2000000
 set maxmemtot=2000000
-set listchars=tab:\|\ ,trail:-,extends:>,precedes:<,nbsp:+
+set nolist
+set listchars=tab:\|\ ,trail:•,extends:>,precedes:<,nbsp:+
 " Mouse & selection Behavior
 behave xterm                " of course xterm is better
 set selectmode=""           " never want SELECT mode
@@ -255,12 +256,6 @@ else
 end
 set clipboard=autoselect
 set pastetoggle=<F9>
-
-" this breaks vim-capslock since you can't press <C-g>c in less than 100ms
-" augroup MyVimrc
-"   autocmd InsertEnter * set timeoutlen=100
-"   autocmd InsertLeave * set timeoutlen=750
-" augroup END
 
 " timeout is needed due to completing fj with omegacomplete
 set timeout
@@ -969,7 +964,7 @@ endif
 "                   `         (/  (/
 
 " inoremap kj <Esc>
-let g:arpeggio_timeoutlen=64
+let g:arpeggio_timeoutlen=85
 call arpeggio#map('i', '', 0, 'jk', '<Esc>')
 
 " normalize Y to act like D and C
@@ -1693,12 +1688,6 @@ function! s:SetupHelpTab()
   endif
 endfunction
 
-function! s:SetupParenthesesHightlight()
-  " highlight SubtleParentheses ctermfg=240 guifg=#585858
-  " syntax match SubtleParentheses /)}]/ containedin=ALL
-  " syntax match SubtleParentheses /)}]/ contained
-endfunction
-
 let s:double_quote_string_filestypes = {
     \ "javascript.jsx": 1,
     \ "javascript": 1,
@@ -1756,6 +1745,9 @@ let s:c_preprocessor_comment_filestypes = {
     \ }
 let s:version_control_filetypes = {
     \ "gitcommit": 1,
+    \ }
+let s:web_filetypes = {
+    \ "css": 1,
     \ }
 function! s:SetupBasicSyntaxHighlights()
   syntax clear
@@ -1848,6 +1840,12 @@ function! s:SetupBasicSyntaxHighlights()
     runtime plugin/rko_clojure.vim
   elseif &filetype == "dirvish"
     runtime syntax/dirvish.vim
+  elseif &filetype == "html"
+    runtime syntax/html.vim
+    runtime after/syntax/html.vim
+  elseif &filetype == "css"
+    runtime syntax/css.vim
+    runtime after/syntax/css.vim
   endif
 endfunction
 
@@ -1890,10 +1888,11 @@ augroup MyVimrc
   " help in new tab to avoid interfering with existing tab layout
   autocmd BufEnter *.txt call s:SetupHelpTab()
 
-  " de-emphasized parentheses
-  autocmd Syntax * call s:SetupParenthesesHightlight()
   autocmd FileType * call s:SetupBasicSyntaxHighlights()
   autocmd BufEnter * :syntax sync fromstart
+
+  autocmd InsertEnter * setlocal nolist
+  autocmd InsertLeave * setlocal list
 augroup END
 
 " }}}
@@ -2687,5 +2686,12 @@ endif
 " converts underscore_case to camelCase
 " nnoremap <leader>c :s#_\(\l\)#\u\1#<CR>
 vnoremap <leader>c :s#_\(\l\)#\u\1#<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" temporary
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" call arpeggio#map('i', '', 0, '3p', '<ref>')
+" call arpeggio#map('i', '', 0, '4p', '</ref>')
+" set ts=4 sw=4 sts=4 et
 
 " }}}
