@@ -964,7 +964,7 @@ endif
 "                   `         (/  (/
 
 " inoremap kj <Esc>
-let g:arpeggio_timeoutlen=85
+let g:arpeggio_timeoutlen=90
 call arpeggio#map('i', '', 0, 'jk', '<Esc>')
 
 " normalize Y to act like D and C
