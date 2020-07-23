@@ -479,6 +479,7 @@ ale-scss-options	ale-scss.txt	/*ale-scss-options*
 ale-scss-prettier	ale-scss.txt	/*ale-scss-prettier*
 ale-scss-sasslint	ale-scss.txt	/*ale-scss-sasslint*
 ale-scss-stylelint	ale-scss.txt	/*ale-scss-stylelint*
+ale-sh-bashate	ale-sh.txt	/*ale-sh-bashate*
 ale-sh-language-server	ale-sh.txt	/*ale-sh-language-server*
 ale-sh-options	ale-sh.txt	/*ale-sh-options*
 ale-sh-shell	ale-sh.txt	/*ale-sh-shell*
@@ -1066,6 +1067,8 @@ b:ale_scss_stylelint_options	ale-scss.txt	/*b:ale_scss_stylelint_options*
 b:ale_scss_stylelint_use_global	ale-scss.txt	/*b:ale_scss_stylelint_use_global*
 b:ale_set_balloons	ale.txt	/*b:ale_set_balloons*
 b:ale_set_balloons_legacy_echo	ale.txt	/*b:ale_set_balloons_legacy_echo*
+b:ale_sh_bashate_executable	ale-sh.txt	/*b:ale_sh_bashate_executable*
+b:ale_sh_bashate_options	ale-sh.txt	/*b:ale_sh_bashate_options*
 b:ale_sh_language_server_executable	ale-sh.txt	/*b:ale_sh_language_server_executable*
 b:ale_sh_language_server_use_global	ale-sh.txt	/*b:ale_sh_language_server_use_global*
 b:ale_sh_shell_default_shell	ale-sh.txt	/*b:ale_sh_shell_default_shell*
@@ -1709,6 +1712,8 @@ g:ale_set_highlights	ale.txt	/*g:ale_set_highlights*
 g:ale_set_loclist	ale.txt	/*g:ale_set_loclist*
 g:ale_set_quickfix	ale.txt	/*g:ale_set_quickfix*
 g:ale_set_signs	ale.txt	/*g:ale_set_signs*
+g:ale_sh_bashate_executable	ale-sh.txt	/*g:ale_sh_bashate_executable*
+g:ale_sh_bashate_options	ale-sh.txt	/*g:ale_sh_bashate_options*
 g:ale_sh_language_server_executable	ale-sh.txt	/*g:ale_sh_language_server_executable*
 g:ale_sh_language_server_use_global	ale-sh.txt	/*g:ale_sh_language_server_use_global*
 g:ale_sh_shell_default_shell	ale-sh.txt	/*g:ale_sh_shell_default_shell*
