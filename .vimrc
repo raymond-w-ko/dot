@@ -1891,8 +1891,8 @@ augroup MyVimrc
   autocmd FileType * call s:SetupBasicSyntaxHighlights()
   autocmd BufEnter * :syntax sync fromstart
 
-  autocmd InsertEnter * setlocal nolist
-  autocmd InsertLeave * setlocal list
+  " autocmd InsertEnter * setlocal nolist
+  " autocmd InsertLeave * setlocal list
 augroup END
 
 " }}}
