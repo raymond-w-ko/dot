@@ -999,8 +999,10 @@ nnoremap <Home> :tabprev<CR>
 nnoremap <End> :tabnext<CR>
 nnoremap [1~ :tabprev<CR>
 nnoremap [4~ :tabnext<CR>
-call arpeggio#map('n', '', 0, 'er', ':tabprev<CR>')
-call arpeggio#map('n', '', 0, 'ui', ':tabnext<CR>')
+nnoremap <Tab> :tabprev<CR>
+nnoremap \ :tabnext<CR>
+" call arpeggio#map('n', '', 0, 'er', ':tabprev<CR>')
+" call arpeggio#map('n', '', 0, 'ui', ':tabnext<CR>')
 
 let s:list_of_pairs = [
     \ ['(', ')'],
