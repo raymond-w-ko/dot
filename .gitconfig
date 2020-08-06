@@ -26,8 +26,8 @@
 	diff = always
 [color "diff"]
 	frag = cyan
-	old = yellow
-	new = green
+	old = black red
+	new = black green
 	commit = cyan
 [color "status"]
 	added = green
