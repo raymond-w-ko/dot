@@ -50,6 +50,7 @@ Vital.Async.Promise-objects-Promise	vital/Async/Promise.txt	/*Vital.Async.Promis
 Vital.Async.Promise-requirements	vital/Async/Promise.txt	/*Vital.Async.Promise-requirements*
 Vital.Async.Promise.TimeoutError	vital/Async/Promise.txt	/*Vital.Async.Promise.TimeoutError*
 Vital.Async.Promise.all()	vital/Async/Promise.txt	/*Vital.Async.Promise.all()*
+Vital.Async.Promise.chain()	vital/Async/Promise.txt	/*Vital.Async.Promise.chain()*
 Vital.Async.Promise.is_available()	vital/Async/Promise.txt	/*Vital.Async.Promise.is_available()*
 Vital.Async.Promise.is_promise()	vital/Async/Promise.txt	/*Vital.Async.Promise.is_promise()*
 Vital.Async.Promise.new()	vital/Async/Promise.txt	/*Vital.Async.Promise.new()*

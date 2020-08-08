@@ -100,7 +100,7 @@ command! -bar -nargs=1 -bang -complete=file Move
       \ let s:dst = substitute(s:fcall('simplify', s:dst), '^\.\'.s:separator(), '', '') |
       \ if <bang>1 && s:fcall('filereadable', s:dst) |
       \   exe 'keepalt saveas '.s:fnameescape(s:dst) |
-      \ elseif EunuchRename(s:src, s:dst) |
+      \ elseif s:fcall('filereadable', s:src) && EunuchRename(s:src, s:dst) |
       \   echoerr 'Failed to rename "'.s:src.'" to "'.s:dst.'"' |
       \ else |
       \   setlocal modified |
@@ -186,7 +186,7 @@ endfunction
 
 function! s:SilentSudoCmd(editor) abort
   let cmd = 'env SUDO_EDITOR=' . a:editor . ' VISUAL=' . a:editor . ' sudo -e'
-  let local_nvim = has('nvim') && len($DISPLAY . $SECURITYSESSIONID)
+  let local_nvim = has('nvim') && len($DISPLAY . $SECURITYSESSIONID . $TERM_PROGRAM)
   if !has('gui_running') && !local_nvim
     return ['silent', cmd]
   elseif !empty($SUDO_ASKPASS) ||

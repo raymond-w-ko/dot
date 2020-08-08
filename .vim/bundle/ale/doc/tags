@@ -333,7 +333,6 @@ ale-lint-language-servers	ale.txt	/*ale-lint-language-servers*
 ale-lint-other-sources	ale.txt	/*ale-lint-other-sources*
 ale-lint-settings-on-startup	ale.txt	/*ale-lint-settings-on-startup*
 ale-linter-loading-behavior	ale.txt	/*ale-linter-loading-behavior*
-ale-linter-loading-behaviour	ale.txt	/*ale-linter-loading-behaviour*
 ale-linting-interrupts-mapping	ale.txt	/*ale-linting-interrupts-mapping*
 ale-llvm-llc	ale-llvm.txt	/*ale-llvm-llc*
 ale-llvm-options	ale-llvm.txt	/*ale-llvm-options*
@@ -435,6 +434,7 @@ ale-python-pylama	ale-python.txt	/*ale-python-pylama*
 ale-python-pylint	ale-python.txt	/*ale-python-pylint*
 ale-python-pyls	ale-python.txt	/*ale-python-pyls*
 ale-python-pyre	ale-python.txt	/*ale-python-pyre*
+ale-python-pyright	ale-python.txt	/*ale-python-pyright*
 ale-python-reorder_python_imports	ale-python.txt	/*ale-python-reorder_python_imports*
 ale-python-root	ale-python.txt	/*ale-python-root*
 ale-python-vulture	ale-python.txt	/*ale-python-vulture*
@@ -540,12 +540,14 @@ ale-typescript-tslint	ale-typescript.txt	/*ale-typescript-tslint*
 ale-typescript-tsserver	ale-typescript.txt	/*ale-typescript-tsserver*
 ale-vala-options	ale-vala.txt	/*ale-vala-options*
 ale-vala-uncrustify	ale-vala.txt	/*ale-vala-uncrustify*
+ale-verilog-hdl-checker	ale-verilog.txt	/*ale-verilog-hdl-checker*
 ale-verilog-iverilog	ale-verilog.txt	/*ale-verilog-iverilog*
 ale-verilog-options	ale-verilog.txt	/*ale-verilog-options*
 ale-verilog-verilator	ale-verilog.txt	/*ale-verilog-verilator*
 ale-verilog-vlog	ale-verilog.txt	/*ale-verilog-vlog*
 ale-verilog-xvlog	ale-verilog.txt	/*ale-verilog-xvlog*
 ale-vhdl-ghdl	ale-vhdl.txt	/*ale-vhdl-ghdl*
+ale-vhdl-hdl-checker	ale-vhdl.txt	/*ale-vhdl-hdl-checker*
 ale-vhdl-options	ale-vhdl.txt	/*ale-vhdl-options*
 ale-vhdl-vcom	ale-vhdl.txt	/*ale-vhdl-vcom*
 ale-vhdl-xvhdl	ale-vhdl.txt	/*ale-vhdl-xvhdl*
@@ -761,6 +763,9 @@ b:ale_haskell_hlint_executable	ale-haskell.txt	/*b:ale_haskell_hlint_executable*
 b:ale_haskell_stack_build_options	ale-haskell.txt	/*b:ale_haskell_stack_build_options*
 b:ale_haskell_stack_ghc_options	ale-haskell.txt	/*b:ale_haskell_stack_ghc_options*
 b:ale_haskell_stylish_haskell_executable	ale-haskell.txt	/*b:ale_haskell_stylish_haskell_executable*
+b:ale_hdl_checker_config_file	ale-vhdl.txt	/*b:ale_hdl_checker_config_file*
+b:ale_hdl_checker_executable	ale-vhdl.txt	/*b:ale_hdl_checker_executable*
+b:ale_hdl_checker_options	ale-vhdl.txt	/*b:ale_hdl_checker_options*
 b:ale_hover_to_preview	ale.txt	/*b:ale_hover_to_preview*
 b:ale_html_beautify_options	ale-html.txt	/*b:ale_html_beautify_options*
 b:ale_html_htmlhint_executable	ale-html.txt	/*b:ale_html_htmlhint_executable*
@@ -1000,6 +1005,8 @@ b:ale_python_pyls_use_global	ale-python.txt	/*b:ale_python_pyls_use_global*
 b:ale_python_pyre_auto_pipenv	ale-python.txt	/*b:ale_python_pyre_auto_pipenv*
 b:ale_python_pyre_executable	ale-python.txt	/*b:ale_python_pyre_executable*
 b:ale_python_pyre_use_global	ale-python.txt	/*b:ale_python_pyre_use_global*
+b:ale_python_pyright_config	ale-python.txt	/*b:ale_python_pyright_config*
+b:ale_python_pyright_executable	ale-python.txt	/*b:ale_python_pyright_executable*
 b:ale_python_reorder_python_imports_executable	ale-python.txt	/*b:ale_python_reorder_python_imports_executable*
 b:ale_python_reorder_python_imports_options	ale-python.txt	/*b:ale_python_reorder_python_imports_options*
 b:ale_python_reorder_python_imports_use_global	ale-python.txt	/*b:ale_python_reorder_python_imports_use_global*
@@ -1379,8 +1386,12 @@ g:ale_haskell_hlint_executable	ale-haskell.txt	/*g:ale_haskell_hlint_executable*
 g:ale_haskell_stack_build_options	ale-haskell.txt	/*g:ale_haskell_stack_build_options*
 g:ale_haskell_stack_ghc_options	ale-haskell.txt	/*g:ale_haskell_stack_ghc_options*
 g:ale_haskell_stylish_haskell_executable	ale-haskell.txt	/*g:ale_haskell_stylish_haskell_executable*
+g:ale_hdl_checker_config_file	ale-vhdl.txt	/*g:ale_hdl_checker_config_file*
+g:ale_hdl_checker_executable	ale-vhdl.txt	/*g:ale_hdl_checker_executable*
+g:ale_hdl_checker_options	ale-vhdl.txt	/*g:ale_hdl_checker_options*
 g:ale_history_enabled	ale.txt	/*g:ale_history_enabled*
 g:ale_history_log_output	ale.txt	/*g:ale_history_log_output*
+g:ale_hover_cursor	ale.txt	/*g:ale_hover_cursor*
 g:ale_hover_to_preview	ale.txt	/*g:ale_hover_to_preview*
 g:ale_html_beautify_options	ale-html.txt	/*g:ale_html_beautify_options*
 g:ale_html_htmlhint_executable	ale-html.txt	/*g:ale_html_htmlhint_executable*
@@ -1643,6 +1654,8 @@ g:ale_python_pyls_use_global	ale-python.txt	/*g:ale_python_pyls_use_global*
 g:ale_python_pyre_auto_pipenv	ale-python.txt	/*g:ale_python_pyre_auto_pipenv*
 g:ale_python_pyre_executable	ale-python.txt	/*g:ale_python_pyre_executable*
 g:ale_python_pyre_use_global	ale-python.txt	/*g:ale_python_pyre_use_global*
+g:ale_python_pyright_config	ale-python.txt	/*g:ale_python_pyright_config*
+g:ale_python_pyright_executable	ale-python.txt	/*g:ale_python_pyright_executable*
 g:ale_python_reorder_python_imports_executable	ale-python.txt	/*g:ale_python_reorder_python_imports_executable*
 g:ale_python_reorder_python_imports_options	ale-python.txt	/*g:ale_python_reorder_python_imports_options*
 g:ale_python_reorder_python_imports_use_global	ale-python.txt	/*g:ale_python_reorder_python_imports_use_global*
