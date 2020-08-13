@@ -1034,6 +1034,7 @@ b:ale_ruby_rails_best_practices_options	ale-ruby.txt	/*b:ale_ruby_rails_best_pra
 b:ale_ruby_reek_executable	ale-ruby.txt	/*b:ale_ruby_reek_executable*
 b:ale_ruby_reek_show_context	ale-ruby.txt	/*b:ale_ruby_reek_show_context*
 b:ale_ruby_reek_show_wiki_link	ale-ruby.txt	/*b:ale_ruby_reek_show_wiki_link*
+b:ale_ruby_rubocop_auto_correct_all	ale-ruby.txt	/*b:ale_ruby_rubocop_auto_correct_all*
 b:ale_ruby_rubocop_executable	ale-ruby.txt	/*b:ale_ruby_rubocop_executable*
 b:ale_ruby_rubocop_options	ale-ruby.txt	/*b:ale_ruby_rubocop_options*
 b:ale_ruby_ruby_executable	ale-ruby.txt	/*b:ale_ruby_ruby_executable*
@@ -1686,6 +1687,7 @@ g:ale_ruby_rails_best_practices_options	ale-ruby.txt	/*g:ale_ruby_rails_best_pra
 g:ale_ruby_reek_executable	ale-ruby.txt	/*g:ale_ruby_reek_executable*
 g:ale_ruby_reek_show_context	ale-ruby.txt	/*g:ale_ruby_reek_show_context*
 g:ale_ruby_reek_show_wiki_link	ale-ruby.txt	/*g:ale_ruby_reek_show_wiki_link*
+g:ale_ruby_rubocop_auto_correct_all	ale-ruby.txt	/*g:ale_ruby_rubocop_auto_correct_all*
 g:ale_ruby_rubocop_executable	ale-ruby.txt	/*g:ale_ruby_rubocop_executable*
 g:ale_ruby_rubocop_options	ale-ruby.txt	/*g:ale_ruby_rubocop_options*
 g:ale_ruby_ruby_executable	ale-ruby.txt	/*g:ale_ruby_ruby_executable*
