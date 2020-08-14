@@ -1054,6 +1054,7 @@ b:ale_rust_cargo_check_tests	ale-rust.txt	/*b:ale_rust_cargo_check_tests*
 b:ale_rust_cargo_clippy_options	ale-rust.txt	/*b:ale_rust_cargo_clippy_options*
 b:ale_rust_cargo_default_feature_behavior	ale-rust.txt	/*b:ale_rust_cargo_default_feature_behavior*
 b:ale_rust_cargo_include_features	ale-rust.txt	/*b:ale_rust_cargo_include_features*
+b:ale_rust_cargo_target_dir	ale-rust.txt	/*b:ale_rust_cargo_target_dir*
 b:ale_rust_cargo_use_check	ale-rust.txt	/*b:ale_rust_cargo_use_check*
 b:ale_rust_cargo_use_clippy	ale-rust.txt	/*b:ale_rust_cargo_use_clippy*
 b:ale_rust_ignore_error_codes	ale-rust.txt	/*b:ale_rust_ignore_error_codes*
@@ -1707,6 +1708,7 @@ g:ale_rust_cargo_check_tests	ale-rust.txt	/*g:ale_rust_cargo_check_tests*
 g:ale_rust_cargo_clippy_options	ale-rust.txt	/*g:ale_rust_cargo_clippy_options*
 g:ale_rust_cargo_default_feature_behavior	ale-rust.txt	/*g:ale_rust_cargo_default_feature_behavior*
 g:ale_rust_cargo_include_features	ale-rust.txt	/*g:ale_rust_cargo_include_features*
+g:ale_rust_cargo_target_dir	ale-rust.txt	/*g:ale_rust_cargo_target_dir*
 g:ale_rust_cargo_use_check	ale-rust.txt	/*g:ale_rust_cargo_use_check*
 g:ale_rust_cargo_use_clippy	ale-rust.txt	/*g:ale_rust_cargo_use_clippy*
 g:ale_rust_ignore_error_codes	ale-rust.txt	/*g:ale_rust_ignore_error_codes*
