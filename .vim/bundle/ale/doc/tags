@@ -342,6 +342,7 @@ ale-lsp-linters	ale.txt	/*ale-lsp-linters*
 ale-lua-luac	ale-lua.txt	/*ale-lua-luac*
 ale-lua-luacheck	ale-lua.txt	/*ale-lua-luacheck*
 ale-lua-options	ale-lua.txt	/*ale-lua-options*
+ale-markdown-markdownlint	ale-markdown.txt	/*ale-markdown-markdownlint*
 ale-markdown-mdl	ale-markdown.txt	/*ale-markdown-mdl*
 ale-markdown-options	ale-markdown.txt	/*ale-markdown-options*
 ale-markdown-prettier	ale-markdown.txt	/*ale-markdown-prettier*
@@ -860,6 +861,7 @@ b:ale_lsp_root	ale.txt	/*b:ale_lsp_root*
 b:ale_lua_luac_executable	ale-lua.txt	/*b:ale_lua_luac_executable*
 b:ale_lua_luacheck_executable	ale-lua.txt	/*b:ale_lua_luacheck_executable*
 b:ale_lua_luacheck_options	ale-lua.txt	/*b:ale_lua_luacheck_options*
+b:ale_markdown_markdownlint_options	ale-markdown.txt	/*b:ale_markdown_markdownlint_options*
 b:ale_markdown_mdl_executable	ale-markdown.txt	/*b:ale_markdown_mdl_executable*
 b:ale_markdown_mdl_options	ale-markdown.txt	/*b:ale_markdown_mdl_options*
 b:ale_markdown_remark_lint_executable	ale-markdown.txt	/*b:ale_markdown_remark_lint_executable*
@@ -1507,6 +1509,7 @@ g:ale_lsp_show_message_severity	ale.txt	/*g:ale_lsp_show_message_severity*
 g:ale_lua_luac_executable	ale-lua.txt	/*g:ale_lua_luac_executable*
 g:ale_lua_luacheck_executable	ale-lua.txt	/*g:ale_lua_luacheck_executable*
 g:ale_lua_luacheck_options	ale-lua.txt	/*g:ale_lua_luacheck_options*
+g:ale_markdown_markdownlint_options	ale-markdown.txt	/*g:ale_markdown_markdownlint_options*
 g:ale_markdown_mdl_executable	ale-markdown.txt	/*g:ale_markdown_mdl_executable*
 g:ale_markdown_mdl_options	ale-markdown.txt	/*g:ale_markdown_mdl_options*
 g:ale_markdown_remark_lint_executable	ale-markdown.txt	/*g:ale_markdown_remark_lint_executable*
