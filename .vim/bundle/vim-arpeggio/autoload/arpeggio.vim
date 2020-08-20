@@ -1,6 +1,6 @@
 " arpeggio - Mappings for simultaneously pressed keys
-" Version: 0.0.10
-" Copyright (C) 2008-2019 Kana Natsuno <https://whileimautomaton.net/>
+" Version: 0.0.11
+" Copyright (C) 2008-2020 Kana Natsuno <https://whileimautomaton.net/>
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -264,7 +264,7 @@ endfunction
 
 " Misc.  "{{{1
 function! s:SID()  "{{{2
-  return matchstr(expand('<sfile>'), '<SNR>\zs\d\+\ze_')
+  return matchstr(expand('<sfile>'), '<SNR>\zs\d\+\ze_SID$')
 endfunction
 let s:SID = "\<SNR>" . s:SID() . '_'
 
