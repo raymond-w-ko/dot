@@ -70,6 +70,7 @@ ALEWarningSign	ale.txt	/*ALEWarningSign*
 ALEWarningSignLineNr	ale.txt	/*ALEWarningSignLineNr*
 ale	ale.txt	/*ale*
 ale#Env()	ale.txt	/*ale#Env()*
+ale#GetFilenameMappings()	ale.txt	/*ale#GetFilenameMappings()*
 ale#Has()	ale.txt	/*ale#Has()*
 ale#Pad()	ale.txt	/*ale#Pad()*
 ale#Queue()	ale.txt	/*ale#Queue()*
@@ -332,6 +333,7 @@ ale-lint	ale.txt	/*ale-lint*
 ale-lint-file	ale.txt	/*ale-lint-file*
 ale-lint-file-linters	ale.txt	/*ale-lint-file-linters*
 ale-lint-language-servers	ale.txt	/*ale-lint-language-servers*
+ale-lint-other-machines	ale.txt	/*ale-lint-other-machines*
 ale-lint-other-sources	ale.txt	/*ale-lint-other-sources*
 ale-lint-settings-on-startup	ale.txt	/*ale-lint-settings-on-startup*
 ale-linter-loading-behavior	ale.txt	/*ale-linter-loading-behavior*
@@ -703,6 +705,7 @@ b:ale_erlang_erlc_options	ale-erlang.txt	/*b:ale_erlang_erlc_options*
 b:ale_erlang_syntaxerl_executable	ale-erlang.txt	/*b:ale_erlang_syntaxerl_executable*
 b:ale_eruby_ruumba_executable	ale-eruby.txt	/*b:ale_eruby_ruumba_executable*
 b:ale_exclude_highlights	ale.txt	/*b:ale_exclude_highlights*
+b:ale_filename_mappings	ale.txt	/*b:ale_filename_mappings*
 b:ale_fix_on_save	ale.txt	/*b:ale_fix_on_save*
 b:ale_fix_on_save_ignore	ale.txt	/*b:ale_fix_on_save_ignore*
 b:ale_fixers	ale.txt	/*b:ale_fixers*
@@ -1326,6 +1329,7 @@ g:ale_erlang_erlc_options	ale-erlang.txt	/*g:ale_erlang_erlc_options*
 g:ale_erlang_syntaxerl_executable	ale-erlang.txt	/*g:ale_erlang_syntaxerl_executable*
 g:ale_eruby_ruumba_executable	ale-eruby.txt	/*g:ale_eruby_ruumba_executable*
 g:ale_exclude_highlights	ale.txt	/*g:ale_exclude_highlights*
+g:ale_filename_mappings	ale.txt	/*g:ale_filename_mappings*
 g:ale_fix_on_save	ale.txt	/*g:ale_fix_on_save*
 g:ale_fix_on_save_ignore	ale.txt	/*g:ale_fix_on_save_ignore*
 g:ale_fixers	ale.txt	/*g:ale_fixers*
