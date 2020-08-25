@@ -1785,6 +1785,8 @@ function! s:SetupBasicSyntaxHighlights()
     syntax match rkoClojureMacro /\v<deftest>/ containedin=ALL
     syntax match rkoClojureMinorMacro /\v<:let>/ containedin=ALL
     syntax match rkoClojureMinorMacro /\v<:plet>/ containedin=ALL
+    syntax match rkoClojureMinorMacro /\v<:pplet>/ containedin=ALL
+    syntax match rkoClojureMinorMacro /\v<:do>/ containedin=ALL
   endif
   if has_key(s:double_slash_comment_filestypes, &filetype)
     syntax region rkoBasicComment start=/\v\/\// end=/\v$/
@@ -2123,8 +2125,8 @@ let g:clojure_maxlines = 512
 let g:clojure_align_multiline_strings = 0
 
 let g:clojure_fuzzy_indent = 1
-let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^plet', '^go-loop$', '^comment$', 'fdef$']
-let g:clojure_fuzzy_indent_blacklist = ['-fn$', '\v^with-%(meta|out-str|loading-context)$']
+let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^go-loop$', '^comment$', 'fdef$']
+let g:clojure_fuzzy_indent_blacklist = ['-fn$', '\v^with-%(meta|out-str|loading-context)$', '^cond-xlet$']
 let g:clojure_special_indent_words = 'deftype,defrecord,reify,proxy,extend-type,extend-protocol,letfn,comment'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
