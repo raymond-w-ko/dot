@@ -104,10 +104,10 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 function! s:get_project_type(path) abort
-  if filereadable(a:path . "/project.clj")
-    return "default"
-  elseif filereadable(a:path . "/shadow-cljs.edn")
+  if filereadable(a:path . "/shadow-cljs.edn")
     return "shadow-cljs"
+  elseif filereadable(a:path . "/project.clj")
+    return "default"
   elseif filereadable(a:path . "/deps.edn")
     return "default"
   endif
