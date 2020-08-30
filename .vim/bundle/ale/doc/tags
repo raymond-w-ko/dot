@@ -140,6 +140,7 @@ ale-command-format-strings	ale.txt	/*ale-command-format-strings*
 ale-commands	ale.txt	/*ale-commands*
 ale-completion	ale.txt	/*ale-completion*
 ale-completion-completeopt-bug	ale.txt	/*ale-completion-completeopt-bug*
+ale-completion-fallback	ale.txt	/*ale-completion-fallback*
 ale-contact	ale.txt	/*ale-contact*
 ale-contents	ale.txt	/*ale-contents*
 ale-cool-down	ale.txt	/*ale-cool-down*
@@ -188,6 +189,7 @@ ale-development-fixer-tests	ale-development.txt	/*ale-development-fixer-tests*
 ale-development-introduction	ale-development.txt	/*ale-development-introduction*
 ale-development-linter-tests	ale-development.txt	/*ale-development-linter-tests*
 ale-development-tests	ale-development.txt	/*ale-development-tests*
+ale-development-windows-tests	ale-development.txt	/*ale-development-windows-tests*
 ale-development.txt	ale-development.txt	/*ale-development.txt*
 ale-dockerfile-dockerfile_lint	ale-dockerfile.txt	/*ale-dockerfile-dockerfile_lint*
 ale-dockerfile-hadolint	ale-dockerfile.txt	/*ale-dockerfile-hadolint*
@@ -590,6 +592,7 @@ b:ale_asm_gcc_executable	ale-asm.txt	/*b:ale_asm_gcc_executable*
 b:ale_asm_gcc_options	ale-asm.txt	/*b:ale_asm_gcc_options*
 b:ale_awk_gawk_executable	ale-awk.txt	/*b:ale_awk_gawk_executable*
 b:ale_awk_gawk_options	ale-awk.txt	/*b:ale_awk_gawk_options*
+b:ale_c_always_make	ale-c.txt	/*b:ale_c_always_make*
 b:ale_c_astyle_executable	ale-c.txt	/*b:ale_c_astyle_executable*
 b:ale_c_astyle_project_options	ale-c.txt	/*b:ale_c_astyle_project_options*
 b:ale_c_build_dir	ale-c.txt	/*b:ale_c_build_dir*
@@ -849,6 +852,7 @@ b:ale_less_lessc_use_global	ale-less.txt	/*b:ale_less_lessc_use_global*
 b:ale_less_stylelint_executable	ale-less.txt	/*b:ale_less_stylelint_executable*
 b:ale_less_stylelint_options	ale-less.txt	/*b:ale_less_stylelint_options*
 b:ale_less_stylelint_use_global	ale-less.txt	/*b:ale_less_stylelint_use_global*
+b:ale_lint_delay	ale.txt	/*b:ale_lint_delay*
 b:ale_lint_on_insert_leave	ale.txt	/*b:ale_lint_on_insert_leave*
 b:ale_linted	ale.txt	/*b:ale_linted*
 b:ale_linter_aliases	ale.txt	/*b:ale_linter_aliases*
@@ -925,6 +929,8 @@ b:ale_php_phpstan_configuration	ale-php.txt	/*b:ale_php_phpstan_configuration*
 b:ale_php_phpstan_executable	ale-php.txt	/*b:ale_php_phpstan_executable*
 b:ale_php_phpstan_level	ale-php.txt	/*b:ale_php_phpstan_level*
 b:ale_php_psalm_executable	ale-php.txt	/*b:ale_php_psalm_executable*
+b:ale_php_psalm_options	ale-php.txt	/*b:ale_php_psalm_options*
+b:ale_php_psalm_use_global	ale-php.txt	/*b:ale_php_psalm_use_global*
 b:ale_pony_ponyc_executable	ale-pony.txt	/*b:ale_pony_ponyc_executable*
 b:ale_pony_ponyc_options	ale-pony.txt	/*b:ale_pony_ponyc_options*
 b:ale_powershell_powershell_executable	ale-powershell.txt	/*b:ale_powershell_powershell_executable*
@@ -936,7 +942,6 @@ b:ale_prolog_swipl_alarm_handler	ale-prolog.txt	/*b:ale_prolog_swipl_alarm_handl
 b:ale_prolog_swipl_executable	ale-prolog.txt	/*b:ale_prolog_swipl_executable*
 b:ale_prolog_swipl_load	ale-prolog.txt	/*b:ale_prolog_swipl_load*
 b:ale_prolog_swipl_timeout	ale-prolog.txt	/*b:ale_prolog_swipl_timeout*
-b:ale_psalm_langserver_options	ale-php.txt	/*b:ale_psalm_langserver_options*
 b:ale_pug_puglint_executable	ale-pug.txt	/*b:ale_pug_puglint_executable*
 b:ale_pug_puglint_options	ale-pug.txt	/*b:ale_pug_puglint_options*
 b:ale_pug_puglint_use_global	ale-pug.txt	/*b:ale_pug_puglint_use_global*
@@ -1199,6 +1204,7 @@ g:ale_awk_gawk_executable	ale-awk.txt	/*g:ale_awk_gawk_executable*
 g:ale_awk_gawk_options	ale-awk.txt	/*g:ale_awk_gawk_options*
 g:ale_bib_bibclean_executable	ale-bib.txt	/*g:ale_bib_bibclean_executable*
 g:ale_bib_bibclean_options	ale-bib.txt	/*g:ale_bib_bibclean_options*
+g:ale_c_always_make	ale-c.txt	/*g:ale_c_always_make*
 g:ale_c_astyle_executable	ale-c.txt	/*g:ale_c_astyle_executable*
 g:ale_c_astyle_project_options	ale-c.txt	/*g:ale_c_astyle_project_options*
 g:ale_c_build_dir	ale-c.txt	/*g:ale_c_build_dir*
@@ -1574,6 +1580,8 @@ g:ale_php_phpstan_configuration	ale-php.txt	/*g:ale_php_phpstan_configuration*
 g:ale_php_phpstan_executable	ale-php.txt	/*g:ale_php_phpstan_executable*
 g:ale_php_phpstan_level	ale-php.txt	/*g:ale_php_phpstan_level*
 g:ale_php_psalm_executable	ale-php.txt	/*g:ale_php_psalm_executable*
+g:ale_php_psalm_options	ale-php.txt	/*g:ale_php_psalm_options*
+g:ale_php_psalm_use_global	ale-php.txt	/*g:ale_php_psalm_use_global*
 g:ale_pony_ponyc_executable	ale-pony.txt	/*g:ale_pony_ponyc_executable*
 g:ale_pony_ponyc_options	ale-pony.txt	/*g:ale_pony_ponyc_options*
 g:ale_powershell_powershell_executable	ale-powershell.txt	/*g:ale_powershell_powershell_executable*
@@ -1586,7 +1594,6 @@ g:ale_prolog_swipl_executable	ale-prolog.txt	/*g:ale_prolog_swipl_executable*
 g:ale_prolog_swipl_load	ale-prolog.txt	/*g:ale_prolog_swipl_load*
 g:ale_prolog_swipl_timeout	ale-prolog.txt	/*g:ale_prolog_swipl_timeout*
 g:ale_proto_protoc_gen_lint_options	ale-proto.txt	/*g:ale_proto_protoc_gen_lint_options*
-g:ale_psalm_langserver_options	ale-php.txt	/*g:ale_psalm_langserver_options*
 g:ale_pug_puglint_executable	ale-pug.txt	/*g:ale_pug_puglint_executable*
 g:ale_pug_puglint_options	ale-pug.txt	/*g:ale_pug_puglint_options*
 g:ale_pug_puglint_use_global	ale-pug.txt	/*g:ale_pug_puglint_use_global*
