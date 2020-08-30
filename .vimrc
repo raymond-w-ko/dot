@@ -2613,6 +2613,7 @@ augroup MyVimrc
   au FileType dosbatch setlocal commentstring=REM\ %s
 
   au FileType Makefile setlocal noexpandtab
+  au FileType markdown setlocal et list sw=4 sts=4 ts=4
 
   au BufReadPost *.hlsl set filetype=fx
   
