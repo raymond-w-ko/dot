@@ -811,6 +811,26 @@ fun! Test_CT_ignore_missing_linked_groups()
   call s:assert_build('test76')
 endf
 
+" See: https://github.com/lifepillar/vim-colortemplate/issues/36
+" When defining a base 256 color as 0 (code for terminal black) with Color and
+" then setting a highlight to it, it used to be ignored.
+fun! Test_CT_zero_on_256_colors_is_not_ignored()
+  call s:assert_build('test77')
+endf
+
+fun! Test_CT_arrows_in_comments_are_not_parsed_as_linked_groups()
+  call s:assert_build('test78')
+endf
+
+fun! Test_CT_colors_0_16_in_base256_do_not_cause_base16_color_undefined()
+  call s:assert_build('test79')
+endf
+
+fun! Test_CT_silent_call_command()
+  call s:assert_build('test80')
+endf
+
+
 "
 " Runner!
 "

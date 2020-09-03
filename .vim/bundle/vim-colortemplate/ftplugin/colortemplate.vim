@@ -19,7 +19,7 @@ if get(g:, 'colortemplate_rtp', 1)
   execute 'set runtimepath^='.b:colortemplate_outdir
 endif
 
-setlocal commentstring=#%s
+setlocal commentstring=;%s
 setlocal omnifunc=syntaxcomplete#Complete
 
 if !get(g:, 'colortemplate_no_mappings', get(g:, 'no_plugin_maps', 0))
@@ -36,7 +36,7 @@ command! -buffer -nargs=0                          ColortemplateOutdir call colo
 command! -buffer -nargs=0 -bar                     ColortemplateStats call colortemplate#stats()
 
 if has('patch-8.1.1705')
-  command! -nargs=0 -bar ColortemplateStyle call colortemplate#style_popup#open()
+  command! -nargs=? -bar -complete=highlight ColortemplateStyle call colortemplate#style#open(<q-args>)
 endif
 
 if get(g:, 'colortemplate_toolbar', 1) && (has('patch-8.0.1123') && has('menu')) " does it have window-toolbar?

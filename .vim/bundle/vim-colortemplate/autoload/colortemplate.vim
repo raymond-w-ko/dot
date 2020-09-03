@@ -265,6 +265,10 @@ fun! s:show_errors(errmsg)
 endf
 " }}}
 " Misc {{{
+fun! s:has_gui()
+  return has('gui_running') || (has('termguicolors') && &termguicolors)
+endf
+
 if exists('*isnan')
   fun! s:isnan(x)
     return isnan(a:x)
@@ -319,28 +323,28 @@ endf
 " section: 'preamble, 'dark' or 'light'
 " name: color name as defined by the user
 " gui: GUI value (either a hex value or a standard name)
-" base256: a numeric value between 16 and 255 or -1 (=infer the value)
-" base16: a numeric value between 0 and 15
+" base256: a numeric value between 16 and 255, or -1 (=infer the value)
+" base16: a numeric value between 0 and 15, or -1 (=value unspecified)
 fun! s:add_color(section, name, gui, base256, base16)
   if s:is_color_defined(a:name, a:section)
     throw "Color already defined for " . a:section . " background"
   endif
   let s:guicol[a:section][a:name] = a:gui
   let s:col256[a:section][a:name] = a:base256
-  let  s:col16[a:section][a:name] = a:base16
+  let  s:col16[a:section][a:name] = (a:base16 == -1 && a:base256 < 16) ? a:base256 : a:base16
   if a:section ==# 'preamble'
     if s:is_color_defined(a:name, 'dark')
       throw "Color already defined for dark background"
     endif
     let s:guicol['dark'][a:name] = a:gui
     let s:col256['dark'][a:name] = a:base256
-    let  s:col16['dark'][a:name] = a:base16
+    let  s:col16['dark'][a:name] = (a:base16 == -1 && a:base256 < 16) ? a:base256 : a:base16
     if s:is_color_defined(a:name, 'light')
       throw "Color already defined for light background"
     endif
     let s:guicol['light'][a:name] = a:gui
     let s:col256['light'][a:name] = a:base256
-    let  s:col16['light'][a:name] = a:base16
+    let  s:col16['light'][a:name] = (a:base16 == -1 && a:base256 < 16) ? a:base256 : a:base16
   endif
 endf
 
@@ -1347,11 +1351,11 @@ fun! s:token.next() dict
     " Commands are recognized only at the start of a line
     if match(s:getl(), '^\s*#\%(if\|else\%[if]\|endif\|\%[un]let\|call\)\>', 0) > -1
       let self.kind = 'CMD'
-      let self.value = matchstr(s:getl(), '^\s*#\zs\%(if\|else\%[if]\|endif\)\>', 0)
+      let self.value = matchstr(s:getl(), '^\s*#\zs\%(if\|else\%[if]\|endif\|\%[un]let!\=\|call!\=\)', 0)
     elseif match(s:getl(), '^[0-9a-f]\{6}', self.pos) > -1
       let [self.value, self.spos, self.pos] = matchstrpos(s:getl(), '#[0-9a-f]\{6}', self.pos - 1)
       let self.kind = 'HEX'
-    else
+    else " Use of # as a comment tag is deprecated, but still supported for backward compatibility
       let self.value = '#'
       let self.kind = 'COMMENT'
       let self.pos = len(s:getl())
@@ -1533,7 +1537,7 @@ endf
 
 fun! s:start_verbatim()
   " Verbatim blocks act like optimization fences: since we don't know what the
-  " code in a verbatim block does, we need to flush definitions collected so
+  " code in a verbatim block does, we need to flush the definitions collected so
   " far.
   for l:v in s:active_variants()
     call s:flush_italics(l:v, s:active_section())
@@ -1696,6 +1700,10 @@ endf
 
 fun! s:parse_line()
   if !s:token.next().is_edible() " Empty line or comment
+    if s:token.kind ==# 'COMMENT' && s:token.value ==# '#'
+      call s:add_warning(s:currfile(), s:linenr(), s:token.pos,
+            \ "The # symbol for comments is deprecated. Use ; instead.")
+    endif
     return
   endif
   if s:token.kind ==# 'WORD'
@@ -1716,7 +1724,7 @@ fun! s:parse_line()
         throw "Extra characters after 'documentation'"
       endif
       call s:start_help_file()
-    elseif s:getl() =~# '\m^[^#]*:' " Look ahead
+    elseif s:getl() =~# '\m^[^;#]*:' " Look ahead
       call s:parse_key_value_pair()
     else
       call s:add_source_line(s:getl())
@@ -1940,7 +1948,7 @@ fun! s:parse_term_colors()
 endf
 
 fun! s:parse_hi_group_def()
-  if s:getl() =~# '\m->' " Look ahead
+  if s:getl() =~# '\m^[^#;]*->' " Look ahead
     return s:parse_linked_group_def()
   endif
 
@@ -2063,14 +2071,16 @@ endf
 
 fun! s:parse_command(cmd)
   call s:start_verbatim()
-  if a:cmd =~# '\m^if$'
+  if a:cmd ==# 'if'
     call s:start_if()
-  elseif a:cmd =~# '\m^endif$'
+  elseif a:cmd ==# 'endif'
     call s:stop_if()
   elseif a:cmd =~# '\m^else' && !s:is_if()
     throw a:cmd.' without if'
   endif
-  let l:text = matchstr(s:getl(), '^\s*#\zs.\{-}\s*$')
+  let l:text = (a:cmd ==# 'call!')
+        \ ? 'silent! call' . matchstr(s:getl(), '^\s*#call!\zs.\{-}\s*$')
+        \ : matchstr(s:getl(), '^\s*#\zs.\{-}\s*$')
   for l:v in s:active_variants()
     call s:add_verbatim_item(l:v, s:active_section(),
           \ { 'line': l:text, 'linenr': s:linenr(), 'file': s:currfile() })
@@ -2170,7 +2180,7 @@ fun! s:generate_aux_files(outdir, overwrite)
 endf
 
 fun! s:hi_item(text, value)
-  return (a:value ==# 'omit' ? '' : ' '.a:text.'='.a:value)
+  return (type(a:value) ==# v:t_string && a:value ==# 'omit' ? '' : ' '.a:text.'='.a:value)
 endf
 
 fun! s:eval(item, col, section)
@@ -2733,24 +2743,29 @@ fun! colortemplate#highlighttest()
   runtime syntax/hitest.vim
 endf
 
+" Get info about the Color definition under the cursor.
+"
+" n: the desired number of terminal approximations for the given color.
 fun! colortemplate#getinfo(n)
   let l:name = s:quickly_parse_color_line()
   if empty(l:name) | return | endif
-  let l:hexc = s:guihex(l:name, 'dark') " 2nd arg doesn't matter
+  let l:hexc = s:guihex(l:name, 'dark') " 2nd arg doesn't matter in this context
   let l:best = colortemplate#colorspace#approx(l:hexc)
   let l:c256 = s:col256(l:name, 'dark') == -1 ? l:best['index'] : s:col256(l:name, 'dark')
   let [l:r, l:g, l:b] = colortemplate#colorspace#hex2rgb(l:hexc)
-  try
-    execute "hi!" "ColortemplateInfoFg" "ctermfg=".l:c256 "guifg=".l:hexc "ctermbg=NONE guibg=NONE"
-    execute "hi!" "ColortemplateInfoBg" "ctermbg=".l:c256 "guibg=".l:hexc "ctermfg=NONE guifg=NONE"
-  catch /^Vim\%((\a\+)\)\=:E254/ " Cannot allocate color
-    hi clear ColortemplateInfoFg
-    hi clear ColortemplateInfoBg
-  endtry
-  echon printf('%s: rgb(%d,%d,%d) ', l:name, l:r, l:g, l:b)
-  echohl ColortemplateInfoFg | echon 'xxx' | echohl None
-  echon printf(' %s ', l:hexc)
-  echohl ColortemplateInfoBg | echon '   ' | echohl None
+  echon printf('%s: %s/rgb(%d,%d,%d) ', l:name, l:hexc, l:r, l:g, l:b)
+  if s:has_gui()
+    try
+      execute "hi!" "ColortemplateInfoFg" "ctermfg=".l:c256 "guifg=".l:hexc "ctermbg=NONE guibg=NONE"
+      execute "hi!" "ColortemplateInfoBg" "ctermbg=".l:c256 "guibg=".l:hexc "ctermfg=NONE guifg=NONE"
+    catch /^Vim\%((\a\+)\)\=:E254/ " Cannot allocate color
+      hi clear ColortemplateInfoFg
+      hi clear ColortemplateInfoBg
+    endtry
+    echohl ColortemplateInfoFg | echon 'xxx' | echohl None
+    echon ' '
+    echohl ColortemplateInfoBg | echon '   ' | echohl None
+  endif
   echon ' Best xterm approx:'
   if a:n == 1
     let l:approx = [l:best]

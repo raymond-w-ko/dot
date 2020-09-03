@@ -116,7 +116,7 @@ necessarily sequential) steps:
 If you want to start from scratch instead of using one of the predefined
 templates, set the modeline in your template to
 >
-	# vim: ft=colortemplate
+	; vim: ft=colortemplate
 
 or save your template with a `.colortemplate` suffix.
 
@@ -135,7 +135,7 @@ A template consists of:
 4. `Include` directives;
 5. verbatim blocks (`verbatim`/`auxfile`/`documentation`, `#if`, `#let`, ...);
 6. highlight group definitions;
-7. line comments (starting with `#`), which are ignored by Colortemplate.
+7. line comments (starting with `;`), which are ignored by Colortemplate.
 
 Each template has one global section and one or more local sections. The
 global section starts at the beginning of the file and lasts until the first
@@ -166,48 +166,48 @@ flexibility, e.g.:
 >
 	Variant: gui
 	Background: any
-	  # Defs. for both backgrounds, apply only to GUI
+	  ; Defs. for both backgrounds, apply only to GUI
 	Background: dark
-	  # Defs. or dark background, apply only to GUI
+	  ; Defs. or dark background, apply only to GUI
 	Variant: gui 256 16
-	  # Defs. for dark background, apply to GUI/256/16 colors
+	  ; Defs. for dark background, apply to GUI/256/16 colors
 	Background: any
-	  # Defs. for both backgrounds, apply to GUI/256/16 colors
+	  ; Defs. for both backgrounds, apply to GUI/256/16 colors
 	Background: light
 	Variant: 16
-	  # Defs. for light background, apply only to 16 colors
+	  ; Defs. for light background, apply only to 16 colors
 <
 A template like the above will generate code with the following structure:
 >
 	let s:t_Co = ...
 	if [has termguicolors set or is GUI vim]
-	  # Defs. for both backgrounds, apply only to GUI
-	  # Defs. for both backgrounds, apply to GUI/256/16 colors
+	  " Defs. for both backgrounds, apply only to GUI
+	  " Defs. for both backgrounds, apply to GUI/256/16 colors
 	  if &background ==# 'dark'
-	    # Defs. for dark background, apply only to GUI
-	    # Defs. for dark background, apply to GUI/256/16 colors
+	    " Defs. for dark background, apply only to GUI
+	    " Defs. for dark background, apply to GUI/256/16 colors
 	    finish
 	  endif
 	  finish
 	endif
 	if s:t_Co >= 256
-	  # Defs. for both backgrounds, apply to GUI/256/16 colors
+	  " Defs. for both backgrounds, apply to GUI/256/16 colors
 	  if &background ==# 'dark'
-	    # Defs. for dark background, apply to GUI/256/16 colors
+	    " Defs. for dark background, apply to GUI/256/16 colors
 	    finish
 	  endif
 	  finish
 	endif
 	if s:t_Co >= 16
-	  # Defs. for both backgrounds, apply to GUI/256/16 colors
+	  " Defs. for both backgrounds, apply to GUI/256/16 colors
 	  if &background ==# 'dark'
-	    # Defs. for dark background, apply to GUI/256/16 colors
+	    " Defs. for dark background, apply to GUI/256/16 colors
 	    finish
 	  endif
-	  # Defs. for light background, apply only to 16 colors
+	  " Defs. for light background, apply only to 16 colors
 	  finish
 	endif
-<	   
+<
 Note how the code is reordered. In particular, code in the scope of `any`
 background is put before the background is checked, for each variant to which
 it applies (the "local preamble" of each variant).
@@ -218,12 +218,12 @@ Metadata block					*colortemplate-meta*
 Information about a color scheme consists of the following mandatory and
 optional fields, usually appearing at the top of your template:
 >
-	# Mandatory information
+	; Mandatory information
 	Full name:       A unique and attractive name
 	Short name:      all_lowercase_with_no_spaces
 	Author:          Myself <myself@somewhere.org>
 
-	# Optional information
+	; Optional information
 	Maintainer:      [Uses Author's value by default]
 	Description:     [Empty]
         URL:             [Empty]
@@ -514,22 +514,30 @@ insert the current Vim version).
 Verbatim blocks are most often used for conditionals or to set and get
 variables or to invoke functions. Therefore, Colortemplate provides convenient
 shortcuts for such cases. When `#if`, `#else`, `#elseif`, `#endif`, `#let`,
-`#unlet` and `#call` appear at the start of a line, they act as one-line
+`#unlet[!]` or `#call[!]` appear at the start of a line, they act as one-line
 verbatim blocks. Such directives are replaced by the corresponding Vim
-commands and what follows is copied verbatim (but interpolated). So, for
-instance, this template:
+commands and what follows until the end of the line is copied verbatim (but
+interpolated) to the output. So, for instance, this template:
 >
 	#if get(g:, 'some_option', 0)
 	  #let s:color = '@guiMyColor'
 	#endif
+
+	#call foo()
+	#call! bar()
 <
 is translated into
 >
 	if get(g:, 'some_option', 0)
 	  let s:color  = '#abcef'
 	endif
+
+	call foo()
+	silent! call bar()
 <
 assuming that `MyColor` is a color with GUI value `#abcdef`.
+
+Note: `#call!` generates a function invocation that silently ignore errors.
 
 ==============================================================================
 Documentation blocks				*colortemplate-doc-blocks*
@@ -584,7 +592,7 @@ the order in which they are encountered. For instance:
 	" First part of auxiliary file
 	endauxfile
 
-        # Some other code
+        ; Some other code
 
 	auxfile autoload/foobar.vim
 	" Second part of auxiliary file
@@ -623,10 +631,10 @@ twice:
 >
 	Background: dark
 	Include: _common
-	# Other definitions specific to dark background
+	; Other definitions specific to dark background
 	Background: light
 	Include: _common
-	# Other definitions specific to light background
+	; Other definitions specific to light background
 <
 NOTE: avoid cyclic inclusions: they will cause Colortemplate to run into an
 infinite loop!
@@ -728,6 +736,13 @@ Set to 0 if you do not want the `Generated by Colortemplate` comment in the
 output color scheme.
 >
 	let g:colortemplate_creator = 1
+<
+						*g:colortemplate_fancy_import*
+When importing a color scheme (see |colortemplate#import#run()|),
+Colortemplate by default generates random fancy names for colors. Set this to
+0 if you prefer dull names such as Color0001, Color0002, etc., instead.
+>
+	let g:colortemplate_fancy_import = 1
 <
 						*g:colortemplate_ignore_missing*
 Set to 1 if you want Colortemplate to automatically add `@suppress` lines for
@@ -837,17 +852,51 @@ Colortemplate commands		       		*colortemplate-commands*
 
 Global commands ~
 
-						*:ColortemplateStyle*
-Opens a |popup| window that allows you to dynamically change the style
-attributes of the highlight group under the cursor. Use up and down arrow keys
-to choose an attribute and press space to toggle the attribute. Press `x` or
-click on the upper-right corner of the popup menu to dismiss it. You may drag
-the window around with the mouse. 
-
-Note: Popup menus are available in Vim 8.1.1705 or later.
-
 Note: Global commands are available in any buffer, but only after a template
 has been opened.
+
+						*:ColortemplateStyle*
+Opens a |popup| window that allows you to dynamically change the colors and
+style of a highlight group. When the command is used without arguments, the
+popup will reflect the status of the highlight group under the cursor. The
+command also accepts an optional highlight group: this is useful to style 
+not editable elements, such as status lines. If this is the first time you
+use the style picker, you may want to open it now and to try using it while
+reading this section.
+
+The popup window consists of four panes: RGB, HSL, Grayscale, and Help, which
+can be selected by pressing |R|, |H|, |G|, and |?|, respectively. Currently,
+only the RGB and Help panes are implemented.
+
+Use up and down arrow keys to choose an item in the popup. The current item
+has a marker on the side. When a level bar is selected, you may change the
+corresponding value with the left and right keys. Changes are applied
+immediately. The amount by which a slider is changed can be set by simply
+typing a number between 1 and 99 while the marker is on a level bar. The
+current step is shown below the sliders. When the marker is elsewhere, the
+numbers you type are passed to the underlying buffer, so you can continue
+using counts with your mappings (e.g., you may type `5j` to move down five
+lines).
+
+To choose a new color, press |E|. To modify a specific highlight group, press
+|N|. Attributes such as boldface, italics, and so on, can also be toggled by
+pressing a key: |B| for bolface, |I| for italics, etc. See the Help pane for
+the details. Press |Tab| or |S-Tab| to cycle through the foreground,
+background, and special color for the current highlight group.
+
+Press |x| or click on the upper-right corner of the popup window to dismiss
+it. If you want to revert your changes, press |X| instead.
+
+You may drag the popup around with the mouse. The window is not resizable.
+
+Note: when the popup is open all keystrokes are filtered by the popup. Only
+the keys that are not used by the popup are "passed through" to the underlying
+buffer. That means that none of the keys used by the popup are available to
+the underlying buffer. For instance, you cannot select text with |V| while the
+popup is open, because |V| is used by the popup to toggle reverse text. But
+you can still use |v|, because the style popup does not map that key.
+
+Note: |popup| is a feature of Vim 8.1.1705 or later.
 
 Buffer-local commands ~
 						*:Colortemplate[!]*
@@ -929,7 +978,7 @@ Colortemplate functions				*colortemplate-functions*
 
 These are some utility functions that advanced users may find useful.
 
-				*colortemplate#format_palette()*
+					*colortemplate#format_palette()*
 Formats a Dictionary of color name/value pairs into Colortemplate format. The
 returned value is a List, each item of which contains a color definition. To
 insert the color definitions at the current cursor's position, you may use
@@ -938,7 +987,23 @@ something like:
 	:call append('.', colortemplate#format_palette(some_color_dictionary))
 <
 
-				*colortemplate#vimspectr#palette()*
+					*colortemplate#import#run()*
+Creates a template document in a new buffer by extracting information from the
+currently defined highlight groups. For optimal results, it is recommended to
+run a GUI version of Vim or to run terminal Vim in an environment supporting
+`termguicolors`, and to proceed as follows:
+
+- run `vim --clean`;
+- load (with |:colorscheme|) the color scheme to be imported;
+- add Colortemplate to |runtimepath|;
+- `:call` `colortemplate#import#run()`.
+
+Note: although the generated template should compile out of the box and
+faithfully reproduce your currently active color scheme, keep in mind that
+this function is only meant to facilitate the initial scaffolding of a new
+template.
+
+					*colortemplate#vimspectr#palette()*
 Returns a Dictionary of color name/value pairs corresponding to the given
 Vimspectr parameters. The function takes two arguments: the first argument is
 the saturation curve (allowed values are `'grey'`, `'flat'`, `'wflat'`,
@@ -951,7 +1016,7 @@ The color names are `g0`, `g1`, ... through `g7`.
 
 See also: https://github.com/nightsense/vimspectr
 
-						*colortemplate#syn#toggle()*
+					*colortemplate#syn#toggle()*
 Toggles the display of highlight group information for the text under the
 cursor. The information is displayed in the command line and has the following
 form:
@@ -1045,9 +1110,9 @@ Here are some guidelines to develop outstanding hackable color schemes:
      cursor line should "pass behind" highlighted search results. You may
      achieve that effect by adapting the following snippet:
 >
-	CursorLine   none   grey            # No foreground color
-	CursorColumn none   grey            # No foreground color
-	Search       yellow fg    reverse   # Use reverse
+	CursorLine   none   grey            ; No foreground color
+	CursorColumn none   grey            ; No foreground color
+	Search       yellow fg    reverse   ; Use reverse
 <
   g. Diffs (|hl-DiffAdd|, |hl-DiffChange|, |hl-DiffDelete|, |hl-DiffText|).
      Open two buffers in a split window and execute |diffthis| on both of
@@ -1146,10 +1211,10 @@ Here are some guidelines to develop outstanding hackable color schemes:
 	Variant: 256 16 8
 	#if get(g:, '@optionprefix_transp_bg', 0)
 	  Normal some_color none
-	  # Other definitions specific for transparency
+	  ; Other definitions specific for transparency
 	#else
 	  Normal some_color some_other_color
-	  # Other definitions specific for opaqueness
+	  ; Other definitions specific for opaqueness
 	#endif
 <
   Do not forget to document `@optionprefix_transp_bg`!
