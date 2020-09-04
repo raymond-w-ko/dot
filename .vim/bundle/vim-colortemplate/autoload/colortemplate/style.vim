@@ -13,6 +13,7 @@ let s:strike    = 0
 " Popup configuration
 const s:mode = (has('gui_running') || (has('termguicolors') && &termguicolors) ? 'gui': 'cterm')
 const s:mark = get(g:, 'colortemplate_marker', '=> ')
+const s:star = get(g:, 'colortemplate_star', '*')
 const s:width = 39 + len(s:mark) " Popup width
 let s:popup_x = 0                " Horizontal position of the popup (0=center)
 let s:popup_y = 0                " Vertical position of the popup (0=center)
@@ -140,6 +141,7 @@ fun! s:add_prop_types()
   call prop_type_add('st',    #{bufnr: winbufnr(s:popup_id), highlight: 'ColortemplateStyleStandout'})
   call prop_type_add('inv',   #{bufnr: winbufnr(s:popup_id), highlight: 'ColortemplateStyleInverse'})
   call prop_type_add('strik', #{bufnr: winbufnr(s:popup_id), highlight: 'ColortemplateStyleStrike'})
+  call prop_type_add('disabled', #{bufnr: winbufnr(s:popup_id), highlight: 'Comment'})
   call prop_type_add('level', #{bufnr: winbufnr(s:popup_id), highlight: 'Ignore'})
   """"""""""""""""""" Pane-specific properties
   " Mark line as an RGB slider
@@ -158,6 +160,11 @@ endf
 
 fun! s:init_pane()
   let s:_line = 0 " Current line being built
+endf
+
+fun! s:props(p)
+  let s:_line += 1
+  return a:p
 endf
 
 fun! s:noprop(t)
@@ -205,7 +212,6 @@ endf
 
 fun! s:propcurrent(t)
   let s:_line += 1
-  call prop_type_change('curr', #{bufnr: winbufnr(s:popup_id), highlight: s:higroup})
   return #{ text: a:t, props: [#{type: 'curr', col: 1, length: s:width}] }
 endf
 
@@ -233,6 +239,89 @@ fun! s:find_prev_item(linenr)
   return empty(l:prev) ? a:linenr : l:prev.lnum
 endf
 
+" }}}
+" Info section of a pane {{{
+fun! s:stars(c1, c2)
+  let l:cr = colortemplate#colorspace#contrast_ratio(a:c1, a:c2)
+  let l:cd = colortemplate#colorspace#color_difference(a:c1, a:c2)
+  let l:bd = colortemplate#colorspace#brightness_diff(a:c1, a:c2)
+  return repeat(s:star, (l:cr >= 3.0) + (l:cr >= 4.5) + (l:cr >= 7.0) + (l:cd >= 500) + (l:bd >= 125))
+endf
+
+fun! s:info_section()
+  let l:tc = {}
+  let l:th = {}
+  if s:coltype ==# 'sp'
+    let l:tc['sp']   = colortemplate#colorspace#approx(s:color['sp'])
+    let l:tc['bg']   = colortemplate#colorspace#approx(s:color['bg'])
+    let l:th['sp']   = colortemplate#colorspace#xterm256_hexvalue(l:tc['sp']['index'])
+    let l:th['bg']   = colortemplate#colorspace#xterm256_hexvalue(l:tc['bg']['index'])
+    let s:term_stars = s:stars(l:th['sp'], l:th['bg'])
+    let s:gui_stars  = s:stars(s:color['sp'], s:color['bg'])
+  else
+    let l:tc['fg']   = colortemplate#colorspace#approx(s:color['fg'])
+    let l:tc['bg']   = colortemplate#colorspace#approx(s:color['bg'])
+    let l:th['fg']   = colortemplate#colorspace#xterm256_hexvalue(l:tc['fg']['index'])
+    let l:th['bg']   = colortemplate#colorspace#xterm256_hexvalue(l:tc['bg']['index'])
+    let s:term_stars = s:stars(l:th['fg'], l:th['bg'])
+    let s:gui_stars  = s:stars(s:color['fg'], s:color['bg'])
+  endif
+  if s:mode ==# 'gui'
+    execute printf('hi! ColortemplateStyleGUIColor guibg=%s ctermbg=%d', s:color[s:coltype], l:tc[s:coltype]['index'])
+  endif
+  execute printf('hi! ColortemplateStyleTermColor guibg=%s ctermbg=%d', l:th[s:coltype], l:tc[s:coltype]['index'])
+  call prop_type_change('curr', #{bufnr: winbufnr(s:popup_id), highlight: s:higroup})
+  let l:delta = l:tc[s:coltype]['delta']
+  return [
+        \ s:blank(),
+        \ #{
+        \    text:  printf('   %s %-5s    %3d %-5s Δ%.'..(l:delta>=10.0?'f  ':'1f ')..'BIUSV~-', s:color[s:coltype], s:gui_stars, l:tc[s:coltype]['index'], s:term_stars, l:tc[s:coltype]['delta']),
+        \    props: s:props([
+        \            #{ col:  1, length: 2, type: 'label' },
+        \            #{ col:  1, length: 2, type: (s:mode ==# 'gui' ? 'gcol' : 'disabled') },
+        \            #{ col: 18, length: 2, type: 'tcol' },
+        \            #{ col: 37, length: 1, type: (s:bold      ? 'bold'  : 'disabled') },
+        \            #{ col: 38, length: 1, type: (s:italic    ? 'it'    : 'disabled') },
+        \            #{ col: 39, length: 1, type: (s:underline ? 'ul'    : 'disabled') },
+        \            #{ col: 40, length: 1, type: (s:standout  ? 'st'    : 'disabled') },
+        \            #{ col: 41, length: 1, type: (s:inverse   ? 'inv'   : 'disabled') },
+        \            #{ col: 42, length: 1, type: (s:undercurl ? 'uc'    : 'disabled') },
+        \            #{ col: 43, length: 1, type: (s:strike    ? 'strik' : 'disabled') },
+        \    ])
+        \  },
+        \ s:blank(),
+        \ #{
+        \    text: 'The brown fox jumped over the lazy dog',
+        \    props: s:props([#{ col: 1, length: s:width, type: 'curr' }])
+        \  },
+        \ s:blank(),
+        \ ]
+endf
+" }}}
+" Recently used colors section {{{
+fun! s:recent_section()
+  let l:mru = [
+        \ s:proplabel('Recent'),
+        \ s:propitem('0    1    2    NOT IMPLEMENTED YET      '),
+        \ s:blank(),
+        \]
+  " FIXME: temporary properties, just for decoration
+  call add(l:mru[1]['props'],  #{col: 6, length: 2, type: 'C1'})
+  call add(l:mru[1]['props'],  #{col: 11, length: 2, type: 'C2'})
+  call add(l:mru[1]['props'],  #{col: 16, length: 2, type: 'C3'})
+  return l:mru
+endf
+" }}}
+" Favorites section {{{
+fun! s:favorites_section()
+  let l:fav = [
+        \ s:proplabel('Favorites'),
+        \ s:propitem('0    1         NOT IMPLEMENTED YET      '),
+        \]
+  call add(l:fav[1]['props'],  #{col: 6, length: 2, type: 'C4'})
+  call add(l:fav[1]['props'],  #{col: 11, length: 2, type: 'C5'})
+  return l:fav
+endf
 " }}}
 " RGB Pane {{{
 fun! s:rgb_increase_level(props, value)
@@ -268,61 +357,23 @@ endf
 fun! s:redraw_rgb()
   let [l:r, l:g, l:b] = colortemplate#colorspace#hex2rgb(s:color[s:coltype])
   let l:t = (s:coltype ==# 'fg' ? 'Fg' : (s:coltype ==# 'bg' ? 'Bg' : 'Sp'))
-  let l:tc = colortemplate#colorspace#approx(s:color[s:coltype])
   call s:init_pane()
-  call popup_settext(s:popup_id, [
-        \ s:proptitle(printf('%s%s%s', s:higroup, repeat(' ', s:width - len(s:higroup) - 4), 'RHG?')),
-        \ s:blank(),
-        \ s:proplevel(s:slider('R', l:r), 'rgb', 'red'),
-        \ s:proplevel(s:slider('G', l:g), 'rgb', 'green'),
-        \ s:proplevel(s:slider('B', l:b), 'rgb', 'blue'),
-        \ s:proplabel(printf('      %02d ', s:step)),
-        \ s:noprop(printf('%s %s     %3d      BIUSV~-    ', l:t, s:color[s:coltype], l:tc['index'])),
-        \ s:blank(),
-        \ s:propcurrent('The quick brown fox jumped over the lazy dog'),
-        \ s:blank(),
-        \ s:proplabel('Recent'),
-        \ s:propitem('0    1    2    NOT IMPLEMENTED YET      '),
-        \ s:blank(),
-        \ s:proplabel('Favorites'),
-        \ s:propitem('0    1         NOT IMPLEMENTED YET      '),
-        \ ])
-  call prop_add(7,  1, #{bufnr: winbufnr(s:popup_id), length: 2, type: 'label'})
+  call popup_settext(s:popup_id,
+        \ extend(
+        \   extend(
+        \     extend([
+        \             s:proptitle(printf('%s [%s]%s%s', s:higroup, l:t, repeat(' ', s:width - (len(s:higroup) + len(l:t)) - 7), 'RHG?')),
+        \             s:blank(),
+        \             s:proplevel(s:slider('R', l:r), 'rgb', 'red'),
+        \             s:proplevel(s:slider('G', l:g), 'rgb', 'green'),
+        \             s:proplevel(s:slider('B', l:b), 'rgb', 'blue'),
+        \             s:proplabel(printf('      %02d ', s:step)),
+        \            ],
+        \     s:info_section()),
+        \   s:recent_section()),
+        \ s:favorites_section())
+        \)
   call prop_add(1, 39, #{bufnr: winbufnr(s:popup_id), length: 1, type: 'label'})
-  if s:mode ==# 'gui'
-    execute printf('hi! ColortemplateStyleGUIColor guibg=%s ctermbg=%d', s:color[s:coltype], l:tc['index'])
-    call prop_add(7, 12, #{bufnr: winbufnr(s:popup_id), length: 3, type: 'gcol'})
-  endif
-  execute printf('hi! ColortemplateStyleTermColor guibg=%s ctermbg=%d', colortemplate#colorspace#xterm256_hexvalue(l:tc['index']), l:tc['index'])
-  call prop_add(7, 20, #{bufnr: winbufnr(s:popup_id), length: 3, type: 'tcol'})
-  " TODO: refactor attributes
-  if s:bold
-    call prop_add(7, 25, #{bufnr: winbufnr(s:popup_id), length: 1, type: 'bold'})
-  endif
-  if s:italic
-    call prop_add(7, 26, #{bufnr: winbufnr(s:popup_id), length: 1, type: 'it'})
-  endif
-  if s:underline
-    call prop_add(7, 27, #{bufnr: winbufnr(s:popup_id), length: 1, type: 'ul'})
-  endif
-  if s:standout
-    call prop_add(7, 28, #{bufnr: winbufnr(s:popup_id), length: 1, type: 'st'})
-  endif
-  if s:inverse
-    call prop_add(7, 29, #{bufnr: winbufnr(s:popup_id), length: 1, type: 'inv'})
-  endif
-  if s:undercurl
-    call prop_add(7, 30, #{bufnr: winbufnr(s:popup_id), length: 1, type: 'uc'})
-  endif
-  if s:strike
-    call prop_add(7, 31, #{bufnr: winbufnr(s:popup_id), length: 1, type: 'strik'})
-  endif
-  " FIXME: temporary properties, just for decoration
-  call prop_add(12, 6, #{bufnr: winbufnr(s:popup_id), length: 2, type: 'C1'})
-  call prop_add(12, 11, #{bufnr: winbufnr(s:popup_id), length: 2, type: 'C2'})
-  call prop_add(12, 16, #{bufnr: winbufnr(s:popup_id), length: 2, type: 'C3'})
-  call prop_add(15, 6, #{bufnr: winbufnr(s:popup_id), length: 2, type: 'C4'})
-  call prop_add(15, 11, #{bufnr: winbufnr(s:popup_id), length: 2, type: 'C5'})
 endf
 " }}}
 " HSL Pane {{{
@@ -472,10 +523,13 @@ fun! s:edit_color()
 endf
 
 fun! s:clear_color()
-    execute "hi!" s:higroup s:mode..s:coltype.."=NONE"
-    call s:set_higroup(s:higroup)
-    call s:redraw()
+  if tolower(s:higroup) ==# 'normal'
     return 1
+  endif
+  execute "hi!" s:higroup s:mode..s:coltype.."=NONE"
+  call s:set_higroup(s:higroup)
+  call s:redraw()
+  return 1
 endf
 
 fun! s:edit_name()
@@ -517,9 +571,14 @@ fun! s:notify_change()
 endf
 
 fun! s:apply_color()
-  let l:tfg = colortemplate#colorspace#approx(s:color.fg)
-  let l:tbg = colortemplate#colorspace#approx(s:color.bg)
-  execute "hi!" s:higroup "guifg=".s:color['fg'] "guibg=".s:color['bg'] "ctermfg=".l:tfg.index "ctermbg=".l:tbg.index
+  if s:mode ==# 'gui'
+    execute "hi!" s:higroup "guifg=".s:color.fg "guibg=".s:color.bg "guisp=".s:color.sp
+  else
+    let l:tfg = colortemplate#colorspace#approx(s:color.fg)
+    let l:tbg = colortemplate#colorspace#approx(s:color.bg)
+    let l:tsp = colortemplate#colorspace#approx(s:color.sp)
+    execute "hi!" "ctermfg=".l:tfg.index "ctermbg=".l:tbg.index "ctermul=".l:tsp.index
+  endif
 endf
 
 fun! s:move_right()
