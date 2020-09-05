@@ -182,13 +182,13 @@ endf
 " different names.
 fun! s:assignColor(synid, type)
   let l:col = colortemplate#syn#higroup2hex(synIDattr(a:synid, 'name'), a:type)
-  if has_key(s:invmap, l:col) " Color already defined: return its name
-    return s:invmap[l:col]
+  if has_key(s:invmap, l:col.hex) " Color already defined: return its name
+    return s:invmap[l:col.hex]
   endif
   " New color: generate new name
   let l:name = s:next_color_name()
-  let s:colmap[l:name] = l:col
-  let s:invmap[l:col] = l:name
+  let s:colmap[l:name] = l:col.hex
+  let s:invmap[l:col.hex] = l:name
   return l:name
 endf
 
@@ -273,7 +273,7 @@ fun! s:attr_text(higroup)
     endif
   endfor
   let l:s = ''
-  if a:higroup['spname'] != 'none'
+  if a:higroup['spname'] != 'none' && a:higroup['synid'] != hlID('Normal') && a:higroup['spname'] != a:higroup['fgname']
     let l:s .= ' guisp=' . a:higroup['spname']
   endif
   if !empty(l:common_attr)
@@ -320,7 +320,7 @@ fun! s:generate_template()
   endfor
   call s:put('')
   if exists('g:terminal_ansi_colors')
-    call s:put('Term colors: ' . join(map(g:terminal_ansi_colors, 's:invmap[v:val]'), ' '))
+    call s:put('Term colors: ' . join(map(copy(g:terminal_ansi_colors), 's:invmap[v:val]'), ' '))
   endif
   call s:put('; }}}')
   call s:put('')
@@ -332,11 +332,10 @@ fun! s:generate_template()
   " Print Normal group first
   if has_key(s:higroups, 'Normal')
     call s:print_higroup('Normal')
-    call remove(s:higroups, 'Normal')
   else " This should never happen
     call s:warn('Normal group is not defined')
   endif
-  for l:g in sort(keys(s:higroups))
+  for l:g in filter(sort(keys(s:higroups)), { i,v -> v != 'Normal' })
     call s:print_higroup(l:g)
   endfor
   call s:put('; }}}')

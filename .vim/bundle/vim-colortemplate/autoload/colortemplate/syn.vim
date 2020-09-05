@@ -23,11 +23,15 @@ fun! colortemplate#syn#attributes(synid, mode)
 endf
 
 fun! s:toggle_attribute(synid, attr)
-  let l:mode = has('gui_running') ? 'gui' : 'cterm'
+  " Note that in terminals, Vim (correctly) always uses cterm attributes, even
+  " when termguicolors is set (termguicolors is only about colors, not
+  " attributes). NeoVim does not get it right, IMO (and Bram's), because it
+  " uses gui attributes when termguicolors is set.
+  let l:mode = (has('gui_running') || (has('nvim') && has('termguicolors') && &termguicolors)) ? 'gui' : 'cterm'
   let l:synid = synIDtrans(a:synid)
   let l:old_attrs = colortemplate#syn#attributes(l:synid, l:mode)
   let l:name = synIDattr(l:synid, 'name')
-  if empty(l:name) || tolower(l:name) ==# 'normal'
+  if empty(l:name) || l:name == 'Normal'
     echohl WarningMsg
     unsilent echo '[Colortemplate] Attributes cannot be set for Normal.'
     echohl None
@@ -45,7 +49,6 @@ fun! s:toggle_attribute(synid, attr)
 endf
 
 fun! colortemplate#syn#toggle_attribute(synid, attr)
-  " call s:toggle_attribute(synID(line('.'), col('.'), 1), a:attr)
   call s:toggle_attribute(a:synid, a:attr)
 endf
 
@@ -86,28 +89,40 @@ fun! colortemplate#syn#toggle()
   endif
 endf
 
-" Configurable values for the 16 terminal ANSI colors
+" Configurable values for the 16 terminal ANSI colors.
+"
+" The 24 bit RGB values used for the 16 ANSI colors differ greatly for each
+" terminal implementation. Below is a system that is both consistent and 12
+" bit compatible. See https://mudhalla.net/tintin/info/ansicolor/
+
 " These are arbitrary hex values for terminal colors in the range 0-15. These
-" are defined for situations in which a hex value must be returned under all
-" circumstances, even if it is an approximate one.
+" are defined for situations in which a hex value must be returned under any
+" circumstances, even if it is an approximate value.
 let g:colortemplate#syn#ansi_colors = [
       \ '#000000',
-      \ '#990000',
-      \ '#00a600',
-      \ '#999900',
-      \ '#0000b2',
-      \ '#b200b2',
-      \ '#00a6b2',
-      \ '#bfbfbf',
-      \ '#888888',
-      \ '#e50000',
-      \ '#00d900',
-      \ '#e5e500',
-      \ '#0000ff',
-      \ '#e500e5',
-      \ '#00e5e5',
+      \ '#aa0000',
+      \ '#00aa00',
+      \ '#aaaa00',
+      \ '#0000aa',
+      \ '#aa00aa',
+      \ '#00aaaa',
+      \ '#aaaaaa',
+      \ '#555555',
+      \ '#ff5555',
+      \ '#55ff55',
+      \ '#ffff55',
+      \ '#5555ff',
+      \ '#ff55ff',
+      \ '#55ffff',
       \ '#ffffff',
       \ ]
+
+fun! s:fallback_color(type)
+  return #{ hex: a:type ==# 'bg'
+        \                   ? (&bg ==# 'dark' ? '#000000' : '#ffffff')
+        \                   : (&bg ==# 'dark' ? '#ffffff' : '#000000'),
+        \   good: 0 }
+endf
 
 " Try (hard) to derive a more or less reasonable hex value for a given
 " highlight group color. This is trivial if the environment supports millions
@@ -123,75 +138,62 @@ let g:colortemplate#syn#ansi_colors = [
 "
 " name: the name of a highlight group
 " type: 'fg', 'bg', or 'sp'
-" FIXME: this has to be revised
+"
+" Returns a Dictionary with two keys:
+" hex: the color value
+" good: a 0/1 flag indicating whether the color is likely a (bad)
+" approximation.
 fun! colortemplate#syn#higroup2hex(name, type)
   if has('gui_running') || (has('termguicolors') && &termguicolors)
     let l:gui = synIDattr(synIDtrans(hlID(a:name)), a:type.'#', 'gui')
-    if empty(l:gui)
-      return colortemplate#syn#higroup2hex('Normal', (a:type ==# 'sp' ? 'bg': a:type))
+
+    if !empty(l:gui) " Fast path
+      return #{ hex: l:gui, good: 1}
     endif
-  else
-    let l:gui = ''
+
+    if a:type ==# 'sp'
+      return colortemplate#syn#higroup2hex(a:name, 'fg')
+    elseif a:name == 'Normal'
+      return s:fallback_color(a:type)
+    endif
+    return colortemplate#syn#higroup2hex('Normal', a:type)
   endif
-  if l:gui =~# '\m^#' " Fast path
-    return l:gui
+
+  " Assume 256-color terminal
+  let l:term = synIDattr(hlID(a:name), a:type, 'cterm')
+
+  if !empty(l:term) && str2nr(l:term) > 15 " Fast path
+    return #{ hex: colortemplate#colorspace#xterm256_hexvalue(str2nr(l:term)), good: 1}
   endif
-  if empty(l:gui) " Infer from cterm color
-    let l:term = synIDattr(hlID(a:name), a:type, 'cterm')
-    if empty(l:term)
-      if tolower(a:name) ==# 'normal' " ? No info
-        return a:type ==# 'fg' ? '#ffffff' : '#000000'
-      else
-        return colortemplate#syn#higroup2hex('Normal', (a:type ==# 'sp' ? 'bg' : a:type))
-      endif
+
+  if empty(l:term)
+    if a:type ==# 'sp'
+      return colortemplate#syn#higroup2hex(a:name, 'fg')
+    elseif a:name == 'Normal'
+      return s:fallback_color(a:type)
     endif
-    if l:term !~ '\m^\d\+$'
-      if l:term ==# 'bg'
-        if tolower(a:name) ==# 'normal' " ? Should never happen
-          return '#000000'
-        else
-          return colortemplate#syn#higroup2hex('Normal', 'bg')
-        endif
-      elseif l:term ==# 'fg'
-        if tolower(a:name) ==# 'normal' " ? Should never happen
-          return '#ffffff'
-        else
-          return colortemplate#syn#higroup2hex('Normal', 'fg')
-        endif
-      endif
-      try " to convert name to number
-        let l:term = string(colortemplate#colorspace#ctermcolor(tolower(l:term), 16))
-      catch " What?!
-        return a:type ==# 'fg' ? '#ffffff' : '#000000'
-      endtry
-    endif
-    try
-      let l:gui = colortemplate#colorspace#xterm256_hexvalue(str2nr(l:term))
-    catch " Term number is in [0,15]
-      return g:colortemplate#syn#ansi_colors[str2nr(l:gui)]
-    endtry
-    return l:gui
+    return colortemplate#syn#higroup2hex('Normal', a:type)
   endif
-  " If we get here, l:gui is not empty, but it's not a hex value
-  if l:gui ==# 'fg'
-    if tolower(a:name) ==# 'normal' " ? Should never happen
-      return '#ffffff'
-    else
-      return colortemplate#syn#higroup2hex('Normal', 'fg')
-    endif
-  elseif l:gui ==# 'bg'
-    if tolower(a:name) ==# 'normal' " ? Should never happen
-      return '#000000'
-    else
-      return colortemplate#syn#higroup2hex('Normal', 'bg')
-    endif
+
+  if l:term =~ '\m^\d\+$' " If it's a number, it must be between 0 and 15
+    return #{ hex: g:colortemplate#syn#ansi_colors[str2nr(l:term)], good: 0}
   endif
-  try
-    let l:gui = colortemplate#colorspace#rgbname2hex(l:gui)
+
+  if l:term =~# '\m^\(fg\|bg\|ul\)$' " fg/bg/ul
+    if a:name == 'Normal' " ? Should never happen
+      return s:fallback_color(a:type)
+    endif
+    return colortemplate#syn#higroup2hex('Normal', (l:term ==# 'ul' ? 'sp' : l:term))
+  endif
+
+  " Term color is a color name
+  try " to convert name to number
+    let l:term = string(colortemplate#colorspace#ctermcolor(tolower(l:term), 16))
+    return #{ hex: colortemplate#colorspace#xterm256_hexvalue(str2nr(l:term)), good: 1}
   catch " What?!
-    return a:type ==# 'fg' ? '#ffffff' : '#000000'
+    return s:fallback_color(a:type)
   endtry
-  return l:gui
+  endif
 endf
 
 " vim: foldmethod=marker nowrap et ts=2 sw=2
