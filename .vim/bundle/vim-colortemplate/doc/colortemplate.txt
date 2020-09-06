@@ -716,6 +716,16 @@ ga			If the cursor is on a `Color` line, display some
 			information about the given color, including [count]
 			best xterm approximations for the color.
 
+							*gl*
+gl			Toggle the display of highlight group information
+			under the mouse pointer and/or under the cursor.
+			To choose what display to use, set
+			|g:colortemplate_higroup_command_line| or
+			|g:colortemplate_higroup_balloon|.
+
+							*gs*
+gs			Open the style picker.
+
 							*gx*
 gx			If the cursor is on a `Color` line, replace `~` with
 			the [count]th best xterm approximation of the color.
@@ -723,10 +733,29 @@ gx			If the cursor is on a `Color` line, replace `~` with
 							*gy*
 gy			If the cursor is on a `Color` line, show the xterm
 			approximations of the color at distance at most
-                        [count] from the GUI value in the command line.
+			[count] from the GUI value in the command line.
 
 							*CTRL-L*
 CTRL-L			Show/redraw the window toolbar and redraw the screen.
+
+Other suggested mappings ~
+Being a filetype plugin, Colortemplate does not define any global mapping.
+Some functionality provided by Colortemplate, however, can be useful in other
+buffers as well. Here are some mappings you may want to add to your |vimrc|:
+
+- Make the style picker available everywhere:
+>
+	nnoremap gs :<c-u>call colortemplate#style#open()<cr>
+<
+- Toggle the display of highlight group information globally:
+>
+	nnoremap <silent> gl :<c-u>call colortemplate#syn#toggle()<cr>
+<
+  For the balloon to show up, you also need to define |balloonexpr|:
+>
+	set balloonexpr=colortemplate#syn#balloonexpr()
+<
+Adjust to your pleasure.
 
 ==============================================================================
 Colortemplate options				*colortemplate-options*
@@ -743,6 +772,18 @@ Colortemplate by default generates random fancy names for colors. Set this to
 0 if you prefer dull names such as Color0001, Color0002, etc., instead.
 >
 	let g:colortemplate_fancy_import = 1
+<
+						*g:colortemplate_higroup_balloon*
+When set to 1, Colortemplate displays the details of the highlight group under
+the mouse pointer in a popup balloon, when requested to do so (see |gl|).
+>
+	let g:colortemplate_higroup_balloon = 1
+<
+						*g:colortemplate_higroup_command_line*
+When set to 1, Colortemplate displays the details of the highlight group under
+the cursor in the command line, when requested to do so (see |gl|).
+>
+	let g:colortemplate_higroup_command_line = 1
 <
 						*g:colortemplate_ignore_missing*
 Set to 1 if you want Colortemplate to automatically add `@suppress` lines for
@@ -774,14 +815,52 @@ This is set automatically when opening a template and is usually set to
 a reasonable default. You may view and change the current value of this option
 with |:ColortemplateOutdir| or by clicking on "OutDir" in the window toolbar.
 
+						*g:colortemplate_popup_keys*
+A Dictionary used to customize the keys used by the style picker. For example,
+to use `q` to close the popup, put this in your |vimrc|:
+>
+	let g:colortemplate_popup_keys = { 'close': 'q' }
+<
+Keep in mind that, by default, mappings are processed before passing keys to
+the popup. In practice, the keys used in the popup should not be mapped in
+Normal mode. See also |g:colortemplate_popup_mapping|.
+
+Note: multiple-keystroke mappings are not allowed!
+>
+	let g:colortemplate_popup_keys = {
+	    \ 'close':            "x",
+	    \ 'cancel':           "X",
+	    \ 'yank':             "Y",
+	    \ 'down':             "\<down>",
+	    \ 'up':               "\<up>",
+	    \ 'top':              "T",
+	    \ 'decrement':        "\<left>",
+	    \ 'increment':        "\<right>",
+	    \ 'next-color':       "\<tab>",
+	    \ 'prev-color':       "\<s-tab>",
+	    \ 'toggle-bold':      "B",
+	    \ 'toggle-italic':    "I",
+	    \ 'toggle-underline': "U",
+	    \ 'toggle-standout':  "S",
+	    \ 'toggle-inverse':   "V",
+	    \ 'toggle-undercurl': "~",
+	    \ 'toggle-strike':    "-",
+	    \ 'new-color':        "E",
+	    \ 'new-higroup':      "N",
+	    \ 'clear':            "Z",
+	    \ 'rgb':              "R",
+	    \ 'hsb':              "H",
+	    \ 'gray':             "G",
+	    \ 'help':             "?",
+	\ }
+<
 						*g:colortemplate_popup_mapping*
 Set the "mapping" attribute of the style picker. When set to 1, any key
 arrives to the popup after any mapping. This may interfere with the keyboard
-controls of the style picker. The default is to pass any key literally to the
-popup. This means that, as long as the style picker is open, no mappings are
-available.
+controls of the style picker. In such cases, you may set this to 0 or
+(probably better) redefine some keys with |g:colortemplate_popup_keys|.
 >
-	let g:colortemplate_popup_mapping = 0
+	let g:colortemplate_popup_mapping = 1
 <
 						*g:colortemplate_popup_marker*
 The String used to mark the selected line in the style picker. The width of
@@ -1098,24 +1177,35 @@ The color names are `g0`, `g1`, ... through `g7`.
 
 See also: https://github.com/nightsense/vimspectr
 
+					*colortemplate#syn#balloonexpr()*
+This function can be used to display some information about the highlight
+group under the mouse pointer when |ballooneval| or |balloonevalterm| is set.
+The information that is displayed is similar to the output of
+|colortemplate#syn#toggle()|.
+
+To enable these popups in Colortemplate buffers, just set |ballooneval| or
+|balloonevalterm|. To enable these popups globally, you also need to set
+|balloonexpr| to this function.
+
+Note: these popups require |+popupwin| and |+textprop|.
+
 					*colortemplate#syn#toggle()*
 Toggles the display of highlight group information for the text under the
 cursor. The information is displayed in the command line and has the following
 form:
 >
-	vimVar ⊂ vimFuncBody xxx vimVar → Identifier    fg=14/#00aba5    bg=/
+	vimVar ⊂ vimFuncBody xxx vimVar → Identifier
+	██ fg=14/#00aba5    bg=NONE/NONE    sp=NONE/NONE
 <
 From left to right, this shows:
 
-- the nesting of highlight groups (`⊂`);
+- the nesting of highlight groups, or "synstack" (`⊂`);
 - a sample of how the text looks like with the current hi group (`xxx`);
 - the hi group to which the current hi group resolves, if any (`→`);
-- the terminal/GUI values of the foreground and background color.
+- the terminal/GUI values of the foreground, background, and special color.
 
-You are encouraged to define a global mapping in your |vimrc|, e.g.:
->
-	nnoremap <silent> gl :<c-u>call colortemplate#syn#toggle()<cr>
-<
+See also |colortemplate-mappings|.
+
 ==============================================================================
 Best practices					*colortemplate-best-practices*
 

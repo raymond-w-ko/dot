@@ -8,7 +8,7 @@ if exists("b:did_ftplugin")
 endif
 let b:did_ftplugin = 1
 
-let s:undo_ftplugin = "setlocal commentstring< omnifunc< | unlet! b:colortemplate_outdir"
+let s:undo_ftplugin = "setlocal balloonexpr< commentstring< omnifunc< | unlet! b:colortemplate_outdir"
 let b:undo_ftplugin = (exists('b:undo_ftplugin') ? b:undo_ftplugin . '|' : '') . s:undo_ftplugin
 
 let b:colortemplate_outdir = empty(expand('%:p:h')) ? getcwd() : expand('%:p:h')
@@ -19,12 +19,15 @@ if get(g:, 'colortemplate_rtp', 1)
   execute 'set runtimepath^='.b:colortemplate_outdir
 endif
 
+setlocal balloonexpr=colortemplate#syn#balloonexpr()
 setlocal commentstring=;%s
 setlocal omnifunc=syntaxcomplete#Complete
 
 if !get(g:, 'colortemplate_no_mappings', get(g:, 'no_plugin_maps', 0))
   nnoremap <silent> <buffer> ga    :<c-u>call colortemplate#getinfo(v:count1)<cr>
   nnoremap <silent> <buffer> <c-l> :<c-u>call colortemplate#toolbar#show()<cr><c-l>
+  nnoremap <silent> <buffer> gl    :<c-u>call colortemplate#syn#toggle()<cr>
+  nnoremap <silent> <buffer> gs    :<c-u>call colortemplate#style#open()<cr>
   nnoremap <silent> <buffer> gx    :<c-u>call colortemplate#approx_color(v:count1)<cr>
   nnoremap <silent> <buffer> gy    :<c-u>call colortemplate#nearby_colors(v:count1)<cr>
 endif
