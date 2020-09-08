@@ -23,6 +23,7 @@ ALEFixSuggest	ale.txt	/*ALEFixSuggest*
 ALEGoToDefinition	ale.txt	/*ALEGoToDefinition*
 ALEGoToTypeDefinition	ale.txt	/*ALEGoToTypeDefinition*
 ALEHover	ale.txt	/*ALEHover*
+ALEImport	ale.txt	/*ALEImport*
 ALEInfo	ale.txt	/*ALEInfo*
 ALEInfo-highlight	ale.txt	/*ALEInfo-highlight*
 ALEInfo.	ale.txt	/*ALEInfo.*
