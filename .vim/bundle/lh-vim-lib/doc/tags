@@ -10,6 +10,8 @@
 :Project--list	lh-vim-lib.txt	/*:Project--list*
 :Project--which	lh-vim-lib.txt	/*:Project--which*
 :Project-:bdelete	lh-vim-lib.txt	/*:Project-:bdelete*
+:Project-:bnext	lh-vim-lib.txt	/*:Project-:bnext*
+:Project-:bprevious	lh-vim-lib.txt	/*:Project-:bprevious*
 :Project-:bufdo	lh-vim-lib.txt	/*:Project-:bufdo*
 :Project-:bwipeout	lh-vim-lib.txt	/*:Project-:bwipeout*
 :Project-:cd	lh-vim-lib.txt	/*:Project-:cd*

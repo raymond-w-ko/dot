@@ -122,11 +122,9 @@ let s:ballon_text = []
 call prop_type_delete('ct_hifg')
 call prop_type_delete('ct_hibg')
 call prop_type_delete('ct_hisp')
-call prop_type_delete('ct_blck')
 call prop_type_add('ct_hifg', #{ highlight: 'ColortemplateInfoFg' })
 call prop_type_add('ct_hibg', #{ highlight: 'ColortemplateInfoBg' })
 call prop_type_add('ct_hisp', #{ highlight: 'ColortemplateInfoSp' })
-call prop_type_add('ct_blck', #{ highlight: 'ColortemplateInfoBlack' })
 
 " Display info about the highlight group under the cursor in a popup when
 " ballooneval or balloonevalterm is set.
@@ -152,19 +150,23 @@ fun! colortemplate#syn#balloonexpr()
           \    props: []
           \  },
           \ #{ text: printf('     Fg %7s %4s     ', info.fggui, info.fgterm),
-          \   props: [#{ col: 1, length:  4, type: 'ct_blck' },
-          \           #{ col: 2, length:  2, type: 'ct_hifg' }]
+          \   props: [#{ col: 2, length:  2, type: 'ct_hifg' }]
           \  },
-          \ #{ text: printf('     Bg %7s %4s     ', info.bggui, info.bgterm),
-          \   props: [#{ col: 1, length:  4, type: 'ct_blck' },
-          \           #{ col: 2, length:  2, type: 'ct_hibg' }]
-          \ },
-          \ #{ text: printf('     Sp %7s %4s     ', info.spgui, info.spterm),
-          \   props: [#{ col: 1, length:  4, type: 'ct_blck' },
-          \           #{ col: 2, length:  2, type: 'ct_hisp' }]
-          \ },
-          \ #{ text: join(info['synstack'], " ⊂ "), props: [] },
           \]
+    if info.bggui != 'NONE' || info.bgterm != 'NONE'
+      call add(l:beval,
+          \ #{ text: printf('     Bg %7s %4s     ', info.bggui, info.bgterm),
+          \   props: [#{ col: 2, length:  2, type: 'ct_hibg' }]
+          \ })
+    endif
+    if info.spgui != 'NONE' || info.spterm != 'NONE'
+      call add(l:beval,
+          \ #{ text: printf('     Sp %7s %4s     ', info.spgui, info.spterm),
+          \   props: [#{ col: 2, length:  2, type: 'ct_hisp' }]
+          \ })
+    endif
+    call add(l:beval, #{ text: join(info['synstack'], " ⊂ "), props: [] })
+
     let s:balloon_id = popup_beval(l:beval, #{
           \ mousemoved: 'word',
           \ moved: 'any',
@@ -189,10 +191,14 @@ fun! colortemplate#syn#hi_group()
         \ . (info.name != info.transname ? " → ".info['transname'] : "")." "
   echohl ColortemplateInfoFg | echon "  " | echohl None
   echon printf(" fg=%s/%s ", info.fggui, info.fgterm)
-  echohl ColortemplateInfoBg | echon "  " | echohl None
-  echon printf(" bg=%s/%s ", info.bggui, info.bgterm)
-  echohl ColortemplateInfoSp | echon "  " | echohl None
-  echon printf(" sp=%s/%s ", info.spgui, info.spterm)
+  if info.bggui != 'NONE' || info.bgterm != 'NONE'
+    echohl ColortemplateInfoBg | echon "  " | echohl None
+    echon printf(" bg=%s/%s ", info.bggui, info.bgterm)
+  endif
+  if info.spgui != 'NONE' || info.spterm != 'NONE'
+    echohl ColortemplateInfoSp | echon "  " | echohl None
+    echon printf(" sp=%s/%s ", info.spgui, info.spterm)
+  endif
 endf
 
 fun! colortemplate#syn#toggle()

@@ -2,6 +2,8 @@
 :ALEInfo	ale.txt	/*:ALEInfo*
 :ALELint	ale.txt	/*:ALELint*
 ALEComplete	ale.txt	/*ALEComplete*
+ALECompletePost	ale.txt	/*ALECompletePost*
+ALECompletePost-autocmd	ale.txt	/*ALECompletePost-autocmd*
 ALEDetail	ale.txt	/*ALEDetail*
 ALEDisable	ale.txt	/*ALEDisable*
 ALEDisableBuffer	ale.txt	/*ALEDisableBuffer*
@@ -39,6 +41,7 @@ ALELintPost	ale.txt	/*ALELintPost*
 ALELintPost-autocmd	ale.txt	/*ALELintPost-autocmd*
 ALELintPre	ale.txt	/*ALELintPre*
 ALELintPre-autocmd	ale.txt	/*ALELintPre-autocmd*
+ALELintStop	ale.txt	/*ALELintStop*
 ALENext	ale.txt	/*ALENext*
 ALENextWrap	ale.txt	/*ALENextWrap*
 ALEOrganizeImports	ale.txt	/*ALEOrganizeImports*

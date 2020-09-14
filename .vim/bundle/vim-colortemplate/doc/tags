@@ -26,6 +26,7 @@ colortemplate-intro	colortemplate.txt	/*colortemplate-intro*
 colortemplate-mappings	colortemplate.txt	/*colortemplate-mappings*
 colortemplate-meta	colortemplate.txt	/*colortemplate-meta*
 colortemplate-options	colortemplate.txt	/*colortemplate-options*
+colortemplate-popup	colortemplate.txt	/*colortemplate-popup*
 colortemplate-quickstart	colortemplate.txt	/*colortemplate-quickstart*
 colortemplate-stats	colortemplate.txt	/*colortemplate-stats*
 colortemplate-structure	colortemplate.txt	/*colortemplate-structure*
@@ -44,6 +45,8 @@ g:colortemplate_ignore_missing	colortemplate.txt	/*g:colortemplate_ignore_missin
 g:colortemplate_no_aux_files	colortemplate.txt	/*g:colortemplate_no_aux_files*
 g:colortemplate_no_doc	colortemplate.txt	/*g:colortemplate_no_doc*
 g:colortemplate_no_mappings	colortemplate.txt	/*g:colortemplate_no_mappings*
+g:colortemplate_popup_bg	colortemplate.txt	/*g:colortemplate_popup_bg*
+g:colortemplate_popup_fav_path	colortemplate.txt	/*g:colortemplate_popup_fav_path*
 g:colortemplate_popup_keys	colortemplate.txt	/*g:colortemplate_popup_keys*
 g:colortemplate_popup_mapping	colortemplate.txt	/*g:colortemplate_popup_mapping*
 g:colortemplate_popup_marker	colortemplate.txt	/*g:colortemplate_popup_marker*
