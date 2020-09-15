@@ -19,7 +19,7 @@ let s:key = {}                           " Dictionary of key controls (initializ
 let s:mark = ''                          " Marker for the current line (set when the popup is open)
 let s:width = 0                          " Popup width (set when the popup is open)
 let s:popup_bg = ''                      " Popup background (initialized below)
-let s:star = ''                          " Star for colors (set when the popup is open)
+let s:star = ''                          " Symbol for stars (set when the popup is open)
 let s:popup_x = 0                        " Horizontal position of the popup (0=center)
 let s:popup_y = 0                        " Vertical position of the popup (0=center)
 let s:popup_winid = -1                   " Popup window ID
@@ -90,11 +90,11 @@ endf
 " width: the maximum width of the bar
 "
 " NOTE: to be rendered correctly, ambiwidth must be set to 'single'.
-fun! s:slider(name, value, width = 32)
-  let l:whole = a:value * a:width / 256
-  let l:frac = a:value * a:width / 256.0 - l:whole
+fun! s:slider(name, value, max = 256, width = 32)
+  let l:whole = a:value * a:width / a:max
+  let l:frac = a:value * a:width / (1.0 * a:max) - l:whole
   let l:bar = repeat(s:slider_symbols[8], l:whole)
-  let l:part_width = float2nr(floor(l:frac * 8))
+  let l:part_width = 1 + float2nr(floor(l:frac * 8))
   let l:part_char = s:slider_symbols[l:part_width]
   let l:bar = printf("%s %3d %s", a:name, a:value, l:bar.l:part_char)
   return l:bar
@@ -109,6 +109,34 @@ fun! s:stars(c1, c2)
   return repeat(s:star, (l:cr >= 3.0) + (l:cr >= 4.5) + (l:cr >= 7.0) + (l:cd >= 500) + (l:bd >= 125))
 endf
 
+fun! s:set_bold(id)
+  let s:bold = synIDattr(a:id, 'bold', s:attrmode) ==# '1' ? 1 : 0
+endf
+
+fun! s:set_italic(id)
+  let s:italic = synIDattr(a:id, 'italic', s:attrmode) ==# '1' ? 1 : 0
+endf
+
+fun! s:set_inverse(id)
+  let s:inverse = synIDattr(a:id, 'reverse', s:attrmode) ==# '1' ? 1 : 0
+endf
+
+fun! s:set_standout(id)
+  let s:standout = synIDattr(a:id, 'standout', s:attrmode) ==# '1' ? 1 : 0
+endf
+
+fun! s:set_underline(id)
+  let s:underline = synIDattr(a:id, 'underline', s:attrmode) ==# '1' ? 1 : 0
+endf
+
+fun! s:set_undercurl(id)
+  let s:undercurl = synIDattr(a:id, 'undercurl', s:attrmode) ==# '1' ? 1 : 0
+endf
+
+fun! s:set_strike(id)
+  let s:strike = synIDattr(a:id, 'strike', s:attrmode) ==# '1' ? 1 : 0
+endf
+
 fun! s:set_higroup(name)
   if s:color_edited[s:coltype]
     call s:add_to_recent(s:col(s:coltype))
@@ -119,13 +147,13 @@ fun! s:set_higroup(name)
   let s:color.bg     = colortemplate#syn#higroup2hex(a:name, 'bg')
   let s:color.sp     = colortemplate#syn#higroup2hex(a:name, 'sp')
   let s:color_edited = #{fg: 0, bg: 0, sp: 0}
-  let s:bold         = synIDattr(l:id, 'bold',      s:attrmode) ==# '1' ? 1 : 0
-  let s:italic       = synIDattr(l:id, 'italic',    s:attrmode) ==# '1' ? 1 : 0
-  let s:inverse      = synIDattr(l:id, 'reverse',   s:attrmode) ==# '1' ? 1 : 0
-  let s:standout     = synIDattr(l:id, 'standout',  s:attrmode) ==# '1' ? 1 : 0
-  let s:underline    = synIDattr(l:id, 'underline', s:attrmode) ==# '1' ? 1 : 0
-  let s:undercurl    = synIDattr(l:id, 'undercurl', s:attrmode) ==# '1' ? 1 : 0
-  let s:strike       = synIDattr(l:id, 'strike',    s:attrmode) ==# '1' ? 1 : 0
+  call s:set_bold(l:id)
+  call s:set_italic(l:id)
+  call s:set_underline(l:id)
+  call s:set_standout(l:id)
+  call s:set_inverse(l:id)
+  call s:set_undercurl(l:id)
+  call s:set_strike(l:id)
   return 1
 endf
 
@@ -178,9 +206,9 @@ endf
 
 fun! s:center(text, width)
   return printf('%s%s%s',
-        \ repeat(' ', (a:width - len(a:text)) / 2),
+        \ repeat(' ', (a:width - strchars(a:text)) / 2),
         \ a:text,
-        \ repeat(' ', (a:width + 1 - len(a:text)) / 2))
+        \ repeat(' ', (a:width + 1 - strchars(a:text)) / 2))
 endf
 
 fun! s:msg(msg, type = 'w')
@@ -224,8 +252,14 @@ fun! s:set_highlight()
   execute printf("hi! ColortemplatePopupInvr %sfg=%s cterm=inverse gui=inverse", s:mode, l:labcol)
   execute printf("hi! ColortemplatePopupStrk %sfg=%s cterm=inverse gui=inverse", s:mode, l:labcol)
   execute printf("hi! ColortemplatePopupWarn %sfg=%s cterm=bold gui=bold", s:mode, l:warncol)
+  execute printf("hi! ColortemplatePopupG000 guibg=#000000 ctermbg=16")
+  execute printf("hi! ColortemplatePopupG025 guibg=#404040 ctermbg=238")
+  execute printf("hi! ColortemplatePopupG050 guibg=#7f7f7f ctermbg=244")
+  execute printf("hi! ColortemplatePopupG075 guibg=#bfbfbf ctermbg=250")
+  execute printf("hi! ColortemplatePopupG100 guibg=#ffffff ctermbg=231")
 endf
 
+" TODO: add text properties and types lazily
 fun! s:add_prop_types()
   " Property for Normal text
   call prop_type_add('_norm', #{bufnr: s:popup_bufnr, highlight: 'Normal'})
@@ -234,7 +268,7 @@ fun! s:add_prop_types()
   " Mark line as an item that can be selected
   call prop_type_add('_item', #{bufnr: s:popup_bufnr})
   " Mark line as a label
-  call prop_type_add('_labe', #{bufnr: s:popup_bufnr})
+  call prop_type_add('_labe', #{bufnr: s:popup_bufnr, highlight: 'Label'})
   " Mark line as a level bar (slider)
   call prop_type_add('_leve', #{bufnr: s:popup_bufnr})
   " Mark line as a "recent colors" line
@@ -258,8 +292,14 @@ fun! s:add_prop_types()
   call prop_type_add('_invr', #{bufnr: s:popup_bufnr, highlight: 'ColortemplatePopupInvr'})
   call prop_type_add('_strk', #{bufnr: s:popup_bufnr, highlight: 'ColortemplatePopupStrk'})
   call prop_type_add('_off_', #{bufnr: s:popup_bufnr, highlight: 'Comment'})
-  " RGB pane
+  " Panes
   call prop_type_add('_rgb_', #{bufnr: s:popup_bufnr})
+  call prop_type_add('_gray', #{bufnr: s:popup_bufnr})
+  call prop_type_add('_g000', #{bufnr: s:popup_bufnr, highlight: 'ColortemplatePopupG000'})
+  call prop_type_add('_g025', #{bufnr: s:popup_bufnr, highlight: 'ColortemplatePopupG025'})
+  call prop_type_add('_g050', #{bufnr: s:popup_bufnr, highlight: 'ColortemplatePopupG050'})
+  call prop_type_add('_g075', #{bufnr: s:popup_bufnr, highlight: 'ColortemplatePopupG075'})
+  call prop_type_add('_g100', #{bufnr: s:popup_bufnr, highlight: 'ColortemplatePopupG100'})
 endf
 
 fun! s:init_pane()
@@ -281,7 +321,7 @@ endf
 " selected, a marker is prepended to it.
 fun! s:prop_item(t, props = [])
   let s:__line__ += 1
-  return #{ text: (s:__line__ == s:active_line ? s:mark : repeat(' ', len(s:mark)))..a:t,
+  return #{ text: (s:__line__ == s:active_line ? s:mark : repeat(' ', strchars(s:mark)))..a:t,
         \   props: extend([#{ col: 1, length: 0, type: '_item' }], a:props),
         \}
 endf
@@ -304,7 +344,7 @@ fun! s:prop_label(t)
 endf
 
 fun! s:prop_indented_label(t)
-  return s:prop(repeat(' ', len(s:mark))..a:t, [#{ col: 1, length: s:width, type: '_labe' }])
+  return s:prop(repeat(' ', strchars(s:mark))..a:t, [#{ col: 1, length: s:width, type: '_labe' }])
 endf
 
 fun! s:prop_current(t)
@@ -331,6 +371,11 @@ fun! s:select_first_item(linenr)
   return empty(l:next) ? a:linenr : l:next.lnum
 endf
 
+fun! s:select_last_item(linenr)
+  let l:prev = prop_find(#{bufnr: s:popup_bufnr, type: '_item', lnum: line('$', s:popup_winid), col: 1}, 'b')
+  return empty(l:prev) ? a:linenr : l:prev.lnum
+endf
+
 " Returns the next line after linenr, which has an 'item' property.
 " It wraps at the last item.
 fun! s:find_next_item(linenr)
@@ -342,12 +387,8 @@ endf
 " It wraps at the first item.
 fun! s:find_prev_item(linenr)
   let l:prev = prop_find(#{bufnr: s:popup_bufnr, type: '_item', lnum: a:linenr - 1, col: 1,}, 'b')
-  if empty(l:prev)
-    let l:prev = prop_find(#{bufnr: s:popup_bufnr, type: '_item', lnum: line('$', s:popup_winid), col: 1}, 'b')
-  endif
-  return empty(l:prev) ? a:linenr : l:prev.lnum
+  return empty(l:prev) ? s:select_last_item(a:linenr) : l:prev.lnum
 endf
-
 " }}}
 " Title of a pane {{{
 fun! s:title_section(pane) " -> List of Dictionaries
@@ -356,7 +397,7 @@ fun! s:title_section(pane) " -> List of Dictionaries
   let l:title = (l:n == 4 ? 'Keyboard Controls' : printf('%s [%s]', s:higroup[0:s:width-12], l:ct))
   return [
         \ s:prop(
-        \   printf('%s%s%s', l:title, repeat(' ', s:width - len(l:title) - 4), 'RHG?'),
+        \   printf('%s%s%s', l:title, repeat(' ', s:width - strchars(l:title) - 4), 'RHG?'),
         \   [#{ col: 1, length: s:width, type: '_titl' }, #{ col: 38 + l:n, length: 1, type: '_labe' }],
         \ ),
         \]
@@ -457,21 +498,18 @@ fun! s:add_mru_prop_types()
 endf
 
 fun! s:recent_section() " -> List of Dictionaries
-  if len(s:recent_colors) == 0
-    return []
-  endif
   let l:props = [#{ col: 1, length: 0, type: '_mru_' }]
   for l:i in range(len(s:recent_colors))
     let l:approx = colortemplate#colorspace#approx(s:recent_colors[l:i])['index']
     execute printf('hi ColortemplatePopupMRU%d guibg=%s ctermbg=%s', l:i, s:recent_colors[l:i], l:approx)
-    call add(l:props, #{ col: 1 + len(s:mark) + 4 * l:i, length: 3, type: '_mru'.. l:i })
+    call add(l:props, #{ col: 1 + strchars(s:mark) + 4 * l:i, length: 3, type: '_mru'.. l:i })
   endfor
 
   return [
         \ s:blank(),
-        \ s:prop_label('Recent'),
-        \ s:prop_item(repeat(' ', s:width), l:props),
+        \ s:prop_indented_label('Recent'),
         \ s:prop_indented_label(' ' .. join(range(len(s:recent_colors)), '   ')),
+        \ (empty(s:recent_colors) ? s:blank() : s:prop_item(repeat(' ', s:width), l:props)),
         \]
 endf
 " }}}
@@ -600,7 +638,7 @@ fun! s:favorites_section() " -> List of Dictionaries
     return []
   endif
 
-  let l:fav_section = [s:blank(), s:prop_label('Favorites')]
+  let l:fav_section = [s:prop_indented_label('Favorites')]
   let l:i = 0
 
   while l:i < len(s:favorite_colors)
@@ -609,7 +647,7 @@ fun! s:favorites_section() " -> List of Dictionaries
 
     for l:j in range(len(l:colors))
       call s:prop_type_add_fav(l:i + l:j, l:colors[l:j])
-      call add(l:props, #{ col: 1 + len(s:mark) + 4 * l:j, length: 3, type: '_fav'.. (l:i + l:j) })
+      call add(l:props, #{ col: (strchars(s:mark) + 1) + 4 * l:j, length: 3, type: '_fav'.. (l:i + l:j) })
     endfor
 
     call extend(l:fav_section, [
@@ -670,7 +708,7 @@ fun! s:rgb_slider(r, g, b) " -> List of Dictionaries
         \ s:prop_level_bar(s:slider('R', a:r), '_rgb_', 1),
         \ s:prop_level_bar(s:slider('G', a:g), '_rgb_', 2),
         \ s:prop_level_bar(s:slider('B', a:b), '_rgb_', 3),
-        \ s:prop_label(printf('%s%02d', repeat(' ', len(s:mark) + 3), s:step)),
+        \ s:prop_label(printf('%s%02d', repeat(' ', strchars(s:mark) + 3), s:step)),
         \]
 endf
 
@@ -699,14 +737,56 @@ fun! s:redraw_hsb()
 endf
 " }}}
 " Grayscale Pane {{{
-fun! s:redraw_gray()
-  call popup_settext(s:popup_winid,
-        \ extend(s:title_section('G'), [
+fun! s:gray_increase(value)
+  let l:g = colortemplate#colorspace#hex2gray(s:col(s:coltype))
+  let l:g += a:value
+  if l:g > 255 | let l:g = 255 | endif
+  if !s:color_edited[s:coltype]
+    call s:add_to_recent(s:col(s:coltype))
+    let s:color_edited[s:coltype] = 1
+  endif
+  call s:set_color(s:coltype, colortemplate#colorspace#rgb2hex(l:g, l:g, l:g))
+endf
+
+fun! s:gray_decrease(value)
+  let l:g = colortemplate#colorspace#hex2gray(s:col(s:coltype))
+  let l:g -= a:value
+  if l:g < 0 | let l:g = 0 | endif
+  if !s:color_edited[s:coltype]
+    call s:add_to_recent(s:col(s:coltype))
+    let s:color_edited[s:coltype] = 1
+  endif
+  call s:set_color(s:coltype, colortemplate#colorspace#rgb2hex(l:g, l:g, l:g))
+endf
+
+fun! s:gray_slider(shade) " -> List of Dictionaries
+  return [
         \ s:blank(),
-        \ s:prop_label('Not implemented yet.'),
-        \ s:prop_label('Please switch back to R.'),
-        \ ]))
-  call prop_add(1, 41, #{bufnr: s:popup_bufnr, length: 1, type: '_labe'})
+        \ s:prop_level_bar(s:slider(' ', a:shade), '_gray', 1),
+        \ s:prop_label(printf('%s%02d %s',
+        \                     repeat(' ', len(s:mark) + 3), s:step,
+        \                     s:center('Grayscale', 32))),
+        \ s:prop(repeat(' ', s:width), [
+        \ #{ col:  8, length: 2, type: '_g000'},
+        \ #{ col: 16, length: 2, type: '_g025'},
+        \ #{ col: 24, length: 2, type: '_g050'},
+        \ #{ col: 32, length: 2, type: '_g075'},
+        \ #{ col: 40, length: 2, type: '_g100'},
+        \ ]),
+        \]
+endf
+
+fun! s:redraw_gray()
+  let l:g = colortemplate#colorspace#hex2gray(s:col(s:coltype))
+  call s:init_pane()
+  call popup_settext(s:popup_winid,
+        \ extend(extend(extend(extend(
+        \   s:title_section('G'),
+        \   s:gray_slider(l:g)),
+        \   s:info_section()),
+        \   s:recent_section()),
+        \   s:favorites_section())
+        \)
 endf
 " }}}
 " Help pane {{{
@@ -732,11 +812,10 @@ fun! s:redraw_help()
         \ s:noprop('[→] Increment value   [E] New value'),
         \ s:noprop('[←] Decrement value   [N] New hi group'),
         \ s:noprop('[Y] Yank color        [Z] Clear color'),
-        \ s:noprop('[P] Paste color                      '),
+        \ s:noprop('[P] Paste color       [A] Add to favorites'),
         \ s:blank(),
         \ s:prop_label('Recent & Favorites'),
         \ s:noprop('[Enter] Pick color    [D] Delete color'),
-        \ s:noprop('[A] Add to favorite                   '),
         \ ]))
   call prop_add(1, 42, #{bufnr: s:popup_bufnr, length: 1, type: '_labe'})
 endf
@@ -844,37 +923,55 @@ fun! s:toggle_attribute(attrname)
     return 1
   endif
   call colortemplate#syn#toggle_attribute(hlID(s:higroup), a:attrname)
-  call s:set_higroup(s:higroup)
+endf
+
+fun! s:toggle_bold()
+  call s:toggle_attribute('bold')
+  call s:set_bold(hlID(s:higroup))
   call s:redraw()
   return 1
 endf
 
-fun! s:toggle_bold()
-  return s:toggle_attribute('bold')
-endf
-
 fun! s:toggle_italic()
-  return s:toggle_attribute('italic')
+  call s:toggle_attribute('italic')
+  call s:set_italic(hlID(s:higroup))
+  call s:redraw()
+  return 1
 endf
 
 fun! s:toggle_underline()
-  return s:toggle_attribute('underline')
+  call s:toggle_attribute('underline')
+  call s:set_underline(hlID(s:higroup))
+  call s:redraw()
+  return 1
 endf
 
 fun! s:toggle_undercurl()
-  return s:toggle_attribute('undercurl')
+  call s:toggle_attribute('undercurl')
+  call s:set_undercurl(hlID(s:higroup))
+  call s:redraw()
+  return 1
 endf
 
 fun! s:toggle_standout()
-  return s:toggle_attribute('standout')
+  call s:toggle_attribute('standout')
+  call s:set_standout(hlID(s:higroup))
+  call s:redraw()
+  return 1
 endf
 
 fun! s:toggle_inverse()
-  return s:toggle_attribute('inverse')
+  call s:toggle_attribute('inverse')
+  call s:set_inverse(hlID(s:higroup))
+  call s:redraw()
+  return 1
 endf
 
 fun! s:toggle_strike()
-  return s:toggle_attribute('strikethrough')
+  call s:toggle_attribute('strikethrough')
+  call s:set_strike(hlID(s:higroup))
+  call s:redraw()
+  return 1
 endf
 
 fun! s:edit_color()
@@ -928,6 +1025,8 @@ fun! s:switch_to_hsb()
 endf
 
 fun! s:switch_to_grayscale()
+  let s:color_edited[s:coltype] = 0
+
   return s:set_pane('gray')
 endf
 
@@ -951,6 +1050,10 @@ fun! s:move_right()
     call s:rgb_increase_level(s:step)
     call s:apply_color()
     call s:redraw()
+  elseif s:has_property(l:props, '_gray')
+    call s:gray_increase(s:step)
+    call s:apply_color()
+    call s:redraw()
   endif
   return 1
 endf
@@ -959,6 +1062,10 @@ fun! s:move_left()
   let l:props = s:get_properties(s:active_line)
   if s:has_property(l:props, '_rgb_')
     call s:rgb_decrease_level(s:step)
+    call s:apply_color()
+    call s:redraw()
+  elseif s:has_property(l:props, '_gray')
+    call s:gray_decrease(s:step)
     call s:apply_color()
     call s:redraw()
   endif
