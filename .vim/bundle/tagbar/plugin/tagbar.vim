@@ -95,6 +95,7 @@ function! s:setup_options() abort
         \ ['hide_nonpublic', 0],
         \ ['height', 10],
         \ ['indent', 2],
+        \ ['scopestrs', {}],
         \ ['left', 0],
         \ ['position', default_pos],
         \ ['previewwin_pos', previewwin_pos],
@@ -109,6 +110,7 @@ function! s:setup_options() abort
         \ ['zoomwidth', 1],
         \ ['silent', 0],
         \ ['use_cache', 1],
+        \ ['wrap', 0],
     \ ]
 
     for [opt, val] in options

@@ -1,10 +1,6 @@
-" Global constants {{{
-" Mode for colors
-const s:mode = (has('gui_running') || (has('termguicolors') && &termguicolors) ? 'gui': 'cterm')
-" Mode for attributes
-const s:attrmode = (has('gui_running') ? 'gui' : 'cterm')
-" }}}
 " Popup configuration {{{
+let s:mode = ''        " Mode for colors (gui/cterm, set when the popup is open)
+let s:attrmode = ''    " Mode for attributes (gui/cterm/term, set when the popup is open)
 let s:keymap = {}      " Dictionary of key controls (initialized below)
 let s:mark_sym = ''    " Marker for the current line (set when the popup is open)
 let s:width = 0        " Popup width (set when the popup is open)
@@ -20,19 +16,19 @@ let s:pane = ''        " Current pane ('rgb', 'gray', 'hsb', 'help')
 let s:step = 1         " Step for increasing/decreasing the values of level bars
 let s:step_reset = 1   " Status of the step counter
 let s:sample_texts = get(g:, 'colortemplate_popup_quotes', [
-      \ "Absentem edit cum ebrio qui litigat",
+      \ "Absentem edit cum ebrio qui litigat.",
       \ "Accipere quam facere praestat iniuriam",
-      \ "Amicum cum vides obliviscere miserias",
-      \ "Diligite iustitiam qui iudicatis terram",
-      \ "Etiam capillus unus habet umbram suam",
-      \ "Impunitas semper ad deteriora invitat",
+      \ "Amicum cum vides obliviscere miserias.",
+      \ "Diligite iustitiam qui iudicatis terram.",
+      \ "Etiam capillus unus habet umbram suam.",
+      \ "Impunitas semper ad deteriora invitat.",
       \ "Mala tempora currunt sed peiora parantur",
       \ "Nec quod fuimusve sumusve, cras erimus",
       \ "Nec sine te, nec tecum vivere possum",
       \ "Quis custodiet ipsos custodes?",
-      \ "Quod non vetat lex, hoc vetat fieri pudor",
+      \ "Quod non vetat lex, hoc vetat fieri pudor.",
       \ "Vim vi repellere licet",
-      \ "Vana gloria spica ingens est sine grano",
+      \ "Vana gloria spica ingens est sine grano.",
       \])
 let s:sample_text = '' " Text displayed in the style picker
 " }}}
@@ -118,26 +114,22 @@ fun! s:__update_stars__(tab = s:tab)
 endf
 
 " Applies the current color to the color scheme.
-if s:mode ==# 'gui'
-  fun! s:apply_color()
-    execute printf('hi %s gui%s=%s', s:hlgroup, s:tab, s:colorset[s:tab].gui)
-  endf
+fun! s:apply_color()
+  execute (s:mode ==# 'gui'
+        \ ? printf('hi %s gui%s=%s', s:hlgroup, s:tab, s:colorset[s:tab].gui)
+        \ : printf('hi %s cterm%s=%s', s:hlgroup, (s:tab ==# 'sp' ? 'ul' : s:tab), s:colorset[s:tab].index)
+        \ )
+endf
 
-  fun! s:update_curr_text_property()
+fun! s:update_curr_text_property()
+  if s:mode ==# 'gui'
     execute printf('hi colortemplatePopupGCol guibg=%s', s:colorset[s:tab].gui)
     execute printf('hi colortemplatePopupTCol guibg=%s', s:colorset[s:tab].approx)
-    call prop_type_change('_curr', #{ bufnr: s:popup_bufnr, highlight: s:hlgroup })
-  endf
-else
-  fun! s:apply_color()
-    execute printf('hi %s cterm%s=%s', s:hlgroup, (s:tab ==# 'sp' ? 'ul' : s:tab), s:colorset[s:tab].index)
-  endf
-
-  fun! s:update_curr_text_property()
+  else
     execute printf('hi colortemplatePopupTCol ctermbg=%s', s:colorset[s:tab].index)
-    call prop_type_change('_curr', #{ bufnr: s:popup_bufnr, highlight: s:hlgroup })
-  endf
-endif
+  endif
+  call prop_type_change('_curr', #{ bufnr: s:popup_bufnr, highlight: s:hlgroup })
+endf
 
 " Sets the internal state to the specified color.
 fun! s:__setc__(hexvalue, tab, is_guess)
@@ -389,13 +381,13 @@ endf
 " Info section {{{
 fun! s:reset_info_section_highlight()
   let l:labecol = synIDattr(synIDtrans(hlID('Label')), 'fg', s:mode)
-  execute printf("hi colortemplatePopupBold %sfg=%s cterm=bold gui=bold", s:mode, l:labecol)
-  execute printf("hi colortemplatePopupItal %sfg=%s cterm=italic gui=italic", s:mode, l:labecol)
-  execute printf("hi colortemplatePopupULin %sfg=%s cterm=underline gui=underline", s:mode, l:labecol)
-  execute printf("hi colortemplatePopupCurl %sfg=%s cterm=inverse gui=inverse", s:mode, l:labecol)
-  execute printf("hi colortemplatePopupSOut %sfg=%s cterm=standout gui=standout", s:mode, l:labecol)
-  execute printf("hi colortemplatePopupInvr %sfg=%s cterm=inverse gui=inverse", s:mode, l:labecol)
-  execute printf("hi colortemplatePopupStrk %sfg=%s cterm=inverse gui=inverse", s:mode, l:labecol)
+  execute printf("hi colortemplatePopupBold %sfg=%s term=bold cterm=bold gui=bold", s:mode, l:labecol)
+  execute printf("hi colortemplatePopupItal %sfg=%s term=bold,italic cterm=bold,italic gui=bold,italic", s:mode, l:labecol)
+  execute printf("hi colortemplatePopupULin %sfg=%s term=bold,underline cterm=bold,underline gui=bold,underline", s:mode, l:labecol)
+  execute printf("hi colortemplatePopupCurl %sfg=%s term=bold,inverse cterm=bold,inverse gui=bold,inverse", s:mode, l:labecol)
+  execute printf("hi colortemplatePopupSOut %sfg=%s term=bold,standout cterm=bold,standout gui=bold,standout", s:mode, l:labecol)
+  execute printf("hi colortemplatePopupInvr %sfg=%s term=bold,inverse cterm=bold,inverse gui=bold,inverse", s:mode, l:labecol)
+  execute printf("hi colortemplatePopupStrk %sfg=%s term=bold,inverse cterm=bold,inverse gui=bold,inverse", s:mode, l:labecol)
 endf
 
 fun! s:add_info_section_prop_types()
@@ -450,20 +442,18 @@ fun! colortemplate#style#recent()
   return s:recent_colors
 endf
 
-if s:mode ==# 'gui'
-  fun! s:reset_recent_section_highlight()
+fun! s:reset_recent_section_highlight()
+  if s:mode ==# 'gui'
     for l:i in range(len(s:recent_colors))
       execute printf('hi colortemplatePopupMRU%d guibg=%s', l:i, s:recent_colors[l:i])
     endfor
-  endf
-else
-  fun! s:reset_recent_section_highlight()
+  else
     for l:i in range(len(s:recent_colors))
       execute printf('hi colortemplatePopupMRU%d ctermbg=%s', l:i,
             \ colortemplate#colorspace#approx(s:recent_colors[l:i])['index'])
     endfor
-  endf
-endif
+  endif
+endf
 
 fun! s:add_recent_section_prop_types()
   for l:i in range(len(s:recent_colors))
@@ -471,22 +461,16 @@ fun! s:add_recent_section_prop_types()
   endfor
 endf
 
-if s:mode ==# 'gui'
-  fun! s:update_recent_text_properties()
-    let l:i = len(s:recent_colors) - 1
-    execute printf('hi colortemplatePopupMRU%d guibg=%s', l:i, s:colorset[s:tab].gui)
-    call prop_type_delete('_mru' .. l:i, #{ bufnr: s:popup_bufnr })
-    call prop_type_add('_mru' .. l:i, #{ bufnr: s:popup_bufnr, highlight: 'colortemplatePopupMRU' .. l:i })
-  endf
-else
-  fun! s:update_recent_text_properties()
-    let l:i = len(s:recent_colors) - 1
-    execute printf('hi colortemplatePopupMRU%d ctermbg=%s', l:i,
-          \ colortemplate#colorspace#approx(s:colorset[s:tab].gui)['index'])
-    call prop_type_delete('_mru' .. l:i, #{ bufnr: s:popup_bufnr })
-    call prop_type_add('_mru' .. l:i, #{ bufnr: s:popup_bufnr, highlight: 'colortemplatePopupMRU' .. l:i })
-  endf
-endif
+fun! s:update_recent_text_properties()
+  let l:i = len(s:recent_colors) - 1
+  execute (s:mode ==# 'gui'
+        \ ? printf('hi colortemplatePopupMRU%d guibg=%s', l:i, s:colorset[s:tab].gui)
+        \ : printf('hi colortemplatePopupMRU%d ctermbg=%s', l:i,
+        \          colortemplate#colorspace#approx(s:colorset[s:tab].gui)['index'])
+        \ )
+  call prop_type_delete('_mru' .. l:i, #{ bufnr: s:popup_bufnr })
+  call prop_type_add('_mru' .. l:i, #{ bufnr: s:popup_bufnr, highlight: 'colortemplatePopupMRU' .. l:i })
+endf
 
 " Adds the current color to the list of recent colors
 fun! s:save_to_recent()
@@ -575,20 +559,18 @@ fun! s:load_favorite_colors()
   let s:fav_loaded = 1
 endf
 
-if s:mode ==# 'gui'
-  fun! s:reset_favorite_section_highlight()
+fun! s:reset_favorite_section_highlight()
+  if s:mode ==# 'gui'
     for l:i in range(len(s:favorite_colors))
       execute printf('hi colortemplatePopupFav%d guibg=%s', l:i, s:favorite_colors[l:i])
     endfor
-  endf
-else
-  fun! s:reset_favorite_section_highlight()
+  else
     for l:i in range(len(s:favorite_colors))
       execute printf('hi colortemplatePopupFav%d ctermbg=%s', l:i,
             \ colortemplate#colorspace#approx(s:favorite_colors[l:i])['index'])
     endfor
-  endf
-endif
+  endif
+endf
 
 fun! s:add_favorite_section_prop_types()
   for l:i in range(len(s:favorite_colors))
@@ -596,22 +578,16 @@ fun! s:add_favorite_section_prop_types()
   endfor
 endf
 
-if s:mode ==# 'gui'
-  fun! s:update_favorite_text_properties()
-    let l:i = len(s:favorite_colors) - 1
-    execute printf('hi colortemplatePopupFav%d guibg=%s', l:i, s:favorite_colors[l:i])
-    call prop_type_delete('_fav' .. l:i, #{ bufnr: s:popup_bufnr })
-    call prop_type_add('_fav' .. l:i, #{ bufnr: s:popup_bufnr, highlight: 'colortemplatePopupFav' .. l:i })
-  endf
-else
-  fun! s:update_favorite_text_properties()
-    let l:i = len(s:favorite_colors) - 1
-    execute printf('hi colortemplatePopupFav%d ctermbg=%s', l:i,
-          \ colortemplate#colorspace#approx(s:favorite_colors[l:i])['index'])
-    call prop_type_delete('_fav' .. l:i, #{ bufnr: s:popup_bufnr })
-    call prop_type_add('_fav' .. l:i, #{ bufnr: s:popup_bufnr, highlight: 'colortemplatePopupFav' .. l:i })
-  endf
-endif
+fun! s:update_favorite_text_properties()
+  let l:i = len(s:favorite_colors) - 1
+  execute (s:mode ==# 'gui'
+        \ ? printf('hi colortemplatePopupFav%d guibg=%s', l:i, s:favorite_colors[l:i])
+        \ : printf('hi colortemplatePopupFav%d ctermbg=%s', l:i,
+        \          colortemplate#colorspace#approx(s:favorite_colors[l:i])['index'])
+        \ )
+  call prop_type_delete('_fav' .. l:i, #{ bufnr: s:popup_bufnr })
+  call prop_type_add('_fav' .. l:i, #{ bufnr: s:popup_bufnr, highlight: 'colortemplatePopupFav' .. l:i })
+endf
 
 fun! s:save_to_favorite(col)
   if index(s:favorite_colors, a:col) != -1
@@ -892,7 +868,8 @@ fun! s:redraw_help()
         \ s:noprop('[P] Paste color       [A] Add to favorites'),
         \ s:blank(),
         \ s:prop_label('Recent & Favorites'),
-        \ s:noprop('[Enter] Pick color    [D] Delete color'),
+        \ s:noprop('[Y] Yank color        [Enter] Pick color'),
+        \ s:noprop('[D] Delete color                     '),
         \ ]))
   call prop_add(1, 42, #{ bufnr: s:popup_bufnr, length: 1, type: '_labe' })
 endf
@@ -1163,17 +1140,14 @@ fun! s:choose_cterm_color()
   endif
 endf
 
-if s:mode ==# 'gui'
-  fun! s:action_edit_color()
+fun! s:action_edit_color()
+  if s:mode ==# 'gui'
     call s:choose_gui_color()
-    return 1
-  endf
-else
-  fun! s:action_edit_color()
+  else
     call s:choose_cterm_color()
-    return 1
-  endf
-endif
+  endif
+  return 1
+endf
 
 fun! s:action_clear_color()
   if s:hlgroup == 'Normal' && s:tab != 'sp'
@@ -1452,6 +1426,8 @@ fun! colortemplate#style#open(...)
     return s:popup_winid
   endif
 
+  let s:mode         = (has('gui_running') || (has('termguicolors') && &termguicolors) ? 'gui': 'cterm')
+  let s:attrmode     = (has('gui_running') ? 'gui' : (exists('&t_Co') && &t_Co > 2 ? 'cterm' : 'term'))
   let s:mark_sym     = get(g:, 'colortemplate_popup_marker', '❯❯ ')
   let s:width        = max([39 + strdisplaywidth(s:mark_sym), 42])
   let s:gutter_width = strdisplaywidth(s:mark_sym, 0)
@@ -1468,7 +1444,7 @@ fun! colortemplate#style#open(...)
 
   let s:popup_winid = popup_create('', #{
         \ border: [1,1,1,1],
-        \ borderchars: get(g:, 'colortemplate_popup_borderchars', ['─', '│', '─', '│', '┌', '┐', '┘', '└']),
+        \ borderchars: get(g:, 'colortemplate_popup_borderchars', ['─', '│', '─', '│', '╭', '╮', '╯', '╰']),
         \ callback: 'colortemplate#style#closed',
         \ close: 'button',
         \ cursorline: 0,
