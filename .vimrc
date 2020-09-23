@@ -194,6 +194,7 @@ let maplocalleader = ","
 
 if !exists("g:rko_already_turned_syntax_off")
   syntax off
+  syntax conceal on
   let g:rko_already_turned_syntax_off=1
 endif
 set fileformats=unix,dos
@@ -1829,6 +1830,7 @@ function! s:SetupBasicSyntaxHighlights()
   highlight link rkoCPreprocessorDefine PreProc
   highlight link rkoClojureMacro IncSearch
   highlight link rkoClojureMinorMacro Pmenu
+  highlight link rkoClojureConceal Operator
 
   if has_key(s:version_control_filetypes, &filetype)
     syntax region rkoVersionControlDelete start=/\v^-/ end=/\v$/
@@ -1845,6 +1847,8 @@ function! s:SetupBasicSyntaxHighlights()
 
   if &filetype == "clojure"
     runtime plugin/rko_clojure.vim
+    syntax keyword rkoClojureConceal fn conceal cchar=λ containedin=ALL
+    setl conceallevel=1
   elseif &filetype == "dirvish"
     runtime syntax/dirvish.vim
   elseif &filetype == "html"
