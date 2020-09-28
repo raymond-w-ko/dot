@@ -1830,7 +1830,7 @@ function! s:SetupBasicSyntaxHighlights()
   highlight link rkoCPreprocessorDefine PreProc
   highlight link rkoClojureMacro IncSearch
   highlight link rkoClojureMinorMacro Pmenu
-  highlight link rkoClojureConceal Operator
+  highlight link rkoClojureConceal PreProc
 
   if has_key(s:version_control_filetypes, &filetype)
     syntax region rkoVersionControlDelete start=/\v^-/ end=/\v$/
