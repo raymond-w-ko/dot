@@ -6,10 +6,6 @@
 set background=dark
 
 hi clear
-if exists('syntax_on')
-  syntax reset
-endif
-
 let g:colors_name = 'test76'
 
 let s:t_Co = exists('&t_Co') && !empty(&t_Co) && &t_Co > 1 ? &t_Co : 2
@@ -39,6 +35,8 @@ hi! link QuickFixLine Search
 " @suppress Ignore
 " @suppress IncSearch
 " @suppress LineNr
+" @suppress LineNrAbove
+" @suppress LineNrBelow
 " @suppress MatchParen
 " @suppress ModeMsg
 " @suppress MoreMsg

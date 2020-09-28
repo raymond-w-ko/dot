@@ -266,7 +266,7 @@ fun! s:show_errors(errmsg)
 endf
 " }}}
 " Misc {{{
-fun! s:has_gui()
+fun! s:has_guicolors()
   return has('gui_running') || (has('termguicolors') && &termguicolors)
 endf
 
@@ -425,6 +425,8 @@ let s:default_hi_groups = [
       \ 'Ignore',
       \ 'IncSearch',
       \ 'LineNr',
+      \ 'LineNrAbove',
+      \ 'LineNrBelow',
       \ 'MatchParen',
       \ 'ModeMsg',
       \ 'MoreMsg',
@@ -834,13 +836,29 @@ fun! s:optionprefix()
 endf
 " }}}
 " Colorscheme definition {{{
-let s:GUI = '65536' " GUI or termguicolors
+let s:GUI = '16777216' " GUI or termguicolors
 
+" The main data structure for storing a color scheme definition is s:data,
+" which is a dictionary of dictionaries. Maybe, some day I will implement
+" a proper syntax tree... The keys of s:data are *variants*, which can be:
+"
+" - 'global': anything before the first Variant or Background directive;
+" - 'gui': when has('gui_running') is 1 or termguicolors is 1
+" - a number (256, 88, 16, 8, etc.): the minimum t_Co value for the variant
+"
+" In turn, each variant is a dictionary with three keys:
+"
+" - 'preamble': anything that does not depend on a specific background;
+" - 'dark': anything that applies only to dark background;
+" - 'light': anything that applies only to light background.
+"
+" s:italics and s:nvim have a similar structure, but they are used to
+" collect definitions with italics and definitions for Neovim, respectively.
 fun! s:init_colorscheme_definition()
   let s:data        = { 'global': { 'preamble': [] } }
   let s:italics     = { 'global': {'preamble': [] } } " Global is never used for italics
   let s:nvim        = { 'global': { 'preamble': [] } }
-  let s:has_normal  = { }
+  let s:has_normal  = { } " Is Normal defined for the given variant?
   let s:hi_groups   = { } " Set of defined highlight groups
   let s:hi_reset    = []  " For custom reset/initialization block
 endf
@@ -2025,8 +2043,15 @@ endf
 
 fun! s:parse_color_value()
   let l:color = s:token.value
-  if !s:is_color_defined(l:color, s:active_section()) && l:color !~# '^\(fg\|bg\|none\|omit\)$'
-    throw 'Undefined color name: ' . l:color
+  if !s:is_color_defined(l:color, s:active_section())
+    if s:active_section() ==# 'preamble'
+          \ && (s:is_color_defined(l:color, 'dark') || s:is_color_defined(l:color, 'light'))
+      throw 'Ambiguous definition: must be in the scope of `Background: dark` or `Background: light`'
+    else
+      if l:color !~# '^\(fg\|bg\|none\|omit\)$'
+        throw 'Undefined color name: ' . l:color
+      endif
+    endif
   endif
   return l:color
 endf
@@ -2806,7 +2831,7 @@ fun! colortemplate#getinfo(n)
   let l:c256 = s:col256(l:name, 'dark') == -1 ? l:best['index'] : s:col256(l:name, 'dark')
   let [l:r, l:g, l:b] = colortemplate#colorspace#hex2rgb(l:hexc)
   echon printf('%s: %s/rgb(%d,%d,%d) ', l:name, l:hexc, l:r, l:g, l:b)
-  if s:has_gui()
+  if s:has_guicolors()
     try
       execute "hi!" "ColortemplateInfoFg" "ctermfg=".l:c256 "guifg=".l:hexc "ctermbg=NONE guibg=NONE"
       execute "hi!" "ColortemplateInfoBg" "ctermbg=".l:c256 "guibg=".l:hexc "ctermfg=NONE guifg=NONE"
