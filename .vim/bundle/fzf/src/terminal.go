@@ -236,6 +236,8 @@ const (
 	actPreviewDown
 	actPreviewPageUp
 	actPreviewPageDown
+	actPreviewHalfPageUp
+	actPreviewHalfPageDown
 	actPreviousHistory
 	actNextHistory
 	actExecute
@@ -1553,8 +1555,8 @@ func (t *Terminal) currentItem() *Item {
 
 func (t *Terminal) buildPlusList(template string, forcePlus bool) (bool, []*Item) {
 	current := t.currentItem()
-	_, plus, query := hasPreviewFlags(template)
-	if !(query && len(t.input) > 0 || (forcePlus || plus) && len(t.selected) > 0) {
+	slot, plus, query := hasPreviewFlags(template)
+	if !(!slot || query && len(t.input) > 0 || (forcePlus || plus) && len(t.selected) > 0) {
 		return current != nil, []*Item{current, current}
 	}
 
@@ -1952,6 +1954,14 @@ func (t *Terminal) Loop() {
 			case actPreviewPageDown:
 				if t.hasPreviewWindow() {
 					scrollPreview(t.pwindow.Height())
+				}
+			case actPreviewHalfPageUp:
+				if t.hasPreviewWindow() {
+					scrollPreview(-t.pwindow.Height()/2)
+				}
+			case actPreviewHalfPageDown:
+				if t.hasPreviewWindow() {
+					scrollPreview(t.pwindow.Height()/2)
 				}
 			case actBeginningOfLine:
 				t.cx = 0
