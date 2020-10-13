@@ -1753,6 +1753,8 @@ let s:version_control_filetypes = {
 let s:web_filetypes = {
     \ "css": 1,
     \ }
+
+hi LimeGreen guifg=#00ff00 guibg=#002b36 gui=none ctermbg=0 ctermfg=46 term=none cterm=none
 function! s:SetupBasicSyntaxHighlights()
   syntax clear
   silent! syntax clear rkoBasicString
@@ -1789,6 +1791,7 @@ function! s:SetupBasicSyntaxHighlights()
     syntax match rkoClojureMinorMacro /\v<:plet>/ containedin=ALL
     syntax match rkoClojureMinorMacro /\v<:pplet>/ containedin=ALL
     syntax match rkoClojureMinorMacro /\v<:do>/ containedin=ALL
+    syntax match rkoClojureMinorMacro /\v<:pdo>/ containedin=ALL
     syntax match rkoClojureMinorMacro /\v<:else>/ containedin=ALL
     syntax match rkoClojureMinorMacro /\v<:return>/ containedin=ALL
   endif
@@ -1816,6 +1819,7 @@ function! s:SetupBasicSyntaxHighlights()
   endif
 
   syntax match rkoTODO /\v<TODO|TODO:|XXX|XXX:|NOTE|NOTE:|WARN|WARN:>/ containedin=ALL
+  syntax match rkoError /\verror/ containedin=ALL
 
   highlight link rkoBasicString String
   highlight link rkoMultiLineString String
@@ -1829,8 +1833,9 @@ function! s:SetupBasicSyntaxHighlights()
   highlight link rkoCPreprocessorEndif PreProc
   highlight link rkoCPreprocessorDefine PreProc
   highlight link rkoClojureMacro IncSearch
-  highlight link rkoClojureMinorMacro Pmenu
+  highlight link rkoClojureMinorMacro LimeGreen
   highlight link rkoClojureConceal PreProc
+  highlight link rkoError Define
 
   if has_key(s:version_control_filetypes, &filetype)
     syntax region rkoVersionControlDelete start=/\v^-/ end=/\v$/
@@ -1838,7 +1843,7 @@ function! s:SetupBasicSyntaxHighlights()
   endif
   highlight link rkoVersionControlDelete DiffDelete
   highlight link rkoVersionControlAdd DiffAdd
-  highlight link rkoTODO Cursor
+  highlight link rkoTODO Define
 
   highlight link gitMergeConflict Error
   syntax match gitMergeConflict /^=======$/ containedin=ALL
