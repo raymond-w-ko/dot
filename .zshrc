@@ -86,7 +86,7 @@ plugins=(zsh_reload git gitfast mercurial lein pip svn svn-fast-info tmux screen
 # android development
 plugins=(${plugins} adb ant)
 if [[ $(uname -s) != CYGWIN* ]]; then
-  plugins=(${plugins} pip brew systemd ssh-agent node npm archlinux aws)
+  plugins=(${plugins} pip brew systemd node npm archlinux aws)
 fi
 
 # stop eating characters after tab completion
