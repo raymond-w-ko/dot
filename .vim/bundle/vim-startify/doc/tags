@@ -1,4 +1,5 @@
 g:startify_bookmarks	startify.txt	/*g:startify_bookmarks*
+g:startify_change_cmd	startify.txt	/*g:startify_change_cmd*
 g:startify_change_to_dir	startify.txt	/*g:startify_change_to_dir*
 g:startify_change_to_vcs_root	startify.txt	/*g:startify_change_to_vcs_root*
 g:startify_commands	startify.txt	/*g:startify_commands*

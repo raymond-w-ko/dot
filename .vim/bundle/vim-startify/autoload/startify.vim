@@ -559,11 +559,7 @@ function! s:display_by_path(path_prefix, path_format, use_env) abort
         \ [a:path_prefix, a:path_format, a:use_env])
 
   let entry_format = "s:leftpad .'['. index .']'. repeat(' ', (3 - strlen(index))) ."
-  if exists('*StartifyEntryFormat')
-    let entry_format .= StartifyEntryFormat()
-  else
-    let entry_format .= 'entry_path'
-  endif
+  let entry_format .= exists('*StartifyEntryFormat') ? StartifyEntryFormat() : 'entry_path'
 
   if !empty(oldfiles)
     if exists('s:last_message')
@@ -742,12 +738,17 @@ function! s:show_bookmarks() abort
     call s:print_section_header()
   endif
 
+  let entry_format = "s:leftpad .'['. index .']'. repeat(' ', (3 - strlen(index))) ."
+  let entry_format .= exists('*StartifyEntryFormat') ? StartifyEntryFormat() : 'entry_path'
+
   for bookmark in g:startify_bookmarks
     if type(bookmark) == type({})
       let [index, path] = items(bookmark)[0]
     else  " string
       let [index, path] = [s:get_index_as_string(), bookmark]
     endif
+
+    let absolute_path = path
 
     let entry_path = ''
     if !empty(g:startify_transformations)
@@ -756,7 +757,8 @@ function! s:show_bookmarks() abort
     if empty(entry_path)
       let entry_path = path
     endif
-    call append('$', s:leftpad .'['. index .']'. repeat(' ', (3 - strlen(index))) . entry_path)
+
+    call append('$', eval(entry_format))
 
     if has('win32')
       let path = substitute(path, '\[', '\[[]', 'g')
@@ -953,11 +955,11 @@ function! s:check_user_options(path) abort
 
   if get(g:, 'startify_change_to_dir', 1)
     if isdirectory(a:path)
-      execute 'lcd' a:path
+      execute s:cd_cmd() a:path
     else
       let dir = fnamemodify(a:path, ':h')
       if isdirectory(dir)
-        execute 'lcd' dir
+        execute s:cd_cmd() dir
       else
         " Do nothing. E.g. a:path == `scp://foo/bar`
       endif
@@ -971,11 +973,21 @@ function! s:cd_to_vcs_root(path) abort
   for vcs in [ '.git', '.hg', '.bzr', '.svn' ]
     let root = finddir(vcs, dir .';')
     if !empty(root)
-      execute 'lcd' fnameescape(fnamemodify(root, ':h'))
+      execute s:cd_cmd() fnameescape(fnamemodify(root, ':h'))
       return 1
     endif
   endfor
   return 0
+endfunction
+
+" Function: s:cd_cmd {{{1
+function! s:cd_cmd() abort
+  let g:startify_change_cmd = get(g:, 'startify_change_cmd', 'lcd')
+  if g:startify_change_cmd !~# '^[lt]\?cd$'
+    call s:warn('Invalid value for g:startify_change_cmd. Defaulting to :lcd')
+    let g:startify_change_cmd = 'lcd'
+  endif
+  return g:startify_change_cmd
 endfunction
 
 " Function: s:close {{{1
