@@ -19,7 +19,7 @@ if !exists("g:plasmaplace_scratch_split_cmd")
   let g:plasmaplace_scratch_split_cmd = "botright vnew"
 endif
 if !exists("g:plasmaplace_command_timeout_ms")
-  let g:plasmaplace_command_timeout_ms = 8192
+  let g:plasmaplace_command_timeout_ms = 5000
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -448,7 +448,7 @@ function! s:Doc(symbol) abort
   let symbol = a:symbol
   let symbol = substitute(symbol, '\\?', "?", "g")
   let symbol = substitute(symbol, '\\!', "!", "g")
-  let symbol = substitute(symbol, '\\\*', "*", "g")
+  let symbol = substitute(symbol, '\\\*', "*", "g") " extra backslash not an error
   let symbol = substitute(symbol, '\\<', "<", "g")
   let symbol = substitute(symbol, '\\>', ">", "g")
   let ns = plasmaplace#ns()
