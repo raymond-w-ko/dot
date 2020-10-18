@@ -6,6 +6,7 @@ fzf#wrap	fzf.txt	/*fzf#wrap*
 fzf-configuration	fzf.txt	/*fzf-configuration*
 fzf-examples	fzf.txt	/*fzf-examples*
 fzf-explanation-of-gfzfcolors	fzf.txt	/*fzf-explanation-of-gfzfcolors*
+fzf-global-options-supported-by-fzf#wrap	fzf.txt	/*fzf-global-options-supported-by-fzf#wrap*
 fzf-hide-statusline	fzf.txt	/*fzf-hide-statusline*
 fzf-inside-terminal-buffer	fzf.txt	/*fzf-inside-terminal-buffer*
 fzf-installation	fzf.txt	/*fzf-installation*
