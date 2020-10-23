@@ -1881,8 +1881,8 @@ augroup MyVimrc
   au FocusGained,BufEnter * :silent! checktime
 
   " hardcore autochdir
-  autocmd BufEnter * silent! lcd %:p:h
-  autocmd BufEnter * silent! cd %:p:h
+  " autocmd BufEnter * silent! lcd %:p:h
+  " autocmd BufEnter * silent! cd %:p:h
 
   " save all buffers when losing focus
   "au FocusLost * silent! wall
