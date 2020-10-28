@@ -22,6 +22,7 @@ g:tagbar_expand	tagbar.txt	/*g:tagbar_expand*
 g:tagbar_file_size_limit	tagbar.txt	/*g:tagbar_file_size_limit*
 g:tagbar_foldlevel	tagbar.txt	/*g:tagbar_foldlevel*
 g:tagbar_height	tagbar.txt	/*g:tagbar_height*
+g:tagbar_help_visibility	tagbar.txt	/*g:tagbar_help_visibility*
 g:tagbar_hide_nonpublic	tagbar.txt	/*g:tagbar_hide_nonpublic*
 g:tagbar_iconchars	tagbar.txt	/*g:tagbar_iconchars*
 g:tagbar_indent	tagbar.txt	/*g:tagbar_indent*
@@ -32,6 +33,8 @@ g:tagbar_previewwin_pos	tagbar.txt	/*g:tagbar_previewwin_pos*
 g:tagbar_scopestrs	tagbar.txt	/*g:tagbar_scopestrs*
 g:tagbar_show_balloon	tagbar.txt	/*g:tagbar_show_balloon*
 g:tagbar_show_linenumbers	tagbar.txt	/*g:tagbar_show_linenumbers*
+g:tagbar_show_tag_count	tagbar.txt	/*g:tagbar_show_tag_count*
+g:tagbar_show_tag_linenumbers	tagbar.txt	/*g:tagbar_show_tag_linenumbers*
 g:tagbar_show_visibility	tagbar.txt	/*g:tagbar_show_visibility*
 g:tagbar_silent	tagbar.txt	/*g:tagbar_silent*
 g:tagbar_singleclick	tagbar.txt	/*g:tagbar_singleclick*
