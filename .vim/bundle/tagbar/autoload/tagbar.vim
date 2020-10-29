@@ -947,6 +947,10 @@ function! s:InitWindow(autoclose) abort
     setlocal nomodifiable
     setlocal textwidth=0
 
+    if g:tagbar_scrolloff > 0
+        execute 'setlocal scrolloff=' . g:tagbar_scrolloff
+    endif
+
     if g:tagbar_show_balloon == 1 && has('balloon_eval')
         setlocal balloonexpr=TagbarBalloonExpr()
         set ballooneval
@@ -2202,7 +2206,7 @@ function! s:HighlightTag(openfolds, ...) abort
         " If printing the line number of the tag to the left, and the tag is
         " visible (I.E. parent isn't folded)
         if g:tagbar_show_tag_linenumbers == 2 && tagline == tag.tline
-            let pattern = '/^\%' . tagline . 'l\s*' . foldpat . '[-+# ]\[line [0-9]*\] \?\zs[^( ]\+\ze/'
+            let pattern = '/^\%' . tagline . 'l\s*' . foldpat . '[-+# ]\[[0-9]\+\] \?\zs[^( ]\+\ze/'
         else
             let pattern = '/^\%' . tagline . 'l\s*' . foldpat . '[-+# ]\?\zs[^( ]\+\ze/'
         endif
