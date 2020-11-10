@@ -2593,9 +2593,14 @@ function! MyJavascriptFormatter()
   execute "%!prettier --parser babel --trailing-comma es5"
   call winrestview(view)
 endfunction
+function! MyHtmlFormatter()
+  let view = winsaveview()
+  execute "%!prettier --parser html"
+  call winrestview(view)
+endfunction
 function! MyScssFormatter()
   let view = winsaveview()
-  execute "%!prettier --parser scss --trailing-comma es5"
+  execute "%!prettier --parser scss"
   call winrestview(view)
 endfunction
 function! MyPythonFormatter()
@@ -2650,6 +2655,7 @@ augroup MyVimrc
   autocmd FileType javascript.jsx nnoremap <buffer> <Leader>f :call MyJavascriptFormatter()<CR>
   autocmd FileType scss nnoremap <buffer> <Leader>f :call MyScssFormatter()<CR>
   autocmd FileType python nnoremap <buffer> <Leader>f :call MyPythonFormatter()<CR>
+  autocmd FileType html nnoremap <buffer> <Leader>f :call MyHtmlFormatter()<CR>
   autocmd FileType go nnoremap <buffer> <Leader>f :call MyGoFormatter()<CR>
   
   au FileType markdown setlocal textwidth=80
