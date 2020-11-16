@@ -1,6 +1,7 @@
 :ALEDetail	ale.txt	/*:ALEDetail*
 :ALEInfo	ale.txt	/*:ALEInfo*
 :ALELint	ale.txt	/*:ALELint*
+ALECodeAction	ale.txt	/*ALECodeAction*
 ALEComplete	ale.txt	/*ALEComplete*
 ALECompletePost	ale.txt	/*ALECompletePost*
 ALECompletePost-autocmd	ale.txt	/*ALECompletePost-autocmd*
@@ -460,6 +461,7 @@ ale-reasonml-merlin	ale-reasonml.txt	/*ale-reasonml-merlin*
 ale-reasonml-ols	ale-reasonml.txt	/*ale-reasonml-ols*
 ale-reasonml-options	ale-reasonml.txt	/*ale-reasonml-options*
 ale-reasonml-refmt	ale-reasonml.txt	/*ale-reasonml-refmt*
+ale-refactor	ale.txt	/*ale-refactor*
 ale-restructuredtext-options	ale-restructuredtext.txt	/*ale-restructuredtext-options*
 ale-restructuredtext-textlint	ale-restructuredtext.txt	/*ale-restructuredtext-textlint*
 ale-restructuredtext-write-good	ale-restructuredtext.txt	/*ale-restructuredtext-write-good*

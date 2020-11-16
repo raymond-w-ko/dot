@@ -202,6 +202,7 @@ lh#list#flatten()	lh-vim-lib.txt	/*lh#list#flatten()*
 lh#list#for_each_call()	lh-vim-lib.txt	/*lh#list#for_each_call()*
 lh#list#get()	lh-vim-lib.txt	/*lh#list#get()*
 lh#list#intersect()	lh-vim-lib.txt	/*lh#list#intersect()*
+lh#list#is_contained_in()	lh-vim-lib.txt	/*lh#list#is_contained_in()*
 lh#list#lower_bound()	lh-vim-lib.txt	/*lh#list#lower_bound()*
 lh#list#map_on()	lh-vim-lib.txt	/*lh#list#map_on()*
 lh#list#mask()	lh-vim-lib.txt	/*lh#list#mask()*

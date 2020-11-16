@@ -83,7 +83,6 @@
 	display: hwb(120deg, 44%, 50%);
 	display: lab(1 2 3);
 	display: lch(4 5 6);
-	display: gray(50%);
 	display: color(swopc, 0 206 190 77);
 	display: device-cmyk(0, 81%, 81%, 30%);
 	display: relative-colorimetric;
@@ -105,7 +104,7 @@
 	color-scheme: auto;
 	forced-color-adjust: auto;
 	color-adjust: auto;
-	display: only light;
+	display: light;
 	display: economy;
 	display: exact;
 }
@@ -1161,6 +1160,23 @@ view {
 	display: max(0, 1);
 	display: clamp(0, 100, 2);
 	display: toggle(italic, normal);
+	display: round(var(--width), 50px);
+	display: mod(-18px, 5px);
+	display: rem(-18px, 5px);
+	display: sin(45deg);
+	display: cos(1);
+	display: tan(1);
+	display: asin(45deg);
+	display: acos(1);
+	display: atan(1);
+	display: atan2(1, -1);
+	display: pow(1.5, -1);
+	display: sqrt(4);
+	display: hypot(30px, 40px);
+	display: log(10);
+	display: exp(1);
+	display: abs(-1);
+	display: sign(-4);
 }
 
 .variables-1 {
