@@ -210,6 +210,7 @@ ale-elm-elm-ls	ale-elm.txt	/*ale-elm-elm-ls*
 ale-elm-elm-make	ale-elm.txt	/*ale-elm-elm-make*
 ale-elm-options	ale-elm.txt	/*ale-elm-options*
 ale-erlang-dialyzer	ale-erlang.txt	/*ale-erlang-dialyzer*
+ale-erlang-elvis	ale-erlang.txt	/*ale-erlang-elvis*
 ale-erlang-erlc	ale-erlang.txt	/*ale-erlang-erlc*
 ale-erlang-options	ale-erlang.txt	/*ale-erlang-options*
 ale-erlang-syntaxerl	ale-erlang.txt	/*ale-erlang-syntaxerl*
@@ -352,6 +353,7 @@ ale-lsp	ale.txt	/*ale-lsp*
 ale-lsp-linters	ale.txt	/*ale-lsp-linters*
 ale-lua-luac	ale-lua.txt	/*ale-lua-luac*
 ale-lua-luacheck	ale-lua.txt	/*ale-lua-luacheck*
+ale-lua-luafmt	ale-lua.txt	/*ale-lua-luafmt*
 ale-lua-options	ale-lua.txt	/*ale-lua-options*
 ale-markdown-markdownlint	ale-markdown.txt	/*ale-markdown-markdownlint*
 ale-markdown-mdl	ale-markdown.txt	/*ale-markdown-mdl*
@@ -397,6 +399,7 @@ ale-perl-perlcritic	ale-perl.txt	/*ale-perl-perlcritic*
 ale-perl-perltidy	ale-perl.txt	/*ale-perl-perltidy*
 ale-perl6-options	ale-perl6.txt	/*ale-perl6-options*
 ale-perl6-perl6	ale-perl6.txt	/*ale-perl6-perl6*
+ale-php-intelephense	ale-php.txt	/*ale-php-intelephense*
 ale-php-langserver	ale-php.txt	/*ale-php-langserver*
 ale-php-options	ale-php.txt	/*ale-php-options*
 ale-php-phan	ale-php.txt	/*ale-php-phan*
@@ -710,6 +713,7 @@ b:ale_enabled	ale.txt	/*b:ale_enabled*
 b:ale_erlang_dialyzer_executable	ale-erlang.txt	/*b:ale_erlang_dialyzer_executable*
 b:ale_erlang_dialyzer_plt_file	ale-erlang.txt	/*b:ale_erlang_dialyzer_plt_file*
 b:ale_erlang_dialyzer_rebar3_profile	ale-erlang.txt	/*b:ale_erlang_dialyzer_rebar3_profile*
+b:ale_erlang_elvis_executable	ale-erlang.txt	/*b:ale_erlang_elvis_executable*
 b:ale_erlang_erlc_options	ale-erlang.txt	/*b:ale_erlang_erlc_options*
 b:ale_erlang_syntaxerl_executable	ale-erlang.txt	/*b:ale_erlang_syntaxerl_executable*
 b:ale_eruby_ruumba_executable	ale-eruby.txt	/*b:ale_eruby_ruumba_executable*
@@ -872,6 +876,8 @@ b:ale_lsp_root	ale.txt	/*b:ale_lsp_root*
 b:ale_lua_luac_executable	ale-lua.txt	/*b:ale_lua_luac_executable*
 b:ale_lua_luacheck_executable	ale-lua.txt	/*b:ale_lua_luacheck_executable*
 b:ale_lua_luacheck_options	ale-lua.txt	/*b:ale_lua_luacheck_options*
+b:ale_lua_luafmt_executable	ale-lua.txt	/*b:ale_lua_luafmt_executable*
+b:ale_lua_luafmt_options	ale-lua.txt	/*b:ale_lua_luafmt_options*
 b:ale_markdown_markdownlint_options	ale-markdown.txt	/*b:ale_markdown_markdownlint_options*
 b:ale_markdown_mdl_executable	ale-markdown.txt	/*b:ale_markdown_mdl_executable*
 b:ale_markdown_mdl_options	ale-markdown.txt	/*b:ale_markdown_mdl_options*
@@ -915,6 +921,9 @@ b:ale_perl_perltidy_options	ale-perl.txt	/*b:ale_perl_perltidy_options*
 b:ale_php_cs_fixer_executable	ale-php.txt	/*b:ale_php_cs_fixer_executable*
 b:ale_php_cs_fixer_options	ale-php.txt	/*b:ale_php_cs_fixer_options*
 b:ale_php_cs_fixer_use_global	ale-php.txt	/*b:ale_php_cs_fixer_use_global*
+b:ale_php_intelephense_config	ale-php.txt	/*b:ale_php_intelephense_config*
+b:ale_php_intelephense_executable	ale-php.txt	/*b:ale_php_intelephense_executable*
+b:ale_php_intelephense_use_global	ale-php.txt	/*b:ale_php_intelephense_use_global*
 b:ale_php_langserver_executable	ale-php.txt	/*b:ale_php_langserver_executable*
 b:ale_php_langserver_use_global	ale-php.txt	/*b:ale_php_langserver_use_global*
 b:ale_php_phan_executable	ale-php.txt	/*b:ale_php_phan_executable*
@@ -1337,6 +1346,7 @@ g:ale_enabled	ale.txt	/*g:ale_enabled*
 g:ale_erlang_dialyzer_executable	ale-erlang.txt	/*g:ale_erlang_dialyzer_executable*
 g:ale_erlang_dialyzer_plt_file	ale-erlang.txt	/*g:ale_erlang_dialyzer_plt_file*
 g:ale_erlang_dialyzer_rebar3_profile	ale-erlang.txt	/*g:ale_erlang_dialyzer_rebar3_profile*
+g:ale_erlang_elvis_executable	ale-erlang.txt	/*g:ale_erlang_elvis_executable*
 g:ale_erlang_erlc_options	ale-erlang.txt	/*g:ale_erlang_erlc_options*
 g:ale_erlang_syntaxerl_executable	ale-erlang.txt	/*g:ale_erlang_syntaxerl_executable*
 g:ale_eruby_ruumba_executable	ale-eruby.txt	/*g:ale_eruby_ruumba_executable*
@@ -1519,6 +1529,8 @@ g:ale_lsp_show_message_severity	ale.txt	/*g:ale_lsp_show_message_severity*
 g:ale_lua_luac_executable	ale-lua.txt	/*g:ale_lua_luac_executable*
 g:ale_lua_luacheck_executable	ale-lua.txt	/*g:ale_lua_luacheck_executable*
 g:ale_lua_luacheck_options	ale-lua.txt	/*g:ale_lua_luacheck_options*
+g:ale_lua_luafmt_executable	ale-lua.txt	/*g:ale_lua_luafmt_executable*
+g:ale_lua_luafmt_options	ale-lua.txt	/*g:ale_lua_luafmt_options*
 g:ale_markdown_markdownlint_options	ale-markdown.txt	/*g:ale_markdown_markdownlint_options*
 g:ale_markdown_mdl_executable	ale-markdown.txt	/*g:ale_markdown_mdl_executable*
 g:ale_markdown_mdl_options	ale-markdown.txt	/*g:ale_markdown_mdl_options*
@@ -1566,6 +1578,9 @@ g:ale_perl_perltidy_options	ale-perl.txt	/*g:ale_perl_perltidy_options*
 g:ale_php_cs_fixer_executable	ale-php.txt	/*g:ale_php_cs_fixer_executable*
 g:ale_php_cs_fixer_options	ale-php.txt	/*g:ale_php_cs_fixer_options*
 g:ale_php_cs_fixer_use_global	ale-php.txt	/*g:ale_php_cs_fixer_use_global*
+g:ale_php_intelephense_config	ale-php.txt	/*g:ale_php_intelephense_config*
+g:ale_php_intelephense_executable	ale-php.txt	/*g:ale_php_intelephense_executable*
+g:ale_php_intelephense_use_global	ale-php.txt	/*g:ale_php_intelephense_use_global*
 g:ale_php_langserver_executable	ale-php.txt	/*g:ale_php_langserver_executable*
 g:ale_php_langserver_use_global	ale-php.txt	/*g:ale_php_langserver_use_global*
 g:ale_php_phan_executable	ale-php.txt	/*g:ale_php_phan_executable*
@@ -1590,6 +1605,7 @@ g:ale_php_psalm_options	ale-php.txt	/*g:ale_php_psalm_options*
 g:ale_php_psalm_use_global	ale-php.txt	/*g:ale_php_psalm_use_global*
 g:ale_pony_ponyc_executable	ale-pony.txt	/*g:ale_pony_ponyc_executable*
 g:ale_pony_ponyc_options	ale-pony.txt	/*g:ale_pony_ponyc_options*
+g:ale_popup_menu_enabled	ale.txt	/*g:ale_popup_menu_enabled*
 g:ale_powershell_powershell_executable	ale-powershell.txt	/*g:ale_powershell_powershell_executable*
 g:ale_powershell_psscriptanalyzer_exclusions	ale-powershell.txt	/*g:ale_powershell_psscriptanalyzer_exclusions*
 g:ale_powershell_psscriptanalyzer_executable	ale-powershell.txt	/*g:ale_powershell_psscriptanalyzer_executable*

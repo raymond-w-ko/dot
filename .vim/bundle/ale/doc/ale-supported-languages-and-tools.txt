@@ -140,6 +140,7 @@ Notes:
   * `erubis`
   * `ruumba`
 * Erlang
+  * `elvis`!!
   * `erlc`
   * `SyntaxErl`
 * Fish
@@ -265,6 +266,7 @@ Notes:
 * Lua
   * `luac`
   * `luacheck`
+  * `luafmt`
 * Mail
   * `alex`!!
   * `languagetool`!!
@@ -324,6 +326,7 @@ Notes:
 * Perl6
   * `perl6 -c`
 * PHP
+  * `intelephense`
   * `langserver`
   * `phan`
   * `phpcbf`

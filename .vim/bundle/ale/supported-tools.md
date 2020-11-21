@@ -149,6 +149,7 @@ formatting.
   * [erubis](https://github.com/kwatch/erubis)
   * [ruumba](https://github.com/ericqweinstein/ruumba)
 * Erlang
+  * [elvis](https://github.com/inaka/elvis) :floppy_disk:
   * [erlc](http://erlang.org/doc/man/erlc.html)
   * [SyntaxErl](https://github.com/ten0s/syntaxerl)
 * Fish
@@ -274,6 +275,7 @@ formatting.
 * Lua
   * [luac](https://www.lua.org/manual/5.1/luac.html)
   * [luacheck](https://github.com/mpeterv/luacheck)
+  * [luafmt](https://github.com/trixnz/lua-fmt)
 * Mail
   * [alex](https://github.com/wooorm/alex) :floppy_disk:
   * [languagetool](https://languagetool.org/) :floppy_disk:
@@ -333,6 +335,7 @@ formatting.
 * Perl6
   * [perl6 -c](https://perl6.org) :warning:
 * PHP
+  * [intelephense](https://github.com/bmewburn/intelephense-docs)
   * [langserver](https://github.com/felixfbecker/php-language-server)
   * [phan](https://github.com/phan/phan) see `:help ale-php-phan` to instructions
   * [phpcbf](https://github.com/squizlabs/PHP_CodeSniffer)
