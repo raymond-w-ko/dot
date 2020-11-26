@@ -196,6 +196,7 @@ Notes:
   * `hie`
   * `hindent`
   * `hlint`
+  * `ormolu`
   * `stack-build`!!
   * `stack-ghc`
   * `stylish-haskell`
@@ -336,6 +337,7 @@ Notes:
   * `phpmd`
   * `phpstan`
   * `psalm`!!
+  * `tlint`
 * PO
   * `alex`!!
   * `msgfmt`
@@ -364,6 +366,7 @@ Notes:
   * `purescript-language-server`
   * `purty`
 * Python
+  * `autoimport`
   * `autopep8`
   * `bandit`
   * `black`
@@ -386,6 +389,7 @@ Notes:
   * `qmlfmt`
   * `qmllint`
 * R
+  * `languageserver`
   * `lintr`
   * `styler`
 * Racket

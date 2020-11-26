@@ -268,6 +268,7 @@ ale-haskell-hie	ale-haskell.txt	/*ale-haskell-hie*
 ale-haskell-hindent	ale-haskell.txt	/*ale-haskell-hindent*
 ale-haskell-hlint	ale-haskell.txt	/*ale-haskell-hlint*
 ale-haskell-options	ale-haskell.txt	/*ale-haskell-options*
+ale-haskell-ormolu	ale-haskell.txt	/*ale-haskell-ormolu*
 ale-haskell-stack-build	ale-haskell.txt	/*ale-haskell-stack-build*
 ale-haskell-stack-ghc	ale-haskell.txt	/*ale-haskell-stack-ghc*
 ale-haskell-stylish-haskell	ale-haskell.txt	/*ale-haskell-stylish-haskell*
@@ -410,6 +411,7 @@ ale-php-phpcs	ale-php.txt	/*ale-php-phpcs*
 ale-php-phpmd	ale-php.txt	/*ale-php-phpmd*
 ale-php-phpstan	ale-php.txt	/*ale-php-phpstan*
 ale-php-psalm	ale-php.txt	/*ale-php-psalm*
+ale-php-tlint	ale-php.txt	/*ale-php-tlint*
 ale-po-options	ale-po.txt	/*ale-po-options*
 ale-po-write-good	ale-po.txt	/*ale-po-write-good*
 ale-pod-options	ale-pod.txt	/*ale-pod-options*
@@ -434,6 +436,7 @@ ale-purescript-options	ale-purescript.txt	/*ale-purescript-options*
 ale-purescript-purty	ale-purescript.txt	/*ale-purescript-purty*
 ale-pyrex-cython	ale-pyrex.txt	/*ale-pyrex-cython*
 ale-pyrex-options	ale-pyrex.txt	/*ale-pyrex-options*
+ale-python-autoimport	ale-python.txt	/*ale-python-autoimport*
 ale-python-autopep8	ale-python.txt	/*ale-python-autopep8*
 ale-python-bandit	ale-python.txt	/*ale-python-bandit*
 ale-python-black	ale-python.txt	/*ale-python-black*
@@ -456,6 +459,7 @@ ale-python-vulture	ale-python.txt	/*ale-python-vulture*
 ale-python-yapf	ale-python.txt	/*ale-python-yapf*
 ale-qml-options	ale-qml.txt	/*ale-qml-options*
 ale-qml-qmlfmt	ale-qml.txt	/*ale-qml-qmlfmt*
+ale-r-languageserver	ale-r.txt	/*ale-r-languageserver*
 ale-r-lintr	ale-r.txt	/*ale-r-lintr*
 ale-r-options	ale-r.txt	/*ale-r-options*
 ale-r-styler	ale-r.txt	/*ale-r-styler*
@@ -775,6 +779,8 @@ b:ale_haskell_hfmt_executable	ale-haskell.txt	/*b:ale_haskell_hfmt_executable*
 b:ale_haskell_hie_executable	ale-haskell.txt	/*b:ale_haskell_hie_executable*
 b:ale_haskell_hindent_executable	ale-haskell.txt	/*b:ale_haskell_hindent_executable*
 b:ale_haskell_hlint_executable	ale-haskell.txt	/*b:ale_haskell_hlint_executable*
+b:ale_haskell_ormolu_executable	ale-haskell.txt	/*b:ale_haskell_ormolu_executable*
+b:ale_haskell_ormolu_options	ale-haskell.txt	/*b:ale_haskell_ormolu_options*
 b:ale_haskell_stack_build_options	ale-haskell.txt	/*b:ale_haskell_stack_build_options*
 b:ale_haskell_stack_ghc_options	ale-haskell.txt	/*b:ale_haskell_stack_ghc_options*
 b:ale_haskell_stylish_haskell_executable	ale-haskell.txt	/*b:ale_haskell_stylish_haskell_executable*
@@ -931,6 +937,7 @@ b:ale_php_phan_minimum_severity	ale-php.txt	/*b:ale_php_phan_minimum_severity*
 b:ale_php_phan_use_client	ale-php.txt	/*b:ale_php_phan_use_client*
 b:ale_php_php_executable	ale-php.txt	/*b:ale_php_php_executable*
 b:ale_php_phpcbf_executable	ale-php.txt	/*b:ale_php_phpcbf_executable*
+b:ale_php_phpcbf_options	ale-php.txt	/*b:ale_php_phpcbf_options*
 b:ale_php_phpcbf_standard	ale-php.txt	/*b:ale_php_phpcbf_standard*
 b:ale_php_phpcbf_use_global	ale-php.txt	/*b:ale_php_phpcbf_use_global*
 b:ale_php_phpcs_executable	ale-php.txt	/*b:ale_php_phpcs_executable*
@@ -946,6 +953,9 @@ b:ale_php_phpstan_level	ale-php.txt	/*b:ale_php_phpstan_level*
 b:ale_php_psalm_executable	ale-php.txt	/*b:ale_php_psalm_executable*
 b:ale_php_psalm_options	ale-php.txt	/*b:ale_php_psalm_options*
 b:ale_php_psalm_use_global	ale-php.txt	/*b:ale_php_psalm_use_global*
+b:ale_php_tlint_executable	ale-php.txt	/*b:ale_php_tlint_executable*
+b:ale_php_tlint_options	ale-php.txt	/*b:ale_php_tlint_options*
+b:ale_php_tlint_use_global	ale-php.txt	/*b:ale_php_tlint_use_global*
 b:ale_pony_ponyc_executable	ale-pony.txt	/*b:ale_pony_ponyc_executable*
 b:ale_pony_ponyc_options	ale-pony.txt	/*b:ale_pony_ponyc_options*
 b:ale_powershell_powershell_executable	ale-powershell.txt	/*b:ale_powershell_powershell_executable*
@@ -969,6 +979,9 @@ b:ale_purescript_purty_executable	ale-purescript.txt	/*b:ale_purescript_purty_ex
 b:ale_pyrex_cython_executable	ale-pyrex.txt	/*b:ale_pyrex_cython_executable*
 b:ale_pyrex_cython_options	ale-pyrex.txt	/*b:ale_pyrex_cython_options*
 b:ale_python_auto_pipenv	ale-python.txt	/*b:ale_python_auto_pipenv*
+b:ale_python_autoimport_executable	ale-python.txt	/*b:ale_python_autoimport_executable*
+b:ale_python_autoimport_options	ale-python.txt	/*b:ale_python_autoimport_options*
+b:ale_python_autoimport_use_global	ale-python.txt	/*b:ale_python_autoimport_use_global*
 b:ale_python_autopep8_executable	ale-python.txt	/*b:ale_python_autopep8_executable*
 b:ale_python_autopep8_options	ale-python.txt	/*b:ale_python_autopep8_options*
 b:ale_python_autopep8_use_global	ale-python.txt	/*b:ale_python_autopep8_use_global*
@@ -1040,6 +1053,8 @@ b:ale_python_vulture_use_global	ale-python.txt	/*b:ale_python_vulture_use_global
 b:ale_python_yapf_executable	ale-python.txt	/*b:ale_python_yapf_executable*
 b:ale_python_yapf_use_global	ale-python.txt	/*b:ale_python_yapf_use_global*
 b:ale_qml_qmlfmt_executable	ale-qml.txt	/*b:ale_qml_qmlfmt_executable*
+b:ale_r_languageserver_cmd	ale-r.txt	/*b:ale_r_languageserver_cmd*
+b:ale_r_languageserver_config	ale-r.txt	/*b:ale_r_languageserver_config*
 b:ale_r_lintr_lint_package	ale-r.txt	/*b:ale_r_lintr_lint_package*
 b:ale_r_lintr_options	ale-r.txt	/*b:ale_r_lintr_options*
 b:ale_r_styler_options	ale-r.txt	/*b:ale_r_styler_options*
@@ -1408,6 +1423,8 @@ g:ale_haskell_hfmt_executable	ale-haskell.txt	/*g:ale_haskell_hfmt_executable*
 g:ale_haskell_hie_executable	ale-haskell.txt	/*g:ale_haskell_hie_executable*
 g:ale_haskell_hindent_executable	ale-haskell.txt	/*g:ale_haskell_hindent_executable*
 g:ale_haskell_hlint_executable	ale-haskell.txt	/*g:ale_haskell_hlint_executable*
+g:ale_haskell_ormolu_executable	ale-haskell.txt	/*g:ale_haskell_ormolu_executable*
+g:ale_haskell_ormolu_options	ale-haskell.txt	/*g:ale_haskell_ormolu_options*
 g:ale_haskell_stack_build_options	ale-haskell.txt	/*g:ale_haskell_stack_build_options*
 g:ale_haskell_stack_ghc_options	ale-haskell.txt	/*g:ale_haskell_stack_ghc_options*
 g:ale_haskell_stylish_haskell_executable	ale-haskell.txt	/*g:ale_haskell_stylish_haskell_executable*
@@ -1588,6 +1605,7 @@ g:ale_php_phan_minimum_severity	ale-php.txt	/*g:ale_php_phan_minimum_severity*
 g:ale_php_phan_use_client	ale-php.txt	/*g:ale_php_phan_use_client*
 g:ale_php_php_executable	ale-php.txt	/*g:ale_php_php_executable*
 g:ale_php_phpcbf_executable	ale-php.txt	/*g:ale_php_phpcbf_executable*
+g:ale_php_phpcbf_options	ale-php.txt	/*g:ale_php_phpcbf_options*
 g:ale_php_phpcbf_standard	ale-php.txt	/*g:ale_php_phpcbf_standard*
 g:ale_php_phpcbf_use_global	ale-php.txt	/*g:ale_php_phpcbf_use_global*
 g:ale_php_phpcs_executable	ale-php.txt	/*g:ale_php_phpcs_executable*
@@ -1603,6 +1621,9 @@ g:ale_php_phpstan_level	ale-php.txt	/*g:ale_php_phpstan_level*
 g:ale_php_psalm_executable	ale-php.txt	/*g:ale_php_psalm_executable*
 g:ale_php_psalm_options	ale-php.txt	/*g:ale_php_psalm_options*
 g:ale_php_psalm_use_global	ale-php.txt	/*g:ale_php_psalm_use_global*
+g:ale_php_tlint_executable	ale-php.txt	/*g:ale_php_tlint_executable*
+g:ale_php_tlint_options	ale-php.txt	/*g:ale_php_tlint_options*
+g:ale_php_tlint_use_global	ale-php.txt	/*g:ale_php_tlint_use_global*
 g:ale_pony_ponyc_executable	ale-pony.txt	/*g:ale_pony_ponyc_executable*
 g:ale_pony_ponyc_options	ale-pony.txt	/*g:ale_pony_ponyc_options*
 g:ale_popup_menu_enabled	ale.txt	/*g:ale_popup_menu_enabled*
@@ -1628,6 +1649,9 @@ g:ale_purescript_purty_executable	ale-purescript.txt	/*g:ale_purescript_purty_ex
 g:ale_pyrex_cython_executable	ale-pyrex.txt	/*g:ale_pyrex_cython_executable*
 g:ale_pyrex_cython_options	ale-pyrex.txt	/*g:ale_pyrex_cython_options*
 g:ale_python_auto_pipenv	ale-python.txt	/*g:ale_python_auto_pipenv*
+g:ale_python_autoimport_executable	ale-python.txt	/*g:ale_python_autoimport_executable*
+g:ale_python_autoimport_options	ale-python.txt	/*g:ale_python_autoimport_options*
+g:ale_python_autoimport_use_global	ale-python.txt	/*g:ale_python_autoimport_use_global*
 g:ale_python_autopep8_executable	ale-python.txt	/*g:ale_python_autopep8_executable*
 g:ale_python_autopep8_options	ale-python.txt	/*g:ale_python_autopep8_options*
 g:ale_python_autopep8_use_global	ale-python.txt	/*g:ale_python_autopep8_use_global*
@@ -1699,6 +1723,8 @@ g:ale_python_vulture_use_global	ale-python.txt	/*g:ale_python_vulture_use_global
 g:ale_python_yapf_executable	ale-python.txt	/*g:ale_python_yapf_executable*
 g:ale_python_yapf_use_global	ale-python.txt	/*g:ale_python_yapf_use_global*
 g:ale_qml_qmlfmt_executable	ale-qml.txt	/*g:ale_qml_qmlfmt_executable*
+g:ale_r_languageserver_cmd	ale-r.txt	/*g:ale_r_languageserver_cmd*
+g:ale_r_languageserver_config	ale-r.txt	/*g:ale_r_languageserver_config*
 g:ale_r_lintr_lint_package	ale-r.txt	/*g:ale_r_lintr_lint_package*
 g:ale_r_lintr_options	ale-r.txt	/*g:ale_r_lintr_options*
 g:ale_r_styler_options	ale-r.txt	/*g:ale_r_styler_options*

@@ -1806,7 +1806,7 @@ g:ale_pattern_options_enabled                   *g:ale_pattern_options_enabled*
 g:ale_popup_menu_enabled                             *g:ale_popup_menu_enabled*
 
   Type: |Number|
-  Default: `has('gui')`
+  Default: `has('gui_running')`
 
   When this option is set to `1`, ALE will show code actions and rename
   capabilities in the right click mouse menu when there's a LSP server or
@@ -2693,6 +2693,7 @@ documented in additional help files.
     stack-ghc.............................|ale-haskell-stack-ghc|
     stylish-haskell.......................|ale-haskell-stylish-haskell|
     hie...................................|ale-haskell-hie|
+    ormolu................................|ale-haskell-ormolu|
   hcl.....................................|ale-hcl-options|
     terraform-fmt.........................|ale-hcl-terraform-fmt|
   html....................................|ale-html-options|
@@ -2804,6 +2805,7 @@ documented in additional help files.
     psalm.................................|ale-php-psalm|
     php-cs-fixer..........................|ale-php-php-cs-fixer|
     php...................................|ale-php-php|
+    tlint.................................|ale-php-tlint|
     intelephense..........................|ale-php-intelephense|
   po......................................|ale-po-options|
     write-good............................|ale-po-write-good|
@@ -2830,6 +2832,7 @@ documented in additional help files.
   pyrex (cython)..........................|ale-pyrex-options|
     cython................................|ale-pyrex-cython|
   python..................................|ale-python-options|
+    autoimport............................|ale-python-autoimport|
     autopep8..............................|ale-python-autopep8|
     bandit................................|ale-python-bandit|
     black.................................|ale-python-black|
@@ -2851,6 +2854,7 @@ documented in additional help files.
   qml.....................................|ale-qml-options|
     qmlfmt................................|ale-qml-qmlfmt|
   r.......................................|ale-r-options|
+    languageserver........................|ale-r-languageserver|
     lintr.................................|ale-r-lintr|
     styler................................|ale-r-styler|
   reasonml................................|ale-reasonml-options|
