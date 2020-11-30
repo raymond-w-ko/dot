@@ -587,6 +587,7 @@ ale-xml-xmllint	ale-xml.txt	/*ale-xml-xmllint*
 ale-yaml-options	ale-yaml.txt	/*ale-yaml-options*
 ale-yaml-prettier	ale-yaml.txt	/*ale-yaml-prettier*
 ale-yaml-swaglint	ale-yaml.txt	/*ale-yaml-swaglint*
+ale-yaml-yamlfix	ale-yaml.txt	/*ale-yaml-yamlfix*
 ale-yaml-yamllint	ale-yaml.txt	/*ale-yaml-yamllint*
 ale-yang-lsp	ale-yang.txt	/*ale-yang-lsp*
 ale-yang-options	ale-yang.txt	/*ale-yang-options*
@@ -1214,6 +1215,9 @@ b:ale_xml_xmllint_indentsize	ale-xml.txt	/*b:ale_xml_xmllint_indentsize*
 b:ale_xml_xmllint_options	ale-xml.txt	/*b:ale_xml_xmllint_options*
 b:ale_yaml_swaglint_executable	ale-yaml.txt	/*b:ale_yaml_swaglint_executable*
 b:ale_yaml_swaglint_use_global	ale-yaml.txt	/*b:ale_yaml_swaglint_use_global*
+b:ale_yaml_yamlfix_executable	ale-yaml.txt	/*b:ale_yaml_yamlfix_executable*
+b:ale_yaml_yamlfix_options	ale-yaml.txt	/*b:ale_yaml_yamlfix_options*
+b:ale_yaml_yamlfix_use_global	ale-yaml.txt	/*b:ale_yaml_yamlfix_use_global*
 b:ale_yaml_yamllint_executable	ale-yaml.txt	/*b:ale_yaml_yamllint_executable*
 b:ale_yaml_yamllint_options	ale-yaml.txt	/*b:ale_yaml_yamllint_options*
 b:ale_yang_lsp_executable	ale-yang.txt	/*b:ale_yang_lsp_executable*
@@ -1905,6 +1909,9 @@ g:ale_xml_xmllint_indentsize	ale-xml.txt	/*g:ale_xml_xmllint_indentsize*
 g:ale_xml_xmllint_options	ale-xml.txt	/*g:ale_xml_xmllint_options*
 g:ale_yaml_swaglint_executable	ale-yaml.txt	/*g:ale_yaml_swaglint_executable*
 g:ale_yaml_swaglint_use_global	ale-yaml.txt	/*g:ale_yaml_swaglint_use_global*
+g:ale_yaml_yamlfix_executable	ale-yaml.txt	/*g:ale_yaml_yamlfix_executable*
+g:ale_yaml_yamlfix_options	ale-yaml.txt	/*g:ale_yaml_yamlfix_options*
+g:ale_yaml_yamlfix_use_global	ale-yaml.txt	/*g:ale_yaml_yamlfix_use_global*
 g:ale_yaml_yamllint_executable	ale-yaml.txt	/*g:ale_yaml_yamllint_executable*
 g:ale_yaml_yamllint_options	ale-yaml.txt	/*g:ale_yaml_yamllint_options*
 g:ale_yang_lsp_executable	ale-yang.txt	/*g:ale_yang_lsp_executable*
