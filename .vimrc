@@ -1194,7 +1194,7 @@ endfunction
 nnoremap <leader>a :call MyAlternateFunction()<CR>
 " nnoremap <leader><leader> <C-^>
 function! <SID>BufferToggle()
-  call feedkeys(" b\<CR>", "t")
+  call feedkeys(" b\<CR>")
 endfunction
 nmap <leader><leader> :call <SID>BufferToggle()<CR>
 nnoremap <leader>o :ToggleWord<CR>
