@@ -1192,11 +1192,7 @@ function! MyAlternateFunction()
     " endif
 endfunction
 nnoremap <leader>a :call MyAlternateFunction()<CR>
-" nnoremap <leader><leader> <C-^>
-function! <SID>BufferToggle()
-  call feedkeys(" b\<CR>")
-endfunction
-nmap <leader><leader> :call <SID>BufferToggle()<CR>
+nmap <leader><leader> <C-^>
 nnoremap <leader>o :ToggleWord<CR>
 
 " This allows for change paste motion cp{motion}
