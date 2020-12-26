@@ -80,6 +80,8 @@
 EMCommandLineMap	easymotion.txt	/*EMCommandLineMap*
 EMCommandLineNoreMap	easymotion.txt	/*EMCommandLineNoreMap*
 EMCommandLineUnMap	easymotion.txt	/*EMCommandLineUnMap*
+EasyMotionPromptBegin	easymotion.txt	/*EasyMotionPromptBegin*
+EasyMotionPromptEnd	easymotion.txt	/*EasyMotionPromptEnd*
 EasyMotion_do_mapping	easymotion.txt	/*EasyMotion_do_mapping*
 EasyMotion_do_shade	easymotion.txt	/*EasyMotion_do_shade*
 EasyMotion_enter_jump_first	easymotion.txt	/*EasyMotion_enter_jump_first*
@@ -95,6 +97,7 @@ EasyMotion_space_jump_first	easymotion.txt	/*EasyMotion_space_jump_first*
 EasyMotion_use_migemo	easymotion.txt	/*EasyMotion_use_migemo*
 EasyMotion_use_upper	easymotion.txt	/*EasyMotion_use_upper*
 easymotion	easymotion.txt	/*easymotion*
+easymotion-autocommands	easymotion.txt	/*easymotion-autocommands*
 easymotion-command-line	easymotion.txt	/*easymotion-command-line*
 easymotion-configuration	easymotion.txt	/*easymotion-configuration*
 easymotion-contents	easymotion.txt	/*easymotion-contents*

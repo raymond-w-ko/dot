@@ -67,5 +67,6 @@ g:UltiSnipsJumpBackwardTrigger	UltiSnips.txt	/*g:UltiSnipsJumpBackwardTrigger*
 g:UltiSnipsJumpForwardTrigger	UltiSnips.txt	/*g:UltiSnipsJumpForwardTrigger*
 g:UltiSnipsListSnippets	UltiSnips.txt	/*g:UltiSnipsListSnippets*
 g:UltiSnipsSnippetDirectories	UltiSnips.txt	/*g:UltiSnipsSnippetDirectories*
+g:UltiSnipsSnippetStorageDirectoryForUltiSnipsEdit	UltiSnips.txt	/*g:UltiSnipsSnippetStorageDirectoryForUltiSnipsEdit*
 snippet	UltiSnips.txt	/*snippet*
 snippets	UltiSnips.txt	/*snippets*

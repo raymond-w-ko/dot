@@ -1080,6 +1080,7 @@ b:ale_ruby_ruby_executable	ale-ruby.txt	/*b:ale_ruby_ruby_executable*
 b:ale_ruby_rufo_executable	ale-ruby.txt	/*b:ale_ruby_rufo_executable*
 b:ale_ruby_ruumba_options	ale-eruby.txt	/*b:ale_ruby_ruumba_options*
 b:ale_ruby_solargraph_executable	ale-ruby.txt	/*b:ale_ruby_solargraph_executable*
+b:ale_ruby_sorbet_enable_watchman	ale-ruby.txt	/*b:ale_ruby_sorbet_enable_watchman*
 b:ale_ruby_sorbet_executable	ale-ruby.txt	/*b:ale_ruby_sorbet_executable*
 b:ale_ruby_sorbet_options	ale-ruby.txt	/*b:ale_ruby_sorbet_options*
 b:ale_ruby_standardrb_executable	ale-ruby.txt	/*b:ale_ruby_standardrb_executable*
@@ -1755,6 +1756,7 @@ g:ale_ruby_ruby_executable	ale-ruby.txt	/*g:ale_ruby_ruby_executable*
 g:ale_ruby_rufo_executable	ale-ruby.txt	/*g:ale_ruby_rufo_executable*
 g:ale_ruby_ruumba_options	ale-eruby.txt	/*g:ale_ruby_ruumba_options*
 g:ale_ruby_solargraph_executable	ale-ruby.txt	/*g:ale_ruby_solargraph_executable*
+g:ale_ruby_sorbet_enable_watchman	ale-ruby.txt	/*g:ale_ruby_sorbet_enable_watchman*
 g:ale_ruby_sorbet_executable	ale-ruby.txt	/*g:ale_ruby_sorbet_executable*
 g:ale_ruby_sorbet_options	ale-ruby.txt	/*g:ale_ruby_sorbet_options*
 g:ale_ruby_standardrb_executable	ale-ruby.txt	/*g:ale_ruby_standardrb_executable*
