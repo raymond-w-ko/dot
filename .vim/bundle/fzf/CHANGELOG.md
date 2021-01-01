@@ -23,6 +23,14 @@ CHANGELOG
   # Write "regular" if you want to clear the attributes
   fzf --color hl:176:regular,hl+:177:regular
   ```
+- Added `last` action to move the cursor to the last match
+    - The opposite action `top` is renamed to `first`, but `top` is still
+      recognized as a synonym for backward compatibility
+- Added `preview-top` and `preview-bottom` actions
+- Extended support for alt key chords: alt with any case-sensitive single character
+  ```sh
+  fzf --bind alt-,:first,alt-.:last
+  ```
 
 0.24.4
 ------
