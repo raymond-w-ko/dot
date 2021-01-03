@@ -125,6 +125,7 @@ type Terminal struct {
 	unicode      bool
 	borderShape  tui.BorderShape
 	cleanExit    bool
+	paused       bool
 	border       tui.Window
 	window       tui.Window
 	pborder      tui.Window
@@ -150,6 +151,7 @@ type Terminal struct {
 	initFunc     func()
 	prevLines    []itemLine
 	suppress     bool
+	sigstop      bool
 	startChan    chan bool
 	killChan     chan int
 	slab         *util.Slab
@@ -233,6 +235,7 @@ const (
 	actSelectAll
 	actDeselectAll
 	actToggle
+	actToggleSearch
 	actToggleAll
 	actToggleDown
 	actToggleUp
@@ -270,6 +273,8 @@ const (
 	actFirst
 	actLast
 	actReload
+	actDisableSearch
+	actEnableSearch
 )
 
 type placeholderFlags struct {
@@ -488,6 +493,7 @@ func NewTerminal(opts *Options, eventBox *util.EventBox) *Terminal {
 		unicode:     opts.Unicode,
 		borderShape: opts.BorderShape,
 		cleanExit:   opts.ClearOnExit,
+		paused:      opts.Phony,
 		strong:      strongAttr,
 		cycle:       opts.Cycle,
 		header:      header,
@@ -510,6 +516,7 @@ func NewTerminal(opts *Options, eventBox *util.EventBox) *Terminal {
 		eventBox:    eventBox,
 		mutex:       sync.Mutex{},
 		suppress:    true,
+		sigstop:     false,
 		slab:        util.MakeSlab(slab16Size, slab32Size),
 		theme:       opts.Theme,
 		startChan:   make(chan bool, 1),
@@ -563,10 +570,10 @@ func (t *Terminal) noInfoLine() bool {
 }
 
 // Input returns current query string
-func (t *Terminal) Input() []rune {
+func (t *Terminal) Input() (bool, []rune) {
 	t.mutex.Lock()
 	defer t.mutex.Unlock()
-	return copySlice(t.input)
+	return t.paused, copySlice(t.input)
 }
 
 // UpdateCount updates the count information
@@ -925,8 +932,12 @@ func (t *Terminal) printPrompt() {
 	t.prompt()
 
 	before, after := t.updatePromptOffset()
-	t.window.CPrint(tui.ColInput, string(before))
-	t.window.CPrint(tui.ColInput, string(after))
+	color := tui.ColInput
+	if t.paused {
+		color = tui.ColDisabled
+	}
+	t.window.CPrint(color, string(before))
+	t.window.CPrint(color, string(after))
 }
 
 func (t *Terminal) trimMessage(message string, maxWidth int) string {
@@ -1880,7 +1891,8 @@ func (t *Terminal) Loop() {
 				version++
 				// We don't display preview window if no match
 				if items[0] != nil {
-					command := t.replacePlaceholder(commandTemplate, false, string(t.Input()), items)
+					_, query := t.Input()
+					command := t.replacePlaceholder(commandTemplate, false, string(query), items)
 					initialOffset := 0
 					cmd := util.ExecCommand(command, true)
 					if pwindow != nil {
@@ -2063,7 +2075,7 @@ func (t *Terminal) Loop() {
 					case reqRefresh:
 						t.suppress = false
 					case reqReinit:
-						t.tui.Resume(t.fullscreen, true)
+						t.tui.Resume(t.fullscreen, t.sigstop)
 						t.redraw()
 					case reqRedraw:
 						t.redraw()
@@ -2465,9 +2477,21 @@ func (t *Terminal) Loop() {
 					t.input = trimQuery(t.history.next())
 					t.cx = len(t.input)
 				}
+			case actToggleSearch:
+				t.paused = !t.paused
+				changed = !t.paused
+				req(reqPrompt)
+			case actEnableSearch:
+				t.paused = false
+				changed = true
+				req(reqPrompt)
+			case actDisableSearch:
+				t.paused = true
+				req(reqPrompt)
 			case actSigStop:
 				p, err := os.FindProcess(os.Getpid())
 				if err == nil {
+					t.sigstop = true
 					t.tui.Clear()
 					t.tui.Pause(t.fullscreen)
 					notifyStop(p)
@@ -2608,18 +2632,16 @@ func (t *Terminal) Loop() {
 }
 
 func (t *Terminal) constrain() {
+	// count of items to display allowed by filtering
 	count := t.merger.Length()
+	// count of lines can be displayed
 	height := t.maxItems()
-	diffpos := t.cy - t.offset
 
 	t.cy = util.Constrain(t.cy, 0, count-1)
-	t.offset = util.Constrain(t.offset, t.cy-height+1, t.cy)
-	// Adjustment
-	if count-t.offset < height {
-		t.offset = util.Max(0, count-height)
-		t.cy = util.Constrain(t.offset+diffpos, 0, count-1)
-	}
-	t.offset = util.Max(0, t.offset)
+
+	minOffset := t.cy - height + 1
+	maxOffset := util.Max(util.Min(count-height, t.cy), 0)
+	t.offset = util.Constrain(t.offset, minOffset, maxOffset)
 }
 
 func (t *Terminal) vmove(o int, allowCycle bool) {
