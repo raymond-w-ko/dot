@@ -26,6 +26,7 @@ g:tagbar_help_visibility	tagbar.txt	/*g:tagbar_help_visibility*
 g:tagbar_hide_nonpublic	tagbar.txt	/*g:tagbar_hide_nonpublic*
 g:tagbar_highlight_method	tagbar.txt	/*g:tagbar_highlight_method*
 g:tagbar_iconchars	tagbar.txt	/*g:tagbar_iconchars*
+g:tagbar_ignore_anonymous	tagbar.txt	/*g:tagbar_ignore_anonymous*
 g:tagbar_indent	tagbar.txt	/*g:tagbar_indent*
 g:tagbar_jump_lazy_scroll	tagbar.txt	/*g:tagbar_jump_lazy_scroll*
 g:tagbar_jump_offset	tagbar.txt	/*g:tagbar_jump_offset*
@@ -56,7 +57,9 @@ g:tagbar_zoomwidth	tagbar.txt	/*g:tagbar_zoomwidth*
 tagbar	tagbar.txt	/*tagbar*
 tagbar#ForceUpdate()	tagbar.txt	/*tagbar#ForceUpdate()*
 tagbar#GetTagNearLine()	tagbar.txt	/*tagbar#GetTagNearLine()*
+tagbar#IsOpen()	tagbar.txt	/*tagbar#IsOpen()*
 tagbar#StopAutoUpdate()	tagbar.txt	/*tagbar#StopAutoUpdate()*
+tagbar#printfileinfo()	tagbar.txt	/*tagbar#printfileinfo()*
 tagbar-autoopen	tagbar.txt	/*tagbar-autoopen*
 tagbar-commands	tagbar.txt	/*tagbar-commands*
 tagbar-configuration	tagbar.txt	/*tagbar-configuration*

@@ -22,6 +22,7 @@
 :Project-:windo	lh-vim-lib.txt	/*:Project-:windo*
 :StopBGExecution	lh-vim-lib.txt	/*:StopBGExecution*
 :Unlet	lh-vim-lib.txt	/*:Unlet*
+IMAP	lh-vim-lib.txt	/*IMAP*
 P:	lh-vim-lib.txt	/*P:*
 [gb]:want_buffermenu_or_global_disable	lh-vim-lib.txt	/*[gb]:want_buffermenu_or_global_disable*
 __lhvl_oo_type()	lh-vim-lib.txt	/*__lhvl_oo_type()*
@@ -29,10 +30,13 @@ _to_string()	lh-vim-lib.txt	/*_to_string()*
 assertion-list	lh-vim-lib.txt	/*assertion-list*
 bdc-debug	lh-vim-lib.txt	/*bdc-debug*
 check_paths()	lh-vim-lib.txt	/*check_paths()*
+clear_mappings()	lh-vim-lib.txt	/*clear_mappings()*
 dbc-ignore	lh-vim-lib.txt	/*dbc-ignore*
 dbc-mode	lh-vim-lib.txt	/*dbc-mode*
 dbc-stacktrace	lh-vim-lib.txt	/*dbc-stacktrace*
 dbc-stop	lh-vim-lib.txt	/*dbc-stop*
+define_imap()	lh-vim-lib.txt	/*define_imap()*
+define_map()	lh-vim-lib.txt	/*define_map()*
 g:lh#option#unset	lh-vim-lib.txt	/*g:lh#option#unset*
 g:lh#project#varname	lh-vim-lib.txt	/*g:lh#project#varname*
 g:lh#project.auto_chdir	lh-vim-lib.txt	/*g:lh#project.auto_chdir*
@@ -235,6 +239,7 @@ lh#log#new()	lh-vim-lib.txt	/*lh#log#new()*
 lh#log#none()	lh-vim-lib.txt	/*lh#log#none()*
 lh#log#set_logger()	lh-vim-lib.txt	/*lh#log#set_logger()*
 lh#log#this()	lh-vim-lib.txt	/*lh#log#this()*
+lh#mapping#create_toggable_group()	lh-vim-lib.txt	/*lh#mapping#create_toggable_group()*
 lh#mapping#define()	lh-vim-lib.txt	/*lh#mapping#define()*
 lh#mapping#plug()	lh-vim-lib.txt	/*lh#mapping#plug()*
 lh#mapping#reinterpret_escaped_char()	lh-vim-lib.txt	/*lh#mapping#reinterpret_escaped_char()*
@@ -467,6 +472,7 @@ lhvl-functions	lh-vim-lib.txt	/*lhvl-functions*
 lhvl-global-logger	lh-vim-lib.txt	/*lhvl-global-logger*
 lhvl-presentation	lh-vim-lib.txt	/*lhvl-presentation*
 lhvl-project_name	lh-vim-lib.txt	/*lhvl-project_name*
+list_mappings()	lh-vim-lib.txt	/*list_mappings()*
 p:	lh-vim-lib.txt	/*p:*
 p:paths.sources	lh-vim-lib.txt	/*p:paths.sources*
 prepare()	lh-vim-lib.txt	/*prepare()*
@@ -483,6 +489,7 @@ restore_option()	lh-vim-lib.txt	/*restore_option()*
 s:PostInit()	lh-vim-lib.txt	/*s:PostInit()*
 scratch	lh-vim-lib.txt	/*scratch*
 start_completion()	lh-vim-lib.txt	/*start_completion()*
+toggle_mappings()	lh-vim-lib.txt	/*toggle_mappings()*
 v:1_	lh-vim-lib.txt	/*v:1_*
 v:2_	lh-vim-lib.txt	/*v:2_*
 w:id	lh-vim-lib.txt	/*w:id*
