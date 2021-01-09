@@ -1001,6 +1001,7 @@ b:ale_python_flake8_change_directory	ale-python.txt	/*b:ale_python_flake8_change
 b:ale_python_flake8_executable	ale-python.txt	/*b:ale_python_flake8_executable*
 b:ale_python_flake8_options	ale-python.txt	/*b:ale_python_flake8_options*
 b:ale_python_flake8_use_global	ale-python.txt	/*b:ale_python_flake8_use_global*
+b:ale_python_isort_auto_pipenv	ale-python.txt	/*b:ale_python_isort_auto_pipenv*
 b:ale_python_isort_executable	ale-python.txt	/*b:ale_python_isort_executable*
 b:ale_python_isort_options	ale-python.txt	/*b:ale_python_isort_options*
 b:ale_python_isort_use_global	ale-python.txt	/*b:ale_python_isort_use_global*
@@ -1675,6 +1676,7 @@ g:ale_python_flake8_change_directory	ale-python.txt	/*g:ale_python_flake8_change
 g:ale_python_flake8_executable	ale-python.txt	/*g:ale_python_flake8_executable*
 g:ale_python_flake8_options	ale-python.txt	/*g:ale_python_flake8_options*
 g:ale_python_flake8_use_global	ale-python.txt	/*g:ale_python_flake8_use_global*
+g:ale_python_isort_auto_pipenv	ale-python.txt	/*g:ale_python_isort_auto_pipenv*
 g:ale_python_isort_executable	ale-python.txt	/*g:ale_python_isort_executable*
 g:ale_python_isort_options	ale-python.txt	/*g:ale_python_isort_options*
 g:ale_python_isort_use_global	ale-python.txt	/*g:ale_python_isort_use_global*
