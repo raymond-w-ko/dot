@@ -4,6 +4,7 @@
 :TagbarDebugEnd	tagbar.txt	/*:TagbarDebugEnd*
 :TagbarForceUpdate	tagbar.txt	/*:TagbarForceUpdate*
 :TagbarGetTypeConfig	tagbar.txt	/*:TagbarGetTypeConfig*
+:TagbarJump	tagbar.txt	/*:TagbarJump*
 :TagbarOpen	tagbar.txt	/*:TagbarOpen*
 :TagbarOpenAutoClose	tagbar.txt	/*:TagbarOpenAutoClose*
 :TagbarSetFoldlevel	tagbar.txt	/*:TagbarSetFoldlevel*
@@ -32,6 +33,7 @@ g:tagbar_indent	tagbar.txt	/*g:tagbar_indent*
 g:tagbar_jump_lazy_scroll	tagbar.txt	/*g:tagbar_jump_lazy_scroll*
 g:tagbar_jump_offset	tagbar.txt	/*g:tagbar_jump_offset*
 g:tagbar_left	tagbar.txt	/*g:tagbar_left*
+g:tagbar_no_autocmds	tagbar.txt	/*g:tagbar_no_autocmds*
 g:tagbar_no_status_line	tagbar.txt	/*g:tagbar_no_status_line*
 g:tagbar_position	tagbar.txt	/*g:tagbar_position*
 g:tagbar_previewwin_pos	tagbar.txt	/*g:tagbar_previewwin_pos*
@@ -60,6 +62,7 @@ tagbar#ForceUpdate()	tagbar.txt	/*tagbar#ForceUpdate()*
 tagbar#GetTagNearLine()	tagbar.txt	/*tagbar#GetTagNearLine()*
 tagbar#IsOpen()	tagbar.txt	/*tagbar#IsOpen()*
 tagbar#StopAutoUpdate()	tagbar.txt	/*tagbar#StopAutoUpdate()*
+tagbar#jump()	tagbar.txt	/*tagbar#jump()*
 tagbar#printfileinfo()	tagbar.txt	/*tagbar#printfileinfo()*
 tagbar-autoopen	tagbar.txt	/*tagbar-autoopen*
 tagbar-commands	tagbar.txt	/*tagbar-commands*

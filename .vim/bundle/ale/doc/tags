@@ -288,8 +288,11 @@ ale-idris-idris	ale-idris.txt	/*ale-idris-idris*
 ale-idris-options	ale-idris.txt	/*ale-idris-options*
 ale-ink-language-server	ale-ink.txt	/*ale-ink-language-server*
 ale-ink-options	ale-ink.txt	/*ale-ink-options*
+ale-inko-inko	ale-inko.txt	/*ale-inko-inko*
+ale-inko-options	ale-inko.txt	/*ale-inko-options*
 ale-integration-glsl	ale-glsl.txt	/*ale-integration-glsl*
 ale-integration-hack	ale-hack.txt	/*ale-integration-hack*
+ale-integration-inko	ale-inko.txt	/*ale-integration-inko*
 ale-integration-kotlin	ale-kotlin.txt	/*ale-integration-kotlin*
 ale-integration-options	ale.txt	/*ale-integration-options*
 ale-integration-rust	ale-rust.txt	/*ale-integration-rust*
@@ -692,6 +695,7 @@ b:ale_dart_dartanalyzer_executable	ale-dart.txt	/*b:ale_dart_dartanalyzer_execut
 b:ale_dart_dartfmt_executable	ale-dart.txt	/*b:ale_dart_dartfmt_executable*
 b:ale_dart_dartfmt_options	ale-dart.txt	/*b:ale_dart_dartfmt_options*
 b:ale_default_navigation	ale.txt	/*b:ale_default_navigation*
+b:ale_detail_to_floating_preview	ale.txt	/*b:ale_detail_to_floating_preview*
 b:ale_disable_lsp	ale.txt	/*b:ale_disable_lsp*
 b:ale_dockerfile_dockerfile_lint_executable	ale-dockerfile.txt	/*b:ale_dockerfile_dockerfile_lint_executable*
 b:ale_dockerfile_dockerfile_lint_options	ale-dockerfile.txt	/*b:ale_dockerfile_dockerfile_lint_options*
@@ -719,6 +723,7 @@ b:ale_erlang_dialyzer_executable	ale-erlang.txt	/*b:ale_erlang_dialyzer_executab
 b:ale_erlang_dialyzer_plt_file	ale-erlang.txt	/*b:ale_erlang_dialyzer_plt_file*
 b:ale_erlang_dialyzer_rebar3_profile	ale-erlang.txt	/*b:ale_erlang_dialyzer_rebar3_profile*
 b:ale_erlang_elvis_executable	ale-erlang.txt	/*b:ale_erlang_elvis_executable*
+b:ale_erlang_erlc_executable	ale-erlang.txt	/*b:ale_erlang_erlc_executable*
 b:ale_erlang_erlc_options	ale-erlang.txt	/*b:ale_erlang_erlc_options*
 b:ale_erlang_syntaxerl_executable	ale-erlang.txt	/*b:ale_erlang_syntaxerl_executable*
 b:ale_eruby_ruumba_executable	ale-eruby.txt	/*b:ale_eruby_ruumba_executable*
@@ -788,6 +793,7 @@ b:ale_haskell_stylish_haskell_executable	ale-haskell.txt	/*b:ale_haskell_stylish
 b:ale_hdl_checker_config_file	ale-vhdl.txt	/*b:ale_hdl_checker_config_file*
 b:ale_hdl_checker_executable	ale-vhdl.txt	/*b:ale_hdl_checker_executable*
 b:ale_hdl_checker_options	ale-vhdl.txt	/*b:ale_hdl_checker_options*
+b:ale_hover_to_floating_preview	ale.txt	/*b:ale_hover_to_floating_preview*
 b:ale_hover_to_preview	ale.txt	/*b:ale_hover_to_preview*
 b:ale_html_beautify_options	ale-html.txt	/*b:ale_html_beautify_options*
 b:ale_html_htmlhint_executable	ale-html.txt	/*b:ale_html_htmlhint_executable*
@@ -800,6 +806,7 @@ b:ale_html_tidy_executable	ale-html.txt	/*b:ale_html_tidy_executable*
 b:ale_html_tidy_options	ale-html.txt	/*b:ale_html_tidy_options*
 b:ale_idris_idris_executable	ale-idris.txt	/*b:ale_idris_idris_executable*
 b:ale_idris_idris_options	ale-idris.txt	/*b:ale_idris_idris_options*
+b:ale_inko_inko_executable	ale-inko.txt	/*b:ale_inko_inko_executable*
 b:ale_ispc_ispc_executable	ale-ispc.txt	/*b:ale_ispc_ispc_executable*
 b:ale_ispc_ispc_options	ale-ispc.txt	/*b:ale_ispc_ispc_options*
 b:ale_java_checkstyle_config	ale-java.txt	/*b:ale_java_checkstyle_config*
@@ -1335,6 +1342,7 @@ g:ale_dart_dartanalyzer_executable	ale-dart.txt	/*g:ale_dart_dartanalyzer_execut
 g:ale_dart_dartfmt_executable	ale-dart.txt	/*g:ale_dart_dartfmt_executable*
 g:ale_dart_dartfmt_options	ale-dart.txt	/*g:ale_dart_dartfmt_options*
 g:ale_default_navigation	ale.txt	/*g:ale_default_navigation*
+g:ale_detail_to_floating_preview	ale.txt	/*g:ale_detail_to_floating_preview*
 g:ale_disable_lsp	ale.txt	/*g:ale_disable_lsp*
 g:ale_dockerfile_dockerfile_lint_executable	ale-dockerfile.txt	/*g:ale_dockerfile_dockerfile_lint_executable*
 g:ale_dockerfile_dockerfile_lint_options	ale-dockerfile.txt	/*g:ale_dockerfile_dockerfile_lint_options*
@@ -1368,6 +1376,7 @@ g:ale_erlang_dialyzer_executable	ale-erlang.txt	/*g:ale_erlang_dialyzer_executab
 g:ale_erlang_dialyzer_plt_file	ale-erlang.txt	/*g:ale_erlang_dialyzer_plt_file*
 g:ale_erlang_dialyzer_rebar3_profile	ale-erlang.txt	/*g:ale_erlang_dialyzer_rebar3_profile*
 g:ale_erlang_elvis_executable	ale-erlang.txt	/*g:ale_erlang_elvis_executable*
+g:ale_erlang_erlc_executable	ale-erlang.txt	/*g:ale_erlang_erlc_executable*
 g:ale_erlang_erlc_options	ale-erlang.txt	/*g:ale_erlang_erlc_options*
 g:ale_erlang_syntaxerl_executable	ale-erlang.txt	/*g:ale_erlang_syntaxerl_executable*
 g:ale_eruby_ruumba_executable	ale-eruby.txt	/*g:ale_eruby_ruumba_executable*
@@ -1376,6 +1385,7 @@ g:ale_filename_mappings	ale.txt	/*g:ale_filename_mappings*
 g:ale_fix_on_save	ale.txt	/*g:ale_fix_on_save*
 g:ale_fix_on_save_ignore	ale.txt	/*g:ale_fix_on_save_ignore*
 g:ale_fixers	ale.txt	/*g:ale_fixers*
+g:ale_floating_preview	ale.txt	/*g:ale_floating_preview*
 g:ale_fortran_gcc_executable	ale-fortran.txt	/*g:ale_fortran_gcc_executable*
 g:ale_fortran_gcc_options	ale-fortran.txt	/*g:ale_fortran_gcc_options*
 g:ale_fortran_gcc_use_free_form	ale-fortran.txt	/*g:ale_fortran_gcc_use_free_form*
@@ -1440,6 +1450,7 @@ g:ale_hdl_checker_options	ale-vhdl.txt	/*g:ale_hdl_checker_options*
 g:ale_history_enabled	ale.txt	/*g:ale_history_enabled*
 g:ale_history_log_output	ale.txt	/*g:ale_history_log_output*
 g:ale_hover_cursor	ale.txt	/*g:ale_hover_cursor*
+g:ale_hover_to_floating_preview	ale.txt	/*g:ale_hover_to_floating_preview*
 g:ale_hover_to_preview	ale.txt	/*g:ale_hover_to_preview*
 g:ale_html_beautify_options	ale-html.txt	/*g:ale_html_beautify_options*
 g:ale_html_htmlhint_executable	ale-html.txt	/*g:ale_html_htmlhint_executable*
@@ -1452,6 +1463,7 @@ g:ale_html_tidy_executable	ale-html.txt	/*g:ale_html_tidy_executable*
 g:ale_html_tidy_options	ale-html.txt	/*g:ale_html_tidy_options*
 g:ale_idris_idris_executable	ale-idris.txt	/*g:ale_idris_idris_executable*
 g:ale_idris_idris_options	ale-idris.txt	/*g:ale_idris_idris_options*
+g:ale_inko_inko_executable	ale-inko.txt	/*g:ale_inko_inko_executable*
 g:ale_ispc_ispc_executable	ale-ispc.txt	/*g:ale_ispc_ispc_executable*
 g:ale_ispc_ispc_options	ale-ispc.txt	/*g:ale_ispc_ispc_options*
 g:ale_java_checkstyle_config	ale-java.txt	/*g:ale_java_checkstyle_config*
