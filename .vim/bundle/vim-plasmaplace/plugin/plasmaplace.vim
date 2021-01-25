@@ -38,63 +38,7 @@ let s:last_eval_form = ""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " utils
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" turn in memory string to (read)-able string
-function! s:str(string) abort
-  return '"' . escape(a:string, '"\') . '"'
-endfunction
-
-" turn in memory string to python (read)-able string, newlines allowed
-function! s:pystr(string) abort
-  return '"""' . escape(a:string, '"\') . '"""'
-endfunction
-
-" quote a clojure symbol
-function! s:qsym(symbol) abort
-  if a:symbol =~# '^[[:alnum:]?*!+/=<>.:-]\+$'
-    return "'".a:symbol
-  else
-    return '(symbol '.s:str(a:symbol).')'
-  endif
-endfunction
-
-" convert path to namespace
-function! s:to_ns(path) abort
-  return tr(substitute(a:path, '\.\w\+$', '', ''), '\/_', '..-')
-endfunction
-
-" get the namespace symbol of the current buffer
-function! plasmaplace#ns() abort
-  let buffer = "%"
-  let head = getbufline(buffer, 1, 50)
-  let blank = '^\s*\%(;.*\)\=$'
-  call filter(head, 'v:val !~# blank')
-  let keyword_group = '[A-Za-z0-9_?*!+/=<>.-]'
-  let lines = join(head[0:49], ' ')
-  let lines = substitute(lines, '"\%(\\.\|[^"]\)*"\|\\.', '', 'g')
-  let lines = substitute(lines, '\^\={[^{}]*}', '', '')
-  let lines = substitute(lines, '\^:'.keyword_group.'\+', '', 'g')
-  let ns = matchstr(lines, '\C^(\s*\%(in-ns\s*''\|ns\s\+\)\zs'.keyword_group.'\+\ze')
-  if ns !=# ''
-    return ns
-  else
-    if buffer ==# "%"
-      let path = expand(buffer, ":p")
-    endif
-    throw "plasmaplace: could not deduce namespace of buffer: " . path
-  endif
-endfunction
-
 " get number of lines in a buffer
-function! plasmaplace#get_buffer_num_lines(buffer) abort
-  let numlines = py3eval('len(vim.buffers[' . a:buffer . '])')
-  return numlines
-endfunction
-
-" get channel ID number from channel object
-function! s:ch_get_id(ch) abort
-  let id = substitute(a:ch, '^channel \(\d\+\) \(open\|closed\)$', '\1', '')
-endfunction
-
 function! s:echo_warning(msg)
   echohl WarningMsg
   echo a:msg
@@ -103,79 +47,36 @@ endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-function! s:get_project_type(path) abort
-  if filereadable(a:path . "/shadow-cljs.edn")
-    return "shadow-cljs"
-  elseif filereadable(a:path . "/project.clj")
-    return "default"
-  elseif filereadable(a:path . "/deps.edn")
-    return "default"
-  endif
-  return 0
-endfunction
-
-function! s:get_project_path() abort
-  let path = expand("%:p:h")
-  let prev_path = path
-  while 1
-    let project_type = s:get_project_type(path)
-    if type(project_type) == v:t_string
-      return path
-    endif
-    let prev_path = path
-    let path = fnamemodify(path, ':h')
-    if path == prev_path
-      throw "plasmaplace: could not determine project directory"
-    endif
-  endwhile
-endfunction
-
-function! s:get_project_key() abort
-  let project_path = s:get_project_path()
-  let tokens = split(project_path, '\v\\|\/')
-  let token = filter(tokens, 'strlen(v:val) > 0')
-  let tokens = reverse(tokens)
-  return join(tokens, "_")
-endfunction
-
-function! s:set_scratch_window_options() abort
-  setlocal foldcolumn=0
-  setlocal nofoldenable
-  setlocal number
-endfunction
-
 " send Clojure form to REPL to (eval)
 function! s:create_or_get_scratch(project_key) abort
   if has_key(s:repl_scratch_buffers, a:project_key)
     return s:repl_scratch_buffers[a:project_key]
   endif
 
-  let buf_name = "SCRATCH_".a:project_key
-  execute g:plasmaplace_scratch_split_cmd . " " . buf_name
-  " setlocal filetype=clojure
-  setlocal bufhidden=
-  setlocal buflisted
-  setlocal buftype=nofile
-  setlocal noswapfile
-  setlocal ft=plasmaplace
-  call s:set_scratch_window_options()
-  let bnum = bufnr("%")
+  let buf_name = "/SCRATCH_" . a:project_key
+  let bnum = bufadd(buf_name)
+  let s:repl_scratch_buffers[a:project_key] = bnum
+  call bufload(bnum)
+  call setbufvar(bnum, "&buftype", "nofile")
+  call setbufvar(bnum, "&bufhidden", "")
+  call setbufvar(bnum, "&buflisted", 1)
+  call setbufvar(bnum, "&swapfile", 0)
+  call setbufvar(bnum, "&ft", "plasmaplace")
+  call setbufvar(bnum, "&foldcolumn", 0)
+  call setbufvar(bnum, "&foldenable", 0)
+  call setbufvar(bnum, "&number", 1)
   call setbufvar(bnum, "scrollfix_disabled", 1)
   call setbufvar(bnum, "ale_enabled", 0)
   call setbufline(bnum, 1, ";; Loading Clojure REPL...")
-  nnoremap <buffer> q :q<CR>
-  nnoremap <buffer> gq :q<CR>
-  " nnoremap <buffer> <CR> :call <SID>ShowRepl()<CR>
-  runtime! syntax/plasmaplace.vim
-  let s:repl_scratch_buffers[a:project_key] = bnum
-  wincmd p
-  redraw
+  " runtime! syntax/plasmaplace.vim
+  " wincmd p
+  " redraw
   return bnum
 endfunction
 
 function! plasmaplace#__job_callback(ch, msg) abort
   try
-    let ch_id = s:ch_get_id(a:ch)
+    let ch_id = plasmaplace#ch_get_id(a:ch)
     let project_key = s:channel_id_to_project_key[ch_id]
     call s:handle_message(project_key, a:msg)
   catch /E716/
@@ -184,7 +85,7 @@ function! plasmaplace#__job_callback(ch, msg) abort
 endfunction
 
 function! plasmaplace#__close_callback(ch) abort
-    let ch_id = s:ch_get_id(a:ch)
+    let ch_id = plasmaplace#ch_get_id(a:ch)
     let project_key = s:channel_id_to_project_key[ch_id]
     call remove(s:channel_id_to_project_key, ch_id)
     call remove(s:jobs, project_key)
@@ -203,35 +104,34 @@ function! s:handle_message(project_key, msg) abort
   elseif has_key(a:msg, "value")
     return a:msg["value"]
   elseif has_key(a:msg, "lines")
-    let skip_center = 0
-    if has_key(a:msg, "skip_center")
-      let skip_center = a:msg["skip_center"]
-    endif
+    let skip_center = 1
     call s:append_lines_to_scratch(a:project_key, a:msg["lines"], skip_center)
+  elseif has_key(a:msg, "popup")
+    let popup_width = 90
+    let x = virtcol(".")
+    let win_x = plasmaplace#get_win_pos(winnr())[0] 
+    let offset = winwidth(".") - x
+    if win_x + offset + popup_width > &columns
+      let popup_col = "cursor-" .. (popup_width + x + 7)
+    else
+      let popup_col = "cursor+" .. (offset + 2)
+    endif
+    let winid = popup_create(a:msg["popup"], #{
+      \ pos: "botleft",
+      \ line: 0,
+      \ col: popup_col,
+      \ maxwidth: popup_width,
+      \ moved: "WORD",
+      \ border: [],
+      \ borderhighlight: ["VertSplit"],
+      \ })
+    call setwinvar(winid, '&wincolor', 'CursorLine')
   endif
 endfunction
 
 function! s:append_lines_to_scratch(project_key, lines, skip_center) abort
-  " save for later
-  let ret_bufnr = bufnr('%')
-  let ret_mode = mode()
-  let ret_line = line('.')
-  let ret_col = col('.')
-
   let scratch_bufnr = s:repl_scratch_buffers[a:project_key]
-  let top_line_num = plasmaplace#get_buffer_num_lines(scratch_bufnr) + 1
   call appendbufline(scratch_bufnr, "$", a:lines)
-  if !a:skip_center
-    call plasmaplace#center_scratch_buf(scratch_bufnr, top_line_num)
-  endif
-
-  " restore mode and position
-  if ret_mode =~ '[vV]'
-    keepjumps normal! gv
-  elseif ret_mode =~ '[sS]'
-    exe "keepjumps normal! gv\<c-g>"
-  endif
-  keepjumps call cursor(ret_line, ret_col)
 endfunction
 
 function! s:create_or_get_job(project_key) abort
@@ -239,8 +139,8 @@ function! s:create_or_get_job(project_key) abort
     return s:jobs[a:project_key]
   endif
 
-  let project_path = s:get_project_path()
-  let project_type = s:get_project_type(project_path)
+  let project_path = plasmaplace#get_project_path()
+  let project_type = plasmaplace#get_project_type(project_path)
 
   let port_file_candidates = [".nrepl-port", ".shadow-cljs/nrepl.port"]
   let port_file_path = 0
@@ -257,7 +157,7 @@ function! s:create_or_get_job(project_key) abort
 
   let options = {
       \ "mode": "json",
-      \ "cwd": s:get_project_path(),
+      \ "cwd": plasmaplace#get_project_path(),
       \ "callback": "plasmaplace#__job_callback",
       \ "close_cb": "plasmaplace#__close_callback",
       \ }
@@ -276,7 +176,7 @@ function! s:create_or_get_job(project_key) abort
   let s:jobs[a:project_key] = job
   let ch = job_getchannel(job)
   let s:channels[a:project_key] = ch
-  let ch_id = s:ch_get_id(ch)
+  let ch_id = plasmaplace#ch_get_id(ch)
   let s:channel_id_to_project_key[ch_id] = a:project_key
 
   let options = {"timeout": g:plasmaplace_command_timeout_ms}
@@ -285,7 +185,7 @@ function! s:create_or_get_job(project_key) abort
 endfunction
 
 function! s:repl(cmd) abort
-  let project_key = s:get_project_key()
+  let project_key = plasmaplace#get_project_key()
   let scratch = s:create_or_get_scratch(project_key)
   let job = s:create_or_get_job(project_key)
   let ch = s:channels[project_key]
@@ -356,7 +256,7 @@ function! s:EvalMotion(type, ...) abort
     silent exe "normal! `[v`]y"
   endif
 
-  let ns = s:qsym(plasmaplace#ns())
+  let ns = plasmaplace#quote(plasmaplace#ns())
   let s:last_eval_ns = ns
   let s:last_eval_form = @@
   call s:repl(["eval", s:last_eval_ns, s:last_eval_form])
@@ -378,7 +278,7 @@ function! s:Macroexpand(type, ...) abort
     silent exe "normal! `[v`]y"
   endif
 
-  let ns = s:qsym(plasmaplace#ns())
+  let ns = plasmaplace#quote(plasmaplace#ns())
   call s:repl(["macroexpand", ns, @@])
 
   let &selection = sel_save
@@ -398,7 +298,7 @@ function! s:Macroexpand1(type, ...) abort
     silent exe "normal! `[v`]y"
   endif
 
-  let ns = s:qsym(plasmaplace#ns())
+  let ns = plasmaplace#quote(plasmaplace#ns())
   call s:repl(["macroexpand1", ns, @@])
 
   let &selection = sel_save
@@ -413,8 +313,8 @@ function! s:Require(bang, echo, ns) abort
   if expand("%") ==# "project.clj" | return | endif
   if expand("%") ==# "linter.cljc" | return | endif
 
-  let project_path = s:get_project_path()
-  if s:get_project_type(project_path) == "shadow-cljs" | return | endif
+  let project_path = plasmaplace#get_project_path()
+  if plasmaplace#get_project_type(project_path) == "shadow-cljs" | return | endif
 
   if &autowrite || &autowriteall
     silent! wall
@@ -429,7 +329,7 @@ function! s:Require(bang, echo, ns) abort
   if ns ==# ""
     let ns = plasmaplace#ns()
   endif
-  let ns = s:qsym(ns)
+  let ns = plasmaplace#quote(ns)
 
   let cmd = printf("plasmaplace.Require(%s, %s)", ns, reload_level)
   call s:repl(["require", ns, reload_level])
@@ -452,7 +352,7 @@ function! s:Doc(symbol) abort
   let symbol = substitute(symbol, '\\<', "<", "g")
   let symbol = substitute(symbol, '\\>', ">", "g")
   let ns = plasmaplace#ns()
-  let ns = s:qsym(ns)
+  let ns = plasmaplace#quote(ns)
   call s:repl(["doc", ns, symbol])
   return ''
 endfunction
@@ -477,8 +377,8 @@ function! s:RunTests(bang, count, ...) abort
   endif
   let ext = expand('%:e')
   if ext ==# "cljc"
-    let project_path = s:get_project_path()
-    if s:get_project_type(project_path) == "shadow-cljs"
+    let project_path = plasmaplace#get_project_path()
+    if plasmaplace#get_project_type(project_path) == "shadow-cljs"
       let test_ns = "cljs.test"
     else
       let test_ns = "clojure.test"
@@ -534,7 +434,7 @@ function! s:RunTests(bang, count, ...) abort
 
   let code = join(expr, ' ')
   let code = printf("(with-out-str %s)", code)
-  call s:repl(["run_tests", s:qsym("user"), code])
+  call s:repl(["run_tests", plasmaplace#quote("user"), code])
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""
@@ -542,14 +442,10 @@ endfunction
 function! s:get_current_buffer_contents_as_string() abort
   let tmp = []
   for line in getline(1, '$')
-    let line = substitute(line, '\', '\\\\', 'g')
     call add(tmp, line)
   endfor
-  let escaped_buffer_contents = join(tmp, '\n')
-
-  " Take care of escaping quotes
-  let escaped_buffer_contents = substitute(escaped_buffer_contents, '"', '\\"', 'g')
-  return '"' . escaped_buffer_contents . '"'
+  let contents = join(tmp, "\n")
+  return plasmaplace#pr_str(contents)
 endfunction
 
 function! s:replace_buffer(content) abort
@@ -576,7 +472,7 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""
 
 function! s:Reconnect() abort
-  let project_key = s:get_project_key()
+  let project_key = plasmaplace#get_project_key()
   if has_key(s:jobs, project_key)
     let job = s:jobs[project_key]
     call job_stop(job)

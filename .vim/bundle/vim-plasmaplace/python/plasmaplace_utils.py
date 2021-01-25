@@ -1,6 +1,5 @@
 import re
 import os
-from plasmaplace_exiter import exit_plasmaplace
 
 
 def bencode(value):
@@ -31,10 +30,9 @@ def read_socket(sock, n):
         data += new_data
         if len(new_data) == 0:
             if len(data) == 0:
-                exit_plasmaplace(1)
+                raise EOFError()
             return data
-        else:
-            rem -= len(new_data)
+        rem -= len(new_data)
 
 
 def bdecode(sock, char=None):
@@ -87,31 +85,3 @@ def get_shadow_primary_target(project_path):
         return None
     else:
         return m.group(1)
-
-
-class StreamBuffer:
-    def __init__(self, header):
-        self.header = header
-        self.appended_header = False
-        self.value = None
-        self.buf = []
-
-    def append(self, msg):
-        self.buf.append(msg)
-
-    def get_lines(self):
-        if len(self.buf) == 0:
-            return []
-        ret = []
-        ret.append(self.header)
-        lines = "".join(self.buf).split("\n")
-        ret += lines
-        return ret
-
-    def get_value(self):
-        if self.value:
-            return self.value
-        ret = "".join(self.buf).strip()
-
-        self.value = ret
-        return self.value
