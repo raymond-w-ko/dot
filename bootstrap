@@ -49,6 +49,10 @@ if [ $(uname) == 'Darwin' ]; then
   FIND=/usr/local/bin/gfind
 fi
 
+pwd
+git submodule init
+git submodule update
+
 pushd src
 for dotfile in $($FIND . -maxdepth 1 ! -path .) ; do
   FILENAME=$(basename $dotfile)
