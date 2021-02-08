@@ -22,12 +22,16 @@ formatting.
 ---
 
 * Ada
+  * [ada_language_server](https://github.com/AdaCore/ada_language_server)
   * [gcc](https://gcc.gnu.org)
   * [gnatpp](https://docs.adacore.com/gnat_ugn-docs/html/gnat_ugn/gnat_ugn/gnat_utility_programs.html#the-gnat-pretty-printer-gnatpp) :floppy_disk:
 * Ansible
   * [ansible-lint](https://github.com/willthames/ansible-lint)
 * API Blueprint
   * [drafter](https://github.com/apiaryio/drafter)
+* APKBUILD
+  * [apkbuild-lint](https://gitlab.alpinelinux.org/Leo/atools)
+  * [secfixes-check](https://gitlab.alpinelinux.org/Leo/atools)
 * AsciiDoc
   * [alex](https://github.com/wooorm/alex) :floppy_disk:
   * [languagetool](https://languagetool.org/) :floppy_disk:
@@ -125,11 +129,14 @@ formatting.
 * Dafny
   * [dafny](https://rise4fun.com/Dafny) :floppy_disk:
 * Dart
+  * [analysis_server](https://github.com/dart-lang/sdk/tree/master/pkg/analysis_server)
   * [dartanalyzer](https://github.com/dart-lang/sdk/tree/master/pkg/analyzer_cli) :floppy_disk:
   * [dartfmt](https://github.com/dart-lang/sdk/tree/master/utils/dartfmt)
   * [language_server](https://github.com/natebosch/dart_language_server)
 * Dhall
   * [dhall-format](https://github.com/dhall-lang/dhall-lang)
+  * [dhall-freeze](https://github.com/dhall-lang/dhall-lang)
+  * [dhall-lint](https://github.com/dhall-lang/dhall-lang)
 * Dockerfile
   * [dockerfile_lint](https://github.com/projectatomic/dockerfile_lint)
   * [hadolint](https://github.com/hadolint/hadolint)
@@ -154,6 +161,7 @@ formatting.
   * [erlc](http://erlang.org/doc/man/erlc.html)
 * Fish
   * fish [-n flag](https://linux.die.net/man/1/fish)
+  * [fish_indent](https://fishshell.com/docs/current/cmds/fish_indent.html)
 * Fortran
   * [gcc](https://gcc.gnu.org/)
   * [language_server](https://github.com/hansec/fortran-language-server)
@@ -205,6 +213,7 @@ formatting.
   * [hie](https://github.com/haskell/haskell-ide-engine)
   * [hindent](https://hackage.haskell.org/package/hindent)
   * [hlint](https://hackage.haskell.org/package/hlint)
+  * [hls](https://github.com/haskell/haskell-language-server)
   * [ormolu](https://github.com/tweag/ormolu)
   * [stack-build](https://haskellstack.org/) :floppy_disk:
   * [stack-ghc](https://haskellstack.org/)
@@ -253,6 +262,7 @@ formatting.
   * [jq](https://stedolan.github.io/jq/)
   * [jsonlint](http://zaa.ch/jsonlint/)
   * [prettier](https://github.com/prettier/prettier)
+  * [spectral](https://github.com/stoplightio/spectral)
 * Julia
   * [languageserver](https://github.com/JuliaEditorSupport/LanguageServer.jl)
 * Kotlin
@@ -311,6 +321,7 @@ formatting.
 * nix
   * [nix-instantiate](http://nixos.org/nix/manual/#sec-nix-instantiate)
   * [nixpkgs-fmt](https://github.com/nix-community/nixpkgs-fmt)
+  * [rnix-lsp](https://github.com/nix-community/rnix-lsp)
 * nroff
   * [alex](https://github.com/wooorm/alex) :floppy_disk:
   * [proselint](http://proselint.com/)
@@ -329,6 +340,10 @@ formatting.
   * [ocamlformat](https://github.com/ocaml-ppx/ocamlformat)
   * [ocp-indent](https://github.com/OCamlPro/ocp-indent)
   * [ols](https://github.com/freebroccolo/ocaml-language-server)
+* OpenApi
+  * [ibm_validator](https://github.com/IBM/openapi-validator)
+  * [prettier](https://github.com/prettier/prettier)
+  * [yamllint](https://yamllint.readthedocs.io/)
 * Pawn
   * [uncrustify](https://github.com/uncrustify/uncrustify)
 * Perl
@@ -482,7 +497,10 @@ formatting.
 * Tcl
   * [nagelfar](http://nagelfar.sourceforge.net) :floppy_disk:
 * Terraform
-  * [fmt](https://github.com/hashicorp/terraform)
+  * [terraform](https://github.com/hashicorp/terraform)
+  * [terraform-fmt-fixer](https://github.com/hashicorp/terraform)
+  * [terraform-ls](https://github.com/hashicorp/terraform-ls)
+  * [terraform-lsp](https://github.com/juliosueiras/terraform-lsp)
   * [tflint](https://github.com/wata727/tflint)
 * Texinfo
   * [alex](https://github.com/wooorm/alex) :floppy_disk:
@@ -499,6 +517,7 @@ formatting.
 * Thrift
   * [thrift](http://thrift.apache.org/)
 * TypeScript
+  * [deno](https://deno.land/)
   * [eslint](http://eslint.org/)
   * [fecs](http://fecs.baidu.com/)
   * [prettier](https://github.com/prettier/prettier)
@@ -508,6 +527,7 @@ formatting.
   * typecheck
 * VALA
   * [uncrustify](https://github.com/uncrustify/uncrustify)
+  * [vala_lint](https://github.com/vala-lang/vala-lint) :floppy_disk:
 * Verilog
   * [hdl-checker](https://pypi.org/project/hdl-checker)
   * [iverilog](https://github.com/steveicarus/iverilog)
@@ -536,6 +556,7 @@ formatting.
   * [xmllint](http://xmlsoft.org/xmllint.html)
 * YAML
   * [prettier](https://github.com/prettier/prettier)
+  * [spectral](https://github.com/stoplightio/spectral)
   * [swaglint](https://github.com/byCedric/swaglint)
   * [yamlfix](https://lyz-code.github.io/yamlfix)
   * [yamllint](https://yamllint.readthedocs.io/)
