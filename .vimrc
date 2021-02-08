@@ -1801,6 +1801,10 @@ function! s:SetupBasicSyntaxHighlights()
     syntax match rkoClojureMinorMacro /\v<:else>/ containedin=ALL
     syntax match rkoClojureMinorMacro /\v<:return>/ containedin=ALL
   endif
+  if &filetype == "javascript"
+    syntax match Keyword /\v<await>/ containedin=ALL
+    syntax match Keyword /\v<async>/ containedin=ALL
+  endif
   if has_key(s:double_slash_comment_filestypes, &filetype)
     syntax region rkoBasicComment start=/\v\/\// end=/\v$/
   endif
