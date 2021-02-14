@@ -650,6 +650,8 @@ b:ale_c_clangd_executable	ale-c.txt	/*b:ale_c_clangd_executable*
 b:ale_c_clangd_options	ale-c.txt	/*b:ale_c_clangd_options*
 b:ale_c_clangformat_executable	ale-c.txt	/*b:ale_c_clangformat_executable*
 b:ale_c_clangformat_options	ale-c.txt	/*b:ale_c_clangformat_options*
+b:ale_c_clangformat_style_option	ale-c.txt	/*b:ale_c_clangformat_style_option*
+b:ale_c_clangformat_use_local_file	ale-c.txt	/*b:ale_c_clangformat_use_local_file*
 b:ale_c_clangtidy_checks	ale-c.txt	/*b:ale_c_clangtidy_checks*
 b:ale_c_clangtidy_executable	ale-c.txt	/*b:ale_c_clangtidy_executable*
 b:ale_c_clangtidy_extra_options	ale-c.txt	/*b:ale_c_clangtidy_extra_options*
@@ -1317,6 +1319,8 @@ g:ale_c_clangd_executable	ale-c.txt	/*g:ale_c_clangd_executable*
 g:ale_c_clangd_options	ale-c.txt	/*g:ale_c_clangd_options*
 g:ale_c_clangformat_executable	ale-c.txt	/*g:ale_c_clangformat_executable*
 g:ale_c_clangformat_options	ale-c.txt	/*g:ale_c_clangformat_options*
+g:ale_c_clangformat_style_option	ale-c.txt	/*g:ale_c_clangformat_style_option*
+g:ale_c_clangformat_use_local_file	ale-c.txt	/*g:ale_c_clangformat_use_local_file*
 g:ale_c_clangtidy_checks	ale-c.txt	/*g:ale_c_clangtidy_checks*
 g:ale_c_clangtidy_executable	ale-c.txt	/*g:ale_c_clangtidy_executable*
 g:ale_c_clangtidy_extra_options	ale-c.txt	/*g:ale_c_clangtidy_extra_options*
