@@ -2522,10 +2522,11 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-fugitive
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gw :Gwrite<CR>
-nnoremap <leader>gc :Gcommit --verbose<CR>
-nnoremap <leader>gp :Gpush<CR>
+nnoremap <leader>gs :Git<CR>
+nnoremap <leader>gw :Git write<CR>
+nnoremap <leader>gc :Git commit --verbose<CR>
+nnoremap <leader>gp :Git push<CR>
+nnoremap <leader>G :Git<Space>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-peakaboo
