@@ -404,6 +404,7 @@ ale-objcpp-options	ale-objcpp.txt	/*ale-objcpp-options*
 ale-objcpp-uncrustify	ale-objcpp.txt	/*ale-objcpp-uncrustify*
 ale-ocaml-merlin	ale-ocaml.txt	/*ale-ocaml-merlin*
 ale-ocaml-ocamlformat	ale-ocaml.txt	/*ale-ocaml-ocamlformat*
+ale-ocaml-ocamllsp	ale-ocaml.txt	/*ale-ocaml-ocamllsp*
 ale-ocaml-ocp-indent	ale-ocaml.txt	/*ale-ocaml-ocp-indent*
 ale-ocaml-ols	ale-ocaml.txt	/*ale-ocaml-ols*
 ale-ocaml-options	ale-ocaml.txt	/*ale-ocaml-options*
@@ -496,6 +497,7 @@ ale-restructuredtext-write-good	ale-restructuredtext.txt	/*ale-restructuredtext-
 ale-ruby-brakeman	ale-ruby.txt	/*ale-ruby-brakeman*
 ale-ruby-debride	ale-ruby.txt	/*ale-ruby-debride*
 ale-ruby-options	ale-ruby.txt	/*ale-ruby-options*
+ale-ruby-prettier	ale-ruby.txt	/*ale-ruby-prettier*
 ale-ruby-rails_best_practices	ale-ruby.txt	/*ale-ruby-rails_best_practices*
 ale-ruby-reek	ale-ruby.txt	/*ale-ruby-reek*
 ale-ruby-rubocop	ale-ruby.txt	/*ale-ruby-rubocop*
@@ -961,6 +963,7 @@ b:ale_objcpp_clangd_executable	ale-objcpp.txt	/*b:ale_objcpp_clangd_executable*
 b:ale_objcpp_clangd_options	ale-objcpp.txt	/*b:ale_objcpp_clangd_options*
 b:ale_ocaml_ocamlformat_executable	ale-ocaml.txt	/*b:ale_ocaml_ocamlformat_executable*
 b:ale_ocaml_ocamlformat_options	ale-ocaml.txt	/*b:ale_ocaml_ocamlformat_options*
+b:ale_ocaml_ocamllsp_use_opam	ale-ocaml.txt	/*b:ale_ocaml_ocamllsp_use_opam*
 b:ale_ocaml_ocp_indent_config	ale-ocaml.txt	/*b:ale_ocaml_ocp_indent_config*
 b:ale_ocaml_ocp_indent_executable	ale-ocaml.txt	/*b:ale_ocaml_ocp_indent_executable*
 b:ale_ocaml_ocp_indent_options	ale-ocaml.txt	/*b:ale_ocaml_ocp_indent_options*
@@ -1668,6 +1671,7 @@ g:ale_objcpp_clangd_executable	ale-objcpp.txt	/*g:ale_objcpp_clangd_executable*
 g:ale_objcpp_clangd_options	ale-objcpp.txt	/*g:ale_objcpp_clangd_options*
 g:ale_ocaml_ocamlformat_executable	ale-ocaml.txt	/*g:ale_ocaml_ocamlformat_executable*
 g:ale_ocaml_ocamlformat_options	ale-ocaml.txt	/*g:ale_ocaml_ocamlformat_options*
+g:ale_ocaml_ocamllsp_use_opam	ale-ocaml.txt	/*g:ale_ocaml_ocamllsp_use_opam*
 g:ale_ocaml_ocp_indent_config	ale-ocaml.txt	/*g:ale_ocaml_ocp_indent_config*
 g:ale_ocaml_ocp_indent_executable	ale-ocaml.txt	/*g:ale_ocaml_ocp_indent_executable*
 g:ale_ocaml_ocp_indent_options	ale-ocaml.txt	/*g:ale_ocaml_ocp_indent_options*
