@@ -21,12 +21,15 @@ else
   call plug#begin('~/.vim/bundle')
 endif
 
+" if this is not set early enough, causes last row highlight in neovim
+set cmdheight=2
+
 " my plugins
 Plug 'raymond-w-ko/vim-solarized8'
 Plug 'raymond-w-ko/scrollfix'
 Plug 'raymond-w-ko/vim-eslisp'
 Plug 'raymond-w-ko/vim-lua-indent'
-if has("python") || has("python3")
+if !has("nvim") && has("python3")
   Plug 'raymond-w-ko/omegacomplete.vim'
 endif
 
@@ -92,10 +95,10 @@ Plug 'tpope/vim-apathy'
 
 " Hayabusa + friends
 Plug 'easymotion/vim-easymotion'
-Plug 'haya14busa/incsearch.vim'
-Plug 'haya14busa/incsearch-easymotion.vim'
+" Plug 'haya14busa/incsearch.vim'
+" Plug 'haya14busa/incsearch-easymotion.vim'
+Plug 'haya14busa/is.vim'
 Plug 'haya14busa/vim-asterisk'
-" Plug 'haya14busa/is.vim'
 Plug 'osyo-manga/vim-anzu'
 Plug 'kana/vim-arpeggio'
 
@@ -223,8 +226,7 @@ if exists('+relativenumber')
 endif
 " setting this to 10000 actually causes noticable exit lag
 set history=128
-" lazy redraw breaks vim-anzu
-" set lazyredraw
+set lazyredraw
 set showcmd
 set ttyfast
 set matchtime=0
@@ -232,7 +234,6 @@ set splitbelow
 set splitright
 set title
 set showtabline=2
-set cmdheight=2
 set completeopt+=menu
 set completeopt+=menuone
 set completeopt+=preview
@@ -243,8 +244,10 @@ set pumheight=16
 set winwidth=80
 set nojoinspaces
 set maxmempattern=2000000
-set maxmem=2000000
-set maxmemtot=2000000
+if !has("nvim")
+  set maxmem=2000000
+  set maxmemtot=2000000
+endif
 set nolist
 set listchars=tab:\|\ ,trail:•,extends:>,precedes:<,nbsp:+
 " Mouse & selection Behavior
@@ -256,12 +259,14 @@ set selection=inclusive
 set mousehide
 set nomousefocus
 set mouse=a
-if has("mouse_sgr")
-  set ttymouse=sgr
-else
-  set ttymouse=xterm2
-end
-set clipboard=autoselect
+if !has("nvim")
+  if has("mouse_sgr")
+    set ttymouse=sgr
+  else
+    set ttymouse=xterm2
+  end
+  set clipboard=autoselect
+endif
 set pastetoggle=<F9>
 
 " timeout is needed due to completing fj with omegacomplete
@@ -649,11 +654,13 @@ endif
 
 " }}}
 " GUI {{{
-if (has("termguicolors"))
+if exists('+termguicolors')
   set termguicolors
+  if !has("nvim")
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  endif
 endif
-" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 if !exists("g:already_set_color_scheme") && !($TERM == "linux")
     set background=dark
 
@@ -1737,6 +1744,7 @@ let s:python_style_comment_filestypes = {
     \ "make": 1,
     \ "yaml": 1,
     \ "conf": 1,
+    \ "tmux": 1,
     \ }
 let s:lisp_style_comment_filestypes = {
     \ "clojure": 1,
@@ -2424,28 +2432,28 @@ let g:asterisk#keeppos=1
 " map g* <Plug>(asterisk-gz*)
 " map g# <Plug>(asterisk-gz#)
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " incsearch.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " map /  <Plug>(incsearch-forward)\v
 " map ?  <Plug>(incsearch-backward)\v
 " map g/ <Plug>(incsearch-stay)\v
-
+" map n <Plug>(anzu-n-with-echo)
+" map N <Plug>(anzu-N-with-echo)
+" map *  <Plug>(asterisk-z*)
+" map g* <Plug>(asterisk-gz*)
+" map #  <Plug>(asterisk-z#)
+" map g# <Plug>(asterisk-gz#)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" is.vim + friends
+" is.vim improves search feature. is.vim is successor of incsearch.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map n <Plug>(anzu-n-with-echo)
-map N <Plug>(anzu-N-with-echo)
+map n <Plug>(is-nohl)<Plug>(anzu-n-with-echo)
+map N <Plug>(is-nohl)<Plug>(anzu-N-with-echo)
 
-map *  <Plug>(asterisk-z*)
-map g* <Plug>(asterisk-gz*)
-map #  <Plug>(asterisk-z#)
-map g# <Plug>(asterisk-gz#)
-
-map / <Plug>(incsearch-forward)\v
-map ? <Plug>(incsearch-backward)\v
-map g/ <Plug>(incsearch-stay)\v
+map *  <Plug>(asterisk-z*)<Plug>(is-nohl-1)
+map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)
+map #  <Plug>(asterisk-z#)<Plug>(is-nohl-1)
+map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " tagbar
