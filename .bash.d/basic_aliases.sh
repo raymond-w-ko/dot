@@ -36,9 +36,11 @@ else
     fi
 fi
 
-alias v=vim
-alias vr="vim -R"
-alias vs="vim -S"
+if hash nvim 2>/dev/null; then
+  alias v=nvim
+else
+  alias v=vim
+fi
 alias rmr="rm -r"
 alias rmri="rm -r -i"
 alias r="ranger"
