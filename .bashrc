@@ -362,7 +362,8 @@ elif [[ -f ~/src/interkonnect/interkonnect.py && $(ps auxww | grep interkonnect.
 else
   if [[ "$unameString" != 'Darwin' && `uname -o` != "Cygwin" ]]; then
     if hash gnome-keyring-daemon 2>/dev/null; then
-      export DISPLAY=:0
+      # don't force set diplay, otherwise tmux might set the wrong TERM
+      # export DISPLAY=:0
       if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
         ## if not found, launch a new one
         #eval `dbus-launch --sh-syntax`
