@@ -47,6 +47,7 @@ Include: _dark_terminal.colortemplate
   ToolbarLine        none              none
 #else " opaque
   Normal             base0             back
+  NormalFloat        green             pureblack
   CursorLine         none              pureblack
   Terminal           fg                back
   ToolbarButton      base1             base02
@@ -58,28 +59,28 @@ Include: _dark_terminal.colortemplate
   CursorLineNr       orange            none
   NonText            orange            none
   SpecialKey         orange            none              reverse
-  SpellBad           violet            base2             t=underline,reverse g=undercurl,reverse s=red
-  SpellCap           violet            base2             t=underline,reverse g=undercurl,reverse s=red
-  SpellLocal         yellow            base2             t=underline,reverse g=undercurl,reverse s=red
-  SpellRare          cyan              base2             t=underline,reverse g=undercurl,reverse s=red
+  SpellBad           violet            base2             
+  SpellCap           violet            base2             
+  SpellLocal         yellow            base2             
+  SpellRare          cyan              base2             
   Title              yellow            none
 #elseif get(g:, '@optionprefix_visibility', '') ==# 'low'
   CursorLineNr       base01            none
   NonText            base02            none
   SpecialKey         base02            none              reverse
-  SpellBad           violet            none              t=underline g=undercurl s=violet
-  SpellCap           violet            none              t=underline g=undercurl s=violet
-  SpellLocal         yellow            none              t=underline g=undercurl s=yellow
-  SpellRare          cyan              none              t=underline g=undercurl s=cyan
+  SpellBad           violet            none              
+  SpellCap           violet            none              
+  SpellLocal         yellow            none              
+  SpellRare          cyan              none              
   Title              base01            none
 #else " normal visibility
   CursorLineNr       base0             none
   NonText            base00            none
   SpecialKey         base00            base02
-  SpellBad           violet            none              t=underline g=undercurl s=violet
-  SpellCap           violet            none              t=underline g=undercurl s=violet
-  SpellLocal         yellow            none              t=underline g=undercurl s=yellow
-  SpellRare          cyan              none              t=underline g=undercurl s=cyan
+  SpellBad           violet            none              
+  SpellCap           violet            none              
+  SpellLocal         yellow            none              
+  SpellRare          cyan              none              
   Title              orange            none
 #endif
 ; }}}
