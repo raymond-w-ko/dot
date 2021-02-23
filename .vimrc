@@ -283,6 +283,10 @@ set sessionoptions-=localoptions
 set sessionoptions-=resize
 set sessionoptions-=winresize
 set sessionoptions-=winsize
+set sessionoptions-=winpos
+set sessionoptions-=help
+set sessionoptions-=globals
+set sessionoptions-=blank
 
 set viewoptions=cursor,folds,slash,unix
 
@@ -2224,17 +2228,27 @@ let g:syntastic_yaml_checkers = ["yamllint"]
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ale
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ale_sign_column_always=0
-let g:ale_set_highlights=0
-let g:ale_set_signs=1
 let g:ale_lint_on_text_changed=1
-let g:ale_lint_on_enter=0
+let g:ale_lint_on_enter=1
 let g:ale_lint_on_save=1
 let g:ale_lint_on_filetype_changed=1
-let g:ale_set_balloons=1
+
+let g:ale_sign_column_always=0
+let g:ale_set_highlights=1
+let g:ale_set_signs=1
+let g:ale_set_balloons=0
 let g:ale_echo_cursor=1
-let g:ale_cursor_detail=0
-let g:ale_virtualtext_cursor=1
+let g:ale_cursor_detail=1
+let g:ale_virtualtext_cursor=0
+let g:ale_close_preview_on_insert=1
+
+if has("nvim")
+  let g:ale_hover_to_floating_preview=1
+  let g:ale_detail_to_floating_preview=1
+  let g:ale_floating_preview=0
+else
+  let g:ale_cursor_detail=0
+endif
 
 let g:ale_linters = {
     \ "jsx": ["eslint"],
