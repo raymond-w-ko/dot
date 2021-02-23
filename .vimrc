@@ -2234,13 +2234,15 @@ let g:ale_lint_on_save=1
 let g:ale_lint_on_filetype_changed=1
 
 let g:ale_sign_column_always=0
-let g:ale_set_highlights=1
+let g:ale_set_highlights=0
 let g:ale_set_signs=1
 let g:ale_set_balloons=0
 let g:ale_echo_cursor=1
 let g:ale_cursor_detail=1
 let g:ale_virtualtext_cursor=0
 let g:ale_close_preview_on_insert=1
+let g:ale_echo_delay=256
+let g:ale_virtualtext_delay=256
 
 if has("nvim")
   let g:ale_hover_to_floating_preview=1
