@@ -63,6 +63,7 @@ if [[ $(uname -s) == CYGWIN* ]]; then
   prependpath "/usr/local/bin"
   prependpath "$HOME/bin"
   prependpath "$HOME/vim/bin"
+  prependpath "$HOME/nvim/bin"
 else
   prependpath "/opt/mono/bin"
   prependpath "/opt/aws/bin"
@@ -81,6 +82,7 @@ else
   prependpath "$HOME/.config/yarn/global/node_modules/.bin"
   prependpath "$HOME/.local/bin"
   prependpath "$HOME/vim/bin"
+  prependpath "$HOME/nvim/bin"
   prependpath "$HOME/go/bin"
   prependpath "$HOME/dot/bin"
   prependpath "$HOME/bin"
@@ -195,6 +197,9 @@ fi
 
 if [ -d "$HOME/src/vim" ]; then
     alias vimsrc="cd $HOME/src/vim"
+fi
+if [ -d "$HOME/src/neovim" ]; then
+    alias nvimsrc="cd $HOME/src/neovim"
 fi
 
 alias makeinstallvim="vimsrc && git clean -fxd && cd src && $NICE_PROG make && rm -rf ~/vim/ && make install && cd .."
