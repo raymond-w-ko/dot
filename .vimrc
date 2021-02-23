@@ -59,7 +59,6 @@ Plug 'dense-analysis/ale'
 Plug 'maximbaz/lightline-ale'
 Plug 'sjl/gundo.vim'
 Plug 'majutsushi/tagbar'
-Plug 'justinmk/vim-dirvish'
 Plug 'zhimsel/vim-stay'
 Plug 'godlygeek/tabular'
 Plug 'mattn/emmet-vim'
@@ -94,7 +93,7 @@ Plug 'tpope/vim-haystack'
 Plug 'tpope/vim-apathy'
 
 " Hayabusa + friends
-Plug 'easymotion/vim-easymotion'
+" Plug 'easymotion/vim-easymotion'
 " Plug 'haya14busa/incsearch.vim'
 " Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'haya14busa/is.vim'
@@ -106,6 +105,14 @@ Plug 'kana/vim-arpeggio'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/gv.vim'
+
+" shougo + friends (Japanese Vim)
+Plug 'roxma/nvim-yarp'
+
+" Justin M. Keyes
+Plug 'justinmk/vim-dirvish'
+Plug 'justinmk/vim-sneak'
+Plug 'justinmk/vim-gtfo'
 
 " LucHermitte
 Plug 'LucHermitte/lh-vim-lib'
@@ -2393,10 +2400,10 @@ call add(g:synesthesia_ignored_filetypes, 'xml')
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-easymotion
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
-let g:EasyMotion_do_shade = 1
-let g:EasyMotion_smartcase = 1
-let g:EasyMotion_keys = "dsaklghqwertyuiopzxcvbnmfj"
+" let g:EasyMotion_do_mapping = 0 " Disable default mappings
+" let g:EasyMotion_do_shade = 1
+" let g:EasyMotion_smartcase = 1
+" let g:EasyMotion_keys = "dsaklghqwertyuiopzxcvbnmfj"
 
 " easymotion highlight colors
 " hi link EasyMotionTarget Error
@@ -2404,8 +2411,8 @@ let g:EasyMotion_keys = "dsaklghqwertyuiopzxcvbnmfj"
 " hi EasyMotionTarget2Second ctermbg=none ctermfg=46
 " hi link EasyMotionShade Comment
 
-nmap s <Plug>(easymotion-s2)
-nmap S <Plug>(easymotion-overwin-f2)
+" nmap s <Plug>(easymotion-s2)
+" nmap S <Plug>(easymotion-overwin-f2)
 
 " map <Leader>f <Plug>(easymotion-bd-fl)
 " nmap <Leader>f <Plug>(easymotion-overwin-f)
@@ -2418,6 +2425,13 @@ nmap S <Plug>(easymotion-overwin-f2)
 " conflicts with my save
 " map <Leader>w <Plug>(easymotion-bd-w)
 " nmap <Leader>w <Plug>(easymotion-overwin-w)
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-sneak
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:sneak#label=1
+let g:sneak#s_next=1
+let g:sneak#use_ic_scs=1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " scrollfix
