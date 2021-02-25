@@ -52,8 +52,29 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " get channel ID number from channel object
 function! plasmaplace#ch_get_id(ch) abort
-  let info = ch_info(a:ch)
-  return info["id"]
+  if has("nvim")
+    return a:ch
+  else
+    let info = ch_info(a:ch)
+    return info["id"]
+  endif
+endfunction
+
+function! plasmaplace#send_cmd(ch, cmd, timeout) abort
+  if has("nvim")
+    let msg = Plasmaplace_nvim_send_cmd(a:ch, a:cmd, a:timeout)
+    if has_key(msg, "timeout")
+      throw "plasmaplace: send_cmd timed out"
+    endif
+    if has_key(msg, "dead")
+      call plasmaplace#_close_callback(a:ch)
+    endif
+    return msg
+  else
+    let options = {"timeout": a:timeout}
+    let msg = ch_evalexpr(a:ch, a:cmd, options)
+    return msg
+  endif
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

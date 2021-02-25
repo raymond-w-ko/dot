@@ -131,6 +131,8 @@ class ReplEval:
                 self.success = False
                 self.ex_happened = True
                 self.ex_stream.append(msg["ex"])
+            elif "changed-namespaces" in msg:
+                pass
             else:
                 # ignore silent due to probably an error or unhandled case
                 self.unknown_stream.append(str(msg))
@@ -207,7 +209,7 @@ def _repl_read_dispatch_loop():
             # _debug(msg)
             ReplEval.dispatch_msg(msg_id, msg)
     except:
-        sys.exit(1)
+        pass
 
 
 def start_repl_read_dispatch_loop():
