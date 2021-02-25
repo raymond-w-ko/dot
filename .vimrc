@@ -32,6 +32,9 @@ Plug 'raymond-w-ko/vim-lua-indent'
 if !has("nvim") && has("python3")
   Plug 'raymond-w-ko/omegacomplete.vim'
 endif
+if has("nvim")
+  Plug 'raymond-w-ko/vim-geckocomplete'
+endif
 
 " colorscheme
 Plug 'lifepillar/vim-colortemplate'
@@ -96,7 +99,7 @@ Plug 'tpope/vim-apathy'
 " Plug 'easymotion/vim-easymotion'
 " Plug 'haya14busa/incsearch.vim'
 " Plug 'haya14busa/incsearch-easymotion.vim'
-Plug 'haya14busa/is.vim'
+" Plug 'haya14busa/is.vim'
 Plug 'haya14busa/vim-asterisk'
 Plug 'osyo-manga/vim-anzu'
 Plug 'kana/vim-arpeggio'
@@ -108,6 +111,7 @@ Plug 'junegunn/gv.vim'
 
 " shougo + friends (Japanese Vim)
 Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
 
 " Justin M. Keyes
 Plug 'justinmk/vim-dirvish'
@@ -210,7 +214,7 @@ endif
 set fileformats=unix,dos
 set autowrite
 set autowriteall
-set updatetime=250
+set updatetime=500
 set shortmess+=aIc    " no intro message, no ins-completion-menu
 set report=0 " report back when greater than N lines changed
 set showmode
@@ -1583,7 +1587,9 @@ endfunction
 " <CR> should not autoaccept what the popup menu has selected
 if !exists('g:has_set_my_omegacomplete_tab_binding')
     if g:omegacomplete_version_preference == 1
+      if !has("nvim")
         inoremap <silent><expr> <Tab> omegacomplete#use_first_entry_of_popup()
+      endif
     elseif g:omegacomplete_version_preference == 2
         inoremap <silent><expr> <Tab> omegacomplete2#use_first_entry_of_popup()
     endif
@@ -1710,7 +1716,7 @@ map <leader>u :call HandleURI()<CR>
 " ----------------------------------------------------------------------------
 function! s:SetupHelpTab()
   if &buftype == 'help'
-    silent wincmd T
+    " silent wincmd T
     nnoremap <buffer> q :q<cr>
   endif
 endfunction
@@ -2235,8 +2241,9 @@ let g:syntastic_yaml_checkers = ["yamllint"]
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ale
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ale_lint_on_text_changed=1
-let g:ale_lint_on_enter=1
+let g:ale_lint_on_text_changed="normal"
+let g:ale_lint_on_insert_leave=1
+let g:ale_lint_on_enter=0
 let g:ale_lint_on_save=1
 let g:ale_lint_on_filetype_changed=1
 
@@ -2244,18 +2251,19 @@ let g:ale_sign_column_always=0
 let g:ale_set_highlights=0
 let g:ale_set_signs=1
 let g:ale_set_balloons=0
-let g:ale_echo_cursor=1
-let g:ale_cursor_detail=1
 let g:ale_virtualtext_cursor=0
 let g:ale_close_preview_on_insert=1
-let g:ale_echo_delay=256
-let g:ale_virtualtext_delay=256
+let g:ale_echo_delay=500
+let g:ale_virtualtext_delay=10
 
 if has("nvim")
   let g:ale_hover_to_floating_preview=1
   let g:ale_detail_to_floating_preview=1
+  let g:ale_echo_cursor=0
   let g:ale_floating_preview=0
+  let g:ale_cursor_detail=1
 else
+  let g:ale_echo_cursor=1
   let g:ale_cursor_detail=0
 endif
 
@@ -2264,9 +2272,8 @@ let g:ale_linters = {
     \ "c": [],
     \ "cpp": [],
     \ "clojure": ["joker"],
+    \ "python": ["pylint"],
     \ }
-let g:ale_python_flake8_executable = 'python3'
-let g:ale_python_flake8_options = '-m flake8'
 
 " ale_linters/sql/sqllint.vim
 " Author: Joe Reynolds <joereynolds952@gmail.co>
@@ -2477,13 +2484,23 @@ let g:asterisk#keeppos=1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " is.vim improves search feature. is.vim is successor of incsearch.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map n <Plug>(is-nohl)<Plug>(anzu-n-with-echo)
-map N <Plug>(is-nohl)<Plug>(anzu-N-with-echo)
+" with is.vim enabled
+" map n <Plug>(is-nohl)<Plug>(anzu-n-with-echo)
+" map N <Plug>(is-nohl)<Plug>(anzu-N-with-echo)
+" map *  <Plug>(asterisk-z*)<Plug>(is-nohl-1)
+" map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)
+" map #  <Plug>(asterisk-z#)<Plug>(is-nohl-1)
+" map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
 
-map *  <Plug>(asterisk-z*)<Plug>(is-nohl-1)
-map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)
-map #  <Plug>(asterisk-z#)<Plug>(is-nohl-1)
-map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
+" WARN: WITHOUT is.vim enabled
+map n <Plug>(anzu-n-with-echo)
+map N <Plug>(anzu-N-with-echo)
+map *  <Plug>(asterisk-z*)
+map g* <Plug>(asterisk-gz*)
+map #  <Plug>(asterisk-z#)
+map g# <Plug>(asterisk-gz#)
+map / /\v
+map ? ?\v
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " tagbar
