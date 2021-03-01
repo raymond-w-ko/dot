@@ -1585,15 +1585,13 @@ function! MySuperRightParen()
 endfunction
 
 " <CR> should not autoaccept what the popup menu has selected
-if !exists('g:has_set_my_omegacomplete_tab_binding')
-    if g:omegacomplete_version_preference == 1
-      if !has("nvim")
-        inoremap <silent><expr> <Tab> omegacomplete#use_first_entry_of_popup()
-      endif
-    elseif g:omegacomplete_version_preference == 2
-        inoremap <silent><expr> <Tab> omegacomplete2#use_first_entry_of_popup()
-    endif
-    let g:has_set_my_omegacomplete_tab_binding=1
+if !exists('s:has_set_my_tab_key')
+  if has("nvim")
+    inoremap <silent><expr> <Tab> geckocomplete#completion_key()
+  else
+    inoremap <silent><expr> <Tab> omegacomplete#use_first_entry_of_popup()
+  endif
+  let s:has_set_my_tab_key=1
 endif
 "inoremap <silent>   (       (<C-r>=MySuperLeftParen()<CR>
 "inoremap <silent>   )       )<C-r>=MySuperRightParen()<CR>
@@ -2259,7 +2257,7 @@ let g:ale_virtualtext_delay=10
 if has("nvim")
   let g:ale_hover_to_floating_preview=1
   let g:ale_detail_to_floating_preview=1
-  let g:ale_echo_cursor=0
+  let g:ale_echo_cursor=1
   let g:ale_floating_preview=0
   let g:ale_cursor_detail=1
 else
@@ -2272,7 +2270,7 @@ let g:ale_linters = {
     \ "c": [],
     \ "cpp": [],
     \ "clojure": ["joker"],
-    \ "python": ["pylint"],
+    \ "python": ["pycodestyle", "pylint"],
     \ }
 
 " ale_linters/sql/sqllint.vim
