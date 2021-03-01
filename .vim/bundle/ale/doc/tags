@@ -225,6 +225,7 @@ ale-elm-options	ale-elm.txt	/*ale-elm-options*
 ale-erlang-dialyzer	ale-erlang.txt	/*ale-erlang-dialyzer*
 ale-erlang-elvis	ale-erlang.txt	/*ale-erlang-elvis*
 ale-erlang-erlc	ale-erlang.txt	/*ale-erlang-erlc*
+ale-erlang-erlfmt	ale-erlang.txt	/*ale-erlang-erlfmt*
 ale-erlang-options	ale-erlang.txt	/*ale-erlang-options*
 ale-erlang-syntaxerl	ale-erlang.txt	/*ale-erlang-syntaxerl*
 ale-eruby-options	ale-eruby.txt	/*ale-eruby-options*
@@ -769,6 +770,8 @@ b:ale_erlang_dialyzer_rebar3_profile	ale-erlang.txt	/*b:ale_erlang_dialyzer_reba
 b:ale_erlang_elvis_executable	ale-erlang.txt	/*b:ale_erlang_elvis_executable*
 b:ale_erlang_erlc_executable	ale-erlang.txt	/*b:ale_erlang_erlc_executable*
 b:ale_erlang_erlc_options	ale-erlang.txt	/*b:ale_erlang_erlc_options*
+b:ale_erlang_erlfmt_executable	ale-erlang.txt	/*b:ale_erlang_erlfmt_executable*
+b:ale_erlang_erlfmt_options	ale-erlang.txt	/*b:ale_erlang_erlfmt_options*
 b:ale_erlang_syntaxerl_executable	ale-erlang.txt	/*b:ale_erlang_syntaxerl_executable*
 b:ale_eruby_ruumba_executable	ale-eruby.txt	/*b:ale_eruby_ruumba_executable*
 b:ale_exclude_highlights	ale.txt	/*b:ale_exclude_highlights*
@@ -1457,6 +1460,8 @@ g:ale_erlang_dialyzer_rebar3_profile	ale-erlang.txt	/*g:ale_erlang_dialyzer_reba
 g:ale_erlang_elvis_executable	ale-erlang.txt	/*g:ale_erlang_elvis_executable*
 g:ale_erlang_erlc_executable	ale-erlang.txt	/*g:ale_erlang_erlc_executable*
 g:ale_erlang_erlc_options	ale-erlang.txt	/*g:ale_erlang_erlc_options*
+g:ale_erlang_erlfmt_executable	ale-erlang.txt	/*g:ale_erlang_erlfmt_executable*
+g:ale_erlang_erlfmt_options	ale-erlang.txt	/*g:ale_erlang_erlfmt_options*
 g:ale_erlang_syntaxerl_executable	ale-erlang.txt	/*g:ale_erlang_syntaxerl_executable*
 g:ale_eruby_ruumba_executable	ale-eruby.txt	/*g:ale_eruby_ruumba_executable*
 g:ale_exclude_highlights	ale.txt	/*g:ale_exclude_highlights*
