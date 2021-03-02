@@ -226,7 +226,7 @@ if exists('+belloff')
 endif
 set ruler
 set number
-if has("patch-8.1.1564")
+if has("nvim") || has("patch-8.1.1564")
   " Recently vim can merge signcolumn and number column into one
   set signcolumn=number
 else
@@ -243,7 +243,7 @@ set ttyfast
 set matchtime=0
 set splitbelow
 set splitright
-set title
+set notitle
 set showtabline=2
 set completeopt+=menu
 set completeopt+=menuone
@@ -1895,6 +1895,8 @@ function! s:SetupBasicSyntaxHighlights()
   elseif &filetype == "css"
     runtime syntax/css.vim
     runtime after/syntax/css.vim
+  elseif &filetype == "java"
+    runtime syntax/java.vim
   endif
 endfunction
 
@@ -2169,7 +2171,7 @@ let g:clojure_maxlines = 512
 let g:clojure_align_multiline_strings = 0
 
 let g:clojure_fuzzy_indent = 1
-let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^go-loop$', '^comment$', 'fdef$']
+let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^go-loop$', '^comment$', 'fdef$', '^profile$', '^p$']
 let g:clojure_fuzzy_indent_blacklist = ['-fn$', '\v^with-%(meta|out-str|loading-context)$', '^cond-xlet$']
 let g:clojure_special_indent_words = 'deftype,defrecord,reify,proxy,extend-type,extend-protocol,letfn,comment'
 
@@ -2437,6 +2439,10 @@ call add(g:synesthesia_ignored_filetypes, 'xml')
 let g:sneak#label=1
 let g:sneak#s_next=1
 let g:sneak#use_ic_scs=1
+highlight Sneak guifg=magenta guibg=black ctermfg=black ctermbg=red
+highlight SneakScope guifg=magenta guibg=black ctermfg=black ctermbg=red
+highlight SneakLabel guifg=magenta guibg=black ctermfg=black ctermbg=red
+highlight SneakLabelMask guifg=black guibg=black ctermfg=black ctermbg=black
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " scrollfix
