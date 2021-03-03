@@ -1,16 +1,20 @@
 let g:geckocomplete_quick_select_keys =
     \ get(g:, "geckocomplete_quick_select_keys", "1234567890")
-    
+
+let g:geckocomplete_completion_delay =
+    \ get(g:, "geckocomplete_completion_delay", 350)
+
 augroup geckocomplete
-  autocmd CursorMovedI * call geckocomplete#completion_timer_start()
-  autocmd InsertEnter *  call geckocomplete#completion_timer_start()
+  " autocmd CursorMovedI * call geckocomplete#completion_timer_start(0)
+  " autocmd InsertEnter *  call geckocomplete#completion_timer_start(0)
+  autocmd TextChangedI * call geckocomplete#completion_timer_start(0)
+  " autocmd TextChangedP *  call geckocomplete#completion_timer_start(1)
+
   autocmd BufDelete * call geckocomplete#delete_current_buffer()
-  " autocmd TextChangedI * call geckocomplete#completion_timer_start()
-  " autocmd TextChangedP *  call geckocomplete#completion_timer_start()
 augroup END
 
-noremap  <silent> <Plug>geckocomplete_trigger <nop>
-inoremap <silent> <Plug>geckocomplete_trigger <c-x><c-u><c-p>
+noremap  <silent> <plug>geckocomplete_trigger <nop>
+inoremap <silent> <plug>geckocomplete_trigger <c-x><c-u>
 
 let n = strlen(g:geckocomplete_quick_select_keys) - 1
 for i in range(0, n, 1)
@@ -27,3 +31,5 @@ hi Pmenu
 hi PmenuSel 
     \ guifg=#003300 guibg=#00ff00 gui=none 
     \ ctermbg=46 ctermfg=22 term=none cterm=none
+
+call geckocomplete#init()

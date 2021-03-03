@@ -12,6 +12,7 @@ from geckocomplete.utils import (
 DIR = os.path.dirname(os.path.realpath(__file__))
 SOCKET_FILE = os.path.join(DIR, "../../../server/geckocomplete/geckocomplete.sock")
 SOCKET_FILE = os.path.normpath(SOCKET_FILE)
+IGNORED_FILE_TYPES = {"fzf" "startify"}
 
 
 class Geckocomplete:
@@ -27,9 +28,16 @@ class Geckocomplete:
         except socket.error as msg:
             log(str(msg))
 
+    def to_server_int(self, n):
+        bites = n.to_bytes(4, byteorder="big")
+        self.socket.sendall(bites)
+
     def to_server(self, cmd):
         s = json.dumps(cmd)
-        self.socket.sendall(s.encode("utf-8"))
+        bites = s.encode("utf-8")
+        n = len(bites)
+        self.to_server_int(n)
+        self.socket.sendall(bites)
 
     def to_server_raw(self, bites):
         self.socket.sendall(bites)
@@ -69,6 +77,17 @@ class Geckocomplete:
     def merge_current_buffer(self, event):
         buf = self.vim.current.buffer
         path = self.get_buf_path(buf)
+
+        buflisted = buf.options["buflisted"]
+        if not buflisted:
+            return
+        bufhidden = buf.options["bufhidden"]
+        if bufhidden.strip():
+            return
+        filetype = buf.options["filetype"]
+        if filetype in IGNORED_FILE_TYPES:
+            return
+
         iskeyword = self.vim.eval("&iskeyword")
         ords = iskeyword_to_ords_json(iskeyword)
 
@@ -79,22 +98,28 @@ class Geckocomplete:
             "event": event,
         }
 
-        # log("merge-buffer", str(buffer_snapshot))
+        log("merge-buffer", str(buffer_snapshot))
         modified = self.is_buffer_modified(buf)
-        read_from_file = os.path.exists(path) and not modified
+        read_from_file = (
+            os.path.exists(path) and not os.path.isdir(path) and not modified
+        )
         if read_from_file:
             buffer_snapshot["num-chars"] = -1
             buffer_snapshot["num-bytes"] = -1
             buffer_snapshot["t"] = -1
+            buffer_snapshot["read-from-disk"] = True
             self.to_server(["merge-buffer", buffer_snapshot])
         else:
             text = self.nvim_copy_buffer(buf)
             bites = text.encode("utf-8")
+            n_bites = len(bites)
             buffer_snapshot["num-chars"] = len(text)
-            buffer_snapshot["num-bytes"] = len(bites)
+            buffer_snapshot["num-bytes"] = n_bites
             buffer_snapshot["t"] = time.time()
+            buffer_snapshot["read-from-disk"] = False
             self.to_server(["merge-buffer", buffer_snapshot])
-            self.to_server_raw(bites)
+            if n_bites > 0:
+                self.to_server_raw(bites)
 
     def delete_buffer(self, bufnum):
         # log("delete-buffer", bufnum)
@@ -113,7 +138,7 @@ class Geckocomplete:
 
         # we may be at first column, or not even after a word
         if i < 0 or not is_word_char(ords, line_prefix[i]):
-            return [-2, []]
+            return [-1, []]
 
         while i >= 0:
             ch = line_prefix[i]
@@ -126,7 +151,7 @@ class Geckocomplete:
         buf = self.vim.current.buffer
         complete_request = [buf.number, row, findstart, word]
         if self.last_complete_request == complete_request:
-            return [-2, []]
+            return [-1, []]
         self.last_complete_request = complete_request
 
         log("completion:%d:%s:" % (findstart, word))
