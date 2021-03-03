@@ -7,6 +7,7 @@ endfunction
 
 function geckocomplete#completefunc(findstart, base) abort
   if a:findstart
+    " do below to avoid immediate recompletion after BS, only after a delay
     if !s:pmenu_first_time && g:geckocomplete_completion_delay > 0
       echom "abort"
       call geckocomplete#completion_timer_start(0)
@@ -14,6 +15,7 @@ function geckocomplete#completefunc(findstart, base) abort
     else
       let s:pmenu_first_time = 0
     endif
+
     let x = Geckocomplete_get_completions()
     let [findstart, completions] = x
     let s:completions = completions
