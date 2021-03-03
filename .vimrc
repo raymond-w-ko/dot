@@ -2199,7 +2199,7 @@ let g:niji_dark_colours = [
     \ ['135', 'purple1']]
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" omegacomplete
+" omegacomplete / geckocomplete
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:omegacomplete_normal_hi_cmds=[
     \ "hi Pmenu guifg=#00ff00 guibg=#002b36 gui=none ctermbg=0 ctermfg=46 term=none cterm=none",
@@ -2210,7 +2210,11 @@ let g:omegacomplete_corrections_hi_cmds=[
     \ "hi Pmenu guifg=#ffff00 guibg=#002b36 gui=none ctermbg=0 ctermfg=226 term=none cterm=none",
     \ "hi PmenuSel guifg=#002b36 guibg=#ffff00 gui=none ctermbg=226 ctermfg=0 term=none cterm=none",
     \ ]
-inoremap <expr> <C-s> omegacomplete#toggle_pause_completion()
+if has("nvim")
+  inoremap <expr> <C-s> geckocomplete#toggle_pause_completion()
+else
+  inoremap <expr> <C-s> omegacomplete#toggle_pause_completion()
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " syntastic
@@ -2609,6 +2613,7 @@ let g:rainbow_conf = {
 \   '*': {},
 \   'javascript.jsx': {},
 \   'plasmaplace': 0,
+\    'fzf': 0,
 \   'markdown': {
 \     'parentheses_options': 'containedin=markdownCode contained',
 \   },
