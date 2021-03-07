@@ -9,6 +9,7 @@ find . \( -type f -or -type l \) \
   ! -name '*.pyc' \
   ! -name '*.sock' \
   ! -name '*.so' \
+  ! -name '.nrepl-port' \
   ! -name '*.o' \
   ! -name '*.dll' \
   ! -name '*.exe' \
