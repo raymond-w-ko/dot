@@ -277,6 +277,7 @@ lh#option#getbufvar()	lh-vim-lib.txt	/*lh#option#getbufvar()*
 lh#option#is_set()	lh-vim-lib.txt	/*lh#option#is_set()*
 lh#option#is_unset()	lh-vim-lib.txt	/*lh#option#is_unset()*
 lh#option#unset()	lh-vim-lib.txt	/*lh#option#unset()*
+lh#option#update()	lh-vim-lib.txt	/*lh#option#update()*
 lh#os#OnDOSWindows	lh-vim-lib.txt	/*lh#os#OnDOSWindows*
 lh#os#chomp()	lh-vim-lib.txt	/*lh#os#chomp()*
 lh#os#cpu_cores_number()	lh-vim-lib.txt	/*lh#os#cpu_cores_number()*
