@@ -2683,6 +2683,11 @@ function! MyScssFormatter()
   execute "%!prettier --parser scss"
   call winrestview(view)
 endfunction
+function! MyCssFormatter()
+  let view = winsaveview()
+  execute "%!prettier --parser css"
+  call winrestview(view)
+endfunction
 function! MyPythonFormatter()
   let view = winsaveview()
   execute "%!black -q -"
@@ -2733,6 +2738,7 @@ augroup MyVimrc
   autocmd FileType javascript nnoremap <buffer> <Leader>f :call MyJavascriptFormatter()<CR>
   autocmd FileType javascript.jsx nnoremap <buffer> <Leader>f :call MyJavascriptFormatter()<CR>
   autocmd FileType scss nnoremap <buffer> <Leader>f :call MyScssFormatter()<CR>
+  autocmd FileType css nnoremap <buffer> <Leader>f :call MyCssFormatter()<CR>
   autocmd FileType python nnoremap <buffer> <Leader>f :call MyPythonFormatter()<CR>
   autocmd FileType html nnoremap <buffer> <Leader>f :call MyHtmlFormatter()<CR>
   autocmd FileType go nnoremap <buffer> <Leader>f :call MyGoFormatter()<CR>
