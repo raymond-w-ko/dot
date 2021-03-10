@@ -75,7 +75,11 @@ else
   prependpath "/usr/bin"
   prependpath "/usr/local/bin"
   prependpath "/opt/local/bin"
-  prependpath "/usr/lib/ccache/bin"
+  if [[ -d  "/usr/lib/ccache/bin" ]]; then
+    prependpath "/usr/lib/ccache/bin" 
+  else
+    prependpath "/usr/lib/ccache" 
+  fi
   prependpath "/usr/local/opt/node@8/bin"
   prependpath "/opt/tastyworks"
   prependpath "$HOME/npm-global/bin"
