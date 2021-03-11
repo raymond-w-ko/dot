@@ -2444,7 +2444,7 @@ let g:sneak#label=1
 let g:sneak#s_next=1
 let g:sneak#use_ic_scs=1
 highlight Sneak guifg=magenta guibg=black ctermfg=black ctermbg=red
-highlight SneakScope guifg=magenta guibg=black ctermfg=black ctermbg=red
+highlight SneakScope guifg=black guibg=#00ff00 ctermfg=black ctermbg=green
 highlight SneakLabel guifg=magenta guibg=black ctermfg=black ctermbg=red
 highlight SneakLabelMask guifg=black guibg=black ctermfg=black ctermbg=black
 
