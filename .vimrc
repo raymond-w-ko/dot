@@ -2260,6 +2260,8 @@ let g:ale_close_preview_on_insert=1
 let g:ale_echo_delay=500
 let g:ale_virtualtext_delay=10
 
+let g:ale_floating_window_border=['│', '─', '╭', '╮', '╯', '╰']
+
 if has("nvim")
   let g:ale_hover_to_floating_preview=1
   let g:ale_detail_to_floating_preview=1
