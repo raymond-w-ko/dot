@@ -114,10 +114,17 @@ idleionice() {
   ionice -c3 -p $@
 }
 
-export SVN_EDITOR=vim
-export GIT_EDITOR=vim
-export HGEDITOR=vim
-export EDITOR=vim
+if hash nvim 2>/dev/null; then
+  export SVN_EDITOR=nvim
+  export GIT_EDITOR=nvim
+  export HGEDITOR=nvim
+  export EDITOR=nvim
+else
+  export SVN_EDITOR=vim
+  export GIT_EDITOR=vim
+  export HGEDITOR=vim
+  export EDITOR=vim
+fi
 
 if hash colordiff 2>/dev/null; then
   DIFF_PROG=colordiff
