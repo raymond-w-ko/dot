@@ -214,8 +214,8 @@ endif
 set fileformats=unix,dos
 set autowrite
 set autowriteall
-set updatetime=500
-set shortmess+=aIc    " no intro message, no ins-completion-menu
+set updatetime=1000
+set shortmess+=aIcF
 set report=0 " report back when greater than N lines changed
 set showmode
 set hidden
@@ -1911,9 +1911,9 @@ augroup MyVimrc
   "au WinLeave * setlocal nocursorcolumn
 
   " check when cursor stops moving
-  au CursorHold,CursorHoldI * :silent! checktime
+  " au CursorHold,CursorHoldI * :silent! checktime
   " hack for console VIM so that check for changed files work correctly
-  au FocusGained,BufEnter * :silent! checktime
+  " au FocusGained,BufEnter * :silent! checktime
 
   " hardcore autochdir
   " autocmd BufEnter * silent! lcd %:p:h
@@ -2247,7 +2247,7 @@ let g:syntastic_yaml_checkers = ["yamllint"]
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ale_lint_on_text_changed="normal"
 let g:ale_lint_on_insert_leave=1
-let g:ale_lint_on_enter=0
+let g:ale_lint_on_enter=1
 let g:ale_lint_on_save=1
 let g:ale_lint_on_filetype_changed=1
 
@@ -2255,9 +2255,10 @@ let g:ale_sign_column_always=0
 let g:ale_set_highlights=0
 let g:ale_set_signs=1
 let g:ale_set_balloons=0
-let g:ale_virtualtext_cursor=0
 let g:ale_close_preview_on_insert=1
 let g:ale_echo_delay=500
+
+let g:ale_virtualtext_cursor=0
 let g:ale_virtualtext_delay=10
 
 let g:ale_floating_window_border=['│', '─', '╭', '╮', '╯', '╰']
@@ -2266,7 +2267,7 @@ if has("nvim")
   let g:ale_hover_to_floating_preview=1
   let g:ale_detail_to_floating_preview=1
   let g:ale_echo_cursor=1
-  let g:ale_floating_preview=0
+  let g:ale_floating_preview=1
   let g:ale_cursor_detail=1
 else
   let g:ale_echo_cursor=1
