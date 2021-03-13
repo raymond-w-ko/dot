@@ -1,3 +1,14 @@
+# general
+.cpcache/
+*.pyc
+*.sock
+*.so
+.nrepl-port
+*.o
+*.dll
+*.exe
+*.class
+
 # emacs
 .#.*
 # Visual Studio
@@ -42,6 +53,3 @@
 /.vim/bundle/omegacomplete.vim/python/omegacomplete/core/all.cpp
 /.vim/bundle/omegacomplete.vim/python/omegacomplete/omegacomplete/*.dll
 /.vim/bundle/omegacomplete.vim/python/omegacomplete/omegacomplete/*.pyd
-
-# Java
-*.class
