@@ -39,7 +39,7 @@ function s:trigger_pmenu() abort
     let b:geckocomplete_buffer_setup = 1
   endif
   let s:pmenu_first_time = 1
-  call feedkeys("\<Plug>geckocomplete_trigger", "i")
+  call feedkeys("\<Plug>(geckocomplete)", "i")
 endfunction
 
 " no neovim support
