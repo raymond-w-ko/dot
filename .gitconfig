@@ -7,8 +7,6 @@
 [user]
 	name = Raymond W. Ko
 	email = raymond.w.ko@gmail.com
-[push]
-	default = current
 [log]
 [diff]
 	renameLimit = 4096
