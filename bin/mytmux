@@ -5,33 +5,14 @@ tmux new-session -d $_TMUX_SHELL # 1
 tmux split-window -h $_TMUX_SHELL
 
 tmux new-window $_TMUX_SHELL # 2
-tmux split-window -h $_TMUX_SHELL
-tmux split-window -h $_TMUX_SHELL
-tmux split-window -h $_TMUX_SHELL
-tmux select-layout even-horizontal
 tmux new-window $_TMUX_SHELL # 3
 tmux new-window $_TMUX_SHELL # 4
 tmux new-window $_TMUX_SHELL # 5
-
 tmux new-window $_TMUX_SHELL # 6
-tmux split-window -h $_TMUX_SHELL
-tmux split-window -h $_TMUX_SHELL
-tmux split-window -h $_TMUX_SHELL
-tmux select-layout even-horizontal
-
 tmux new-window $_TMUX_SHELL # 7
 tmux new-window $_TMUX_SHELL # 8
-tmux split-window -h $_TMUX_SHELL
-tmux split-window -h $_TMUX_SHELL
-tmux split-window -h $_TMUX_SHELL
-tmux select-layout even-horizontal
-
 tmux new-window $_TMUX_SHELL # 9
 tmux new-window $_TMUX_SHELL # 10
-tmux split-window -h $_TMUX_SHELL
-tmux split-window -h $_TMUX_SHELL
-tmux split-window -h $_TMUX_SHELL
-tmux select-layout even-horizontal
 
 tmux selectw -t 1
 exec tmux -2 attach-session -d
