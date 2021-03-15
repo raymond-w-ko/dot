@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
-import subprocess
+import sys
 import os
+import subprocess
 import re
+import shutil
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 os.chdir(dir_path)
@@ -16,22 +18,34 @@ def yes_or_no(question):
             return False
 
 
-p = subprocess.run(["git", "status"], check=True, capture_output=True)
+def process_plugin(path):
+    print(path)
+    orig_dir = os.getcwd()
+    os.chdir(path)
 
-files = []
-lines = p.stdout.decode("utf-8").split("\n")
-for line in lines:
-    m = re.match(r"^\s*modified:\s*(.+)$", line)
-    if not m:
-        continue
-    x = m.group(1)
-    if ".vim/bundle/" not in x:
-        continue
-    files.append(x)
+    if not os.path.exists(".git"):
+        sys.exit(0)
 
-for x in files:
-    print(x)
-if yes_or_no("git add?"):
-    for x in files:
-        subprocess.run(["git", "add", x], check=True)
-    subprocess.run(["git", "commit", "-m", "updated vim bundle(s)"], check=True)
+    shutil.move(".git", "..git")
+    try:
+        subprocess.run(["git", "add", "."], check=False, capture_output=False)
+    except:
+        pass
+    shutil.move("..git", ".git")
+    os.chdir(orig_dir)
+
+
+def main():
+    for root, dirs, _files in os.walk("./.vim/plugged/"):
+        for plugin_path in dirs:
+            plugin_path = os.path.join(root, plugin_path)
+            process_plugin(plugin_path)
+        break
+    subprocess.run(
+        ["git", "commit", "-m", "vim: save plugins"], check=False, capture_output=False
+    )
+    print("--- EXIT ---")
+
+
+if __name__ == "__main__":
+    main()
