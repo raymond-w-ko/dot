@@ -9,18 +9,6 @@ if hash zsh 2>/dev/null; then
   fi
 fi
 
-## workaround for handling TERM variable in multiple tmux sessions properly from http://sourceforge.net/p/tmux/mailman/message/32751663/ by Nicholas Marriott
-# if [[ -n ${TMUX} && -n ${commands[tmux]} ]];then
-#   case $(tmux showenv TERM 2>/dev/null) in
-#     *256color) ;&
-#     TERM=fbterm)
-#       TERM=screen-256color ;;
-#     *)
-#       TERM=screen
-#   esac
-# fi
-
-
 if [[ "$SHELL" == bash ]]; then
   # attempts to correct bad "cd" target
   shopt -s cdspell
@@ -351,21 +339,13 @@ ulimit -c unlimited
 #export MC_SKIN=$HOME/.config/mc/solarized.ini
 #. ~/dot/bin/base16-solarized.dark.sh
 
-# TMUX
-#if which tmux 2>&1 >/dev/null; then
-  ##if not inside a tmux session, and if no session is started, start a new session
-  #test -z "$TMUX" && (tmux attach || tmux new-session)
-#fi
-
 if [[ -n "$DISPLAY" ]]; then
   export GTK_IM_MODULE=ibus
   export XMODIFIERS=@im=ibus
   export QT_IM_MODULE=ibus
 fi
 
-if [[ -f /usr/bin/virtualenvwrapper.sh ]]; then
-  source /usr/bin/virtualenvwrapper.sh
-fi
+source /home/rko/src/z/z.sh
 
 if [[ -f ~/.bashrc.local ]]; then
   source ~/.bashrc.local
