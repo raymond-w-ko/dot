@@ -53,7 +53,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'vim-jp/vital.vim'
 Plug 'kana/vim-operator-user'
 Plug 'qpkorr/vim-bufkill'
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'Konfekt/FastFold'
 Plug 'itchyny/lightline.vim'
 Plug 'mhinz/vim-startify'
@@ -69,8 +68,24 @@ Plug 'zhimsel/vim-stay'
 Plug 'godlygeek/tabular'
 Plug 'mattn/emmet-vim'
 Plug 'luochen1990/rainbow'
-Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'ap/vim-css-color'
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'christoomey/vim-tmux-navigator'
+" obsoleted by vim-tmux-navigator
+" nmap <C-h> <C-w>h
+" nmap <C-j> <C-w>j
+" nmap <C-k> <C-w>k
+" nmap <C-l> <C-w>l
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+
+nnoremap <silent> <Left> :TmuxNavigateLeft<cr>
+nnoremap <silent> <Right> :TmuxNavigateRight<cr>
+nnoremap <silent> <Up> :TmuxNavigateUp<cr>
+nnoremap <silent> <Down> :TmuxNavigateDown<cr>
 
 " Tim Pope
 Plug 'tpope/vim-sensible'
@@ -83,6 +98,11 @@ Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-fugitive'
+nnoremap <leader>gs :Git<CR>
+nnoremap <leader>gw :Git write<CR>
+nnoremap <leader>gc :Git commit --verbose<CR>
+nnoremap <leader>gp :Git push<CR>
+nnoremap <leader>G :Git<Space>
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-unimpaired'
@@ -115,6 +135,20 @@ Plug 'roxma/vim-hug-neovim-rpc'
 """"""""""""""""""""""""""""""""""""""""
 Plug 'justinmk/vim-dirvish'
 " Disable netrw, but autoload it for `gx`.
+let g:dirvish_mode = 1
+let g:dirvish_relative_paths = 1
+augroup dirvish_config
+  autocmd!
+  " Map `t` to open in new tab.
+  autocmd FileType dirvish
+    \  nnoremap <silent><buffer> t :call dirvish#open('tabedit', 0)<CR>
+    \ |xnoremap <silent><buffer> t :call dirvish#open('tabedit', 0)<CR>
+  " Map `gr` to reload.
+  autocmd FileType dirvish nnoremap <silent><buffer> gr :<C-U>Dirvish %<CR>
+  " Map `gh` to hide dot-prefixed files.  Press `R` to "toggle" (reload).
+  autocmd FileType dirvish nnoremap <silent><buffer> gh
+      \ :silent keeppatterns g@\v/\.[^\/]+/?$@d _<cr>:setl cole=3<cr>
+augroup END
 let g:loaded_netrwPlugin = 0
 nmap gx <Plug>NetrwBrowseX
 nnoremap <Plug>NetrwBrowseX :call netrw#BrowseX(expand((exists("g:netrw_gx")? g:netrw_gx : '<cfile>')),netrw#CheckIfRemote())<CR>
@@ -138,8 +172,6 @@ Plug 'LucHermitte/alternate-lite'
 " Web Development
 Plug '2072/PHP-Indenting-for-VIm'
 Plug 'pangloss/vim-javascript'
-" this package has now been deprecated
-" Plug 'mxw/vim-jsx'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'othree/csscomplete.vim'
 Plug 'groenewege/vim-less'
@@ -1348,11 +1380,6 @@ augroup MyVimrc
   au FileType cpp exe "nmap <buffer> <leader>rci :call CreateCppMethodImplementation()<CR>dd$a<Space>σ<CR>"
 augroup END
 
-" obsoleted by vim-tmux-navigator
-" nmap <C-h> <C-w>h
-" nmap <C-j> <C-w>j
-" nmap <C-k> <C-w>k
-" nmap <C-l> <C-w>l
 
 nnoremap <C-Up> :resize +1<CR>
 nnoremap <C-Down> :resize -1<CR>
@@ -2537,25 +2564,6 @@ autocmd FileType c,cpp,objc vnoremap <buffer><Leader>f :ClangFormat<CR>
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS noci
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-jsx
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:jsx_ext_required = 0
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-tmux-navigator
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:tmux_navigator_no_mappings = 1
-nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
-
-nnoremap <silent> <Left> :TmuxNavigateLeft<cr>
-nnoremap <silent> <Right> :TmuxNavigateRight<cr>
-nnoremap <silent> <Up> :TmuxNavigateUp<cr>
-nnoremap <silent> <Down> :TmuxNavigateDown<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-startify
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:startify_session_dir="~/sessions/"
@@ -2569,32 +2577,6 @@ let g:startify_lists = [
     \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
     \ { 'type': 'commands',  'header': ['   Commands']       },
     \ ]
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-dirvish
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-augroup my_dirvish_events
-  autocmd!
-  " sort: folders at top, alphabetical, case-insensitive.
-  " let g:dirvish_mode = ':sort ir /^.*[^\/]$/'
-  let g:dirvish_mode = 1
-  let g:dirvish_relative_paths = 1
-
-  " Map `gr` to reload.
-  autocmd FileType dirvish nnoremap <silent><buffer> gr :<C-U>Dirvish %<CR>
-
-  " Map `gh` to hide dot-prefixed files.  Press `R` to "toggle" (reload).
-  autocmd FileType dirvish nnoremap <silent><buffer> gh :silent keeppatterns g@\v/\.[^\/]+/?$@d _<cr>
-augroup END
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-fugitive
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <leader>gs :Git<CR>
-nnoremap <leader>gw :Git write<CR>
-nnoremap <leader>gc :Git commit --verbose<CR>
-nnoremap <leader>gp :Git push<CR>
-nnoremap <leader>G :Git<Space>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " rainbow
