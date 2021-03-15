@@ -10,3 +10,6 @@
 [submodule "src/dircolors-solarized"]
 	path = src/dircolors-solarized
 	url = https://github.com/seebi/dircolors-solarized.git
+[submodule "src/z"]
+	path = src/z
+	url = https://github.com/rupa/z.git
