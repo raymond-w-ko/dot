@@ -50,6 +50,7 @@
 
 # vim plugins
 .git
+..git # this is what .git gets temporarily renamed to
 /.vim/bundle/omegacomplete.vim/python/omegacomplete/core/all.cpp
 /.vim/bundle/omegacomplete.vim/python/omegacomplete/omegacomplete/*.dll
 /.vim/bundle/omegacomplete.vim/python/omegacomplete/omegacomplete/*.pyd
