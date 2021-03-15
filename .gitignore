@@ -1,13 +1,15 @@
 # general
+.git
+ # this is what .git gets temporarily renamed to
+..git
 .cpcache/
 *.pyc
 *.sock
 *.so
 .nrepl-port
 *.o
-*.dll
-*.exe
 *.class
+*.xkm
 
 # emacs
 .#.*
@@ -23,8 +25,6 @@
 
 /.lein/self-installs
 /.lein/repl-history
-
-*.xkm
 
 /.emacs.d/backup
 /.emacs.d/elpa
@@ -49,8 +49,4 @@
 /config/yarn/global/node_modules
 
 # vim plugins
-.git
-..git # this is what .git gets temporarily renamed to
 /.vim/bundle/omegacomplete.vim/python/omegacomplete/core/all.cpp
-/.vim/bundle/omegacomplete.vim/python/omegacomplete/omegacomplete/*.dll
-/.vim/bundle/omegacomplete.vim/python/omegacomplete/omegacomplete/*.pyd
