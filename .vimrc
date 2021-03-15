@@ -28,6 +28,10 @@ endif
 " if this is not set early enough, causes last row highlight in neovim
 set cmdheight=2
 
+" Leader
+let mapleader = "\<Space>"
+let maplocalleader = ","
+
 " my plugins
 Plug 'raymond-w-ko/vim-solarized8'
 Plug 'raymond-w-ko/scrollfix'
@@ -45,8 +49,8 @@ endif
 Plug 'lifepillar/vim-colortemplate'
 
 " finders
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'FelikZ/ctrlp-py-matcher'
+" Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
@@ -54,6 +58,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'vim-jp/vital.vim'
 Plug 'kana/vim-operator-user'
 Plug 'qpkorr/vim-bufkill'
+let g:BufKillCreateMappings = 0
 Plug 'Konfekt/FastFold'
 Plug 'itchyny/lightline.vim'
 if has('python3') || has('python')
@@ -63,12 +68,17 @@ Plug 'honza/vim-snippets'
 Plug 'dense-analysis/ale'
 Plug 'maximbaz/lightline-ale'
 Plug 'sjl/gundo.vim'
+let g:gundo_right=1
+Plug 'mbbill/undotree'
 Plug 'zhimsel/vim-stay'
 Plug 'godlygeek/tabular'
 Plug 'mattn/emmet-vim'
 Plug 'luochen1990/rainbow'
-Plug 'ap/vim-css-color'
+Plug 'chrisbra/Colorizer'
 Plug 'majutsushi/tagbar'
+Plug 'tommcdo/vim-lion'
+Plug 'tommcdo/vim-exchange'
+Plug 'AndrewRadev/linediff.vim'
 let g:tagbar_sort=0 " usually my tags are in some sort of custom order that makes sense
 let g:tagbar_width=40
 
@@ -210,7 +220,13 @@ let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
 
 Plug 'reasonml-editor/vim-reason-plus'
 
-" clojure
+" lisp
+Plug 'guns/vim-clojure-static'
+Plug 'guns/vim-sexp'
+let g:sexp_filetypes = 'clojure,scheme,lisp,timl,eslisp'
+let g:sexp_insert_after_wrap = 1
+let g:sexp_enable_insert_mode_mappings = 1
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
   " the way of fireplace
 " Plug 'raymond-w-ko/vim-fireplace', {'branch': 'debug'}
 " if !has('win32unix') " this plugin makes any file access extremely slow...
@@ -221,10 +237,13 @@ Plug 'reasonml-editor/vim-reason-plus'
 " Plug 'venantius/vim-cljfmt'
   " plasmaplace
 Plug 'raymond-w-ko/vim-plasmaplace'
-  " universal
-Plug 'guns/vim-clojure-static'
-Plug 'guns/vim-sexp'
-Plug 'tpope/vim-sexp-mappings-for-regular-people'
+let g:clj_fmt_autosave = 0
+augroup MyVimrc
+  au!
+  " au FileType clojure nnoremap <buffer> <leader>r :Require<CR>
+  " au FileType clojure nnoremap <buffer> <leader>R :Require!<CR>
+  au FileType clojure nnoremap <buffer> <leader>f :Cljfmt<CR>
+augroup END
 
 " misc filetypes
 Plug 'octol/vim-cpp-enhanced-highlight'
@@ -281,10 +300,6 @@ if exists('+undofile')
   set undofile
 endif
 set noswapfile  " computers are pretty reliable nowadays
-
-" Leader
-let mapleader = "\<Space>"
-let maplocalleader = ","
 
 if !exists("g:rko_already_turned_syntax_off")
   syntax off
@@ -385,7 +400,7 @@ set cinoptions=
 set cinoptions+=:0
 set cinoptions+=g0
 set cinoptions+=N-s
-" this by inteself breaks vim-synesthesia + vim-niji parent parsing
+" this by itself breaks vim-synesthesia + vim-niji parent parsing
 exe "set cinoptions+=(0"
 set cinoptions+=u0
 set cinoptions+=Ws
@@ -2032,17 +2047,6 @@ let g:loaded_matchparen = 1
 let g:alternateNoDefaultAlternate=1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NetRW
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! <SID>EditFileDirectory()
-  let p = expand("%:p:h")
-  let cmd = "edit " . p
-  execute cmd
-endfunction
-" this breaks sometimes by consuming window splits
-" nnoremap - :call <SID>EditFileDirectory()<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ctrlp_map = "F12"           " set to something that I will never use
@@ -2086,10 +2090,6 @@ if !has("python") && !has("python3")
 else
   let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 endif
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" fzf.vim
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " lightline
@@ -2197,12 +2197,6 @@ let g:UltiSnipsJumpForwardTrigger = "<C-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Gundo
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"nnoremap <F5> :GundoToggle<CR>
-let g:gundo_right=1
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-clojure-static
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " By default, parenthesized compound forms that look like function calls and
@@ -2251,29 +2245,6 @@ let g:clojure_fuzzy_indent_blacklist = ['-fn$', '\v^with-%(meta|out-str|loading-
 let g:clojure_special_indent_words = 'deftype,defrecord,reify,proxy,extend-type,extend-protocol,letfn,comment'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-sexp
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:sexp_filetypes = 'clojure,scheme,lisp,timl,eslisp'
-" Toggle this for vim-sexp to not go into insert mode after wrapping something
-let g:sexp_insert_after_wrap = 1
-" Toggle this to disable automatically creating closing brackets and quotes
-let g:sexp_enable_insert_mode_mappings = 1
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-niji
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:niji_dark_colours = [
-    \ ['196', 'red1'],
-    \ ['214', 'orange1'],
-    \ ['226', 'yellow1'],
-    \ ['154', 'greenyellow'],
-    \ ['46', 'green1'],
-    \ ['48', 'springgreen1'],
-    \ ['51', 'cyan1'],
-    \ ['62', 'slateblue1'],
-    \ ['135', 'purple1']]
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " omegacomplete / geckocomplete
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:omegacomplete_normal_hi_cmds=[
@@ -2290,32 +2261,6 @@ if has("nvim")
 else
   inoremap <expr> <C-s> omegacomplete#toggle_pause_completion()
 endif
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" syntastic
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:syntastic_enable_highlighting = 1
-let g:syntastic_enable_balloons = 1
-let g:syntastic_auto_jump = 0
-let g:syntastic_enable_signs = 1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_mode_map = {
-            \ "mode": "active",
-            \ "active_filetypes": ["ruby", "php", "python", "yaml"],
-            \ "passive_filetypes": ["java", "c", "cpp", "objc", "objcpp", "html"],
-            \ }
-
-" JS
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exec = 'eslint_d'
-
-" Python 3
-let g:syntastic_python_flake8_exec = 'python3'
-let g:syntastic_python_flake8_args = ['-m', 'flake8']
-
-" YAML
-let g:syntastic_yaml_checkers = ["yamllint"]
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ale
@@ -2391,33 +2336,6 @@ call ale#linter#Define('sql', {
 \})
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" detectindent
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:detectindent_max_lines_to_analyse = 1024
-let g:detectindent_autodetect = 1
-let g:detectindent_preferred_indent = 2
-let g:detectindent_preferred_expandtab = 1
-let g:detectindent_min_indent = 2
-" hope to $DEITY that no one uses > 4 indents
-let g:detectindent_max_indent = 4
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" bufkill.vim
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:BufKillCreateMappings = 0
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-cljfmt
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:clj_fmt_autosave = 0
-
-augroup MyVimrc
-  " au FileType clojure nnoremap <buffer> <leader>r :Require<CR>
-  " au FileType clojure nnoremap <buffer> <leader>R :Require!<CR>
-  au FileType clojure nnoremap <buffer> <leader>f :Cljfmt<CR>
-augroup END
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " synesthesia
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:loaded_synesthesia=1
@@ -2485,35 +2403,6 @@ call add(g:synesthesia_ignored_filetypes, 'svn')
 call add(g:synesthesia_ignored_filetypes, 'tex')
 call add(g:synesthesia_ignored_filetypes, 'text')
 call add(g:synesthesia_ignored_filetypes, 'xml')
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-easymotion
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let g:EasyMotion_do_mapping = 0 " Disable default mappings
-" let g:EasyMotion_do_shade = 1
-" let g:EasyMotion_smartcase = 1
-" let g:EasyMotion_keys = "dsaklghqwertyuiopzxcvbnmfj"
-
-" easymotion highlight colors
-" hi link EasyMotionTarget Error
-" hi EasyMotionTarget2First ctermbg=none ctermfg=46
-" hi EasyMotionTarget2Second ctermbg=none ctermfg=46
-" hi link EasyMotionShade Comment
-
-" nmap s <Plug>(easymotion-s2)
-" nmap S <Plug>(easymotion-overwin-f2)
-
-" map <Leader>f <Plug>(easymotion-bd-fl)
-" nmap <Leader>f <Plug>(easymotion-overwin-f)
-
-" Move to line
-" map <Leader>L <Plug>(easymotion-bd-jk)
-" nmap <Leader>L <Plug>(easymotion-overwin-line)
-
-" Move to word
-" conflicts with my save
-" map <Leader>w <Plug>(easymotion-bd-w)
-" nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " rainbow
