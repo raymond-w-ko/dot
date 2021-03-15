@@ -1,0 +1,376 @@
+let s:V = vital#vital#new()
+let s:is_windows = has('win32')
+let s:is_mac = has('mac')
+
+Describe System.Filepath
+  Before all
+    let FP = s:V.import('System.Filepath')
+
+    let is_case_sensitive_file_system = !(isdirectory(tolower(g:root)) && isdirectory(toupper(g:root)))
+  End
+
+  Describe .to_slash()
+    It converts / to \ only when it's necessary
+      Assert Equals('a/b', FP.to_slash('a/b'))
+      if s:is_windows
+        Assert Equals('a/b', FP.to_slash('a\b'))
+      else
+        Assert Equals('a\b', FP.to_slash('a\b'))
+      endif
+    End
+  End
+
+  Describe .from_slash()
+    It converts \ to / only when it's necessary
+      if s:is_windows
+        Assert Equals('a\b', FP.from_slash('a/b'))
+      else
+        Assert Equals('a/b', FP.from_slash('a/b'))
+      endif
+    End
+  End
+
+  Describe .is_absolute()
+    if !s:is_windows
+      It returns TRUE if {path} is an absolute path
+        Assert True(FP.is_absolute('/'))
+        Assert True(FP.is_absolute('/home/user'))
+
+        Assert False(FP.is_absolute('./a.out'))
+        Assert False(FP.is_absolute('foo/'))
+      End
+    else
+      It returns TRUE if {path} is an absolute path
+        Assert True(FP.is_absolute('C:/'))
+        Assert True(FP.is_absolute('C:/hoge/huga.txt'))
+        Assert True(FP.is_absolute('C:\'))
+        Assert True(FP.is_absolute('C:\hoge\huga.txt'))
+
+        Assert False(FP.is_absolute('./a.out'))
+        Assert False(FP.is_absolute('foo/'))
+        Assert False(FP.is_absolute('.\a.out'))
+        Assert False(FP.is_absolute('foo\'))
+      End
+    endif
+  End
+
+  Describe .abspath()
+    It should return {path} if {path} is already an absolute path
+      let abspath = FP.join(getcwd(), 'foo.txt')
+      let ret = FP.abspath(abspath)
+      Assert Equals(ret, abspath)
+      Assert Same(ret, abspath)
+    End
+
+    It should return an absolute path of {path} which exists file
+      let relpath = 'foo.txt'
+      call writefile(['foo'], relpath)
+      let ret = FP.abspath(relpath)
+      let exp = FP.join(getcwd(), relpath)
+      Assert NotSame(ret, relpath)
+      Assert NotEquals(ret, relpath)
+      Assert Equals(ret, exp)
+      call delete(relpath)
+    End
+
+    It should return an absolute path of {path} which exists dir
+      let relpath = 'foo'
+      call mkdir(relpath, "")
+      let ret = FP.abspath(relpath)
+      let exp = FP.join(getcwd(), relpath) . FP.separator()
+      Assert NotSame(ret, relpath)
+      Assert NotEquals(ret, relpath)
+      Assert Equals(ret, exp)
+      call delete(relpath, 'd')
+    End
+
+    It should return an absolute path of {path} which does not exist
+      let relpath = FP.join('hoge', 'bar.txt')
+      let ret = FP.abspath(relpath)
+      Assert NotSame(ret, relpath)
+      Assert NotEquals(ret, relpath)
+      " the behavior of ':p' is not defined for non existing file
+      " thus opposite approach is required
+      Assert Equals(fnamemodify(ret, ':~:.'), relpath)
+    End
+  End
+
+  Describe .relpath()
+    It should return {path} if {path} is already a relative path
+      let relpath = 'foo.txt'
+      let ret = FP.relpath(relpath)
+      Assert Equals(ret, relpath)
+      Assert Same(ret, relpath)
+    End
+
+    It should return a relative path of {path}
+      let abspath = FP.join(getcwd(), 'foo.txt')
+      let ret = FP.relpath(abspath)
+      Assert NotSame(ret, abspath)
+      Assert NotEquals(ret, abspath)
+      Assert Equals(ret, fnamemodify(abspath, ':~:.'))
+    End
+  End
+
+  Describe .unixpath()
+    It should substitute backslashes in {path} to slashes
+      let path = 'C:\Foo\Bar\Hoge.txt'
+      let ret = FP.unixpath(path)
+      Assert NotEquals(ret, path)
+      Assert NotSame(ret, path)
+      Assert Equals(ret, 'C:/Foo/Bar/Hoge.txt')
+    End
+  End
+
+  Describe .expand_home()
+    if s:is_windows
+      It [windows] non home path are no expanded, there are same.
+        let path = 'C:/Hoge'
+        let ret = FP.expand_home(path)
+        Assert Equals(ret, path)
+      End
+    else
+      It [unix] non home path are no expanded, there are same.
+        let path = '/Hoge'
+        let ret = FP.expand_home(path)
+        Assert Equals(ret, path)
+      End
+    endif
+    It expand head ~ home path
+      if s:is_windows
+        let path = '~\Hoge'
+      else
+        let path = '~/Hoge'
+      endif
+      let ret = FP.expand_home(path)
+      Assert Equals(ret, $HOME . FP.separator() . 'Hoge')
+    End
+    It  include .. in path no-expand, but head ~ home expanded.
+      if s:is_windows
+        let target = '~\Hoge\..\Fuga'
+      else
+        let target = '~/Hoge/../Fuga'
+      endif
+      let path = '~' . FP.separator() . target
+      let ret = FP.expand_home(path)
+      Assert Equals(ret, $HOME . FP.separator() . target)
+    End
+    if s:is_windows
+      " need completeslash test
+      if exists('&completeslash')
+        It [windows] completeslash not set home expand test
+          let backup_completeslash = &completeslash
+          set completeslash&
+          let path = '~\Hoge'
+          let ret = FP.expand_home(path)
+          Assert Equals(ret, $HOME . FP.separator() . 'Hoge')
+          let &completeslash = backup_completeslash
+        End
+        It [windows] completeslash=slash home expand test
+          let backup_completeslash = &completeslash
+          set completeslash=slash
+          let path = '~\Hoge'
+          let ret = FP.expand_home(path)
+          Assert Equals(ret, $HOME . FP.separator() . 'Hoge')
+          let &completeslash = backup_completeslash
+        End
+        It [windows] completeslash=backslash home expand test
+          let backup_completeslash = &completeslash
+          set completeslash=backslash
+          let path = '~\Hoge'
+          let ret = FP.expand_home(path)
+          Assert Equals(ret, $HOME . FP.separator() . 'Hoge')
+          let &completeslash = backup_completeslash
+        End
+      endif
+    else
+      " need ~user test
+      It [unix] ~user expand check
+        let path = '~root/Hoge'
+        let ret = FP.expand_home(path)
+        if s:is_mac
+          let expect = '/var/root/Hoge'
+        else
+          let expect = '/root/Hoge'
+        endif
+        Assert Equals(ret, expect)
+      End
+    endif
+  End
+
+  Describe .winpath()
+    It should substitute slashes in {path} to backslashes
+      let path = '/Foo/Bar/Hoge.txt'
+      let ret = FP.winpath(path)
+      Assert NotEquals(ret, path)
+      Assert NotSame(ret, path)
+      Assert Equals(ret, '\Foo\Bar\Hoge.txt')
+    End
+  End
+
+  Describe .realpath()
+    if !s:is_windows
+      It should return an unix path of {path} in non Windows OS
+        let path = 'C:\Foo\Bar\Hoge.txt'
+        let ret = FP.realpath(path)
+        Assert NotEquals(ret, path)
+        Assert NotSame(ret, path)
+        Assert Equals(ret, 'C:/Foo/Bar/Hoge.txt')
+
+        let path = '/Foo/Bar/Hoge.txt'
+        let ret = FP.realpath(path)
+        Assert Equals(ret, path)
+        Assert Same(ret, path)
+      End
+    elseif exists('&shellslash')
+      Before
+        let saved_shellslash = &shellslash
+      End
+      After
+        let &shellslash = saved_shellslash
+      End
+      It should return an unix path of {path} in Windows with '+shellslash' and shellslash
+        set shellslash
+
+        let path = 'C:\Foo\Bar\Hoge.txt'
+        let ret = FP.realpath(path)
+        Assert NotEquals(ret, path)
+        Assert NotSame(ret, path)
+        Assert Equals(ret, 'C:/Foo/Bar/Hoge.txt')
+
+        let path = '/Foo/Bar/Hoge.txt'
+        let ret = FP.realpath(path)
+        Assert Equals(ret, path)
+        Assert Same(ret, path)
+      End
+      It should return a windows path of {path} in Windows with '+shellslash' and noshellslash
+        set noshellslash
+
+        let path = 'C:\Foo\Bar\Hoge.txt'
+        let ret = FP.realpath(path)
+        Assert Equals(ret, path)
+        Assert Same(ret, path)
+
+        let path = '/Foo/Bar/Hoge.txt'
+        let ret = FP.realpath(path)
+        Assert NotEquals(ret, path)
+        Assert NotSame(ret, path)
+        Assert Equals(ret, '\Foo\Bar\Hoge.txt')
+      End
+    else
+      It should return a windows path of {path} in Windows with '-shellslash'
+        let path = 'C:\Foo\Bar\Hoge.txt'
+        let ret = FP.realpath(path)
+        Assert Equals(ret, path)
+        Assert Same(ret, path)
+
+        let path = '/Foo/Bar/Hoge.txt'
+        let ret = FP.realpath(path)
+        Assert NotEquals(ret, path)
+        Assert NotSame(ret, path)
+        Assert Equals(ret, '\Foo\Bar\Hoge.txt')
+      End
+    endif
+  End
+
+  Describe .is_root_directory()
+    if !s:is_windows
+      It is true only if the given string directly represents root dir of the file system (Non Windows)
+        Assert True(FP.is_root_directory('/'))
+        Assert False(FP.is_root_directory('/aaa/..'))
+        Assert False(FP.is_root_directory('/aaa'))
+        Assert False(FP.is_root_directory('/aaa/bbb'))
+      End
+    else
+      It is true only if the given string directly represents root dir of the file system (Windows)
+        Assert True(FP.is_root_directory('C:/'))
+        Assert True(FP.is_root_directory('C:\'))
+        Assert False(FP.is_root_directory('C:/aaa/..'))
+        Assert False(FP.is_root_directory('C:/aaa'))
+        Assert False(FP.is_root_directory('C:/aaa/bbb'))
+      End
+    endif
+  End
+
+  Describe .contains()
+    if !s:is_windows
+      It should return non-zero if /foo/bar contains /foo/bar (Non Windows)
+        Assert True(FP.contains('/foo/bar', '/foo/bar'))
+      End
+      It should return non-zero if /foo/bar contains /foo (Non Windows)
+        Assert True(FP.contains('/foo/bar', '/foo'))
+      End
+      It should return zero if /foo contains /foo/bar (Non Windows)
+        Assert False(FP.contains('/foo', '/foo/bar'))
+      End
+      It should return non-zero if /foo contains /foo (Non Windows)
+        Assert True(FP.contains('/foo', '/foo'))
+      End
+      It should return non-zero if /foo contains / (Non Windows)
+        Assert True(FP.contains('/foo', '/'))
+      End
+      It should return zero if / contains /foo (Non Windows)
+        Assert False(FP.contains('/', '/foo'))
+      End
+      It should return non-zero if / contains / (Non Windows)
+        Assert True(FP.contains('/', '/'))
+      End
+      It should return zero for empty paths (Non Windows)
+        Assert False(FP.contains('', ''))
+        Assert False(FP.contains('/', ''))
+        Assert False(FP.contains('', '/'))
+      End
+      It should ignore the last directory separator in {base} (Non Windows)
+        Assert True(FP.contains('/foo', '/foo/'))
+      End
+
+      Context in case-sensitive system
+        It should not ignore case
+          if !is_case_sensitive_file_system
+            Skip "not in case sensitive system, maybe Mac OS?"
+          endif
+          Assert False(FP.contains('/etc/x11/xinit', '/etc/X11'))
+        End
+      End
+    else
+      It should return non-zero if C:\foo\bar contains C:\foo\bar (Windows)
+        Assert True(FP.contains('C:\foo\bar', 'C:\foo\bar'))
+      End
+      It should return non-zero if C:\foo\bar contains C:\foo (Windows)
+        Assert True(FP.contains('C:\foo\bar', 'C:\foo'))
+      End
+      It should return zero if C:\foo contains C:\foo\bar (Windows)
+        Assert False(FP.contains('C:\foo', 'C:\foo\bar'))
+      End
+      It should return non-zero if C:\foo contains C:\foo (Windows)
+        Assert True(FP.contains('C:\foo', 'C:\foo'))
+      End
+      It should return non-zero if C:\foo contains C:\ (Windows)
+        Assert True(FP.contains('C:\foo', 'C:\'))
+      End
+      It should return zero if C:\ contains C:\foo (Windows)
+        Assert False(FP.contains('C:\', 'C:\foo'))
+      End
+      It should return non-zero if C:\ contains C:\ (Windows)
+        Assert True(FP.contains('C:\', 'C:\'))
+      End
+      It should return zero for empty paths (Windows)
+        Assert False(FP.contains('', ''))
+        Assert False(FP.contains('C:\', ''))
+        Assert False(FP.contains('', 'C:\'))
+      End
+      It should return non-zero if C:\ contains C:\ (Windows)
+        Assert True(FP.contains('C:\', 'C:\'))
+      End
+      It should ignore the last directory separator in {base} (Windows)
+        Assert True(FP.contains('C:\foo', 'C:\foo\'))
+      End
+
+      Context in case-insensitive system
+        It should ignore case
+          Assert True(FP.contains('c:\program files\Vim', 'C:\Program Files'))
+        End
+      End
+    endif
+  End
+End

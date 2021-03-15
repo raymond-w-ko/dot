@@ -1,0 +1,36 @@
+*vital/Deprecated/Text/Sexp.txt*		S-Expression parser.
+
+Maintainer: ujihisa <ujihisa at gmail com>
+
+==============================================================================
+CONTENTS			*Vital.Deprecated.Text.Sexp-contents*
+
+INTRODUCTION			|Vital.Deprecated.Text.Sexp-introduction|
+INTERFACE			|Vital.Deprecated.Text.Sexp-interface|
+  FUNCTIONS			  |Vital.Deprecated.Text.Sexp-functions|
+
+==============================================================================
+INTRODUCTION				*Vital.Deprecated.Text.Sexp-introduction*
+
+*Vital.Deprecated.Text.Sexp* is an S-Expression parsing library. For performance it uses
+lua, so the Vim that runs this needs |+lua|.
+
+==============================================================================
+INTERFACE			*Vital.Deprecated.Text.Sexp-interface*
+
+------------------------------------------------------------------------------
+FUNCTIONS			*Vital.Deprecated.Text.Sexp-functions*
+
+parse({string})					*Vital.Deprecated.Text.Sexp.parse()*
+	Requires |+lua|.
+
+	Parses Sexp formatted string. It returns a |List| that contains
+	|Dictionary|.
+>
+	echo s:S.parse('(a b c)')
+	" [[{'label': 'identifier', 'col': 2.0, 'matched_text': 'a'}, {'label': 'whitespace', 'col': 3.0, 'matched_text': ' '}, {'label': 'identifier', 'col': 4.0, 'matched_text': 'b'}, {'label': 'whitespace', 'col': 5.0, 'matched_text': ' '}, {'label': 'identifier', 'col': 6.0, 'matched_text': 'c'}]]
+<
+
+
+==============================================================================
+vim:tw=78:fo=tcq2mM:ts=8:ft=help:norl

@@ -1,0 +1,15 @@
+scriptencoding utf-8
+
+Describe Interpreter.Brainf__k
+  Before all
+    let BF = vital#vital#new().import('Interpreter.Brainf__k')
+  End
+
+  Describe .run_vim_parse_execute()
+    It shows hello world
+      let script = '++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.'
+      let output = execute(printf('call BF.run_vim_parse_execute("%s")', script))
+      Assert Equals(output, "Hello World!\n")
+    End
+  End
+End

@@ -1,0 +1,423 @@
+scriptencoding utf-8
+
+Describe Web.URI
+  Before all
+    let URI = vital#vital#new().import('Web.URI')
+  End
+
+  Describe .new()
+    It parses a simple URL
+      let uri = URI.new('http://example.com/')
+      Assert Equals(uri.scheme(), 'http')
+      Assert Equals(uri.userinfo(), '')
+      Assert Equals(uri.host(), 'example.com')
+      Assert Equals(uri.port(), '')
+      Assert Equals(uri.path(), '/')
+      Assert Equals(uri.authority(), 'example.com')
+      Assert Equals(uri.opaque(), '//example.com/')
+      Assert Equals(uri.query(), '')
+      Assert Equals(uri.fragment(), '')
+      Assert Equals(uri.to_string(), 'http://example.com/')
+    End
+
+    It parses a URL without slash
+      let uri = URI.new('http://example.com')
+      Assert Equals(uri.scheme(), 'http')
+      Assert Equals(uri.userinfo(), '')
+      Assert Equals(uri.host(), 'example.com')
+      Assert Equals(uri.port(), '')
+      Assert Equals(uri.path(), '')
+      Assert Equals(uri.authority(), 'example.com')
+      Assert Equals(uri.opaque(), '//example.com')
+      Assert Equals(uri.query(), '')
+      Assert Equals(uri.fragment(), '')
+      Assert Equals(uri.to_string(), 'http://example.com')
+    End
+
+    It allows empty authority (:help Vital.Web.URI-notes)
+      let uri = URI.new('file:///home/tyru/')
+      Assert Equals(uri.scheme(), 'file')
+      Assert Equals(uri.userinfo(), '')
+      Assert Equals(uri.host(), '')
+      Assert Equals(uri.port(), '')
+      Assert Equals(uri.path(), '/home/tyru/')
+      Assert Equals(uri.authority(), '')
+      Assert Equals(uri.opaque(), '///home/tyru/')
+      Assert Equals(uri.query(), '')
+      Assert Equals(uri.fragment(), '')
+      Assert Equals(uri.to_string(), 'file:///home/tyru/')
+    End
+
+    It also allows empty authority for http scheme (:help Vital.Web.URI-notes)
+      let uri = URI.new('http:///home/tyru/')
+      Assert Equals(uri.scheme(), 'http')
+      Assert Equals(uri.userinfo(), '')
+      Assert Equals(uri.host(), '')
+      Assert Equals(uri.port(), '')
+      Assert Equals(uri.path(), '/home/tyru/')
+      Assert Equals(uri.authority(), '')
+      Assert Equals(uri.opaque(), '///home/tyru/')
+      Assert Equals(uri.query(), '')
+      Assert Equals(uri.fragment(), '')
+      Assert Equals(uri.to_string(), 'http:///home/tyru/')
+    End
+
+    It parses a IPv4 Address URL
+      let uri = URI.new('http://203.0.113.11')
+      Assert Equals(uri.scheme(), 'http')
+      Assert Equals(uri.userinfo(), '')
+      Assert Equals(uri.host(), '203.0.113.11')
+      Assert Equals(uri.port(), '')
+      Assert Equals(uri.path(), '')
+      Assert Equals(uri.authority(), '203.0.113.11')
+      Assert Equals(uri.opaque(), '//203.0.113.11')
+      Assert Equals(uri.query(), '')
+      Assert Equals(uri.fragment(), '')
+      Assert Equals(uri.to_string(), 'http://203.0.113.11')
+    End
+
+    It parses a complex URL
+      let uri = URI.new('http://user:password@example.com:8080/path/for/test?q=query#fragment')
+      Assert Equals(uri.scheme(), 'http')
+      Assert Equals(uri.userinfo(), 'user:password')
+      Assert Equals(uri.host(), 'example.com')
+      Assert Equals(uri.port(), '8080')
+      Assert Equals(uri.path(), '/path/for/test')
+      Assert Equals(uri.authority(), 'user:password@example.com:8080')
+      Assert Equals(uri.opaque(), '//user:password@example.com:8080/path/for/test')
+      Assert Equals(uri.query(), 'q=query')
+      Assert Equals(uri.fragment(), 'fragment')
+      Assert Equals(uri.to_string(), 'http://user:password@example.com:8080/path/for/test?q=query#fragment')
+    End
+
+    It builds URI with given parts
+      let uri = URI.new('http://example.com/')
+      call uri.scheme('ftp')
+      Assert Equals(uri.scheme(), 'ftp')
+      Assert Equals(uri.to_string(), 'ftp://example.com/')
+      call uri.host('ftp.vim.org')
+      Assert Equals(uri.host(), 'ftp.vim.org')
+      Assert Equals(uri.to_string(), 'ftp://ftp.vim.org/')
+      call uri.path('/pub/vim/unix/vim-7.4.tar.bz2')
+      Assert Equals(uri.path(), '/pub/vim/unix/vim-7.4.tar.bz2')
+      Assert Equals(uri.to_string(), 'ftp://ftp.vim.org/pub/vim/unix/vim-7.4.tar.bz2')
+    End
+  End
+
+  Describe .new_from_uri_like_string()
+    It parses valid URIs
+      Throws URI.new_from_uri_like_string('local[host]')
+      Assert Equals(URI.new_from_uri_like_string('local[host]', 'Error!'), 'Error!')
+
+      Assert NotEquals(URI.new_from_uri_like_string('localhost', 'Error!'), 'Error!')
+      Assert Equals(URI.new_from_uri_like_string('example.com/').to_string(), 'http://example.com/')
+      Assert Equals(URI.new_from_uri_like_string('example.com').to_string(), 'http://example.com')
+      Assert Equals(URI.new_from_uri_like_string('/home/tyru').to_string(), 'http:///home/tyru')
+      Assert Equals(URI.new_from_uri_like_string('user:password@example.com:8080/path/for/test?q=query#fragment').to_string(), 'http://user:password@example.com:8080/path/for/test?q=query#fragment')
+      Assert Equals(URI.new_from_uri_like_string('http://198.51.100.1/').to_string(), 'http://198.51.100.1/')
+      Assert Equals(URI.new_from_uri_like_string('http://198.51.100.22/').to_string(), 'http://198.51.100.22/')
+      Assert Equals(URI.new_from_uri_like_string('http://198.51.100.199/').to_string(), 'http://198.51.100.199/')
+    End
+  End
+
+  Describe .relative()
+    It resolves relative URI
+      for [base, rel, expected] in [
+      \ ['http://example.com/', '/a/b/c', 'http://example.com/a/b/c'],
+      \ ['http://example.com', '/a/b/c', 'http://example.com/a/b/c'],
+      \ ['http://example.com/', 'a/b/c', 'http://example.com/a/b/c'],
+      \ ['http://example.com', 'a/b/c', 'http://example.com/a/b/c'],
+      \
+      \ ['http://example.com/', '../d', 'http://example.com/d'],
+      \ ['http://example.com/', '/../d', 'http://example.com/d'],
+      \ ['http://example.com/', 'd/../e', 'http://example.com/e'],
+      \ ['http://example.com/', 'd/e/../../f', 'http://example.com/f'],
+      \ ['http://example.com/', 'd/..', 'http://example.com/'],
+      \ ['http://example.com/', 'd/../', 'http://example.com/'],
+      \ ['http://example.com/', 'd/e/../..', 'http://example.com/'],
+      \
+      \ ['http://example.com/a/b/c', '../d', 'http://example.com/a/d'],
+      \ ['http://example.com/a/b/c', '/../d', 'http://example.com/d'],
+      \ ['http://example.com/a/b/c', 'd/../e', 'http://example.com/a/b/e'],
+      \ ['http://example.com/a/b/c', 'd/e/../../f', 'http://example.com/a/b/f'],
+      \ ['http://example.com/a/b/c', 'd/..', 'http://example.com/a/b/'],
+      \ ['http://example.com/a/b/c', 'd/../', 'http://example.com/a/b/'],
+      \ ['http://example.com/a/b/c', 'd/e/../..', 'http://example.com/a/b/'],
+      \
+      \ ['http://example.com/', './d', 'http://example.com/d'],
+      \ ['http://example.com/', '/./d', 'http://example.com/d'],
+      \ ['http://example.com/', 'd/./e', 'http://example.com/d/e'],
+      \ ['http://example.com/', 'd/././e', 'http://example.com/d/e'],
+      \ ['http://example.com/', 'd/.', 'http://example.com/d/'],
+      \ ['http://example.com/', 'd/./', 'http://example.com/d/'],
+      \ ['http://example.com/', 'd/./.', 'http://example.com/d/'],
+      \
+      \ ['http://example.com/a/b/c', './d', 'http://example.com/a/b/d'],
+      \ ['http://example.com/a/b/c', '/./d', 'http://example.com/d'],
+      \ ['http://example.com/a/b/c', 'd/./e', 'http://example.com/a/b/d/e'],
+      \ ['http://example.com/a/b/c', 'd/././e', 'http://example.com/a/b/d/e'],
+      \ ['http://example.com/a/b/c', 'd/.', 'http://example.com/a/b/d/'],
+      \ ['http://example.com/a/b/c', 'd/./', 'http://example.com/a/b/d/'],
+      \ ['http://example.com/a/b/c', 'd/./.', 'http://example.com/a/b/d/'],
+      \]
+        let got = URI.new(base).relative(rel).to_string()
+        let msg = printf('base:%s, rel:%s', base, rel)
+        Assert Equals(got, expected, msg)
+      endfor
+    End
+  End
+
+  Describe .clone()
+    It clones self
+      let uri = URI.new('http://example.com/')
+      let copyuri = uri.clone().relative('/a/b/c')
+      Assert Equals(uri.to_string(), 'http://example.com/')
+      Assert Equals(copyuri.to_string(), 'http://example.com/a/b/c')
+    End
+  End
+
+  " The following four URIs are equivalent:
+  " * http://example.com
+  " * http://example.com/
+  " * http://example.com:/
+  " * http://example.com:80/
+  Describe .canonicalize()
+    It canonicalizes given http URL
+      for [input, expected] in [
+      \ ['http://example.com', 'http://example.com/'],
+      \ ['http://example.com/', 'http://example.com/'],
+      \ ['http://example.com:/', 'http://example.com/'],
+      \ ['http://example.com:80/', 'http://example.com/'],
+      \ ['http://example.com:80', 'http://example.com/'],
+      \ ['http://example.com:8080/', 'http://example.com:8080/'],
+      \]
+          let got = URI.new(input).canonicalize().to_string()
+          Assert Equals(got, expected)
+      endfor
+    End
+
+    It canonicalizes given https URL
+      for [input, expected] in [
+      \ ['https://example.com', 'https://example.com/'],
+      \ ['https://example.com/', 'https://example.com/'],
+      \ ['https://example.com:/', 'https://example.com/'],
+      \ ['https://example.com:443/', 'https://example.com/'],
+      \ ['https://example.com:443', 'https://example.com/'],
+      \ ['https://example.com:8443/', 'https://example.com:8443/'],
+      \]
+          let got = URI.new(input).canonicalize().to_string()
+          Assert Equals(got, expected)
+      endfor
+    End
+  End
+
+  Describe .new_from_seq_string()
+    It parses valid URIs with trailing string
+      Throws URI.new_from_seq_string('[http://example.com]')
+      Assert Equals(URI.new_from_seq_string('[http://example.com]', 'Error!'), 'Error!')
+
+      for [input, expected] in [
+      \  ['http://example.com/ blah blah',
+      \    ['http://example.com/', 'http://example.com/', ' blah blah']],
+      \  ['http://example.com gera gera',
+      \    ['http://example.com', 'http://example.com', ' gera gera']],
+      \  ['file:///home/tyru   # My home directory',
+      \    ['file:///home/tyru', 'file:///home/tyru',
+      \     '   # My home directory']],
+      \  ['http:///home/tyru   # Hmm...',
+      \    ['http:///home/tyru', 'http:///home/tyru',
+      \     '   # Hmm...']],
+      \  ['http://user:password@example.com:8080/path/for/test?q=query#fragment[Whoa!What Complex URL]',
+      \    ['http://user:password@example.com:8080/path/for/test?q=query#fragment',
+      \     'http://user:password@example.com:8080/path/for/test?q=query#fragment',
+      \     '[Whoa!What Complex URL]']]
+      \]
+        let ret = URI.new_from_seq_string(input)
+        " Stringify URI object.
+        let [uri, origuri, rest] = [ret[0].to_string()] + ret[1:2]
+        Assert Equals([uri, origuri, rest], expected)
+      endfor
+    End
+
+    It doesn't accept invalid URIs
+      let NONE = []
+      let ret = URI.new_from_seq_string('foo bar: baz', NONE)
+      Assert ret is NONE
+    End
+  End
+
+  Describe .new_default_pattern_set()
+    Before each
+      " Define loose pattern set.
+      let pattern_set = URI.new_default_pattern_set()
+
+      " Remove "'", '(', ')' from default sub_delims().
+      function! pattern_set.sub_delims() abort
+          return '[!$&*+,;=]'
+      endfunction
+
+      let NONE = []
+    End
+
+    It allows to ignore some characters (:help Vital.Web.URI-PatternSet)
+      for [input, expected] in [
+      \  ['http://example.com)',
+      \    ['http://example.com', 'http://example.com', ')']],
+      \  ['https://en.wikipedia.org/wiki/Markdown)',
+      \    ['https://en.wikipedia.org/wiki/Markdown', 'https://en.wikipedia.org/wiki/Markdown', ')']],
+      \  ['http://example.com/?q=query)',
+      \    ['http://example.com/?q=query', 'http://example.com/?q=query', ')']],
+      \  ['http://example.com/#fragment)',
+      \    ['http://example.com/#fragment', 'http://example.com/#fragment', ')']],
+      \
+      \  ["http://example.com'",
+      \    ['http://example.com', 'http://example.com', "'"]],
+      \  ["https://github.com/Lokaltog/vim-easymotion'",
+      \    ['https://github.com/Lokaltog/vim-easymotion', 'https://github.com/Lokaltog/vim-easymotion', "'"]],
+      \  ["http://example.com/?q=query'",
+      \    ['http://example.com/?q=query', 'http://example.com/?q=query', "'"]],
+      \  ["http://example.com/#fragment'",
+      \    ['http://example.com/#fragment', 'http://example.com/#fragment', "'"]],
+      \]
+        let ret = URI.new_from_seq_string(input, NONE, pattern_set)
+        " Stringify URI object.
+        let [uri, origuri, rest] = [ret[0].to_string()] + ret[1:2]
+        Assert Equals([uri, origuri, rest], expected)
+      endfor
+    End
+  End
+
+  Describe .is_uri()
+    It checks valid URI
+      Assert True(URI.is_uri('http://example.com/'))
+      Assert True(URI.is_uri('http://example.com'))
+      Assert True(URI.is_uri('file:///home/tyru'))
+      Assert True(URI.is_uri('http:///home/tyru'))
+      Assert True(URI.is_uri('http://user:password@example.com:8080/path/for/test?q=query#fragment'))
+    End
+
+    It checks invalid URI
+      Assert False(URI.is_uri('foo'))
+      Assert False(URI.is_uri('/bar'))
+    End
+  End
+
+  Describe .encode()
+    It encodes string to Percent-encoding string
+      Assert Equals(URI.encode('abc12390'), 'abc12390')
+      Assert Equals(URI.encode("abc\x01\x0a\x0d AB-"), 'abc%01%0A%0D%20AB-')
+      Assert Equals(URI.encode("\xA4\xC1\xA4\xE3"), '%A4%C1%A4%E3')
+      Assert Equals(URI.encode("\xA4\xC1\xA4\xE5"), '%A4%C1%A4%E5')
+      Assert Equals(URI.encode("\xA4\xC1\xA4\xE7"), '%A4%C1%A4%E7')
+    End
+
+    It encodes the reserved characters in RFC3986
+      Assert Equals(URI.encode(':/?#[]@'), '%3A%2F%3F%23%5B%5D%40')
+      Assert Equals(URI.encode("!$&'()*+,;="), '%21%24%26%27%28%29%2A%2B%2C%3B%3D')
+      Assert Equals(URI.encode('%'), '%25')
+    End
+
+    It does not change the unreserved characters in RFC3986
+      for s in ['1234567890',
+      \  'abcdefghijklmnopqrstuvwxyz',
+      \  'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+      \  '._-~',
+      \  'abc1.2345_ABCD-EZY']
+        Assert Equals(URI.encode(s), s)
+      endfor
+    End
+
+    Context with {char-enc}
+      Context is omitted
+        It is treated as "utf-8"
+          Assert Equals(URI.encode('あいうえお'), '%E3%81%82%E3%81%84%E3%81%86%E3%81%88%E3%81%8A')
+        End
+      End
+
+      Context is cp932
+        It converts {str} to cp932
+          Assert Equals(URI.encode('あいうえお', 'cp932'), '%82%A0%82%A2%82%A4%82%A6%82%A8')
+        End
+      End
+
+      Context is empty
+        Before
+          let cp932 = iconv('あいうえお', 'utf-8', 'cp932')
+          let encoding = &encoding
+          set encoding=cp932
+        End
+        After
+          let &encoding = encoding
+        End
+
+        It never converts character encoding
+          Assert Equals(URI.encode(cp932), '%E3%81%82%E3%81%84%E3%81%86%E3%81%88%E3%81%8A')
+          Assert Equals(URI.encode(cp932, ''), '%82%A0%82%A2%82%A4%82%A6%82%A8')
+        End
+      End
+    End
+  End
+
+  Describe .decode()
+    It decodes string that is encoded by Percent-encoding
+      Assert Equals(URI.decode('1234567890'), '1234567890')
+      Assert Equals(URI.decode('abc12390'), 'abc12390')
+      Assert Equals(URI.decode('%A4%C1%A4%E3'), "\xA4\xC1\xA4\xE3")
+      Assert Equals(URI.decode('%A4%C1%A4%E5'), "\xA4\xC1\xA4\xE5")
+      Assert Equals(URI.decode('%A4%C1%A4%E7'), "\xA4\xC1\xA4\xE7")
+    End
+
+    It does not change the unreserved characters
+      for s in ['1234567890',
+      \  'abcdefghijklmnopqrstuvwxyz',
+      \  'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+      \  'abc12345ABCDEZY',
+      \  '._-~',
+      \  'abc1.2345_ABCD-EZY']
+        Assert Equals(URI.decode(s), s)
+      endfor
+    End
+
+    It encodes and decodes string
+      for s in ['1234567890',
+      \  'abcdefghijklmnopqrstuvwxyz',
+      \  'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+      \  'abc12345ABCDEZY',
+      \  '%123ABC!"#$%&''()~=-~^|\\[]@:;+<>/\',
+      \  'あいうえお',
+      \  'ちゃちゅちょ']
+        Assert Equals(URI.decode(URI.encode(s)), s)
+      endfor
+    End
+
+    Context with {char-enc}
+      Context is omitted
+        It is treated as "utf-8"
+          Assert Equals(URI.decode('%E3%81%82%E3%81%84%E3%81%86%E3%81%88%E3%81%8A'), 'あいうえお')
+        End
+      End
+
+      Context is cp932
+        It converts {str} to cp932
+          Assert Equals(URI.decode('%82%A0%82%A2%82%A4%82%A6%82%A8', 'cp932'), 'あいうえお')
+        End
+      End
+
+      Context is empty
+        Before
+          let cp932 = iconv('あいうえお', 'utf-8', 'cp932')
+          let encoding = &encoding
+          set encoding=cp932
+        End
+        After
+          let &encoding = encoding
+        End
+
+        It never converts character encoding
+          Assert Equals(URI.decode('%E3%81%82%E3%81%84%E3%81%86%E3%81%88%E3%81%8A'), cp932)
+          Assert Equals(URI.decode('%82%A0%82%A2%82%A4%82%A6%82%A8', ''), cp932)
+        End
+      End
+    End
+  End
+End

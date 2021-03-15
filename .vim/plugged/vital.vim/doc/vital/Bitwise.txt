@@ -1,0 +1,119 @@
+*vital/Bitwise.txt*	bitwise operators.
+
+Maintainer: thinca  <thinca+vim@gmail.com>
+
+==============================================================================
+CONTENTS					*Vital.Bitwise-contents*
+
+INTRODUCTION			|Vital.Bitwise-introduction|
+INTERFACE			|Vital.Bitwise-interface|
+  FUNCTIONS			  |Vital.Bitwise-functions|
+
+
+
+==============================================================================
+INTRODUCTION					*Vital.Bitwise-introduction*
+
+*Vital.Bitwise* provides some bitwise operators.
+
+Vim provides some bitwise operators as builtin functions, but they don't
+always exist, depending on the version or the variant of the Vim. This module
+provides them as a wrapper, so that Vim plugin authors can guarantee that
+these functionalities exist, and the users can benefit from the performance
+Vim core provides too.
+
+==============================================================================
+INTERFACE					*Vital.Bitwise-interface*
+
+------------------------------------------------------------------------------
+FUNCTIONS					*Vital.Bitwise-functions*
+
+and({expr}, {expr})				*Vital.Bitwise.and()*
+	Bitwise AND on the two arguments.
+
+or({expr}, {expr})				*Vital.Bitwise.or()*
+	Bitwise OR on the two arguments.
+
+xor({expr}, {expr})				*Vital.Bitwise.xor()*
+	Bitwise XOR on the two arguments.
+
+invert({expr})					*Vital.Bitwise.invert()*
+	Bitwise invert.
+
+lshift({expr}, {bits})				*Vital.Bitwise.lshift()*
+	Bitwise shifts to left.  {bits} is masked by 0x1F or 0x3F(|+num64|).
+
+rshift({expr}, {bits})				*Vital.Bitwise.rshift()*
+	Bitwise logical shifts to right.  {bits} is masked by 0x1F or
+	0x3F(|+num64|).
+
+compare({expr}, {expr})				*Vital.Bitwise.compare()*
+	Compares as unsigned integer.  Returns -1, 0, or 1.
+
+sign_extension({expr})			*Vital.Bitwise.sign_extension()*
+	Apply sign extension to {expr}.
+	This reappears 32bit number in |+num64| environment.
+	With |+num64|, when the 32nd bit is 0, upper 32bits are filled by 0.
+	Otherwise, it is filled by 1.
+	Without |+num64|, returns {expr}.
+	Example(with |+num64|): >
+	echo B.sign_extension(4294967295)
+	" => -1
+	" 4294967295 == 0xFFFFFFFF
+	" -1 == 0xFFFFFFFFFFFFFFFF
+
+lshift32({expr}, {bits})			*Vital.Bitwise.lshift32()*
+	Similar to |Vital.Bitwise.lshift()|, but always treats 32bit number.
+	With |+num64|, upper 32bits of results are always 0.
+
+rshift32({expr}, {bits})			*Vital.Bitwise.rshift32()*
+	Similar to |Vital.Bitwise.rshift()|, but always treats 32bit number.
+	With |+num64|, upper 32bits of {expr} is ignored.
+
+
+uint8({int})				  *Vital.Bitwise.uint8()*
+	Return uint8 (1 byte) casted integer from {int}.
+
+uint16({int})				  *Vital.Bitwise.uint16()*
+	Return uint16 (2 byte) casted integer from {int}.
+
+uint32({int})				  *Vital.Bitwise.uint32()*
+	Return uint32 (4 byte) casted integer from {int}.
+
+uint64({int})				  *Vital.Bitwise.uint64()*
+	Return uint64 (8 byte) casted integer from {int}.
+	NOTE:Support only |+num64|.
+
+rotate8l({int}, {bits})			  *Vital.Bitwise.rotate8l()*
+	Return value that is {bits}-bit left bit-rotated with {int} as uint8.
+	Ex. >
+	echo printf('08b' B.rotate8(0b11001001, 3)
+	"         01001110
+	" 110 <-- 01001 <-- 110
+<
+
+rotate8r({int}, {bits})			  *Vital.Bitwise.rotate8r()*
+	Same as |Vital.Bitwise.rotate8l()|, shift right.
+
+rotate16l({int}, {bits})		  *Vital.Bitwise.rotate16l()*
+	Return value that is {bits}-bit left bit-rotated with {int} as uint16.
+
+rotate16r({int}, {bits})		  *Vital.Bitwise.rotate16r()*
+	Same as |Vital.Bitwise.rotate16l()|, shift right.
+
+rotate32l({int}, {bits})		  *Vital.Bitwise.rotate32l()*
+	Return value that is {bits}-bit left bit-rotated with {int} as uint32.
+
+rotate32r({int}, {bits})		  *Vital.Bitwise.rotate32r()*
+	Same as |Vital.Bitwise.rotate32l()|, shift right.
+
+rotate64l({int}, {bits})		  *Vital.Bitwise.rotate64l()*
+	Return value that is {bits}-bit left bit-rotated with {int} as uint64.
+	NOTE:Support only |+num64|.
+
+rotate64r({int}, {bits})		  *Vital.Bitwise.rotate64r()*
+	Same as |Vital.Bitwise.rotate64l()|, shift right.
+	NOTE:Support only |+num64|.
+
+==============================================================================
+vim:tw=78:fo=tcq2mM:ts=8:ft=help:norl

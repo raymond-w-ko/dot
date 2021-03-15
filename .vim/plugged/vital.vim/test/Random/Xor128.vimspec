@@ -1,0 +1,55 @@
+Describe Random.Xor128
+  Before all
+    let X = vital#vital#new().import('Random.Xor128')
+  End
+
+  Describe .rand()
+    It returns 1169077414 at 10000th with the seed 0
+      " This test ensures the implementation is identical to one in xor128.c
+      call X.srand(0)
+      for i in range(9999)
+        call X.rand()
+      endfor
+      Assert Equals(X.rand(), 1169077414)
+    End
+  End
+
+  Describe Generator.next()
+    It returns -1077784574 at 10000th with the seeds []
+      " This test ensures the implementation is identical to one in xor128.c
+      let rng = X.new_generator()
+      call rng.seed([])
+      for i in range(9999)
+        call rng.next()
+      endfor
+      Assert Equals(rng.next(), -1077784574)
+    End
+
+    It returns 1287149848 at 10000th with the seeds [0 0 0 0]
+      " This test ensures the implementation is identical to one in xor128.c
+      let rng = X.new_generator()
+      call rng.seed([0, 0, 0, 0])
+      for i in range(9999)
+        call rng.next()
+      endfor
+      Assert Equals(rng.next(), 1287149848)
+    End
+  End
+
+  Describe .srand()
+    It sets the seed
+      call X.srand(1)
+      let a1 = X.rand()
+      let a2 = X.rand()
+      let a3 = X.rand()
+
+      call X.srand(1)
+      Assert Equals(X.rand(), a1)
+      Assert Equals(X.rand(), a2)
+      Assert Equals(X.rand(), a3)
+
+      call X.srand(2)
+      Assert NotEquals(X.rand(), a1)
+    End
+  End
+End

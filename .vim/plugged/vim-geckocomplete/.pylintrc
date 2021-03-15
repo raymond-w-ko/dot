@@ -1,0 +1,10 @@
+[MESSAGES CONTROL]
+disable=missing-function-docstring,
+        missing-module-docstring,
+        missing-class-docstring,
+        too-many-instance-attributes,
+        invalid-name,
+        global-statement,
+        too-few-public-methods,
+        attribute-defined-outside-init,
+        bare-except,
