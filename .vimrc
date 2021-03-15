@@ -16,21 +16,22 @@ if filereadable(expand("$HOME/.has-full-github-access"))
   let g:plug_shallow = 0
 endif
 
-set runtimepath+=$HOME/.vim/bundle/lightline-colorschemes
-
-let s:cywgin_vim_dir = expand("C:/cygwin64/home/$USERNAME/dot/.vim/bundle")
-if isdirectory(s:cywgin_vim_dir)
-  call plug#begin(s:cywgin_vim_dir)
-else
-  call plug#begin('~/.vim/bundle')
-endif
-
 " if this is not set early enough, causes last row highlight in neovim
 set cmdheight=2
-
 " Leader
 let mapleader = "\<Space>"
 let maplocalleader = ","
+
+let s:cywgin_vim_dir = expand("C:/cygwin64/home/$USERNAME/dot/.vim/plugged")
+if isdirectory(s:cywgin_vim_dir)
+  call plug#begin(s:cywgin_vim_dir)
+else
+  call plug#begin('~/.vim/plugged')
+endif
+
+" manually managed plugins
+Plug '$HOME/dot/.vim/plugged.manual/lightline-colorschemes'
+Plug '$HOME/dot/.vim/plugged.manual/rko-misc'
 
 " my plugins
 Plug 'raymond-w-ko/vim-solarized8'
@@ -526,50 +527,6 @@ else
   let s:svn_home = expand('$HOME')
 endif
 
-function! MyTranslateDirectory(dir)
-  let dir = a:dir
-  let dir = substitute(dir, '__SVN__', s:svn_home, '')
-  let dir = substitute(dir, '__UNIX_HOME__', s:unix_home, '')
-  let dir = substitute(dir, ' ', '\ ', '')
-
-  if has('win32')
-    let dir = substitute(dir, '/', '\\', 'g')
-  endif
-
-  return dir
-endfunction
-
-let s:commands = [
-    \ 'Omegacomplete',      '__UNIX_HOME__/dot/.vim/bundle/omegacomplete.vim',
-    \ 'Omegacomplete2',     '__UNIX_HOME__/dot/.vim/bundle/omegacomplete2',
-    \ 'OcularWM',           '__UNIX_HOME__/src/ocularwm',
-    \ 'Windmenu',           '__UNIX_HOME__/src/windmenu',
-    \ 'Dk2test',            '__UNIX_HOME__/src/dk2test',
-    \ 'Collimator',         '__UNIX_HOME__/src/collimator',
-    \ 'Diffractor',         '__UNIX_HOME__/src/diffractor',
-    \ 'LetterDungeon',      '__UNIX_HOME__/src/letterdungeon',
-    \
-    \ 'Sydocs',             '__UNIX_HOME__/src/sydocs',
-    \
-    \ 'Engine',             '__UNIX_HOME__/src/alivesim/engine',
-    \
-    \ 'Diabetes',           '__UNIX_HOME__/src/alivesim/apps/Diabetes_CMESim_2015',
-    \ 'Gibleed',            '__UNIX_HOME__/src/alivesim/apps/gi_bleed_2016',
-    \ ]
-
-let s:project_directories_list = []
-let g:my_project_directories = {}
-
-for i in range(len(s:commands) / 2)
-    let cmd = (i * 2) + 0
-
-    let dir = s:commands[(i * 2) + 1]
-    let dir = MyTranslateDirectory(dir)
-    let g:my_project_directories[dir] = 1
-
-    exe 'command! ' . s:commands[cmd] . ' silent cd ' . dir
-endfor
-
 " traverse up parent directories until it finds one that matches in the above
 " list
 function! s:IsProjectDirectory(directory)
@@ -578,8 +535,6 @@ function! s:IsProjectDirectory(directory)
   elseif isdirectory(a:directory . "/.hg")
     return 1
   elseif filereadable(a:directory . "/shadow-cljs.edn")
-    return 1
-  elseif has_key(g:my_project_directories, a:directory)
     return 1
   else
     return 0
