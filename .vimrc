@@ -31,6 +31,7 @@ set cmdheight=2
 " my plugins
 Plug 'raymond-w-ko/vim-solarized8'
 Plug 'raymond-w-ko/scrollfix'
+let g:scrollfix=50
 Plug 'raymond-w-ko/vim-eslisp'
 Plug 'raymond-w-ko/vim-lua-indent'
 if !has("nvim") && has("python3")
@@ -55,7 +56,6 @@ Plug 'kana/vim-operator-user'
 Plug 'qpkorr/vim-bufkill'
 Plug 'Konfekt/FastFold'
 Plug 'itchyny/lightline.vim'
-Plug 'mhinz/vim-startify'
 if has('python3') || has('python')
   Plug 'SirVer/ultisnips'
 endif
@@ -63,12 +63,27 @@ Plug 'honza/vim-snippets'
 Plug 'dense-analysis/ale'
 Plug 'maximbaz/lightline-ale'
 Plug 'sjl/gundo.vim'
-Plug 'majutsushi/tagbar'
 Plug 'zhimsel/vim-stay'
 Plug 'godlygeek/tabular'
 Plug 'mattn/emmet-vim'
 Plug 'luochen1990/rainbow'
 Plug 'ap/vim-css-color'
+Plug 'majutsushi/tagbar'
+let g:tagbar_sort=0 " usually my tags are in some sort of custom order that makes sense
+let g:tagbar_width=40
+
+Plug 'mhinz/vim-startify'
+let g:startify_session_dir="~/sessions/"
+let g:startify_session_number = 32
+let g:startify_files_number = 64
+let g:startify_lists = [
+    \ { 'type': 'sessions',  'header': ['   Sessions']       },
+    \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+    \ { 'type': 'files',     'header': ['   MRU']            },
+    \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+    \ { 'type': 'commands',  'header': ['   Commands']       },
+    \ ]
+
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
 " obsoleted by vim-tmux-navigator
@@ -116,9 +131,18 @@ Plug 'tpope/vim-haystack'
 Plug 'tpope/vim-apathy'
 
 " Hayabusa + friends
-Plug 'haya14busa/vim-asterisk'
-Plug 'osyo-manga/vim-anzu'
 Plug 'kana/vim-arpeggio'
+Plug 'haya14busa/vim-asterisk'
+let g:asterisk#keeppos=1
+Plug 'osyo-manga/vim-anzu'
+map n <Plug>(anzu-n-with-echo)
+map N <Plug>(anzu-N-with-echo)
+map *  <Plug>(asterisk-z*)
+map g* <Plug>(asterisk-gz*)
+map #  <Plug>(asterisk-z#)
+map g# <Plug>(asterisk-gz#)
+map / /\v
+map ? ?\v
 
 " Junegunn Choi
 Plug 'junegunn/vim-easy-align'
@@ -174,12 +198,16 @@ Plug '2072/PHP-Indenting-for-VIm'
 Plug 'pangloss/vim-javascript'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'othree/csscomplete.vim'
+augroup MyVimrc
+  autocmd FileType css set omnifunc=csscomplete#CompleteCSS noci
+augroup END
 Plug 'groenewege/vim-less'
 
-" universal REPL
 Plug 'jpalardy/vim-slime'
+let g:slime_no_mappings = 1
+let g:slime_target="tmux"
+let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
 
-" reason lang
 Plug 'reasonml-editor/vim-reason-plus'
 
 " clojure
@@ -199,9 +227,15 @@ Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 
 " misc filetypes
-Plug 'rhysd/vim-clang-format'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'aklt/plantuml-syntax'
+Plug 'rhysd/vim-clang-format'
+let g:clang_format#code_style="google"
+let g:clang_format#detect_style_file=1
+augroup MyVimrc
+  autocmd FileType c,cpp,objc nnoremap <buffer><Leader>f :<C-u>ClangFormat<CR>zz
+  autocmd FileType c,cpp,objc vnoremap <buffer><Leader>f :ClangFormat<CR>
+augroup END
 
 call plug#end()
 
@@ -220,6 +254,7 @@ endif
 
 " load sensible defaults by our prophet Tim Pope
 runtime! plugin/sensible.vim
+set scrolloff=0 " scrolloff 0 is needed by scrollfix
 
 if has('win32')
   let s:data_dir="$APPDATA/Vim"
@@ -2479,104 +2514,6 @@ call add(g:synesthesia_ignored_filetypes, 'xml')
 " conflicts with my save
 " map <Leader>w <Plug>(easymotion-bd-w)
 " nmap <Leader>w <Plug>(easymotion-overwin-w)
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" scrollfix
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" scrolloff 0 is needed by scrollfix
-set scrolloff=0
-let g:scrollfix=50
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-slime
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:slime_no_mappings = 1
-let g:slime_target="tmux"
-let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-expand-region
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-asterisk
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:asterisk#keeppos=1
-" map *  <Plug>(asterisk-z*)
-" map #  <Plug>(asterisk-z#)
-" map g* <Plug>(asterisk-gz*)
-" map g# <Plug>(asterisk-gz#)
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" incsearch.vim
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" map /  <Plug>(incsearch-forward)\v
-" map ?  <Plug>(incsearch-backward)\v
-" map g/ <Plug>(incsearch-stay)\v
-" map n <Plug>(anzu-n-with-echo)
-" map N <Plug>(anzu-N-with-echo)
-" map *  <Plug>(asterisk-z*)
-" map g* <Plug>(asterisk-gz*)
-" map #  <Plug>(asterisk-z#)
-" map g# <Plug>(asterisk-gz#)
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" is.vim improves search feature. is.vim is successor of incsearch.vim
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" with is.vim enabled
-" map n <Plug>(is-nohl)<Plug>(anzu-n-with-echo)
-" map N <Plug>(is-nohl)<Plug>(anzu-N-with-echo)
-" map *  <Plug>(asterisk-z*)<Plug>(is-nohl-1)
-" map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)
-" map #  <Plug>(asterisk-z#)<Plug>(is-nohl-1)
-" map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)
-
-" WARN: WITHOUT is.vim enabled
-map n <Plug>(anzu-n-with-echo)
-map N <Plug>(anzu-N-with-echo)
-map *  <Plug>(asterisk-z*)
-map g* <Plug>(asterisk-gz*)
-map #  <Plug>(asterisk-z#)
-map g# <Plug>(asterisk-gz#)
-map / /\v
-map ? ?\v
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" tagbar
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" usually the files that I deal with have functions arranged in some sort of
-" logical grouping that we wnat to preserve
-let g:tagbar_sort=0
-let g:tagbar_width=40
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-clang-format
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:clang_format#code_style="google"
-let g:clang_format#detect_style_file=1
-autocmd FileType c,cpp,objc nnoremap <buffer><Leader>f :<C-u>ClangFormat<CR>zz
-autocmd FileType c,cpp,objc vnoremap <buffer><Leader>f :ClangFormat<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" csscomplete.vim
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS noci
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-startify
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:startify_session_dir="~/sessions/"
-let g:startify_session_number = 32
-let g:startify_files_number = 64
-
-let g:startify_lists = [
-    \ { 'type': 'sessions',  'header': ['   Sessions']       },
-    \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-    \ { 'type': 'files',     'header': ['   MRU']            },
-    \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-    \ { 'type': 'commands',  'header': ['   Commands']       },
-    \ ]
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " rainbow
