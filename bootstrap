@@ -68,6 +68,7 @@ done
 popd
 echo
 
+touch $HOME/.z && chmod 600 $HOME/.z
 for dotfile in $($FIND . -maxdepth 1 ! -path ./.git ! -path ./.gitignore ! -path ./.gitmodules -regex '.*/\..+') ; do
   FILENAME=$(basename $dotfile)
   echo $FILENAME
