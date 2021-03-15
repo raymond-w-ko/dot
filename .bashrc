@@ -114,7 +114,12 @@ idleionice() {
   ionice -c3 -p $@
 }
 
-if hash nvim 2>/dev/null; then
+if [[ -d $HOME/nvim ]]; then
+  export SVN_EDITOR=nvim
+  export GIT_EDITOR=nvim
+  export HGEDITOR=nvim
+  export EDITOR=nvim
+elif hash nvim 2>/dev/null; then
   export SVN_EDITOR=nvim
   export GIT_EDITOR=nvim
   export HGEDITOR=nvim

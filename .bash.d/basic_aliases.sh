@@ -36,7 +36,9 @@ else
     fi
 fi
 
-if hash nvim 2>/dev/null; then
+if [[ -d $HOME/nvim ]]; then
+  alias v=nvim
+elif hash nvim 2>/dev/null; then
   alias v=nvim
 else
   alias v=vim
