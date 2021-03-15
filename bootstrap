@@ -34,6 +34,8 @@ else
   mkdir -p "$HOME/.local/share/vim/backup"
   mkdir -p "$HOME/.local/share/vim/swap"
   mkdir -p "$HOME/.local/share/vim/undo"
+  mkdir -p "$HOME/.local/share/vim/info"
+  mkdir -p "$HOME/.vim/files/info"
 fi
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
