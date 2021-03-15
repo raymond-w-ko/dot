@@ -3,6 +3,10 @@
 " http://utf8everywhere.org/
 set encoding=utf-8
 
+" speed hacks
+let g:loaded_rrhelper=1
+let g:did_install_default_menus=1 " avoid stupid menu.vim (saves ~100ms)
+
 augroup MyVimrc
   au!
 augroup END
@@ -57,7 +61,6 @@ if has('python3') || has('python')
   Plug 'SirVer/ultisnips'
 endif
 Plug 'honza/vim-snippets'
-" Plug 'vim-syntastic/syntastic'
 Plug 'dense-analysis/ale'
 Plug 'maximbaz/lightline-ale'
 Plug 'sjl/gundo.vim'
@@ -76,14 +79,11 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-commentary'
-" Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
-" E712: Argument of get() must be a List or Dictionary
-" Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-speeddating'
@@ -96,10 +96,6 @@ Plug 'tpope/vim-haystack'
 Plug 'tpope/vim-apathy'
 
 " Hayabusa + friends
-" Plug 'easymotion/vim-easymotion'
-" Plug 'haya14busa/incsearch.vim'
-" Plug 'haya14busa/incsearch-easymotion.vim'
-" Plug 'haya14busa/is.vim'
 Plug 'haya14busa/vim-asterisk'
 Plug 'osyo-manga/vim-anzu'
 Plug 'kana/vim-arpeggio'
@@ -107,16 +103,33 @@ Plug 'kana/vim-arpeggio'
 " Junegunn Choi
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-peekaboo'
+let g:peekaboo_window="vert bo 80new"
 Plug 'junegunn/gv.vim'
 
 " shougo + friends (Japanese Vim)
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 
+""""""""""""""""""""""""""""""""""""""""
 " Justin M. Keyes
+""""""""""""""""""""""""""""""""""""""""
 Plug 'justinmk/vim-dirvish'
+" Disable netrw, but autoload it for `gx`.
+let g:loaded_netrwPlugin = 0
+nmap gx <Plug>NetrwBrowseX
+nnoremap <Plug>NetrwBrowseX :call netrw#BrowseX(expand((exists("g:netrw_gx")? g:netrw_gx : '<cfile>')),netrw#CheckIfRemote())<CR>
+
 Plug 'justinmk/vim-sneak'
+let g:sneak#label=1
+let g:sneak#s_next=1
+let g:sneak#use_ic_scs=1
+highlight Sneak guifg=magenta guibg=black ctermfg=black ctermbg=red
+highlight SneakScope guifg=black guibg=#00ff00 ctermfg=black ctermbg=green
+highlight SneakLabel guifg=magenta guibg=black ctermfg=black ctermbg=red
+highlight SneakLabelMask guifg=black guibg=black ctermfg=black ctermbg=black
+
 Plug 'justinmk/vim-gtfo'
+Plug 'justinmk/vim-printf'
 
 " LucHermitte
 Plug 'LucHermitte/lh-vim-lib'
@@ -2441,17 +2454,6 @@ call add(g:synesthesia_ignored_filetypes, 'xml')
 " nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-sneak
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:sneak#label=1
-let g:sneak#s_next=1
-let g:sneak#use_ic_scs=1
-highlight Sneak guifg=magenta guibg=black ctermfg=black ctermbg=red
-highlight SneakScope guifg=black guibg=#00ff00 ctermfg=black ctermbg=green
-highlight SneakLabel guifg=magenta guibg=black ctermfg=black ctermbg=red
-highlight SneakLabelMask guifg=black guibg=black ctermfg=black ctermbg=black
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " scrollfix
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " scrolloff 0 is needed by scrollfix
@@ -2595,11 +2597,6 @@ nnoremap <leader>gp :Git push<CR>
 nnoremap <leader>G :Git<Space>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-peakaboo
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:peekaboo_window="vert bo 80new"
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " rainbow
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:rainbow_active=1
@@ -2665,7 +2662,7 @@ augroup MyRaindowLoader
 augroup end
 
 " }}}
-" filetype specific settings {{{
+
 function! MyJsonFormatter()
   let view = winsaveview()
   execute "%!python -m json.tool"
@@ -2749,19 +2746,8 @@ augroup MyVimrc
   au FileType markdown setlocal textwidth=80
 
   au BufRead .joker set ft=clojure
-
-  let g:pyindent_open_paren = '&sw'
-  let g:pyindent_nested_paren = '&sw'
-  let g:pyindent_continue = '&sw'
 augroup END
-" }}}
-" Projects {{{
-" no tags by default, omegacomplete is usually enough
-set tags=
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" UNIX
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! FindAndRunMakefile()
   let prev_dir = ''
   let current_dir = expand('%:p:h')
@@ -2787,23 +2773,8 @@ function! FindAndRunMakefile()
     endif
   endwhile
 endfunction
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Windows
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" function! IssueBuildCommandToVisualStudio()
-"   let ahk_file = s:unix_home.'/dot/bin/issue_build_command_to_visual_studio.ahk'
-"   if !filereadable(ahk_file)
-"     return
-"   endif
-
-"   exe "silent! !".ahk_file
-" endfunction
-
 if has('unix')
   nnoremap <leader>m :update<CR>:call FindAndRunMakefile()<CR>
-" elseif has('win32')
-"   nnoremap <leader>m :update<CR>:call IssueBuildCommandToVisualStudio()<CR>
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -2812,12 +2783,3 @@ endif
 " converts underscore_case to camelCase
 " nnoremap <leader>c :s#_\(\l\)#\u\1#<CR>
 vnoremap <leader>c :s#_\(\l\)#\u\1#<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" temporary
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" call arpeggio#map('i', '', 0, '3p', '<ref>')
-" call arpeggio#map('i', '', 0, '4p', '</ref>')
-" set ts=4 sw=4 sts=4 et
-
-" }}}
