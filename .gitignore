@@ -11,6 +11,12 @@
 *.class
 *.xkm
 
+# vim
+tags
+/.vim/.netrwhist
+/.vim/view/
+/.vim/plugged/omegacomplete.vim/python/omegacomplete/core/all.cpp
+
 # emacs
 .#.*
 # Visual Studio
@@ -19,9 +25,6 @@
 /.bash.d/add_dot_extra_paths.sh
 
 /.subversion/auth/
-
-/.vim/.netrwhist
-/.vim/view/
 
 /.lein/self-installs
 /.lein/repl-history
@@ -47,6 +50,3 @@
 
 /config/yarn/global/yarn.lock
 /config/yarn/global/node_modules
-
-# vim plugins
-/.vim/bundle/omegacomplete.vim/python/omegacomplete/core/all.cpp
