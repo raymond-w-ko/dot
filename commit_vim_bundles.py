@@ -28,7 +28,9 @@ def process_plugin(path):
 
     shutil.move(".git", "..git")
     try:
-        subprocess.run(["git", "add", "."], check=False, capture_output=False)
+        p = subprocess.run(["git", "add", "."], check=False, capture_output=False)
+        out = p.stdout.decode("utf-8")
+        print(out)
     except:
         pass
     shutil.move("..git", ".git")
