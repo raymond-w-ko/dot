@@ -2108,6 +2108,7 @@ function! fugitive#BufReadCmd(...) abort
     if empty(dir)
       return 'echo "Invalid Fugitive URL"'
     endif
+    let b:git_dir = dir
     if rev =~# '^:\d$'
       let b:fugitive_type = 'stage'
     else
@@ -2211,12 +2212,6 @@ function! fugitive#BufReadCmd(...) abort
 
     setlocal modifiable
 
-    let browsex = maparg('<Plug>NetrwBrowseX', 'n')
-    let remote_check = '\Cnetrw#CheckIfRemote(\%(netrw#GX()\)\=)'
-    if browsex =~# remote_check
-      exe 'nnoremap <silent> <buffer> <Plug>NetrwBrowseX' substitute(browsex, remote_check, '0', 'g')
-    endif
-
     return 'silent ' . s:DoAutocmd('BufReadPost') .
           \ (modifiable ? '' : '|setl nomodifiable') . '|silent ' .
           \ s:DoAutocmd('User Fugitive' . substitute(b:fugitive_type, '^\l', '\u&', ''))
@@ -2272,7 +2267,10 @@ function! s:TempReadPost(file) abort
   if has_key(s:temp_files, s:cpath(a:file))
     let dict = s:temp_files[s:cpath(a:file)]
     setlocal nobuflisted
-    if has_key(dict, 'filetype') && dict.filetype !=# &l:filetype
+    if get(dict, 'filetype', '') ==# 'git'
+      call fugitive#MapJumps()
+    endif
+    if has_key(dict, 'filetype')
       let &l:filetype = dict.filetype
     endif
     setlocal foldmarker=<<<<<<<,>>>>>>>
@@ -3422,7 +3420,9 @@ function! s:StageInline(mode, ...) abort
   endif
   let lnum1 = a:0 ? a:1 : line('.')
   let lnum = lnum1 + 1
-  if a:0 > 1 && a:2 == 0
+  if a:0 > 1 && a:2 == 0 && lnum1 == 1
+    let lnum = line('$') - 1
+  elseif a:0 > 1 && a:2 == 0
     let info = s:StageInfo(lnum - 1)
     if empty(info.paths) && len(info.section)
       while len(getline(lnum))
@@ -3487,6 +3487,9 @@ function! s:StageInline(mode, ...) abort
     if len(diff)
       setlocal modifiable noreadonly
       silent call append(lnum, diff)
+      if foldclosed(lnum+1)
+        silent exe (lnum+1) . ',' . (lnum+len(diff)) . 'foldopen!'
+      endif
       let b:fugitive_expanded[info.section][info.filename] = [start, len(diff)]
       setlocal nomodifiable readonly nomodified
     endif
@@ -6112,10 +6115,31 @@ function! fugitive#MapJumps(...) abort
     call s:Map('n', 'g?',    ":<C-U>help fugitive-map<CR>", '<silent>')
     call s:Map('n', '<F1>',  ":<C-U>help fugitive-map<CR>", '<silent>')
   endif
+
+  let old_browsex = maparg('<Plug>NetrwBrowseX', 'n')
+  let new_browsex = substitute(old_browsex, '\Cnetrw#CheckIfRemote(\%(netrw#GX()\)\=)', '0', 'g')
+  let new_browsex = substitute(new_browsex, 'netrw#GX()\|expand((exists("g:netrw_gx")? g:netrw_gx : ''<cfile>''))', 'fugitive#GX()', 'g')
+  if new_browsex !=# old_browsex
+    exe 'nnoremap <silent> <buffer> <Plug>NetrwBrowseX' new_browsex
+  endif
+endfunction
+
+function! fugitive#GX() abort
+  try
+    let results = &filetype ==# 'fugitive' ? s:StatusCfile() : &filetype ==# 'git' ? s:cfile() : []
+    if len(results) && len(results[0])
+      return FugitiveReal(s:Generate(results[0]))
+    endif
+  catch /^fugitive:/
+  endtry
+  return expand(get(g:, 'netrw_gx', expand('<cfile>')))
 endfunction
 
 function! s:StatusCfile(...) abort
   let tree = s:Tree()
+  if empty(tree)
+    return ['']
+  endif
   let lead = s:cpath(tree, getcwd()) ? './' : tree . '/'
   let info = s:StageInfo()
   let line = getline('.')
@@ -6145,6 +6169,9 @@ endfunction
 
 function! s:MessageCfile(...) abort
   let tree = s:Tree()
+  if empty(tree)
+    return ''
+  endif
   let lead = s:cpath(tree, getcwd()) ? './' : tree . '/'
   if getline('.') =~# '^.\=\trenamed:.* -> '
     return lead . matchstr(getline('.'),' -> \zs.*')
@@ -6171,6 +6198,9 @@ function! fugitive#MessageCfile() abort
 endfunction
 
 function! s:cfile() abort
+  if empty(FugitiveGitDir())
+    return []
+  endif
   try
     let myhash = s:DirRev(@%)[1]
     if len(myhash)
