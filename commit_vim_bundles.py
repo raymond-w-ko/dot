@@ -19,7 +19,6 @@ def yes_or_no(question):
 
 
 def process_plugin(path):
-    print(path)
     orig_dir = os.getcwd()
     os.chdir(path)
 
@@ -27,12 +26,11 @@ def process_plugin(path):
         sys.exit(0)
 
     shutil.move(".git", "..git")
-    try:
-        p = subprocess.run(["git", "add", "."], check=False, capture_output=False)
-        out = p.stdout.decode("utf-8")
+    p = subprocess.run(["git", "add", "."], check=False, capture_output=True)
+    out = p.stdout.decode("utf-8").strip()
+    if out:
+        print(path)
         print(out)
-    except:
-        pass
     shutil.move("..git", ".git")
     os.chdir(orig_dir)
 
