@@ -259,48 +259,29 @@ augroup END
 
 call plug#end()
 
-let g:omegacomplete_version_preference=1
-" let g:omegacomplete_quick_select_keys="asdfjklgh"
-if has('java')
-  let jar_list = split(globpath(expand('$HOME') . '/java', '*.jar'), "\n")
-  call insert(jar_list, expand('$VIMRUNTIME') . '/vim.jar', 0)
-  let jars = substitute(join(jar_list, ';'), '\\', '/', 'g')
-  let jars = substitute(jars, ' ', '\\ ', 'g')
-  exe "set javacp=" . jars
-  javarepl clojure
-endif
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " General {{{
 
 " load sensible defaults by our prophet Tim Pope
 runtime! plugin/sensible.vim
 set scrolloff=0 " scrolloff 0 is needed by scrollfix
-
-if has('win32')
-  let s:data_dir="$APPDATA/Vim"
-  set viewdir=$APPDATA/Vim/view
-elseif match(system('uname'), "Darwin") > -1
-  let s:data_dir='~/Library/Vim'
-elseif empty($XDG_DATA_HOME)
-  let s:data_dir='~/.local/share/vim'
-else
-  let s:data_dir='$XDG_DATA_HOME/vim'
-endif
-if isdirectory(expand(s:data_dir))
-  if &directory =~# '^\.,'
-    let &directory = expand(s:data_dir) . '/swap//,' . &directory
-  endif
-  if &backupdir =~# '^\.,'
-    let &backupdir = expand(s:data_dir) . '/backup//,' . &backupdir
-  endif
-  if exists('+undodir') && &undodir =~# '^\.\%(,\|$\)'
-    let &undodir = expand(s:data_dir) . '/undo//,' . &undodir
-  endif
-endif
-if exists('+undofile')
-  set undofile
-endif
+set undofile
+set backup
+set writebackup
+set backupcopy=auto
 set noswapfile  " computers are pretty reliable nowadays
+
+if !isdirectory(&directory)
+  echoerr "'directory' does not exists: " . &directory
+endif
+set backupdir-=.
+if !isdirectory(&backupdir)
+  echoerr "'backupdir' does not exists: " . &backupdir
+endif
+if !isdirectory(&undodir)
+  echoerr "'undodir' does not exists: " . &undodir
+endif
 
 if !exists("g:rko_already_turned_syntax_off")
   syntax off
