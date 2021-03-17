@@ -1910,7 +1910,7 @@ function! s:SetupBasicSyntaxHighlights()
   syntax match gitMergeConflict /^>>>>>>> .\+$/ containedin=ALL
 
   if &filetype == "clojure"
-    runtime plugin/rko_clojure.vim
+    runtime manual/rko_clojure.vim
     syntax keyword rkoClojureConceal fn conceal cchar=λ containedin=ALL
     setl conceallevel=1
   elseif &filetype == "dirvish"
