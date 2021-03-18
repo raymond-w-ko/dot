@@ -272,15 +272,17 @@ set writebackup
 set backupcopy=auto
 set noswapfile  " computers are pretty reliable nowadays
 
-if !isdirectory(&directory)
-  echoerr "'directory' does not exists: " . &directory
-endif
-set backupdir-=.
-if !isdirectory(&backupdir)
-  echoerr "'backupdir' does not exists: " . &backupdir
-endif
-if !isdirectory(&undodir)
-  echoerr "'undodir' does not exists: " . &undodir
+if has("nvim")
+  if !isdirectory(&directory)
+    echoerr "'directory' does not exists: " . &directory
+  endif
+  set backupdir-=.
+  if !isdirectory(&backupdir)
+    echoerr "'backupdir' does not exists: " . &backupdir
+  endif
+  if !isdirectory(&undodir)
+    echoerr "'undodir' does not exists: " . &undodir
+  endif
 endif
 
 if !exists("g:rko_already_turned_syntax_off")
