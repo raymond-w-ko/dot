@@ -101,13 +101,15 @@ function! s:Mods(mods, ...) abort
   return substitute(mods, '\s\+', ' ', 'g')
 endfunction
 
-function! s:Slash(path) abort
-  if exists('+shellslash')
+if exists('+shellslash')
+  function! s:Slash(path) abort
     return tr(a:path, '\', '/')
-  else
+  endfunction
+else
+  function! s:Slash(path) abort
     return a:path
-  endif
-endfunction
+  endfunction
+endif
 
 function! s:Resolve(path) abort
   let path = resolve(a:path)
@@ -936,9 +938,11 @@ function! fugitive#Find(object, ...) abort
     let prefix = matchstr(a:object, '^[~$]\i*')
     let owner = expand(prefix)
     return FugitiveVimPath((len(owner) ? owner : prefix) . strpart(a:object, len(prefix)))
-  elseif s:Slash(a:object) =~# '^$\|^/\|^\%(\a\a\+:\).*\%(//\|::\)' . (has('win32') ? '\|^\a:/' : '')
+  endif
+  let rev = s:Slash(a:object)
+  if rev =~# '^$\|^/\|^\%(\a\a\+:\).*\%(//\|::\)' . (has('win32') ? '\|^\a:/' : '')
     return FugitiveVimPath(a:object)
-  elseif s:Slash(a:object) =~# '^\.\.\=\%(/\|$\)'
+  elseif rev =~# '^\.\.\=\%(/\|$\)'
     return FugitiveVimPath(simplify(getcwd() . '/' . a:object))
   endif
   let dir = a:0 ? a:1 : s:Dir()
@@ -949,7 +953,6 @@ function! fugitive#Find(object, ...) abort
       return fnamemodify(FugitiveVimPath(len(file) ? file : a:object), ':p')
     endif
   endif
-  let rev = s:Slash(a:object)
   let tree = s:Tree(dir)
   let base = len(tree) ? tree : 'fugitive://' . dir . '//0'
   if rev ==# '.git'
@@ -3487,11 +3490,11 @@ function! s:StageInline(mode, ...) abort
     if len(diff)
       setlocal modifiable noreadonly
       silent call append(lnum, diff)
-      if foldclosed(lnum+1)
-        silent exe (lnum+1) . ',' . (lnum+len(diff)) . 'foldopen!'
-      endif
       let b:fugitive_expanded[info.section][info.filename] = [start, len(diff)]
       setlocal nomodifiable readonly nomodified
+      if foldclosed(lnum+1) > 0
+        silent exe (lnum+1) . ',' . (lnum+len(diff)) . 'foldopen!'
+      endif
     endif
   endwhile
   return lnum
@@ -3611,6 +3614,7 @@ endfunction
 function! s:StageDelete(lnum1, lnum2, count) abort
   let restore = []
   let err = ''
+  let did_conflict_err = 0
   try
     for info in s:Selection(a:lnum1, a:lnum2)
       if empty(info.paths)
@@ -3631,7 +3635,7 @@ function! s:StageDelete(lnum1, lnum2, count) abort
         continue
       endif
       if info.status ==# 'D'
-        let undo = 'Gremove'
+        let undo = 'GRemove'
       elseif info.paths[0] =~# '/$'
         let err .= '|echoerr ' . string('fugitive: will not delete directory ' . string(info.relative[0]))
         break
@@ -3643,14 +3647,30 @@ function! s:StageDelete(lnum1, lnum2, count) abort
       elseif info.status ==# '?'
         call s:TreeChomp('clean', '-f', '--', info.paths[0])
       elseif a:count == 2
-        call s:TreeChomp('checkout', '--ours', '--', info.paths[0])
+        if get(b:fugitive_files['Staged'], info.filename, {'status': ''}).status ==# 'D'
+          call delete(FugitiveVimPath(info.paths[0]))
+        else
+          call s:TreeChomp('checkout', '--ours', '--', info.paths[0])
+        endif
       elseif a:count == 3
-        call s:TreeChomp('checkout', '--theirs', '--', info.paths[0])
+        if get(b:fugitive_files['Unstaged'], info.filename, {'status': ''}).status ==# 'D'
+          call delete(FugitiveVimPath(info.paths[0]))
+        else
+          call s:TreeChomp('checkout', '--theirs', '--', info.paths[0])
+        endif
       elseif info.status =~# '[ADU]' &&
             \ get(b:fugitive_files[info.section ==# 'Staged' ? 'Unstaged' : 'Staged'], info.filename, {'status': ''}).status =~# '[AU]'
-        call s:TreeChomp('checkout', info.section ==# 'Staged' ? '--ours' : '--theirs', '--', info.paths[0])
+        if get(g:, 'fugitive_conflict_x', 0)
+          call s:TreeChomp('checkout', info.section ==# 'Unstaged' ? '--ours' : '--theirs', '--', info.paths[0])
+        else
+          if !did_conflict_err
+            let err .= '|echoerr "Use 2X for --ours or 3X for --theirs"'
+            let did_conflict_err = 1
+          endif
+          continue
+        endif
       elseif info.status ==# 'U'
-        call s:TreeChomp('rm', '--', info.paths[0])
+        call delete(FugitiveVimPath(info.paths[0]))
       elseif info.status ==# 'A'
         call s:TreeChomp('rm', '-f', '--', info.paths[0])
       elseif info.section ==# 'Unstaged'
@@ -3658,7 +3678,9 @@ function! s:StageDelete(lnum1, lnum2, count) abort
       else
         call s:TreeChomp('checkout', 'HEAD^{}', '--', info.paths[0])
       endif
-      call add(restore, ':Gsplit ' . s:fnameescape(info.relative[0]) . '|' . undo)
+      if len(undo)
+        call add(restore, ':Gsplit ' . s:fnameescape(info.relative[0]) . '|' . undo)
+      endif
     endfor
   catch /^fugitive:/
     let err .= '|echoerr ' . string(v:exception)
@@ -5084,7 +5106,7 @@ function! fugitive#Diffsplit(autodir, keepfocus, mods, arg, args) abort
   endtry
 endfunction
 
-" Section: :Gmove, :Gremove
+" Section: :GMove, :GRemove
 
 function! s:Move(force, rename, destination) abort
   let dir = s:Dir()
