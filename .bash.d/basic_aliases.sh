@@ -38,10 +38,13 @@ fi
 
 if [[ -d $HOME/nvim ]]; then
   alias v=nvim
+  alias vS='nvim -S'
 elif hash nvim 2>/dev/null; then
   alias v=nvim
+  alias vS='nvim -S'
 else
   alias v=vim
+  alias vS='vim -S'
 fi
 alias rmr="rm -r"
 alias rmri="rm -r -i"
