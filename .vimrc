@@ -42,9 +42,7 @@ Plug 'raymond-w-ko/vim-lua-indent'
 if !has("nvim") && has("python3")
   Plug 'raymond-w-ko/omegacomplete.vim'
 endif
-if has("nvim")
-  Plug 'raymond-w-ko/vim-geckocomplete'
-endif
+Plug 'raymond-w-ko/vim-geckocomplete'
 
 " colorscheme
 Plug 'lifepillar/vim-colortemplate'
@@ -272,17 +270,21 @@ set writebackup
 set backupcopy=auto
 set noswapfile  " computers are pretty reliable nowadays
 
-if has("nvim")
-  if !isdirectory(&directory)
-    echoerr "'directory' does not exists: " . &directory
-  endif
-  set backupdir-=.
-  if !isdirectory(&backupdir)
-    echoerr "'backupdir' does not exists: " . &backupdir
-  endif
-  if !isdirectory(&undodir)
-    echoerr "'undodir' does not exists: " . &undodir
-  endif
+" vim
+if !has("nvim")
+  set directory=$HOME/.local/share/vim/swap//
+  set backupdir=$HOME/.local/share/vim/backup
+  set undodir=$HOME/.local/share/vim/undo
+endif
+if !isdirectory(&directory)
+  echoerr "'directory' does not exists: " . &directory
+endif
+set backupdir-=.
+if !isdirectory(&backupdir)
+  echoerr "'backupdir' does not exists: " . &backupdir
+endif
+if !isdirectory(&undodir)
+  echoerr "'undodir' does not exists: " . &undodir
 endif
 
 if !exists("g:rko_already_turned_syntax_off")
@@ -1614,11 +1616,7 @@ endfunction
 
 " <CR> should not autoaccept what the popup menu has selected
 if !exists('s:has_set_my_tab_key')
-  if has("nvim")
-    inoremap <silent><expr> <Tab> geckocomplete#completion_key()
-  else
-    inoremap <silent><expr> <Tab> omegacomplete#use_first_entry_of_popup()
-  endif
+  inoremap <silent><expr> <Tab> geckocomplete#completion_key()
   let s:has_set_my_tab_key=1
 endif
 "inoremap <silent>   (       (<C-r>=MySuperLeftParen()<CR>
