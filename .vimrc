@@ -32,6 +32,7 @@ endif
 " manually managed plugins
 Plug '$HOME/dot/.vim/plugged.manual/lightline-colorschemes'
 Plug '$HOME/dot/.vim/plugged.manual/rko-misc'
+nnoremap <leader>o :ToggleWord<CR>
 
 " my plugins
 Plug 'raymond-w-ko/vim-solarized8'
@@ -39,10 +40,10 @@ Plug 'raymond-w-ko/scrollfix'
 let g:scrollfix=50
 Plug 'raymond-w-ko/vim-eslisp'
 Plug 'raymond-w-ko/vim-lua-indent'
-if !has("nvim") && has("python3")
-  Plug 'raymond-w-ko/omegacomplete.vim'
-endif
+
 Plug 'raymond-w-ko/vim-geckocomplete'
+inoremap <expr> <C-s> geckocomplete#toggle_pause_completion()
+inoremap <silent><expr> <Tab> geckocomplete#completion_key()
 
 " colorscheme
 Plug 'lifepillar/vim-colortemplate'
@@ -361,7 +362,6 @@ if !has("nvim")
 endif
 set pastetoggle=<F9>
 
-" timeout is needed due to completing fj with omegacomplete
 set timeout
 set timeoutlen=4096
 set ttimeout
@@ -482,34 +482,26 @@ set wildignore+=*.apk,*.ap_
 " Since I keep my projects in the UNIX-ish HOME directory, we have to figure
 " out where it is. The problem is that it is potentially different everywhere.
 if has('win32')
-  let s:unix_home = expand('$HOME')
-  let dir = 'C:/cygwin/home/root'
-  if isdirectory(dir) | let s:unix_home = dir | endif
-  let dir = 'C:/cygwin64/home/root'
-
-  if isdirectory(dir) | let s:unix_home = dir | endif
-  let dir = 'C:/cygwin/home/Raymond W. Ko'
-  if isdirectory(dir) | let s:unix_home = dir | endif
-  let dir = 'C:/cygwin64/home/Raymond W. Ko'
-  if isdirectory(dir) | let s:unix_home = dir | endif
-
-  let dir = 'C:/cygwin/home/rko'
-  if isdirectory(dir) | let s:unix_home = dir | endif
-  let dir = 'C:/cygwin64/home/rko'
-  if isdirectory(dir) | let s:unix_home = dir | endif
+  let default_home = expand('$HOME')
+  let possible_homes = [
+      \ 'C:/cygwin/home/rko',
+      \ 'C:/cygwin64/home/rko',
+      \ 'C:/cygwin/home/Raymond W. Ko',
+      \ 'C:/cygwin64/home/Raymond W. Ko',
+      \ 'C:/cygwin/home/root',
+      \ 'C:/cygwin64/home/root',
+      \ default_home,
+      \ ]
+  for dir in homes
+    if isdirectory(dir)
+      let s:unix_home = dir
+      break
+    endif
+  endfor
 elseif has('win32unix')
   let s:unix_home = expand('$HOME')
 else
   let s:unix_home = expand('$HOME')
-endif
-
-" Figure out where the company SVN directory lives
-if has('win32')
-  let s:svn_home = 'C:'
-elseif has('win32unix')
-  let s:svn_home = '/cygdrive/c'
-else
-  let s:svn_home = expand('$HOME')
 endif
 
 " traverse up parent directories until it finds one that matches in the above
@@ -564,9 +556,6 @@ function! EscapePathname(pathname)
   return substitute(a:pathname, "\\ ", "\\\\ ", "g")
 endfunction
 
-" ex command for toggling hex mode - define mapping if desired
-command! -bar HexMode call ToggleHex()
-
 " helper function to toggle hex mode
 function! ToggleHex()
   " hex mode should be considered a read-only operation
@@ -606,19 +595,7 @@ function! ToggleHex()
   let &readonly=l:oldreadonly
   let &modifiable=l:oldmodifiable
 endfunction
-
-function! PrecedingWhitespaceCount(line)
-  let num_space = 0
-  for i in range(0, strlen(a:line))
-    if (match(a:line[i], '\v\W') != -1)
-      let num_space = num_space + 1
-    else
-      break
-    endif
-  endfor
-
-  return num_space
-endfunction
+command! -bar HexMode call ToggleHex()
 
 function! FilterSmartQuotes()
     %s/\v“|”/\'/
@@ -657,50 +634,6 @@ function! CenterCursorAesthetically()
     exe 'normal ' . delta . "\<C-e>"
   endif
 endfunction
-
-function! PropagatePasteBufferToRemote(line1, line2)
-  call system('cat_to_remote_clipboard.sh', getreg("*"))
-  echo "propagated * register to remote clipboard"
-endfunction
-command! -range=% PropagatePasteBufferToRemote
-    \ call PropagatePasteBufferToRemote(<line1>, <line2>)
-
-if filereadable('/dev/clipboard')
-  function! SetClipboard(type, ...) range
-    let sel_save = &selection
-    let &selection = "inclusive"
-    let reg_save = @@
-    if a:type == 'n'
-      silent exe a:firstline . "," . a:lastline . "y"
-    elseif a:type == 'c'
-      silent exe a:1 . "," . a:2 . "y"
-    else
-      silent exe "normal! `<" . a:type . "`>y"
-    endif
-    "call system('putclip', @@)
-    "As of Cygwin 1.7.13, the /dev/clipboard device was added to provide
-    "access to the native Windows clipboard. It provides the added benefit
-    "of supporting utf-8 characters which putclip currently does not. Based
-    "on a tip from John Beckett, use the following:
-    call writefile(split(@@,"\n"), '/dev/clipboard', 'b')
-    let &selection = sel_save
-    let @@ = reg_save
-  endfunction
-
-  function! GetClipboard()
-    let reg_save = @@
-    "let @@ = system('getclip')
-    "Much like Putclip(), using the /dev/clipboard device to access to the
-    "native Windows clipboard for Cygwin 1.7.13 and above. It provides the
-    "added benefit of supporting utf-8 characters which getclip currently does
-    "not. Based again on a tip from John Beckett, use the following:
-    let @@ = join(readfile('/dev/clipboard'), "\n")
-    setlocal paste
-    exe 'normal p'
-    setlocal nopaste
-    let @@ = reg_save
-  endfunction
-endif
 
 " }}}
 " GUI {{{
@@ -795,17 +728,6 @@ function! s:FindWordInProject()
 endfunction
 nnoremap <leader>r :call <SID>FindWordInProject()<CR>
 
-" Visual Mode */# from Scrooloose {{{
-" function! s:VisualModeSetSearch()
-"     let temp = @@
-"     norm! gvy
-"     let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
-"     let @@ = temp
-" endfunction
-
-" vnoremap * :<C-u>call <SID>VisualModeSetSearch()<CR>//<CR><c-o>
-" vnoremap # :<C-u>call <SID>VisualModeSetSearch()<CR>??<CR><c-o>
-
 " Easier to type, and I never use the default behavior.
 nnoremap H ^
 nnoremap L g_
@@ -823,7 +745,7 @@ nnoremap VaB vaBV
 " It's 2011.
 " nnoremap <silent> j gj
 " nnoremap <silent> k gk
-" this variant by Petr Zemek allows j and k to work properly whe nusing
+" this variant by Petr Zemek allows j and k to work properly when using
 " relative line numbers
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
@@ -883,66 +805,12 @@ function! MyRightBrace()
 endfunction
 exe "nnoremap <silent> } :call MyRightBrace()<CR>"
 
-" Highlight word {{{
-nnoremap <silent> <leader>hh :execute 'match InterestingWord1 /\<<c-r><c-w>\>/'<cr>
-nnoremap <silent> <leader>h1 :execute 'match InterestingWord1 /\<<c-r><c-w>\>/'<cr>
-nnoremap <silent> <leader>h2 :execute '2match InterestingWord2 /\<<c-r><c-w>\>/'<cr>
-nnoremap <silent> <leader>h3 :execute '3match InterestingWord3 /\<<c-r><c-w>\>/'<cr>
-" LOL, these aren't defined
-nnoremap <silent> <leader>h4 :execute '4match InterestingWord4 /\<<c-r><c-w>\>/'<cr>
-nnoremap <silent> <leader>h5 :execute '5match InterestingWord5 /\<<c-r><c-w>\>/'<cr>
-nnoremap <silent> <leader>h6 :execute '6match InterestingWord6 /\<<c-r><c-w>\>/'<cr>
 " }}}
-" }}}
-" }}}
-" Syntax and Folding {{{
+
 syntax sync fromstart
-"function! MyFoldText()
-    "let line = getline(v:foldstart)
-    "let sub = substitute(line, '^"\s\=\|/\*\|\*/\|{{{\d\=', '', 'g') "}}}
-    "let remaining = &columns - len(sub)
-    "return sub . repeat(' ', remaining)
-"endfunction
-"function! SetFoldSettings()
-    "if exists("g:my_fold_settings_applied")
-        "return
-    "endif
-
-    "set foldenable
-    "set foldmethod=syntax
-    "set foldopen=block,hor,mark,percent,quickfix,tag,search
-    "set foldlevelstart=9001
-    "set foldnestmax=20
-
-    "let g:my_fold_settings_applied=1
-"endfunction
-"set foldtext=MyFoldText()
-"call SetFoldSettings()
-
-" enable syntax folding for XML (caution, this can be slow)
-"let g:xml_syntax_folding=1
-
-" nmap <leader><leader> za
-" vmap <leader><leader> za
 set foldlevelstart=9001
-" }}}
-" Toggle Diff Whitespace {{{
-set diffopt-=iwhite
-let g:should_diff_whitespace = 1
-function! ToggleDiffWhitespace() "
-    if g:should_diff_whitespace
-        set diffopt-=iwhite
-        let g:should_diff_whitespace = 0
-    else
-        set diffopt+=iwhite
-        let g:should_diff_whitespace = 1
-    endif
-    diffupdate
-endfunction
 
-nnoremap <leader>dw :call ToggleDiffWhitespace()<CR>
-" }}}
-" Text Objects {{{
+" Text Objects
 " Shortcut for []
 onoremap ir i[
 onoremap ar a[
@@ -967,35 +835,6 @@ onoremap aq a"
 vnoremap iq i"
 vnoremap ac a"
 
-" Next and Last
-
-" Motion for "next/last object". For example, "din(" would go to the next "()" pair
-" and delete its contents.
-
-onoremap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
-xnoremap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
-onoremap in :<c-u>call <SID>NextTextObject('i', 'f')<cr>
-xnoremap in :<c-u>call <SID>NextTextObject('i', 'f')<cr>
-
-onoremap al :<c-u>call <SID>NextTextObject('a', 'F')<cr>
-xnoremap al :<c-u>call <SID>NextTextObject('a', 'F')<cr>
-onoremap il :<c-u>call <SID>NextTextObject('i', 'F')<cr>
-xnoremap il :<c-u>call <SID>NextTextObject('i', 'F')<cr>
-
-function! s:NextTextObject(motion, dir)
-  let c = nr2char(getchar())
-
-  if c ==# "b"
-      let c = "("
-  elseif c ==# "B"
-      let c = "{"
-  elseif c ==# "d"
-      let c = "["
-  endif
-
-  exe "normal! ".a:dir.c."v".a:motion.c
-endfunction
-" }}}
 " Mappings {{{
 let s:uname = "win32"
 if has("unix")
@@ -1125,7 +964,6 @@ function! s:MyBasicCR()
   if pumvisible()
     let keys .= "\<C-e>"
   endif
-
   return keys . "\<CR>"
 endfunction
 inoremap <Plug>MyBasicCR <C-r>=<SID>MyBasicCR()<CR>
@@ -1250,7 +1088,6 @@ function! MyAlternateFunction()
 endfunction
 nnoremap <leader>a :call MyAlternateFunction()<CR>
 nmap <leader><leader> <C-^>
-nnoremap <leader>o :ToggleWord<CR>
 
 " This allows for change paste motion cp{motion}
 " http://stackoverflow.com/questions/2471175/vim-replace-word-with-contents-of-paste-buffer
@@ -1259,117 +1096,6 @@ function! ChangePaste(type, ...)
     silent exe "normal! p"
 endfunction
 nnoremap <silent> cp :set opfunc=ChangePaste<CR>g@
-
-function! CreateCppMethodImplementation()
-    " determine the complete function definition
-    let line_num = line('.')
-
-    " find the line with '(', this marks the beginning
-    while (1)
-        let cur_line = getline(line_num)
-        if (match(cur_line, '\v\(') != -1)
-            break
-        endif
-
-        let line_num = line_num - 1
-    endwhile
-
-    let begin_line_num = line_num
-    let begin_line = getline(begin_line_num)
-    let definition_whitespace = PrecedingWhitespaceCount(begin_line)
-
-    " find the line with ')', this marks the end
-    while (1)
-        let cur_line = getline(line_num)
-        if (match(cur_line, '\v\)') != -1)
-            break
-        endif
-
-        let line_num = line_num + 1
-    endwhile
-
-    let end_line_num = line_num
-
-    if (exists('s:RefactorCppFunctionDefinition'))
-        unlet s:RefactorCppFunctionDefinition
-    endif
-    let s:RefactorCppFunctionDefinition = getline(begin_line_num, end_line_num)
-    let index = end_line_num - begin_line_num
-    let last_line = s:RefactorCppFunctionDefinition[index]
-    let last_line = substitute( last_line, '\s*=\s*0;', ';', 'g')
-    let s:RefactorCppFunctionDefinition[index] = last_line
-
-    " determine the class name
-    " we will just go up until we see a line begin with 'class'
-    let line_num = begin_line_num - 1
-    while (1)
-        let cur_line = getline(line_num)
-        let words = split(cur_line, '\W\+')
-
-        if (len(words) >= 2)
-            if (words[0] == 'class' || words[0] == 'struct')
-                if (PrecedingWhitespaceCount(cur_line) < definition_whitespace)
-                    if (exists('g:RefactorCppClassName'))
-                        unlet g:RefactorCppClassName
-                    endif
-                    let g:RefactorCppClassName = words[1]
-                    break
-                endif
-            endif
-            if (words[0] == 'namespace')
-                let g:RefactorCppClassName = words[1]
-                break
-            endif
-        endif
-
-        let line_num = line_num - 1
-    endwhile
-
-    A
-    set fo-=r
-    set fo-=o
-    execute "normal Go\<ESC>G"
-    set fo+=r
-    set fo+=o
-    call append('$', s:RefactorCppFunctionDefinition)
-    normal j
-    normal VVG<
-
-    if (expand('<cword>') == "static")
-        normal dw
-    endif
-
-    "check if have virtual keyword, if so delete it since function declarations
-    "don't have that, only in the function definition
-    if (expand('<cword>') == "virtual")
-        normal dw
-    endif
-
-    " TODO check if we have a constructor or destructor, which has no return type
-
-    "insert class name
-    let cur_line = getline(line('.'))
-    let words = split(cur_line, '\W\+')
-    "if (words[0] != g:RefactorCppClassName)
-    "if (len(words) > 1)
-        "normal W
-    "endif
-
-    while 1
-        let word = expand('<cWORD>')
-        if match(word, '(') != -1
-            break
-        endif
-        normal W
-    endwhile
-
-    execute "normal! i\<C-r>=g:RefactorCppClassName\<CR>::\<ESC>G$s\<CR>\<ESC>xxxxxxxx"
-endfunction
-
-augroup MyVimrc
-  au FileType cpp exe "nmap <buffer> <leader>rci :call CreateCppMethodImplementation()<CR>dd$a<Space>σ<CR>"
-augroup END
-
 
 nnoremap <C-Up> :resize +1<CR>
 nnoremap <C-Down> :resize -1<CR>
@@ -1398,12 +1124,6 @@ endfunction
 nnoremap <silent> <S-Left> :call MarkWindowSwap()<CR><C-w>h:call DoWindowSwap()<CR>
 nnoremap <silent> <S-Right> :call MarkWindowSwap()<CR><C-w>l:call DoWindowSwap()<CR>
 
-nnoremap <leader>tq 1gt
-nnoremap <leader>tw 2gt
-nnoremap <leader>te 3gt
-nnoremap <leader>tr 4gt
-nnoremap <F1> :tabnew<CR>
-
 function! CreateAndSetupVsplits()
   let num_tabs=tabpagenr("$")
   if num_tabs == 1
@@ -1430,310 +1150,9 @@ function! CreateAndSetupVsplits()
 endfunction
 nnoremap <leader>tt :call CreateAndSetupVsplits()<CR>
 
-function! ExtensionHelper(ext, dir)
-    let partial = a:dir . '/**/*.' . a:ext
-    let partial = EscapePathname(partial) . ' '
-    return partial
-endfunction
-function! GetRelevantExtensions()
-  let directory = MyGetProjectDirectory()
-
-  let extensions = ""
-  let extensions .= ExtensionHelper('vim', directory)
-  let extensions .= ExtensionHelper('ssf', directory)
-  let extensions .= ExtensionHelper('sml', directory)
-  let extensions .= ExtensionHelper('h', directory)
-  let extensions .= ExtensionHelper('c', directory)
-  let extensions .= ExtensionHelper('cpp', directory)
-  let extensions .= ExtensionHelper('m', directory)
-
-  return extensions
-endfunction
-
-" Fancy Tag Completion {{{
-
-function! MyCppCompleteFunc(findstart, base)
-    " get current line up to where cursor is located
-    let line = strpart(getline('.'), 0, col('.'))
-    let words = split(line, '\W\+')
-
-    if a:findstart
-        " start after the '(' of course
-        return col('.') - 1
-    else
-        let matches = GetFunctionSignatures3(words[-1])
-        return { 'words' : matches, 'refresh' : 'always' }
-    endif
-endfunction
-
-function! GetFunctionSignatures(keyword)
-    let results = taglist("^" . a:keyword . "$")
-    let possible_function_signatures = []
-    for item in results
-      if (has_key(item, 'signature'))
-        let signature = item['signature']
-        let signature = substitute(signature, '\((\s*\)\|\(\s*)\)', "", "g")
-        let arg_list = split(signature, '\s*,')
-
-        let class = '-'
-        if (has_key(item, 'class'))
-          let class = item['class']
-        endif
-
-        let entry = class . '::' . a:keyword . '('
-        for arg in arg_list
-            let arg = substitute(arg, '^\s*\|\s*$', "", 'g')
-            let entry .= "\n  " . arg
-        endfor
-        let entry .= " )"
-
-        call add(possible_function_signatures, entry)
-      endif
-    endfor
-
-    return possible_function_signatures
-endfunction
-
-function! GetFunctionSignatures2(keyword)
-    "let results = taglist("^" . a:keyword . "$")
-    let results = omegacomplete#taglist(a:keyword)
-    let possible_function_signatures = []
-    for item in results
-      if (has_key(item, 'signature'))
-        let signature = iconv(item['signature'], 'latin1', &encoding)
-
-        let class = '-'
-        if (has_key(item, 'class'))
-          let class = item['class']
-        endif
-
-        let return_type = ''
-        if (has_key(item, 'prefix'))
-            let return_type = item['prefix']
-        endif
-
-        let entry = return_type . ' ' . class . '::' . a:keyword . signature
-        if (match(signature, '(\s*)') == -1)
-            call add(possible_function_signatures, entry)
-        endif
-      endif
-    endfor
-
-    return possible_function_signatures
-endfunction
-
-function! GetFunctionSignatures3(keyword)
-    let results = taglist("^" . a:keyword . "$")
-    let possible_function_signatures = []
-    for item in results
-      if (has_key(item, 'signature'))
-        let entry = {}
-
-        let signature = item['signature']
-
-        let class = '-'
-        if (has_key(item, 'class'))
-          let class = item['class']
-        endif
-
-        let entry['word'] = signature
-        let entry['abbr'] = class
-        call add(possible_function_signatures, entry)
-      endif
-    endfor
-
-    return possible_function_signatures
-endfunction
-
-function! MySuperLeftParen()
-    if (match(&ft, '\v(cpp)') == -1)
-        return ''
-    endif
-
-    " get current line up to where cursor is located
-    let line = strpart(getline('.'), 0, col('.'))
-
-    if (line[strlen(line) - 1] == ' ')
-        return ''
-    endif
-
-    let words = split(line, '\W\+')
-    if (len(words) < 1)
-        return ''
-    endif
-
-    let last_word = words[-1]
-    let possible_function_signatures = GetFunctionSignatures2(last_word)
-    let num_sig = len(possible_function_signatures)
-
-    if (num_sig == 0)
-        return ''
-    endif
-
-    let output = []
-
-    for item in possible_function_signatures
-        call add(output, item)
-    endfor
-
-    let new_scratch_window_size = len(possible_function_signatures)
-    if (new_scratch_window_size > 5)
-        let new_scratch_window_size = 5
-    endif
-
-    let cur_win_nr = winnr()
-    let scratch_win_nr = bufwinnr('__Scratch__')
-    if (scratch_win_nr == -1)
-        return ''
-    endif
-
-    execute scratch_win_nr . "wincmd w"
-    "execute 'resize ' . new_scratch_window_size
-    normal ggVGD
-    call setline(line('.'), output)
-    execute cur_win_nr . "wincmd w"
-
-    return ''
-endfunction
-
-function! MySuperRightParen()
-    if (match(&ft, '\v(cpp)') == -1)
-        return ''
-    endif
-
-    let cur_win_nr = winnr()
-    let scratch_win_nr = bufwinnr('__Scratch__')
-    if (scratch_win_nr == -1)
-        return ''
-    endif
-
-    execute scratch_win_nr . "wincmd w"
-    resize 1
-    execute cur_win_nr . "wincmd w"
-
-    return ''
-endfunction
-
-" <CR> should not autoaccept what the popup menu has selected
-if !exists('s:has_set_my_tab_key')
-  inoremap <silent><expr> <Tab> geckocomplete#completion_key()
-  let s:has_set_my_tab_key=1
-endif
-"inoremap <silent>   (       (<C-r>=MySuperLeftParen()<CR>
-"inoremap <silent>   )       )<C-r>=MySuperRightParen()<CR>
-
-function! MyChangeNextArg()
-    " always start out with an ESC to get out of insert mode
-    let change_command = "\<ESC>"
-    " yay for zero indexing
-    let current_pos = col('.') - 2
-    let line = getline('.')
-
-    let char0 = line[current_pos]
-    let char1 = line[current_pos + 1]
-
-    " first case ( arg1, or (arg1,
-    if ((char0 ==# '(') && (char1 !=# ','))
-        let change_command .= 'l'
-    elseif (char1 ==# ')')
-        return ""
-    elseif (char1 ==# ',')
-        let change_command .= 'lll'
-    endif
-
-    let change_command .= "vt"
-
-    "determine if we even have a ',' to move to
-    let ii = 0
-    let found_comma = 0
-    for ii in range(current_pos + 2, len(line))
-        if (line[ii] ==# ',')
-        let found_comma = 1
-        endif
-    endfor
-
-    if (found_comma)
-        let change_command .= ','
-    else
-        let change_command .= ')'
-    endif
-
-    let change_command .= "\<C-G>"
-    return change_command
-endfunction
-"inoremap <expr> <S-A-l> MyChangeNextArg()
 " }}}
 
-function! ChooseWordFromPmenu(index)
-    if pumvisible() == 0
-        return ""
-    endif
-    let keys = ""
-    for ii in range(1, a:index)
-        let keys .= "\<C-N>"
-    endfor
-    let keys .= "\<C-Y>"
-    return keys
-endfunction
-"inoremap <expr> <A-a> ChooseWordFromPmenu(1)
-"inoremap <expr> <A-s> ChooseWordFromPmenu(2)
-"inoremap <expr> <A-d> ChooseWordFromPmenu(3)
-"inoremap <expr> <A-f> ChooseWordFromPmenu(4)
-"inoremap <expr> <A-g> ChooseWordFromPmenu(5)
-"inoremap <expr> <A-h> ChooseWordFromPmenu(6)
-"inoremap <expr> <A-j> ChooseWordFromPmenu(7)
-"inoremap <expr> <A-k> ChooseWordFromPmenu(8)
-"inoremap <expr> <A-l> ChooseWordFromPmenu(9)
-"inoremap <expr> <A-;> ChooseWordFromPmenu(10)
-"inoremap <expr> <A-q> ChooseWordFromPmenu(11)
-"inoremap <expr> <A-w> ChooseWordFromPmenu(12)
-"inoremap <expr> <A-e> ChooseWordFromPmenu(13)
-"inoremap <expr> <A-r> ChooseWordFromPmenu(14)
-"inoremap <expr> <A-t> ChooseWordFromPmenu(15)
-"inoremap <expr> <A-y> ChooseWordFromPmenu(16)
-"inoremap <expr> <A-u> ChooseWordFromPmenu(17)
-"inoremap <expr> <A-i> ChooseWordFromPmenu(18)
-"inoremap <expr> <A-o> ChooseWordFromPmenu(19)
-"inoremap <expr> <A-p> ChooseWordFromPmenu(20)
-
-" Handle URL
-" Stolen from https://github.com/askedrelic/homedir/blob/master/.vimrc
-" OSX only: Open a web-browser with the URL in the current line
-function! HandleURI()
-  let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;]*')
-  echo s:uri
-  if s:uri != ""
-    exec "!open \"" . s:uri . "\""
-  else
-    echo "No URI found in line."
-  endif
-endfunction
-map <leader>u :call HandleURI()<CR>
-
-" Split/Join
-"
-" Basically this splits the current line into two new ones at the cursor position,
-" then joins the second one with whatever comes next.
-"
-" Example:                      Cursor Here
-"                                    |
-"                                    V
-" foo = ('hello', 'world', 'a', 'b', 'c',
-"        'd', 'e')
-"
-"            becomes
-"
-" foo = ('hello', 'world', 'a', 'b',
-"        'c', 'd', 'e')
-"
-" Especially useful for adding items in the middle of long lists/tuples in Python
-" while maintaining a sane text width.
-"nnoremap K h/[^ ]<cr>"zd$jyyP^v$h"zpJk:s/\v +$//<cr>:noh<cr>j^
-
-" }}}
 " autocommands {{{
-" set cursorline    " needed as netrw uses the global value to save and restore state
-"set cursorcolumn  " needed as netrw uses the global value to save and restore state
 
 " ----------------------------------------------------------------------------
 " Help in new tabs
@@ -2180,23 +1599,6 @@ let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^go-loop$', '^c
 let g:clojure_fuzzy_indent_blacklist = ['-fn$', '\v^with-%(meta|out-str|loading-context)$', '^cond-xlet$']
 let g:clojure_special_indent_words = 'deftype,defrecord,reify,proxy,extend-type,extend-protocol,letfn,comment'
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" omegacomplete / geckocomplete
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:omegacomplete_normal_hi_cmds=[
-    \ "hi Pmenu guifg=#00ff00 guibg=#002b36 gui=none ctermbg=0 ctermfg=46 term=none cterm=none",
-    \ "hi PmenuSel guifg=#002b36 guibg=#00ff00 gui=none ctermbg=46 ctermfg=0 term=none cterm=none",
-    \ ]
-
-let g:omegacomplete_corrections_hi_cmds=[
-    \ "hi Pmenu guifg=#ffff00 guibg=#002b36 gui=none ctermbg=0 ctermfg=226 term=none cterm=none",
-    \ "hi PmenuSel guifg=#002b36 guibg=#ffff00 gui=none ctermbg=226 ctermfg=0 term=none cterm=none",
-    \ ]
-if has("nvim")
-  inoremap <expr> <C-s> geckocomplete#toggle_pause_completion()
-else
-  inoremap <expr> <C-s> omegacomplete#toggle_pause_completion()
-endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ale
@@ -2452,7 +1854,7 @@ function! RemoveQFItem()
   execute curqfidx + 1 . "cfirst"
   :copen
 endfunction
-:command! RemoveQFItem :call RemoveQFItem()
+command! RemoveQFItem :call RemoveQFItem()
 
 augroup MyVimrc
   au BufWritePost *.vimrc source $MYVIMRC
@@ -2526,4 +1928,4 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " converts underscore_case to camelCase
 " nnoremap <leader>c :s#_\(\l\)#\u\1#<CR>
-vnoremap <leader>c :s#_\(\l\)#\u\1#<CR>
+" vnoremap <leader>c :s#_\(\l\)#\u\1#<CR>
