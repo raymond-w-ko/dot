@@ -17,7 +17,11 @@ if filereadable(expand("$HOME/.has-full-github-access"))
 endif
 
 " if this is not set early enough, causes last row highlight in neovim
-set cmdheight=2
+if exists("g:started_by_firenvim")
+  set cmdheight=1
+else
+  set cmdheight=2
+endif
 " Leader
 let mapleader = "\<Space>"
 let maplocalleader = ","
@@ -330,7 +334,12 @@ set matchtime=0
 set splitbelow
 set splitright
 set notitle
-set showtabline=2
+if exists("g:started_by_firenvim")
+  set showtabline=0
+  set laststatus=0
+else
+  set showtabline=2
+endif
 set completeopt+=menu
 set completeopt+=menuone
 set completeopt+=preview
@@ -1934,7 +1943,63 @@ endif
 " nnoremap <leader>c :s#_\(\l\)#\u\1#<CR>
 " vnoremap <leader>c :s#_\(\l\)#\u\1#<CR>
 
+let g:firenvim_config = { 
+    \ 'globalSettings': {
+        \ 'alt': 'all',
+        \ 'ignoreKeys': {
+            \ 'all': [],
+            \ 'normal': [],
+        \ }
+    \  },
+    \ 'localSettings': {
+        \ '.*': {
+            \ 'cmdline': 'neovim',
+            \ 'content': 'text',
+            \ 'priority': 0,
+            \ 'selector': 'textarea:not([readonly]), div[role="textbox"]',
+            \ 'takeover': 'never',
+        \ },
+    \ }
+\ }
+let fc = g:firenvim_config['localSettings']
+let fc['https?://hypothetical\.example\.com/'] = { 'takeover': 'never', 'priority': 1 }
+
+function! s:IsFirenvimActive(event) abort
+  if !exists('*nvim_get_chan_info')
+    return 0
+  endif
+  let l:ui = nvim_get_chan_info(a:event.chan)
+  return has_key(l:ui, 'client') && has_key(l:ui.client, 'name') &&
+      \ l:ui.client.name =~? 'Firenvim'
+endfunction
+function! OnUIEnter(event)
+  if s:IsFirenvimActive(a:event)
+    set nolist
+  endif
+endfunction
+
 if exists("g:started_by_firenvim")
-  " set guifont=Consolas:h8
-  set guifont=Fira_Code:h8
+  set guifont=JetBrains\ Mono:h9.75
+  set linespace=-3
+
+  let g:dont_write = v:false
+  function! My_Write(timer) abort
+    let g:dont_write = v:false
+    write
+  endfunction
+
+  function! Delay_My_Write() abort
+    if g:dont_write
+      return
+    end
+    let g:dont_write = v:true
+    call timer_start(10000, 'My_Write')
+  endfunction
+
+  augroup firenvim
+    au!
+    autocmd UIEnter * call OnUIEnter(deepcopy(v:event))
+    au TextChanged * ++nested call Delay_My_Write()
+    au TextChangedI * ++nested call Delay_My_Write()
+  augroup END
 endif
