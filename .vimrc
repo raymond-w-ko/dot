@@ -84,7 +84,9 @@ Plug 'AndrewRadev/linediff.vim'
 let g:tagbar_sort=0 " usually my tags are in some sort of custom order that makes sense
 let g:tagbar_width=40
 
-Plug 'mhinz/vim-startify'
+if !exists("g:started_by_firenvim")
+  Plug 'mhinz/vim-startify'
+endif
 let g:startify_session_dir="~/sessions/"
 let g:startify_session_number = 32
 let g:startify_files_number = 64
@@ -1931,3 +1933,8 @@ endif
 " converts underscore_case to camelCase
 " nnoremap <leader>c :s#_\(\l\)#\u\1#<CR>
 " vnoremap <leader>c :s#_\(\l\)#\u\1#<CR>
+
+if exists("g:started_by_firenvim")
+  " set guifont=Consolas:h8
+  set guifont=Fira_Code:h8
+endif
