@@ -34,6 +34,8 @@ Plug '$HOME/dot/.vim/plugged.manual/lightline-colorschemes'
 Plug '$HOME/dot/.vim/plugged.manual/rko-misc'
 nnoremap <leader>o :ToggleWord<CR>
 
+Plug 'glacambre/firenvim'
+
 " my plugins
 Plug 'raymond-w-ko/vim-solarized8'
 Plug 'raymond-w-ko/scrollfix'
