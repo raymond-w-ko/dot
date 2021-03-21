@@ -297,7 +297,7 @@ if !isdirectory(&undodir)
 endif
 
 if !exists("g:rko_already_turned_syntax_off")
-  syntax off
+  " syntax off
   syntax conceal on
   let g:rko_already_turned_syntax_off=1
 endif
@@ -1397,8 +1397,8 @@ augroup MyVimrc
   " help in new tab to avoid interfering with existing tab layout
   autocmd BufEnter *.txt call s:SetupHelpTab()
 
-  autocmd FileType * call s:SetupBasicSyntaxHighlights()
-  autocmd BufEnter * :syntax sync fromstart
+  " autocmd FileType * call s:SetupBasicSyntaxHighlights()
+  " autocmd BufEnter * :syntax sync fromstart
 
   " autocmd InsertEnter * setlocal nolist
   " autocmd InsertLeave * setlocal list
