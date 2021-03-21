@@ -297,7 +297,7 @@ if !isdirectory(&undodir)
 endif
 
 if !exists("g:rko_already_turned_syntax_off")
-  " syntax off
+  syntax on
   syntax conceal on
   let g:rko_already_turned_syntax_off=1
 endif
@@ -1972,34 +1972,44 @@ function! s:IsFirenvimActive(event) abort
   return has_key(l:ui, 'client') && has_key(l:ui.client, 'name') &&
       \ l:ui.client.name =~? 'Firenvim'
 endfunction
+fun! SetLinesForFirenvim(timer) abort
+  set lines=25
+endfunction
 function! OnUIEnter(event)
   if s:IsFirenvimActive(a:event)
     set nolist
+    call timer_start(500, function("SetLinesForFirenvim"))
   endif
 endfunction
 
 if exists("g:started_by_firenvim")
-  set guifont=JetBrains\ Mono:h9.75
-  set linespace=-3
+  " set guifont=JetBrains\ Mono\ Medium:h9
+  set guifont=Iosevka\ Term:h9
+  " set linespace=-3
 
-  let g:dont_write = v:false
-  function! My_Write(timer) abort
+  if !exists("g:rko_already_defined_delayed_write_fn")
+    let g:rko_already_defined_delayed_write_fn=1
     let g:dont_write = v:false
-    write
-  endfunction
+    function! My_Write(timer) abort
+      let g:dont_write = v:false
+      silent! update
+    endfunction
 
-  function! Delay_My_Write() abort
-    if g:dont_write
-      return
-    end
-    let g:dont_write = v:true
-    call timer_start(10000, 'My_Write')
-  endfunction
+    function! Delay_My_Write() abort
+      if g:dont_write
+        return
+      end
+      let g:dont_write = v:true
+      call timer_start(10000, 'My_Write')
+    endfunction
+  endif
 
+  nnoremap <CR> :w<CR>ZZ
   augroup firenvim
     au!
     autocmd UIEnter * call OnUIEnter(deepcopy(v:event))
     au TextChanged * ++nested call Delay_My_Write()
     au TextChangedI * ++nested call Delay_My_Write()
+    au BufEnter localhost_lab*.txt setf python
   augroup END
 endif
