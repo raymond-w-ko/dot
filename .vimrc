@@ -48,8 +48,8 @@ Plug 'raymond-w-ko/vim-eslisp'
 Plug 'raymond-w-ko/vim-lua-indent'
 
 Plug 'raymond-w-ko/vim-geckocomplete'
-inoremap <expr> <C-s> geckocomplete#toggle_pause_completion()
-inoremap <silent><expr> <Tab> geckocomplete#completion_key()
+inoremap <silent><expr><nowait> <C-s> geckocomplete#toggle_pause_completion()
+inoremap <silent><expr><nowait> <Tab> geckocomplete#completion_key()
 
 " colorscheme
 Plug 'lifepillar/vim-colortemplate'
