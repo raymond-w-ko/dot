@@ -1616,8 +1616,8 @@ let g:clojure_special_indent_words = 'deftype,defrecord,reify,proxy,extend-type,
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ale
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ale_lint_on_text_changed="normal"
-let g:ale_lint_on_insert_leave=1
+let g:ale_lint_on_text_changed=0
+let g:ale_lint_on_insert_leave=0
 let g:ale_lint_on_enter=1
 let g:ale_lint_on_save=1
 let g:ale_lint_on_filetype_changed=1
