@@ -2411,10 +2411,11 @@ endfunction
 function! s:RunEdit(state, tmp, job) abort
   if get(a:state, 'request', '') == 'edit'
     call remove(a:state, 'request')
-    let file = FugitiveVimPath(readfile(a:state.file . '.edit')[0])
+    let sentinel = a:state.file . '.edit'
+    let file = FugitiveVimPath(readfile(sentinel, 1)[0])
     exe substitute(a:state.mods, '\<tab\>', '-tab', 'g') 'keepalt split' s:fnameescape(file)
     set bufhidden=wipe
-    let s:edit_jobs[bufnr('')] = [a:state, a:tmp, a:job]
+    let s:edit_jobs[bufnr('')] = [a:state, a:tmp, a:job, sentinel]
     call fugitive#ReloadStatus(a:state.dir, 1)
     return 1
   endif
@@ -2490,6 +2491,9 @@ function! s:RunSend(job, str) abort
 endfunction
 
 function! s:RunEcho(tmp) abort
+  if !has_key(a:tmp, 'echo')
+    return
+  endif
   let data = a:tmp.echo
   let a:tmp.echo = matchstr(data, "[\r\n]\\+$")
   if len(a:tmp.echo)
@@ -2501,16 +2505,20 @@ endfunction
 function! s:RunTick(job) abort
   if type(a:job) == v:t_number
     return jobwait([a:job], 1)[0] == -1
-  elseif type(a:job) == v:t_job && (ch_status(a:job) !=# 'closed' || job_status(a:job) ==# 'run')
+  elseif type(a:job) == 8
+    let running = ch_status(a:job) !=# 'closed' || job_status(a:job) ==# 'run'
     sleep 1m
-    return ch_status(a:job) !=# 'closed' || job_status(a:job) ==# 'run'
+    return running
   endif
 endfunction
 
 if !exists('s:edit_jobs')
   let s:edit_jobs = {}
 endif
-function! s:RunWait(state, tmp, job) abort
+function! s:RunWait(state, tmp, job, ...) abort
+  if a:0 && filereadable(a:1)
+    call delete(a:1)
+  endif
   let finished = 0
   try
     while get(a:state, 'request', '') !=# 'edit' && s:RunTick(a:job)
@@ -2536,8 +2544,14 @@ function! s:RunWait(state, tmp, job) abort
         endif
       endif
     endwhile
+    if !has_key(a:state, 'request') && has_key(a:state, 'job') && exists('*job_status') && job_status(a:job) ==# "dead"
+      throw 'fugitive: close callback did not fire; this should never happen'
+    endif
     call s:RunEcho(a:tmp)
-    echo
+    if has_key(a:tmp, 'echo')
+      let a:tmp.echo = substitute(a:tmp.echo, "^\r\\=\n", '', '')
+      echo
+    endif
     call s:RunEdit(a:state, a:tmp, a:job)
     let finished = 1
   finally
@@ -2562,18 +2576,15 @@ if !exists('s:resume_queue')
 endif
 function! fugitive#Resume() abort
   while len(s:resume_queue)
-    let [state, tmp, job] = remove(s:resume_queue, 0)
-    if filereadable(state.file . '.edit')
-      call delete(state.file . '.edit')
-    endif
-    call s:RunWait(state, tmp, job)
+    call call('s:RunWait', remove(s:resume_queue, 0))
   endwhile
 endfunction
 
 function! s:RunBufDelete(bufnr) abort
   if has_key(s:edit_jobs, a:bufnr) |
     call add(s:resume_queue, remove(s:edit_jobs, a:bufnr))
-    call feedkeys(":redraw!|call fugitive#Resume()|silent checktime\r", 'n')
+    call feedkeys(":redraw!|call delete(" . string(s:resume_queue[-1][0].file . '.edit') .
+          \ ")|call fugitive#Resume()|silent checktime\r", 'n')
   endif
 endfunction
 
@@ -2735,6 +2746,8 @@ function! fugitive#Command(line1, line2, range, bang, mods, arg) abort
         \ 'file': s:Resolve(tempname())}
   if pager is# 1
     call extend(env, {'COLUMNS': '' . get(g:, 'fugitive_columns', 80)}, 'keep')
+  else
+    call extend(env, {'COLUMNS': '' . &columns - 1}, 'keep')
   endif
   if s:RunJobs() && pager isnot# 1
     let state.pty = get(g:, 'fugitive_pty', has('unix') && (has('patch-8.0.0744') || has('nvim')))
