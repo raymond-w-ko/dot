@@ -1572,6 +1572,7 @@ let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-clojure-static
+" clojure-vim/clojure.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " By default, parenthesized compound forms that look like function calls and
 " whose head subform is on its own line have subsequent subforms indented by
@@ -1606,12 +1607,8 @@ let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 "   bala
 "   portokala)
 let g:clojure_align_subforms = 1
-" default is 100
-let g:clojure_maxlines = 512
-
-" this seems to suggest that it should be off
-" https://github.com/bbatsov/clojure-style-guide#align-docstring-lines
-let g:clojure_align_multiline_strings = 0
+" default is 300
+let g:clojure_maxlines = 256
 
 let g:clojure_fuzzy_indent = 1
 let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^go-loop$', '^comment$', 'fdef$', '^profile$', '^p$']
