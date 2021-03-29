@@ -49,3 +49,5 @@
 	path = ~/.gitconfig.lfs
 [rebase]
 	autoStash = true
+[submodule]
+	recurse = true
