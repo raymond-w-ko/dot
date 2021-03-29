@@ -79,7 +79,13 @@ Plug 'mbbill/undotree'
 Plug 'zhimsel/vim-stay'
 Plug 'godlygeek/tabular'
 Plug 'mattn/emmet-vim'
+
 Plug 'luochen1990/rainbow'
+augroup MyRaindowLoader
+  auto Filetype * call rainbow_main#load()
+	auto colorscheme * call rainbow_main#load()
+augroup end
+
 Plug 'chrisbra/Colorizer'
 Plug 'majutsushi/tagbar'
 Plug 'tommcdo/vim-lion'
@@ -229,7 +235,7 @@ let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
 Plug 'reasonml-editor/vim-reason-plus'
 
 " lisp
-Plug 'guns/vim-clojure-static'
+Plug 'clojure-vim/clojure.vim'
 Plug 'guns/vim-sexp'
 let g:sexp_filetypes = 'clojure,scheme,lisp,timl,eslisp'
 let g:sexp_insert_after_wrap = 1
@@ -1815,10 +1821,6 @@ let g:rainbow_conf = {
 \   'sh': 0,
 \ }
 \}
-augroup MyRaindowLoader
-  auto Filetype * call rainbow_main#load()
-	auto colorscheme * call rainbow_main#load()
-augroup end
 
 " }}}
 
