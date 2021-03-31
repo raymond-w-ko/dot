@@ -156,7 +156,7 @@ Plug 'tpope/vim-apathy'
 
 " Hayabusa + friends
 Plug 'kana/vim-arpeggio'
-Plug 'haya14busa/vim-asterisk'
+Plug 'raymond-w-ko/vim-asterisk'
 let g:asterisk#keeppos=1
 Plug 'osyo-manga/vim-anzu'
 map n <Plug>(anzu-n-with-echo)
