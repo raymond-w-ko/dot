@@ -138,7 +138,6 @@ function! s:handle_message(project_key, msg) abort
       let w:plasmaplace_popup_win = win
       let w:plasmaplace_popup_buf = buf
       call nvim_win_set_option(win, "winhl", "Normal:CursorLine")
-      echom "foo"
       autocmd TabLeave,WinLeave <buffer> ++once 
           \ call s:close_nvim_popup()
     else
