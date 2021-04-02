@@ -310,7 +310,7 @@ endif
 set fileformats=unix,dos
 set autowrite
 set autowriteall
-set updatetime=1000
+set updatetime=2000
 set shortmess+=aIcF
 set report=0 " report back when greater than N lines changed
 set showmode
@@ -1633,7 +1633,7 @@ let g:ale_close_preview_on_insert=1
 let g:ale_echo_delay=500
 
 let g:ale_virtualtext_cursor=0
-let g:ale_virtualtext_delay=10
+let g:ale_virtualtext_delay=500
 
 let g:ale_floating_window_border=['│', '─', '╭', '╮', '╯', '╰']
 
