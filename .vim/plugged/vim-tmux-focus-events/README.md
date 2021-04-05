@@ -3,6 +3,8 @@
 `FocusGained` and `FocusLost` autocommand events are not working
 in terminal vim. This plugin restores them when using vim inside Tmux.
 
+Note: this plugin is not required for neovim.
+
 Here's where that matters:
 
 - [vim-fugitive](https://github.com/tpope/vim-fugitive) plugin uses
@@ -66,8 +68,6 @@ Tested and working on:
   - XTerm
   - Konsole
   - st
-
-It works both on vim and neovim.
 
 ### Usage
 

@@ -2566,6 +2566,19 @@ function! s:RunSend(job, str) abort
   endtry
 endfunction
 
+function! s:RunCloseIn(job) abort
+  try
+    if type(a:job) ==# type(0)
+      call chanclose(a:job, 'stdin')
+    else
+      call ch_close_in(a:job)
+    endif
+    return 1
+  catch /^Vim\%((\a\+)\)\=:E90[06]:/
+    return 0
+  endtry
+endfunction
+
 function! s:RunEcho(tmp) abort
   if !has_key(a:tmp, 'echo')
     return
@@ -2605,12 +2618,7 @@ function! s:RunWait(state, tmp, job, ...) abort
           let c = type(c) == type(0) ? nr2char(c) : c
           if c ==# "\<C-D>" || c ==# "\<Esc>"
             let a:state.closed_in = 1
-            if type(a:job) ==# type(0)
-              call chanclose(a:job, 'stdin')
-            else
-              call ch_close_in(a:job)
-            endif
-            let can_pedit = exists('*setbufline')
+            let can_pedit = s:RunCloseIn(a:job) && exists('*setbufline')
             for winnr in range(1, winnr('$'))
               if getwinvar(winnr, '&previewwindow') && getbufvar(winbufnr(winnr), '&modified')
                 let can_pedit = 0
@@ -3117,10 +3125,10 @@ endfunction
 
 function! s:StageSeek(info, fallback) abort
   let info = a:info
-  if empty(info.section)
+  if empty(info.heading)
     return a:fallback
   endif
-  let line = search('^' . info.section, 'wn')
+  let line = search('^' . escape(substitute(info.heading, '(\d\+)$', '', ''), '^$.*[]~\'), 'wn')
   if !line
     for section in get({'Staged': ['Unstaged', 'Untracked'], 'Unstaged': ['Untracked', 'Staged'], 'Untracked': ['Unstaged', 'Staged']}, info.section, [])
       let line = search('^' . section, 'wn')
@@ -3926,13 +3934,13 @@ function! s:StageDelete(lnum1, lnum2, count) abort
         continue
       endif
       let sub = get(get(get(b:fugitive_files, info.section, {}), info.filename, {}), 'submodule')
-      if info.status ==# 'D'
-        let undo = 'GRemove'
-      elseif sub =~# '^S' && info.status !~# '[MD]'
-        let err .= '|echoerr ' . string('fugitive: will not delete submodule ' . string(info.relative[0]))
-        break
-      elseif sub =~# '^S'
+      if sub =~# '^S' && info.status ==# 'M'
         let undo = 'Git checkout ' . fugitive#RevParse('HEAD', FugitiveExtractGitDir(info.paths[0]))[0:10] . ' --'
+      elseif sub =~# '^S'
+        let err .= '|echoerr ' . string('fugitive: will not touch submodule ' . string(info.relative[0]))
+        break
+      elseif info.status ==# 'D'
+        let undo = 'GRemove'
       elseif info.paths[0] =~# '/$'
         let err .= '|echoerr ' . string('fugitive: will not delete directory ' . string(info.relative[0]))
         break
@@ -6043,9 +6051,34 @@ augroup END
 
 " Section: :GBrowse
 
+function! s:BrowserOpen(url, mods, echo_copy) abort
+  let url = substitute(a:url, '[ <>\|"]', '\="%".printf("%02X",char2nr(submatch(0)))', 'g')
+  let mods = s:Mods(a:mods)
+  if a:echo_copy
+    if has('clipboard')
+      let @+ = url
+    endif
+    return 'echo '.string(url)
+  elseif exists(':Browse') == 2
+    return 'echo '.string(url).'|' . mods . 'Browse '.url
+  elseif exists(':OpenBrowser') == 2
+    return 'echo '.string(url).'|' . mods . 'OpenBrowser '.url
+  else
+    if !exists('g:loaded_netrw')
+      runtime! autoload/netrw.vim
+    endif
+    if exists('*netrw#BrowseX')
+      return 'echo '.string(url).'|' . mods . 'call netrw#BrowseX('.string(url).', 0)'
+    elseif exists('*netrw#NetrwBrowseX')
+      return 'echo '.string(url).'|' . mods . 'call netrw#NetrwBrowseX('.string(url).', 0)'
+    else
+      return 'echoerr ' . string('Netrw not found. Define your own :Browse to use :GBrowse')
+    endif
+  endif
+endfunction
+
 function! fugitive#BrowseCommand(line1, count, range, bang, mods, arg, args) abort
   let dir = s:Dir()
-  exe s:DirCheck(dir)
   try
     let arg = a:arg
     if arg =~# '^++remote='
@@ -6077,12 +6110,18 @@ function! fugitive#BrowseCommand(line1, count, range, bang, mods, arg, args) abo
     if rev ==# ''
       let rev = s:DirRev(@%)[1]
     endif
-    if rev =~# '^:\=$'
-      let expanded = s:Relative()
-    elseif rev =~? '^\a\a\+:[\/][\/]' && rev !~? '^fugitive:'
-      let expanded = s:Expand(substitute(rev, '\\\@<!#\|\\\@<!%\ze\w', '\\&', 'g'))
-    else
-      let expanded = s:Expand(rev)
+    if rev =~? '^\a\a\+:[\/][\/]' && rev !~? '^fugitive:'
+      let rev = substitute(rev, '\\\@<![#!]\|\\\@<!%\ze\w', '\\&', 'g')
+    elseif rev ==# ':'
+      let rev = ''
+    endif
+    let expanded = s:Expand(rev)
+    if expanded =~? '^\a\a\+:[\/][\/]' && expanded !~? '^fugitive:'
+      return s:BrowserOpen(s:Slash(expanded), a:mods, a:bang)
+    endif
+    exe s:DirCheck(dir)
+    if empty(expanded)
+      let expanded = s:Relative(':(top)', dir)
     endif
     let cdir = FugitiveVimPath(fugitive#CommonDir(dir))
     for subdir in ['tags/', 'heads/', 'remotes/']
@@ -6104,9 +6143,6 @@ function! fugitive#BrowseCommand(line1, count, range, bang, mods, arg, args) abo
         let type = 'blob'
       endif
       let path = path[1:-1]
-    elseif full =~? '^\a\a\+:[\/][\/]'
-      let path = s:Slash(full)
-      let type = 'url'
     elseif empty(s:Tree(dir))
       let path = '.git/' . full[strlen(dir)+1:-1]
       let type = ''
@@ -6224,6 +6260,7 @@ function! fugitive#BrowseCommand(line1, count, range, bang, mods, arg, args) abo
     endif
 
     let opts = {
+          \ 'git_dir': dir,
           \ 'dir': dir,
           \ 'repo': fugitive#repo(dir),
           \ 'remote': raw,
@@ -6234,44 +6271,19 @@ function! fugitive#BrowseCommand(line1, count, range, bang, mods, arg, args) abo
           \ 'line1': line1,
           \ 'line2': line2}
 
-    if type ==# 'url'
-      let url = path
-    else
-      let url = ''
-      for Handler in get(g:, 'fugitive_browse_handlers', [])
-        let url = call(Handler, [copy(opts)])
-        if !empty(url)
-          break
-        endif
-      endfor
-    endif
+    let url = ''
+    for Handler in get(g:, 'fugitive_browse_handlers', [])
+      let url = call(Handler, [copy(opts)])
+      if !empty(url)
+        break
+      endif
+    endfor
 
     if empty(url)
       call s:throw("No GBrowse handler installed for '".raw."'")
     endif
 
-    let url = s:gsub(url, '[ <>]', '\="%".printf("%02X",char2nr(submatch(0)))')
-    if a:bang
-      if has('clipboard')
-        let @+ = url
-      endif
-      return 'echomsg '.string(url)
-    elseif exists(':Browse') == 2
-      return 'echomsg '.string(url).'|Browse '.url
-    elseif exists(':OpenBrowser') == 2
-      return 'echomsg '.string(url).'|OpenBrowser '.url
-    else
-      if !exists('g:loaded_netrw')
-        runtime! autoload/netrw.vim
-      endif
-      if exists('*netrw#BrowseX')
-        return 'echomsg '.string(url).'|call netrw#BrowseX('.string(url).', 0)'
-      elseif exists('*netrw#NetrwBrowseX')
-        return 'echomsg '.string(url).'|call netrw#NetrwBrowseX('.string(url).', 0)'
-      else
-        return 'echoerr ' . string('Netrw not found. Define your own :Browse to use :GBrowse')
-      endif
-    endif
+    return s:BrowserOpen(url, a:mods, a:bang)
   catch /^fugitive:/
     return 'echoerr ' . string(v:exception)
   endtry
@@ -6815,9 +6827,11 @@ function! fugitive#Foldtext() abort
     if exists('binary')
       return 'Binary: '.filename
     else
-      return (add<10&&remove<100?' ':'') . add . '+ ' . (remove<10&&add<100?' ':'') . remove . '- ' . filename
+      return '+-' . v:folddashes . ' ' . (add<10&&remove<100?' ':'') . add . '+ ' . (remove<10&&add<100?' ':'') . remove . '- ' . filename
     endif
-  elseif line_foldstart =~# '^# .*:$'
+  elseif line_foldstart =~# '^@@\+ .* @@'
+    return '+-' . v:folddashes . ' ' . line_foldstart
+  elseif &filetype ==# 'gitcommit' && line_foldstart =~# '^# .*:$'
     let lines = getline(v:foldstart, v:foldend)
     call filter(lines, 'v:val =~# "^#\t"')
     cal map(lines, "s:sub(v:val, '^#\t%(modified: +|renamed: +)=', '')")
