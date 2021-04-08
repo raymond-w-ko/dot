@@ -28,24 +28,35 @@ export class AceEditor extends AbstractEditor {
         }
     }
 
+    private getAce = (selec: string) => {
+        const elem = document.querySelector(selec) as any;
+        const win_ace = (window as any).ace;
+        if (win_ace !== undefined) {
+            return win_ace.edit(elem);
+        } else if (Object.prototype.hasOwnProperty.call(elem, 'aceEditor')) {
+            return elem.aceEditor;
+        } else {
+            throw new Error("Couldn't find AceEditor instance");
+        }
+    };
+
     getContent () {
-        return executeInPage(`(${/* istanbul ignore next */ (selec: string) => {
-            const elem = document.querySelector(selec) as any;
-            return (window as any).ace.edit(elem).getValue();
-        }})(${JSON.stringify(computeSelector(this.elem))})`);
+        return executeInPage(`(${/* istanbul ignore next */ (getAce: any, selec: string) => {
+            return getAce(selec).getValue();
+        }})(${this.getAce}, ${JSON.stringify(computeSelector(this.elem))})`);
     }
 
     getCursor () {
-        return executeInPage(`(${/* istanbul ignore next */ (selec: string) => {
-            const elem = document.querySelector(selec) as any;
+        return executeInPage(`(${/* istanbul ignore next */ (getAce: any, selec: string) => {
             let position;
-            if ((window as any).ace.edit !== undefined) {
-                position = (window as any).ace.edit(elem).getCursorPosition();
+            const ace = getAce(selec);
+            if (ace.getCursorPosition !== undefined) {
+                position = ace.getCursorPosition();
             } else {
-                position = (window as any).ace.selection.cursor;
+                position = ace.selection.cursor;
             }
             return [position.row + 1, position.column];
-        }})(${JSON.stringify(computeSelector(this.elem))})`);
+        }})(${this.getAce}, ${JSON.stringify(computeSelector(this.elem))})`);
     }
 
     getElement () {
@@ -53,29 +64,23 @@ export class AceEditor extends AbstractEditor {
     }
 
     getLanguage () {
-        return executeInPage(`(${/* istanbul ignore next */ (selec: string) => {
-            const elem = document.querySelector(selec) as any;
-            let ace = (window as any).ace;
-            if (ace.edit !== undefined) {
-                ace = ace.edit(elem);
-            }
+        return executeInPage(`(${/* istanbul ignore next */ (getAce: any, selec: string) => {
+            const ace = getAce(selec);
             return ace.session.$modeId.split("/").slice(-1)[0];
-        }})(${JSON.stringify(computeSelector(this.elem))})`);
+        }})(${this.getAce}, ${JSON.stringify(computeSelector(this.elem))})`);
     }
 
     setContent (text: string) {
-        return executeInPage(`(${/* istanbul ignore next */ (selec: string, str: string) => {
-            const elem = document.querySelector(selec) as any;
-            return (window as any).ace.edit(elem).setValue(str, 1);
-        }})(${JSON.stringify(computeSelector(this.elem))}, ${JSON.stringify(text)})`);
+        return executeInPage(`(${/* istanbul ignore next */ (getAce: any, selec: string, str: string) => {
+            return getAce(selec).setValue(str, 1);
+        }})(${this.getAce}, ${JSON.stringify(computeSelector(this.elem))}, ${JSON.stringify(text)})`);
     }
 
     setCursor (line: number, column: number) {
-        return executeInPage(`(${/* istanbul ignore next */ (selec: string, l: number, c: number) => {
-            const elem = document.querySelector(selec) as any;
-            const selection = (window as any).ace.edit(elem).getSelection();
+        return executeInPage(`(${/* istanbul ignore next */ (getAce: any, selec: string, l: number, c: number) => {
+            const selection = getAce(selec).getSelection();
             return selection.moveCursorTo(l - 1, c, false);
-        }})(${JSON.stringify(computeSelector(this.elem))}, ${line}, ${column})`);
+        }})(${this.getAce}, ${JSON.stringify(computeSelector(this.elem))}, ${line}, ${column})`);
     }
 
 }
