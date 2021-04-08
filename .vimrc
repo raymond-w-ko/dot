@@ -42,7 +42,7 @@ Plug 'glacambre/firenvim'
 
 " my plugins
 Plug 'raymond-w-ko/vim-solarized8'
-Plug 'raymond-w-ko/scrollfix'
+" Plug 'raymond-w-ko/scrollfix'
 let g:scrollfix=50
 Plug 'raymond-w-ko/vim-eslisp'
 Plug 'raymond-w-ko/vim-lua-indent'
@@ -270,6 +270,11 @@ augroup MyVimrc
   autocmd FileType c,cpp,objc vnoremap <buffer><Leader>f :ClangFormat<CR>
 augroup END
 
+if has("nvim")
+  " :TSUpdate
+  Plug 'nvim-treesitter/nvim-treesitter'
+endif
+
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -278,7 +283,8 @@ call plug#end()
 
 " load sensible defaults by our prophet Tim Pope
 runtime! plugin/sensible.vim
-set scrolloff=0 " scrolloff 0 is needed by scrollfix
+" set scrolloff=0 " scrolloff 0 is needed by scrollfix
+set scrolloff=9001 " scrolloff 0 is needed by scrollfix
 set undofile
 set backup
 set writebackup
