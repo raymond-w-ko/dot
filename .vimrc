@@ -7,6 +7,8 @@ set encoding=utf-8
 let g:loaded_rrhelper=1
 let g:did_install_default_menus=1 " avoid stupid menu.vim (saves ~100ms)
 
+let s:use_treesitter=1
+
 augroup MyVimrc
   au!
 augroup END
@@ -80,11 +82,13 @@ Plug 'zhimsel/vim-stay'
 Plug 'godlygeek/tabular'
 Plug 'mattn/emmet-vim'
 
-" Plug 'luochen1990/rainbow'
-" augroup MyRaindowLoader
-"   auto Filetype * call rainbow_main#load()
-" 	auto colorscheme * call rainbow_main#load()
-" augroup end
+if !s:use_treesitter
+  Plug 'luochen1990/rainbow'
+  augroup MyRaindowLoader
+    auto FileType * call rainbow_main#load()
+    auto colorscheme * call rainbow_main#load()
+  augroup end
+endif
 
 Plug 'chrisbra/Colorizer'
 Plug 'majutsushi/tagbar'
@@ -235,7 +239,7 @@ let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
 Plug 'reasonml-editor/vim-reason-plus'
 
 " lisp
-" Plug 'clojure-vim/clojure.vim'
+Plug 'clojure-vim/clojure.vim'
 Plug 'guns/vim-sexp'
 let g:sexp_filetypes = 'clojure,scheme,lisp,timl,eslisp'
 let g:sexp_insert_after_wrap = 1
@@ -270,9 +274,10 @@ augroup MyVimrc
   autocmd FileType c,cpp,objc vnoremap <buffer><Leader>f :ClangFormat<CR>
 augroup END
 
-if has("nvim")
+if has("nvim") && s:use_treesitter
   " :TSUpdate
   Plug 'nvim-treesitter/nvim-treesitter'
+  Plug 'p00f/nvim-ts-rainbow'
 endif
 
 call plug#end()
