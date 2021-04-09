@@ -80,11 +80,11 @@ Plug 'zhimsel/vim-stay'
 Plug 'godlygeek/tabular'
 Plug 'mattn/emmet-vim'
 
-Plug 'luochen1990/rainbow'
-augroup MyRaindowLoader
-  auto Filetype * call rainbow_main#load()
-	auto colorscheme * call rainbow_main#load()
-augroup end
+" Plug 'luochen1990/rainbow'
+" augroup MyRaindowLoader
+"   auto Filetype * call rainbow_main#load()
+" 	auto colorscheme * call rainbow_main#load()
+" augroup end
 
 Plug 'chrisbra/Colorizer'
 Plug 'majutsushi/tagbar'
@@ -235,7 +235,7 @@ let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
 Plug 'reasonml-editor/vim-reason-plus'
 
 " lisp
-Plug 'clojure-vim/clojure.vim'
+" Plug 'clojure-vim/clojure.vim'
 Plug 'guns/vim-sexp'
 let g:sexp_filetypes = 'clojure,scheme,lisp,timl,eslisp'
 let g:sexp_insert_after_wrap = 1
@@ -309,7 +309,7 @@ if !isdirectory(&undodir)
 endif
 
 if !exists("g:rko_already_turned_syntax_off")
-  syntax on
+  syntax off
   syntax conceal on
   let g:rko_already_turned_syntax_off=1
 endif
@@ -1067,6 +1067,7 @@ if has("unix")
     cmap w!! w !sudo tee % >/dev/null
 
     nnoremap <leader>ev :e ~/dot/.vimrc<CR>
+    nnoremap <leader>el :e ~/dot/.vim/lua/rko.lua<CR>
 elseif has("win32")
     if isdirectory('C:/cygwin/home/rko')
         exe 'nnoremap <leader>ev :e C:/cygwin/home/rko/dot/.vimrc<CR>'
@@ -1696,75 +1697,6 @@ call ale#linter#Define('sql', {
 \})
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" synesthesia
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:loaded_synesthesia=1
-let g:synesthesia_banned_console_colors = []
-
-" solarized-dark
-for i in range(18, 256 + 1)
-  call add(g:synesthesia_banned_console_colors, i)
-endfor
-" these are just cyclic repeats
-for i in range(9, 14 + 1)
-  call add(g:synesthesia_banned_console_colors, i)
-endfor
-" this is same as background color, don't want things to be invisible
-call add(g:synesthesia_banned_console_colors, 0)
-
-" this is the solarized color table
-let s:color_table = [
-    \ "002b36",
-    \ "073642",
-    \ "586e75",
-    \ "657b83",
-    \ "839496",
-    \ "93a1a1",
-    \ "eee8d5",
-    \ "fdf6e3",
-    \ "dc322f",
-    \ "cb4b16",
-    \ "b58900",
-    \ "859900",
-    \ "2aa198",
-    \ "268bd2",
-    \ "6c71c4",
-    \ "d33682",
-    \ ]
-let g:synesthesia_gui_color_table = {
-    \ 0 : s:color_table[0],
-    \ 1 : s:color_table[8],
-    \ 2 : s:color_table[11],
-    \ 3 : s:color_table[10],
-    \ 4 : s:color_table[13],
-    \ 5 : s:color_table[14],
-    \ 6 : s:color_table[12],
-    \ 7 : s:color_table[5],
-    \ 8 : s:color_table[3],
-    \ 9 : s:color_table[8],
-    \ 10 : s:color_table[11],
-    \ 11 : s:color_table[10],
-    \ 12 : s:color_table[13],
-    \ 13 : s:color_table[14],
-    \ 14 : s:color_table[12],
-    \ 15 : s:color_table[7],
-    \ 16 : s:color_table[9],
-    \ 17 : s:color_table[15],
-    \ }
-
-let g:synesthesia_ignored_filetypes = []
-call add(g:synesthesia_ignored_filetypes, '')
-call add(g:synesthesia_ignored_filetypes, 'diff')
-call add(g:synesthesia_ignored_filetypes, 'gitcommit')
-call add(g:synesthesia_ignored_filetypes, 'help')
-call add(g:synesthesia_ignored_filetypes, 'html')
-call add(g:synesthesia_ignored_filetypes, 'markdown')
-call add(g:synesthesia_ignored_filetypes, 'svn')
-call add(g:synesthesia_ignored_filetypes, 'tex')
-call add(g:synesthesia_ignored_filetypes, 'text')
-call add(g:synesthesia_ignored_filetypes, 'xml')
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " rainbow
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:rainbow_active=1
@@ -1948,6 +1880,16 @@ endif
 " nnoremap <leader>c :s#_\(\l\)#\u\1#<CR>
 " vnoremap <leader>c :s#_\(\l\)#\u\1#<CR>
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" neovim lua
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has("nvim")
+  lua require("rko")
+endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" firenvim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:firenvim_config = { 
     \ 'globalSettings': {
         \ 'alt': 'all',
