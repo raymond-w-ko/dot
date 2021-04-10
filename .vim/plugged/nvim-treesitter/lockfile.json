@@ -60,7 +60,7 @@
     "revision": "d93af487cc75120c89257195e6be46c999c6ba18"
   },
   "java": {
-    "revision": "bd6186c24d5eb13b4623efac9d944dcc095c0dad"
+    "revision": "3bf41f68f3af63664050e21b2e808114fe2452c6"
   },
   "javascript": {
     "revision": "4a95461c4761c624f2263725aca79eeaefd36cad"
@@ -102,7 +102,7 @@
     "revision": "ac1d5957e719d49bd6acd27439b79843e4daf8ed"
   },
   "php": {
-    "revision": "0d63eaf94e8d6c0694551b016c802787e61b3fb2"
+    "revision": "20c6cd790ac5b9334739b5fc4cf2f6b9e8694b7f"
   },
   "python": {
     "revision": "d6210ceab11e8d812d4ab59c07c81458ec6e5184"
@@ -111,7 +111,7 @@
     "revision": "965948cce9a94a710b1339851e0919471ad5ee2c"
   },
   "query": {
-    "revision": "f895b8eee4e14c5e81ea277d866e5f1625167369"
+    "revision": "d558801c7f11d9a4d9ed119480f8a5d2a49d61d6"
   },
   "r": {
     "revision": "9a7f8d6429a48116f4c757ec0abbe42ac87c1f8e"
@@ -130,6 +130,9 @@
   },
   "scala": {
     "revision": "fb23ed9a99da012d86b7a5059b9d8928607cce29"
+  },
+  "scss": {
+    "revision": "b2407613f3804d0db15ae6f9f49cf2e759f06dba"
   },
   "sparql": {
     "revision": "cf57a922b6a48664131617a5c7fe06e401e700f7"
