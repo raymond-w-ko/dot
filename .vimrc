@@ -7,7 +7,7 @@ set encoding=utf-8
 let g:loaded_rrhelper=1
 let g:did_install_default_menus=1 " avoid stupid menu.vim (saves ~100ms)
 
-let s:use_treesitter=1
+let s:use_treesitter=has("nvim")
 
 augroup MyVimrc
   au!
@@ -40,7 +40,9 @@ Plug '$HOME/dot/.vim/plugged.manual/lightline-colorschemes'
 Plug '$HOME/dot/.vim/plugged.manual/rko-misc'
 nnoremap <leader>o :ToggleWord<CR>
 
-Plug 'glacambre/firenvim'
+if has("nvim")
+  Plug 'glacambre/firenvim'
+endif
 
 " my plugins
 Plug 'raymond-w-ko/vim-solarized8'
@@ -278,6 +280,7 @@ if has("nvim") && s:use_treesitter
   " :TSUpdate
   Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'p00f/nvim-ts-rainbow'
+  Plug 'nvim-treesitter/playground'
 endif
 
 call plug#end()
@@ -314,7 +317,11 @@ if !isdirectory(&undodir)
 endif
 
 if !exists("g:rko_already_turned_syntax_off")
-  syntax off
+  if s:use_treesitter
+    syntax off
+  else
+    syntax on
+  endif
   syntax conceal on
   let g:rko_already_turned_syntax_off=1
 endif
@@ -1376,6 +1383,10 @@ function! s:SetupBasicSyntaxHighlights()
   endif
 endfunction
 
+func s:setup_treesitter_keybinds() abort
+  nnoremap <buffer> zS :TSHighlightCapturesUnderCursor<CR>
+endf
+
 augroup MyVimrc
   " only show cursorline if a window has focus
   " this noticably slows down VIM in files with complicated syntax highlighting,
@@ -1414,6 +1425,10 @@ augroup MyVimrc
 
   " help in new tab to avoid interfering with existing tab layout
   autocmd BufEnter *.txt call s:SetupHelpTab()
+
+  if s:use_treesitter
+    autocmd FileType * call s:setup_treesitter_keybinds()
+  endif
 
   " autocmd FileType * call s:SetupBasicSyntaxHighlights()
   " autocmd BufEnter * :syntax sync fromstart
