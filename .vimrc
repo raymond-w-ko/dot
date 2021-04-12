@@ -292,8 +292,8 @@ call plug#end()
 
 " load sensible defaults by our prophet Tim Pope
 runtime! plugin/sensible.vim
-" set scrolloff=0 " scrolloff 0 is needed by scrollfix
-set scrolloff=9001 " scrolloff 0 is needed by scrollfix
+set scrolloff=0 " scrolloff 0 is needed by scrollfix
+" set scrolloff=9001 " scrolloff 0 is needed by scrollfix
 set undofile
 set backup
 set writebackup
@@ -1437,6 +1437,8 @@ augroup MyVimrc
 
   " autocmd InsertEnter * setlocal nolist
   " autocmd InsertLeave * setlocal list
+  
+  autocmd CursorMoved * call feedkeys("zz", "nx")
 augroup END
 
 " }}}
