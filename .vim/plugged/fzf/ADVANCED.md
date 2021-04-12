@@ -1,7 +1,7 @@
 Advanced fzf examples
 ======================
 
-*(Last update: 2021/04/06)*
+*(Last update: 2021/04/09)*
 
 <!-- vim-markdown-toc GFM -->
 
@@ -89,7 +89,7 @@ fzf --height=40% --layout=reverse --info=inline --border --margin=1 --padding=1
 
 But you definitely don't want to repeat `--height=40% --layout=reverse
 --info=inline --border --margin=1 --padding=1` every time you use fzf. You
-could write a wrapper script or shell alise, but there is an easier option.
+could write a wrapper script or shell alias, but there is an easier option.
 Define `$FZF_DEFAULT_OPTS` like so:
 
 ```sh
@@ -111,6 +111,7 @@ fzf-tmux --layout=reverse
 
 The limitation of `fzf-tmux` is that it only works when you're on tmux unlike
 `--height` option. But the advantage of it is that it's more flexible.
+(See `man fzf-tmux` for available options.)
 
 ```sh
 # On the right (50%)
@@ -133,8 +134,8 @@ fzf-tmux -u30%
 
 But here's the really cool part; tmux 3.2 (stable version is not yet released
 as of now) supports popup windows. So if you have tmux built from the latest
-source, you can open fzf in a popup window, which is quite useful when you're
-working on split panes.
+source, you can open fzf in a popup window, which is quite useful if you
+frequently use split panes.
 
 ```sh
 # Open tmux in a tmux popup window (default size: 50% of the screen)
@@ -145,6 +146,12 @@ fzf-tmux -p 80%,60%
 ```
 
 ![image](https://user-images.githubusercontent.com/700826/113380106-4a9bfd80-93b6-11eb-8cee-aeb1c4ce1a1f.png)
+
+> You might also want to check out my tmux plugins which support this popup
+> window layout.
+> 
+> - https://github.com/junegunn/tmux-fzf-url
+> - https://github.com/junegunn/tmux-fzf-maccy
 
 Dynamic reloading of the list
 -----------------------------
@@ -242,9 +249,15 @@ IFS=: read -ra selected < <(
 And run it with an initial query string.
 
 ```sh
+# Make the script executable
 chmod +x rfv
+
+# Run it with the initial query "algo"
 ./rfv algo
 ```
+
+> Ripgrep will perform the initial search and list all the lines that contain
+`algo`. Then we further narrow down the list on fzf.
 
 ![image](https://user-images.githubusercontent.com/700826/113683873-a42a6200-96ff-11eb-9666-26ce4091b0e4.png)
 
@@ -266,7 +279,7 @@ I know it's a lot to digest, let's try to break down the code.
 - We customize how fzf colors various text elements using `--color` option.
   `-1` tells fzf to keep the original color from the input. See `man fzf` for
   available color options.
-- The value of `--preview-window` options consists of 5 components delimited
+- The value of `--preview-window` option consists of 5 components delimited
   by `,`
     1. `up` — Position of the preview window
     1. `60%` — Size of the preview window
@@ -322,7 +335,6 @@ IFS=: read -ra selected < <(
   fzf --ansi \
       --disabled --query "$INITIAL_QUERY" \
       --bind "change:reload:sleep 0.1; $RG_PREFIX {q} || true" \
-      --color "hl:-1:underline,hl+:-1:underline:reverse" \
       --delimiter : \
       --preview 'bat --color=always {1} --highlight-line {2}' \
       --preview-window 'up,60%,border-bottom,+{2}+3/3,~3'
