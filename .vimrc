@@ -317,14 +317,14 @@ if !isdirectory(&undodir)
   echoerr "'undodir' does not exists: " . &undodir
 endif
 
-if !exists("g:rko_already_turned_syntax_off")
+if !exists("g:rko_already_setup_syntax")
   if s:use_treesitter
-    syntax off
+    syntax enable
   else
-    syntax on
+    syntax enable
   endif
   syntax conceal on
-  let g:rko_already_turned_syntax_off=1
+  let g:rko_already_setup_syntax=1
 endif
 set fileformats=unix,dos
 set autowrite
@@ -557,7 +557,7 @@ function! s:IsProjectDirectory(directory)
 endfunction
 function! MyGetProjectDirectory()
   let last_directory = ''
-  let directory = getcwd()
+  let directory = expand("%:p:h")
 
   while !s:IsProjectDirectory(directory) && last_directory != directory
     let last_directory = directory
@@ -566,6 +566,7 @@ function! MyGetProjectDirectory()
   endwhile
 
   if last_directory == directory
+    " we could not find a project directory
     return getcwd()
   elseif has('win32')
     return directory . '\'
@@ -1095,7 +1096,6 @@ endif
 
 if executable("fzf")
   function! MyFindFileInProjectAndEdit(sink)
-      " execute ':Files ' . EscapePathname(MyGetProjectDirectory())
       let dir = MyGetProjectDirectory()
       call fzf#run({
           \ "sink": a:sink,
@@ -1384,8 +1384,9 @@ function! s:SetupBasicSyntaxHighlights()
   endif
 endfunction
 
-func s:setup_treesitter_keybinds() abort
-  nnoremap <buffer> zS :TSHighlightCapturesUnderCursor<CR>
+func MyShowSyntaxGroups() abort
+  call feedkeys("\<Plug>ScripteaseSynnames")
+  TSHighlightCapturesUnderCursor
 endf
 
 augroup MyVimrc
@@ -1428,7 +1429,7 @@ augroup MyVimrc
   autocmd BufEnter *.txt call s:SetupHelpTab()
 
   if s:use_treesitter
-    autocmd FileType * call s:setup_treesitter_keybinds()
+    autocmd FileType * nnoremap <buffer> zS :silent call MyShowSyntaxGroups()<CR>
   endif
 
   " autocmd FileType * call s:SetupBasicSyntaxHighlights()
