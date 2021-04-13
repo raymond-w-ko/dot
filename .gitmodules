@@ -13,3 +13,6 @@
 [submodule "src/z"]
 	path = src/z
 	url = https://github.com/rupa/z.git
+[submodule "src/selenized"]
+	path = src/selenized
+	url = https://github.com/jan-warchol/selenized
