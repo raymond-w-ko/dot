@@ -30,7 +30,8 @@ else
     # fix ls colors especially for directories and files that are globally
     # readable and writeable, they are completely unreadable by default
     if [ -r "$HOME/src/dircolors-solarized/dircolors.256dark" ]; then
-      eval `dircolors $HOME/src/dircolors-solarized/dircolors.256dark`
+      # eval `dircolors $HOME/src/dircolors-solarized/dircolors.256dark`
+      eval `dircolors $HOME/src/dircolors-solarized/dircolors.ansi-dark`
     else
       eval `dircolors -b`
     fi
