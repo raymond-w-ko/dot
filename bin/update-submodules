@@ -54,6 +54,18 @@ dir="$HOME/.oh-my-zsh/"
 CMD="(cd \"$dir\"; pwd ; do_git_pull_simple)&"
 eval $CMD
 
+dir="$HOME/dot/src/z"
+CMD="(cd \"$dir\"; pwd ; do_git_pull_simple)&"
+eval $CMD
+
+dir="$HOME/dot/src/dircolors-solarized"
+CMD="(cd \"$dir\"; pwd ; do_git_pull_simple)&"
+eval $CMD
+
+dir="$HOME/dot/src/selenized"
+CMD="(cd \"$dir\"; pwd ; do_git_pull_simple)&"
+eval $CMD
+
 set +e
 for job in `jobs -p`
 do
