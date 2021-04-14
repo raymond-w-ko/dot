@@ -24,7 +24,7 @@ export HISTSIZE=32768
 export HISTCONTROL=ignoreboth:erasedups
 
 export GPG_TTY=$(tty)
-export CCACHE_SLOPPINESS=pch_defines,time_macros
+# export CCACHE_SLOPPINESS=pch_defines,time_macros
 
 appendpath () {
     case ":$PATH:" in
@@ -86,7 +86,8 @@ unset prependpath
 
 [[ -z "$TMP" ]] && export TMP='/tmp'
 [[ -z "$TEMP" ]] && export TEMP='/tmp'
-export PKG_CONFIG_PATH="/usr/lib/pkgconfig/:/usr/local/lib/pkgconfig/"
+# DON'T DO THIS! breaks neovim and probably other compilation
+# export PKG_CONFIG_PATH="/usr/lib/pkgconfig/:/usr/local/lib/pkgconfig/"
 
 unameString=`uname -s`
 
