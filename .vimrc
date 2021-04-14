@@ -1388,6 +1388,9 @@ func MyShowSyntaxGroups() abort
   call feedkeys("\<Plug>ScripteaseSynnames")
   TSHighlightCapturesUnderCursor
 endf
+func MyCenterCursor() abort
+  normal! zz
+endf
 
 augroup MyVimrc
   " only show cursorline if a window has focus
@@ -1438,7 +1441,7 @@ augroup MyVimrc
   " autocmd InsertEnter * setlocal nolist
   " autocmd InsertLeave * setlocal list
   
-  autocmd CursorMoved * call feedkeys("zz", "nx")
+  autocmd CursorMoved * call MyCenterCursor()
 augroup END
 
 " }}}
