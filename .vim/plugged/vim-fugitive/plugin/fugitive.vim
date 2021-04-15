@@ -8,6 +8,8 @@ if exists('g:loaded_fugitive')
 endif
 let g:loaded_fugitive = 1
 
+let s:bad_git_dir = '/$\|^fugitive:'
+
 function! FugitiveGitDir(...) abort
   if !a:0 || type(a:1) == type(0) && a:1 < 0
     if exists('g:fugitive_event')
@@ -16,16 +18,17 @@ function! FugitiveGitDir(...) abort
     let dir = get(b:, 'git_dir', '')
     if empty(dir) && (empty(bufname('')) || &buftype =~# '^\%(nofile\|acwrite\|quickfix\|prompt\)$')
       return FugitiveExtractGitDir(getcwd())
-    elseif !exists('b:git_dir') && empty(&buftype)
+    elseif (!exists('b:git_dir') || b:git_dir =~# s:bad_git_dir) && empty(&buftype)
       let b:git_dir = FugitiveExtractGitDir(expand('%:p'))
       return b:git_dir
     endif
-    return dir
+    return dir =~# s:bad_git_dir ? '' : dir
   elseif type(a:1) == type(0)
-    if a:1 == bufnr('') && !exists('b:git_dir') && empty(&buftype)
+    if a:1 == bufnr('') && (!exists('b:git_dir') || b:git_dir =~# s:bad_git_dir) && empty(&buftype)
       let b:git_dir = FugitiveExtractGitDir(expand('%:p'))
     endif
-    return getbufvar(a:1, 'git_dir')
+    let dir = getbufvar(a:1, 'git_dir')
+    return dir =~# s:bad_git_dir ? '' : dir
   elseif type(a:1) == type('')
     return substitute(s:Slash(a:1), '/$', '', '')
   elseif type(a:1) == type({})
@@ -87,6 +90,22 @@ function! FugitiveParse(...) abort
   endif
   let v:errmsg = 'fugitive: invalid Fugitive URL ' . path
   throw v:errmsg
+endfunction
+
+" FugitiveResult() returns an object encapsulating the result of the most
+" recend :Git command.  Will be empty if no result is available.  Pass in the
+" name of a temp buffer to get the result object for that command instead.
+" Contains the following keys:
+"
+" * "args": List of command arguments, starting with the subcommand.  Will be
+"   empty for usages like :Git --help.
+" * "dir": Git dir of the relevant repository.
+" * "exit_status": The integer exit code of the process.
+" * "flags": Flags passed directly to Git, like -c and --help.
+" * "file": Path to file containing command output.  Not guaranteed to exist,
+"   so verify with filereadable() before trying to access it.
+function! FugitiveResult(...) abort
+  return call('fugitive#Result', a:000)
 endfunction
 
 " FugitivePrepare() constructs a Git command string which can be executed with
@@ -279,7 +298,7 @@ function! FugitiveExtractGitDir(path) abort
 endfunction
 
 function! FugitiveDetect(path) abort
-  if exists('b:git_dir') && b:git_dir =~# '^$\|/$\|^fugitive:'
+  if exists('b:git_dir') && b:git_dir =~# '^$\|' . s:bad_git_dir
     unlet b:git_dir
   endif
   if !exists('b:git_dir')
