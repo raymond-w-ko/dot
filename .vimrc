@@ -1442,6 +1442,8 @@ augroup MyVimrc
   " autocmd InsertLeave * setlocal list
   
   autocmd CursorMoved * call MyCenterCursor()
+  autocmd BufReadPost *.html hi clear htmlItalic
+  autocmd BufReadPost *.html hi clear TSEmphasis
 augroup END
 
 " }}}
