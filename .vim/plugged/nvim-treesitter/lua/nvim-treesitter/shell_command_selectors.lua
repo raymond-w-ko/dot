@@ -121,12 +121,16 @@ end
 
 function M.select_download_commands(repo, project_name, cache_folder, revision)
 
+  local can_use_tar = vim.fn.executable('tar') == 1 and vim.fn.executable('curl') == 1
   local is_github = repo.url:find("github.com", 1, true)
   local is_gitlab = repo.url:find("gitlab.com", 1, true)
 
-  if vim.fn.executable('tar') == 1 and vim.fn.executable('curl') == 1 and (is_github or is_gitlab) then
+  local is_windows = fn.has('win32') == 1
 
-    revision = revision or repo.branch or "master"
+  revision = revision or repo.branch or "master"
+
+  if can_use_tar and (is_github or is_gitlab) and not is_windows then
+
     local path_sep = utils.get_path_sep()
     local url = repo.url:gsub('.git$', '')
 
@@ -169,22 +173,33 @@ function M.select_download_commands(repo, project_name, cache_folder, revision)
       M.select_install_rm_cmd(cache_folder, project_name..'-tmp')
     }
   else
+    local git_folder = utils.join_path(cache_folder, project_name)
+    local clone_error = 'Error during download, please verify your internet connection'
+
     return {
       {
         cmd = 'git',
         info = 'Downloading...',
-        err = 'Error during download, please verify your internet connection',
+        err = clone_error,
         opts = {
           args = {
             'clone',
-            '--single-branch',
-            '--branch', repo.branch or 'master',
-            '--depth', '1',
             repo.url,
             project_name
           },
           cwd = cache_folder,
         },
+      },
+      {
+        cmd = 'git',
+        info = 'Checking out locked revision',
+        err = 'Error while checking out revision',
+        opts = {
+          args = {
+            'checkout', revision,
+          },
+          cwd = git_folder
+        }
       }
     }
   end

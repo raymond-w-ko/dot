@@ -1,6 +1,7 @@
 local api = vim.api
 
 local queries = require'nvim-treesitter.query'
+local ts_query = require'vim.treesitter.query'
 local parsers = require'nvim-treesitter.parsers'
 local utils = require'nvim-treesitter.utils'
 local caching = require'nvim-treesitter.caching'
@@ -196,6 +197,47 @@ local function config_info(process_function)
   print(vim.inspect(config, {process = process_function}))
 end
 
+function M.edit_query_file(query_group, lang)
+  lang = lang or parsers.get_buf_lang()
+  local files = ts_query.get_query_files(lang, query_group, true)
+  if #files == 0 then
+    vim.notify('No query file found! Creating a new one!')
+    M.edit_query_file_user_after(query_group, lang)
+  elseif #files == 1 then
+    vim.cmd(':edit '..files[1])
+  else
+    local counter = 0
+    local choices = {
+      'Select a file:',
+      table.unpack(vim.tbl_map(function(f)
+          counter = counter + 1
+          return counter..'. '..f
+        end,
+        files
+      ))
+    }
+    local choice = vim.fn.inputlist(choices)
+    if choice > 0 and choice <= #files then
+      vim.cmd(':edit '..files[choice])
+    end
+  end
+end
+
+function M.edit_query_file_user_after(query_group, lang)
+  lang = lang or parsers.get_buf_lang()
+  local folder = utils.join_path(vim.fn.stdpath('config'), 'after', 'queries', lang)
+  local file = utils.join_path(folder, query_group..'.scm')
+  if vim.fn.isdirectory(folder) ~= 1 then
+    local choice = vim.fn.inputlist({'"'..folder.." does not exist. Create it?", "1. Yes", "2. No"})
+    if choice == 1 then
+      vim.fn.mkdir(folder, "p", "0755")
+    else
+      return
+    end
+  end
+  vim.cmd(':edit '..file)
+end
+
 M.commands = {
   TSBufEnable = {
     run = enable_module,
@@ -243,6 +285,20 @@ M.commands = {
     run = config_info,
     args = {
       "-nargs=0",
+    },
+  },
+  TSEditQuery = {
+    run = M.edit_query_file,
+    args = {
+      "-nargs=+",
+      "-complete=custom,nvim_treesitter#available_query_groups",
+    },
+  },
+  TSEditQueryUserAfter = {
+    run = M.edit_query_file_user_after,
+    args = {
+      "-nargs=+",
+      "-complete=custom,nvim_treesitter#available_query_groups",
     },
   },
 }
