@@ -757,9 +757,11 @@ function! s:rg_handler(file)
 endfunction
 function! s:FindWordInProject()
   let needle = getreg('"')
+  " let needle = escape(needle, ">")
+  echom needle
   let dir = MyGetProjectDirectory()
   call fzf#run({
-      \ "source": "rg -- '" . needle . "'",
+      \ "source": "rg --fixed-strings -- '" . needle . "'",
       \ "sink": function("s:rg_handler"),
       \ "options": printf('--color="dark,hl:33,hl+:#ff0000,fg+:235,bg+:#000000,fg+:254,info:254,prompt:37,spinner:108,pointer:235,marker:235" --prompt "%s"', dir),
       \ "dir": dir,
@@ -1015,6 +1017,7 @@ function! s:SetupPairBindings()
     exe "imap <silent><buffer> ρ ["
     exe 'imap <silent><buffer> θ "'
     inoremap <silent><buffer> <CR> <C-r>=<SID>MyBasicCR()<CR>
+    inoremap <silent><buffer> <BS> <C-r>=<SID>EmptyPairDeleterBackspace()<CR>
   else
     " semimap helpers
     inoremap <silent><buffer> φ ()<C-g>U<Left>
