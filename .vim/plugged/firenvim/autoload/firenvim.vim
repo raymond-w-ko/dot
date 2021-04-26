@@ -168,6 +168,18 @@ function! firenvim#run() abort
         let l:chanid = stdioopen({ 'on_stdin': 'OnStdin' })
 endfunction
 
+" Wrapper function that executes funcname(...args) if a $DRY_RUN env variable
+" isn't defined and just echoes `funcname(...args)` if it is.
+function! s:maybe_execute(funcname, ...) abort
+        let l:result = ''
+        if !empty($DRY_RUN)
+                echo a:funcname . '(' . string(a:000)[1:-2] . ')'
+        else
+                let l:result = call(a:funcname, a:000)
+        end
+        return l:result
+endfunction
+
 " Returns the name of the script that should be executed by the browser.
 function! s:get_executable_name() abort
         if has('win32') || s:is_wsl
@@ -293,6 +305,22 @@ function! s:chrome_config_exists() abort
         return isdirectory(s:build_path(l:p))
 endfunction
 
+function! s:ungoogled_chromium_config_exists() abort
+        let l:p = [$HOME, '.config', 'ungoogled-chromium']
+        if has('mac')
+                " According to #1007, on macos, things work when using the
+                " regular chrome dir.
+                return v:false
+        elseif has('win32') || s:is_wsl
+                " Don't know what should be used here. Wait for somebody to
+                " complain.
+                return v:false
+        elseif !empty($XDG_CONFIG_HOME)
+                let l:p = [$XDG_CONFIG_HOME, 'ungoogled-chromium']
+        end
+        return isdirectory(s:build_path(l:p))
+endfunction
+
 function! s:edge_config_exists() abort
         let l:p = [$HOME, '.config', 'microsoft-edge']
         if has('mac')
@@ -327,6 +355,16 @@ function! s:get_chrome_manifest_dir_path() abort
                 return s:build_path([$XDG_CONFIG_HOME, 'google-chrome', 'NativeMessagingHosts'])
         end
         return s:build_path([$HOME, '.config', 'google-chrome', 'NativeMessagingHosts'])
+endfunction
+
+function! s:get_ungoogled_chromium_manifest_dir_path() abort
+        if has('mac') || has('win32') || s:is_wsl
+                throw "Ungoogled chromium isn't supported. Please open an issue to add support."
+        end
+        if !empty($XDG_CONFIG_HOME)
+                return s:build_path([$XDG_CONFIG_HOME, 'ungoogled-chromium', 'NativeMessagingHosts'])
+        end
+        return s:build_path([$HOME, '.config', 'ungoogled-chromium', 'NativeMessagingHosts'])
 endfunction
 
 function! s:get_edge_manifest_dir_path() abort
@@ -573,6 +611,12 @@ function! s:get_browser_configuration() abort
                         \ 'manifest_dir_path': function('s:get_chrome_manifest_dir_path'),
                         \ 'registry_key': 'HKCU:\Software\Google\Chrome\NativeMessagingHosts\firenvim',
                 \},
+                \'ungoogled-chromium': {
+                        \ 'has_config': s:ungoogled_chromium_config_exists(),
+                        \ 'manifest_content': function('s:get_chrome_manifest'),
+                        \ 'manifest_dir_path': function('s:get_ungoogled_chromium_manifest_dir_path'),
+                        \ 'registry_key': 'HKCU:\Software\Chromium\NativeMessagingHosts\firenvim',
+                \},
                 \'vivaldi': {
                         \ 'has_config': s:vivaldi_config_exists(),
                         \ 'manifest_content': function('s:get_chrome_manifest'),
@@ -582,9 +626,10 @@ function! s:get_browser_configuration() abort
         \}
         if $TESTING == 1
                 call remove(l:browsers, 'brave')
-                call remove(l:browsers, 'vivaldi')
-                call remove(l:browsers, 'opera')
                 call remove(l:browsers, 'chrome-dev')
+                call remove(l:browsers, 'opera')
+                call remove(l:browsers, 'ungoogled-chromium')
+                call remove(l:browsers, 'vivaldi')
         endif
         return l:browsers
 
@@ -634,15 +679,15 @@ function! firenvim#install(...) abort
         " Write said script to said path
         let l:execute_nvim = s:get_executable_content(s:get_runtime_dir_path(), l:script_prolog)
 
-        call mkdir(l:data_dir, 'p', 0700)
+        call s:maybe_execute('mkdir', l:data_dir, 'p', 0700)
         if s:is_wsl
                 let l:execute_nvim_path = s:to_wsl_path(l:execute_nvim_path)
         endif
-        call writefile(split(l:execute_nvim, "\n"), l:execute_nvim_path)
+        call s:maybe_execute('writefile', split(l:execute_nvim, "\n"), l:execute_nvim_path)
         if s:is_wsl
                 let l:execute_nvim_path = s:to_windows_path(l:execute_nvim_path)
         endif
-        call setfperm(l:execute_nvim_path, 'rwx------')
+        call s:maybe_execute('setfperm', l:execute_nvim_path, 'rwx------')
 
         let l:browsers = s:get_browser_configuration()
 
@@ -667,9 +712,9 @@ function! firenvim#install(...) abort
                         let l:manifest_path = s:build_path([l:manifest_dir_path, 'firenvim-' . l:name . '.json'])
                 endif
 
-                call mkdir(l:manifest_dir_path, 'p', 0700)
-                call writefile([l:manifest_content], l:manifest_path)
-                call setfperm(l:manifest_path, 'rw-------')
+                call s:maybe_execute('mkdir', l:manifest_dir_path, 'p', 0700)
+                call s:maybe_execute('writefile', [l:manifest_content], l:manifest_path)
+                call s:maybe_execute('setfperm', l:manifest_path, 'rw-------')
 
                 echo 'Installed native manifest for ' . l:name . '.'
 
@@ -681,9 +726,9 @@ function! firenvim#install(...) abort
                                                 \ l:manifest_path)
                         let l:ps1_path = s:build_path([l:manifest_dir_path, l:name . '.ps1'])
                         echo 'Creating registry key for ' . l:name . '. This may take a while. Script: ' . l:ps1_path
-                        call writefile(split(l:ps1_content, "\n"), l:ps1_path)
-                        call setfperm(l:ps1_path, 'rwx------')
-                        let o = system(['powershell.exe', '-Command', '-'], readfile(l:ps1_path))
+                        call s:maybe_execute('writefile', split(l:ps1_content, "\n"), l:ps1_path)
+                        call s:maybe_execute('setfperm', l:ps1_path, 'rwx------')
+                        let o = s:maybe_execute('system', ['powershell.exe', '-Command', '-'], readfile(l:ps1_path))
                         if v:shell_error
                           echo o
                         endif

@@ -65,18 +65,16 @@
 	display: auto;
 }
 
+@import "cascade-4.css" supports(display: auto);
+
 .cascade-4 {
 	display: revert;
 }
 
+@import "cascade-5.css" layer(framework component);
+
 .cascade-5 {
-	display: auto;
-}
-
-@import "conditional-3.css" supports(display: auto);
-
-@supports (selector(.conditional-4)) {
-	display: auto;
+	display: revert-layer;
 }
 
 .color-3 {
@@ -135,11 +133,15 @@
 }
 
 @supports (display: auto) or
-	(display: auto) not
-	(display: auto) {
+(display: auto) not
+(display: auto) {
 	.conditional-3 {
-	  display: auto;
+		display: auto;
 	}
+}
+
+@supports (selector(.conditional-4)) {
+	display: auto;
 }
 
 .contain-1 {
