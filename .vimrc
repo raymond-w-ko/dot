@@ -185,6 +185,7 @@ Plug 'junegunn/gv.vim'
 " shougo + friends (Japanese Vim)
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'roxma/vim-tmux-clipboard'
 
 """"""""""""""""""""""""""""""""""""""""
 " Justin M. Keyes
