@@ -114,7 +114,9 @@ let g:startify_lists = [
     \ { 'type': 'commands',  'header': ['   Commands']       },
     \ ]
 
-Plug 'tmux-plugins/vim-tmux-focus-events'
+" this plugin is now obsolete and no longer needed as both neovim and vim
+" (since version 8.2.2345) have native support for this functionality.
+" Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
 " obsoleted by vim-tmux-navigator
 " nmap <C-h> <C-w>h
