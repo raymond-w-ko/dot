@@ -1891,8 +1891,9 @@ function! FindAndRunMakefile()
     let makefile = current_dir . '/Makefile'
     if filereadable(makefile)
       let make_cmd = "make -f Makefile " . '-C ' . current_dir
-      exe "botright term " . make_cmd
+      noautocmd belowright split
       resize 25
+      exe "term " . make_cmd
       nnoremap <buffer> q :q<cr>
       return
     endif
