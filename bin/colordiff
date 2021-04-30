@@ -5,7 +5,7 @@
 # ColorDiff - a wrapper/replacement for 'diff' producing               #
 #             colourful output                                         #
 #                                                                      #
-# Copyright (C)2002-2017 Dave Ewart (davee@sungate.co.uk)              #
+# Copyright (C)2002-2020 Dave Ewart (davee@sungate.co.uk)              #
 #                                                                      #
 ########################################################################
 #                                                                      #
@@ -25,13 +25,12 @@ use strict;
 use Getopt::Long qw(:config pass_through no_auto_abbrev);
 
 my $app_name     = 'colordiff';
-my $version      = '1.0.18';
+my $version      = '1.0.20';
 my $author       = 'Dave Ewart';
 my $author_email = 'davee@sungate.co.uk';
 my $app_www      = 'http://www.colordiff.org/';
-my $copyright    = '(C)2002-2017';
+my $copyright    = '(C)2002-2020';
 my $show_banner  = 1;
-my $color_patch  = undef;
 my $diff_cmd     = "diff";
 
 # ANSI sequences for colours
@@ -61,6 +60,16 @@ my $file_new   = $colour{blue};
 my $diff_stuff = $colour{magenta};
 my $diff_file  = $diff_stuff;
 my $cvs_stuff  = $colour{green};
+
+# Config options controlling presence or absence of colour in output
+# cfg_* options come from config files
+# cmd_* options come from the command line
+my $cfg_color_mode   = 1;
+my $cfg_color_patch  = 0;
+my $cmd_color_mode   = undef;
+my $cmd_color_patch  = undef;
+my $color_mode       = undef;
+my $color_patch      = undef;
 
 # Locations for personal and system-wide colour configurations
 my $HOME   = $ENV{HOME};
@@ -165,15 +174,17 @@ sub detect_diff_type {
 my $enable_verifymode;
 my $specified_difftype;
 my $enable_fakeexitcode;
-my $color_mode = "auto";
 my $color_term_output_only = "no";
+
+# Command-line options may over-ride config files
 GetOptions(
     # --enable-verifymode option is for testing behaviour of colordiff
     # against standard test diffs
     "verifymode" => \$enable_verifymode,
     "fakeexitcode" => \$enable_fakeexitcode,
     "difftype=s" => \$specified_difftype,
-    "color=s" => \$color_mode,
+    "color=s" => \$cmd_color_mode,
+    "color-patches=s" => \$cmd_color_patch,
     "color-term-output-only=s" => \$color_term_output_only
 );
 
@@ -184,13 +195,11 @@ if (defined $_ and not /^diff[cuy]?|(deb|w)diff$/) {
 
 if (defined $enable_verifymode) {
     # When in verify mode, to ensure consistent output we don't source
-    # any external config files, so we use built-in defaults
-    # and we add colour to our patches
+    # any external config files
     @config_files = ();
-    $color_patch  = 1;
-    $show_banner  = 0;
 }
 
+# Read config file options
 foreach $config_file (@config_files) {
     if (open (COLORDIFFRC, "<$config_file")) {
         while (<COLORDIFFRC>) {
@@ -201,7 +210,7 @@ foreach $config_file (@config_files) {
             s/\s+//g;
             ($setting, $value) = split ('=');
             if (!defined $value) {
-                print STDERR "Invalid configuration line ($_) in $config_file\n";
+                print STDERR "Ignored invalid configuration line ($_) in $config_file\n";
                 next;
             }
             if ($setting eq 'banner') {
@@ -210,11 +219,19 @@ foreach $config_file (@config_files) {
                 }
                 next;
             }
+            if ($setting eq 'color_mode') {
+                if ($value eq 'yes') {
+                    $cfg_color_mode = 1;
+                } elsif ($value eq 'no') {
+                    $cfg_color_mode = 0;
+                }
+                next;
+            }
             if ($setting eq 'color_patches') {
                 if ($value eq 'yes') {
-                    $color_patch = 1;
+                    $cfg_color_patch = 1;
                 } elsif ($value eq 'no') {
-                    $color_patch = 0;
+                    $cfg_color_patch = 0;
                 }
                 next;
             }
@@ -227,7 +244,16 @@ foreach $config_file (@config_files) {
             if (($value eq 'normal') || ($value eq 'none')) {
                 $value = 'off';
             }
-            if ($value =~ m/[0-9]+/ && $value >= 0 && $value <= 255) {
+            # Find full 24-bit colour spec string
+            if (( $value =~ m/^([0-9];)*([34]8);2;([0-9]+);([0-9]+);([0-9]+)$/) &&
+                    ($3 >= 0) && ($3 <= 255) &&
+                    ($4 >= 0) && ($4 <= 255) &&
+                    ($5 >= 0) && ($5 <= 255)
+                    ) {
+                $colourval = "\033[$1$2;2;$3;$4;$5m";
+            }
+            # 256 colour single value
+            elsif ($value =~ m/^[0-9]+$/ && $value >= 0 && $value <= 255) {
                 # Numeric color
                 if( $value < 8 ) {
                     $colourval = "\033[0;3${value}m";
@@ -271,20 +297,57 @@ foreach $config_file (@config_files) {
         close COLORDIFFRC;
     }
 }
-
-# --color=(yes|no|auto) will override the color_patches setting
-if ($color_mode eq "yes") {
-    $color_patch = 1;
-} elsif ($color_mode eq "no") {
-    $color_patch = 0;
-} elsif ($color_mode eq "auto") {
-    $color_patch = undef;
+# Default color_mode is 1, over-ridden by config files
+# All over-ridden by command line options
+$color_mode = 1;
+if ($cfg_color_mode == 0) {
+    $color_mode = 0;
+}
+if (defined $cmd_color_mode) {
+    if ($cmd_color_mode eq 'yes' 
+            || $cmd_color_mode eq 'always'
+            || $cmd_color_mode eq 'auto') {
+        $color_mode = 1;
+    }
+    elsif ($cmd_color_mode eq 'no'
+            || $cmd_color_mode eq 'never') {
+        $color_mode = 0;
+    }
 }
 
-# If output is to a file, switch off colours unless overriden by $color_patch.
-# Relates to http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=378563
-# Relates to http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=862878
-if ( (!$color_patch && (defined $color_patch || -f STDOUT)) ||
+# Default color_patch is 0, over-ridden by config files
+# All over-ridden by command line options
+$color_patch = 0;
+if (defined $cfg_color_patch) {
+    if ($cfg_color_patch == 1) {
+        $color_patch = 1;
+    }
+}
+if (defined $cmd_color_patch) {
+    if ($cmd_color_patch eq 'yes' 
+            || $cmd_color_patch eq 'always'
+            || $cmd_color_patch eq 'auto') {
+        $color_patch = 1;
+    }
+    elsif ($cmd_color_patch eq 'no'
+            || $cmd_color_patch eq 'never') {
+        $color_patch = 0;
+    }
+}
+
+if (defined $enable_verifymode) {
+    # When in verify mode, to ensure consistent output we use built-in defaults
+    # and we add colour to our patches
+    $color_patch  = 1;
+    $show_banner  = 0;
+}
+
+# Switch off colours if any of these are true:
+#  - color_mode is no
+#  - output to a file unless overriden by $color_patch.
+#  - color_term_output_only is set and output not to a terminal
+if ( (!$color_mode) ||
+     (-f STDOUT && ($color_patch != 1)) ||
      ($color_term_output_only eq 'yes' && !-t STDOUT) )
 {
     $plain_text  = '';
@@ -516,8 +579,11 @@ while (defined( $_ = @inputstream ? shift @inputstream : ($lastline and <$inputh
         }
     }
     elsif ($diff_type eq 'diffu') {
-        if (/^(---|\+\+\+) /) {
-            print "$diff_file";
+        if (/^--- /) {
+            print "$file_old";
+        }
+        elsif (/^\+\+\+ /) {
+            print "$file_new";
         }
         elsif (/^-/) {
             print "$file_old";
