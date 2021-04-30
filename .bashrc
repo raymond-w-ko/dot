@@ -263,10 +263,10 @@ svnaddmissing() {
 }
 alias svnadddir='svn add --depth=empty'
 svndiff() {
-  svn diff -x "-w --ignore-eol-style" "${@}" | sed 's///' | diff-highlight | less -R
+  svn diff --diff-cmd colordiff -x "-u -w -p" "$@" | less -R
 }
 svnshow() {
-  svn diff -x "-w --ignore-eol-style" -c $1 | sed 's///' | diff-highlight | less -R
+  svn diff --diff-cmd colordiff -x "-u -w -p" -c $1 | less -R
 }
 alias svnignore='svn propedit svn:ignore'
 
