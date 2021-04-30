@@ -25,4 +25,8 @@
 ((interpolation
   (raw_text) @javascript))
 
-(comment) @comment
+((directive_attribute 
+    (quoted_attribute_value 
+      (attribute_value) @javascript)))
+
+(comment) @comment @combined

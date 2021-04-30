@@ -104,6 +104,16 @@ list.go = {
   maintainers = {"@theHamsta", "@WinWisely268"},
 }
 
+list.gomod = {
+  install_info = {
+    url = "https://github.com/camdencheek/tree-sitter-go-mod",
+    branch = "main",
+    files = { "src/parser.c" },
+  },
+  maintainers = {"@camdencheek"},
+  filetype = "gomod",
+}
+
 list.graphql = {
   install_info = {
     url = "https://github.com/bkegley/tree-sitter-graphql",
@@ -539,6 +549,14 @@ list.zig = {
   },
   filetype = "zig",
   maintainers = { "@Himujjal" }
+}
+
+list.fortran = {
+  install_info = {
+    url = "https://github.com/stadelmanma/tree-sitter-fortran",
+    files = { "src/parser.c", "src/scanner.cc", },
+    requires_generate_from_grammar = true,
+  },
 }
 
 local M = {
