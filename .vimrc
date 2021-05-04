@@ -351,7 +351,7 @@ else
   set signcolumn=yes
 endif
 if exists('+relativenumber')
-  set norelativenumber
+  set relativenumber
 endif
 " setting this to 10000 actually causes noticable exit lag
 set history=128
