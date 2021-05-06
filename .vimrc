@@ -63,6 +63,17 @@ Plug 'lifepillar/vim-colortemplate'
 " Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+" CTRL-A CTRL-Q to select all and build quickfix list
+
+function! s:build_quickfix_list(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+endfunction
+let g:fzf_action = {
+  \ 'ctrl-q': function('s:build_quickfix_list'),
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
 
 " potpourri
 Plug 'vim-jp/vital.vim'
@@ -776,8 +787,9 @@ nnoremap <leader>r :call <SID>FindWordInProject()<CR>
 nnoremap H ^
 nnoremap L g_
 
-" Open a Quickfix window for the last search.
-nnoremap <silent> <leader>/ :execute 'lvimgrep /'.@/.'/g %'<CR>:lopen<CR>
+" quickfix
+nnoremap <leader>co :botright copen<CR>
+nnoremap <leader>cc :cclose<CR>
 
 " Fix linewise visual selection of various text objects
 nnoremap VV V
@@ -1341,9 +1353,6 @@ function! s:SetupBasicSyntaxHighlights()
     syntax region rkoCPreprocessorDefine start=/\v^\s*#\s*define/ end=/$/
   endif
 
-  syntax match rkoTODO /\v<TODO|TODO:|XXX|XXX:|NOTE|NOTE:|WARN|WARN:>/ containedin=ALL
-  syntax match rkoError /\verror/ containedin=ALL
-
   highlight link rkoBasicString String
   highlight link rkoMultiLineString String
   highlight link rkoBasicComment Comment
@@ -1368,11 +1377,6 @@ function! s:SetupBasicSyntaxHighlights()
   highlight link rkoVersionControlAdd DiffAdd
   highlight link rkoTODO Define
 
-  highlight link gitMergeConflict Error
-  syntax match gitMergeConflict /^=======$/ containedin=ALL
-  syntax match gitMergeConflict /^<<<<<<< .\+$/ containedin=ALL
-  syntax match gitMergeConflict /^>>>>>>> .\+$/ containedin=ALL
-
   if &filetype == "clojure"
     runtime manual/rko_clojure.vim
     syntax keyword rkoClojureConceal fn conceal cchar=λ containedin=ALL
@@ -1389,6 +1393,15 @@ function! s:SetupBasicSyntaxHighlights()
     runtime syntax/java.vim
   endif
 endfunction
+fun! s:SetupCustomHighlights() abort
+  syntax match rkoTODO /\v<TODO|TODO:|XXX|XXX:|NOTE|NOTE:|WARN|WARN:>/ containedin=ALL
+  syntax match rkoError /\verror/ containedin=ALL
+
+  highlight link gitMergeConflict Error
+  syntax match gitMergeConflict /^=======$/ containedin=ALL
+  syntax match gitMergeConflict /^<<<<<<< .\+$/ containedin=ALL
+  syntax match gitMergeConflict /^>>>>>>> .\+$/ containedin=ALL
+endfun
 
 func MyShowSyntaxGroups() abort
   call feedkeys("\<Plug>ScripteaseSynnames")
@@ -1442,6 +1455,7 @@ augroup MyVimrc
   endif
 
   " autocmd FileType * call s:SetupBasicSyntaxHighlights()
+  autocmd FileType * call s:SetupCustomHighlights()
   " autocmd BufEnter * :syntax sync fromstart
 
   " autocmd InsertEnter * setlocal nolist
@@ -1836,10 +1850,20 @@ function! RemoveQFItem()
   let qfall = getqflist()
   call remove(qfall, curqfidx)
   call setqflist(qfall, 'r')
-  execute curqfidx + 1 . "cfirst"
-  :copen
 endfunction
 command! RemoveQFItem :call RemoveQFItem()
+
+fun! OpenQFItem()
+  let idx = line('.') - 1
+  let items = getqflist()
+  let item = items[idx]
+  echom item
+  wincmd k
+  wincmd l
+  exe "b " item["bufnr"]
+  exe "normal " . item["lnum"] . "G"
+endfun
+command! OpenQFItem :call OpenQFItem()
 
 augroup MyVimrc
   au BufWritePost *.vimrc source $MYVIMRC
@@ -1847,6 +1871,8 @@ augroup MyVimrc
 
   " Use map <buffer> to only map dd in the quickfix window. Requires +localmap
   autocmd FileType qf map <buffer> dd :RemoveQFItem<cr>
+  autocmd FileType qf map <buffer> q :cclose<cr>
+  au BufReadPost quickfix nnoremap <buffer> <CR> :OpenQFItem<cr>
   au FileType gitcommit setlocal foldlevel=9001
 
   " au BufNewFile,BufRead *.py setlocal foldmethod=syntax foldlevel=1
