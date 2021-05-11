@@ -1,15 +1,13 @@
 " vim:fdm=marker
 
-" http://utf8everywhere.org/
-set encoding=utf-8
-
+set encoding=utf-8 " http://utf8everywhere.org/
 " speed hacks
 let g:loaded_rrhelper=1
 let g:did_install_default_menus=1 " avoid stupid menu.vim (saves ~100ms)
 
 let s:use_treesitter=has("nvim")
 
-augroup MyVimrc
+augroup rkoVimrc
   au!
 augroup END
 
@@ -24,8 +22,7 @@ if exists("g:started_by_firenvim")
 else
   set cmdheight=2
 endif
-" Leader
-let mapleader = "\<Space>"
+let mapleader = "\<space>"
 let maplocalleader = ","
 
 let s:cywgin_vim_dir = expand("C:/cygwin64/home/$USERNAME/dot/.vim/plugged")
@@ -47,7 +44,7 @@ endif
 " my plugins
 Plug 'raymond-w-ko/vim-solarized8'
 " Plug 'raymond-w-ko/scrollfix'
-let g:scrollfix=50
+" let g:scrollfix=50
 Plug 'raymond-w-ko/vim-eslisp'
 Plug 'raymond-w-ko/vim-lua-indent'
 
@@ -242,7 +239,7 @@ Plug '2072/PHP-Indenting-for-VIm'
 Plug 'pangloss/vim-javascript'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'othree/csscomplete.vim'
-augroup MyVimrc
+augroup rkoVimrc
   autocmd FileType css set omnifunc=csscomplete#CompleteCSS noci
 augroup END
 Plug 'groenewege/vim-less'
@@ -272,7 +269,7 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people'
   " plasmaplace
 Plug 'raymond-w-ko/vim-plasmaplace'
 let g:clj_fmt_autosave = 0
-augroup MyVimrc
+augroup rkoVimrc
   au!
   " au FileType clojure nnoremap <buffer> <leader>r :Require<CR>
   " au FileType clojure nnoremap <buffer> <leader>R :Require!<CR>
@@ -285,7 +282,7 @@ Plug 'aklt/plantuml-syntax'
 Plug 'rhysd/vim-clang-format'
 let g:clang_format#code_style="google"
 let g:clang_format#detect_style_file=1
-augroup MyVimrc
+augroup rkoVimrc
   autocmd FileType c,cpp,objc nnoremap <buffer><Leader>f :<C-u>ClangFormat<CR>zz
   autocmd FileType c,cpp,objc vnoremap <buffer><Leader>f :ClangFormat<CR>
 augroup END
@@ -306,8 +303,10 @@ call plug#end()
 
 " load sensible defaults by our prophet Tim Pope
 runtime! plugin/sensible.vim
+
+source $HOME/.vim/config/fns.vim
+
 set scrolloff=0 " scrolloff 0 is needed by scrollfix
-" set scrolloff=9001 " scrolloff 0 is needed by scrollfix
 set undofile
 set backup
 set writebackup
@@ -494,7 +493,7 @@ set t_md=
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[4 q"
 " reset cursor on start:
-augroup MyVimrc
+augroup rkoVimrc
   au VimEnter * silent !echo -ne "\e[4 q"
 augroup END
 
@@ -1053,7 +1052,7 @@ function! s:SetupPairBindings()
   endif
 endfunction
 
-augroup MyVimrc
+augroup rkoVimrc
   au FileType * call <SID>SetupPairBindings()
 augroup END
 
@@ -1367,7 +1366,6 @@ function! s:SetupBasicSyntaxHighlights()
   highlight link rkoClojureMacro IncSearch
   highlight link rkoClojureMinorMacro LimeGreen
   highlight link rkoClojureConceal PreProc
-  highlight link rkoError Define
 
   if has_key(s:version_control_filetypes, &filetype)
     syntax region rkoVersionControlDelete start=/\v^-/ end=/\v$/
@@ -1394,6 +1392,8 @@ function! s:SetupBasicSyntaxHighlights()
   endif
 endfunction
 fun! s:SetupCustomHighlights() abort
+
+  highlight link rkoError Define
   syntax match rkoTODO /\v<TODO|TODO:|XXX|XXX:|NOTE|NOTE:|WARN|WARN:>/ containedin=ALL
   syntax match rkoError /\verror/ containedin=ALL
 
@@ -1411,7 +1411,7 @@ func MyCenterCursor() abort
   normal! zz
 endf
 
-augroup MyVimrc
+augroup rkoVimrc
   " only show cursorline if a window has focus
   " this noticably slows down VIM in files with complicated syntax highlighting,
   " like PHP, so disable it for now.
@@ -1865,7 +1865,7 @@ fun! OpenQFItem()
 endfun
 command! OpenQFItem :call OpenQFItem()
 
-augroup MyVimrc
+augroup rkoVimrc
   au BufWritePost *.vimrc source $MYVIMRC
   au BufWritePost *.gvimrc source $MYGVIMRC
 
