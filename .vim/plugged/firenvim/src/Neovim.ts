@@ -1,5 +1,5 @@
 import { page } from "./page/proxy";
-import * as CanvasRenderer from "./render/RedrawCanvas";
+import * as CanvasRenderer from "./renderer";
 import { Stdin } from "./Stdin";
 import { Stdout } from "./Stdout";
 
@@ -20,7 +20,7 @@ export async function neovim(
         prevNotificationPromise = prevNotificationPromise.finally(() => page.killEditor());
     }));
     await (new Promise(resolve => socket.addEventListener("open", () => {
-        resolve();
+        resolve(undefined);
     })));
     const stdin = new Stdin(socket);
     const stdout = new Stdout(socket);

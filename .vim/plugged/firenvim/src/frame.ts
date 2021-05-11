@@ -1,6 +1,6 @@
 import { neovim } from "./Neovim";
 import { page } from "./page/proxy";
-import { getGridId, getLogicalSize, getCurrentMode, computeGridDimensionsFor, getGridCoordinates } from "./render/RedrawCanvas";
+import { getGridId, getLogicalSize, getCurrentMode, computeGridDimensionsFor, getGridCoordinates } from "./renderer";
 import { confReady, getConfForUrl, getGlobalConf } from "./utils/configuration";
 import { addModifier, nonLiteralKeys, translateKey } from "./utils/keys";
 import { isChrome, toFileName } from "./utils/utils";
@@ -262,7 +262,7 @@ export const isReady = new Promise((resolve, reject) => {
             keyHandler.focus();
             setTimeout(() => {
                 keyHandler.focus();
-                writeFilePromise.then(() => resolve());
+                writeFilePromise.then(() => resolve(undefined));
                 // To hard to test (we'd need to find a way to make neovim fail
                 // to write the file, which requires too many os-dependent side
                 // effects), so don't instrument.
