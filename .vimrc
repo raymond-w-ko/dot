@@ -1686,7 +1686,8 @@ let g:ale_set_highlights=0
 let g:ale_set_signs=1
 let g:ale_set_balloons=0
 let g:ale_close_preview_on_insert=1
-let g:ale_echo_delay=500
+let g:ale_echo_delay=100000
+nnoremap <silent> <leader>i :call Rko_toggle_linter()<CR>
 
 let g:ale_virtualtext_cursor=0
 let g:ale_virtualtext_delay=500
@@ -1694,11 +1695,11 @@ let g:ale_virtualtext_delay=500
 let g:ale_floating_window_border=['│', '─', '╭', '╮', '╯', '╰']
 
 if has("nvim")
-  let g:ale_hover_to_floating_preview=1
-  let g:ale_detail_to_floating_preview=1
+  let g:ale_hover_to_floating_preview=0
+  let g:ale_detail_to_floating_preview=0
   let g:ale_echo_cursor=1
-  let g:ale_floating_preview=1
-  let g:ale_cursor_detail=1
+  let g:ale_floating_preview=0
+  let g:ale_cursor_detail=0
 else
   let g:ale_echo_cursor=1
   let g:ale_cursor_detail=0
