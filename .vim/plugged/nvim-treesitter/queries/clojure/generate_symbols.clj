@@ -15,45 +15,57 @@ exec clojure $OPTS -Sdeps "$DEPS" "$0" "$@"
 
 )
 
-(in-ns 'clojure.core)
-(require '[clojure.pprint :as cp])
-(require '[clojure.string :as str])
+(ns generate-symbols
+  (:require
+   [clojure.string :as str]))
 
-(defn is-symbol-a-fn? [s]
+(defn is-symbol-a-macro? [[_ v]]
+  (:macro (meta v)))
+
+(defn is-symbol-special? [[s _]]
+  (special-symbol? @(resolve s)))
+
+(defn is-symbol-a-fn? [[s _]]
   (fn? @(resolve s)))
 
-(defn lua-regex-escape [s]
+(defn escape [s]
   (str "\"" s "\""))
 
 (defn spit-symbols [file coll]
-  (->> (sort coll)
-       (map name)
-       (map lua-regex-escape)
+  (->> (map name coll)
+       (sort)
+       (distinct)
+       (map escape)
        (interpose " ")
        (apply str)
        (spit file)))
 
+(defn is-def-type-symbol? [[s _]]
+  (let [sym-name (name s)]
+    (and (or (str/starts-with? sym-name "def") (contains? #{"declare" "ns"} sym-name))
+         (not (contains? #{"default-data-readers" "defs"} sym-name)))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(def macros (keep (fn [[s v]]
-                    (when (and (:macro (meta v))
-                               (is-symbol-a-fn? s))
-                      s))
-                  (ns-publics *ns*)))
+(def defs (->> (ns-publics 'clojure.core)
+               (filter is-symbol-a-macro?)
+               (filter is-symbol-a-fn?)
+               (filter is-def-type-symbol?)
+               (map first)
+               (into ['def])))
 
-(def functions (keep (fn [[s v]]
-                       (when (and (not (:macro (meta v)))
-                                  (is-symbol-a-fn? s))
-                         s))
-                     (ns-publics *ns*)))
+(def macros (->> (ns-publics 'clojure.core)
+                 (filter #(or (is-symbol-a-macro? %) (is-symbol-special? %)))
+                 (filter (complement is-def-type-symbol?))
+                 (map first)
+                 (into ['if 'do 'let 'quote 'var 'fn 'fn* 'loop 'recur 'throw 'try 'catch
+                        'monitor-enter 'monitor-exit
+                        '.])))
 
-(def defs (keep (fn [[s v]]
-                  (let [sym-name (name s)]
-                    (when (and (or (str/starts-with? sym-name "def")
-                                   (contains? #{"declare" "ns"} sym-name))
-                               (not (contains? #{"default-data-readers" "defs"} sym-name)))
-                      s)))
-                (ns-publics *ns*)))
+(def functions (->> (ns-publics 'clojure.core)
+                    (filter (complement is-symbol-a-macro?))
+                    (filter is-symbol-a-fn?)
+                    (map first)))
 
 (spit-symbols "clojure.core.functions.txt" functions)
 (spit-symbols "clojure.core.macros.txt" macros)

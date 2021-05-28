@@ -54,6 +54,16 @@ list.clojure = {
   maintainers = {"@sogaiu"},
 }
 
+list.commonlisp = {
+  install_info = {
+    url = "https://github.com/theHamsta/tree-sitter-commonlisp",
+    files = { "src/parser.c" },
+    generate_requires_npm = true,
+  },
+  filetype = 'lisp',
+  maintainers = {"@theHamsta"},
+}
+
 list.cpp = {
   install_info = {
     url = "https://github.com/tree-sitter/tree-sitter-cpp",
@@ -215,9 +225,10 @@ list.css = {
 
 list.scss = {
   install_info = {
-    url = "https://github.com/elianiva/tree-sitter-scss",
+    url = "https://github.com/serenadeai/tree-sitter-scss",
     files = { "src/parser.c", "src/scanner.c" }
   },
+  maintainers = {"@elianiva"},
 }
 
 list.erlang = {
@@ -227,6 +238,15 @@ list.erlang = {
     branch = "main",
   },
   maintainers = { '@ostera' },
+}
+
+list.elixir = {
+  install_info = {
+    url = "https://github.com/ananthakumaran/tree-sitter-elixir",
+    files =  { "src/parser.c", "src/scanner.cc" },
+    requires_generate_from_grammar  = true,
+  },
+  maintainers = { '@nifoc' },
 }
 
 list.ocaml = {
@@ -308,7 +328,6 @@ list.supercollider = {
     url = "https://github.com/madskjeldgaard/tree-sitter-supercollider",
     files = {"src/parser.c", "src/scanner.c"},
     branch = "main",
-    requires_generate_from_grammar  = true,
   },
   maintainers = {"@madskjeldgaard"},
   filetype = "supercollider",
@@ -571,7 +590,6 @@ list.fortran = {
   install_info = {
     url = "https://github.com/stadelmanma/tree-sitter-fortran",
     files = { "src/parser.c", "src/scanner.cc", },
-    requires_generate_from_grammar = true,
   },
 }
 

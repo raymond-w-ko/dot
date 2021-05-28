@@ -5,15 +5,19 @@
 ; Identifier conventions
 
 (identifier) @variable
+(const_item
+  name: (identifier) @constant)
 ; Assume all-caps names are constants
 ((identifier) @constant
- (#vim-match? @constant "^[A-Z][A-Z\\d_]+$'"))
+ (#match? @constant "^[A-Z][A-Z\\d_]+$'"))
 
 ; Other identifiers
 
 (type_identifier) @type
 (primitive_type) @type.builtin
 (field_identifier) @field
+(shorthand_field_initializer
+  (identifier) @field)
 (mod_item
  name: (identifier) @namespace)
 
