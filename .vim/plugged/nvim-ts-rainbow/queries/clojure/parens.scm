@@ -1,1 +1,1 @@
-["(" ")" "[" "]" "{" "}"] @paren
+; inherits: fennel

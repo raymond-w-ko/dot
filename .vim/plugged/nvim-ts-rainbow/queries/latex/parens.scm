@@ -1,20 +1,12 @@
-[
-  "{"
-  "}"
-  "("
-  ")"
-  "["
-  "]"
-  "$"
-  "\\["
-  "\\]"
-  "\\("
-  "\\)"
-] @paren
+; inherits: square,round,curly
+"$" @left
+(_ "\\[" @left "\\]" @right)
+(_ "\\(" @left "\\)" @right)
 
-
+; TODO: broken
 [
-  "\\begin"
-  "\\end"
-  (#latex-extended-rainbow-mode?)
-] @paren
+ "\\begin"
+ (#latex-extended-rainbow-mode?)] @left
+[
+ "\\end"
+ (#latex-extended-rainbow-mode?)] @right
