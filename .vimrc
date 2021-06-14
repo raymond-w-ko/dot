@@ -70,7 +70,18 @@ let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
-let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
+let $FZF_DEFAULT_OPTS =
+    \ '--bind ctrl-a:select-all ' .
+    \ '--color dark,hl:#00ff00,hl+:#00ff00,fg+:235,bg+:#000000,fg+:#bbbbbb ' .
+    \ '--color info:6,prompt:3,spinner:9,pointer:46,marker:46,header:46'
+
+fun! s:rebind_rg_cmd() abort
+  command! -buffer -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=never --smart-case -- ".shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
+endfun
+augroup rebind_rg_cmd
+  autocmd BufReadPost * call s:rebind_rg_cmd()
+  autocmd BufEnter * call s:rebind_rg_cmd()
+augroup END
 
 " potpourri
 Plug 'vim-jp/vital.vim'
@@ -768,17 +779,16 @@ function! s:rg_handler(file)
     exe "edit " . a:file[0:i - 1]
   endif
 endfunction
-function! s:FindWordInProject()
+function! <SID>FindWordInProject()
   let needle = getreg('"')
   " let needle = escape(needle, ">")
   echom needle
   let dir = MyGetProjectDirectory()
-  call fzf#run({
-      \ "source": "rg --fixed-strings -- '" . needle . "'",
-      \ "sink": function("s:rg_handler"),
-      \ "options": printf('--color="dark,hl:33,hl+:#ff0000,fg+:235,bg+:#000000,fg+:254,info:254,prompt:37,spinner:108,pointer:235,marker:235" --prompt "%s"', dir),
-      \ "dir": dir,
-      \ "window": {"width": 0.618, "height": 0.618,},})
+  call fzf#vim#grep(
+      \ "rg --column --line-number --no-heading --color=never --smart-case -- ".shellescape(needle),
+      \ 1,
+      \ fzf#vim#with_preview()
+      \ )
 endfunction
 nnoremap <leader>r :call <SID>FindWordInProject()<CR>
 
