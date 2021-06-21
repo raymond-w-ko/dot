@@ -33,7 +33,7 @@ end
 -- finds the nesting level of given node
 local function color_no(mynode, len, levels)
     local counter = 0
-    local current = mynode:parent() -- we don't want to count the current node
+    local current = mynode
     while current:parent() ~= nil do
         if levels then
             if levels[current:type()] then
@@ -69,13 +69,15 @@ local function callbackfn(bufnr, changes, tree, lang)
                 if not node:has_error() then
                     local color_no_ = color_no(node, #colors, levels)
                     local startRow, startCol, endRow, endCol = node:range() -- range of the capture, zero-indexed
-                    vim.highlight.range(bufnr, nsid, ("rainbowcol" .. color_no_), {
-                        startRow,
-                        startCol,
-                    }, {
-                        endRow,
-                        endCol - 1,
-                    }, "blockwise", true)
+                    vim.highlight.range(
+                        bufnr,
+                        nsid,
+                        ("rainbowcol" .. color_no_),
+                        { startRow, startCol },
+                        { endRow, endCol - 1 },
+                        "blockwise",
+                        true
+                    )
                 end
             end
         end
