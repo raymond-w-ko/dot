@@ -473,7 +473,7 @@ set formatoptions=qn1
   if v:version > 702 || (v:version == 702 && has('patch541'))
       set fo+=j   " remove comment leader when joining lines.
   endif
-set wrap
+set nowrap
 set wrapscan
 if exists("+breakindent")
     set breakindent
