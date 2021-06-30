@@ -136,7 +136,10 @@ fi
 if [[ -x $(command -v fzf) ]]; then
   alias f="fzf"
 fi
-if [[ -x $(command -v fd) ]]; then
+if [[ -x $(command -v fdfind) ]]; then
+  export FZF_DEFAULT_OPTS="--no-bold"
+  export FZF_DEFAULT_COMMAND='fdfind --type f --hidden --exclude .git --exclude .fzf --exclude .svn'
+elif [[ -x $(command -v fd) ]]; then
   export FZF_DEFAULT_OPTS="--no-bold"
   export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git --exclude .fzf --exclude .svn'
 fi
