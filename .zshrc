@@ -184,3 +184,6 @@ function prompt_rko_setup {
 prompt_rko_setup
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 source $HOME/.bashrc
+source $HOME/dot/src/zsh-z/zsh-z.plugin.zsh
+autoload -U compinit && compinit
+zstyle ':completion:*' menu select

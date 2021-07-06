@@ -350,7 +350,7 @@ if [[ -n "$DISPLAY" ]]; then
   export QT_IM_MODULE=ibus
 fi
 
-source /home/rko/src/z/z.sh
+# source /home/rko/src/z/z.sh
 
 if [[ -f ~/.bashrc.local ]]; then
   source ~/.bashrc.local
