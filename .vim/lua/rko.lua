@@ -3,8 +3,8 @@ require'nvim-treesitter.configs'.setup {
   -- ensure_installed = "maintained",
   -- ignore_install = { "javascript" }
   highlight = {
-    enable = true,
-    -- disable = { "c", "rust" },
+    enable = false,
+    disable = { "edn", "json" },
   },
   indent = {
     enable = true,

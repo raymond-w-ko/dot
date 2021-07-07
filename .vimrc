@@ -300,7 +300,7 @@ augroup END
 
 if has("nvim") && s:use_treesitter
   " :TSUpdate
-  " Plug 'nvim-treesitter/nvim-treesitter'
+  Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'raymond-w-ko/nvim-treesitter'
   Plug 'p00f/nvim-ts-rainbow'
   Plug 'nvim-treesitter/playground'
@@ -343,7 +343,7 @@ endif
 
 if !exists("g:rko_already_setup_syntax")
   if s:use_treesitter
-    syntax enable
+    syntax off
   else
     syntax enable
   endif
