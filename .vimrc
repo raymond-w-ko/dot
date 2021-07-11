@@ -7,10 +7,6 @@ let g:did_install_default_menus=1 " avoid stupid menu.vim (saves ~100ms)
 
 let s:use_treesitter=has("nvim")
 
-augroup rkoVimrc
-  au!
-augroup END
-
 if filereadable(expand("$HOME/.has-full-github-access"))
   let g:plug_url_format = 'git@github.com:%s.git'
   let g:plug_shallow = 0
@@ -35,6 +31,7 @@ endif
 " manually managed plugins
 Plug '$HOME/dot/.vim/plugged.manual/lightline-colorschemes'
 Plug '$HOME/dot/.vim/plugged.manual/rko-misc'
+Plug '$HOME/dot/.vim/plugged.manual/rko'
 nnoremap <leader>o :ToggleWord<CR>
 
 if has("nvim")
@@ -62,9 +59,9 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 " CTRL-A CTRL-Q to select all and build quickfix list
 
-function! s:build_quickfix_list(lines)
+fun! s:build_quickfix_list(lines)
   call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
-endfunction
+endf
 let g:fzf_action = {
   \ 'ctrl-q': function('s:build_quickfix_list'),
   \ 'ctrl-t': 'tab split',
@@ -250,9 +247,6 @@ Plug '2072/PHP-Indenting-for-VIm'
 Plug 'pangloss/vim-javascript'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'othree/csscomplete.vim'
-augroup rkoVimrc
-  autocmd FileType css set omnifunc=csscomplete#CompleteCSS noci
-augroup END
 Plug 'groenewege/vim-less'
 
 Plug 'jpalardy/vim-slime'
@@ -280,12 +274,6 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people'
   " plasmaplace
 Plug 'raymond-w-ko/vim-plasmaplace'
 let g:clj_fmt_autosave = 0
-augroup rkoVimrc
-  au!
-  " au FileType clojure nnoremap <buffer> <leader>r :Require<CR>
-  " au FileType clojure nnoremap <buffer> <leader>R :Require!<CR>
-  au FileType clojure nnoremap <buffer> <leader>f :Cljfmt<CR>
-augroup END
 
 " misc filetypes
 Plug 'octol/vim-cpp-enhanced-highlight'
@@ -293,10 +281,6 @@ Plug 'aklt/plantuml-syntax'
 Plug 'rhysd/vim-clang-format'
 let g:clang_format#code_style="google"
 let g:clang_format#detect_style_file=1
-augroup rkoVimrc
-  autocmd FileType c,cpp,objc nnoremap <buffer><Leader>f :<C-u>ClangFormat<CR>zz
-  autocmd FileType c,cpp,objc vnoremap <buffer><Leader>f :ClangFormat<CR>
-augroup END
 
 if has("nvim") && s:use_treesitter
   " :TSUpdate
@@ -310,12 +294,9 @@ call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" General {{{
 
 " load sensible defaults by our prophet Tim Pope
 runtime! plugin/sensible.vim
-
-source $HOME/.vim/config/fns.vim
 
 set scrolloff=0 " scrolloff 0 is needed by scrollfix
 set undofile
@@ -347,9 +328,9 @@ if !exists("g:rko_already_setup_syntax")
   else
     syntax enable
   endif
-  syntax conceal on
   let g:rko_already_setup_syntax=1
 endif
+syntax conceal on
 set fileformats=unix,dos
 set autowrite
 set autowriteall
@@ -503,10 +484,6 @@ set t_md=
 " cursor options
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[4 q"
-" reset cursor on start:
-augroup rkoVimrc
-  au VimEnter * silent !echo -ne "\e[4 q"
-augroup END
 
 " binaries with a 99.9% chance of not being edited
 set wildignore+=*.exe,*.dll
@@ -539,8 +516,6 @@ set wildignore+=*.mesh
 " Android Files
 set wildignore+=*.apk,*.ap_
 
-" }}}
-" Function Library {{{
 " Since I keep my projects in the UNIX-ish HOME directory, we have to figure
 " out where it is. The problem is that it is potentially different everywhere.
 if has('win32')
@@ -566,140 +541,13 @@ else
   let s:unix_home = expand('$HOME')
 endif
 
-" traverse up parent directories until it finds one that matches in the above
-" list
-function! s:IsProjectDirectory(directory)
-  if isdirectory(a:directory . "/.git")
-    return 1
-  elseif isdirectory(a:directory . "/.hg")
-    return 1
-  elseif filereadable(a:directory . "/shadow-cljs.edn")
-    return 1
-  else
-    return 0
-  endif
-endfunction
-function! MyGetProjectDirectory()
-  let last_directory = ''
-  let directory = expand("%:p:h")
-
-  while !s:IsProjectDirectory(directory) && last_directory != directory
-    let last_directory = directory
-    let directory = substitute(simplify(directory . '/..'),
-        \ '[\\/]*$', '', '')
-  endwhile
-
-  if last_directory == directory
-    " we could not find a project directory
-    return getcwd()
-  elseif has('win32')
-    return directory . '\'
-  else
-    return directory . '/'
-endfunction
-
-" command to delete all empty buffers in case you have over 9000 of them
-function! DeleteEmptyBuffers()
-  let empty = []
-  let [i, nbuf] = [1, bufnr('$')]
-  while i <= nbuf
-      if bufexists(i) && bufname(i) == ''
-          let empty += [i]
-      endif
-      let i += 1
-  endwhile
-  if len(empty) > 0
-      execute 'bdelete ' . join(empty, ' ')
-  endif
-endfunction
-command! DeleteEmptyBuffers call DeleteEmptyBuffers()
-
-" escape pathname with spaces so it doesn't break other commands and functions
-function! EscapePathname(pathname)
-  return substitute(a:pathname, "\\ ", "\\\\ ", "g")
-endfunction
-
-" helper function to toggle hex mode
-function! ToggleHex()
-  " hex mode should be considered a read-only operation
-  " save values for modified and read-only for restoration later,
-  " and clear the read-only flag for now
-  let l:modified=&mod
-  let l:oldreadonly=&readonly
-  let &readonly=0
-  let l:oldmodifiable=&modifiable
-  let &modifiable=1
-  if !exists("b:editHex") || !b:editHex
-    " save old options
-    let b:oldft=&ft
-    let b:oldbin=&bin
-    " set new options
-    setlocal binary " make sure it overrides any textwidth, etc.
-    silent :e " this will reload the file without trickeries
-              "(DOS line endings will be shown entirely )
-    let &ft="xxd"
-    " set status
-    let b:editHex=1
-    " switch to hex editor
-    %!xxd
-  else
-    " restore old options
-    let &ft=b:oldft
-    if !b:oldbin
-      setlocal nobinary
-    endif
-    " set status
-    let b:editHex=0
-    " return to normal editing
-    %!xxd -r
-  endif
-  " restore values for modified and read only state
-  let &mod=l:modified
-  let &readonly=l:oldreadonly
-  let &modifiable=l:oldmodifiable
-endfunction
-command! -bar HexMode call ToggleHex()
-
-function! FilterSmartQuotes()
-    %s/\v“|”/\'/
-endfunction
-command! FilterSmartQuotes silent! call FilterSmartQuotes()
-
-function! FixSmartQuotes()
-    %s/\v/‘/
-    %s/\v/’/
-    %s/\v/“/
-    %s/\v/”/
-endfunction
-command! FixSmartQuotes silent! call FixSmartQuotes()
-
-command! WriteUTF8 write ++enc=utf-8
-
-function! StripTrailingWhitespace()
+fun! StripTrailingWhitespace()
     let l:my_saved_winview = winsaveview()
     silent! %s/\s\+$//
     call winrestview(l:my_saved_winview)
-endfunction
+endf
 command! StripTrailingWhitespace call StripTrailingWhitespace()
 
-" use aesthetic middle of screen for "zz"
-function! CenterCursorAesthetically()
-  normal! zz
-
-  let center = round(winheight(0) / 2.0)
-  let offset = winheight(0) * 0.1
-  let final = center - offset
-  let rounded_final = float2nr(final)
-  let rounded_offset = float2nr(offset)
-  let delta = winline() - (rounded_final + 1)
-
-  if delta > 0
-    exe 'normal ' . delta . "\<C-e>"
-  endif
-endfunction
-
-" }}}
-" GUI {{{
 if exists('+termguicolors')
   set termguicolors
   if !has("nvim")
@@ -739,8 +587,6 @@ if has("gui_running")
       set lines=9999
     endif
 endif
-" }}}
-" Searching and Movement {{{
 set ignorecase
 set smartcase
 set hlsearch
@@ -752,7 +598,7 @@ set sidescrolloff=1
 
 nnoremap <silent> <leader>l :nohlsearch<CR>:let @/=''<CR>:call clearmatches()<CR>
 
-function! s:get_visual_selection()
+fun! s:get_visual_selection()
   " Why is this not a built-in Vim script function?!
   let [line_start, column_start] = getpos("'<")[1:2]
   let [line_end, column_end] = getpos("'>")[1:2]
@@ -763,8 +609,8 @@ function! s:get_visual_selection()
   let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
   let lines[0] = lines[0][column_start - 1:]
   return join(lines, "\n")
-endfunction
-function! s:selection()
+endf
+fun! s:selection()
   try
     let a_save = @a
     normal! gv"ay
@@ -772,24 +618,24 @@ function! s:selection()
   finally
     let @a = a_save
   endtry
-endfunction
-function! s:rg_handler(file)
+endf
+fun! s:rg_handler(file)
   let i = stridx(a:file, ":")
   if i > 0
     exe "edit " . a:file[0:i - 1]
   endif
-endfunction
-function! <SID>FindWordInProject()
+endf
+fun! <SID>FindWordInProject()
   let needle = getreg('"')
   " let needle = escape(needle, ">")
   echom needle
-  let dir = MyGetProjectDirectory()
+  let dir = rko#get_project_directory()
   call fzf#vim#grep(
       \ "rg --column --line-number --no-heading --color=never --smart-case -- ".shellescape(needle),
       \ 1,
       \ fzf#vim#with_preview()
       \ )
-endfunction
+endf
 nnoremap <leader>r :call <SID>FindWordInProject()<CR>
 
 " Easier to type, and I never use the default behavior.
@@ -815,62 +661,8 @@ nnoremap VaB vaBV
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
-" treat leading whitespace as though it was not there
-function! MyLeftBrace()
-    let line_number = line('.')
-    let starting_line_number = line_number
-    let line_number -= 1
-
-    while line_number >= 1
-        if match(getline(line_number), '^\s*$') != -1
-            break
-        endif
-        let line_number -= 1
-    endwhile
-
-    if line_number != starting_line_number && line_number != 0
-        exe 'normal! ' . line_number . 'G'
-    elseif line_number == 0
-        normal! 1G
-    else
-        return
-    endif
-
-    normal! 0
-
-    return
-endfunction
-exe "nnoremap <silent> { :call MyLeftBrace()<CR>"
-
-function! MyRightBrace()
-    let line_number = line('.')
-    let starting_line_number = line_number
-    let line_number += 1
-
-    let max_bounds = line('$')
-
-    while line_number <= max_bounds
-        if (match(getline(line_number), '^\s*$') != -1)
-            break
-        endif
-        let line_number += 1
-    endwhile
-
-    if line_number != starting_line_number && line_number <= max_bounds
-        exe 'normal! ' . line_number . 'G'
-    elseif line_number > max_bounds
-        normal! G
-    else
-        return
-    endif
-
-    normal! 0
-
-    return
-endfunction
-exe "nnoremap <silent> } :call MyRightBrace()<CR>"
-
-" }}}
+nnoremap <silent> { :call rko#left_brace()<CR>
+nnoremap <silent> } :call rko#right_brace()<CR>
 
 syntax sync fromstart
 set foldlevelstart=9001
@@ -900,7 +692,6 @@ onoremap aq a"
 vnoremap iq i"
 vnoremap ac a"
 
-" Mappings {{{
 let s:uname = "win32"
 if has("unix")
     let s:uname = system("uname")
@@ -972,136 +763,8 @@ nnoremap \ :tabnext<CR>
 " call arpeggio#map('n', '', 0, 'er', ':tabprev<CR>')
 " call arpeggio#map('n', '', 0, 'ui', ':tabnext<CR>')
 
-let s:list_of_pairs = [
-    \ ['(', ')'],
-    \ ['[', ']'],
-    \ ['{', '}'],
-    \ ['"', '"'],
-    \ ["'", "'"],
-    \ ]
-function! s:EmptyPairDeleterBackspace()
-  let line = getline('.')
-  let n = strlen(line)
-  let pos = col('.')
-  if pos <= 1 || pos > n
-    return "\<BS>"
-  endif
-
-  let left = line[pos-2]
-  let right = line[pos-1]
-
-  for pairs in s:list_of_pairs
-    if left == pairs[0] && right == pairs[1]
-      return "\<C-g>U\<Right>\<BS>\<BS>"
-    endif
-  endfor
-
-  return "\<BS>"
-endfunction
-
-function! s:MySmarterCR()
-  let keys = ""
-  if pumvisible()
-    let keys .= "\<C-e>"
-  endif
-
-  let line = getline('.')
-  let n = strlen(line)
-  let pos = col('.')
-  if pos <= 1 || pos > n
-    return keys . "\<CR>"
-  endif
-
-  let left = line[pos-2]
-  let right = line[pos-1]
-
-  for pairs in s:list_of_pairs
-    if left == pairs[0] && right == pairs[1]
-      return keys . "\<CR>\<Esc>O"
-    endif
-  endfor
-  return keys . "\<CR>"
-endfunction
-inoremap <Plug>MySmarterCR <C-r>=<SID>MySmarterCR()<CR>
-
-function! s:MyBasicCR()
-  let keys = ""
-  if pumvisible()
-    let keys .= "\<C-e>"
-  endif
-  return keys . "\<CR>"
-endfunction
-inoremap <Plug>MyBasicCR <C-r>=<SID>MyBasicCR()<CR>
-
-function! s:SetupPairBindings()
-  " handled by vim-sexp
-  if &ft == 'clojure' || &ft == 'lisp' || &ft == 'scheme'
-    exe "imap <silent><buffer> φ ("
-    exe "imap <silent><buffer> σ {"
-    exe "imap <silent><buffer> ρ ["
-    exe 'imap <silent><buffer> θ "'
-    inoremap <silent><buffer> <CR> <C-r>=<SID>MyBasicCR()<CR>
-    inoremap <silent><buffer> <BS> <C-r>=<SID>EmptyPairDeleterBackspace()<CR>
-  else
-    " semimap helpers
-    inoremap <silent><buffer> φ ()<C-g>U<Left>
-    inoremap <silent><buffer> σ {}<C-g>U<Left>
-    inoremap <silent><buffer> ρ []<C-g>U<Left>
-    inoremap <silent><buffer> θ ""<C-g>U<Left>
-    inoremap <silent><buffer> υ <><C-g>U<Left>
-    inoremap <silent><buffer> <CR> <C-r>=<SID>MySmarterCR()<CR>
-"
-    if &filetype != "clojure"
-      inoremap <silent><buffer> ( ()<C-g>U<Left>
-      inoremap <silent><buffer> { {}<C-g>U<Left>
-      inoremap <silent><buffer> [ []<C-g>U<Left>
-      inoremap <silent><buffer> " ""<C-g>U<Left>
-      inoremap <silent><buffer> <CR> <C-r>=<SID>MySmarterCR()<CR>
-      inoremap <silent><buffer> <BS> <C-r>=<SID>EmptyPairDeleterBackspace()<CR>
-    endif
-  endif
-endfunction
-
-augroup rkoVimrc
-  au FileType * call <SID>SetupPairBindings()
-augroup END
-
-let s:move_right_keystroke = "\<C-g>U\<Right>"
-let s:move_right_pair_ends = { "'" : 1, '"' : 1, ')' : 1, ']' : 1, '}' : 1 }
-function! s:MyPareditForwardUp()
-  let keys = ''
-  if pumvisible()
-    let keys .= "\<C-y>"
-  endif
-
-  let line = getline('.')
-  let n = strlen(line)
-  let steps_right = 0
-  let x = col('.') - 1
-  if n > 0
-    while x < n
-      let ch = line[x]
-      if has_key(s:move_right_pair_ends, ch)
-        break
-      endif
-
-      let steps_right += 1
-      let x += 1
-    endwhile
-  endif
-
-  if n == 0 || x == n
-    " do nothing
-  else
-    let keys .= repeat(s:move_right_keystroke, steps_right+1)
-  endif
-
-  return keys
-endfunction
-inoremap <Plug>MyPareditForwardUp <C-r>=<SID>MyPareditForwardUp()<CR>
-
-inoremap <expr> χ <SID>MyPareditForwardUp()
-inoremap <expr> <Right> <SID>MyPareditForwardUp()
+inoremap <expr> χ rko#paredit_forward_up()
+inoremap <expr> <Right> rko#paredit_forward_up()
 
 " Platform specific keybinds
 if has("unix")
@@ -1122,45 +785,37 @@ elseif has("win32")
 endif
 
 if executable("fzf")
-  function! MyFindFileInProjectAndEdit(sink)
-      let dir = MyGetProjectDirectory()
+  fun! MyFindFileInProjectAndEdit(sink)
+      let dir = rko#get_project_directory()
       call fzf#run({
           \ "sink": a:sink,
           \ "options": printf('--prompt "%s"', dir),
           \ "dir": dir,
           \ "window": {"width": 0.618, "height": 0.618,},})
-  endfunction
+  endf
 
   nnoremap <leader>b :Buffers<CR>
   nnoremap <C-p> :call MyFindFileInProjectAndEdit('edit')<CR>
   nnoremap <leader>et :call MyFindFileInProjectAndEdit('tabedit')<CR>
 else
   " use ctrlp.vim
-  function! MyFindFileInProjectAndEdit()
-      execute ':CtrlP ' . EscapePathname(MyGetProjectDirectory())
-  endfunction
+  fun! MyFindFileInProjectAndEdit()
+      execute ':CtrlP ' . rko#escape_pathname(rko#get_project_directory())
+  endf
 
   nnoremap <leader>b :CtrlPBuffer<CR>
   nnoremap <C-p> :call MyFindFileInProjectAndEdit()<CR>
 endif
 
-function! MyAlternateFunction()
-    " let old_buf_nr = bufnr('%')
-    A
-    " let new_buf_nr = bufnr('%')
-    " if (old_buf_nr != new_buf_nr)
-    "     call CenterCursorAesthetically()
-    " endif
-endfunction
-nnoremap <leader>a :call MyAlternateFunction()<CR>
+nnoremap <leader>a :A<CR>
 nmap <leader><leader> <C-^>
 
 " This allows for change paste motion cp{motion}
 " http://stackoverflow.com/questions/2471175/vim-replace-word-with-contents-of-paste-buffer
-function! ChangePaste(type, ...)
+fun! ChangePaste(type, ...)
     silent exe "normal! `[v`]\"_c"
     silent exe "normal! p"
-endfunction
+endf
 nnoremap <silent> cp :set opfunc=ChangePaste<CR>g@
 
 nnoremap <C-Up> :resize +1<CR>
@@ -1168,10 +823,10 @@ nnoremap <C-Down> :resize -1<CR>
 nnoremap <C-Left> :vertical resize -1<CR>
 nnoremap <C-Right> :vertical resize +1<CR>
 
-function! MarkWindowSwap()
+fun! MarkWindowSwap()
     let g:markedWinNum = winnr()
-endfunction
-function! DoWindowSwap()
+endf
+fun! DoWindowSwap()
     "Mark destination
     let curNum = winnr()
     let curBuf = bufnr( "%" )
@@ -1184,13 +839,13 @@ function! DoWindowSwap()
     exe curNum . "wincmd w"
     "Hide and open so that we aren't prompted and keep history
     exe 'hide buf' markedBuf
-endfunction
+endf
 " nnoremap <silent> <leader>wm :call MarkWindowSwap()<CR>
 " nnoremap <silent> <leader>wp :call DoWindowSwap()<CR>
 nnoremap <silent> <S-Left> :call MarkWindowSwap()<CR><C-w>h:call DoWindowSwap()<CR>
 nnoremap <silent> <S-Right> :call MarkWindowSwap()<CR><C-w>l:call DoWindowSwap()<CR>
 
-function! CreateAndSetupVsplits()
+fun! CreateAndSetupVsplits()
   let num_tabs=tabpagenr("$")
   if num_tabs == 1
     if winnr("$") > 1
@@ -1213,271 +868,8 @@ function! CreateAndSetupVsplits()
   endfor
 
   wincmd =
-endfunction
+endf
 nnoremap <leader>tt :call CreateAndSetupVsplits()<CR>
-
-" }}}
-
-" autocommands {{{
-
-" ----------------------------------------------------------------------------
-" Help in new tabs
-" ----------------------------------------------------------------------------
-function! s:SetupHelpTab()
-  if &buftype == 'help'
-    " silent wincmd T
-    nnoremap <buffer> q :q<cr>
-  endif
-endfunction
-
-let s:double_quote_string_filestypes = {
-    \ "javascript.jsx": 1,
-    \ "javascript": 1,
-    \ "clojure": 1,
-    \ "make": 1,
-    \ "c": 1,
-    \ "cpp": 1,
-    \ "python": 1,
-    \ "css": 1,
-    \ "scss": 1,
-    \ "html": 1,
-    \ }
-let s:single_quote_string_filestypes = {
-    \ "javascript.jsx": 1,
-    \ "javascript": 1,
-    \ "make": 1,
-    \ "c": 1,
-    \ "cpp": 1,
-    \ "python": 1,
-    \ "css": 1,
-    \ "scss": 1,
-    \ }
-let s:no_escape_double_quote_string_filestypes = {
-    \ "make": 1,
-    \ }
-let s:double_slash_comment_filestypes = {
-    \ "javascript.jsx": 1,
-    \ "javascript": 1,
-    \ "c": 1,
-    \ "cpp": 1,
-    \ "css": 1,
-    \ "scss": 1,
-    \ }
-let s:python_style_comment_filestypes = {
-    \ "python": 1,
-    \ "gitcommit": 1,
-    \ "sh": 1,
-    \ "make": 1,
-    \ "yaml": 1,
-    \ "conf": 1,
-    \ "tmux": 1,
-    \ }
-let s:lisp_style_comment_filestypes = {
-    \ "clojure": 1,
-    \ }
-let s:c_comment_filestypes = {
-    \ "javascript.jsx": 1,
-    \ "javascript": 1,
-    \ "c": 1,
-    \ "cpp": 1,
-    \ "css": 1,
-    \ "scss": 1,
-    \ }
-let s:c_preprocessor_comment_filestypes = {
-    \ "c": 1,
-    \ "cpp": 1,
-    \ }
-let s:version_control_filetypes = {
-    \ "gitcommit": 1,
-    \ }
-let s:web_filetypes = {
-    \ "css": 1,
-    \ }
-
-hi LimeGreen guifg=#00ff00 guibg=#002b36 gui=none ctermbg=0 ctermfg=46 term=none cterm=none
-function! s:SetupBasicSyntaxHighlights()
-  syntax clear
-  silent! syntax clear rkoBasicString
-  silent! syntax clear rkoBasicComment
-  silent! syntax clear rkoMultiLineString
-  silent! syntax clear rkoVersionControlDelete
-  silent! syntax clear rkoVersionControlAdd
-  silent! syntax clear gitMergeConflict
-
-  if &filetype == "vim"
-    syntax region rkoBasicString start=/\v"/ skip=/\v(\\\\)|(\\")/ end=/\v("|$)/ keepend
-    syntax region rkoBasicString start=/\v'/ skip=/\v(\\')/ end=/\v('|$)/ keepend
-  endif
-
-  if has_key(s:double_quote_string_filestypes, &filetype)
-    syntax region rkoBasicString start=/\v"/ skip=/\v(\\\\)|(\\")/ end=/\v"/
-  endif
-  if has_key(s:single_quote_string_filestypes, &filetype)
-    syntax region rkoBasicString start=/\v'/ skip=/\v(\\\\)|(\\')/ end=/\v'/
-  endif
-
-  if has_key(s:no_escape_double_quote_string_filestypes, &filetype)
-    syntax region rkoBasicString start=/\v"/ end=/\v"/
-  endif
-  if &filetype == "python"
-    syn region rkoMultiLineString
-        \ start=+[uU]\=\z('''\|"""\)+ end="\z1" keepend
-  endif
-  if &filetype == "clojure"
-    syntax match rkoClojureMacro /\v<def-[a-zA-Z0-9_-].+>/ containedin=ALL
-    syntax match rkoClojureMacro /\v<defn-[a-zA-Z0-9-]+>/ containedin=ALL
-    syntax match rkoClojureMacro /\v<deftest>/ containedin=ALL
-    syntax match rkoClojureMinorMacro /\v<:let>/ containedin=ALL
-    syntax match rkoClojureMinorMacro /\v<:plet>/ containedin=ALL
-    syntax match rkoClojureMinorMacro /\v<:pplet>/ containedin=ALL
-    syntax match rkoClojureMinorMacro /\v<:do>/ containedin=ALL
-    syntax match rkoClojureMinorMacro /\v<:pdo>/ containedin=ALL
-    syntax match rkoClojureMinorMacro /\v<:else>/ containedin=ALL
-    syntax match rkoClojureMinorMacro /\v<:return>/ containedin=ALL
-  endif
-  if &filetype == "javascript"
-    syntax match Keyword /\v<await>/ containedin=ALL
-    syntax match Keyword /\v<async>/ containedin=ALL
-  endif
-  if has_key(s:double_slash_comment_filestypes, &filetype)
-    syntax region rkoBasicComment start=/\v\/\// end=/\v$/
-  endif
-  if has_key(s:python_style_comment_filestypes, &filetype)
-    syntax region rkoBasicComment start=/\v#/ end=/\v$/
-  endif
-  if has_key(s:lisp_style_comment_filestypes, &filetype)
-    syntax region rkoBasicComment start=/\v;+/ end=/\v$/
-  endif
-  if has_key(s:c_comment_filestypes, &filetype)
-    syntax region rkoBasicComment start=/\v\/\*/ end=/\v\*\//
-  endif
-  if has_key(s:c_preprocessor_comment_filestypes, &filetype)
-    syntax region rkoCPreprocessorComment start=/\v^\s*#if\s+0/ end=/#endif$/
-    syntax region rkoCPreprocessorIf start=/\v^\s*#\s*if\s+[a-zA-Z]+/ end=/$/
-    syntax region rkoCPreprocessorIfDef start=/\v^\s*#\s*ifdef/ end=/$/
-    syntax region rkoCPreprocessorIfNdef start=/\v^\s*#\s*ifndef/ end=/$/
-    syntax region rkoCPreprocessorElse start=/\v^\s*#\s*else/ end=/$/
-    syntax region rkoCPreprocessorElIf start=/\v^\s*#\s*elif/ end=/$/
-    syntax region rkoCPreprocessorEndif start=/\v^\s*#\s*endif/ end=/$/
-    syntax region rkoCPreprocessorDefine start=/\v^\s*#\s*define/ end=/$/
-  endif
-
-  highlight link rkoBasicString String
-  highlight link rkoMultiLineString String
-  highlight link rkoBasicComment Comment
-  highlight link rkoCPreprocessorComment Comment
-  highlight link rkoCPreprocessorIf PreProc
-  highlight link rkoCPreprocessorIfDef PreProc
-  highlight link rkoCPreprocessorIfNdef PreProc
-  highlight link rkoCPreprocessorElse PreProc
-  highlight link rkoCPreprocessorElIf PreProc
-  highlight link rkoCPreprocessorEndif PreProc
-  highlight link rkoCPreprocessorDefine PreProc
-  highlight link rkoClojureMacro IncSearch
-  highlight link rkoClojureMinorMacro LimeGreen
-  highlight link rkoClojureConceal PreProc
-
-  if has_key(s:version_control_filetypes, &filetype)
-    syntax region rkoVersionControlDelete start=/\v^-/ end=/\v$/
-    syntax region rkoVersionControlAdd start=/\v^\+/ end=/\v$/
-  endif
-  highlight link rkoVersionControlDelete DiffDelete
-  highlight link rkoVersionControlAdd DiffAdd
-  highlight link rkoTODO Define
-
-  if &filetype == "clojure"
-    runtime manual/rko_clojure.vim
-    syntax keyword rkoClojureConceal fn conceal cchar=λ containedin=ALL
-    setl conceallevel=1
-  elseif &filetype == "dirvish"
-    runtime syntax/dirvish.vim
-  elseif &filetype == "html"
-    runtime syntax/html.vim
-    runtime after/syntax/html.vim
-  elseif &filetype == "css"
-    runtime syntax/css.vim
-    runtime after/syntax/css.vim
-  elseif &filetype == "java"
-    runtime syntax/java.vim
-  endif
-endfunction
-fun! s:SetupCustomHighlights() abort
-
-  highlight link rkoError Define
-  syntax match rkoTODO /\v<TODO|TODO:|XXX|XXX:|NOTE|NOTE:|WARN|WARN:>/ containedin=ALL
-  syntax match rkoError /\verror/ containedin=ALL
-
-  highlight link gitMergeConflict Error
-  syntax match gitMergeConflict /^=======$/ containedin=ALL
-  syntax match gitMergeConflict /^<<<<<<< .\+$/ containedin=ALL
-  syntax match gitMergeConflict /^>>>>>>> .\+$/ containedin=ALL
-endfun
-
-func MyShowSyntaxGroups() abort
-  call feedkeys("\<Plug>ScripteaseSynnames")
-  TSHighlightCapturesUnderCursor
-endf
-func MyCenterCursor() abort
-  normal! zz
-endf
-
-augroup rkoVimrc
-  " only show cursorline if a window has focus
-  " this noticably slows down VIM in files with complicated syntax highlighting,
-  " like PHP, so disable it for now.
-  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  au WinLeave * setlocal nocursorline
-
-  "au VimEnter,WinEnter,BufWinEnter * setlocal cursorcolumn
-  "au WinLeave * setlocal nocursorcolumn
-
-  " check when cursor stops moving
-  " au CursorHold,CursorHoldI * :silent! checktime
-  " hack for console VIM so that check for changed files work correctly
-  " au FocusGained,BufEnter * :silent! checktime
-
-  " hardcore autochdir
-  " autocmd BufEnter * silent! lcd %:p:h
-  " autocmd BufEnter * silent! cd %:p:h
-
-  " save all buffers when losing focus
-  "au FocusLost * silent! wall
-
-  " Make sure Vim returns to the same line when you reopen a file.
-  " Thanks, Amit
-  au BufReadPost *
-      \ if line("'\"") > 0 && line("'\"") <= line("$") |
-      \     execute 'normal! g`"zv' |
-      "\     call CenterCursorAesthetically() |
-      \ endif
-  " this however is annoying for git commit messages
-  au BufReadPost COMMIT_EDITMSG exe 'normal! gg'
-
-  " generates too many annoying deltas in open source projects like OGRE
-  "au BufWritePre C:/SVN/* call StripTrailingWhitespace()
-  "au BufWritePre *.h,*.hpp,*.c,*.cc,*.cpp,*.java,*.py,*.lua call StripTrailingWhitespace()
-
-  " help in new tab to avoid interfering with existing tab layout
-  autocmd BufEnter *.txt call s:SetupHelpTab()
-
-  if s:use_treesitter
-    autocmd FileType * nnoremap <buffer> zS :silent call MyShowSyntaxGroups()<CR>
-  endif
-
-  " autocmd FileType * call s:SetupBasicSyntaxHighlights()
-  autocmd FileType * call s:SetupCustomHighlights()
-  " autocmd BufEnter * :syntax sync fromstart
-
-  " autocmd InsertEnter * setlocal nolist
-  " autocmd InsertLeave * setlocal list
-  
-  autocmd CursorMoved * call MyCenterCursor()
-  autocmd BufReadPost *.html hi clear htmlItalic
-  autocmd BufReadPost *.html hi clear TSEmphasis
-augroup END
-
-" }}}
-" Plugins {{{
 
 let g:loaded_matchparen = 1
 
@@ -1497,13 +889,13 @@ let g:ctrlp_clear_cache_on_exit = 1
 let g:ctrlp_max_files = 0
 let g:ctrlp_lazy_update = 0
 
-"function! CtrlPMatch(items, str, limit, mmode, ispath, crfile, regex) abort
+"fun! CtrlPMatch(items, str, limit, mmode, ispath, crfile, regex) abort
   "let items = copy(a:items)
   "if a:ispath
     "call filter(items, 'v:val !=# a:crfile')
   "endif
   "return haystack#filter(items, a:str)
-"endfunction
+"endf
 " too slow
 "let g:ctrlp_match_func = {'match': function('CtrlPMatch')}
 
@@ -1567,16 +959,16 @@ let g:lightline.component_type = {
     \     'linter_errors': 'error',
     \ }
 
-function! LightLineModified()
+fun! LightLineModified()
   return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-endfunction
+endf
 
-function! LightLineReadonly()
+fun! LightLineReadonly()
   return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '[RO]' : ''
   " return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '⭤' : ''
-endfunction
+endf
 
-function! MyGetShortenedPath()
+fun! LightLineShortenedPath()
   let path = expand('%:p')
   let idx = strlen(path)
   for i in range(3)
@@ -1592,41 +984,41 @@ function! MyGetShortenedPath()
   endif
   let path = path[idx:]
   return path
-endfunction
+endf
 
-function! LightLineFilename()
+fun! LightLineFilename()
   return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
       \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
       \  &ft == 'unite' ? unite#get_status_string() :
       \  &ft == 'vimshell' ? vimshell#get_status_string() :
-      \ '' != expand('%:t') ? MyGetShortenedPath() : '[No Name]') .
+      \ '' != expand('%:t') ? LightLineShortenedPath() : '[No Name]') .
       \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
-endfunction
+endf
 
-function! LightLineFugitive()
+fun! LightLineFugitive()
   if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
     let _ = fugitive#head()
     return strlen(_) ? '(branch) '._ : ''
     " return strlen(_) ? '⭠ '._ : ''
   endif
   return ''
-endfunction
+endf
 
-function! LightLineFileformat()
+fun! LightLineFileformat()
   return winwidth(0) > 70 ? &fileformat : ''
-endfunction
+endf
 
-function! LightLineFiletype()
+fun! LightLineFiletype()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
-endfunction
+endf
 
-function! LightLineFileencoding()
+fun! LightLineFileencoding()
   return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
-endfunction
+endf
 
-function! LightLineMode()
+fun! LightLineMode()
   return winwidth(0) > 60 ? lightline#mode() : ''
-endfunction
+endf
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UltiSnips
@@ -1697,7 +1089,7 @@ let g:ale_set_signs=1
 let g:ale_set_balloons=0
 let g:ale_close_preview_on_insert=1
 let g:ale_echo_delay=100000
-nnoremap <silent> <leader>i :call Rko_toggle_linter()<CR>
+nnoremap <silent> <leader>i :call rko#toggle_linter()<CR>
 
 let g:ale_virtualtext_cursor=0
 let g:ale_virtualtext_delay=500
@@ -1730,7 +1122,7 @@ let g:ale_linters = {
 "              https://www.npmjs.com/package/sql-lint
 "              https://github.com/joereynolds/sql-lint
 
-function! ALE_sqldashlint_Handle(buffer, lines) abort
+fun! ALE_sqldashlint_Handle(buffer, lines) abort
     " Matches patterns like the following:
     "
     " stdin:1 [ER_NO_DB_ERROR] No database selected
@@ -1747,7 +1139,7 @@ function! ALE_sqldashlint_Handle(buffer, lines) abort
     endfor
 
     return l:output
-endfunction
+endf
 
 call ale#linter#Define('sql', {
 \   'name': 'sqldashlint',
@@ -1817,74 +1209,70 @@ let g:rainbow_conf = {
 \ }
 \}
 
-" }}}
+augroup rko_vimrc
+  au!
 
-function! MyJsonFormatter()
-  let view = winsaveview()
-  execute "%!python -m json.tool"
-  call winrestview(view)
-endfunction
-function! MyJavascriptFormatter()
-  let view = winsaveview()
-  execute "%!prettier --parser babel --trailing-comma es5"
-  call winrestview(view)
-endfunction
-function! MyHtmlFormatter()
-  let view = winsaveview()
-  execute "%!prettier --parser html"
-  call winrestview(view)
-endfunction
-function! MyScssFormatter()
-  let view = winsaveview()
-  execute "%!prettier --parser scss"
-  call winrestview(view)
-endfunction
-function! MyCssFormatter()
-  let view = winsaveview()
-  execute "%!prettier --parser css"
-  call winrestview(view)
-endfunction
-function! MyPythonFormatter()
-  let view = winsaveview()
-  execute "%!black -q -"
-  call winrestview(view)
-endfunction
-function! MyGoFormatter()
-  let view = winsaveview()
-  execute "%!gofmt"
-  call winrestview(view)
-endfunction
-
-" When using `dd` in the quickfix list, remove the item from the quickfix list.
-function! RemoveQFItem()
-  let curqfidx = line('.') - 1
-  let qfall = getqflist()
-  call remove(qfall, curqfidx)
-  call setqflist(qfall, 'r')
-endfunction
-command! RemoveQFItem :call RemoveQFItem()
-
-fun! OpenQFItem()
-  let idx = line('.') - 1
-  let items = getqflist()
-  let item = items[idx]
-  echom item
-  wincmd k
-  wincmd l
-  exe "b " item["bufnr"]
-  exe "normal " . item["lnum"] . "G"
-endfun
-command! OpenQFItem :call OpenQFItem()
-
-augroup rkoVimrc
+  " ALL
   au BufWritePost *.vimrc source $MYVIMRC
   au BufWritePost *.gvimrc source $MYGVIMRC
+  " reset cursor on start:
+  au VimEnter * silent !echo -ne "\e[4 q"
+  au FileType * call rko#setup_pair_bindings()
 
-  " Use map <buffer> to only map dd in the quickfix window. Requires +localmap
-  autocmd FileType qf map <buffer> dd :RemoveQFItem<cr>
-  autocmd FileType qf map <buffer> q :cclose<cr>
-  au BufReadPost quickfix nnoremap <buffer> <CR> :OpenQFItem<cr>
+  " only show cursorline if a window has focus
+  " this noticably slows down VIM in files with complicated syntax highlighting,
+  " like PHP, so disable it for now.
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+
+  " check when cursor stops moving
+  " au CursorHold,CursorHoldI * :silent! checktime
+  " hack for console VIM so that check for changed files work correctly
+  " au FocusGained,BufEnter * :silent! checktime
+
+  " Make sure Vim returns to the same line when you reopen a file.
+  " Thanks, Amit
+  au BufReadPost *
+      \ if line("'\"") > 0 && line("'\"") <= line("$") |
+      \     execute 'normal! g`"zv' |
+      "\     call CenterCursorAesthetically() |
+      \ endif
+  " this however is annoying for git commit messages
+  au BufReadPost COMMIT_EDITMSG exe 'normal! gg'
+
+  if s:use_treesitter
+    autocmd FileType * nnoremap <buffer> zS :silent call rko#show_syntax_groups()<CR>
+  endif
+
+  autocmd CursorMoved * call rko#center_cursor()
+
+  if has("nvim")
+    au FileType * call rko#syntax#apply_basic_highlights()
+  else
+    " au FileType * call rko#syntax#apply_old_basic_highlights()
+  endif
+  autocmd FileType * call rko#syntax#apply_custom_highlights()
+
+  """"""""""""""""""""""""""""""""""""""""
+  " css
+  au FileType css set omnifunc=csscomplete#CompleteCSS noci
+  au FileType css,less,scss setlocal iskeyword+=-
+  au FileType scss nnoremap <buffer> <Leader>f :call rko#format_scss()<CR>
+  au FileType css nnoremap <buffer> <Leader>f :call rko#format_css()<CR>
+
+  " clojure
+  au FileType clojure nnoremap <buffer> <leader>f :Cljfmt<CR>
+  " au FileType clojure nnoremap <buffer> <leader>r :Require<CR>
+  " au FileType clojure nnoremap <buffer> <leader>R :Require!<CR>
+
+  " C, ObjC, C++
+  autocmd FileType c,cpp,objc nnoremap <buffer><Leader>f :<C-u>ClangFormat<CR>zz
+  autocmd FileType c,cpp,objc vnoremap <buffer><Leader>f :ClangFormat<CR>
+
   au FileType gitcommit setlocal foldlevel=9001
+
+  " help in new tab to avoid interfering with existing tab layout
+  au BufEnter *.txt call rko#setup_help_tab()
 
   " au BufNewFile,BufRead *.py setlocal foldmethod=syntax foldlevel=1
   au BufNewFile,BufRead *.py setlocal nofoldenable
@@ -1899,59 +1287,24 @@ augroup rkoVimrc
 
   au BufReadPost *.hlsl set filetype=fx
   
-  au FileType css,less,scss setlocal iskeyword+=-
   au FileType javascript setlocal iskeyword+=$
   au FileType javascript setlocal cinoptions=g0,N-s,(0,u0,Ws,l1,j1,J1
-  autocmd FileType json nnoremap <buffer> <Leader>f :call MyJsonFormatter()<CR>
-  autocmd FileType javascript nnoremap <buffer> <Leader>f :call MyJavascriptFormatter()<CR>
-  autocmd FileType javascript.jsx nnoremap <buffer> <Leader>f :call MyJavascriptFormatter()<CR>
-  autocmd FileType scss nnoremap <buffer> <Leader>f :call MyScssFormatter()<CR>
-  autocmd FileType css nnoremap <buffer> <Leader>f :call MyCssFormatter()<CR>
-  autocmd FileType python nnoremap <buffer> <Leader>f :call MyPythonFormatter()<CR>
-  autocmd FileType html nnoremap <buffer> <Leader>f :call MyHtmlFormatter()<CR>
-  autocmd FileType go nnoremap <buffer> <Leader>f :call MyGoFormatter()<CR>
+
+  au FileType json nnoremap <buffer> <Leader>f :call rko#format_json()<CR>
+  au FileType javascript nnoremap <buffer> <Leader>f :call rko#format_js()<CR>
+  au FileType javascript.jsx nnoremap <buffer> <Leader>f :call rko#format_js()<CR>
+  au FileType python nnoremap <buffer> <Leader>f :call rko#format_python()<CR>
+  au FileType html nnoremap <buffer> <Leader>f :call rko#format_html()<CR>
+  au FileType go nnoremap <buffer> <Leader>f :call rko#format_golang()<CR>
   
   au FileType markdown setlocal textwidth=80
 
   au BufRead .joker set ft=clojure
+
+  " HACKS
+  autocmd BufReadPost *.html hi clear htmlItalic
+  autocmd BufReadPost *.html hi clear TSEmphasis
 augroup END
-
-function! FindAndRunMakefile()
-  let prev_dir = ''
-  let current_dir = expand('%:p:h')
-
-  let max_search = 0
-
-  while current_dir != prev_dir && current_dir != '/'
-    let max_search += 1
-
-    let makefile = current_dir . '/Makefile'
-    if filereadable(makefile)
-      let make_cmd = "make -f Makefile " . '-C ' . current_dir
-      noautocmd belowright split
-      resize 25
-      exe "term " . make_cmd
-      nnoremap <buffer> q :q<cr>
-      return
-    endif
-
-    let prev_dir = current_dir
-    let current_dir = simplify(current_dir . '/..')
-    if max_search == 8
-      break
-    endif
-  endwhile
-endfunction
-if has('unix')
-  nnoremap <leader>m :update<CR>:call FindAndRunMakefile()<CR>
-endif
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" random stuff
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" converts underscore_case to camelCase
-" nnoremap <leader>c :s#_\(\l\)#\u\1#<CR>
-" vnoremap <leader>c :s#_\(\l\)#\u\1#<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " neovim lua
@@ -1984,23 +1337,23 @@ let g:firenvim_config = {
 let fc = g:firenvim_config['localSettings']
 let fc['https?://hypothetical\.example\.com/'] = { 'takeover': 'never', 'priority': 1 }
 
-function! s:IsFirenvimActive(event) abort
+fun! s:IsFirenvimActive(event) abort
   if !exists('*nvim_get_chan_info')
     return 0
   endif
   let l:ui = nvim_get_chan_info(a:event.chan)
   return has_key(l:ui, 'client') && has_key(l:ui.client, 'name') &&
       \ l:ui.client.name =~? 'Firenvim'
-endfunction
+endf
 fun! SetLinesForFirenvim(timer) abort
   set lines=25
-endfunction
-function! OnUIEnter(event)
+endf
+fun! OnUIEnter(event)
   if s:IsFirenvimActive(a:event)
     set nolist
     call timer_start(500, function("SetLinesForFirenvim"))
   endif
-endfunction
+endf
 
 if exists("g:started_by_firenvim")
   " set guifont=JetBrains\ Mono\ Medium:h9
@@ -2010,18 +1363,18 @@ if exists("g:started_by_firenvim")
   if !exists("g:rko_already_defined_delayed_write_fn")
     let g:rko_already_defined_delayed_write_fn=1
     let g:dont_write = v:false
-    function! My_Write(timer) abort
+    fun! My_Write(timer) abort
       let g:dont_write = v:false
       silent! update
-    endfunction
+    endf
 
-    function! Delay_My_Write() abort
+    fun! Delay_My_Write() abort
       if g:dont_write
         return
       end
       let g:dont_write = v:true
       call timer_start(10000, 'My_Write')
-    endfunction
+    endf
   endif
 
   nnoremap <CR> :w<CR>ZZ
