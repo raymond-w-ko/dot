@@ -63,10 +63,10 @@ fun! s:build_quickfix_list(lines)
   call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
 endf
 let g:fzf_action = {
-  \ 'ctrl-q': function('s:build_quickfix_list'),
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
+    \ 'ctrl-q': function('s:build_quickfix_list'),
+    \ 'ctrl-t': 'tab split',
+    \ 'ctrl-x': 'split',
+    \ 'ctrl-v': 'vsplit' }
 let $FZF_DEFAULT_OPTS =
     \ '--bind ctrl-a:select-all ' .
     \ '--color dark,hl:#00ff00,hl+:#00ff00,fg+:235,bg+:#000000,fg+:#bbbbbb ' .
@@ -214,8 +214,8 @@ augroup dirvish_config
   autocmd!
   " Map `t` to open in new tab.
   autocmd FileType dirvish
-    \  nnoremap <silent><buffer> t :call dirvish#open('tabedit', 0)<CR>
-    \ |xnoremap <silent><buffer> t :call dirvish#open('tabedit', 0)<CR>
+      \ nnoremap <silent><buffer> t :call dirvish#open('tabedit', 0)<CR>
+      \ |xnoremap <silent><buffer> t :call dirvish#open('tabedit', 0)<CR>
   " Map `gr` to reload.
   autocmd FileType dirvish nnoremap <silent><buffer> gr :<C-U>Dirvish %<CR>
   " Map `gh` to hide dot-prefixed files.  Press `R` to "toggle" (reload).
@@ -293,7 +293,6 @@ endif
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 
 " load sensible defaults by our prophet Tim Pope
 runtime! plugin/sensible.vim
@@ -541,13 +540,6 @@ else
   let s:unix_home = expand('$HOME')
 endif
 
-fun! StripTrailingWhitespace()
-    let l:my_saved_winview = winsaveview()
-    silent! %s/\s\+$//
-    call winrestview(l:my_saved_winview)
-endf
-command! StripTrailingWhitespace call StripTrailingWhitespace()
-
 if exists('+termguicolors')
   set termguicolors
   if !has("nvim")
@@ -556,15 +548,15 @@ if exists('+termguicolors')
   endif
 endif
 if !exists("g:already_set_color_scheme") && !($TERM == "linux")
-    set background=dark
+  set background=dark
 
-    " let base16colorspace=256
-    " colorscheme preto
+  " let base16colorspace=256
+  " colorscheme preto
 
-    let g:solarized_italics = 0
-    colorscheme solarized8_flat
+  let g:solarized_italics = 0
+  colorscheme solarized8_flat
 
-    let g:already_set_color_scheme=1
+  let g:already_set_color_scheme=1
 endif
 if !has("gui_running")
   " need this otherwise colors disappear
@@ -578,14 +570,14 @@ endif
 set fillchars+=stl:\ ,stlnc:\ ,vert:\|
 
 if has("gui_running")
-    set guioptions-=m  "remove menu bar
-    set guioptions-=T  "remove toolbar
-    set guioptions-=r  "remove right-hand scroll bar
-    set guioptions-=L  "remove left-hand scroll bar
-    set guioptions-=e  "use in editor tabline
-    if !has('win32')
-      set lines=9999
-    endif
+  set guioptions-=m  "remove menu bar
+  set guioptions-=T  "remove toolbar
+  set guioptions-=r  "remove right-hand scroll bar
+  set guioptions-=L  "remove left-hand scroll bar
+  set guioptions-=e  "use in editor tabline
+  if !has('win32')
+    set lines=9999
+  endif
 endif
 set ignorecase
 set smartcase
@@ -625,7 +617,7 @@ fun! s:rg_handler(file)
     exe "edit " . a:file[0:i - 1]
   endif
 endf
-fun! <SID>FindWordInProject()
+fun! <SID>find_word_in_project()
   let needle = getreg('"')
   " let needle = escape(needle, ">")
   echom needle
@@ -636,7 +628,7 @@ fun! <SID>FindWordInProject()
       \ fzf#vim#with_preview()
       \ )
 endf
-nnoremap <leader>r :call <SID>FindWordInProject()<CR>
+nnoremap <leader>r :call <SID>find_word_in_project()<CR>
 
 " Easier to type, and I never use the default behavior.
 nnoremap H ^
@@ -694,12 +686,12 @@ vnoremap ac a"
 
 let s:uname = "win32"
 if has("unix")
-    let s:uname = system("uname")
+  let s:uname = system("uname")
 endif
 if (s:uname == "Darwin\n")
-    if has("+macmeta")
-        set macmeta
-    endif
+  if has("+macmeta")
+    set macmeta
+  endif
 endif
 
 "               ,'``.._   ,'``.
@@ -786,12 +778,12 @@ endif
 
 if executable("fzf")
   fun! MyFindFileInProjectAndEdit(sink)
-      let dir = rko#get_project_directory()
-      call fzf#run({
-          \ "sink": a:sink,
-          \ "options": printf('--prompt "%s"', dir),
-          \ "dir": dir,
-          \ "window": {"width": 0.618, "height": 0.618,},})
+    let dir = rko#get_project_directory()
+    call fzf#run({
+        \ "sink": a:sink,
+        \ "options": printf('--prompt "%s"', dir),
+        \ "dir": dir,
+        \ "window": {"width": 0.618, "height": 0.618,},})
   endf
 
   nnoremap <leader>b :Buffers<CR>
@@ -800,7 +792,7 @@ if executable("fzf")
 else
   " use ctrlp.vim
   fun! MyFindFileInProjectAndEdit()
-      execute ':CtrlP ' . rko#escape_pathname(rko#get_project_directory())
+    execute ':CtrlP ' . rko#escape_pathname(rko#get_project_directory())
   endf
 
   nnoremap <leader>b :CtrlPBuffer<CR>
@@ -813,8 +805,8 @@ nmap <leader><leader> <C-^>
 " This allows for change paste motion cp{motion}
 " http://stackoverflow.com/questions/2471175/vim-replace-word-with-contents-of-paste-buffer
 fun! ChangePaste(type, ...)
-    silent exe "normal! `[v`]\"_c"
-    silent exe "normal! p"
+  silent exe "normal! `[v`]\"_c"
+  silent exe "normal! p"
 endf
 nnoremap <silent> cp :set opfunc=ChangePaste<CR>g@
 
@@ -822,55 +814,13 @@ nnoremap <C-Up> :resize +1<CR>
 nnoremap <C-Down> :resize -1<CR>
 nnoremap <C-Left> :vertical resize -1<CR>
 nnoremap <C-Right> :vertical resize +1<CR>
+nnoremap <silent> <S-Left> :call rko#mark_window_swap()<CR><C-w>h:call rko#do_window_swap()<CR>
+nnoremap <silent> <S-Right> :call rko#mark_window_swap()<CR><C-w>l:call rko#do_window_swap()<CR>
+nnoremap <leader>tt :call rko#create_vsplits()<CR>
 
-fun! MarkWindowSwap()
-    let g:markedWinNum = winnr()
-endf
-fun! DoWindowSwap()
-    "Mark destination
-    let curNum = winnr()
-    let curBuf = bufnr( "%" )
-    exe g:markedWinNum . "wincmd w"
-    "Switch to source and shuffle dest->source
-    let markedBuf = bufnr( "%" )
-    "Hide and open so that we aren't prompted and keep history
-    exe 'hide buf' curBuf
-    "Switch to dest and shuffle source->dest
-    exe curNum . "wincmd w"
-    "Hide and open so that we aren't prompted and keep history
-    exe 'hide buf' markedBuf
-endf
-" nnoremap <silent> <leader>wm :call MarkWindowSwap()<CR>
-" nnoremap <silent> <leader>wp :call DoWindowSwap()<CR>
-nnoremap <silent> <S-Left> :call MarkWindowSwap()<CR><C-w>h:call DoWindowSwap()<CR>
-nnoremap <silent> <S-Right> :call MarkWindowSwap()<CR><C-w>l:call DoWindowSwap()<CR>
-
-fun! CreateAndSetupVsplits()
-  let num_tabs=tabpagenr("$")
-  if num_tabs == 1
-    if winnr("$") > 1
-      tabnew
-    endif
-  else
-      tabnew
-  endif
-  
-  let num_vsplits = (&columns / (80 - 1)) - 1
-
-  " create number of vsplits based off of argument passwd
-  for i in range(num_vsplits)
-    vnew
-  endfor
-
-  " move back to left vsplit
-  for i in range(num_vsplits)
-    wincmd h
-  endfor
-
-  wincmd =
-endf
-nnoremap <leader>tt :call CreateAndSetupVsplits()<CR>
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" matchparen
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:loaded_matchparen = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

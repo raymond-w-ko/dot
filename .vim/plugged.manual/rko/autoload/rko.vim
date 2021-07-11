@@ -27,6 +27,12 @@ fun! rko#toggle_linter() abort
   endif
 endfun
 
+fun! rko#strip_trailing_whitespace() abort
+  let l:my_saved_winview = winsaveview()
+  silent! %s/\s\+$//
+  call winrestview(l:my_saved_winview)
+endf
+
 fun! rko#left_brace() abort
   let line_number = line('.')
   let starting_line_number = line_number
@@ -363,3 +369,45 @@ fun! rko#format_golang()
   call winrestview(view)
 endf
 
+fun! rko#mark_window_swap()
+  let g:markedWinNum = winnr()
+endf
+fun! rko#do_window_swap()
+  "Mark destination
+  let curNum = winnr()
+  let curBuf = bufnr( "%" )
+  exe g:markedWinNum . "wincmd w"
+  "Switch to source and shuffle dest->source
+  let markedBuf = bufnr( "%" )
+  "Hide and open so that we aren't prompted and keep history
+  exe 'hide buf' curBuf
+  "Switch to dest and shuffle source->dest
+  exe curNum . "wincmd w"
+  "Hide and open so that we aren't prompted and keep history
+  exe 'hide buf' markedBuf
+endf
+
+fun! rko#create_vsplits()
+  let num_tabs=tabpagenr("$")
+  if num_tabs == 1
+    if winnr("$") > 1
+      tabnew
+    endif
+  else
+      tabnew
+  endif
+  
+  let num_vsplits = (&columns / (80 - 1)) - 1
+
+  " create number of vsplits based off of argument passwd
+  for i in range(num_vsplits)
+    vnew
+  endfor
+
+  " move back to left vsplit
+  for i in range(num_vsplits)
+    wincmd h
+  endfor
+
+  wincmd =
+endf

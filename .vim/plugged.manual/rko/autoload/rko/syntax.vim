@@ -176,6 +176,8 @@ fun! rko#syntax#apply_basic_highlights() abort
   if &filetype == "vim"
     runtime! syntax/vim.vim
     runtime! syntax/vim/generated.vim
+  elseif &filetype == "gitcommit"
+    runtime! syntax/gitcommit.vim
   elseif &filetype == "dirvish"
     runtime! syntax/dirvish.vim
   endif

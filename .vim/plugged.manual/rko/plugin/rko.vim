@@ -1,3 +1,4 @@
+command! StripTrailingWhitespace call rko#strip_trailing_whitespace()
 if has('unix')
   nnoremap <leader>m :update<CR>:call rko#find_and_run_makefile()<CR>
 endif
