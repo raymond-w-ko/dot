@@ -62,7 +62,6 @@ let s:web_filetypes = {
     \ "css": 1,
     \ }
 
-hi LimeGreen guifg=#00ff00 guibg=#002b36 gui=none ctermbg=0 ctermfg=46 term=none cterm=none
 fun! rko#syntax#apply_old_basic_highlights()
   syntax clear
   silent! syntax clear rkoBasicString
@@ -71,6 +70,8 @@ fun! rko#syntax#apply_old_basic_highlights()
   silent! syntax clear rkoVersionControlDelete
   silent! syntax clear rkoVersionControlAdd
   silent! syntax clear gitMergeConflict
+
+  hi LimeGreen guifg=#00ff00 guibg=#002b36 gui=none ctermbg=0 ctermfg=46 term=none cterm=none
 
   if &filetype == "vim"
     syntax region rkoBasicString start=/\v"/ skip=/\v(\\\\)|(\\")/ end=/\v("|$)/ keepend
@@ -172,6 +173,12 @@ endf
 
 fun! rko#syntax#apply_basic_highlights() abort
   syntax clear
+
+  hi LimeGreen guifg=#00ff00 guibg=#002b36 gui=none ctermbg=0 ctermfg=46 term=none cterm=none
+
+  hi ALESignColumnWithErrors guifg=#ffffff guibg=#ff0000
+  hi ALESignColumnWithoutErrors guifg=#ffffff guibg=#ffff00
+  hi SignColumn guifg=#ff0000
 
   if &filetype == "vim"
     runtime! syntax/vim.vim

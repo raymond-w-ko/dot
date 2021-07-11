@@ -323,7 +323,7 @@ endif
 
 if !exists("g:rko_already_setup_syntax")
   if s:use_treesitter
-    syntax off
+    syntax enable
   else
     syntax enable
   endif
@@ -1197,7 +1197,7 @@ augroup rko_vimrc
   autocmd CursorMoved * call rko#center_cursor()
 
   if has("nvim")
-    au FileType * call rko#syntax#apply_basic_highlights()
+    " au FileType * call rko#syntax#apply_basic_highlights()
   else
     " au FileType * call rko#syntax#apply_old_basic_highlights()
   endif
