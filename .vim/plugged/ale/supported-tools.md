@@ -408,6 +408,7 @@ formatting.
   * [purescript-language-server](https://github.com/nwolverson/purescript-language-server)
   * [purty](https://gitlab.com/joneshf/purty)
 * Python
+  * [autoflake](https://github.com/myint/autoflake)
   * [autoimport](https://lyz-code.github.io/autoimport/)
   * [autopep8](https://github.com/hhatto/autopep8)
   * [bandit](https://github.com/PyCQA/bandit) :warning:
@@ -559,6 +560,7 @@ formatting.
   * [verilator](http://www.veripool.org/projects/verilator/wiki/Intro)
   * [vlog](https://www.mentor.com/products/fv/questa/)
   * [xvlog](https://www.xilinx.com/products/design-tools/vivado.html)
+  * [yosys](http://www.clifford.at/yosys/)
 * VHDL
   * [ghdl](https://github.com/ghdl/ghdl)
   * [vcom](https://www.mentor.com/products/fv/questa/)

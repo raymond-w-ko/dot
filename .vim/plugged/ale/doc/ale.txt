@@ -2933,6 +2933,7 @@ documented in additional help files.
   pyrex (cython)..........................|ale-pyrex-options|
     cython................................|ale-pyrex-cython|
   python..................................|ale-python-options|
+    autoflake.............................|ale-python-autoflake|
     autoimport............................|ale-python-autoimport|
     autopep8..............................|ale-python-autopep8|
     bandit................................|ale-python-bandit|
@@ -3067,6 +3068,7 @@ documented in additional help files.
     verilator.............................|ale-verilog-verilator|
     vlog..................................|ale-verilog-vlog|
     xvlog.................................|ale-verilog-xvlog|
+    yosys.................................|ale-verilog-yosys|
   vhdl....................................|ale-vhdl-options|
     ghdl..................................|ale-vhdl-ghdl|
     hdl-checker...........................|ale-vhdl-hdl-checker|
