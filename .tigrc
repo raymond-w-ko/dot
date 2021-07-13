@@ -1,0 +1,4 @@
+color default	15 default
+color cursor 46 16
+color title-blur default 0
+color title-focus 16 46
