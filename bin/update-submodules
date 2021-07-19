@@ -54,7 +54,10 @@ dir="$HOME/.oh-my-zsh/"
 CMD="(cd \"$dir\"; pwd ; do_git_pull_simple)&"
 eval $CMD
 
-dir="$HOME/dot/src/z"
+dir="$HOME/dot/src/bash-z"
+CMD="(cd \"$dir\"; pwd ; do_git_pull_simple)&"
+eval $CMD
+dir="$HOME/dot/src/zsh-z"
 CMD="(cd \"$dir\"; pwd ; do_git_pull_simple)&"
 eval $CMD
 
