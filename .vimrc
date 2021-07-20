@@ -1177,7 +1177,7 @@ augroup rko_vimrc
 
   au CursorHold,CursorHoldI *.log :silent! checktime
   " hack for console VIM so that check for changed files work correctly
-  au FocusGained,BufEnter *.log :silent! checktime
+  au FocusGained,BufEnter,WinEnter *.log :silent! checktime
 
   " Make sure Vim returns to the same line when you reopen a file.
   " Thanks, Amit
@@ -1195,11 +1195,6 @@ augroup rko_vimrc
 
   autocmd CursorMoved * call rko#center_cursor()
 
-  if has("nvim")
-    " au FileType * call rko#syntax#apply_basic_highlights()
-  else
-    " au FileType * call rko#syntax#apply_old_basic_highlights()
-  endif
   autocmd FileType * call rko#syntax#apply_custom_highlights()
 
   """"""""""""""""""""""""""""""""""""""""

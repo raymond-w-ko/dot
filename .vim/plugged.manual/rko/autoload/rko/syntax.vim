@@ -191,7 +191,14 @@ fun! rko#syntax#apply_basic_highlights() abort
 endf
 
 fun! rko#syntax#apply_custom_highlights() abort
-  highlight link rkoError Define
+  hi LimeGreen guifg=#00ff00 guibg=#002b36 gui=none ctermbg=0 ctermfg=46 term=none cterm=none
+
+  hi link rkoError Define
+  hi link rkoTODO LimeGreen
+
+  hi link clojureTSSymbol Keyword
+  hi link clojureTSKeywordFunction clojureTSFuncMacro
+
   syntax match rkoTODO /\v<TODO|TODO:|XXX|XXX:|NOTE|NOTE:|WARN|WARN:>/ containedin=ALL
   syntax match rkoError /\verror/ containedin=ALL
 
@@ -200,3 +207,5 @@ fun! rko#syntax#apply_custom_highlights() abort
   syntax match gitMergeConflict /^<<<<<<< .\+$/ containedin=ALL
   syntax match gitMergeConflict /^>>>>>>> .\+$/ containedin=ALL
 endf
+
+
