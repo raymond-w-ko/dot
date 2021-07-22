@@ -41,6 +41,10 @@ Please consider the experience with this plug-in as experimental until Neovim 0.
 You can find the current roadmap [here](https://github.com/nvim-treesitter/nvim-treesitter/projects/1).
 The roadmap and all features of this plugin are open to change, and any suggestion will be highly appreciated!**
 
+*If you want to use this plugin with Neovim 0.5, please use the
+0.5-compat branch. Be aware though that most improvements will require
+neovim nightly.*
+
 Nvim-treesitter is based on three interlocking features: [**language parsers**](#language-parsers), [**queries**](#adding-queries), and [**modules**](#available-modules), where *modules* provide features – e.g., highlighting – based on *queries* for syntax objects extracted from a given buffer by *language parsers*.
 Users will generally only need to interact with parsers and modules as explained in the next section.
 For more detailed information on setting these up, see ["Advanced setup"](#advanced-setup).
@@ -84,7 +88,7 @@ Treesitter uses a different _parser_ for every language, which needs to be gener
 To simplify this, `nvim-treesitter` provides commands to automate this process.
 If the language is already [supported by `nvim-treesitter`](#supported-languages), you can install it with
 ```vim
-:TSInstall {language}
+:TSInstall <language_to_install>
 ```
 This command supports tab expansion.
 You can also get a list of all available languages and their installation status with `:TSInstallInfo`.
@@ -159,7 +163,7 @@ We are looking for maintainers to add more parsers and to write query files for 
 - [ ] [elm](https://github.com/elm-tooling/tree-sitter-elm)
 - [x] [erlang](https://github.com/AbstractMachinesLab/tree-sitter-erlang) (maintained by @ostera)
 - [x] [fennel](https://github.com/travonted/tree-sitter-fennel) (maintained by @TravonteD)
-- [x] [fish](https://github.com/krnik/tree-sitter-fish) (maintained by @krnik, @ram02z)
+- [x] [fish](https://github.com/ram02z/tree-sitter-fish) (maintained by @ram02z)
 - [ ] [fortran](https://github.com/stadelmanma/tree-sitter-fortran)
 - [x] [Godot (gdscript)](https://github.com/PrestonKnopp/tree-sitter-gdscript) (maintained by @Shatur95)
 - [x] [Glimmer and Ember](https://github.com/alexlafroscia/tree-sitter-glimmer) (maintained by @alexlafroscia)
