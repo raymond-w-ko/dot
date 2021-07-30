@@ -383,8 +383,8 @@ if !has("nvim")
   set maxmem=2000000
   set maxmemtot=2000000
 endif
-set nolist
-set listchars=tab:\|\ ,trail:•,extends:>,precedes:<,nbsp:+
+set list
+set listchars=trail:•,extends:>,precedes:<,nbsp:+
 " Mouse & selection Behavior
 behave xterm                " of course xterm is better
 set selectmode=""           " never want SELECT mode
@@ -1294,7 +1294,6 @@ fun! SetLinesForFirenvim(timer) abort
 endf
 fun! OnUIEnter(event)
   if s:IsFirenvimActive(a:event)
-    set nolist
     call timer_start(500, function("SetLinesForFirenvim"))
   endif
 endf
