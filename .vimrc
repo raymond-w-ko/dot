@@ -384,7 +384,7 @@ if !has("nvim")
   set maxmemtot=2000000
 endif
 set list
-set listchars=trail:•,extends:>,precedes:<,nbsp:+
+set listchars=tab:··,trail:•,extends:>,precedes:<,nbsp:+
 " Mouse & selection Behavior
 behave xterm                " of course xterm is better
 set selectmode=""           " never want SELECT mode
