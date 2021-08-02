@@ -528,7 +528,7 @@ if has('win32')
       \ 'C:/cygwin64/home/root',
       \ default_home,
       \ ]
-  for dir in homes
+  for dir in possible_homes
     if isdirectory(dir)
       let s:unix_home = dir
       break
