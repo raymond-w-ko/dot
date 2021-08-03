@@ -131,10 +131,13 @@
 (function_definition ["function" "end"] @keyword.function)
 
 (property_identifier) @property
-(method) @method
 
-(function_call (identifier) @function . (arguments))
-(function_call (field_expression (property_identifier) @function) . (arguments))
+(function_call
+  [((identifier) @variable (method) @method)
+   ((_) (method) @method)
+   (identifier) @function
+   (field_expression (property_identifier) @function)]
+  . (arguments))
 
 ;; Parameters
 (parameters
