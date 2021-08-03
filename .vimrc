@@ -309,6 +309,7 @@ if !has("nvim")
   set directory=$HOME/.local/share/vim/swap//
   set backupdir=$HOME/.local/share/vim/backup
   set undodir=$HOME/.local/share/vim/undo
+  set viewdir=$HOME/.local/share/vim/view
 endif
 if !isdirectory(&directory)
   echoerr "'directory' does not exists: " . &directory
