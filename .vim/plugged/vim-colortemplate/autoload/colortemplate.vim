@@ -1060,8 +1060,8 @@ fun! s:help_path()
   return s:help_path
 endf
 
-fun! s:add_line_to_aux_file(line, linenr, path, sourcefile)
-  call add(s:auxfiles[a:path], { 'line': a:line, 'linenr': a:linenr, 'file': a:sourcefile })
+fun! s:add_line_to_aux_file(line, section, linenr, path, sourcefile)
+  call add(s:auxfiles[a:path], { 'section': a:section, 'line': a:line, 'linenr': a:linenr, 'file': a:sourcefile })
 endf
 
 fun! s:auxfile_paths()
@@ -1317,6 +1317,7 @@ fun! s:interpolate(variant, section, line, linenr, file)
     let l:line = substitute(l:line, '\(cterm[bf]g=\)@\(\w\+\)',       '\=submatch(1).s:termcol(submatch(2),"'.a:section.'","'.l:t_Co.'")', 'g')
     let l:line = substitute(l:line, '\(gui[bf]g=\|guisp=\)@\(\w\+\)', '\=submatch(1).s:guicol(submatch(2),"'.a:section.'")',               'g')
     let l:line = substitute(l:line, '@date',                          '\=strftime("%Y %b %d")',                                            'g')
+    let l:line = substitute(l:line, '@background',                    a:section,                                                           'g')
     let l:line = substitute(l:line, '@vimversion',                    '\=string(v:version/100).".".string(v:version%100)',                 'g')
     let l:line = substitute(l:line, '@\('.s:info_keys_regex().'\)',   '\=s:get_info(submatch(1))',                                         'g')
     return l:line
@@ -1681,8 +1682,8 @@ fun! s:stop_help_file()
   let s:current_auxfile = ''
 endf
 
-fun! s:add_to_aux_file(line, linenr, sourcefile)
-  call s:add_line_to_aux_file(a:line, a:linenr, s:current_auxfile, a:sourcefile)
+fun! s:add_to_aux_file(line, section, linenr, sourcefile)
+  call s:add_line_to_aux_file(a:line, a:section, a:linenr, s:current_auxfile, a:sourcefile)
 endf
 " }}}
 " Parser {{{
@@ -1739,7 +1740,7 @@ fun! s:parse_help_line()
       throw "Extra characters after 'enddocumentation'"
     endif
   else
-    call s:add_to_aux_file(s:getl(), s:linenr(), s:currfile())
+    call s:add_to_aux_file(s:getl(), s:active_section(), s:linenr(), s:currfile())
   endif
 endf
 
@@ -1750,7 +1751,7 @@ fun! s:parse_auxfile_line()
       throw "Extra characters after 'endauxfile'"
     endif
   else
-    call s:add_to_aux_file(s:getl(), s:linenr(), s:currfile())
+    call s:add_to_aux_file(s:getl(), s:active_section(), s:linenr(), s:currfile())
   endif
 endf
 
@@ -2242,7 +2243,7 @@ fun! s:generate_aux_files(outdir, overwrite)
     if match(l:path, '^doc' . s:slash()) > -1 && get(g:, 'colortemplate_no_doc', 0)
       continue
     endif
-    let l:lines = map(s:auxfile(l:path), { _,l -> s:interpolate('256', 'dark', l['line'], l['linenr'], l['file']) })
+    let l:lines = map(s:auxfile(l:path), { _,l -> s:interpolate('256', l['section'], l['line'], l['linenr'], l['file']) })
     if !s:is_error_state()
       call s:write_list(l:lines, l:path, { 'dir': a:outdir }, a:overwrite)
     endif
