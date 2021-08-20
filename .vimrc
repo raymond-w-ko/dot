@@ -685,6 +685,20 @@ onoremap aq a"
 vnoremap iq i"
 vnoremap ac a"
 
+fun! s:map_string_operator() abort
+  onoremap is i"
+  onoremap as a"
+  vnoremap is i"
+  vnoremap as a"
+endf
+call s:map_string_operator()
+fun! s:map_buffer_string_operator() abort
+  onoremap <buffer> is i"
+  onoremap <buffer> as a"
+  vnoremap <buffer> is i"
+  vnoremap <buffer> as a"
+endf
+
 let s:uname = "win32"
 if has("unix")
   let s:uname = system("uname")
@@ -1197,6 +1211,7 @@ augroup rko_vimrc
   autocmd CursorMoved * call rko#center_cursor()
 
   autocmd FileType * call rko#syntax#apply_custom_highlights()
+  au BufReadPost * call s:map_buffer_string_operator()
 
   """"""""""""""""""""""""""""""""""""""""
   " css
