@@ -51,15 +51,29 @@
   "silent"
   "echo"
   "autocmd"
+  "augroup"
   "return"
   "lua"
   "ruby"
   "perl"
   "python"
 ] @keyword
+(map_statement cmd: _ @keyword)
 (command_name) @function.macro
 
-(au_event) @constant
+[
+  "<buffer>"
+  "<nowait>"
+  "<silent>"
+  "<script>"
+  "<expr>"
+  "<unique>"
+] @constant.builtin
+
+[
+  (augroup_name)
+  (au_event)
+] @constant
 (normal_statement (commands) @constant)
 
 ;; Literals
