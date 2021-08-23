@@ -37,7 +37,7 @@ list.javascript = {
     url = "https://github.com/tree-sitter/tree-sitter-javascript",
     files = { "src/parser.c", "src/scanner.c" },
   },
-  used_by = { "javascriptreact", "ecma" },
+  used_by = { "javascriptreact", "ecma", "jsx" },
   maintainers = { "@steelsojka" },
 }
 
@@ -390,6 +390,15 @@ list.hcl = {
 --     files = { "src/parser.c", "src/scanner.cc" },
 --   }
 -- }
+
+list.tlaplus = {
+  install_info = {
+    url = "https://github.com/tlaplus-community/tree-sitter-tlaplus",
+    files = { "src/parser.c", "src/scanner.cc" },
+  },
+  maintainers = { "@ahelwer" },
+  filetype = "tla",
+}
 
 list.toml = {
   install_info = {
