@@ -4,119 +4,66 @@
   (line_comment)
 ] @comment
 
-(IDENTIFIER) @variable
+[
+  variable: (IDENTIFIER)
+  variable_type_function: (IDENTIFIER)
+] @variable
 
-;field in top level decl, and in struct, union...
-(ContainerField
-  (IDENTIFIER) @field
-  (SuffixExpr (IDENTIFIER) @type)?
-)
+parameter: (IDENTIFIER) @parameter
 
-; INFO: field become a function if type is a function?
-; const u = union { this_is_function: fn () void };
-(ContainerField
-  (IDENTIFIER) @function
-  (SuffixExpr (FnProto))
-)
+[
+  field_member: (IDENTIFIER)
+  field_access: (IDENTIFIER)
+] @field
 
-;enum and tag union field is constant
+;; assume TitleCase is a type
 (
   [
-    ; union(Tag){}
-    (ContainerDeclType (SuffixExpr (IDENTIFIER) @type))
-
-    ; enum{}
-    (ContainerDeclType "enum")
-  ]
-  (ContainerField (IDENTIFIER) @constant)?
+    variable_type_function: (IDENTIFIER)
+    field_access: (IDENTIFIER)
+    parameter: (IDENTIFIER)
+  ] @type
+  (#match? @type "^[A-Z]([a-z0-9]+[A-Za-z0-9]*)*$")
 )
-
-; INFO: .IDENTIFIER is a field?
-(SuffixExpr 
-  "."
-  (IDENTIFIER) @field
-)
-
-; error.OutOfMemory;
-(SuffixExpr 
-  "error"
-  "."
-  (IDENTIFIER) @constant
-)
-
-(VarDecl
-  (IDENTIFIER) @type
+;; assume camelCase is a function
+(
   [
-    ; const IDENTIFIER = struct/enum/union...
-    (SuffixExpr (ContainerDecl))
-
-    ; const A = u8;
-    (SuffixExpr (BuildinTypeExpr))
-  ]
+    variable_type_function: (IDENTIFIER)
+    field_access: (IDENTIFIER)
+    parameter: (IDENTIFIER)
+  ] @function
+  (#match? @function "^[a-z]+([A-Z][a-z0-9]*)+$")
 )
 
-; const fn_no_comma = fn (i32, i32) void;
-(VarDecl
-  (IDENTIFIER) @function
-  (SuffixExpr (FnProto))
-)
-
-; var x: IDENTIFIER
-type: (SuffixExpr (IDENTIFIER) @type)
-
-; IDENTIFIER{}
-constructor: (SuffixExpr (IDENTIFIER) @constructor)
-
-;{.IDENTIFIER = 1}
-(FieldInit (IDENTIFIER) @field)
-
-; var.field
-(SuffixOp (IDENTIFIER) @field)
-
-; var.func().func().field
-( 
-  (SuffixOp
-    (IDENTIFIER) @function
-  )
-  .
-  (FnCallArguments)
-)
-; func()
-( 
-  (
-    (IDENTIFIER) @function
-  )
-  .
-  (FnCallArguments)
-)
-
-; functionn decl
-(FnProto
-  (IDENTIFIER) @function
-  (SuffixExpr (IDENTIFIER) @type)?
-  ("!")? @exception
-)
-
-(ParamDecl 
-  (ParamType (SuffixExpr (IDENTIFIER) @parameter))
-)
-
-(ParamDecl 
-  (IDENTIFIER) @parameter
-  ":"
+;; assume all CAPS_1 is a constant
+(
   [
-    (ParamType (SuffixExpr (IDENTIFIER) @type))
-    (ParamType)
-  ]
+    variable_type_function: (IDENTIFIER)
+    field_access: (IDENTIFIER)
+  ] @constant
+  (#match? @constant "^[A-Z][A-Z_0-9]+$")
 )
 
-(SwitchItem 
-  (SuffixExpr
-    "."
-    .
-    (IDENTIFIER) @constant
+[
+  function_call: (IDENTIFIER)
+  function: (IDENTIFIER)
+] @function
+
+exception: "!" @exception
+
+(
+  (ContainerDeclType
+    [
+      (ErrorUnionExpr)
+      "enum"
+    ]
+  )
+  (ContainerMembers
+    (ContainerField (IDENTIFIER) @constant)
   )
 )
+
+field_constant: (IDENTIFIER) @constant
 
 (BUILTINIDENTIFIER) @function.builtin
 
@@ -128,11 +75,13 @@ constructor: (SuffixExpr (IDENTIFIER) @constructor)
 (FLOAT) @float
 
 [
-  (STRINGLITERAL)
+  (LINESTRING)
   (STRINGLITERALSINGLE)
 ] @string
 
 (CHAR_LITERAL) @character
+(EscapeSequence) @string.escape
+(FormatSequence) @string.special
 
 [
   "allowzero"
@@ -275,3 +224,6 @@ constructor: (SuffixExpr (IDENTIFIER) @constructor)
   (PtrPayload "|")
   (PtrIndexPayload "|")
 ] @punctuation.bracket
+
+; Error
+(ERROR) @error
