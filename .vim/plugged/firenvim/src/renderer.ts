@@ -1,16 +1,13 @@
-import { PageType } from "./page";
 import { parseGuifont, toHexCss } from "./utils/utils";
 import { NvimMode, confReady, getGlobalConf } from "./utils/configuration";
+import { EventEmitter } from "./EventEmitter";
 
-let page: any;
-export function setPage(p: PageType) {
-    page = p;
-}
-
-let functions: any;
-export function setFunctions(fns: any) {
-    functions = fns;
-}
+type ResizeEvent = {grid: number, width: number, height: number};
+type FrameResizeEvent = {width: number, height: number}
+type ModeChangeEvent = NvimMode;
+type ResizeEventHandler = (e: ResizeEvent | FrameResizeEvent | ModeChangeEvent) => void;
+type EventKind = "resize" | "frameResize" | "modeChange";
+export const events = new EventEmitter<EventKind, ResizeEventHandler>();
 
 let glyphCache : any = {};
 function wipeGlyphCache() {
@@ -336,11 +333,6 @@ export function getGridId() {
     return 1;
 }
 
-export function getCurrentMode() {
-    const mode = globalState.mode;
-    return mode.modeInfo[mode.current].name;
-}
-
 function getCommandLineRect (state: State) {
     const [width, height] = getGlyphInfo(state);
     return {
@@ -584,6 +576,7 @@ const handlers : { [key:string] : (...args: any[])=>void } = {
     },
     mode_change: (_: string, modeIdx: number) => {
         globalState.mode.current = modeIdx;
+        events.emit("modeChange", globalState.mode.modeInfo[modeIdx].name);
         if (globalState.mode.styleEnabled) {
             const cursor = globalState.cursor;
             pushDamage(getGridId(), DamageKind.Cell, 1, 1, cursor.x, cursor.y);
@@ -644,9 +637,11 @@ const handlers : { [key:string] : (...args: any[])=>void } = {
                 }
                 setFontString(state, newFontString);
                 const [charWidth, charHeight] = getGlyphInfo(state);
-                functions.ui_try_resize_grid(getGridId(),
-                                             Math.floor(state.canvas.width / charWidth),
-                                             Math.floor(state.canvas.height / charHeight));
+                events.emit("resize", {
+                    grid: getGridId(),
+                    width: Math.floor(state.canvas.width / charWidth),
+                    height: Math.floor(state.canvas.height / charHeight),
+                });
             }
             break;
             case "linespace": {
@@ -661,9 +656,11 @@ const handlers : { [key:string] : (...args: any[])=>void } = {
                 if (curGridSize !== undefined) {
                     pushDamage(getGridId(), DamageKind.Cell, curGridSize.height, curGridSize.width, 0, 0);
                 }
-                functions.ui_try_resize_grid(gid,
-                                             Math.floor(state.canvas.width / charWidth),
-                                             Math.floor(state.canvas.height / charHeight));
+                events.emit("resize", {
+                    grid: gid,
+                    width: Math.floor(state.canvas.width / charWidth),
+                    height: Math.floor(state.canvas.height / charHeight),
+                });
             }
             break;
         }
@@ -879,7 +876,7 @@ function paint (_: DOMHighResTimeStamp) {
             case DamageKind.Resize: {
                 const pixelWidth = damage.w * charWidth / window.devicePixelRatio;
                 const pixelHeight = damage.h * charHeight / window.devicePixelRatio;
-                page.resizeEditor(pixelWidth, pixelHeight);
+                events.emit("frameResize", { width: pixelWidth, height: pixelHeight });
                 setCanvasDimensions(canvas, pixelWidth, pixelHeight);
                 // Note: changing width and height resets font, so we have to
                 // set it again. Who thought this was a good idea???

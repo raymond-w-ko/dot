@@ -12,7 +12,24 @@ env:
   TESTING: 1
 
 jobs:
+  tslint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+    - name: Install NPM dependencies
+      run: npm ci
+    - name: Install eslint
+      run: npm install eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser
+    - name: Run ESlint
+      run: '"$(npm bin)/eslint" "./**/*.ts"'
+    - name: Run addons-linter
+      run: 'npm run build && npm run pack && "$(npm bin)/addons-linter" target/xpi/firefox-latest.xpi' 
+
   test:
+    needs: tslint
+
     strategy:
       fail-fast: false
       matrix:
@@ -99,7 +116,7 @@ jobs:
           failures.txt
         retention-days: 2
     - name: Process Coverage Report (Coverage only)
-      uses: glacambre/action-compare-coverage@v1.0.0
+      uses: glacambre/action-compare-coverage@master
       if: matrix.os == 'ubuntu' && matrix.browser == 'firefox' && matrix.neovim == 'stable'
       with:
         github_token: ${{secrets.GITHUB_TOKEN}}
