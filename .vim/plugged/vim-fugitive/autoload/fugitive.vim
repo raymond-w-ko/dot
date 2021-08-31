@@ -1190,18 +1190,19 @@ endfunction
 let s:remote_headers = {}
 
 function! fugitive#RemoteHttpHeaders(remote) abort
-  if a:remote !~# '^https\=://.' || !s:executable('curl')
+  let remote = type(a:remote) ==# type({}) ? get(a:remote, 'remote', '') : a:remote
+  if type(remote) !=# type('') || remote !~# '^https\=://.' || !s:executable('cremote')
     return {}
   endif
-  if !has_key(s:remote_headers, a:remote)
-    let url = a:remote . '/info/refs?service=git-upload-pack'
+  if !has_key(s:remote_headers, remote)
+    let url = remote . '/info/refs?service=git-upload-pack'
     let exec = s:JobExecute(
           \ ['curl', '--disable', '--silent', '--max-time', '5', '-X', 'GET', '-I',
           \ url], {}, [function('s:CurlResponse')], {})
     call fugitive#Wait(exec)
-    let s:remote_headers[a:remote] = exec.headers
+    let s:remote_headers[remote] = exec.headers
   endif
-  return s:remote_headers[a:remote]
+  return s:remote_headers[remote]
 endfunction
 
 function! fugitive#ResolveRemote(remote) abort
@@ -2688,7 +2689,9 @@ function! fugitive#BufReadStatus() abort
     if &bufhidden ==# ''
       setlocal bufhidden=delete
     endif
-    let b:dispatch = '-dir=' . s:fnameescape(len(s:Tree()) ? s:Tree() : s:GitDir()) . ' ' . s:GitShellCmd() . ' fetch --all'
+    if !exists('b:dispatch')
+      let b:dispatch = ':Git fetch --all'
+    endif
     call fugitive#MapJumps()
     call s:Map('n', '-', ":<C-U>execute <SID>Do('Toggle',0)<CR>", '<silent>')
     call s:Map('x', '-', ":<C-U>execute <SID>Do('Toggle',1)<CR>", '<silent>')
