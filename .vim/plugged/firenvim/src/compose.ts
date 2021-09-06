@@ -23,7 +23,7 @@ canvas.height = rects[0].height;
 canvas.style.position = "absolute";
 canvas.style.top = "0px";
 canvas.style.left = "0px";
-document.documentElement.appendChild(canvas);
+document.body.appendChild(canvas);
 
 const connectionPromise = browser.runtime.sendMessage({ funcName: ["getNeovimInstance"] });
 
@@ -40,7 +40,53 @@ class ThunderbirdPageEventEmitter extends PageEventEmitter {
     async focusInput() { return Promise.resolve(); }
     async focusPage() { return Promise.resolve(); }
     async getEditorInfo() { return [document.location.href, "", [1, 1], undefined] as [string, string, [number, number], string] }
-    async getElementContent() { return document.body.innerText }
+    async getElementContent() {
+        const details = await browser.runtime.sendMessage({ funcName: ["getOwnComposeDetails"], args: [] });
+        if (details.isPlainText) {
+            return details.plainTextBody;
+        }
+
+        const nodeToString = (quote: string, n: Node) => {
+            switch (n.nodeType) {
+                case Node.ELEMENT_NODE:
+                    return elementToString(quote, (n as Element));
+                case Node.TEXT_NODE: {
+                    const s = n.textContent.trim();
+                    if (s.length > 0) {
+                        if (quote !== "") {
+                            quote = quote + " ";
+                        }
+                        return quote + s + "\n";
+                    }
+                    return s;
+                }
+            }
+        };
+        const elementToString = (quote: string, n: Element) => {
+            if (n.tagName === "BR") {
+                return "";
+            }
+
+            let quotes = quote;
+            if (n.tagName === "BLOCKQUOTE") {
+                    quotes = quotes + ">";
+            }
+
+            let result = "";
+            for (const c of Array.from(n.childNodes)) {
+                const s = nodeToString(quotes, c);
+                if (s !== "") {
+                    result += s;
+                }
+            }
+
+            if (n.tagName === "BLOCKQUOTE") {
+                result += quote + "\n";
+            }
+            return result;
+        }
+        return elementToString("", document.body);
+    }
     async hideEditor() { return Promise.resolve(); }
     async killEditor() {
         return browser.runtime.sendMessage({
@@ -53,7 +99,7 @@ class ThunderbirdPageEventEmitter extends PageEventEmitter {
         // compose window
         return Promise.resolve();
     }
-    async setElementContent(s: string) { document.body.innerText = s }
+    async setElementContent(_: string) { return; }
     async setElementCursor(_: number, __: number) { return Promise.resolve(); }
 }
 

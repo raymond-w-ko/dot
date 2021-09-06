@@ -204,7 +204,6 @@ function applySettings(settings: any) {
         priority: 0,
         renderer: "canvas",
         selector: 'textarea:not([readonly]), div[role="textbox"]',
-        sync: "write",
         // "takeover": "always" | "once" | "empty" | "nonempty" | "never"
         // #265: On "once", don't automatically bring back after :q'ing it
         takeover: "always",
@@ -216,7 +215,6 @@ function applySettings(settings: any) {
         priority: 1,
         renderer: "canvas",
         selector: 'body',
-        sync: "change",
         takeover: "always",
         filename: "mail_{timestamp%32}.eml",
     });
@@ -358,6 +356,7 @@ Object.assign(window, {
     },
     getNvimPluginVersion: () => nvimPluginVersion,
     getOwnFrameId: (sender: any) => sender.frameId,
+    getOwnComposeDetails: (sender: any) => (browser as any).compose.getComposeDetails(sender.tab.id),
     getTab: (sender: any) => sender.tab,
     getTabValue: (sender: any, args: any) => getTabValue(sender.tab.id, args[0]),
     getTabValueFor: (_: any, args: any) => getTabValue(args[0], args[1]),
@@ -442,6 +441,55 @@ browser.runtime.onUpdateAvailable.addListener(updateIfPossible);
 // Can't test on the bird of thunder
 /* istanbul ignore next */
 if (isThunderbird()) {
+    (browser as any).compose.onBeforeSend.addListener(async (tab: any, details: any) => {
+        const lines = (await browser.tabs.sendMessage(tab.id, { args: [], funcName: ["get_buf_content"] })) as string[];
+        // No need to remove the canvas when working with plaintext,
+        // thunderbird will do that for us.
+        if (details.isPlainText) {
+            return { cancel: false, details: { plainTextBody: lines.join("\n") } };
+        }
+
+        const doc = document.createElement("html");
+        const bod = document.createElement("body");
+        doc.appendChild(bod);
+
+        // Turn `>` into appropriate blockquote elements.
+        let previousQuoteLevel = 0;
+        let parent : HTMLElement = bod;
+        for (const l of lines) {
+            let currentQuoteLevel = 0;
+
+            // Count number of ">" symbols
+            let i = 0;
+            while (l[i] === " " || l[i] === ">") {
+                if (l[i] === ">") {
+                    currentQuoteLevel += 1;
+                }
+                i += 1;
+            }
+
+            const line = l.slice(i);
+
+            if (currentQuoteLevel > previousQuoteLevel) {
+                for (let i = previousQuoteLevel; i < currentQuoteLevel; ++i) {
+                    const block = document.createElement("blockquote");
+                    block.setAttribute("type", "cite");
+                    parent.appendChild(block);
+                    parent = block;
+                }
+            } else if (currentQuoteLevel < previousQuoteLevel) {
+                for (let i = previousQuoteLevel; i > currentQuoteLevel; --i) {
+                    parent = parent.parentElement;
+                }
+            }
+
+            parent.appendChild(document.createTextNode(line));
+            parent.appendChild(document.createElement("br"));
+
+            previousQuoteLevel = currentQuoteLevel;
+        }
+        return { cancel: false, details: { body: doc.outerHTML } };
+    });
     // In thunderbird, register the script to be loaded in the compose window
     (browser as any).composeScripts.register({
         js: [{file: "compose.js"}],
