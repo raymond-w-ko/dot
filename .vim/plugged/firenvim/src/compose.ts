@@ -20,14 +20,26 @@ canvas.id = "canvas";
 canvas.oncontextmenu = () => false;
 canvas.width = rects[0].width;
 canvas.height = rects[0].height;
-canvas.style.position = "absolute";
+canvas.style.position = "fixed";
 canvas.style.top = "0px";
 canvas.style.left = "0px";
 document.body.appendChild(canvas);
 
-// Remove scrollbars when body content is longer than window
-document.documentElement.style.overflow = "hidden";
-document.body.style.overflow = "hidden";
+const style = document.createElement("style");
+style.innerText = `
+html, body {
+    /* Hide caret, which sometimes appears over canvas */
+    caret-color: transparent !important;
+    /* Hide scrollbars when email is longer than window */
+    overflow: hidden !important;
+}
+body > *:not(canvas) {
+    /* Hide email content, useful when email is longer than canvas and */
+    /* canvas shorter than window */
+    display: none !important;
+}
+`.replace(/\n/g, "");
+document.head.appendChild(style);
 
 const connectionPromise = browser.runtime.sendMessage({ funcName: ["getNeovimInstance"] });
 
