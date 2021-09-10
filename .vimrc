@@ -498,7 +498,7 @@ set wildignore+=*.pvr,*.ktx
 set wildignore+=*.ncb,*.suo,*.user,*.vcproj,*.vcxproj,*.out,*.sln,*.pdb
 set wildignore+=*.manifest,*.dep,*.idb,*.ipch,*.o,*.obj
 " GCC
-set wildignore+=*.d,*.a,*.o
+set wildignore+=*.a,*.o
 " Gamebryo Binaries
 set wildignore+=*.nif,*.kf,*.kfm,*.nsb
 " compiled cached bytecodes
