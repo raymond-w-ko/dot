@@ -626,8 +626,10 @@ function! fugitive#PrepareDirEnvGitFlagsArgs(...) abort
   if !exists('dir')
     let dir = s:Dir()
   endif
-  if !has_key(env, 'GIT_INDEX_FILE')
-    call s:PrepareEnv(autoenv, dir)
+  call extend(autoenv, env)
+  call s:PrepareEnv(autoenv, dir)
+  if len($GPG_TTY) && !has_key(autoenv, 'GPG_TTY')
+    let autoenv.GPG_TTY = ''
   endif
   call s:PreparePathArgs(cmd, dir, literal_pathspecs, explicit_pathspec_option)
   return [s:GitDir(dir), env, extend(autoenv, env), git, cmd[0 : -arg_count-1], arg_count ? cmd[-arg_count : -1] : []]
@@ -1220,7 +1222,7 @@ let s:remote_headers = {}
 
 function! fugitive#RemoteHttpHeaders(remote) abort
   let remote = type(a:remote) ==# type({}) ? get(a:remote, 'remote', '') : a:remote
-  if type(remote) !=# type('') || remote !~# '^https\=://.' || !s:executable('cremote')
+  if type(remote) !=# type('') || remote !~# '^https\=://.' || !s:executable('curl')
     return {}
   endif
   if !has_key(s:remote_headers, remote)
@@ -1264,19 +1266,16 @@ function! s:ConfigLengthSort(i1, i2) abort
 endfunction
 
 function! fugitive#RemoteUrl(...) abort
-  let args = a:000
-  if a:0 && (type(a:1) !=# type('') || a:1 =~# '^/\|^\a:[\\/]' && get(a:, 2, '') !~# '^/\|^\a:[\\/]')
-    let config = fugitive#Config(a:1)
-    let args = a:000[1:-1]
+  let args = copy(a:000)
+  if len(args) && (type(args[0]) !=# type('') || args[0] =~# '^/\|^\a:[\\/]' && get(args, 1, '') !~# '^/\|^\a:[\\/]')
+    let config = fugitive#Config(remote(args, 0))
     if type(a:1) ==# type({}) && has_key(a:1, 'remote_name') && (type(get(args, 0, 0)) !=# type('') || args[0] =~# '^:')
       call insert(args, a:1.remote_name)
     endif
-  elseif a:0 > 1 && a:2 !~# '^:'
-    let config = fugitive#Config(a:2)
-    let args = [a:1] + a:000[2:-1]
+  elseif len(args) > 1 && (type(args[1]) !=# type('') || args[1] !~# '^:')
+    let config = fugitive#Config(remove(args, 1))
   else
     let config = fugitive#Config()
-    let args = copy(a:000)
   endif
   if empty(args) || args[0] =~# '^:'
     let url = s:Remote(config)
@@ -2109,7 +2108,8 @@ function! s:BlobTemp(url) abort
   endif
   if commit =~# '^\d$' || !filereadable(tempfile)
     let rev = s:DirRev(a:url)[1]
-    let exec_error = s:StdoutToFile(tempfile, [dir, 'cat-file', 'blob', rev])[1]
+    let blob_or_filters = fugitive#GitVersion(2, 11) ? '--filters' : 'blob'
+    let exec_error = s:StdoutToFile(tempfile, [dir, 'cat-file', blob_or_filters, rev])[1]
     if exec_error
       call delete(tempfile)
       return ''
@@ -2952,7 +2952,8 @@ function! fugitive#BufReadCmd(...) abort
       elseif b:fugitive_type ==# 'stage'
         call s:ReplaceCmd([dir, 'ls-files', '--stage'])
       elseif b:fugitive_type ==# 'blob'
-        call s:ReplaceCmd([dir, 'cat-file', b:fugitive_type, rev])
+        let blob_or_filters = rev =~# ':' && fugitive#GitVersion(2, 11) ? '--filters' : 'blob'
+        call s:ReplaceCmd([dir, 'cat-file', blob_or_filters, rev])
       endif
     finally
       keepjumps call setpos('.',pos)
@@ -3214,11 +3215,7 @@ function! s:RunReceive(state, tmp, type, job, data, ...) abort
       call setbufline(a:state.capture_bufnr, line_count + 1, lines)
     endif
     call setbufvar(a:state.capture_bufnr, '&modifiable', 0)
-    if !getwinvar(bufwinid(a:state.capture_bufnr), '&previewwindow')
-      " no-op
-    elseif exists('*win_execute')
-      call win_execute(bufwinid(a:state.capture_bufnr), '$')
-    else
+    if getwinvar(bufwinid(a:state.capture_bufnr), '&previewwindow')
       let winnr = bufwinnr(a:state.capture_bufnr)
       if winnr > 0
         let old_winnr = winnr()
@@ -3435,6 +3432,11 @@ augroup fugitive_job
         \ endfor
 augroup END
 
+function! fugitive#CanPty() abort
+  return get(g:, 'fugitive_pty_debug_override',
+        \ has('unix') && !has('win32unix') && (has('patch-8.0.0744') || has('nvim')) && fugitive#GitVersion() !~# '\.windows\>')
+endfunction
+
 function! fugitive#PagerFor(argv, ...) abort
   let args = a:argv
   if empty(args)
@@ -3611,7 +3613,7 @@ function! fugitive#Command(line1, line2, range, bang, mods, arg) abort
   endif
   if s:run_jobs
     call extend(env, {'COLUMNS': '' . (&columns - 1)}, 'keep')
-    let state.pty = allow_pty && get(g:, 'fugitive_pty', has('unix') && !has('win32unix') && (has('patch-8.0.0744') || has('nvim')) && fugitive#GitVersion() !~# '\.windows\>')
+    let state.pty = allow_pty && fugitive#CanPty()
     if !state.pty
       let args = s:AskPassArgs(dir) + args
     endif
@@ -3634,6 +3636,10 @@ function! fugitive#Command(line1, line2, range, bang, mods, arg) abort
           \ 'GIT_SEQUENCE_EDITOR': editor,
           \ 'GIT_PAGER': 'cat',
           \ 'PAGER': 'cat'}, 'keep')
+    if len($GPG_TTY) && !has_key(env, 'GPG_TTY')
+      let env.GPG_TTY = ''
+      let did_override_gpg_tty = 1
+    endif
     if stream
       call writefile(['fugitive: aborting edit due to background operation.'], state.file . '.exit')
     elseif pager
@@ -3713,6 +3719,9 @@ function! fugitive#Command(line1, line2, range, bang, mods, arg) abort
   else
     if !explicit_pathspec_option && get(options.flags, 0, '') ==# '--no-literal-pathspecs'
       call remove(options.flags, 0)
+    endif
+    if exists('l:did_override_gpg_tty')
+      call remove(env, 'GPG_TTY')
     endif
     let cmd = s:BuildEnvPrefix(env) . s:shellesc(s:UserCommandList(options) + args)
     let after = '|call fugitive#DidChange(' . string(dir) . ')' . after
@@ -3815,8 +3824,12 @@ function! fugitive#Complete(lead, ...) abort
   let dir = a:0 == 1 ? a:1 : a:0 >= 3 ? s:Dir(a:3) : s:Dir()
   let root = a:0 >= 4 ? a:4 : s:Tree(s:Dir())
   let pre = a:0 > 1 ? strpart(a:1, 0, a:2) : ''
-  let subcmd = matchstr(pre, '\u\w*[! ] *\zs[[:alnum:]-]\+\ze ')
-  if empty(subcmd)
+  let subcmd = matchstr(pre, '\u\w*[! ] *\%(\%(++\S\+\|--\S\+-pathspecs\|-c\s\+\S\+\)\s\+\)*\zs[[:alnum:]][[:alnum:]-]*\ze ')
+  if empty(subcmd) && a:lead =~# '^+'
+    let results = ['++curwin']
+  elseif empty(subcmd) && a:lead =~# '^-'
+    let results = ['--literal-pathspecs', '--no-literal-pathspecs', '--glob-pathspecs', '--noglob-pathspecs', '--icase-pathspecs', '--no-optional-locks']
+  elseif empty(subcmd)
     let results = s:CompletableSubcommands(dir)
   elseif a:0 ==# 2 && subcmd =~# '^\%(commit\|revert\|push\|fetch\|pull\|merge\|rebase\)$'
     let cmdline = substitute(a:1, '\u\w*\([! ] *\)' . subcmd, 'G' . subcmd, '')
