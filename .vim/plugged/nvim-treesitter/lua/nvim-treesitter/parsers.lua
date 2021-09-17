@@ -85,6 +85,15 @@ list.cuda = {
   maintainers = { "@theHamsta" },
 }
 
+list.glsl = {
+  install_info = {
+    url = "https://github.com/theHamsta/tree-sitter-glsl",
+    files = { "src/parser.c" },
+    generate_requires_npm = true,
+  },
+  maintainers = { "@theHamsta" },
+}
+
 list.dockerfile = {
   install_info = {
     url = "https://github.com/camdencheek/tree-sitter-dockerfile",
@@ -205,10 +214,10 @@ list.java = {
 
 list.kotlin = {
   install_info = {
-    url = "https://github.com/tormodatt/tree-sitter-kotlin",
+    url = "https://github.com/Joakker/tree-sitter-kotlin",
     files = { "src/parser.c" },
   },
-  maintainers = { "@tormodatt" },
+  maintainers = { "@Joakker" },
 }
 
 list.html = {
@@ -716,6 +725,7 @@ local M = {
 }
 
 function M.ft_to_lang(ft)
+  ft = vim.split(ft, ".", true)[1]
   return ft_to_parsername[ft] or ft
 end
 

@@ -123,8 +123,14 @@
  "typename"
  "using"
  "virtual"
+ "co_await"
  (auto)
 ] @keyword
+
+[
+ "co_yield"
+ "co_return"
+] @keyword.return
 
 [
  "new"
@@ -148,8 +154,4 @@
 
 "::" @operator
 
-; Annotations (not fully supported by parser)
-
-((ERROR) @attribute
-         (#vim-match? @attribute  "\[?\[.*\]\]?.*$"))
-(attribute) @attribute
+(attribute_declaration) @attribute

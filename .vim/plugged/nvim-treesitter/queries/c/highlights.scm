@@ -127,11 +127,11 @@
 (statement_identifier) @label
 
 [
-(type_identifier)
-(primitive_type)
-(sized_type_specifier)
-(type_descriptor)
- ] @type
+ (type_identifier)
+ (primitive_type)
+ (sized_type_specifier)
+ (type_descriptor)
+] @type
 
 (declaration (type_qualifier) @type)
 (cast_expression type: (type_descriptor) @type)
