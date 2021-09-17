@@ -1075,7 +1075,7 @@ endif
 let g:ale_linters = {
     \ "jsx": ["eslint"],
     \ "c": [],
-    \ "cpp": [],
+    \ "cpp": ["clangd"],
     \ "clojure": ["joker"],
     \ "python": ["pycodestyle", "pylint"],
     \ }
