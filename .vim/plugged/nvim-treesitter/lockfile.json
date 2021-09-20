@@ -33,7 +33,7 @@
     "revision": "a03f1d2d1dfbf6f8e0fdca5f9ff030228241eb57"
   },
   "cuda": {
-    "revision": "98bcec43524319966aade3e1a065e7932fb39ed7"
+    "revision": "e31b6d55d7ffa55a1fb9a4623006486d2cd7bcb3"
   },
   "dart": {
     "revision": "6a25376685d1d47968c2cef06d4db8d84a70025e"
@@ -120,7 +120,7 @@
     "revision": "12ea597262125fc22fd2e91aa953ac69b19c26ca"
   },
   "kotlin": {
-    "revision": "f638a09a6db03c58e6324b1999cb59b9d17f8907"
+    "revision": "39841d5e7ec999fd80534ee806ac89446b0d6b42"
   },
   "latex": {
     "revision": "2c0d03a36ee979bc697f6a9dd119174cf0ef15e0"
