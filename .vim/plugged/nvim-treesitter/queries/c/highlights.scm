@@ -170,4 +170,17 @@
 (preproc_params
   (identifier)) @parameter
 
+[
+  "__attribute__"
+  "__cdecl"
+  "__clrcall"
+  "__stdcall"
+  "__fastcall"
+  "__thiscall"
+  "__vectorcall"
+  "_unaligned"
+  "__unaligned"
+  "__declspec"
+] @attribute
+
 (ERROR) @error
