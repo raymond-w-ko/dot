@@ -13,6 +13,6 @@ augroup plugin_rko
   " Use map <buffer> to only map dd in the quickfix window. Requires +localmap
   au FileType qf map <buffer> dd :call rko#remove_qf_item<cr>
   au FileType qf map <buffer> q :cclose<cr>
-  au BufReadPost quickfix nnoremap <buffer> <CR> :call rko#open_qf_item<cr>
+  au BufReadPost quickfix nnoremap <buffer> <CR> :call rko#open_qf_item()<cr>
 augroup END
 

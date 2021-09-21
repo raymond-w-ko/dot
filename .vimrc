@@ -1190,9 +1190,9 @@ augroup rko_vimrc
   au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
   au WinLeave * setlocal nocursorline
 
-  au CursorHold,CursorHoldI *.log :silent! checktime
+  au CursorHold,CursorHoldI * :silent! checktime
   " hack for console VIM so that check for changed files work correctly
-  au FocusGained,BufEnter,WinEnter,TabEnter *.log :silent! checktime
+  au FocusGained,BufEnter,WinEnter,TabEnter * :silent! checktime
 
   " Make sure Vim returns to the same line when you reopen a file.
   " Thanks, Amit
