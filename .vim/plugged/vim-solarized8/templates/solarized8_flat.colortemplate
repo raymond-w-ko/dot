@@ -47,7 +47,7 @@ Include: _dark_terminal.colortemplate
 ; Transparency (dark) {{{
 #if s:termtrans
   Normal             base0             none
-  CursorLine         none              none              underline s=base01
+  CursorLine         none              none              s=base01
   Terminal           fg                none
   ToolbarButton      base1             none
   ToolbarLine        none              none
@@ -158,7 +158,7 @@ WarningMsg           orange            none
 WildMenu             base00            base2             reverse
 ; }}}
 ; Other conventional groups {{{
-Comment              base01            none              italic
+Comment              base01            none
 Constant             cyan              none
 CursorIM             none              fg
 Error                red               base3             reverse
@@ -218,7 +218,7 @@ Include: _light_terminal.colortemplate
 ; Transparency (light) {{{
 #if s:termtrans
   Normal             base0             none
-  CursorLine         none              none              underline s=base01
+  CursorLine         none              none              s=base01
   Terminal           fg                none
   ToolbarButton      base1             none              bold
   ToolbarLine        none              none
@@ -238,13 +238,13 @@ Include: _light_terminal.colortemplate
     Cursor           base03            red
   #endif
   CursorLineNr       red               none              bold
-  MatchParen         orange            base02            bold,underline
+  MatchParen         orange            base02            bold
   NonText            red               none              bold
-  SpecialKey         red               none              reverse
-  SpellBad           violet            base02            t=underline,reverse g=undercurl,reverse s=red
-  SpellCap           violet            base02            t=underline,reverse g=undercurl,reverse s=red
-  SpellLocal         yellow            base02            t=underline,reverse g=undercurl,reverse s=orange
-  SpellRare          cyan              base02            t=underline,reverse g=undercurl,reverse s=orange
+  SpecialKey         red               none
+  SpellBad           violet            base02            g=undercurl s=red
+  SpellCap           violet            base02            g=undercurl s=red
+  SpellLocal         yellow            base02            g=undercurl s=orange
+  SpellRare          cyan              base02            g=undercurl s=orange
   Title              orange            none              bold
 #elseif get(g:, '@optionprefix_visibility', '') ==# 'low'
   #if get(g:, '@optionprefix_old_cursor_style', 0)
@@ -256,10 +256,10 @@ Include: _light_terminal.colortemplate
   MatchParen         orange            base02            bold
   NonText            base02            none              bold
   SpecialKey         base02            none              bold
-  SpellBad           violet            none              t=underline g=undercurl s=violet
-  SpellCap           violet            none              t=underline g=undercurl s=violet
-  SpellLocal         yellow            none              t=underline g=undercurl s=yellow
-  SpellRare          cyan              none              t=underline g=undercurl s=cyan
+  SpellBad           violet            none              g=undercurl s=violet
+  SpellCap           violet            none              g=undercurl s=violet
+  SpellLocal         yellow            none              g=undercurl s=yellow
+  SpellRare          cyan              none              g=undercurl s=cyan
   Title              base01            none              bold
 #else " normal visibility
   #if get(g:, 'solarized_old_cursor_style', 0)
@@ -271,19 +271,19 @@ Include: _light_terminal.colortemplate
   MatchParen         base3             base02            bold
   NonText            base00            none              bold
   SpecialKey         base00            base02            bold
-  SpellBad           violet            none              t=underline g=undercurl s=violet
-  SpellCap           violet            none              t=underline g=undercurl s=violet
-  SpellLocal         yellow            none              t=underline g=undercurl s=yellow
-  SpellRare          cyan              none              t=underline g=undercurl s=cyan
+  SpellBad           violet            none              g=undercurl s=violet
+  SpellCap           violet            none              g=undercurl s=violet
+  SpellLocal         yellow            none              g=undercurl s=yellow
+  SpellRare          cyan              none              g=undercurl s=cyan
   Title              orange            none              bold
 #endif
 ; }}}
 ; Diff mode (light) {{{
 #if get(g:, '@optionprefix_diffmode', '') ==# 'high'
-  DiffAdd            green             none              reverse
-  DiffChange         yellow            none              reverse
-  DiffDelete         red               none              reverse
-  DiffText           blue              none              reverse
+  DiffAdd            green             none
+  DiffChange         yellow            none
+  DiffDelete         red               none
+  DiffText           blue              none
 #elseif get(g:, '@optionprefix_diffmode', '') ==# 'low'
   DiffAdd            green             none              s=green
   DiffChange         yellow            none              s=yellow
@@ -298,15 +298,15 @@ Include: _light_terminal.colortemplate
 ; }}}
 ; Structural elements (light) {{{
 #if get(g:, '@optionprefix_statusline', '') ==# 'low'
-  StatusLine         base02            base1             bold,reverse
-  StatusLineNC       base02            base01            reverse
+  StatusLine         base02            base1             bold
+  StatusLineNC       base02            base01
   TabLineSel         base1             base02
-  NormalMode         base02            base1             bold,reverse
+  NormalMode         base02            base1             bold
 #else
-  StatusLine         base02            base2             reverse
-  StatusLineNC       base02            base1             reverse
+  StatusLine         base02            base2
+  StatusLineNC       base02            base1
   TabLineSel         base2             base02
-  NormalMode         base02            base2             reverse
+  NormalMode         base02            base2
 #endif
 ; }}}
 ; Base groups (light) {{{
@@ -315,7 +315,7 @@ Conceal              blue              none
 CursorColumn         none              base02
 Directory            blue              none
 EndOfBuffer          none              none
-ErrorMsg             red               base03            reverse
+ErrorMsg             red               base03
 FoldColumn           base0             none
 Folded               base0             none              bold s=base03
 IncSearch            orange            none              standout
@@ -327,21 +327,21 @@ PmenuSbar            none              base02
 PmenuSel             base03            base01
 PmenuThumb           none              base01
 Question             cyan              none              bold
-Search               yellow            none              reverse
+Search               yellow            none
 SignColumn           base0             none
 TabLine              base01            base02
 TabLineFill          base01            base02
 VertSplit            base01            base02
-Visual               base01            base03            reverse
-VisualNOS            none              base02            reverse
+Visual               base01            base03
+VisualNOS            none              base02
 WarningMsg           orange            none              bold
-WildMenu             base01            base03            reverse
+WildMenu             base01            base03
 ; }}}
 ; Other conventional groups {{{
-Comment              base01            none              italic
+Comment              base01            none
 Constant             cyan              none
 CursorIM             none              fg
-Error                red               base03            bold,reverse
+Error                red               base03            bold
 Identifier           blue              none
 Ignore               none              none
 PreProc              orange            none
@@ -354,10 +354,10 @@ Underlined           violet            none
 ; }}}
 ; Additional highlight groups (light) {{{
 ; Normal is defined in the "Structural elements" section
-InsertMode           base02            cyan              bold,reverse
-ReplaceMode          base02            orange            bold,reverse
-VisualMode           base02            magenta           bold,reverse
-CommandMode          base02            magenta           bold,reverse
+InsertMode           base02            cyan              bold
+ReplaceMode          base02            orange            bold
+VisualMode           base02            magenta           bold
+CommandMode          base02            magenta           bold
 ; }}}
 ; Neovim (light) {{{
 TermCursor        -> Cursor

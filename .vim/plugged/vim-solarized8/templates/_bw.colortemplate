@@ -10,20 +10,20 @@ ColorColumn          omit   omit    reverse
 Conceal              omit   omit
 Cursor               omit   omit
 CursorColumn         omit   omit    reverse
-CursorLine           omit   omit    underline
-CursorLineNr         omit   omit    reverse,italic,bold,underline
-DiffAdd              omit   omit    reverse,underline
-DiffChange           omit   omit    reverse,underline
-DiffDelete           omit   omit    reverse,underline
-DiffText             omit   omit    bold,reverse,underline
+CursorLine           omit   omit
+CursorLineNr         omit   omit    reverse
+DiffAdd              omit   omit    reverse
+DiffChange           omit   omit    reverse
+DiffDelete           omit   omit    reverse
+DiffText             omit   omit    bold,reverse
 Directory            omit   omit
 EndOfBuffer          omit   omit
-ErrorMsg             omit   omit    bold,reverse,italic
+ErrorMsg             omit   omit    bold,reverse
 FoldColumn           omit   omit    reverse
-Folded               omit   omit    italic,reverse,underline
-IncSearch            omit   omit    reverse,bold,italic
+Folded               omit   omit    reverse
+IncSearch            omit   omit    reverse,bold
 LineNr               omit   omit    reverse
-MatchParen           omit   omit    bold,underline
+MatchParen           omit   omit    bold
 ModeMsg              omit   omit
 MoreMsg              omit   omit
 NonText              omit   omit
@@ -32,17 +32,17 @@ PmenuSbar            omit   omit
 PmenuSel             omit   omit
 PmenuThumb           omit   omit
 Question             omit   omit    standout
-Search               omit   omit    underline,italic
+Search               omit   omit    
 SignColumn           omit   omit    reverse
 SpecialKey           omit   omit    bold
-SpellBad             omit   omit    underline,italic
-SpellCap             omit   omit    underline,italic
-SpellLocal           omit   omit    underline,italic
-SpellRare            omit   omit    underline,italic
+SpellBad             omit   omit    
+SpellCap             omit   omit    
+SpellLocal           omit   omit    
+SpellRare            omit   omit    
 StatusLine           omit   omit    reverse,bold
 StatusLineNC         omit   omit    reverse
-TabLine              omit   omit    reverse,underline,italic
-TabLineFill          omit   omit    reverse,underline
+TabLine              omit   omit    reverse
+TabLineFill          omit   omit    reverse
 TabLineSel           omit   omit    bold
 Title                omit   omit    bold
 VertSplit            omit   omit    reverse
@@ -51,17 +51,17 @@ VisualNOS            omit   omit
 WarningMsg           omit   omit    standout
 WildMenu             omit   omit    bold
 ; Other conventional group names (see `:help group-name`)
-Comment              omit   omit    italic
-Constant             omit   omit    bold,italic
+Comment              omit   omit
+Constant             omit   omit    bold
 Error                omit   omit    reverse
-Identifier           omit   omit    italic
+Identifier           omit   omit
 Ignore               omit   omit
-PreProc              omit   omit    italic
-Special              omit   omit    bold,italic
+PreProc              omit   omit
+Special              omit   omit    bold
 Statement            omit   omit    bold
-Todo                 omit   omit    bold,underline
+Todo                 omit   omit    bold
 Type                 omit   omit    bold
-Underlined           omit   omit    underline
+Underlined           omit   omit
 CursorIM             omit   omit
 ToolbarLine          omit   omit    reverse
 ToolbarButton        omit   omit    bold,reverse
