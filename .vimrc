@@ -92,6 +92,7 @@ if has('python3') || has('python')
 endif
 Plug 'honza/vim-snippets'
 Plug 'dense-analysis/ale'
+nnoremap <leader>n :ALENext<CR>
 Plug 'maximbaz/lightline-ale'
 Plug 'sjl/gundo.vim'
 let g:gundo_right=1
