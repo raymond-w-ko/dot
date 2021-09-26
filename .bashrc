@@ -230,7 +230,7 @@ then
   export PATH="$PATH:$HOME/android-sdk-linux/tools:$HOME/android-sdk-linux/platform-tools"
 fi
 
-alias gs='git status'
+alias gs='git status' # override ghostscript
 # alias gc='git commit -v'
 # alias gca='git commit -v -a'
 alias gcasubmodules='git commit -v -a -m "updated submodule(s)"'
@@ -246,16 +246,16 @@ alias gcfxd='git clean -fxd'
 # alias gcfxdrh='git clean -fxd && git reset --hard'
 alias gitrmmissing='git ls-files --deleted -z | xargs -0 git rm'
 
-alias hs='hg status'
-alias hm='hg merge'
-alias hu='hg update'
-alias hc='hg commit'
-alias hd='hg diff'
-alias hdw='hg diff -w'
-alias hpa='hg purge --all'
-alias hpush='hg push'
-alias hpull='hg pull'
-alias hcmergedwithupstream='hg commit -m "merged with upstream"'
+# alias hs='hg status'
+# alias hm='hg merge'
+# alias hu='hg update'
+# alias hc='hg commit'
+# alias hd='hg diff'
+# alias hdw='hg diff -w'
+# alias hpa='hg purge --all'
+# alias hpush='hg push'
+# alias hpull='hg pull'
+# alias hcmergedwithupstream='hg commit -m "merged with upstream"'
 
 alias svnlog='svn log -l 1024 -v | less'
 alias svnfixexe="find . -name '*.sh' -exec svn propset svn:executable yes '{}' \;"
