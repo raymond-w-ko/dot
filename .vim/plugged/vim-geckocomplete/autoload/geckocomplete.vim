@@ -31,7 +31,7 @@ function s:trigger_pmenu() abort
   if mode()[0] != 'i' | return | endif
 
   " always bash this, plugins like clojure-vim/clojure.vim sets this
-  " setlocal completefunc=geckocomplete#completefunc
+  setlocal completefunc=geckocomplete#completefunc
 
   " let s:pmenu_first_time = 1
 
@@ -44,10 +44,11 @@ function s:trigger_pmenu() abort
     setlocal completeopt+=noinsert
     let b:geckocomplete_buffer_setup = 1
   endif
-  " call feedkeys("\<plug>(geckocomplete)", "i")
 
-  let [findstart, completions] = Geckocomplete_get_completions()
-  call complete(findstart + 1, completions)
+  call feedkeys("\<plug>(geckocomplete)", "i")
+
+  " let [findstart, completions] = Geckocomplete_get_completions()
+  " call complete(findstart + 1, completions)
 endfunction
 
 " no neovim support
@@ -95,6 +96,10 @@ function geckocomplete#toggle_pause_completion()
     return ""
   endif
 endfunction
+
+fun! geckocomplete#unpause_completion() abort
+  let s:pause_completion = 0
+endf
 
 " The buffer number must be retrieved via VimScript, otherwise it is too late
 " to do it in the plugin.
