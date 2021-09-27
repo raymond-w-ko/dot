@@ -1,5 +1,7 @@
 # general
 .git
+/.gnupg/random_seed
+
  # this is what .git gets temporarily renamed to
 ..git
 .cpcache/
