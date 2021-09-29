@@ -1251,6 +1251,7 @@ augroup rko_vimrc
   au FileType javascript setlocal iskeyword+=$
   au FileType javascript setlocal cinoptions=g0,N-s,(0,u0,Ws,l1,j1,J1
 
+  au FileType java nnoremap <buffer> <Leader>f :call rko#format_java()<CR>
   au FileType json nnoremap <buffer> <Leader>f :call rko#format_json()<CR>
   au FileType javascript nnoremap <buffer> <Leader>f :call rko#format_js()<CR>
   au FileType javascript.jsx nnoremap <buffer> <Leader>f :call rko#format_js()<CR>
@@ -1346,3 +1347,5 @@ if exists("g:started_by_firenvim")
     au BufEnter localhost_lab*.txt setf python
   augroup END
 endif
+
+let g:ale_java_javac_classpath="/home/rko/.m2/repository/org/lmdbjava/lmdbjava/0.8.2/lmdbjava-0.8.2.jar:/home/rko/.m2/repository/org/agrona/agrona/1.12.0/agrona-1.12.0.jar"

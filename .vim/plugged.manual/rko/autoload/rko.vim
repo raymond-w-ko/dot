@@ -333,6 +333,11 @@ fun! rko#open_qf_item()
   exe "normal " . item["lnum"] . "G"
 endfun
 
+fun! rko#format_java()
+  let view = winsaveview()
+  execute "%!google-java-format --skip-removing-unused-imports -"
+  call winrestview(view)
+endf
 fun! rko#format_json()
   let view = winsaveview()
   execute "%!python -m json.tool"
