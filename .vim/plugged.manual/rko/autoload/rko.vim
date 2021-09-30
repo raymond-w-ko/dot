@@ -245,6 +245,7 @@ fun! rko#show_syntax_groups() abort
 endf
 
 fun! rko#center_cursor() abort
+  if winheight(0) < 25 | return | endif
   normal! zz
 endf
 
