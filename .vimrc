@@ -1355,3 +1355,5 @@ let g:ale_java_javac_classpath =
     \ . "/home/rko/.m2/repository/joda-time/joda-time/2.10.12/joda-time-2.10.12.jar:"
     \ . "/home/rko/.m2/repository/org/apache/commons/commons-collections4/4.4/commons-collections4-4.4.jar:"
     \ . "/home/rko/.m2/repository/org/apache/commons/commons-lang3/3.12.0/commons-lang3-3.12.0.jar:"
+let g:ale_java_javac_sourcepath =
+    \ "src/jvm"
