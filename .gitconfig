@@ -52,3 +52,5 @@
 	autoStash = true
 [submodule]
 	recurse = true
+[init]
+	defaultBranch = m
