@@ -53,6 +53,7 @@ if [[ $(uname -s) == CYGWIN* ]]; then
   prependpath "$HOME/vim/bin"
   prependpath "$HOME/nvim/bin"
 else
+  prependpath "$HOME/src/neil"
   prependpath "/opt/mono/bin"
   prependpath "/opt/aws/bin"
   prependpath "/usr/bin/core_perl"
