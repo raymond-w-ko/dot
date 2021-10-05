@@ -91,7 +91,7 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 
 # base
-plugins=(zsh_reload git gitfast mercurial lein pip svn svn-fast-info tmux screen vim-interaction cp chucknorris history-substring-search debian)
+plugins=(git gitfast mercurial lein pip svn svn-fast-info tmux screen vim-interaction cp chucknorris history-substring-search debian)
 # android development
 plugins=(${plugins} adb ant)
 if [[ $(uname -s) != CYGWIN* ]]; then
