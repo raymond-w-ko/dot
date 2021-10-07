@@ -1255,6 +1255,7 @@ augroup rko_vimrc
   au FileType json nnoremap <buffer> <Leader>f :call rko#format_json()<CR>
   au FileType javascript nnoremap <buffer> <Leader>f :call rko#format_js()<CR>
   au FileType javascript.jsx nnoremap <buffer> <Leader>f :call rko#format_js()<CR>
+  au FileType javascriptreact nnoremap <buffer> <Leader>f :call rko#format_js()<CR>
   au FileType python nnoremap <buffer> <Leader>f :call rko#format_python()<CR>
   au FileType html nnoremap <buffer> <Leader>f :call rko#format_html()<CR>
   au FileType go nnoremap <buffer> <Leader>f :call rko#format_golang()<CR>
