@@ -38,8 +38,11 @@ if has("nvim")
   Plug 'glacambre/firenvim'
 endif
 
+" themes
+Plug 'dracula/vim', { 'as': 'dracula' }
+
 " my plugins
-Plug 'raymond-w-ko/vim-solarized8'
+" Plug 'raymond-w-ko/vim-solarized8'
 " Plug 'raymond-w-ko/scrollfix'
 " let g:scrollfix=50
 Plug 'raymond-w-ko/vim-eslisp'
@@ -555,8 +558,10 @@ if !exists("g:already_set_color_scheme") && !($TERM == "linux")
   " let base16colorspace=256
   " colorscheme preto
 
-  let g:solarized_italics = 0
-  colorscheme solarized8_flat
+  " let g:solarized_italics = 0
+  " colorscheme solarized8_flat
+  
+  colorscheme dracula
 
   let g:already_set_color_scheme=1
 endif
@@ -893,7 +898,7 @@ endif
 " lightline
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:lightline = {
-    \ 'colorscheme': 'rko',
+    \ 'colorscheme': 'dracula',
     \ 'mode_map': { 'c': 'NORMAL' },
     \ 'active': {
     \   'left': [
