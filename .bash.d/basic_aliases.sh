@@ -29,13 +29,13 @@ else
 
     # fix ls colors especially for directories and files that are globally
     # readable and writeable, they are completely unreadable by default
-    if [ -r "$HOME/src/dircolors-solarized/dircolors.256dark" ]; then
-      # eval `dircolors $HOME/src/dircolors-solarized/dircolors.256dark`
-      eval `dircolors $HOME/src/dircolors-solarized/dircolors.ansi-dark`
-      export LS_COLORS="$LS_COLORS:ow=1;7;34:st=30;44:su=30;41"
-    else
-      eval `dircolors -b`
-    fi
+    # if [ -r "$HOME/src/dircolors-solarized/dircolors.ansi-dark" ]; then
+    #   eval `dircolors $HOME/src/dircolors-solarized/dircolors.ansi-dark`
+    #   export LS_COLORS="$LS_COLORS:ow=1;7;34:st=30;44:su=30;41"
+    # else
+    #   eval `dircolors -b`
+    # fi
+    eval `dircolors -b`
 fi
 
 if [[ -d $HOME/nvim ]]; then
