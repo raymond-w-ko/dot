@@ -97,6 +97,7 @@ echo
 echo "export PATH=$HOME/$BASE_SCRIPT_DIR/bin:$HOME/bin:\$PATH" > "$SCRIPT_DIR/.bash.d/add_dot_extra_paths.sh"
 
 # tmux
+touch $HOME/.tmux.local.conf
 if [[ ! -d $HOME/src/tmux ]]; then
   git clone https://github.com/tmux/tmux.git $HOME/src/tmux
 fi
