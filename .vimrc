@@ -905,9 +905,7 @@ elseif executable('ag')
   let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden -g "" ' . ignore_string
 endif
 
-if !has("python") && !has("python3")
-  echom 'In order to use pymatcher plugin, you need +python or +python3 compiled vim'
-else
+if has("python") || has("python3")
   let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 endif
 
