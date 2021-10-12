@@ -40,6 +40,14 @@ endif
 
 " themes
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'jacoborus/tender.vim'
+Plug 'romainl/Apprentice'
+Plug 'kvrohit/substrata.nvim'
+Plug 'raymond-w-ko/snow'
+Plug 'raymond-w-ko/seabird'
+Plug 'https://github.com/RRethy/nvim-base16'
+" theme utils
+Plug 'lifepillar/vim-colortemplate'
 
 " my plugins
 " Plug 'raymond-w-ko/vim-solarized8'
@@ -51,9 +59,6 @@ Plug 'raymond-w-ko/vim-lua-indent'
 Plug 'raymond-w-ko/vim-geckocomplete'
 inoremap <silent><expr><nowait> <C-s> geckocomplete#toggle_pause_completion()
 inoremap <silent><expr><nowait> <Tab> geckocomplete#completion_key()
-
-" colorscheme
-Plug 'lifepillar/vim-colortemplate'
 
 " finders
 " Plug 'ctrlpvim/ctrlp.vim'
@@ -234,10 +239,10 @@ Plug 'justinmk/vim-sneak'
 let g:sneak#label=1
 let g:sneak#s_next=1
 let g:sneak#use_ic_scs=1
-highlight Sneak guifg=magenta guibg=black ctermfg=black ctermbg=red
-highlight SneakScope guifg=black guibg=#00ff00 ctermfg=black ctermbg=green
-highlight SneakLabel guifg=magenta guibg=black ctermfg=black ctermbg=red
-highlight SneakLabelMask guifg=black guibg=black ctermfg=black ctermbg=black
+" highlight Sneak guifg=magenta guibg=black ctermfg=black ctermbg=red
+" highlight SneakScope guifg=black guibg=#00ff00 ctermfg=black ctermbg=green
+" highlight SneakLabel guifg=magenta guibg=black ctermfg=black ctermbg=red
+" highlight SneakLabelMask guifg=black guibg=black ctermfg=black ctermbg=black
 
 Plug 'justinmk/vim-gtfo'
 Plug 'justinmk/vim-printf'
@@ -326,15 +331,6 @@ if !isdirectory(&undodir)
   echoerr "'undodir' does not exists: " . &undodir
 endif
 
-if !exists("g:rko_already_setup_syntax")
-  if s:use_treesitter
-    syntax enable
-  else
-    syntax enable
-  endif
-  let g:rko_already_setup_syntax=1
-endif
-syntax conceal on
 set fileformats=unix,dos
 set autowrite
 set autowriteall
@@ -545,6 +541,15 @@ else
   let s:unix_home = expand('$HOME')
 endif
 
+if !exists("g:rko_already_setup_syntax")
+  if s:use_treesitter
+    syntax enable
+  else
+    syntax enable
+  endif
+  let g:rko_already_setup_syntax=1
+endif
+syntax conceal on
 if exists('+termguicolors')
   set termguicolors
   if !has("nvim")
@@ -561,7 +566,19 @@ if !exists("g:already_set_color_scheme") && !($TERM == "linux")
   " let g:solarized_italics = 0
   " colorscheme solarized8_flat
   
-  colorscheme dracula
+  " let g:dracula_bold=0
+  " let g:dracula_italic=0
+  " let g:dracula_underline=0
+  " let g:dracula_undercurl=0
+  " let g:dracula_inverse=1
+  " colorscheme dracula
+  
+  " colorscheme tender
+
+  " colorscheme apprentice
+
+  colorscheme petrel
+  
 
   let g:already_set_color_scheme=1
 endif
