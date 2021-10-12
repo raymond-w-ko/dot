@@ -1,18 +1,7 @@
 #!/bin/bash
-_TMUX_SHELL=zsh
-
-tmux new-session -d $_TMUX_SHELL # 1
-tmux split-window -h $_TMUX_SHELL
-
-tmux new-window $_TMUX_SHELL # 2
-tmux new-window $_TMUX_SHELL # 3
-tmux new-window $_TMUX_SHELL # 4
-tmux new-window $_TMUX_SHELL # 5
-tmux new-window $_TMUX_SHELL # 6
-tmux new-window $_TMUX_SHELL # 7
-tmux new-window $_TMUX_SHELL # 8
-tmux new-window $_TMUX_SHELL # 9
-tmux new-window $_TMUX_SHELL # 10
-
-tmux selectw -t 1
-exec tmux -2 attach-session -d
+tmux new-session -d -s dummy
+tmux new-session -d -s one /bin/cat
+tmux new-session -d -s two /bin/cat
+tmux new-session -d -s three
+tmux new-session -d -s four
+exec tmux new-session -s five
