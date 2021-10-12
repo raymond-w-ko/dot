@@ -915,7 +915,7 @@ endif
 " lightline
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:lightline = {
-    \ 'colorscheme': 'dracula',
+    \ 'colorscheme': '16color',
     \ 'mode_map': { 'c': 'NORMAL' },
     \ 'active': {
     \   'left': [
