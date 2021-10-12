@@ -196,13 +196,13 @@ fun! rko#syntax#apply_custom_highlights() abort
   hi link rkoError Define
   hi link rkoTODO LimeGreen
 
-  hi link clojureTSSymbol Keyword
-  hi link clojureTSKeywordFunction clojureTSFuncMacro
+  " hi link clojureTSSymbol Keyword
+  " hi link clojureTSKeywordFunction clojureTSFuncMacro
 
   syntax match rkoTODO /\v<TODO|TODO:|XXX|XXX:|NOTE|NOTE:|WARN|WARN:>/ containedin=ALL
   syntax match rkoError /\verror/ containedin=ALL
 
-  highlight link gitMergeConflict Error
+  " highlight link gitMergeConflict Error
   syntax match gitMergeConflict /^=======$/ containedin=ALL
   syntax match gitMergeConflict /^<<<<<<< .\+$/ containedin=ALL
   syntax match gitMergeConflict /^>>>>>>> .\+$/ containedin=ALL
