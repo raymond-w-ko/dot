@@ -24,7 +24,7 @@ require'nvim-treesitter.configs'.setup {
     lint_events = {"BufWrite", "CursorHold"},
   },
   rainbow = {
-    enable = true,
+    enable = false,
     -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
     extended_mode = true,
   }

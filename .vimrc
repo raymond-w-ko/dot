@@ -38,6 +38,9 @@ if has("nvim")
   Plug 'glacambre/firenvim'
 endif
 
+" theme utils
+Plug 'rktjmp/lush.nvim'
+Plug 'lifepillar/vim-colortemplate'
 " themes
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'jacoborus/tender.vim'
@@ -46,8 +49,7 @@ Plug 'kvrohit/substrata.nvim'
 Plug 'raymond-w-ko/snow'
 Plug 'raymond-w-ko/seabird'
 Plug 'https://github.com/RRethy/nvim-base16'
-" theme utils
-Plug 'lifepillar/vim-colortemplate'
+Plug 'https://github.com/ellisonleao/gruvbox.nvim'
 
 " my plugins
 " Plug 'raymond-w-ko/vim-solarized8'
@@ -564,7 +566,7 @@ if exists('+termguicolors')
   endif
 endif
 if !exists("g:already_set_color_scheme") && !($TERM == "linux")
-  set background=dark
+  " set background=dark
 
   " let base16colorspace=256
   " colorscheme preto
@@ -583,7 +585,11 @@ if !exists("g:already_set_color_scheme") && !($TERM == "linux")
 
   " colorscheme apprentice
 
-  colorscheme petrel
+  " colorscheme petrel
+  
+  set background=light
+  let g:gruvbox_contrast_light="soft"
+  colorscheme gruvbox
   
 
   let g:already_set_color_scheme=1
@@ -865,7 +871,7 @@ nnoremap <leader>tt :call rko#create_vsplits()<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " matchparen
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:loaded_matchparen = 1
+" let g:loaded_matchparen = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " a.vim
@@ -919,7 +925,7 @@ endif
 " lightline
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:lightline = {
-    \ 'colorscheme': 'rko',
+    \ 'colorscheme': 'gruvbox',
     \ 'mode_map': { 'c': 'NORMAL' },
     \ 'active': {
     \   'left': [
