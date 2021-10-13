@@ -78,9 +78,28 @@ let g:fzf_action = {
     \ 'ctrl-x': 'split',
     \ 'ctrl-v': 'vsplit' }
 let $FZF_DEFAULT_OPTS =
-    \ '--bind ctrl-a:select-all ' .
-    \ '--color dark,hl:#00ff00,hl+:#00ff00,fg+:235,bg+:#000000,fg+:#bbbbbb ' .
-    \ '--color info:6,prompt:3,spinner:9,pointer:46,marker:46,header:46'
+    \ '--bind ctrl-a:select-all '
+    \ . "--color=bg+:#EBDBB2,bg:#F2E5BB,spinner:#9E0005,hl:#9E0005,fg:#3B3735,header:#918273,info:#427B58,pointer:#9E0005,marker:#9E0005,fg+:#3B3735,preview-bg:#D4C3A0,prompt:#9E0005,hl+:#9E0005"
+
+    " \ '--color dark,hl:#00ff00,hl+:#00ff00,fg+:235,bg+:#000000,fg+:#bbbbbb ' .
+    " \ '--color info:6,prompt:3,spinner:9,pointer:46,marker:46,header:46'
+
+let g:fzf_colors =
+\ { 'fg':         ['fg', 'Normal'],
+  \ 'bg':         ['bg', 'Normal'],
+  \ 'preview-bg': ['bg', 'NormalFloat'],
+  \ 'hl':         ['fg', 'Statement'],
+  \ 'fg+':        ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':        ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':        ['fg', 'Statement'],
+  \ 'info':       ['fg', 'PreProc'],
+  \ 'border':     ['fg', 'Ignore'],
+  \ 'prompt':     ['fg', 'Conditional'],
+  \ 'pointer':    ['fg', 'Exception'],
+  \ 'marker':     ['fg', 'Keyword'],
+  \ 'spinner':    ['fg', 'Label'],
+  \ 'header':     ['fg', 'Comment'] }
+" call append('$', printf('export FZF_DEFAULT_OPTS="%s"', matchstr(fzf#wrap().options, "--color[^']*")))
 
 fun! s:rebind_rg_cmd() abort
   command! -buffer -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=never --smart-case -- ".shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
