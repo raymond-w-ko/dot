@@ -95,6 +95,12 @@ Plug 'qpkorr/vim-bufkill'
 let g:BufKillCreateMappings = 0
 Plug 'Konfekt/FastFold'
 Plug 'itchyny/lightline.vim'
+command! LightlineReload call LightlineReload()
+function! LightlineReload()
+  call lightline#init()
+  call lightline#colorscheme()
+  call lightline#update()
+endfunction
 if has('python3') || has('python')
   Plug 'SirVer/ultisnips'
 endif
@@ -913,7 +919,7 @@ endif
 " lightline
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:lightline = {
-    \ 'colorscheme': '16color',
+    \ 'colorscheme': 'rko',
     \ 'mode_map': { 'c': 'NORMAL' },
     \ 'active': {
     \   'left': [
