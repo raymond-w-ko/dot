@@ -137,6 +137,7 @@ fi
 if [[ -x $(command -v fzf) ]]; then
   alias f="fzf"
 fi
+export BAT_THEME=gruvbox-light
 if [[ -x $(command -v fdfind) ]]; then
   export FZF_DEFAULT_OPTS="--no-bold"
   export FZF_DEFAULT_COMMAND='fdfind --type f --hidden --exclude .git --exclude .fzf --exclude .svn'
