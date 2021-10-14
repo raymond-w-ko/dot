@@ -42,14 +42,16 @@ endif
 Plug 'rktjmp/lush.nvim'
 Plug 'lifepillar/vim-colortemplate'
 " themes
+if has("nvim")
+  Plug 'kvrohit/substrata.nvim'
+  Plug 'https://github.com/RRethy/nvim-base16'
+  Plug 'https://github.com/ellisonleao/gruvbox.nvim'
+endif
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'jacoborus/tender.vim'
 Plug 'romainl/Apprentice'
-Plug 'kvrohit/substrata.nvim'
 Plug 'raymond-w-ko/snow'
 Plug 'raymond-w-ko/seabird'
-Plug 'https://github.com/RRethy/nvim-base16'
-Plug 'https://github.com/ellisonleao/gruvbox.nvim'
 
 " my plugins
 " Plug 'raymond-w-ko/vim-solarized8'
