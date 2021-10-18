@@ -21,7 +21,7 @@
             (-?> (. opts :mod) (safe-require-plugin-config))
             (use (a.assoc opts 1 name)))))))
   nil)
-
+;;
 (use
   ; plugin manager
   :wbthomason/packer.nvim {}
@@ -48,7 +48,7 @@
   :tpope/vim-sexp-mappings-for-regular-people {}
 
   :tpope/vim-fugitive  {:mod :fugitive}
-  :sunjon/Shade.nvim {:mod :shade}
+  ;:sunjon/Shade.nvim {:mod :shade}
   :norcalli/nvim-colorizer.lua {:mod :colorizer}
   :famiu/bufdelete.nvim {:mod :bufdelete}
   :ggandor/lightspeed.nvim {:mod :lightspeed}
