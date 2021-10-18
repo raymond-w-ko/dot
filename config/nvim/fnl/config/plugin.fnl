@@ -23,13 +23,33 @@
   nil)
 
 (use
- ; plugin manager
- :wbthomason/packer.nvim {}
- ; nvim config and plugins in Fennel
- :Olical/aniseed {:branch :develop}
- :Olical/conjure {:branch :master
-                  :mod :conjure}
+  ; plugin manager
+  :wbthomason/packer.nvim {}
+  ; nvim config and plugins in Fennel
+  :Olical/aniseed {:branch :develop}
+  :Olical/conjure {:branch :master
+                   :mod :conjure}
 
- :ellisonleao/gruvbox.nvim {:requires [:rktjmp/lush.nvim]
-                            :mod :theme}
- )
+  :ellisonleao/gruvbox.nvim {:requires [:rktjmp/lush.nvim]
+                             :mod :theme}
+  :kana/vim-arpeggio {:mod :arpeggio}
+  :nvim-treesitter/nvim-treesitter {:run ":TSUpdate"
+                                    :mod :treesitter}
+  :nvim-treesitter/nvim-treesitter-textobjects {}
+  :neovim/nvim-lspconfig  {:mod :lspconfig}
+
+  :nvim-telescope/telescope.nvim {:requires [:nvim-lua/popup.nvim
+                                             :nvim-lua/plenary.nvim]
+                                  :mod :telescope}
+  :gennaro-tedesco/nvim-peekup {:mod :peekup}
+  :tpope/vim-repeat {}
+  :tpope/vim-surround {}
+  :guns/vim-sexp {:mod :sexp}
+  :tpope/vim-sexp-mappings-for-regular-people {}
+
+  :tpope/vim-fugitive  {:mod fugitive}
+  :sunjon/Shade.nvim {:mod :shade}
+  :norcalli/nvim-colorizer.lua {:mod :colorizer}
+
+  :roxma/vim-tmux-clipboard {}
+  :christoomey/vim-tmux-navigator {:mod :tmux-navigator})
