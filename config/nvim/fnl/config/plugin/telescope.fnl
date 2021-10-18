@@ -6,3 +6,4 @@
 
 (nvim.set_keymap :n :<C-p> ":lua require('telescope.builtin').find_files()<CR>" {:noremap true})
 (nvim.set_keymap :n :<leader>b ":lua require('telescope.builtin').buffers()<CR>" {:noremap true})
+(nvim.set_keymap :n :<leader>fg ":lua require('telescope.builtin').live_grep()<CR>" {:noremap true})

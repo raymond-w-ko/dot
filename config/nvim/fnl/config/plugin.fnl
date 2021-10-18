@@ -47,9 +47,11 @@
   :guns/vim-sexp {:mod :sexp}
   :tpope/vim-sexp-mappings-for-regular-people {}
 
-  :tpope/vim-fugitive  {:mod fugitive}
+  :tpope/vim-fugitive  {:mod :fugitive}
   :sunjon/Shade.nvim {:mod :shade}
   :norcalli/nvim-colorizer.lua {:mod :colorizer}
+  :famiu/bufdelete.nvim {:mod :bufdelete}
+  :ggandor/lightspeed.nvim {:mod :lightspeed}
 
   :roxma/vim-tmux-clipboard {}
   :christoomey/vim-tmux-navigator {:mod :tmux-navigator})
