@@ -734,14 +734,14 @@ mask {
 
 @media (device-radius: 50%) {
 	.round-display-1 {
-	  shape-inside: auto;
-	  border-boundary: auto;
-	  polar-angle: auto;
-	  polar-distance: auto;
-	  display: outside-shape;
-	  display: shape-box;
-	  display: parent;
-	  display: polar;
+		shape-inside: auto;
+		border-boundary: auto;
+		polar-angle: auto;
+		polar-distance: auto;
+		display: outside-shape;
+		display: shape-box;
+		display: parent;
+		display: polar;
 	}
 }
 
@@ -767,7 +767,7 @@ mask {
 
 @scope .scoping-1 {
 	div {
-	  display: auto;
+		display: auto;
 	}
 }
 
@@ -853,10 +853,6 @@ mask {
 .selectors-4:paused,
 .selectors-4:has(> img),
 .selectors-4:where(:not(:hover)) {
-	display: auto;
-}
-
-.selectors-nonelement-1::attr(title) {
 	display: auto;
 }
 
@@ -1174,8 +1170,12 @@ view {
 .values-4 {
 	display: 1vi;
 	display: 1vb;
-	display: 1ic;
+	display: 1rex;
 	display: 1cap;
+	display: 1rcap;
+	display: 1rch;
+	display: 1ic;
+	display: 1ric;
 	display: 1lh;
 	display: 1rlh;
 	display: 1svh;
