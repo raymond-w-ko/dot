@@ -5,5 +5,5 @@
 
 (set nvim.g.conjure#client#fennel#aniseed#aniseed_module_prefix "aniseed.") ; attempt to index global 'nvim' (a nil value)
 
-(set nvim.g.conjure#client#conjure#nrepl#auto_reuquire false)
+(set nvim.g.conjure#client#conjure#nrepl#auto_require false)
 (set nvim.g.conjure#client#conjure#nrepl#connection#auto_repl#enabled false)

@@ -32,6 +32,7 @@
 
   :ellisonleao/gruvbox.nvim {:requires [:rktjmp/lush.nvim]
                              :mod :theme}
+  :hoob3rt/lualine.nvim {:mod :lualine}
   :kana/vim-arpeggio {:mod :arpeggio}
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate"
                                     :mod :treesitter}
@@ -52,6 +53,9 @@
   :norcalli/nvim-colorizer.lua {:mod :colorizer}
   :famiu/bufdelete.nvim {:mod :bufdelete}
   :ggandor/lightspeed.nvim {:mod :lightspeed}
+  :kevinhwang91/nvim-hlslens {:mod :hlslens}
+  :rmagatti/auto-session {}
+  :numToStr/Comment.nvim {:mod :comment}
 
   :roxma/vim-tmux-clipboard {}
   :christoomey/vim-tmux-navigator {:mod :tmux-navigator})

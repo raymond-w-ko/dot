@@ -6,14 +6,19 @@
 (set nvim.g.mapleader " ")
 (set nvim.g.maplocalleader ",")
 
-(nvim.ex.set "undofile")
-(nvim.ex.set "splitbelow")
-(nvim.ex.set "splitright")
+(let [options ["undofile"
+               "splitbelow" "splitright"
+               "relativenumber"]]
+  (each [i x (ipairs options)]
+    (nvim.ex.set x)))
 
 (let [options
       {:completeopt "menu,menuone,noselect,noinsert"
        :smartcase true
-       :ignorecase true}]
+       :ignorecase true
+       :sessionoptions "blank,buffers,curdir,folds,help,tabpages,winsize,resize,winpos,terminal"
+       :signcolumn "number"
+       :pastetoggle "<f9>"}]
   (each [k v (pairs options)]
     (core.assoc nvim.o k v)))
 
