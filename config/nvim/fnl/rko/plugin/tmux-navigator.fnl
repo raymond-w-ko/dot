@@ -1,4 +1,4 @@
-(module config.plugin.tmux-navigator
+(module rko.plugin.tmux-navigator
   {autoload {nvim aniseed.nvim}})
 
 (set nvim.g.tmux_navigator_no_mappings 1)

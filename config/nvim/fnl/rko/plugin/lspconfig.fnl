@@ -1,4 +1,4 @@
-(module config.plugin.lspconfig
+(module rko.plugin.lspconfig
   {autoload {nvim aniseed.nvim
              lspc lspconfig}})
 

@@ -1,4 +1,4 @@
-(module config.plugin.bufdelete
+(module rko.plugin.bufdelete
   {autoload {nvim aniseed.nvim
              core aniseed.core}})
 

@@ -1,4 +1,4 @@
-(module config.plugin.arpeggio
+(module rko.plugin.arpeggio
   {autoload {nvim aniseed.nvim}})
 
 (set nvim.g.arpeggio_timeoutlen 50)

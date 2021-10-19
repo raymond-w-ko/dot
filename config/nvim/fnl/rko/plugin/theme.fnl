@@ -1,4 +1,4 @@
-(module config.plugin.theme
+(module rko.plugin.theme
   {autoload {core aniseed.core
              nvim aniseed.nvim}})
 

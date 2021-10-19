@@ -1,4 +1,4 @@
-(module config.init
+(module rko.init
   {autoload {core aniseed.core
              nvim aniseed.nvim
              nu aniseed.nvim.util
@@ -29,7 +29,7 @@
 (nvim.set_keymap :n :<leader><leader> "<c-^>" {})
 (nvim.set_keymap :n :<leader>l ":nohlsearch<cr>" {})
 
-(require :config.plugin)
-(require :config.fns)
+(require :rko.plugin)
+(require :rko.fns)
 
 (nvim.set_keymap :n :<leader>tt ":call Rko_create_tab_splits()<cr>" {})

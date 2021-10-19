@@ -1,12 +1,12 @@
-(module config.plugin
+(module rko.plugin
   {autoload {nvim aniseed.nvim
              a aniseed.core
              packer packer}})
 
 (defn- safe-require-plugin-config [name]
-  (let [(ok? val-or-err) (pcall require (.. :config.plugin. name))]
+  (let [(ok? val-or-err) (pcall require (.. :rko.plugin. name))]
     (when (not ok?)
-      (print (.. "config error: " val-or-err)))))
+      (print (.. "plugin on load mod error: " val-or-err)))))
 
 (defn- use [...]
   "Iterates through the arguments as pairs and calls packer's use function for
@@ -40,7 +40,7 @@
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate"
                                     :mod :treesitter}
   :nvim-treesitter/nvim-treesitter-textobjects {}
-  :neovim/nvim-lspconfig  {:mod :lspconfig}
+  :neovim/nvim-lspconfig {:mod :lspconfig}
 
   :nvim-telescope/telescope.nvim {:requires [:nvim-lua/popup.nvim
                                              :nvim-lua/plenary.nvim]

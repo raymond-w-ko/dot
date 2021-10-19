@@ -1,4 +1,4 @@
-(module config.plugin.lightspeed
+(module rko.plugin.lightspeed
   {autoload {nvim aniseed.nvim
              core aniseed.core
              lightspeed lightspeed}})

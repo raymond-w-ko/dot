@@ -1,4 +1,4 @@
-(module config.plugin.lualine
+(module rko.plugin.lualine
   {autoload {nvim aniseed.nvim
              core aniseed.core
              lualine lualine}})

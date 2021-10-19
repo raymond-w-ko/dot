@@ -20,7 +20,7 @@ tags
 /.vim/plugged/omegacomplete.vim/python/omegacomplete/core/all.cpp
 # neovim
 /config/nvim/plugin/packer_compiled.lua
-/config/nvim/lua/config/*
+/config/nvim/lua/rko/*
 
 # emacs
 .#.*

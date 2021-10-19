@@ -1,4 +1,4 @@
-(module config.plugin.telescope
+(module rko.plugin.telescope
   {autoload {nvim aniseed.nvim
              telescope telescope}})
 (telescope.setup {:defaults {:file_ignore_patterns ["node_modules"]}

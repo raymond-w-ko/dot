@@ -18,6 +18,6 @@ ensure("wbthomason", "packer.nvim")
 ensure("Olical", "aniseed")
 
 vim.g["aniseed#env"] = {
-  module = "config.init",
+  module = "rko.init",
   compile = true,
 }

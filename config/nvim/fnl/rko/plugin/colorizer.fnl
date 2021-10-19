@@ -1,4 +1,4 @@
-(module config.plugin.colorizer
+(module rko.plugin.colorizer
   {autoload {nvim aniseed.nvim
              colorizer colorizer}})
 

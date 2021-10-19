@@ -1,4 +1,4 @@
-(module config.plugin.shade
+(module rko.plugin.shade
   {autoload {nvim aniseed.nvim
              shade shade}})
 

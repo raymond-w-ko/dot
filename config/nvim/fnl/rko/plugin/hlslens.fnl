@@ -1,4 +1,4 @@
-(module config.plugin.hlslens
+(module rko.plugin.hlslens
   {autoload {nvim aniseed.nvim
              core aniseed.core}})
 

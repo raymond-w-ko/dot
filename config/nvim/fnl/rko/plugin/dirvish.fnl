@@ -1,4 +1,4 @@
-(module config.plugin.dirvish
+(module rko.plugin.dirvish
   {autoload {nvim aniseed.nvim}})
 
 (set nvim.g.dirvish_mode 1)
