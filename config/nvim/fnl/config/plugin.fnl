@@ -30,10 +30,13 @@
   :Olical/conjure {:branch :master
                    :mod :conjure}
 
+  ;; vim compatible
+  :kana/vim-arpeggio {:mod :arpeggio}
+  :justinmk/vim-dirvish {:mod :dirvish}
+
   :ellisonleao/gruvbox.nvim {:requires [:rktjmp/lush.nvim]
                              :mod :theme}
   :hoob3rt/lualine.nvim {:mod :lualine}
-  :kana/vim-arpeggio {:mod :arpeggio}
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate"
                                     :mod :treesitter}
   :nvim-treesitter/nvim-treesitter-textobjects {}

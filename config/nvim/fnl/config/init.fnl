@@ -1,6 +1,7 @@
 (module config.init
   {autoload {core aniseed.core
              nvim aniseed.nvim
+             nu aniseed.nvim.util
              str aniseed.string}})
 
 (set nvim.g.mapleader " ")
@@ -29,3 +30,6 @@
 (nvim.set_keymap :n :<leader>l ":nohlsearch<cr>" {})
 
 (require :config.plugin)
+(require :config.fns)
+
+(nvim.set_keymap :n :<leader>tt ":call Rko_create_tab_splits()<cr>" {})
