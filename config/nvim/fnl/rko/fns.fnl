@@ -5,8 +5,11 @@
              str aniseed.string}})
 
 (defn create-vsplits []
-  (let [num-tabs (length (nvim.list_tabpages))]
-    (when (<= 1 num-tabs)
+  (let [num-tabs (length (nvim.list_tabpages))
+        num-wins (length (nvim.list_wins))]
+    (nvim.echo num-wins)
+    (when (or (< 1 num-tabs)
+              (< 1 num-wins))
       (nvim.ex.tabnew)))
   
   (let [num-splits (-> nvim.o.columns

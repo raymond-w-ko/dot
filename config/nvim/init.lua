@@ -4,6 +4,9 @@ local fmt = string.format
 local fn = vim.fn
 local cmd = vim.api.nvim_command
 
+-- must be disabled early on
+vim.g["loaded_matchparen"] = 1
+
 local pack_path = vim.fn.stdpath("data") .. "/site/pack"
 
 function ensure(user, repo)

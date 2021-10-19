@@ -59,6 +59,8 @@
   :kevinhwang91/nvim-hlslens {:mod :hlslens}
   :rmagatti/auto-session {}
   :numToStr/Comment.nvim {:mod :comment}
+  :ms-jpq/coq_nvim {:branch "coq"}
+  :ms-jpq/coq.artifacts {:branch "artifacts"}
 
   :roxma/vim-tmux-clipboard {}
   :christoomey/vim-tmux-navigator {:mod :tmux-navigator})
