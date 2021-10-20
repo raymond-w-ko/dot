@@ -48,19 +48,24 @@
   :gennaro-tedesco/nvim-peekup {:mod :peekup}
   :tpope/vim-repeat {}
   :tpope/vim-surround {}
+  :tpope/vim-obsession {}
   :guns/vim-sexp {:mod :sexp}
   :tpope/vim-sexp-mappings-for-regular-people {}
 
   :tpope/vim-fugitive  {:mod :fugitive}
-  ;:sunjon/Shade.nvim {:mod :shade}
   :norcalli/nvim-colorizer.lua {:mod :colorizer}
   :famiu/bufdelete.nvim {:mod :bufdelete}
   :ggandor/lightspeed.nvim {:mod :lightspeed}
   :kevinhwang91/nvim-hlslens {:mod :hlslens}
-  :rmagatti/auto-session {}
   :numToStr/Comment.nvim {:mod :comment}
   :ms-jpq/coq_nvim {:branch "coq"}
   :ms-jpq/coq.artifacts {:branch "artifacts"}
+
+  :tpope/vim-obsession {}
+
+  ;; broken
+  ; :sunjon/Shade.nvim {:mod :shade}
+  ; :rmagatti/auto-session {}
 
   :roxma/vim-tmux-clipboard {}
   :christoomey/vim-tmux-navigator {:mod :tmux-navigator})

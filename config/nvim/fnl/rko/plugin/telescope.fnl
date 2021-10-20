@@ -1,9 +1,23 @@
 (module rko.plugin.telescope
   {autoload {nvim aniseed.nvim
-             telescope telescope}})
-(telescope.setup {:defaults {:file_ignore_patterns ["node_modules"]}
-                  :pickers {:find_files {:find_command ["rg" "--files" "--iglob" "!.git" "--hidden"]}}})
+             nu aniseed.nvim.util
+             telescope telescope
+             tb telescope.builtin}})
 
-(nvim.set_keymap :n :<C-p> ":lua require('telescope.builtin').find_files()<CR>" {:noremap true})
-(nvim.set_keymap :n :<leader>b ":lua require('telescope.builtin').buffers()<CR>" {:noremap true})
-(nvim.set_keymap :n :<leader>fg ":lua require('telescope.builtin').live_grep()<CR>" {:noremap true})
+(telescope.setup
+  {:defaults {:file_ignore_patterns ["node_modules"
+                                     "package-lock.json"]}
+   :pickers {:find_files {:find_command ["rg" "--files" "--iglob" "!.git" "--hidden"]}}})
+
+(defn live-grep []
+  (tb.live_grep {:additional_args (fn []
+                                    ["-g" "!package-lock.json"
+                                     "-g" "!*.min.js"
+                                     "-g" "!*.map"])}))
+(nu.fn-bridge :Rko_telescope_live_grep :rko.plugin.telescope :live-grep)
+
+(defn- bind [x y]
+  (nvim.set_keymap :n x y {:noremap true}))
+(bind :<C-p> ":lua require('telescope.builtin').find_files()<CR>")
+(bind :<leader>b ":lua require('telescope.builtin').buffers()<CR>")
+(bind :<leader>r ":call Rko_telescope_live_grep()<CR>")

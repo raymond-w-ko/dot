@@ -8,6 +8,12 @@
     ""
     "[LSP]"))
 
+(def diagnostics
+  {1 :diagnostics
+   :sections [:error :warn :info :hint]
+   :sources [:nvim_lsp]
+   :symbols {:error "E" :warn "W" :info "I" :hint "H"}})
+
 (lualine.setup
   {:options {:theme "gruvbox_light"
              :icons_enabled true}
@@ -17,11 +23,16 @@
               :lualine_c [["FugitiveHead"]
                           {1 :filename
                            :file_status true :path 1}]
-              :lualine_x [{1 :diagnostics
-                           :sections [:error :warn :info :hint]
-                           :sources [:nvim_lsp]}
+              :lualine_x [diagnostics
                           [lsp-connection]
                           :location
                           :filetype]
               :lualine_y [:encoding]
-              :lualine_z []}})
+              :lualine_z []}
+   :inactive_sections {:lualine_a []
+                       :lualine_b []
+                       :lualine_c [{1 :filename
+                                    :path 1}]
+                       :lualine_x []
+                       :lualine_y []
+                       :lualine_z []}})

@@ -22,7 +22,7 @@
        :showtabline 2
        :sessionoptions "blank,buffers,curdir,folds,help,tabpages,winsize,resize,winpos,terminal"
        :signcolumn "number"
-       :clipboard "unnamedplus"
+       :clipboard ""
        :pastetoggle "<f9>"}]
   (each [k v (pairs options)]
     (core.assoc nvim.o k v)))
@@ -34,6 +34,8 @@
 (nvim.set_keymap :n :<leader>l ":nohlsearch<cr>" {})
 (nvim.set_keymap :n :<tab> ":tabprev<cr>" {})
 (nvim.set_keymap :n :\ ":tabnext<cr>" {})
+(nvim.set_keymap :n :<S-Left> "<C-w>R" {})
+(nvim.set_keymap :n :<S-Right> "<C-w>r" {})
 
 (require :rko.plugin)
 (require :rko.fns)
