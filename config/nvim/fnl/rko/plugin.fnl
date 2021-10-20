@@ -21,7 +21,7 @@
             (-?> (. opts :mod) (safe-require-plugin-config))
             (use (a.assoc opts 1 name)))))))
   nil)
-;;
+
 (use
   ; plugin manager
   :wbthomason/packer.nvim {}
@@ -40,11 +40,12 @@
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate"
                                     :mod :treesitter}
   :nvim-treesitter/nvim-treesitter-textobjects {}
-  :neovim/nvim-lspconfig {:mod :lspconfig}
 
+  :kyazdani42/nvim-web-devicons {}
   :nvim-telescope/telescope.nvim {:requires [:nvim-lua/popup.nvim
                                              :nvim-lua/plenary.nvim]
                                   :mod :telescope}
+  :folke/trouble.nvim {:mod :trouble}
   :gennaro-tedesco/nvim-peekup {:mod :peekup}
   :tpope/vim-repeat {}
   :tpope/vim-surround {}
@@ -56,12 +57,15 @@
   :norcalli/nvim-colorizer.lua {:mod :colorizer}
   :famiu/bufdelete.nvim {:mod :bufdelete}
   :ggandor/lightspeed.nvim {:mod :lightspeed}
-  :kevinhwang91/nvim-hlslens {:mod :hlslens}
+  :rktjmp/highlight-current-n.nvim {:mod :highlight}
+  :yamatsum/nvim-cursorline {:mod :cursorline}
   :numToStr/Comment.nvim {:mod :comment}
   :ms-jpq/coq_nvim {:branch "coq"}
   :ms-jpq/coq.artifacts {:branch "artifacts"}
+  :neovim/nvim-lspconfig {:mod :lspconfig}
 
-  :tpope/vim-obsession {}
+  ;; distracting
+  ; :kevinhwang91/nvim-hlslens {:mod :hlslens}
 
   ;; broken
   ; :sunjon/Shade.nvim {:mod :shade}

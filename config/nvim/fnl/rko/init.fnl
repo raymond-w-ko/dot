@@ -31,7 +31,7 @@
 (nvim.set_keymap :n :L "g_" {})
 (nvim.set_keymap :n :<cr> ":w<cr>" {})
 (nvim.set_keymap :n :<leader><leader> "<c-^>" {})
-(nvim.set_keymap :n :<leader>l ":nohlsearch<cr>" {})
+; (nvim.set_keymap :n :<leader>l ":nohlsearch<cr>" {})
 (nvim.set_keymap :n :<tab> ":tabprev<cr>" {})
 (nvim.set_keymap :n :\ ":tabnext<cr>" {})
 (nvim.set_keymap :n :<S-Left> "<C-w>R" {})

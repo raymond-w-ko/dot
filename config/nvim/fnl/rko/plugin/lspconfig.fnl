@@ -1,6 +1,7 @@
 (module rko.plugin.lspconfig
   {autoload {nvim aniseed.nvim
-             lspc lspconfig}})
+             lspc lspconfig
+             coq coq}})
 
 (let [handlers
       {"textDocument/publishDiagnostics"
@@ -25,6 +26,7 @@
         (do
           (nvim.buf_set_keymap bufnr :n :gd "<Cmd>lua vim.lsp.buf.definition()<CR>" {:noremap true})
           (nvim.buf_set_keymap bufnr :n :<leader>f "<Cmd>lua vim.lsp.buf.formatting()<CR>" {:noremap true})))]
-  (lspc.clojure_lsp.setup {:on_attach on_attach
-                           :handlers handlers
-                           :capabilities capabilities}))
+  (lspc.clojure_lsp.setup (-> {:on_attach on_attach
+                               :handlers handlers
+                               :capabilities capabilities}
+                              (coq.lsp_ensure_capabilities))))
