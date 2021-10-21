@@ -3,11 +3,11 @@ export LANG=en_US.UTF-8
 # If not running interactively, don't do anything
 [[ "$-" != *i* ]] && return
 
-if hash zsh 2>/dev/null; then
-  if [[ -n $BASH ]]; then
-    exec zsh
-  fi
-fi
+# if hash zsh 2>/dev/null; then
+#   if [[ -n $BASH ]]; then
+#     exec zsh
+#   fi
+# fi
 
 if [[ "$SHELL" == bash ]]; then
   # attempts to correct bad "cd" target
