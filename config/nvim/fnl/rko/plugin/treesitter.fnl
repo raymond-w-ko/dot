@@ -1,6 +1,8 @@
 (module rko.plugin.treesitter
   {autoload {treesitter nvim-treesitter.configs}})
 
-(treesitter.setup {:highlight {:enable true}
-                   :indent  {:enable true}
-                   :ensure_installed  "maintained"})
+(treesitter.setup
+  {:ensure_installed "maintained"
+   :highlight {:enable true
+               :disable ["scss"]} 
+   :indent  {:enable true}})
