@@ -8,10 +8,11 @@
 (set nvim.g.maplocalleader ",")
 (set nvim.g.loaded_matchparen 1)
 
-(let [options ["undofile"
+(let [options ["undofile" "noswapfile"
                "splitbelow" "splitright"
                "autowrite" "autowriteall"
-               "relativenumber"]]
+               "relativenumber"
+               "noemoji"]]
   (each [i x (ipairs options)]
     (nvim.ex.set x)))
 
@@ -20,6 +21,10 @@
        :smartcase true
        :ignorecase true
        :showtabline 2
+       :expandtab true
+       :shiftwidth 2
+       :tabstop 2
+       :softtabstop 2
        :sessionoptions "blank,buffers,curdir,folds,help,tabpages,winsize,resize,winpos,terminal"
        :signcolumn "number"
        :clipboard ""

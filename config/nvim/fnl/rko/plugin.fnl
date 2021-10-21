@@ -33,6 +33,7 @@
   ;; vim compatible
   :kana/vim-arpeggio {:mod :arpeggio}
   :justinmk/vim-dirvish {:mod :dirvish}
+  :raymond-w-ko/vim-asterisk {:mod :asterisk}
 
   :ellisonleao/gruvbox.nvim {:requires [:rktjmp/lush.nvim]
                              :mod :theme}
@@ -50,19 +51,25 @@
   :tpope/vim-repeat {}
   :tpope/vim-surround {}
   :tpope/vim-obsession {}
-  :guns/vim-sexp {:mod :sexp}
-  :tpope/vim-sexp-mappings-for-regular-people {}
+  ;; lisp
+  ; :guns/vim-sexp {:mod :sexp}
+  ; :tpope/vim-sexp-mappings-for-regular-people {}
+  ; :gpanders/nvim-parinfer {}
+  :eraserhd/parinfer-rust {}
 
   :tpope/vim-fugitive  {:mod :fugitive}
   :norcalli/nvim-colorizer.lua {:mod :colorizer}
   :famiu/bufdelete.nvim {:mod :bufdelete}
   :ggandor/lightspeed.nvim {:mod :lightspeed}
-  :rktjmp/highlight-current-n.nvim {:mod :highlight}
   :yamatsum/nvim-cursorline {:mod :cursorline}
   :numToStr/Comment.nvim {:mod :comment}
-  :ms-jpq/coq_nvim {:branch "coq"}
+
+  :ms-jpq/coq_nvim {:branch "coq" :mod :coq}
   :ms-jpq/coq.artifacts {:branch "artifacts"}
   :neovim/nvim-lspconfig {:mod :lspconfig}
+
+  ;; insufficient
+  ; :rktjmp/highlight-current-n.nvim {:mod :highlight}
 
   ;; distracting
   ; :kevinhwang91/nvim-hlslens {:mod :hlslens}
