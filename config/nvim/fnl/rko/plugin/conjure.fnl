@@ -1,8 +1,6 @@
 (module rko.plugin.conjure
   {autoload {nvim aniseed.nvim}})
 
-(set nvim.g.conjure#mapping#doc_word "K")
-
 (set nvim.g.conjure#client#fennel#aniseed#aniseed_module_prefix
      "aniseed.")
 
