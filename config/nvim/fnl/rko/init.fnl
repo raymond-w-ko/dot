@@ -2,7 +2,8 @@
   {autoload {core aniseed.core
              nvim aniseed.nvim
              nu aniseed.nvim.util
-             str aniseed.string}})
+             str aniseed.string
+             utils rko.utils}})
 
 (set nvim.g.mapleader " ")
 (set nvim.g.maplocalleader ",")
@@ -18,6 +19,7 @@
 
 (let [options
       {:completeopt "menu,menuone,noselect,noinsert"
+       :wildmode "longest:full"
        :smartcase true
        :ignorecase true
        :showtabline 2
@@ -41,6 +43,21 @@
 (nvim.set_keymap :n :\ ":tabnext<cr>" {})
 (nvim.set_keymap :n :<S-Left> "<C-w>R" {})
 (nvim.set_keymap :n :<S-Right> "<C-w>r" {})
+
+(let [text-objects [[:r "["]
+                    [:f "("]
+                    [:c "{"]
+                    [:q "\""]
+                    [:s "\""]]]
+  (each [i [a b] (ipairs text-objects)]
+    (nvim.set_keymap :o (.. "i" a) (.. "i" b) {:noremap true})
+    (nvim.set_keymap :o (.. "a" a) (.. "a" b) {:noremap true})))
+
+(utils.multi-line-nvim-cmd
+  "augroup rko_init
+  au!
+  au CursorHold * checktime
+  augroup END")
 
 (require :rko.plugin)
 (require :rko.fns)
