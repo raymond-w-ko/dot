@@ -46,6 +46,7 @@
   :nvim-telescope/telescope.nvim {:requires [:nvim-lua/popup.nvim
                                              :nvim-lua/plenary.nvim]
                                   :mod :telescope}
+  :nvim-telescope/telescope-fzf-native.nvim {:run "make"}
   :folke/trouble.nvim {:mod :trouble}
   :gennaro-tedesco/nvim-peekup {:mod :peekup}
   :tpope/vim-repeat {}

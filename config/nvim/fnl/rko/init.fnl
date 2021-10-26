@@ -51,7 +51,9 @@
                     [:s "\""]]]
   (each [i [a b] (ipairs text-objects)]
     (nvim.set_keymap :o (.. "i" a) (.. "i" b) {:noremap true})
-    (nvim.set_keymap :o (.. "a" a) (.. "a" b) {:noremap true})))
+    (nvim.set_keymap :o (.. "a" a) (.. "a" b) {:noremap true})
+    (nvim.set_keymap :v (.. "i" a) (.. "i" b) {:noremap true})
+    (nvim.set_keymap :v (.. "a" a) (.. "a" b) {:noremap true})))
 
 (utils.multi-line-nvim-cmd
   "augroup rko_init
