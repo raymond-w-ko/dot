@@ -31,6 +31,7 @@
        :sessionoptions "blank,buffers,curdir,folds,help,tabpages,winsize,resize,winpos,terminal"
        :signcolumn "number"
        :clipboard ""
+       :shortmess "aIcF"
        :pastetoggle "<f9>"}]
   (each [k v (pairs options)]
     (core.assoc nvim.o k v)))

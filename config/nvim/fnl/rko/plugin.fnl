@@ -71,9 +71,13 @@
   :numToStr/Comment.nvim {:mod :comment}
   :lewis6991/gitsigns.nvim {:mod :gitsigns}
 
+  :neovim/nvim-lspconfig {:mod :lspconfig}
+
+  "~/src/vim-geckocomplete" {:mod :geckocomplete}
+
+  ;; hmm
   ; :ms-jpq/coq_nvim {:branch "coq" :mod :coq}
   ; :ms-jpq/coq.artifacts {:branch "artifacts"}
-  :neovim/nvim-lspconfig {:mod :lspconfig}
 
   ;; insufficient
   ; :rktjmp/highlight-current-n.nvim {:mod :highlight}
