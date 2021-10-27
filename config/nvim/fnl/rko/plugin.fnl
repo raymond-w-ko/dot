@@ -38,6 +38,10 @@
   :ellisonleao/gruvbox.nvim {:requires [:rktjmp/lush.nvim]
                              :mod :theme}
   :hoob3rt/lualine.nvim {:mod :lualine}
+
+  :windwp/nvim-autopairs {:mod :autopairs}
+  :windwp/nvim-ts-autotag {:mod :autotag}
+
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate"
                                     :mod :treesitter}
   :nvim-treesitter/nvim-treesitter-textobjects {}
