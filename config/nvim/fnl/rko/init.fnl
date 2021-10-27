@@ -28,7 +28,7 @@
        :shiftwidth 2
        :tabstop 2
        :softtabstop 2
-       :sessionoptions "blank,buffers,curdir,folds,help,tabpages,winsize,resize,winpos,terminal"
+       :sessionoptions "blank,buffers,curdir,folds,help,tabpages,winsize,resize,winpos"
        :signcolumn "number"
        :clipboard ""
        :shortmess "aIcF"
@@ -43,8 +43,8 @@
 ; (nvim.set_keymap :n :<leader>l ":nohlsearch<cr>" {})
 (nvim.set_keymap :n :<tab> ":tabprev<cr>" {})
 (nvim.set_keymap :n :\ ":tabnext<cr>" {})
-(nvim.set_keymap :n :<S-Left> "<C-w>R" {})
-(nvim.set_keymap :n :<S-Right> "<C-w>r" {})
+(nvim.set_keymap :n :<S-Left>  ":call Rko_mark_window_swap_src()<cr><c-w>h:call Rko_do_window_swap()<cr>" {})
+(nvim.set_keymap :n :<S-Right> ":call Rko_mark_window_swap_src()<cr><c-w>l:call Rko_do_window_swap()<cr>" {})
 
 (let [text-objects [[:r "["]
                     [:f "("]
