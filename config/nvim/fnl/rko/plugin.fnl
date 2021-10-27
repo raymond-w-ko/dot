@@ -22,6 +22,8 @@
             (use (a.assoc opts 1 name)))))))
   nil)
 
+(set nvim.g.clojure_align_subforms 1)
+
 (use
   ; plugin manager
   :wbthomason/packer.nvim {}
@@ -34,6 +36,7 @@
   :kana/vim-arpeggio {:mod :arpeggio}
   :justinmk/vim-dirvish {:mod :dirvish}
   :raymond-w-ko/vim-asterisk {:mod :asterisk}
+  :clojure-vim/clojure.vim {}
 
   :ellisonleao/gruvbox.nvim {:requires [:rktjmp/lush.nvim]
                              :mod :theme}
