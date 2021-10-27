@@ -13,7 +13,8 @@
                "splitbelow" "splitright"
                "autowrite" "autowriteall"
                "relativenumber"
-               "noemoji"]]
+               "noemoji"
+               "nowrap"]]
   (each [i x (ipairs options)]
     (nvim.ex.set x)))
 
