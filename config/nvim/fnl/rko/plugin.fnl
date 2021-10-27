@@ -65,6 +65,7 @@
   :ggandor/lightspeed.nvim {:mod :lightspeed}
   :yamatsum/nvim-cursorline {:mod :cursorline}
   :numToStr/Comment.nvim {:mod :comment}
+  :lewis6991/gitsigns.nvim {:mod :gitsigns}
 
   :ms-jpq/coq_nvim {:branch "coq" :mod :coq}
   :ms-jpq/coq.artifacts {:branch "artifacts"}
