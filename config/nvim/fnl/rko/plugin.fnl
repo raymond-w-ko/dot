@@ -73,6 +73,7 @@
   :yamatsum/nvim-cursorline {:mod :cursorline}
   :numToStr/Comment.nvim {:mod :comment}
   :lewis6991/gitsigns.nvim {:mod :gitsigns}
+  :lukas-reineke/format.nvim {:mod :format}
 
   :neovim/nvim-lspconfig {:mod :lspconfig}
 
