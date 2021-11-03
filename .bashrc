@@ -247,6 +247,7 @@ alias gcsubmodules='git commit -v -m "updated submodule(s)"'
 alias gcfxd='git clean -fxd'
 # alias gcfxdrh='git clean -fxd && git reset --hard'
 alias gitrmmissing='git ls-files --deleted -z | xargs -0 git rm'
+alias gdch="git diff --color-words='\+|.'"
 
 # alias hs='hg status'
 # alias hm='hg merge'
