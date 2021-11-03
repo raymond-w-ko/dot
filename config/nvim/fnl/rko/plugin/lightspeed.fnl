@@ -5,7 +5,7 @@
 
 (lightspeed.setup {})
 
-(nvim.command "hi LightspeedMaskedChar guifg=#994444")
-(nvim.command "hi LightspeedGreyWash guifg=#999999")
-(nvim.command "hi LightspeedLabelDistant guifg=#076678")
-(nvim.command "hi LightspeedLabelDistantOverlapped guifg=#458588")
+(nvim.ex.hi "LightspeedMaskedChar guifg=#994444")
+(nvim.ex.hi "LightspeedGreyWash guifg=#999999")
+(nvim.ex.hi "LightspeedLabelDistant guifg=#076678")
+(nvim.ex.hi "LightspeedLabelDistantOverlapped guifg=#458588")

@@ -5,4 +5,4 @@
 (nvim.ex.set :termguicolors)
 (set nvim.o.background "light")
 (set nvim.g.gruvbox_contrast_light "soft")
-(nvim.command "colorscheme gruvbox")
+(nvim.ex.colorscheme "gruvbox")
