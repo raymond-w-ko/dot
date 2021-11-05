@@ -48,6 +48,7 @@
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate"
                                     :mod :treesitter}
   :nvim-treesitter/nvim-treesitter-textobjects {}
+  :nvim-treesitter/playground {}
 
   :kyazdani42/nvim-web-devicons {}
   :nvim-telescope/telescope.nvim {:requires [:nvim-lua/popup.nvim
@@ -70,7 +71,7 @@
   :norcalli/nvim-colorizer.lua {:mod :colorizer}
   :famiu/bufdelete.nvim {:mod :bufdelete}
   :ggandor/lightspeed.nvim {:mod :lightspeed}
-  :yamatsum/nvim-cursorline {:mod :cursorline}
+  ; :yamatsum/nvim-cursorline {:mod :cursorline}
   :numToStr/Comment.nvim {:mod :comment}
   :lewis6991/gitsigns.nvim {:mod :gitsigns}
   :lukas-reineke/format.nvim {:mod :format}

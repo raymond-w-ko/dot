@@ -25,7 +25,7 @@
        :ignorecase true
        :showtabline 2
        :expandtab true
-       :winwidth 79
+       :winwidth (+ 88 4)
        :shiftwidth 2
        :tabstop 2
        :softtabstop 2

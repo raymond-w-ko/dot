@@ -13,7 +13,7 @@
       (nvim.ex.tabnew)))
   
   (let [num-splits (-> nvim.o.columns
-                       (/ (- 80 1))
+                       (/ (+ 88 4))
                        (- 1)
                        (math.floor))]
     (for [i 1 num-splits]
