@@ -71,7 +71,6 @@
   :norcalli/nvim-colorizer.lua {:mod :colorizer}
   :famiu/bufdelete.nvim {:mod :bufdelete}
   :ggandor/lightspeed.nvim {:mod :lightspeed}
-  ; :yamatsum/nvim-cursorline {:mod :cursorline}
   :numToStr/Comment.nvim {:mod :comment}
   :lewis6991/gitsigns.nvim {:mod :gitsigns}
   :lukas-reineke/format.nvim {:mod :format}
@@ -84,6 +83,9 @@
   ;; hmm
   ; :ms-jpq/coq_nvim {:branch "coq" :mod :coq}
   ; :ms-jpq/coq.artifacts {:branch "artifacts"}
+  
+  ;; slightly slow
+  ; :yamatsum/nvim-cursorline {:mod :cursorline}
 
   ;; insufficient
   ; :rktjmp/highlight-current-n.nvim {:mod :highlight}
