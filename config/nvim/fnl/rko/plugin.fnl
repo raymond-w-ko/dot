@@ -65,7 +65,7 @@
   ; :guns/vim-sexp {:mod :sexp}
   ; :tpope/vim-sexp-mappings-for-regular-people {}
   ; :gpanders/nvim-parinfer {}
-  :eraserhd/parinfer-rust {}
+  ; :eraserhd/parinfer-rust {}
 
   :tpope/vim-fugitive  {:mod :fugitive}
   :norcalli/nvim-colorizer.lua {:mod :colorizer}

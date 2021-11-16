@@ -3,4 +3,5 @@
              autopairs nvim-autopairs}})
 
 (autopairs.setup
-  {:disable_filetype ["TelescopePrompt" "clojure" "fennel"]})
+  {:disable_filetype ["TelescopePrompt" "clojure" "fennel"]
+   :enable_check_bracket_line false})

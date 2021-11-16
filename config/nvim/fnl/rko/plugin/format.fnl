@@ -4,4 +4,5 @@
 
 (format.setup
   {:* [{:cmd ["sed -i 's/[ \t]*$//'"]}]
-   :javascript [{:cmd ["prettier -w"]}]})
+   :javascript [{:cmd ["prettier -w"]}]
+   :html [{:cmd ["prettier --parser html -w"]}]})
