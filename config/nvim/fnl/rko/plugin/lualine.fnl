@@ -12,7 +12,7 @@
   {1 :diagnostics
    :sections [:error :warn :info :hint]
    :sources [:nvim_lsp]
-   :symbols {:error "E" :warn "W" :info "I" :hint "H"}})
+   })
 
 (lualine.setup
   {:options {:theme "gruvbox_light"

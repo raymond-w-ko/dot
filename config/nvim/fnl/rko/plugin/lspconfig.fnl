@@ -26,6 +26,10 @@
   (lspc.clojure_lsp.setup (-> {:on_attach on_attach
                                :handlers handlers
                                :capabilities capabilities}))
-  (lspc.tsserver.setup (-> {:on_attach on_attach
-                            :handlers handlers
-                            :capabilities capabilities})))
+  ; (lspc.tsserver.setup (-> {:on_attach on_attach
+  ;                           :handlers handlers
+  ;                           :capabilities capabilities}))
+  
+  (lspc.eslint.setup (-> {:on_attach on_attach
+                          :handlers handlers
+                          :capabilities capabilities})))

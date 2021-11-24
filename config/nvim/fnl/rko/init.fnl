@@ -12,7 +12,7 @@
 (let [options ["undofile" "noswapfile"
                "splitbelow" "splitright"
                "autowrite" "autowriteall"
-               "relativenumber"
+               "number" "norelativenumber"
                "noemoji"
                "nowrap"]]
   (each [i x (ipairs options)]
