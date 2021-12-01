@@ -1,0 +1,5 @@
+gui:
+  theme:
+    lightTheme: false
+  authorColors:
+    'Raymond W. Ko': '#ff0000'
