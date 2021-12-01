@@ -232,6 +232,7 @@ then
   export PATH="$PATH:$HOME/android-sdk-linux/tools:$HOME/android-sdk-linux/platform-tools"
 fi
 
+alias lg='lazygit'
 alias gs='git status' # override ghostscript
 # alias gc='git commit -v'
 # alias gca='git commit -v -a'

@@ -55,3 +55,5 @@ tags
 
 /config/yarn/global/yarn.lock
 /config/yarn/global/node_modules
+
+/config/lazygit/state.yml
