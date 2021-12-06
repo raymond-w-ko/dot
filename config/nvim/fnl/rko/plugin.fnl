@@ -72,8 +72,9 @@
   :famiu/bufdelete.nvim {:mod :bufdelete}
   :ggandor/lightspeed.nvim {:mod :lightspeed}
   :numToStr/Comment.nvim {:mod :comment}
-  :lewis6991/gitsigns.nvim {:mod :gitsigns}
   :lukas-reineke/format.nvim {:mod :format}
+  :lewis6991/gitsigns.nvim {:mod :gitsigns}
+  :kdheepak/lazygit.nvim {:mod :lazygit}
 
   :neovim/nvim-lspconfig {:mod :lspconfig}
 
