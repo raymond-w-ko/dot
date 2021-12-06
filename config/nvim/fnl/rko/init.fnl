@@ -44,6 +44,7 @@
 ; (nvim.set_keymap :n :<leader>l ":nohlsearch<cr>" {})
 (nvim.set_keymap :n :<tab> ":tabprev<cr>" {})
 (nvim.set_keymap :n :\ ":tabnext<cr>" {})
+(nvim.set_keymap :v :Q "gq" {})
 (nvim.set_keymap :n :<S-Left>  ":call Rko_mark_window_swap_src()<cr><c-w>h:call Rko_do_window_swap()<cr>" {})
 (nvim.set_keymap :n :<S-Right> ":call Rko_mark_window_swap_src()<cr><c-w>l:call Rko_do_window_swap()<cr>" {})
 
