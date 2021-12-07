@@ -1,5 +1,20 @@
 gui:
   theme:
     lightTheme: false
+    activeBorderColor:
+      - white
+      - bold
+    inactiveBorderColor:
+      - green
+    optionsTextColor:
+      - blue
+    selectedLineBgColor:
+      - default
+    selectedRangeBgColor:
+      - yellow
+    cherryPickedCommitBgColor:
+      - blue
+    cherryPickedCommitFgColor:
+      - cyan
   authorColors:
     'Raymond W. Ko': '#ff0000'
