@@ -11,7 +11,7 @@
 (def diagnostics
   {1 :diagnostics
    :sections [:error :warn :info :hint]
-   :sources [:nvim_lsp]
+   :sources [:nvim_diagnostic]
    })
 
 (lualine.setup
