@@ -65,11 +65,5 @@ alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
 alias .......='cd ../../../../../..'
 
-# old cygwin wrapper
-# vim
-#vim() {
-  #if [ `expr "$*" : '.*tex\>'` -gt 0 ] ; then
-  #  opt='--servername LATEX '
-  #fi
-  #PYTHONHOME="C:/Python27/App" HOME="C:/Users/root" cyg-wrapper.sh "C:/Program Files (x86)/Vim/vim73/gvim.exe" "$@"
-#}
+alias el='exa -l'
+alias e='exa'
