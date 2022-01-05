@@ -29,7 +29,7 @@
   :wbthomason/packer.nvim {}
   ; nvim config and plugins in Fennel
   :Olical/aniseed {:branch :develop}
-  :Olical/conjure {:branch :master
+  "~/src/conjure" {:branch :master
                    :mod :conjure}
 
   ;; vim compatible
