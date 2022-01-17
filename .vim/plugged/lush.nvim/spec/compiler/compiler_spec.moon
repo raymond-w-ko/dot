@@ -41,6 +41,7 @@ describe "compiler", ->
     assert.is_not_nil(compiled)
     assert.matches("bold,italic", compiled[1])
 
+-- TODO remove 1/12
 describe "key exclusion", ->
   parse = require('lush.parser')
   compile = require('lush.compiler')
@@ -55,24 +56,3 @@ describe "key exclusion", ->
     assert.matches("italic", compiled[1])
     assert.not.matches("blend", compiled[1])
 
-  it "still exports group it dropping all 'set keys' but still has NONE values for others", ->
-    ast = parse -> {
-      A { gui: "italic", blend: 40 }
-    }
-    compiled = compile(ast, {
-      exclude_keys: {"blend", "gui"}
-    })
-    assert.is_not_nil(compiled)
-    assert.matches("highlight A", compiled[1])
-    -- should still include clearers
-    assert.matches("guifg=NONE", compiled[1])
-
-  it "drops group if no keys are present", ->
-    ast = parse -> {
-      A { gui: "italic", blend: 40 }
-    }
-    compiled = compile(ast, {
-      exclude_keys: {"blend", "gui", "fg", "bg", "sp"}
-    })
-    assert.is_not_nil(compiled)
-    assert.is(0, #compiled)

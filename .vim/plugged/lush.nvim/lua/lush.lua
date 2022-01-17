@@ -17,7 +17,6 @@ end
 local insert_force_clean = function(compiled_ast)
     local clean = {
       "hi clear",
-      "syntax reset",
       "set t_Co=256",
     }
     if vim.g.colors_name then
@@ -87,6 +86,11 @@ M.export_to_buffer = function(parsed_spec)
     style = "minimal",
   })
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+end
+
+M.import = function()
+  local importer = require("lush.importer")
+  return importer.import()
 end
 
 -- given a spec function, generate a parsed spec
@@ -167,7 +171,6 @@ M.merge = function(extends_list)
 
   return M.parse(empty_spec, options)
 end
-
 
 -- delegate __call to detect_easy for DX QOL.
 return setmetatable(M, {

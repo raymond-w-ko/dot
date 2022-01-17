@@ -56,7 +56,10 @@ function! s:KittyConfig() abort
   if !exists("b:slime_config")
     let b:slime_config = {"window_id": 1, "listen_on": ""}
   end
-  let b:slime_config["window_id"] = input("kitty target window: ", b:slime_config["window_id"])
+  let b:slime_config["window_id"] = str2nr(system("kitty @ select-window --self"))
+  if v:shell_error
+    let b:slime_config["window_id"] = input("kitty window_id: ","1") 
+  end
   let b:slime_config["listen_on"] = input("kitty listen on: ", b:slime_config["listen_on"])
 endfunction
 
@@ -77,7 +80,18 @@ endfunction
 function! s:TmuxSend(config, text)
   call s:WritePasteFile(a:text)
   call s:TmuxCommand(a:config, "load-buffer " . g:slime_paste_file)
-  call s:TmuxCommand(a:config, "paste-buffer -d -t " . shellescape(a:config["target_pane"]))
+  if exists("b:slime_bracketed_paste")
+    let bracketed_paste = b:slime_bracketed_paste
+  elseif exists("g:slime_bracketed_paste")
+    let bracketed_paste = g:slime_bracketed_paste
+  else
+    let bracketed_paste = 0
+  endif
+  if bracketed_paste
+    call s:TmuxCommand(a:config, "paste-buffer -d -p -t " . shellescape(a:config["target_pane"]))
+  else
+    call s:TmuxCommand(a:config, "paste-buffer -d -t " . shellescape(a:config["target_pane"]))
+  end
 endfunction
 
 function! s:TmuxPaneNames(A,L,P)
@@ -106,6 +120,11 @@ function! s:NeovimSend(config, text)
   " So this s:WritePasteFile can help as a small lock & delay
   call s:WritePasteFile(a:text)
   call chansend(str2nr(a:config["jobid"]), split(a:text, "\n", 1))
+  " if b:slime_config is {"jobid": ""} and not configured
+  " then unset it for automatic configuration next time
+  if b:slime_config["jobid"]  == ""
+      unlet b:slime_config
+  endif
 endfunction
 
 function! s:NeovimConfig() abort

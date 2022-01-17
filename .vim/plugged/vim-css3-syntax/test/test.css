@@ -141,7 +141,19 @@
 }
 
 @supports (selector(.conditional-4)) {
-	display: auto;
+	.conditional-4 {
+		display: auto;
+	}
+}
+
+@when media(screen) {
+	.conditional-5 {
+		display: auto;
+	}
+} @else {
+	.conditional-5 {
+		display: auto;
+	}
 }
 
 .contain-1 {
@@ -153,6 +165,10 @@
 
 .contain-2 {
 	content-visibility: auto;
+}
+
+.contain-3 {
+	display: auto;
 }
 
 .content-3 {
@@ -629,6 +645,7 @@ mask {
 	overflow-clip-margin: auto;
 	overflow-block: auto;
 	overflow-inline: auto;
+	scrollbar-gutter: auto;
 	block-ellipsis: auto;
 	line-clamp: auto;
 	max-lines: auto;
@@ -636,7 +653,6 @@ mask {
 }
 
 .overflow-4::nth-fragment(1) {
-	scrollbar-gutter: auto;
 	display: stable;
 	display: force;
 	display: overflow;
@@ -752,6 +768,7 @@ mask {
 	ruby-overhang: auto;
 	display: ruby-base-container;
 	display: ruby-text-container;
+	display: merge;
 	display: inter-character;
 }
 
