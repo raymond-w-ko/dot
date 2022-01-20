@@ -511,8 +511,8 @@ set t_md=
 " Ps = 5  -> blinking bar (xterm).
 " Ps = 6  -> steady bar (xterm).
 " cursor options
-let &t_SI = "\e[6 q"
-let &t_EI = "\e[4 q"
+" let &t_SI = "\e[6 q"
+" let &t_EI = "\e[4 q"
 
 " binaries with a 99.9% chance of not being edited
 set wildignore+=*.exe,*.dll
@@ -946,7 +946,7 @@ endif
 " lightline
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:lightline = {
-    \ 'colorscheme': 'gruvbox',
+    \ 'colorscheme': 'selenized_light',
     \ 'mode_map': { 'c': 'NORMAL' },
     \ 'active': {
     \   'left': [
@@ -1235,7 +1235,7 @@ augroup rko_vimrc
   au BufWritePost *.vimrc source $MYVIMRC
   au BufWritePost *.gvimrc source $MYGVIMRC
   " reset cursor on start:
-  au VimEnter * silent !echo -ne "\e[4 q"
+  " au VimEnter * silent !echo -ne "\e[4 q"
   au FileType * call rko#setup_pair_bindings()
 
   " only show cursorline if a window has focus
