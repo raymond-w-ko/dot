@@ -34,9 +34,9 @@ Plug '$HOME/dot/.vim/plugged.manual/rko-misc'
 Plug '$HOME/dot/.vim/plugged.manual/rko'
 nnoremap <leader>o :ToggleWord<CR>
 
-if has("nvim")
-  Plug 'glacambre/firenvim'
-endif
+" if has("nvim")
+"   Plug 'glacambre/firenvim'
+" endif
 
 " theme utils
 Plug 'rktjmp/lush.nvim'
