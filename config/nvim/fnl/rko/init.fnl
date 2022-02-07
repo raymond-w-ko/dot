@@ -69,3 +69,9 @@
 (require :rko.fns)
 
 (nvim.set_keymap :n :<leader>tt ":call Rko_create_tab_splits()<cr>" {})
+
+(vim.api.nvim_command
+  "augroup rko_init_fnl
+  autocmd InsertEnter * set nolist
+  autocmd InsertLeave * set list
+  augroup END")
