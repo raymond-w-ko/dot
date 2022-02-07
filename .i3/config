@@ -71,8 +71,8 @@ bindsym $mod+t exec my-terminal.sh
 # start clipboard manager
 bindsym $mod+c exec "clipmenu -i -fn Terminus:size=16 -nb '#000000' -nf '#00ff00' -sb '#00ff00' -sf '#000000'"
 # restore layout
-bindsym $mod+g exec --no-startup-id ~/.i3/load-layout.sh
-bindsym $mod+shift+g [title="^.+- Google Chrome$"] resize set 1600px 0ppt
+# bindsym $mod+g exec --no-startup-id ~/.i3/load-layout.sh
+# bindsym $mod+shift+g [title="^.+- Google Chrome$"] resize set 1600px 0ppt
 
 # move floating container to the center of all outputs
 bindsym $mod+b move position center
