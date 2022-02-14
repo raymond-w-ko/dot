@@ -393,7 +393,7 @@ else
     if hash fortune 2>/dev/null; then
       TEWSISAY_VARIATIONS=("te" "teh" "tes" "tewat")
       TEWI=${TEWSISAY_VARIATIONS[$(( $RANDOM % ${#TEWSISAY_VARIATIONS[@]} + 1 ))]}
-      fortune | tewisay -f $TEWI 2>/dev/null
+      fortune | perl -e'while(<>){$_ =~ s/\t/   /g; print;}' | tewisay -f $TEWI 2>/dev/null
     fi
   elif hash cowsay 2>/dev/null; then
     if hash fortune 2>/dev/null; then
