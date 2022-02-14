@@ -20,12 +20,19 @@ if [[ "$unameString" == 'Darwin' ]]; then
       alias ll='ls -Glha'
     fi
 else
-    alias ls='ls --color=auto -F'
-    alias l='ls --color=auto -lhF'
-    alias lt='ls --color=auto -lhtF'
-    alias ll='ls --color=auto -lhaF'
+    if hash exa 2>/dev/null; then
+      alias ls='exa'
+      alias l='exa -l'
+      alias lt='exa -l --sort time'
+      alias lsi='exa -l --sort size'
+    else
+      alias ls='ls --color=auto -F'
+      alias l='ls --color=auto -lhF'
+      alias lt='ls --color=auto -lhtF'
+      alias ll='ls --color=auto -lhaF'
+    fi
     
-    export GREP_COLOR='1;32'
+    export GREP_COLOR='1;31'
 
     # fix ls colors especially for directories and files that are globally
     # readable and writeable, they are completely unreadable by default
