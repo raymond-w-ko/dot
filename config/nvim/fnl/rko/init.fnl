@@ -47,6 +47,7 @@
 (nvim.set_keymap :v :Q "gq" {})
 (nvim.set_keymap :n :<S-Left>  ":call Rko_mark_window_swap_src()<cr><c-w>h:call Rko_do_window_swap()<cr>" {})
 (nvim.set_keymap :n :<S-Right> ":call Rko_mark_window_swap_src()<cr><c-w>l:call Rko_do_window_swap()<cr>" {})
+(vim.keymap.set :c "w!!" "w !sudo tee > /dev/null %")
 
 (let [text-objects [[:r "["]
                     [:f "("]
