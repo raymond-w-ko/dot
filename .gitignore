@@ -47,6 +47,9 @@ tags
 /.vifm/vifm-help.txt
 /.vifm/vifminfo
 
+/.clojure/.lsp
+/.clojure/.clj-kondo
+
 /config/mc/hotlist
 
 /config/ranger/bookmarks
