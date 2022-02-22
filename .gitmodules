@@ -21,4 +21,4 @@
 	url = https://github.com/agkozak/zsh-z
 [submodule ".tmux/plugins/dracula"]
 	path = .tmux/plugins/dracula
-	url = git@github.com:raymond-w-ko/dracula-tmux-petrel.git
+	url = https://github.com/raymond-w-ko/dracula-tmux-petrel.git
