@@ -61,6 +61,7 @@
   :tpope/vim-surround {}
   :tpope/vim-obsession {}
   :tpope/vim-characterize {}
+  :tpope/vim-unimpaired {}
   ;; lisp
   ; :guns/vim-sexp {:mod :sexp}
   ; :tpope/vim-sexp-mappings-for-regular-people {}
