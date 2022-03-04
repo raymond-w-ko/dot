@@ -48,6 +48,7 @@
 (nvim.set_keymap :n :<S-Left>  ":call Rko_mark_window_swap_src()<cr><c-w>h:call Rko_do_window_swap()<cr>" {})
 (nvim.set_keymap :n :<S-Right> ":call Rko_mark_window_swap_src()<cr><c-w>l:call Rko_do_window_swap()<cr>" {})
 (vim.keymap.set :c "w!!" "w !sudo tee > /dev/null %")
+(vim.keymap.set :n "R" ":e<cr>zz")
 
 (let [text-objects [[:r "["]
                     [:f "("]
@@ -71,8 +72,11 @@
 
 (nvim.set_keymap :n :<leader>tt ":call Rko_create_tab_splits()<cr>" {})
 
-(vim.api.nvim_command
-  "augroup rko_init_fnl
-  autocmd InsertEnter * set nolist
-  autocmd InsertLeave * set list
-  augroup END")
+(let [ex vim.api.nvim_command]
+  (ex "augroup rko_init_fnl")
+  (ex "autocmd!")
+  (ex "autocmd InsertEnter * set nolist")
+  (ex "autocmd InsertLeave * set list")
+  (ex "autocmd FileType javascript setlocal iskeyword+=$")
+  (ex "autocmd FocusGained * checktime")
+  (ex "augroup END"))
