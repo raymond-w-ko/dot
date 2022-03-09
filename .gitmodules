@@ -22,3 +22,6 @@
 [submodule ".tmux/plugins/dracula"]
 	path = .tmux/plugins/dracula
 	url = https://github.com/raymond-w-ko/dracula-tmux-petrel.git
+[submodule "src/kitty-gruvbox-theme"]
+	path = src/kitty-gruvbox-theme
+	url = https://github.com/wdomitrz/kitty-gruvbox-theme.git
