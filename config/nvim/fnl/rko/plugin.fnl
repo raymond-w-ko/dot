@@ -69,7 +69,7 @@
   ; :eraserhd/parinfer-rust {}
 
   ; :tpope/vim-fugitive  {:mod :fugitive}
-  :kdheepak/lazygit.nvim {:mod :lazygit}
+  :kdheepak/lazygit.nvim {:mod :lazygit :branch "main"}
   :norcalli/nvim-colorizer.lua {:mod :colorizer}
   :famiu/bufdelete.nvim {:mod :bufdelete}
   :ggandor/lightspeed.nvim {:mod :lightspeed}
