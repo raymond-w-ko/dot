@@ -20,7 +20,8 @@
 #font -*-terminus-medium-*-*-*-16-*-*-*-*-*-*-*
 #font -*-proggytinysz-medium-r-*-*-*-*-*-*-*-*-*-*
 #font -*-profont-*-*-*-*-11-*-*-*-*-*-*-*
-font -romeovs-creep2-*-*-*--*-*-75-75-*-*-*-*
+#font -romeovs-creep2-*-*-*--*-*-75-75-*-*-*-*
+font pango:Iosevka Nerd Font 12
 
 # class                 border  backgr. text    indicator child_border
 client.focused          #4c7899 #285577 #ffffff #ffff00   #ff0000
