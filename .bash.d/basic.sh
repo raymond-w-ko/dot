@@ -23,6 +23,7 @@ else
     if hash exa 2>/dev/null; then
       alias ls='exa'
       alias la='exa -la'
+      alias ll='exa -la'
       alias l='exa -l'
       alias lt='exa -l --sort time'
       alias lsi='exa -l --sort size'
