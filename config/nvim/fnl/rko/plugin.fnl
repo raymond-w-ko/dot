@@ -77,6 +77,7 @@
   ; :lukas-reineke/format.nvim {:mod :format}
   :mhartington/formatter.nvim {:mod :formatter}
   :lewis6991/gitsigns.nvim {:mod :gitsigns}
+  :akinsho/toggleterm.nvim {:mod :toggleterm}
 
   :neovim/nvim-lspconfig {:mod :lspconfig}
 
