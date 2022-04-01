@@ -5,7 +5,7 @@
              tb telescope.builtin}})
 
 (telescope.setup
-  {:defaults {:file_ignore_patterns ["node_modules"
+  {:defaults {:file_ignore_patterns ["node_modules/"
                                      "package-lock.json"]}
    :pickers {:find_files {:find_command ["rg" "--files" "--iglob" "!.git" "--hidden"]}}})
 
