@@ -49,6 +49,8 @@
 (nvim.set_keymap :n :<S-Right> ":call Rko_mark_window_swap_src()<cr><c-w>l:call Rko_do_window_swap()<cr>" {})
 (vim.keymap.set :c "w!!" "w !sudo tee > /dev/null %")
 (vim.keymap.set :n "R" ":e<cr>zz")
+(vim.keymap.set :n "j" "gj")
+(vim.keymap.set :n "k" "gk")
 
 (let [text-objects [[:r "["]
                     [:f "("]
@@ -77,6 +79,7 @@
   (ex "autocmd!")
   (ex "autocmd InsertEnter * set nolist")
   (ex "autocmd InsertLeave * set list")
-  (ex "autocmd FileType javascript setlocal iskeyword+=$")
+  (ex "autocmd FileType php,javascript setl iskeyword+=$")
+  (ex "autocmd FileType css,scss setl iskeyword+=-")
   (ex "autocmd FocusGained * checktime")
   (ex "augroup END"))
