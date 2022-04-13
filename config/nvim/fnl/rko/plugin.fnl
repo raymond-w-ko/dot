@@ -82,7 +82,7 @@
   :neovim/nvim-lspconfig {:mod :lspconfig}
 
   "~/src/vim-geckocomplete" {:mod :geckocomplete}
-  "~/src/nvim-sexp-edit" {:mod :geckocomplete}
+  "~/src/nvim-sexp-edit" {}
 
   ;; hmm
   ; :ms-jpq/coq_nvim {:branch "coq" :mod :coq}
