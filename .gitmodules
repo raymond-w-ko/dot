@@ -25,3 +25,6 @@
 [submodule "src/kitty-gruvbox-theme"]
 	path = src/kitty-gruvbox-theme
 	url = https://github.com/wdomitrz/kitty-gruvbox-theme.git
+[submodule "src/tmux-gruvbox"]
+	path = src/tmux-gruvbox
+	url = https://github.com/egel/tmux-gruvbox.git
