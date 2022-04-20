@@ -37,6 +37,7 @@
   :justinmk/vim-dirvish {:mod :dirvish}
   :raymond-w-ko/vim-asterisk {:mod :asterisk}
   :clojure-vim/clojure.vim {}
+  :romainl/vim-qf {:mod :qf}
 
   :ellisonleao/gruvbox.nvim {:requires [:rktjmp/lush.nvim]
                              :mod :theme}
