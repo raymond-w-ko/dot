@@ -81,5 +81,6 @@
   (ex "autocmd InsertLeave * set list")
   (ex "autocmd FileType php,javascript setl iskeyword+=$")
   (ex "autocmd FileType css,scss setl iskeyword+=-")
+  (ex "autocmd FileType scss setl iskeyword+=$")
   (ex "autocmd FocusGained * checktime")
   (ex "augroup END"))
