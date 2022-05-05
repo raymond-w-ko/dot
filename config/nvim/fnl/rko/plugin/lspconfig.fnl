@@ -3,12 +3,10 @@
              lspc lspconfig}})
 
 (defn on_attach [client bufnr]
-  (let [filetype (nvim.buf_get_option bufnr "filetype")
-        map (fn [a b]
-              (nvim.buf_set_keymap bufnr :n a b {:noremap true}))]
-    (map :gd "<cmd>lua vim.lsp.buf.definition()<CR>")
+  (let [filetype (nvim.buf_get_option bufnr "filetype")]
+    (vim.keymap.set :n "gd" (fn [] (vim.lsp.buf.definition)) {:buffer 0})
     (when (not (= filetype "javascript"))
-      (map :<leader>f "<cmd>lua vim.lsp.buf.formatting()<CR>"))))
+      (vim.keymap.set :n "<leader>f" (fn [] (vim.lsp.buf.format {:async true})) {:buffer 0}))))
 
 (let [handlers
       {"textDocument/publishDiagnostics" (vim.lsp.with

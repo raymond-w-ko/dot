@@ -80,6 +80,7 @@
   :mhartington/formatter.nvim {:mod :formatter}
   :lewis6991/gitsigns.nvim {:mod :gitsigns}
   :akinsho/toggleterm.nvim {:mod :toggleterm :branch "main"}
+  :monkoose/matchparen.nvim {:mod :matchparen}
 
   :neovim/nvim-lspconfig {:mod :lspconfig}
 
