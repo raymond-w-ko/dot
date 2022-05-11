@@ -7,4 +7,5 @@
                       "html" "css" "scss" "javascript"]
    :highlight {:enable true
                :disable ["scss" "javascript"]} 
-   :indent  {:enable true}})
+   :indent  {:enable true
+             :disable ["scss"]}})
