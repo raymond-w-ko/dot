@@ -27,6 +27,12 @@ tags
 # Visual Studio
 .vs
 
+# clojure
+.clj-kondo
+
+# LSP
+.lsp
+
 /.bash.d/add_dot_extra_paths.sh
 
 /.subversion/auth/
@@ -46,9 +52,6 @@ tags
 /.vifm/Trash
 /.vifm/vifm-help.txt
 /.vifm/vifminfo
-
-/.clojure/.lsp
-/.clojure/.clj-kondo
 
 /config/mc/hotlist
 
