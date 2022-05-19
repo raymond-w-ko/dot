@@ -54,6 +54,7 @@
   :kyazdani42/nvim-web-devicons {}
   :nvim-telescope/telescope.nvim {:requires [:nvim-lua/popup.nvim
                                              :nvim-lua/plenary.nvim]
+                                  :branch :dev
                                   :mod :telescope}
   :RishabhRD/lspactions {:mod :lspactions}
   :nvim-telescope/telescope-fzf-native.nvim {:run "make"}
