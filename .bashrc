@@ -368,22 +368,6 @@ if [[ ! -d /mnt/c/Windows && -z $DISPLAY && $(tty) == /dev/tty1 ]]; then
 elif [[ -f ~/src/interkonnect/interkonnect.py && $(ps auxww | grep interkonnect.py | grep -v grep | wc -l) = 0 ]]; then
   sudo ~/src/interkonnect/interkonnect.py
 else
-  if [[ "$unameString" != 'Darwin' && `uname -o` != "Cygwin" ]]; then
-    if hash gnome-keyring-daemon 2>/dev/null; then
-      # don't force set diplay, otherwise tmux might set the wrong TERM
-      # export DISPLAY=:0
-      if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
-        ## if not found, launch a new one
-        #eval `dbus-launch --sh-syntax`
-        export DBUS_SESSION_BUS_ADDRESS="autolaunch:"
-      fi
-      if [[ -z $SSH_AUTH_SOCK ]]; then
-        eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-        export GPG_AGENT_INFO
-        export SSH_AUTH_SOCK
-      fi
-    fi
-  fi
   if [[ "$unameString" == 'Darwin' ]]; then
     if hash docker-machine 2>/dev/null; then
       eval $(docker-machine env default)
