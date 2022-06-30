@@ -4,7 +4,7 @@
              gruvbox gruvbox}})
 
 (nvim.ex.set :termguicolors)
-;; (set nvim.o.background "light")
+(set nvim.o.background "light")
 ;; (set nvim.g.gruvbox_contrast_light "soft")
 (gruvbox.setup
   {:invert_selections false
