@@ -8,7 +8,7 @@
 ;; (set nvim.g.gruvbox_contrast_light "soft")
 (gruvbox.setup
   {:invert_selections false
-   :inverse false
+   :inverse true
    :invert_signs false
    :invert_tabline false
    :invert_intend_guides false

@@ -14,7 +14,7 @@
                "autowrite" "autowriteall"
                "number" "norelativenumber"
                "noemoji"
-               "nowrap"]]
+               "nowrap" "breakindent"]]
   (each [i x (ipairs options)]
     (nvim.ex.set x)))
 
