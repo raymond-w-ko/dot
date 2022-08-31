@@ -29,8 +29,7 @@
   :wbthomason/packer.nvim {}
   ; nvim config and plugins in Fennel
   :Olical/aniseed {:branch :develop}
-  :Olical/conjure {:branch :develop
-                   :mod :conjure}
+  :Olical/conjure {:branch :develop :mod :conjure}
 
   ;; vim compatible
   :kana/vim-arpeggio {:mod :arpeggio}
@@ -72,7 +71,7 @@
   ; :eraserhd/parinfer-rust {}
 
   ; :tpope/vim-fugitive  {:mod :fugitive}
-  :kdheepak/lazygit.nvim {:mod :lazygit :branch "main"}
+  ;; :kdheepak/lazygit.nvim {:mod :lazygit :branch "main"}
   :norcalli/nvim-colorizer.lua {:mod :colorizer}
   :famiu/bufdelete.nvim {:mod :bufdelete}
   :ggandor/lightspeed.nvim {:mod :lightspeed}
