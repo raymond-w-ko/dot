@@ -6,7 +6,7 @@
 (def Terminal toggletermterminal.Terminal)
 
 (toggleterm.setup
-  {:open_mapping "<F4>"
+  {:open_mapping "<F5>"
    :winblend 0
    :shade_terminals false
    :highlights {}
