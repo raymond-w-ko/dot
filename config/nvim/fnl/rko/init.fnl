@@ -19,7 +19,8 @@
     (nvim.ex.set x)))
 
 (let [options
-      {:completeopt "menu,menuone,noselect,noinsert"
+      {:timeoutlen 3000
+       :completeopt "menu,menuone,noselect,noinsert"
        :wildmode "longest:full"
        :smartcase true
        :ignorecase true
