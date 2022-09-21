@@ -42,7 +42,7 @@
 (vim.keymap.set :n "L" "g_")
 (vim.keymap.set :n "<cr>" ":w<cr>")
 (vim.keymap.set :n "<leader><leader>" "<c-^>" {})
-; (nvim.set_keymap :n :<leader>l ":nohlsearch<cr>" {})
+(vim.keymap.set :n :<leader>l ":nohlsearch<cr>" {})
 (vim.keymap.set :n "<tab>" ":tabprev<cr>" {})
 (vim.keymap.set :n "<f6>" ":tabprev<cr>" {})
 (vim.keymap.set :n "\\" ":tabnext<cr>" {})
@@ -61,10 +61,10 @@
                     [:q "\""]
                     [:s "\""]]]
   (each [i [a b] (ipairs text-objects)]
-    (nvim.set_keymap :o (.. "i" a) (.. "i" b) {:noremap true})
-    (nvim.set_keymap :o (.. "a" a) (.. "a" b) {:noremap true})
-    (nvim.set_keymap :v (.. "i" a) (.. "i" b) {:noremap true})
-    (nvim.set_keymap :v (.. "a" a) (.. "a" b) {:noremap true})))
+    (comment nvim.set_keymap :o (.. "i" a) (.. "i" b) {:noremap true})
+    (comment nvim.set_keymap :o (.. "a" a) (.. "a" b) {:noremap true})
+    (comment nvim.set_keymap :v (.. "i" a) (.. "i" b) {:noremap true})
+    (comment nvim.set_keymap :v (.. "a" a) (.. "a" b) {:noremap true})))
 
 (utils.multi-line-nvim-cmd
   "augroup rko_init
