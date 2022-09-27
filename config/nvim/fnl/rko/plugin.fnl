@@ -74,7 +74,8 @@
   ;; :kdheepak/lazygit.nvim {:mod :lazygit :branch "main"}
   :norcalli/nvim-colorizer.lua {:mod :colorizer}
   :famiu/bufdelete.nvim {:mod :bufdelete}
-  :ggandor/lightspeed.nvim {:mod :lightspeed}
+  ;; :ggandor/lightspeed.nvim {:mod :lightspeed}
+  :ggandor/leap.nvim {:mod :leap}
   :numToStr/Comment.nvim {:mod :comment}
   ; :lukas-reineke/format.nvim {:mod :format}
   :mhartington/formatter.nvim {:mod :formatter}
@@ -83,7 +84,6 @@
   :monkoose/matchparen.nvim {:mod :matchparen}
 
   :neovim/nvim-lspconfig {:mod :lspconfig}
-
   "~/src/vim-geckocomplete" {:mod :geckocomplete}
   "~/src/nvim-sexp-edit" {}
 
