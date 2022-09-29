@@ -86,4 +86,6 @@
   (ex "autocmd FileType css,scss setl iskeyword+=-")
   (ex "autocmd FileType scss setl iskeyword+=$")
   (ex "autocmd FocusGained * checktime")
+  (ex "autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline")
+  (ex "autocmd WinLeave * setlocal nocursorline")
   (ex "augroup END"))
