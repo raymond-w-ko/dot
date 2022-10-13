@@ -8,7 +8,7 @@
 (defn setup-leap-colors []
   (vim.api.nvim_set_hl 0 "LeapMatch" {:bg "#ffffff"})
   (vim.api.nvim_set_hl 0 "LeapLabelPrimary" {:bg "#ffffff" :fg "#ff0000"})
-  (vim.api.nvim_set_hl 0 "LeapLabelSecondary" {:bg "#ffffff" :fg "#00ffff"}))
+  (vim.api.nvim_set_hl 0 "LeapLabelSecondary" {:bg "#ffffff" :fg "#000088"}))
 
 (setup-leap-colors)
 (vim.api.nvim_create_augroup "rkoLeap" {:clear true})
