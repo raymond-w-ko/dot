@@ -10,7 +10,7 @@
    :winblend 0
    :shade_terminals false
    :highlights {}
-   :direction :tab
+   :direction :float
    :float_opts {:border :double}})
 
 (def lazygit (Terminal:new {:cmd "lazygit"
