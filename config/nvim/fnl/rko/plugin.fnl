@@ -38,8 +38,8 @@
   :clojure-vim/clojure.vim {}
   :romainl/vim-qf {:mod :qf}
 
-  :ellisonleao/gruvbox.nvim {:requires [:rktjmp/lush.nvim]
-                             :mod :theme}
+  ;; :rhysd/vim-color-spring-night {:mod :theme}
+  :ellisonleao/gruvbox.nvim {:requires [:rktjmp/lush.nvim] :mod :theme}
   :hoob3rt/lualine.nvim {:mod :lualine}
 
   :windwp/nvim-autopairs {:mod :autopairs}
