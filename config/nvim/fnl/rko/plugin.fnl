@@ -76,6 +76,7 @@
   :famiu/bufdelete.nvim {:mod :bufdelete}
   ;; :ggandor/lightspeed.nvim {:mod :lightspeed}
   :ggandor/leap.nvim {:mod :leap}
+  :ggandor/flit.nvim {:mod :flit}
   :numToStr/Comment.nvim {:mod :comment}
   ; :lukas-reineke/format.nvim {:mod :format}
   :mhartington/formatter.nvim {:mod :formatter}
