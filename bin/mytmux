@@ -1,7 +1,5 @@
 #!/bin/bash
-tmux new-session -d -s dummy
-tmux new-session -d -s one /bin/cat
-tmux new-session -d -s two /bin/cat
-tmux new-session -d -s three
-tmux new-session -d -s four
-exec tmux new-session -s five
+tmux new-session -d -s zero
+tmux new-session -d -s one
+tmux new-session -d -s two
+tmux attach-session -t two
