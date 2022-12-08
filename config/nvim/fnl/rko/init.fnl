@@ -43,10 +43,12 @@
 (vim.keymap.set :n "<cr>" ":w<cr>")
 (vim.keymap.set :n "<leader><leader>" "<c-^>" {})
 (vim.keymap.set :n :<leader>l ":nohlsearch<cr>" {})
+
 ;; (vim.keymap.set :n "<tab>" ":tabprev<cr>" {})
-(vim.keymap.set :n "<f3>" ":tabprev<cr>" {})
 ;; (vim.keymap.set :n "\\" ":tabnext<cr>" {})
+(vim.keymap.set :n "<f3>" ":tabprev<cr>" {})
 (vim.keymap.set :n "<f1>" ":tabnext<cr>" {})
+
 (vim.keymap.set :v "Q" "gq" {})
 (vim.keymap.set :n "<S-Left>"  ":call Rko_mark_window_swap_src()<cr><c-w>h:call Rko_do_window_swap()<cr>" {})
 (vim.keymap.set :n "<S-Right>" ":call Rko_mark_window_swap_src()<cr><c-w>l:call Rko_do_window_swap()<cr>" {})
