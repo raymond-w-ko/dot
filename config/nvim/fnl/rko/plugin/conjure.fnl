@@ -10,8 +10,8 @@
 (set nvim.g.conjure#client#conjure#nrepl#auto_require false)
 (set nvim.g.conjure#client#conjure#nrepl#connection#auto_repl#enabled false)
 
-(utils.multi-line-nvim-cmd
-  "augroup rko_auto_conjure
-  au!
-  au BufWritePost *.clj ConjureEvalFile
-  augroup END")
+;; (utils.multi-line-nvim-cmd
+;;   "augroup rko_auto_conjure
+;;   au!
+;;   au BufWritePost *.clj ConjureEvalFile
+;;   augroup END")
