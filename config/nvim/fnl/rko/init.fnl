@@ -90,4 +90,5 @@
   (ex "autocmd FocusGained * checktime")
   (ex "autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline")
   (ex "autocmd WinLeave * setlocal nocursorline")
+  (ex "autocmd BufNewFile,BufRead *.vs,*.fs,*.glsles set ft=glsl")
   (ex "augroup END"))
