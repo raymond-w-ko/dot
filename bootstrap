@@ -112,9 +112,9 @@ if [[ ! -d $HOME/src/creep2 ]]; then
   popd
 fi
 
-# vim
+# neovim
 if [[ ! -d $HOME/src/neovim ]]; then
-  git clone https://github.com/raymond-w-ko/neovim.git $HOME/src/vim
+  git clone https://github.com/raymond-w-ko/neovim.git $HOME/src/neovim
   if [[ -f /home/rko/.has-full-github-access ]]; then
     echo "setting ~/src/neovim origin to be SSH based"
     ( cd $HOME/src/neovim && git remote set-url origin git@github.com:raymond-w-ko/neovim.git )
