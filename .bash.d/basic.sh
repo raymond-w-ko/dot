@@ -34,7 +34,7 @@ else
       alias ll='ls --color=auto -lhaF'
     fi
     
-    export GREP_COLOR='mt=1;31'
+    export GREP_COLORS='mt=1;31'
 
     # fix ls colors especially for directories and files that are globally
     # readable and writeable, they are completely unreadable by default
