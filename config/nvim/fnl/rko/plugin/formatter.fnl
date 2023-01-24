@@ -1,10 +1,13 @@
 (module rko.plugin.formatter
   {autoload {nvim aniseed.nvim
-             formatter formatter}})
+             formatter formatter
+             cpp formatter.filetypes.cpp}})
 
 (formatter.setup
   {:filetype
-   {:javascript
+   {:cpp
+    [cpp.clangformat]
+    :javascript
     [(fn []
        (let [fname (-> (nvim.buf_get_name 0)
                        (nvim.fn.fnameescape))]

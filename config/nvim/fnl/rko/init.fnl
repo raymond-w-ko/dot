@@ -40,7 +40,7 @@
 
 (vim.keymap.set :n "H" "^")
 (vim.keymap.set :n "L" "g_")
-(vim.keymap.set :n "<cr>" ":w<cr>")
+(vim.keymap.set :n "<cr>" ":wall<cr>")
 (vim.keymap.set :n "<leader><leader>" "<c-^>" {})
 (vim.keymap.set :n :<leader>l ":nohlsearch<cr>" {})
 
