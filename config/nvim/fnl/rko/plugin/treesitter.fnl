@@ -6,6 +6,6 @@
                       "bash" "c" "c_sharp" "cpp" "fennel" "go" "rust" "lua" "markdown"
                       "html" "css" "scss" "javascript"]
    :highlight {:enable true
-               :disable ["scss" "javascript"]} 
+               :disable ["javascript"]} 
    :indent  {:enable true
              :disable ["scss"]}})
