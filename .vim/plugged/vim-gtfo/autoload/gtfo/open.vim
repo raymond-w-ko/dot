@@ -2,6 +2,7 @@ let s:iswin = has('win32') || has('win64') || has('win32unix') || has('win64unix
 let s:ismac = has('gui_macvim') || has('mac')
 let s:istmux = !(empty($TMUX))
 let s:iswezterm = $WEZTERM_PANE !=? ''
+let s:iskitty = $KITTY_LISTEN_ON !=? ''
 "GUI Vim
 let s:isgui = has('gui_running') || &term ==? 'builtin_gui'
 "non-GUI Vim running within a GUI environment
@@ -142,9 +143,12 @@ func! gtfo#open#term(dir, cmd) abort "{{{
     else
       silent call system("tmux split-window -h -c '" . l:dir . "'")
     endif
+  elseif s:iskitty
+    let l:cwd = s:iswin ? shellescape(l:dir, 1) : "'" . l:dir .  "'"
+    silent call system("kitty @ --to=$KITTY_LISTEN_ON new-window --cwd=" . l:cwd)
   elseif s:iswezterm
     let l:cwd = s:iswin ? shellescape(l:dir, 1) : "'" . l:dir .  "'"
-    silent call system("wezterm cli split-pane --horizontal=false --cwd=" . l:cwd)
+    silent call system("wezterm cli split-pane --cwd=" . l:cwd)
   elseif &shell !~? "cmd" && executable('cygstart') && executable('mintty')
     " https://github.com/mintty/mintty/wiki/Tips
     silent exec '!cd '.shellescape(l:dir, 1).' && cygstart mintty /bin/env CHERE_INVOKING=1 /bin/bash'
@@ -160,12 +164,15 @@ func! gtfo#open#term(dir, cmd) abort "{{{
       let $VIMRUNTIME=''
     endif
     let drive = matchstr(l:dir, '^\s*\S:')
-    let cdcmd = (''==#drive?'':drive.' & ').'cd '.shellescape(l:dir, 1)
+    let cmdsep = (s:termpath =~? 'powershell') ? ' ; ' : ' & '
+    let cdcmd = ( '' ==# drive ? '' : drive.cmdsep ).'cd '.shellescape(l:dir, 1)
 
-    if s:termpath =~? "bash" && executable(s:termpath)
+    if s:termpath =~? 'bash' && executable('bash')
       silent exe '!start '.$COMSPEC.' /c "'.cdcmd.' & "'.s:termpath.'" --login -i "'
-    elseif s:termpath =~? "mintty" && executable(s:termpath)
+    elseif s:termpath =~? 'mintty' && executable('mintty')
       silent exe '!start /min '.$COMSPEC.' /c "'.cdcmd.' & "'.s:termpath.'" - " & exit'
+    elseif s:termpath =~? 'powershell' && executable('powershell')
+      silent exe '!start '.s:termpath.' \"'.cdcmd.'\"'
     else "Assume it is a path-plus-arguments.
       if s:empty(s:termpath) | let s:termpath = 'cmd.exe /k'  | endif
       " This will nest quotes (""foo" "bar""), and yes, that is what cmd.exe expects.

@@ -29,6 +29,7 @@
 <Plug>(anzu-update-search-status)	anzu.jax	/*<Plug>(anzu-update-search-status)*
 <Plug>(anzu-update-search-status-with-echo)	anzu.jax	/*<Plug>(anzu-update-search-status-with-echo)*
 AnzuUpdateSearchStatusOutput	anzu.jax	/*AnzuUpdateSearchStatusOutput*
+AnzuWrap	anzu.jax	/*AnzuWrap*
 anzu	anzu.jax	/*anzu*
 anzu#clear_search_cache()	anzu.jax	/*anzu#clear_search_cache()*
 anzu#clear_search_status()	anzu.jax	/*anzu#clear_search_status()*
@@ -39,6 +40,7 @@ anzu#mode#start()	anzu.jax	/*anzu#mode#start()*
 anzu#search_status()	anzu.jax	/*anzu#search_status()*
 anzu#sign_matchline()	anzu.jax	/*anzu#sign_matchline()*
 anzu#smart_sign_matchline()	anzu.jax	/*anzu#smart_sign_matchline()*
+anzu-autocommands	anzu.jax	/*anzu-autocommands*
 anzu-commands	anzu.jax	/*anzu-commands*
 anzu-contents	anzu.jax	/*anzu-contents*
 anzu-functions	anzu.jax	/*anzu-functions*

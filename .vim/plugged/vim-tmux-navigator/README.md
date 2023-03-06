@@ -66,7 +66,7 @@ Add the following to your `~/.tmux.conf` file:
 # Smart pane switching with awareness of Vim splits.
 # See: https://github.com/christoomey/vim-tmux-navigator
 is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
-    | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
+    | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?)(diff)?$'"
 bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h'  'select-pane -L'
 bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j'  'select-pane -D'
 bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k'  'select-pane -U'
@@ -115,16 +115,16 @@ Add the following to your `~/.vimrc` to define your custom maps:
 ``` vim
 let g:tmux_navigator_no_mappings = 1
 
-nnoremap <silent> {Left-Mapping} :TmuxNavigateLeft<cr>
-nnoremap <silent> {Down-Mapping} :TmuxNavigateDown<cr>
-nnoremap <silent> {Up-Mapping} :TmuxNavigateUp<cr>
-nnoremap <silent> {Right-Mapping} :TmuxNavigateRight<cr>
-nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>
+noremap <silent> {Left-Mapping} :<C-U>TmuxNavigateLeft<cr>
+noremap <silent> {Down-Mapping} :<C-U>TmuxNavigateDown<cr>
+noremap <silent> {Up-Mapping} :<C-U>TmuxNavigateUp<cr>
+noremap <silent> {Right-Mapping} :<C-U>TmuxNavigateRight<cr>
+noremap <silent> {Previous-Mapping} :<C-U>TmuxNavigatePrevious<cr>
 ```
 
 *Note* Each instance of `{Left-Mapping}` or `{Down-Mapping}` must be replaced
 in the above code with the desired mapping. Ie, the mapping for `<ctrl-h>` =>
-Left would be created with `nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>`.
+Left would be created with `noremap <silent> <c-h> :<C-U>TmuxNavigateLeft<cr>`.
 
 ##### Autosave on leave
 
@@ -199,6 +199,50 @@ With this enabled you can use `<prefix> C-l` to clear the screen.
 
 Thanks to [Brian Hogan][] for the tip on how to re-map the clear screen binding.
 
+#### Restoring SIGQUIT (C-\\)
+
+The default key bindings also include `<Ctrl-\>` which is the default method of
+sending SIGQUIT to a foreground process. Similar to "Clear Screen" above, a key
+binding can be created to replicate SIGQUIT in the prefix table.
+
+``` tmux
+bind C-\\ send-keys 'C-\'
+```
+
+Alternatively, you can exclude the previous pane key binding from your `~/.tmux.conf`. If using TPM, the following line can be used to unbind the previous pane binding set by the plugin.
+
+``` tmux
+unbind -n C-\\
+```
+
+#### Disable Wrapping
+
+By default, if you tru to move past the edge of the screen, tmux/vim will
+"wrap" around to the opposite side. To disable this, you'll need to
+configure both tmux and vim:
+
+For vim, you only need to enable this option:
+```vim
+let  g:tmux_navigator_no_wrap = 1
+```
+
+Tmux doesn't have an option, so whatever key bindings you have need to be set
+to conditionally wrap based on position on screen:
+
+```tmux
+is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
+    | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?)(diff)?$'"
+bind-key -n 'C-h' if-shell "$is_vim" { send-keys C-h } { if-shell -F '#{pane_at_left}'   {} { select-pane -L } }
+bind-key -n 'C-j' if-shell "$is_vim" { send-keys C-j } { if-shell -F '#{pane_at_bottom}' {} { select-pane -D } }
+bind-key -n 'C-k' if-shell "$is_vim" { send-keys C-k } { if-shell -F '#{pane_at_top}'    {} { select-pane -U } }
+bind-key -n 'C-l' if-shell "$is_vim" { send-keys C-l } { if-shell -F '#{pane_at_right}'  {} { select-pane -R } }
+
+bind-key -T copy-mode-vi 'C-h' if-shell -F '#{pane_at_left}'   {} { select-pane -L }
+bind-key -T copy-mode-vi 'C-j' if-shell -F '#{pane_at_bottom}' {} { select-pane -D }
+bind-key -T copy-mode-vi 'C-k' if-shell -F '#{pane_at_top}'    {} { select-pane -U }
+bind-key -T copy-mode-vi 'C-l' if-shell -F '#{pane_at_right}'  {} { select-pane -R }
+```
+
 #### Nesting
 If you like to nest your tmux sessions, this plugin is not going to work
 properly. It probably never will, as it would require detecting when Tmux would
@@ -229,6 +273,56 @@ bind -r C-l run "tmux select-pane -R"
 bind -r C-\ run "tmux select-pane -l"
 ```
 
+Another workaround is to configure tmux on the outer machine to send keys to
+the inner tmux session:
+
+```
+bind-key -n 'M-h' 'send-keys c-h'
+bind-key -n 'M-j' 'send-keys c-j'
+bind-key -n 'M-k' 'send-keys c-k'
+bind-key -n 'M-l' 'send-keys c-l'
+```
+
+Here we bind "meta" key (aka "alt" or "option" key) combinations for each of
+the four directions and send those along to the innermost session via
+`send-keys`. You use the normal `C-h,j,k,l` while in the outermost session and
+the alternative bindings to navigate the innermost session. Note that if you
+use the example above on a Mac, you may need to configure your terminal app to
+get the option key to work like a normal meta key. Consult your terminal app's
+manual for details.
+
+A third possible solution is to manually prevent the outermost tmux session
+from intercepting the navigation keystrokes by disabling the prefix table:
+
+```
+set -g pane-active-border-style 'fg=#000000,bg=#ffff00'
+bind -T root F12  \
+  set prefix None \;\
+  set key-table off \;\
+  if -F '#{pane_in_mode}' 'send-keys -X cancel' \;\
+  set -g pane-active-border-style 'fg=#000000,bg=#00ff00'
+  refresh-client -S \;\
+
+bind -T off F12 \
+  set -u prefix \;\
+  set -u key-table \;\
+  set -g pane-active-border-style 'fg=#000000,bg=#ffff00'
+  refresh-client -S
+```
+
+This code, added to the machine running the outermost tmux session, toggles the
+outermost prefix table on and off with the `F12` key. When off, the active
+pane's border changes to green to indicate that the inner session receives
+navigation keystrokes. When toggled back on, the border returns to yellow and
+normal operation resumes and the outermost responds to the nav keystrokes.
+
+The code example above also toggles the prefix key (ctrl-b by default) for the
+outer session so that same prefix can be temporarily used on the inner session
+instead of having to use a different prefix (ctrl-a by default) which you may
+find convenient. If not, simply remove the lines that set/unset the prefix key
+from the code example above.
+
+
 Troubleshooting
 ---------------
 
@@ -236,7 +330,7 @@ Troubleshooting
 
 This is likely due to conflicting key mappings in your `~/.vimrc`. You can use
 the following search pattern to find conflicting mappings
-`\vn(nore)?map\s+\<c-[hjkl]\>`. Any matching lines should be deleted or
+`\v(nore)?map\s+\<c-[hjkl]\>`. Any matching lines should be deleted or
 altered to avoid conflicting with the mappings from the plugin.
 
 Another option is that the pattern matching included in the `.tmux.conf` is
@@ -288,6 +382,34 @@ issue](https://github.com/christoomey/vim-tmux-navigator/issues/27) for more
 detail.
 
 [tmate]: http://tmate.io/
+
+### Switching between host panes doesn't work when docker is running
+
+Images built from minimalist OSes may not have the `ps` command or have a
+simpler version of the command that is not compatible with this plugin.
+Try installing the `procps` package using the appropriate package manager
+command. For Alpine, you would do `apk add procps`.
+
+If this doesn't solve your problem, you can also try the following:
+
+Replace the `is_vim` variable in your `~/.tmux.conf` file with:
+```tmux
+if-shell '[ -f /.dockerenv ]' \
+  "is_vim=\"ps -o state=,comm= -t '#{pane_tty}' \
+      | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?)(diff)?$'\""
+  # Filter out docker instances of nvim from the host system to prevent
+  # host from thinking nvim is running in a pseudoterminal when its not.
+  "is_vim=\"ps -o state=,comm=,cgroup= -t '#{pane_tty}' \
+      | grep -ivE '^.+ +.+ +.+\\/docker\\/.+$' \
+      | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?)(diff)? +'\""
+```
+
+Details: The output of the ps command on the host system includes processes
+running within containers, but containers have their own instances of
+/dev/pts/\*. vim-tmux-navigator relies on /dev/pts/\* to determine if vim is
+running, so if vim is running in say /dev/pts/<N> in a container and there is a
+tmux pane (not running vim) in /dev/pts/<N> on the host system, then without
+the patch above vim-tmux-navigator will think vim is running when its not.
 
 ### It Still Doesn't Work!!!
 

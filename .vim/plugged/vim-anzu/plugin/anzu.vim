@@ -57,6 +57,10 @@ function! s:wrapscan_mes()
 	unlet s:start_pos
 	unlet s:is_back
 
+  if !empty(result) && exists('#User#AnzuWrap')
+    doautocmd User AnzuWrap
+  endif
+
 	return result
 endfunction
 
@@ -66,7 +70,6 @@ let g:anzu_search_limit  = get(g:, "anzu_search_limit", 1000)
 let g:anzu_no_match_word = get(g:, "anzu_no_match_word", "")
 
 let g:anzu_airline_format = get(g:, "anzu_airline_format", "(%i/%l)")
-let g:anzu_airline_section = get(g:, "anzu_airline_section", "y")
 
 let g:anzu_bottomtop_word = get(g:, "anzu_bottomtop_word", "search hit BOTTOM, continuing at TOP")
 let g:anzu_topbottom_word = get(g:, "anzu_topbottom_word", "search hit TOP, continuing at BOTTOM")

@@ -1100,6 +1100,10 @@ fun! Test_CT_wiping_source_should_not_fail_with_E94()
   endtry
 endf
 
+fun! Test_CT_backward_compatible_option()
+  call s:assert_build('test89')
+endf
+
 "
 " Runner!
 "
@@ -1110,7 +1114,7 @@ call delete(s:docdir, "rf")
 
 if get(g:, 'autotest', 0)
   if s:exit > 0
-    execute "write" s:testdir.'/test.log'
+    execute "write >>" s:testdir.'/test.log'
     cquit
   else
     call delete(s:testdir.'/test.log')

@@ -12,6 +12,35 @@ Themes are sorted alphanumeric by theme name.
 Lush Community Themes
 ---------------------
 
+### apprentice.nvim
+
+[adisen99/apprentice.nvim](https://github.com/adisen99/apprentice.nvim)
+
+Lua module: `require("apprentice").setup()`
+
+Usage: `require('apprentice').setup()`
+
+A pretty colorscheme for neovim written in `Lua` based on the [Apprentice](https://github.com/romainl/Apprentice) color palette with support for `nvim-treesitter` and `neovim built-in lsp` which can be enabled using `setup()` function (please refer to [#Usage](https://github.com/adisen99/apprentice.nvim/tree/main#usage))
+![dark theme](../../assets/made_with_lush/adisen99_apprentice_nvim_1.png)
+![light theme](../../assets/made_with_lush/adisen99_apprentice_nvim_2.png)
+
+---
+
+### arctic.nvim
+
+[rockyzhang24/arctic.nvim](https://github.com/rockyzhang24/arctic.nvim)
+
+Lua module: `require('lush_theme.arctic')`
+
+Usage: `colorscheme arctic`
+
+A Neovim colorscheme ported from VSCode Dark+ theme with the strict and precise color picking for both the editor and UI.
+
+![pic1](../../assets/made_with_lush/rockyzhang24_arctic_nvim_1.png)
+![pic2](../../assets/made_with_lush/rockyzhang24_arctic_nvim_2.png)
+
+---
+
 ### codeschool.nvim
 
 [adisen99/codeschool.nvim](https://github.com/adisen99/codeschool.nvim)
@@ -20,7 +49,7 @@ Lua module: `require("codeschool").setup()`
 
 Usage: `require('codeschool').setup()`
 
-A pretty colorscheme for neovim written in `Lua` based on the [codeschool.vim](https://github.com/flazz/vim-colorschemes/blob/master/colors/codeschool.vim) color pattete with support for `nvim-treesitter` and `neovim built-in lsp` which can be enabled using `setup()` function (please refer to [#Usage](https://github.com/adisen99/codeschool.nvim/tree/master#usage))
+A pretty colorscheme for neovim written in `Lua` based on the [codeschool.vim](https://github.com/flazz/vim-colorschemes/blob/master/colors/codeschool.vim) color palette with support for `nvim-treesitter` and `neovim built-in lsp` which can be enabled using `setup()` function (please refer to [#Usage](https://github.com/adisen99/codeschool.nvim/tree/master#usage))
 ![dark theme](../../assets/made_with_lush/adisen99_codeschool_nvim_1.png)
 ![light theme](../../assets/made_with_lush/adisen99_codeschool_nvim_2.png)
 
@@ -38,6 +67,20 @@ My colorscheme that I made when I got tired of all other colorschemes :P (Neovim
 
 ![](../../assets/made_with_lush/pygamer0_darc_nvim_1.png)
 ![](../../assets/made_with_lush/pygamer0_darc_nvim_2.png)
+
+---
+
+### doubletrouble
+
+[muchzill4/doubletrouble](https://github.com/muchzill4/doubletrouble)
+
+Lua module: `require('doubletrouble.lush_theme')`
+
+Usage: `colorscheme doubletrouble`
+
+Yet another dark vim colorscheme.
+
+![](https://github.com/muchzill4/doubletrouble/raw/assets/nvim.png)
 
 ---
 
@@ -67,6 +110,20 @@ Usage: `colorscheme jellybeans-nvim`
 A port of the jellybeans theme.
 
 ![first screenshot](../../assets/made_with_lush/metalelf0_jellybeans-nvim_1.png)
+
+---
+
+### Meliora
+
+[meliora-theme/neovim](https://github.com/meliora-theme/neovim)
+
+Lua module: `require('meliora')`
+
+Usage: `colorscheme meliora`
+
+Warm and cozy colorscheme for neovim.
+
+![preview](./meliora-theme_neovim.png)
 
 ---
 
@@ -104,31 +161,17 @@ My personal One Dark port for Neovim with Treesitter and LSP support, dark/light
 
 ---
 
-### Zenbones
+### pink-panic
 
-[mcchrish/zenbones.nvim](https://github.com/mcchrish/zenbones.nvim)
+[scysta/pink-panic.nvim](https://github.com/scysta/pink-panic.nvim)
 
-Lua module: `require('zenbones')`
+Lua module: `require('lush_theme.pink-panic")`
 
-Usage: `colorscheme zenbones`
+Usage: `colorscheme pink-panic`
 
-A simple contrast-focused vim/nvim colorscheme.
+A simple pretty pink theme with LSP and Treesitter support for Neovim.
 
-![](https://user-images.githubusercontent.com/7200153/131045472-05c76909-0071-4c24-bd30-f15da3ae4e82.jpg)
-
----
-
-### doubletrouble
-
-[muchzill4/doubletrouble](https://github.com/muchzill4/doubletrouble)
-
-Lua module: `require('doubletrouble.lush_theme')`
-
-Usage: `colorscheme doubletrouble`
-
-Yet another dark vim colorscheme.
-
-![](https://github.com/muchzill4/doubletrouble/raw/assets/nvim.png)
+![](scysta_pink-panic_nvim.png)
 
 ---
 
@@ -156,13 +199,29 @@ Usage: `colorscheme walh-default`
 
 <img width="766" alt="walh-ocean-warm" src="https://user-images.githubusercontent.com/17597548/136674741-55ab890e-70f2-4568-b0be-0e251c51d8ee.png">
 
+---
+
+### Zenbones
+
+[mcchrish/zenbones.nvim](https://github.com/mcchrish/zenbones.nvim)
+
+Lua module: `require('zenbones')`
+
+Usage: `colorscheme zenbones`
+
+A simple contrast-focused vim/nvim colorscheme.
+
+![](https://user-images.githubusercontent.com/7200153/131045472-05c76909-0071-4c24-bd30-f15da3ae4e82.jpg)
+
+---
+
 Adding your theme to the list
 -----------------------------
 
 Submit a pull request with:
 
 - [x] The theme details template filled out (see below)
-- [x] At most 2 images (optional but recommended):
+- [x] Images (optional but recommended):
   - PNG format
   - Reasonable size (i.e. not a 4k res 30mb file)
   - Filenames follow the format:

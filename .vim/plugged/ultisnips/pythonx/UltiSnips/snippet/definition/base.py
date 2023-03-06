@@ -105,17 +105,15 @@ class SnippetDefinition:
         self._matched = ""
         self._last_re = None
         self._globals = globals
-        self._compiled_globals = cached_compile(
-            "\n".join(
-                [
-                    "import re, os, vim, string, random",
-                    "\n".join(globals.get("!p", [])).replace("\r\n", "\n"),
-                ]
-            ),
-            "<global-snippets>",
-            "exec",
-        )
+        self._compiled_globals = None
         self._location = location
+
+        # Make sure that we actually match our trigger in case we are
+        # immediately expanded. At this point we don't take into
+        # account a any context code
+        self._context_code = None
+        self.matches(self._trigger)
+
         self._context_code = context
         if context:
             self._compiled_context_code = cached_compile(
@@ -127,10 +125,6 @@ class SnippetDefinition:
             action: cached_compile(source, "<action-code>", "exec")
             for action, source in self._actions.items()
         }
-
-        # Make sure that we actually match our trigger in case we are
-        # immediately expanded.
-        self.matches(self._trigger)
 
     def __repr__(self):
         return "_SnippetDefinition(%r,%s,%s,%s)" % (
@@ -156,7 +150,7 @@ class SnippetDefinition:
             return match
         return False
 
-    def _context_match(self, visual_content):
+    def _context_match(self, visual_content, before):
         # skip on empty buffer
         if len(vim.current.buffer) == 1 and vim.current.buffer[0] == "":
             return
@@ -166,6 +160,7 @@ class SnippetDefinition:
             "visual_mode": "",
             "visual_text": "",
             "last_placeholder": None,
+            "before": before,
         }
 
         if visual_content:
@@ -193,6 +188,8 @@ class SnippetDefinition:
         snip = SnippetUtilForAction(locals)
 
         try:
+            if self._compiled_globals is None:
+                self._precompile_globals()
             glob = {"snip": snip, "match": self._last_re}
             exec(self._compiled_globals, glob)
             exec(compiled_code or code, glob)
@@ -274,6 +271,18 @@ class SnippetDefinition:
 
         e.snippet_code = code
 
+    def _precompile_globals(self):
+        self._compiled_globals = cached_compile(
+            "\n".join(
+                [
+                    "import re, os, vim, string, random",
+                    "\n".join(self._globals.get("!p", [])).replace("\r\n", "\n"),
+                ]
+            ),
+            "<global-snippets>",
+            "exec",
+        )
+
     def has_option(self, opt):
         """Check if the named option is set."""
         return opt in self._opts
@@ -354,7 +363,7 @@ class SnippetDefinition:
 
         self._context = None
         if match and self._context_code:
-            self._context = self._context_match(visual_content)
+            self._context = self._context_match(visual_content, before)
             if not self.context:
                 match = False
 
@@ -506,6 +515,8 @@ class SnippetDefinition:
             initial_text.append(result_line)
         initial_text = "\n".join(initial_text)
 
+        if self._compiled_globals is None:
+            self._precompile_globals()
         snippet_instance = SnippetInstance(
             self,
             parent,

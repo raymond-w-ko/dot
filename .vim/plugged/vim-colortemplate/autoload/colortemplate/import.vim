@@ -194,16 +194,19 @@ endf
 
 fun! s:synIDattrs(synid, mode)
   return {
-        \ 'fg':         synIDattr(a:synid, 'fg',        a:mode),
-        \ 'bg':         synIDattr(a:synid, 'bg',        a:mode),
-        \ 'sp':         synIDattr(a:synid, 'sp',        a:mode),
-        \ 'bold':      (synIDattr(a:synid, 'bold',      a:mode) ==# '1' ? 1 : 0),
-        \ 'italic':    (synIDattr(a:synid, 'italic',    a:mode) ==# '1' ? 1 : 0),
-        \ 'reverse':   (synIDattr(a:synid, 'reverse',   a:mode) ==# '1' ? 1 : 0),
-        \ 'standout':  (synIDattr(a:synid, 'standout',  a:mode) ==# '1' ? 1 : 0),
-        \ 'underline': (synIDattr(a:synid, 'underline', a:mode) ==# '1' ? 1 : 0),
-        \ 'undercurl': (synIDattr(a:synid, 'undercurl', a:mode) ==# '1' ? 1 : 0),
-        \ 'strike':    (synIDattr(a:synid, 'strike',    a:mode) ==# '1' ? 1 : 0),
+        \ 'fg':           synIDattr(a:synid, 'fg',          a:mode),
+        \ 'bg':           synIDattr(a:synid, 'bg',          a:mode),
+        \ 'sp':           synIDattr(a:synid, 'sp',          a:mode),
+        \ 'bold':        (synIDattr(a:synid, 'bold',        a:mode) ==# '1' ? 1 : 0),
+        \ 'italic':      (synIDattr(a:synid, 'italic',      a:mode) ==# '1' ? 1 : 0),
+        \ 'reverse':     (synIDattr(a:synid, 'reverse',     a:mode) ==# '1' ? 1 : 0),
+        \ 'standout':    (synIDattr(a:synid, 'standout',    a:mode) ==# '1' ? 1 : 0),
+        \ 'underline':   (synIDattr(a:synid, 'underline',   a:mode) ==# '1' ? 1 : 0),
+        \ 'undercurl':   (synIDattr(a:synid, 'undercurl',   a:mode) ==# '1' ? 1 : 0),
+        \ 'underdouble': (synIDattr(a:synid, 'underdouble', a:mode) ==# '1' ? 1 : 0),
+        \ 'underdotted': (synIDattr(a:synid, 'underdotted', a:mode) ==# '1' ? 1 : 0),
+        \ 'underdashed': (synIDattr(a:synid, 'underdashed', a:mode) ==# '1' ? 1 : 0),
+        \ 'strike':      (synIDattr(a:synid, 'strike',      a:mode) ==# '1' ? 1 : 0),
         \ }
 endf
 
@@ -259,39 +262,52 @@ fun! s:put(line)
   call append('$', a:line)
 endf
 
-fun! s:attr_text(higroup)
+fun! s:attr_text(higroup, term)
   let l:common_attr = []
   let l:term_attr = []
   let l:gui_attr = []
-  for l:attr in ['bold', 'italic', 'reverse', 'standout', 'underline', 'undercurl', 'strike']
-    if a:higroup['gui'][l:attr] == 1 && a:higroup['cterm'][l:attr] == 1
-      call add(l:common_attr, l:attr)
-    elseif a:higroup['gui'][l:attr] == 1 && a:higroup['cterm'][l:attr] == 0
-      call add(l:gui_attr, l:attr)
-    elseif a:higroup['gui'][l:attr] == 0 && a:higroup['cterm'][l:attr] == 1
-      call add(l:term_attr, l:attr)
+  for l:attr in ['bold', 'italic', 'reverse', 'standout', 'underline', 'undercurl', 'underdouble', 'underdotted', 'underdashed', 'strike']
+    if a:term ==# 'cterm'
+      if a:higroup['gui'][l:attr] == 1 && a:higroup['cterm'][l:attr] == 1
+        call add(l:common_attr, l:attr)
+      elseif a:higroup['gui'][l:attr] == 1 && a:higroup['cterm'][l:attr] == 0
+        call add(l:gui_attr, l:attr)
+      elseif a:higroup['gui'][l:attr] == 0 && a:higroup['cterm'][l:attr] == 1
+        call add(l:term_attr, l:attr)
+      endif
+    else
+      if a:higroup['term'][l:attr] == 1
+        call add(l:common_attr, l:attr)
+      endif
     endif
   endfor
   let l:s = ''
-  if a:higroup['spname'] != 'none' && a:higroup['synid'] != hlID('Normal') && a:higroup['spname'] != a:higroup['fgname']
-    let l:s .= ' guisp=' . a:higroup['spname']
-  endif
   if !empty(l:common_attr)
     let l:s .= ' ' . join(l:common_attr, ',')
   endif
-  if !empty(l:gui_attr)
-    let l:s .= ' gui=' . join(l:gui_attr, ',')
-  endif
-  if !empty(l:term_attr)
-    let l:s .= ' term=' . join(l:term_attr, ',')
+  if a:term ==# 'cterm'
+    if a:higroup['spname'] != 'none' && a:higroup['synid'] != hlID('Normal') && a:higroup['spname'] != a:higroup['fgname']
+      let l:s .= ' guisp=' . a:higroup['spname']
+    endif
+    if !empty(l:gui_attr)
+      let l:s .= ' gui=' . join(l:gui_attr, ',')
+    endif
+    if !empty(l:term_attr)
+      let l:s .= ' term=' . join(l:term_attr, ',')
+    endif
   endif
   return l:s
 endf
 
-fun! s:print_higroup(g)
-  let l:fg = s:higroups[a:g]['fgname']
-  let l:bg = s:higroups[a:g]['bgname']
-  let l:at = s:attr_text(s:higroups[a:g])
+fun! s:print_higroup(g, term)
+  if a:term ==# 'cterm'
+    let l:fg = s:higroups[a:g]['fgname']
+    let l:bg = s:higroups[a:g]['bgname']
+  else
+    let l:fg = 'omit'
+    let l:bg = 'omit'
+  endif
+  let l:at = s:attr_text(s:higroups[a:g], a:term)
   call s:put(a:g . ' ' . repeat(' ', s:name_maxlen - len(a:g))
         \ . l:fg . ' ' . repeat(' ', 10 - len(l:fg))
         \ . l:bg . (empty(l:at) ? '' : ' ' . repeat(' ', 10 - len(l:bg)))
@@ -331,12 +347,26 @@ fun! s:generate_template()
   call s:put('; Highlight groups {{{')
   " Print Normal group first
   if has_key(s:higroups, 'Normal')
-    call s:print_higroup('Normal')
+    call s:print_higroup('Normal', 'cterm')
   else " This should never happen
     call s:warn('Normal group is not defined')
   endif
   for l:g in filter(sort(keys(s:higroups)), { i,v -> v != 'Normal' })
-    call s:print_higroup(l:g)
+    call s:print_higroup(l:g, 'cterm')
+  endfor
+  call s:put('; }}}')
+  call s:put('')
+  call s:put('Variant: 0')
+  call s:put('')
+  call s:put('; Highlight groups {{{')
+  " Print Normal group first
+  if has_key(s:higroups, 'Normal')
+    call s:print_higroup('Normal', 'term')
+  else " This should never happen
+    call s:warn('Normal group is not defined')
+  endif
+  for l:g in filter(sort(keys(s:higroups)), { i,v -> v != 'Normal' })
+    call s:print_higroup(l:g, 'term')
   endfor
   call s:put('; }}}')
 endf

@@ -15,11 +15,11 @@ syn match   colortemplateTermCode     "\<st\%(art\|op\)="
 syn match   colortemplateHiGroup      "\<Conceal\>"
 syn match   colortemplateHiGroup      "\<Include\>"
 syn match   colortemplateHiGroup      "\<Terminal\>"
-syn keyword colortemplateHiGroup      Boolean Character ColorColumn Comment Conditional Constant Cursor CursorColumn CursorIM
-syn keyword colortemplateHiGroup      CursorLine CursorLineNr Define Debug Delimiter DiffAdd DiffChange DiffDelete DiffText Directory
+syn keyword colortemplateHiGroup      Boolean Character ColorColumn Comment Conditional Constant CurSearch Cursor CursorColumn CursorIM
+syn keyword colortemplateHiGroup      CursorLine CursorLineFold CursorLineSign CursorLineNr Define Debug Delimiter DiffAdd DiffChange DiffDelete DiffText Directory
 syn keyword colortemplateHiGroup      EndOfBuffer Error ErrorMsg Exception Float FoldColumn Folded Function Identifier Ignore
-syn keyword colortemplateHiGroup      IncSearch Keyword Label LineNr LineNrAbove LineNrBelow Macro MatchParen ModeMsg MoreMsg NonText
-syn keyword colortemplateHiGroup      Normal Number Operator Pmenu PmenuSbar PmenuSel PmenuThumb PopupSelected PreCondit PreProc Question
+syn keyword colortemplateHiGroup      IncSearch Keyword Label LineNr LineNrAbove LineNrBelow Macro MatchParen MessageWindow ModeMsg MoreMsg NonText
+syn keyword colortemplateHiGroup      Normal Number Operator Pmenu PmenuSbar PmenuSel PmenuThumb PopupNotification PopupSelected PreCondit PreProc Question
 syn keyword colortemplateHiGroup      QuickFixLine Repeat Search SignColumn Special SpecialChar SpecialComment SpecialKey SpellBad SpellCap
 syn keyword colortemplateHiGroup      SpellLocal SpellRare Statement StatusLine StatusLineNC StatusLineTerm StatusLineTermNC StorageClass String
 syn keyword colortemplateHiGroup      Structure TabLine TabLineFill TabLineSel Tag Title Todo Type Typedef Underlined VertSplit
@@ -35,7 +35,7 @@ syn keyword colortemplateHiGroup      vimMenuPriority vimMenuRhs vimNormCmds vim
 syn keyword colortemplateHiGroup      vimSetEqual vimStdPlugin vimSubstPat vimSubstRange vimSubstRep vimSubstRep4 vimSynKeyRegion vimSynLine
 syn keyword colortemplateHiGroup      vimSynMatchRegion vimSynMtchCchar vimSynMtchGroup vimSynPatMod vimSynRegion vimSyncLinebreak vimSyncLinecont vimSyncLines
 syn keyword colortemplateHiGroup      vimSyncMatch vimSyncRegion vimUserCmd vimUserFunc
-syn keyword colortemplateAttr         bold underline undercurl strikethrough reverse inverse italic standout nocombine NONE
+syn keyword colortemplateAttr         bold underline undercurl underdouble underdotted underdashed strikethrough reverse inverse italic standout nocombine NONE
 syn keyword colortemplateSpecial      fg bg none omit
 syn match   colortemplateComment      "[;#].*$" contains=colortemplateTodo,@Spell
 syn match   colortemplateKey          "^\s*\(\w[^:]*\):"
@@ -46,10 +46,13 @@ syn match   colortemplateArrow        "->"
 syn match   colortemplateHexColor     "#[A-Fa-f0-9]\{6\}" contained
 syn keyword colortemplateFunction     contained rgb
 syn keyword colortemplateTodo         contained TODO FIXME XXX DEBUG NOTE
+
+syn case ignore
+
 " Basic color names
 syn keyword colortemplateConstant     contained Black Blue Brown Cyan DarkRed DarkGreen DarkYellow DarkBlue DarkMagenta DarkCyan Green LightGray LightGrey
 syn keyword colortemplateConstant     contained DarkGray DarkGrey Gray Grey LightRed LightGreen LightYellow LightBlue LightMagenta LightCyan Magenta Red Yellow White
-" Color names from $VIMRUNTIME/rgb.txt
+" Color names from $VIMRUNTIME/colors/lists/default.vim
 syn keyword colortemplateConstant     contained alice AliceBlue almond antique AntiqueWhite AntiqueWhite1 AntiqueWhite2 AntiqueWhite3
 syn keyword colortemplateConstant     contained AntiqueWhite4 aqua aquamarine aquamarine1 aquamarine2 aquamarine3 aquamarine4 azure
 syn keyword colortemplateConstant     contained azure1 azure2 azure3 azure4 beige bisque bisque1 bisque2
@@ -65,7 +68,7 @@ syn keyword colortemplateConstant     contained DarkGoldenrod3 DarkGoldenrod4 Da
 syn keyword colortemplateConstant     contained DarkOliveGreen1 DarkOliveGreen2 DarkOliveGreen3 DarkOliveGreen4 DarkOrange DarkOrange1 DarkOrange2 DarkOrange3
 syn keyword colortemplateConstant     contained DarkOrange4 DarkOrchid DarkOrchid1 DarkOrchid2 DarkOrchid3 DarkOrchid4 DarkRed DarkSalmon
 syn keyword colortemplateConstant     contained DarkSeaGreen DarkSeaGreen1 DarkSeaGreen2 DarkSeaGreen3 DarkSeaGreen4 DarkSlateBlue DarkSlateGray DarkSlateGray1
-syn keyword colortemplateConstant     contained DarkSlateGray2 DarkSlateGray3 DarkSlateGray4 DarkSlateGrey DarkTurquoise DarkViolet deep DeepPink
+syn keyword colortemplateConstant     contained DarkSlateGray2 DarkSlateGray3 DarkSlateGray4 DarkSlateGrey DarkTurquoise DarkViolet DarkYellow deep DeepPink
 syn keyword colortemplateConstant     contained DeepPink1 DeepPink2 DeepPink3 DeepPink4 DeepSkyBlue DeepSkyBlue1 DeepSkyBlue2 DeepSkyBlue3
 syn keyword colortemplateConstant     contained DeepSkyBlue4 dim DimGray DimGrey dodger DodgerBlue DodgerBlue1 DodgerBlue2
 syn keyword colortemplateConstant     contained DodgerBlue3 DodgerBlue4 drab firebrick firebrick1 firebrick2 firebrick3 firebrick4
@@ -141,6 +144,8 @@ syn keyword colortemplateConstant     contained VioletRed2 VioletRed3 VioletRed4
 syn keyword colortemplateConstant     contained WebPurple wheat wheat1 wheat2 wheat3 wheat4 whip white
 syn keyword colortemplateConstant     contained WhiteSmoke x11 X11Gray X11Green X11Grey X11Maroon X11Purple yellow
 syn keyword colortemplateConstant     contained yellow1 yellow2 yellow3 yellow4 YellowGreen
+
+syn case match
 
 " These are defined for syntax completion. Since they are `contained`, but not
 " really contained into anything, this rule is never triggered.

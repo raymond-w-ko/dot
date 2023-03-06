@@ -17,12 +17,18 @@ local named_hex_highlight_groups_cache ={}
 --       potential for false positives but the negative side effect is pretty
 --       low impact.
 local function set_highlight_groups_on_line(buf, line, line_num)
-  local group = string.match(line, "%s-(%a[%a%d_]-)%s-{")
+  local group =
+      string.match(line, "%s-(%a[%a%d_]-)%s-{") or
+      string.match(line, [[%s-(sym%(?["'][%a%d%.@]+["']%)?)%s-{]])
+
   if group then
     -- technically, find matches the first occurance in line, but this should
     -- always be our group name, so it's ok
-    local hs, he = string.find(line, group)
-    api.nvim_buf_add_highlight(buf, hl_group_ns, group, line_num, hs - 1, he)
+    -- we want to highlight the sym() call if it's there, but the group name is actually
+    -- the argument.
+    local group_name = string.match(group, [[sym%(?["']([%a%d%.@]+)["']%)?]]) or group
+    local hs, he = string.find(line, group, 1, true)
+    api.nvim_buf_add_highlight(buf, hl_group_ns, group_name, line_num, hs - 1, he)
   end
 end
 
@@ -222,7 +228,7 @@ local function eval_buffer(buf)
     -- error here, if the actual spec is invalid once executed
     -- (right now we just know it's vaguely valid lua)
     local apply_success, apply_value = pcall(function()
-      return lush.apply(lush.compile(eval_value, {force_clean = true}))
+      return lush.apply(lush.compile(eval_value), {force_clean = true})
     end)
     if not apply_success then
       print_error(apply_value)
@@ -249,6 +255,7 @@ local function eval_buffer(buf)
       -- hang around.
       print(" ") -- clear error
       did_apply = true
+      vim.api.nvim_exec_autocmds("ColorScheme", {})
     end
   end
 

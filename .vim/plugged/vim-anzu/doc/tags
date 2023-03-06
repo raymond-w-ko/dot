@@ -28,6 +28,7 @@
 <Plug>(anzu-update-search-status)	anzu.txt	/*<Plug>(anzu-update-search-status)*
 <Plug>(anzu-update-search-status-with-echo)	anzu.txt	/*<Plug>(anzu-update-search-status-with-echo)*
 AnzuUpdateSearchStatusOutput	anzu.txt	/*AnzuUpdateSearchStatusOutput*
+AnzuWrap	anzu.txt	/*AnzuWrap*
 anzu	anzu.txt	/*anzu*
 anzu#clear_search_cache()	anzu.txt	/*anzu#clear_search_cache()*
 anzu#clear_search_status()	anzu.txt	/*anzu#clear_search_status()*
@@ -38,6 +39,7 @@ anzu#mode#start()	anzu.txt	/*anzu#mode#start()*
 anzu#search_status()	anzu.txt	/*anzu#search_status()*
 anzu#sign_matchline()	anzu.txt	/*anzu#sign_matchline()*
 anzu#smart_sign_matchline()	anzu.txt	/*anzu#smart_sign_matchline()*
+anzu-autocommands	anzu.txt	/*anzu-autocommands*
 anzu-commands	anzu.txt	/*anzu-commands*
 anzu-contents	anzu.txt	/*anzu-contents*
 anzu-functions	anzu.txt	/*anzu-functions*

@@ -1,34 +1,8 @@
 local hsl = require('lush.vivid.hsl.type')
 local hsluv = require('lush.vivid.hsluv.type')
 
-local parser = require('lush.parser')
-local compiler = require('lush.compiler')
-
 local function merge_default_options(options)
-  if not options then
-    options = {
-      -- default to clean
-      force_clean = true
-    }
-  end
-  return options
-end
-
-local insert_force_clean = function(compiled_ast)
-    local clean = {
-      "hi clear",
-      "set t_Co=256",
-    }
-    if vim.g.colors_name then
-      -- 'hi clear' will clear g:colors_name, so restore if it existed
-      table.insert(clean, "let g:colors_name='" .. vim.g.colors_name.."'")
-    end
-
-    for i, c in ipairs(clean) do
-      table.insert(compiled_ast, i, c)
-    end
-
-    return compiled_ast
+  return options or {force_clean = true}
 end
 
 local M = {}
@@ -44,53 +18,56 @@ end
 
 -- spec -> table
 M.parse = function(spec, options)
-  return parser(spec, options)
+  return require('lush.parser')(spec, options)
 end
 
 -- table -> table
 M.compile = function(ast, options)
-  local compiled = compiler(ast, options)
-
-  if options and options.force_clean then
-    compiled = insert_force_clean(compiled)
-  end
-
-  return compiled
+  return require("lush.compiler")(ast, options)
 end
 
--- accepts list of highlight commands from compile() to apply
-M.apply = function(compiled)
-  for _, cmd in ipairs(compiled) do
-    vim.api.nvim_command(cmd)
-  end
-end
+M.apply = function(parsed_spec, options)
+  options = options or {}
 
-M.stringify = function(parsed_spec, options)
-  options = merge_default_options(options)
+  -- we may have to clear current highlights
+  if options.force_clean then
+    local cmds = {}
+    table.insert(cmds, "highlight clear")
+    table.insert(cmds, "set t_Co=256")
+    if vim.g.colors_name then
+      -- 'hi clear' will clear g:colors_name, so restore if it existed
+      table.insert(cmds, "let g:colors_name='" .. vim.g.colors_name.."'")
+    end
+    vim.api.nvim_exec(table.concat(cmds, "\n"), false)
+  end
+
+  -- apply group
   local compiled = M.compile(parsed_spec, options)
-  return table.concat(compiled, '\n')
-end
-
-M.export_to_buffer = function(parsed_spec)
-  local lines = M.compile(parsed_spec)
-
-  table.insert(lines, 1, "\"Theme built with Lush.nvim, exported at " .. os.date())
-
-  local buf = vim.api.nvim_create_buf(false, true)
-  local win = vim.api.nvim_open_win(buf, true, {
-    relative = "editor",
-    width = vim.api.nvim_win_get_width(0) - 2 ,
-    height = vim.api.nvim_win_get_height(0) - 2,
-    row = 1,
-    col = 1,
-    style = "minimal",
-  })
-  vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+  -- It's possible to pass "fg" or  "bg" as color values, which implicity uses
+  -- Normal.fg or Normal.bg. If the Normal group has not been defined yet,
+  -- nvim_set_hl will return an error because internally Normal.fg|bg is not
+  -- yet set and the stand-in value of -1 is an invalid color. To avoid this,
+  -- we always set Normal first.
+  if compiled.Normal then
+    vim.api.nvim_set_hl(0, "Normal", compiled.Normal)
+  end
+  for group, attrs in pairs(compiled) do
+    local v, e = pcall(function() vim.api.nvim_set_hl(0, group, attrs) end)
+    if e then
+      local msg = string.format("%s could not be applied, nvim returned an error: %q, (attributes given: %s)", group, e, vim.inspect(attrs))
+      print(msg)
+    end
+  end
+  -- See https://github.com/rktjmp/lush.nvim/issues/94
+  -- Some kind of bug with `hi clear` and `nvim_set_hl` that wont set
+  -- highlights correctly on the intro screen. Loading any kind of
+  -- file repairs the colorscheme but for now we can probably set
+  -- this before working out how to fix it upstream.
+  vim.api.nvim_command("hi nvim_set_hl_x_hi_clear_bugfix guifg=red")
 end
 
 M.import = function()
-  local importer = require("lush.importer")
-  return importer.import()
+  return require("lush.importer")()
 end
 
 -- given a spec function, generate a parsed spec
@@ -104,13 +81,8 @@ end
 -- given a parsed spec, apply the spec
 local easy_parsed = function(parsed_spec, options)
   options = merge_default_options(options)
-
-  local compiled = M.compile(parsed_spec, options)
-  -- run automatically
-  M.apply(compiled)
-
+  M.apply(parsed_spec, options)
   -- return parsed spec for use with externals
-  -- TODO: Should easy_parsed return parsed_spec or a different identifier?
   return parsed_spec
 end
 

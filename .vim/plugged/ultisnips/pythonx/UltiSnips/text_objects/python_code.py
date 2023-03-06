@@ -262,6 +262,7 @@ class PythonCode(NoneditableTextObject):
                 token.code.replace("\\`", "`"), "<exec-interpolation-code>", "exec"
             ),
         )
+
         NoneditableTextObject.__init__(self, parent, token)
 
     def _update(self, done, buf):

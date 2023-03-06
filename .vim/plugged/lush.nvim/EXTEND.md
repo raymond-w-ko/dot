@@ -4,19 +4,19 @@ Extending a Lush Colorscheme
 Lush allows you access to your coloscheme in a formalised data structure. This
 lets us manipulate it easily by using lush itself or any lua code.
 
-- [Extend and merge](#extend-and-merge)
+- [Extends and merge](#extends-and-merge)
 - [Configuring a colorscheme as an end-user](#configuring-a-colorscheme-as-an-end-user)
 - [Adding support for a plugin](#adding-support-for-a-plugin)
 - [Combining specs to create a variation](#combining-specs-to-create-a-variation)
 - [Using Lush data anywhere](#using-lush-data-anywhere)
 
-## `extend` and `merge`
+## `extends` and `merge`
 
 Lush provides two methods to easly extend existing Lush coloschemes:
 
-- `lush.extend({parsed_spec, ...}).with(spec)` is mostly directed at end-users
+- `lush.extends({parsed_spec, ...}).with(spec)` is mostly directed at end-users
 who wish to modify an existing colorscheme, though it can be used in a similar style
-to `lush.merge()`. `lush.extend().with()` also allows developers to provide
+to `lush.merge()`. `lush.extends().with()` also allows developers to provide
 "configuration" of their colorscheme without any extra effort as *everything* is user
 configurable.
 
@@ -46,16 +46,20 @@ For more detailed usage and examples, see `:h lush-extending-specs`.
 
 This requires:
 
-- The colorscheme be distributed/available as a lua module
-- The user has Lush installed
+- The colorscheme to be distributed/available as a lua module
+- The user to have Lush installed
 
 In this example, we will apply a common configuration option: comments in italic.
 
-The following lua can be placed anywhere in your nvim init, you do not have
-explicitly create a colorscheme to apply the modification, though you of course
-could.
+We'll create a new colorscheme, and put it in `~/.config/nvim/colors/my-harbour.lua`.
 
 ```lua
+-- ~/.config/nvim/colors/my-harbour.lua
+-- See create.md and rktjmp/lush-template for more details on what can go in this file.
+
+vim.opt.background = 'dark'
+vim.g.colors_name = 'my-harbour'
+
 -- First we will need lush, and the colorscheme we wish to modify
 local lush = require('lush')
 local harbour = require('lush_colorscheme.harbour')
@@ -70,15 +74,8 @@ local spec = lush.extends({harbour}).with(function()
   }
 end)
 
--- You may prefer to put this in its own module, shown on _G for brevity.
-_G.customise_colorscheme = function()
-  -- now we can apply the modified spec.
-  lush(spec)
-end
-```
-
-```vimscript
-autocmd VimEnter,ColorScheme * lua customise_colorscheme()
+-- then pass the extended spec to lush for application
+lush(spec)
 ```
 
 ## Adding support for a plugin
@@ -92,11 +89,13 @@ In this example, we will add (or modify) a highlight group for a plugin that is
 not natively supported by an existing colorscheme. We will use some existing
 highlight groups so our plugin integrates with the colorscheme naturally.
 
-The following lua can be placed anywhere in your nvim init, you do not have
-explicitly create a colorscheme to apply the modification, though you of course
-could.
-
 ```lua
+-- ~/.config/nvim/colors/my-harbour.lua
+-- See create.md and rktjmp/lush-template for more details on what can go in this file.
+
+vim.opt.background = 'dark'
+vim.g.colors_name = 'my-harbour'
+
 -- First we will need lush, and the colorscheme we wish to modify
 local lush = require('lush')
 local harbour = require('lush_colorscheme.harbour')
@@ -112,14 +111,8 @@ local spec = lush.extends({harbour}).with(function()
   }
 end)
 
--- You may prefer to put this in its own module, shown on _G for brevity.
-_G.customise_colorscheme = function()
-  lush(spec)
-end
-```
-
-```vimscript
-autocmd VimEnter,ColorScheme * lua customise_colorscheme()
+-- then pass the extended spec to lush for application
+lush(spec)
 ```
 
 ## Combining specs to create a variation
@@ -164,7 +157,7 @@ local spec = lush.merge({base, constant, statement})
 return spec
 ```
 
-Merge is generally a less powerful `lush.extend().with()` but you may desire to
+Merge is generally a less powerful `lush.extends().with()` but you may desire to
 break your colorscheme up for maintenance or configuration purposes.
 
 ## Using Lush Data anywhere

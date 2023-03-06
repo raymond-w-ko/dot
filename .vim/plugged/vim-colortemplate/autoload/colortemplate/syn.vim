@@ -13,7 +13,7 @@ endf
 " Info about attributes {{{
 fun! colortemplate#syn#attributes(synid, mode)
   let l:attrs = []
-  for l:a in ['bold', 'italic', 'inverse', 'standout', 'underline', 'undercurl']
+  for l:a in ['bold', 'italic', 'inverse', 'standout', 'underline', 'undercurl', 'underdouble', 'underdotted', 'underdashed']
     if '1' ==# synIDattr(a:synid, l:a, a:mode)
       call add(l:attrs, l:a)
     endif
@@ -56,7 +56,6 @@ endf
 hi clear ColortemplateInfoFg
 hi clear ColortemplateInfoBg
 hi clear ColortemplateInfoSp
-hi ColortemplateInfoBlack ctermbg=16 guibg=#000000
 
 let s:cached_higroup = { 'synid': -1 }
 

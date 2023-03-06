@@ -16,9 +16,9 @@ Lush is a color scheme creation aid, written in Lua, for Neovim.
 Lush lets you define your scheme as a mini-dsl, provides HSL colour
 manipulation aids, and gives you real time feedback of your changes.
 
-Lush colorschemes can be exported to plain Vim Script for distribution (or escape),
-and they can also be imported to other Lua (or Vim Script) files to access color)
-data.
+Lush colorschemes can be exported easily exported for distribution
+without Lush, in both lua and vimscript formats, or they can also be
+imported into other Lua systems to access color data.
 
 ================================================================================
 CONTENTS                                                              *lush-toc*
@@ -35,6 +35,7 @@ HSL & HSLuv Colors                         |lush-hsl-colors| |lush-hsluv-colors|
   abs_*                                         |lush-color-absolute-operations|
   hue, saturation, lightness, .h, .s, .l                     |lush-color-direct|
   .hex, tostring                                    |lush-color-string-coercion|
+  .rgb                                                          |lush-color-rgb|
   Example                                                   |lush-color-example|
 Lush Spec                                                            |lush-spec|
   Sample lush-spec                                            |lush-spec-sample|
@@ -205,9 +206,15 @@ And access members with,
 
 .hex, tostring                                      *lush-color-string-coercion*
 
-Finally, HSL colors can be coerced into a hex string, either by concatenation
-with another string, passing to a function which will invoke tostring() or
-accessing the `.hex` accessor.
+HSL colors can be coerced into a hex string, either by concatenation
+with another string, passing to a function which will invoke tostring()
+or accessing the `.hex` accessor.
+
+.rgb()                                                          *lush-color-rgb*
+
+HSL colors can be converted to RGB values, this should only be done
+outside of a Lush spec, when you are intending to extract the red, green
+and blue values for use elsewhere.
 
 Example                                                     *lush-color-example*
 >
@@ -288,18 +295,38 @@ Syntax:
 
 Supports the following keys:
 
-  fg:    sets the `guifg` property of a Vim highlight group.
+  fg:    sets the `fg` property of a highlight group.
+         value must be a string, or respond to tostring().
 
-  bg:    sets the `guibg` property of a Vim highlight group.
+  bg:    sets the `bg` property of a highlight group.
+         value must be a string, or respond to tostring().
 
-  gui:   sets the `gui` property of a Vim highlight group.
+  sp:    sets the `sp` property of a highlight group.
+         value must be a string, or respond to tostring().
 
-  sp:    sets the `guisp` property of a Vim highlight group.
-
-  blend: sets the `blend` property of a Vim highlight group.
+  blend: sets the `blend` property of a highlight group.
+         value must be an integer between 0 and 100.
 
          note: you must have enabled blending in neovim via
                `pumblend` or `winblend`!
+
+  gui:   a string containing any of the following format modifier
+         values, separated by space or comma.
+
+  bold:          boolean, enables or disables bold.
+  italic:        boolean, enables or disables italics.
+  underline:     boolean, enables or disables underline.
+  underlineline: boolean, enables or disables double underline.
+  underdouble:   boolean, underlineline in nvim 0.8
+  undercurl:     boolean, enables or disables undercurl.
+  underdot:      boolean, enables or disables underdot.
+  underdotted:   boolean, underdot in nvim 0.8
+  underdash:     boolean, enables or disables underdash.
+  underdashed:   boolean, underdash in nvim 0.8
+  strikethrough: boolean, enables or disables strikethrough.
+  reverse:       boolean, enables or disables flipping fg and bg values.
+  standout:      boolean, enables or disables standout.
+  nocombine:     boolean, enables or disables nocombine.
 
   lush:  a namespace to save arbitrary data to a group. Is not
          exported to the final highlight but may be accessed in
@@ -571,12 +598,12 @@ for this system (sorry).
 Manual Toolchain                                         *lush-manual-toolchain*
 
 If desired, you can manually parse -> compile -> apply your lush-spec.
+Most usecases are probably better served by the build system, see
+BUILD.md.
 >
   local lush = require('lush')
   local parsed = lush.parse(function() return { ... } end)
   local compiled = lush.compile(parsed)
-  -- may want to manually insert clearing existing highlights here
-  -- see lush.lua, search for insert_force_clean for an example
   lush.apply(compiled)
 <
 
@@ -591,37 +618,24 @@ Accepts no options.
 
 Compile                                          *lush-manual-toolchain-compile*
 
-Accepts a parsed lush spec and returns a list of vim commands to apply the spec.
+Accepts a parsed lush spec and returns a table of group-attribute pairs
+which can be passed to `nvim_set_hl`.
 
-Note: You may wish to prepend commands to clear existing highlights before
-      continuing.
-
-      See lush.lua, search for insert_force_clean for an example.
-
-Accepts the following options:
-
-  - plugins: list of compiler plugins.
-
-Compiler plugins are functions which run in sequence. They are passed the
-current group name, group data, current highlight command and the entire parsed
-lush spec. See `lush/compiler/plugin/` for implementation details.
-
-Lush ships with the following plugins:
-
-- lush_core:      always included, base vimscript generator
 >
-  local compiled = lush.compile(parsed, {plugins = {
-    require("my_compiler_plugin")
-  })
+  local compiled = lush.compile(parsed)
 <
 
 Apply                                              *lush-manual-toolchain-apply*
 
-Acceps a list of vim commands to pass to the interpreter.
+Accepts a table of group-attribute pairs and passes them to nvim_set_hl.
 
-Accepts no options.
+Accepts an optional options table:
+
+- force_clean: boolean, clear existing highlight before applying given
+               highlights.
+
 >
-  lush.apply(compiled)
+  lush.apply(compiled, options)
 <
 
 --------------------------------------------------------------------------------
@@ -697,9 +711,9 @@ the buffer will fix these issues as the highlighter re-syncs with the buffer
 state.
 
 You may find some elements don't update in real time (LSP sign column for
-example). This is a side effect of colours are applied to those elements,
-only as they are created (I believe). The group name in your lush-spec should
-update to let you see how it will look when your colorscheme is loaded.
+example). This is a side effect of how colours are applied to those elements,
+they are only as they are created (afaik). The group name in your lush-spec
+should update to let you see how it will look when your colorscheme is loaded.
 
 Lush.ify'd `hsl()` and group name highlight may sometimes be obscured by
 CursorLine highlighting. If this is a problem, you can set CursorLine to an

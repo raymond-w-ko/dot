@@ -1,5 +1,5 @@
 " vim: foldmethod=marker nowrap et ts=2 sw=2
-let s:VERSION = '2.1.0'
+let s:VERSION = '2.2.0'
 " Informal grammar {{{
 " <Template>                  ::= <Line>*
 " <Line>                      ::= <EmptyLine> | <Comment> | <KeyValuePair> | <HiGroupDef> |
@@ -20,7 +20,7 @@ let s:VERSION = '2.1.0'
 " <GUIValue>                  ::= <HexValue> | <RGBValue> | <RGBColorName>
 " <HexValue>                  ::= #[A-Za-f0-9]{6}
 " <RGBValue>                  ::= rgb ( <8BitNumber> , <8BitNumber> , <8BitNumber> )
-" <RGBColorName>              ::= See $VIMRUNTIME/rgb.txt
+" <RGBColorName>              ::= v:colornames
 " <Base256Value>              ::= ~ | <8BitNumber>
 " <8BitNumber>                ::= 0 | 1 | ... | 255
 " <Base16Value>               ::= 0 | 1 | ... | 15 | Black | DarkRed | ...
@@ -402,7 +402,9 @@ let s:default_hi_groups = [
       \ 'Cursor',
       \ 'CursorColumn',
       \ 'CursorLine',
+      \ 'CursorLineFold',
       \ 'CursorLineNr',
+      \ 'CursorLineSign',
       \ 'DiffAdd',
       \ 'DiffChange',
       \ 'DiffDelete',
@@ -420,6 +422,7 @@ let s:default_hi_groups = [
       \ 'LineNrAbove',
       \ 'LineNrBelow',
       \ 'MatchParen',
+      \ 'MessageWindow',
       \ 'ModeMsg',
       \ 'MoreMsg',
       \ 'NonText',
@@ -428,6 +431,7 @@ let s:default_hi_groups = [
       \ 'PmenuSbar',
       \ 'PmenuSel',
       \ 'PmenuThumb',
+      \ 'PopupNotification',
       \ 'PopupSelected',
       \ 'PreProc',
       \ 'Question',
@@ -585,16 +589,8 @@ fun! s:set_terminal_code(hg, type, value)
   let a:hg[a:type] = a:value
 endf
 
-fun! s:has_term_attr(hg)
-  return !empty(a:hg['term'])
-endf
-
 fun! s:has_term_italics(hg)
   return index(a:hg['term'], 'italic') > -1
-endf
-
-fun! s:has_gui_attr(hg)
-  return !empty(a:hg['gui'])
 endf
 
 fun! s:has_gui_italics(hg)
@@ -1907,7 +1903,7 @@ fun! s:parse_gui_value()
     throw 'Invalid GUI color value'
   elseif s:token.value ==? 'rgb'
     return s:parse_rgb_value()
-  else " Assume RGB name from $VIMRUNTIME/rgb.txt
+  else " Assume RGB name from v:colornames
     let l:rgb_name = s:token.value
     while s:token.peek().kind ==# 'WORD'
       let l:rgb_name .= ' ' . s:token.next().value
@@ -2087,7 +2083,7 @@ fun! s:parse_attributes(hg)
 endf
 
 fun! s:valid_attribute(name)
-  return (a:name =~# '\m^\%(bold\|italic\|under\%(line\|curl\)\|\%(rev\|inv\)erse\|standout\|strikethrough\|nocombine\|omit\)$')
+  return (a:name =~# '\m^\%(bold\|italic\|under\%(line\|curl\|double\|dotted\|dashed\)\|\%(rev\|inv\)erse\|standout\|strikethrough\|nocombine\|omit\)$')
 endf
 
 fun! s:parse_attr_list()
@@ -2364,8 +2360,12 @@ fun! s:print_header(bufnr)
       call s:put(a:bufnr, s:interpolate('global', 'preamble', l:item.line, l:item.linenr, l:item.file))
     endfor
   endif
-  call s:put(a:bufnr,   ''                                                                      )
-  call s:put(a:bufnr,   "let s:t_Co = exists('&t_Co') && !empty(&t_Co) && &t_Co > 1 ? &t_Co : 1")
+  call s:put(a:bufnr,   ''                                                                         )
+  if s:supports_neovim()
+    call s:put(a:bufnr,   "let s:t_Co = exists('&t_Co') && !has('gui_running') ? +&t_Co : -1"      )
+  else
+    call s:put(a:bufnr,   "let s:t_Co = exists('&t_Co') && !has('gui_running') ? (&t_Co ?? 0) : -1")
+  endif
   if s:uses_italics()
     let l:itcheck =  "let s:italics = (&t_ZH != '' && &t_ZH != '[7m') || has('gui_running')"
     if s:supports_neovim()
@@ -2376,7 +2376,7 @@ fun! s:print_header(bufnr)
 endf
 
 fun! s:finish_endif(bufnr)
-  call s:put(a:bufnr, 'unlet s:t_Co' . (s:uses_italics() ? ' s:italics' : ''))
+  call s:put(a:bufnr, 'unlet s:t_Co' .. (s:uses_italics() ? ' s:italics' : ''))
   call s:put(a:bufnr, 'finish')
   call s:put(a:bufnr, 'endif')
 endf
@@ -2438,7 +2438,9 @@ fun! s:print_terminal_colors(bufnr, variant, section)
   endif
   let l:tc = s:term_colors(a:section)
   let l:col0_15 = join(map(copy(l:tc), { _,c -> "'" .. s:guicol(c, a:section) .. "'" }), ', ')
-  call s:put(a:bufnr, 'let g:terminal_ansi_colors = [' .. l:col0_15 .. ']')
+  call s:put(a:bufnr, "if (has('termguicolors') && &termguicolors) || has('gui_running')")
+  call s:put(a:bufnr, '  let g:terminal_ansi_colors = [' .. l:col0_15 .. ']')
+  call s:put(a:bufnr, "endif")
   if s:supports_neovim()
     let l:n = 0
     call s:put(a:bufnr, "if has('nvim')")
@@ -2479,9 +2481,7 @@ endf
 
 fun! s:print_colorscheme(bufnr, variant)
   call s:put(a:bufnr, '')
-  if s:is_gui(a:variant)
-    call s:put(a:bufnr, "if (has('termguicolors') && &termguicolors) || has('gui_running')")
-  else
+  if !s:is_gui(a:variant)
     call s:put(a:bufnr, 'if s:t_Co >= ' . a:variant)
   endif
   call s:print_colorscheme_defs(a:bufnr, a:variant, 'preamble')
@@ -2489,17 +2489,20 @@ fun! s:print_colorscheme(bufnr, variant)
     if s:has_colorscheme_definitions(a:variant, 'dark')
       call s:put(a:bufnr, "if &background ==# 'dark'")
       call s:print_colorscheme_defs(a:bufnr, a:variant, 'dark')
-      call s:finish_endif(a:bufnr) " endif dark background
     endif
     if s:has_colorscheme_definitions(a:variant, 'light')
+      call s:put(a:bufnr, "else")
       call s:put(a:bufnr, '" Light background')
       call s:print_colorscheme_defs(a:bufnr, a:variant, 'light')
+      call s:put(a:bufnr, "endif")
     endif
   else " One background
     let l:background = s:has_dark() ? 'dark' : 'light'
     call s:print_colorscheme_defs(a:bufnr, a:variant, l:background)
   endif
-  call s:finish_endif(a:bufnr) " endif termguicolors/t_Co
+  if !s:is_gui(a:variant)
+    call s:finish_endif(a:bufnr) " endif t_Co
+  endif
 endf
 
 fun! s:generate_colorscheme(outdir, overwrite)

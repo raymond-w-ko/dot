@@ -3,7 +3,7 @@
 " Version:      1.0
 " GetLatestVimScripts: 4472 1 :AutoInstall: obsession.vim
 
-if exists("g:loaded_obsession") || v:version < 700 || &cp
+if exists("g:loaded_obsession") || v:version < 704 || &cp
   finish
 endif
 let g:loaded_obsession = 1
@@ -57,12 +57,8 @@ endfunction
 function! s:doautocmd_user(arg) abort
   if !exists('#User#' . a:arg)
     return ''
-  elseif v:version >= 704
-    return 'doautocmd <nomodeline> User ' . fnameescape(a:arg)
   else
-    return 'try | let [save_mls, &mls] = [&mls, 0] | ' .
-          \ 'doautocmd <nomodeline> User ' . fnameescape(a:arg) . ' | ' .
-          \ 'finally | let &mls = save_mls | endtry'
+    return 'doautocmd <nomodeline> User ' . fnameescape(a:arg)
   endif
 endfunction
 
@@ -72,11 +68,13 @@ function! s:persist() abort
   endif
   let sessionoptions = &sessionoptions
   if exists('g:this_obsession')
+    let tmp = g:this_obsession . '.' . getpid() . '.obsession~'
     try
       set sessionoptions-=blank sessionoptions-=options sessionoptions+=tabpages
       exe s:doautocmd_user('ObsessionPre')
-      execute 'mksession! '.fnameescape(g:this_obsession)
-      let body = readfile(g:this_obsession)
+      execute 'mksession!' fnameescape(tmp)
+      let v:this_session = g:this_obsession
+      let body = readfile(tmp)
       call insert(body, 'let g:this_session = v:this_session', -3)
       call insert(body, 'let g:this_obsession = v:this_session', -3)
       if type(get(g:, 'obsession_append')) == type([])
@@ -84,7 +82,8 @@ function! s:persist() abort
           call insert(body, line, -3)
         endfor
       endif
-      call writefile(body, g:this_obsession)
+      call writefile(body, tmp)
+      call rename(tmp, g:this_obsession)
       let g:this_session = g:this_obsession
       exe s:doautocmd_user('Obsession')
     catch /^Vim(mksession):E11:/
@@ -95,6 +94,7 @@ function! s:persist() abort
       return 'echoerr '.string(v:exception)
     finally
       let &sessionoptions = sessionoptions
+      call delete(tmp)
     endtry
   endif
   return ''
