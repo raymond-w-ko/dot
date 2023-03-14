@@ -20,6 +20,12 @@
                        (nvim.fn.fnameescape))]
          {:exe "prettier"
           :args ["--stdin-filepath" fname]
-          :stdin true}))]}})
+          :stdin true}))]
+    :nim
+    [(fn []
+       (let []
+         {:exe "nimpretty"
+          :args ["--indent:2"]
+          :stdin false}))]}})
 
 (vim.keymap.set "n" :<leader>f ":w<cr>:Format<cr>" {})

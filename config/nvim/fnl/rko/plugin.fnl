@@ -79,11 +79,11 @@
   :ggandor/leap.nvim {:mod :leap}
   :ggandor/flit.nvim {:mod :flit}
   :numToStr/Comment.nvim {:mod :comment}
-  ; :lukas-reineke/format.nvim {:mod :format}
   :mhartington/formatter.nvim {:mod :formatter}
   :lewis6991/gitsigns.nvim {:mod :gitsigns}
   :akinsho/toggleterm.nvim {:mod :toggleterm :branch "main"}
   :monkoose/matchparen.nvim {:mod :matchparen}
+  :alaviss/nim.nvim {}
 
   :neovim/nvim-lspconfig {:mod :lspconfig}
   "~/src/vim-geckocomplete" {:mod :geckocomplete}
