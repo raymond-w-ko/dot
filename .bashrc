@@ -79,6 +79,7 @@ else
   prependpath "$HOME/go/bin"
   prependpath "$HOME/dot/bin"
   prependpath "$HOME/bin"
+  prependpath "$HOME/.nimble/bin"
 fi
 unset appendpath
 unset prependpath
