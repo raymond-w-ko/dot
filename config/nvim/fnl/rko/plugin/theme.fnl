@@ -16,7 +16,9 @@
 
      :invert_selections true
      :bold true
-     :italic false
+     :italic {:strings false
+              :operators false
+              :comments false}
      :inverse true
      :invert_signs false
      :invert_tabline false
