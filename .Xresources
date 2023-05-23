@@ -1,14 +1,14 @@
 Xft.dpi:      96
 Xft.autohint: 0
-Xft.lcdfilter: lcdnone
-Xft.hintstyle: hintnone
-Xft.hinting: 0
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintslight
+Xft.hinting: 1
 Xft.antialias: 1
-Xft.rgba: none
+Xft.rgba: rgb
 
-*foreground:  #808080
-*background:  #000000
-*cursorColor: #00ff00
+! *foreground:  #808080
+! *background:  #000000
+! *cursorColor: #00ff00
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -20,54 +20,54 @@ Xft.rgba: none
 !#define fonts -misc-fixed-medium-r-semicondensed-*-12-120-75-75-c-60-iso10646-1
 !#define fonts -romeovs-creep-Regular-R-Normal--16-160-75-75-M-4-ISO10646-1
 !#define fonts -lucy-tewi-medium-r-normal--11-90-75-75-m-60-iso10646-1
-#define fonts -romeovs-creep2-*-*-*--*-*-75-75-*-*-*-*
+!#define fonts -romeovs-creep2-*-*-*--*-*-75-75-*-*-*-*
 
 !*font:         -lucy-Tewi-medium-R-Normal--11-90-75-75-P-58-ISO10646-1
 !*font:          -*-terminus-medium-r-normal-*-12-*-*-*-*-*-iso10646-1
 !*font:          -misc-fixed-medium-r-semicondensed-*-12-120-75-75-c-60-iso10646-1
-*font:          fonts
-Xcursor*theme: pixelfun3
+!*font:          fonts
+!Xcursor*theme: pixelfun3
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-XTerm*dynamicColors:      true
-XTerm*locale:             true
-XTerm*metaSendsEscape:    true
-XTerm*font:               -misc-fixed-medium-r-semicondensed-*-12-120-75-75-c-60-iso10646-1
-XTerm*faceSize:           8
-XTerm*faceNameDoublesize: WenQuanYi Bitmap Song
-XTerm*saveLines:          16384
-! make Backspace generate ^? instead ^H, which seems to work better for most things
-XTerm*backarrowKey:       false
+! XTerm*dynamicColors:      true
+! XTerm*locale:             true
+! XTerm*metaSendsEscape:    true
+! XTerm*font:               -misc-fixed-medium-r-semicondensed-*-12-120-75-75-c-60-iso10646-1
+! XTerm*faceSize:           8
+! XTerm*faceNameDoublesize: WenQuanYi Bitmap Song
+! XTerm*saveLines:          16384
+! ! make Backspace generate ^? instead ^H, which seems to work better for most things
+! XTerm*backarrowKey:       false
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-URxvt*letterSpace     : 0
-URxvt*lineSpace       : 0
-
-URxvt*font:           fonts
-URxvt*boldFont:       fonts
-URxvt*italicFont:     fonts
-URxvt*bolditalicFont: fonts
-
-URxvt*cursorBlink     : false
-! true transparency for compositor
-URxvt*depth           : 24
-! this usually means use the desktop background as the background instead of a
-! configured color for pseudo-transparency
-URxvt*inheritPixmap   : false
-URxvt*intensityStyles : true
-URxvt*internalBorder  : 1
-URxvt*loginShell      : true
-URxvt*meta8           : false
-URxvt*pointerBlank    : true
-URxvt*saveLines       : 8192
-URxvt*scrollBar       : false
-URxvt*skipScroll      : true
-URxvt*transparent     : false
-URxvt*urgentOnBell    : true
-URxvt*visualBell      : false
-URxvt*iso14755        : false
-URxvt*reverseVideo    : false
-URxvt*cursorUnderline : false
-URxvt*fading          : 0
+! URxvt*letterSpace     : 0
+! URxvt*lineSpace       : 0
+!
+! URxvt*font:           fonts
+! URxvt*boldFont:       fonts
+! URxvt*italicFont:     fonts
+! URxvt*bolditalicFont: fonts
+!
+! URxvt*cursorBlink     : false
+! ! true transparency for compositor
+! URxvt*depth           : 24
+! ! this usually means use the desktop background as the background instead of a
+! ! configured color for pseudo-transparency
+! URxvt*inheritPixmap   : false
+! URxvt*intensityStyles : true
+! URxvt*internalBorder  : 1
+! URxvt*loginShell      : true
+! URxvt*meta8           : false
+! URxvt*pointerBlank    : true
+! URxvt*saveLines       : 8192
+! URxvt*scrollBar       : false
+! URxvt*skipScroll      : true
+! URxvt*transparent     : false
+! URxvt*urgentOnBell    : true
+! URxvt*visualBell      : false
+! URxvt*iso14755        : false
+! URxvt*reverseVideo    : false
+! URxvt*cursorUnderline : false
+! URxvt*fading          : 0
