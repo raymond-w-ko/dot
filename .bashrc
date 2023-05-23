@@ -76,6 +76,7 @@ else
   prependpath "$HOME/.local/bin"
   prependpath "$HOME/vim/bin"
   prependpath "$HOME/nvim/bin"
+  prependpath "$HOME/emacs/bin"
   prependpath "$HOME/go/bin"
   prependpath "$HOME/dot/bin"
   prependpath "$HOME/bin"
