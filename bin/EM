@@ -1,0 +1,4 @@
+#!/bin/bash
+
+xrdb -merge .Xresources
+exec ~/emacs/bin/emacs --fg-daemon
