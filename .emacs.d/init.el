@@ -13,17 +13,44 @@
 (straight-use-package 'use-package)
 
 ;; emacs
+(set-default-coding-systems 'utf-8)
+
+;; make emacs not store in a version controlled directory
+(setq user-emacs-directory (expand-file-name "~/.cache/emacs/")
+      url-history-file (expand-file-name "url/history" user-emacs-directory))
+(make-directory user-emacs-directory t)
+(when (boundp 'native-comp-eln-load-path)
+  (startup-redirect-eln-cache (expand-file-name "eln-cache" user-emacs-directory)))
+(use-package no-littering :straight t)
+
+(unless (boundp 'rko-init)
+  (push "~/dot/.emacs.d/lisp" load-path)
+  (setq rko-init t))
+
 (setq line-spacing nil)
 (setq inhibit-startup-screen t)
 (setq initial-buffer-choice t)
-
-(setq-default indent-tabs-mode nil)
+(setq visible-bell t)
 
 (setq gc-cons-threshold (* 100 1000 1000))
 (setq read-process-output-max (* 1024 1024))
 
+(setq-default indent-tabs-mode nil)
+
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+
 (electric-pair-mode 1)
 (pixel-scroll-mode 1)
+
+;; minor packages
+(use-package diminish :straight t)
+
+(use-package which-key
+  :straight t
+  :init (which-key-mode)
+  :diminish which-key-mode
+  :config
+  (setq which-key-idle-delay 1.0))
 
 ;; devil
 (use-package devil
@@ -55,8 +82,12 @@
   (global-set-key (kbd "C-:") 'avy-goto-char)
   (global-set-key (kbd "C-'") 'avy-goto-char-2))
 
-;; helm
-;; (require 'helm)
+(use-package company
+  :straight t
+  :hook ((after-init . global-company-mode)))
+
+(use-package magit
+  :straight t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
