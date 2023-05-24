@@ -73,6 +73,3 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
 alias .......='cd ../../../../../..'
-
-alias el='exa -l'
-alias e='exa'
