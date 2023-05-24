@@ -56,3 +56,4 @@ tags
 /config/yarn/global/node_modules
 
 /config/lazygit/state.yml
+/.emacs.d/straight/
