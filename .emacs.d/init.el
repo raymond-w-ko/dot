@@ -1,3 +1,13 @@
+;; emacs
+(set-default-coding-systems 'utf-8)
+
+;; make emacs not store in a version controlled directory
+(setq user-emacs-directory (expand-file-name "~/.cache/emacs/")
+      url-history-file (expand-file-name "url/history" user-emacs-directory))
+(make-directory user-emacs-directory t)
+(when (boundp 'native-comp-eln-load-path)
+  (startup-redirect-eln-cache (expand-file-name "eln-cache" user-emacs-directory)))
+
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -12,15 +22,6 @@
   (load bootstrap-file nil 'nomessage))
 (straight-use-package 'use-package)
 
-;; emacs
-(set-default-coding-systems 'utf-8)
-
-;; make emacs not store in a version controlled directory
-(setq user-emacs-directory (expand-file-name "~/.cache/emacs/")
-      url-history-file (expand-file-name "url/history" user-emacs-directory))
-(make-directory user-emacs-directory t)
-(when (boundp 'native-comp-eln-load-path)
-  (startup-redirect-eln-cache (expand-file-name "eln-cache" user-emacs-directory)))
 (use-package no-littering :straight t)
 
 (unless (boundp 'rko-init)

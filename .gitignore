@@ -60,3 +60,4 @@ tags
 
 # emacs
 /.emacs.d/straight/
+/.emacs.d/eln-cache/
