@@ -38,9 +38,11 @@
 (setq-default indent-tabs-mode nil)
 
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+(when (fboundp 'windmove-default-keybindings) (windmove-default-keybindings))
 
 (electric-pair-mode 1)
 (pixel-scroll-mode 1)
+(winner-mode 1)
 
 ;; minor packages
 (use-package diminish :straight t)
@@ -68,6 +70,7 @@
 
 ;; ace window
 (use-package ace-window
+  :disabled
   :straight t
   :bind
   (("M-o" . ace-window))
@@ -82,12 +85,23 @@
   (global-set-key (kbd "C-:") 'avy-goto-char)
   (global-set-key (kbd "C-'") 'avy-goto-char-2))
 
+(use-package avy-zap
+  :straight t
+  :bind (("M-z" . avy-zap-to-char-dwim)
+         ("M-Z" . avy-zap-up-to-char-dwim)))
+
 (use-package company
   :straight t
   :hook ((after-init . global-company-mode)))
 
 (use-package magit
   :straight t)
+
+(use-package zoom
+  :straight t
+  :diminish zoom-mode
+  :init (custom-set-variables '(zoom-size '(0.618 . 0.618)))
+  :config (zoom-mode 1))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
