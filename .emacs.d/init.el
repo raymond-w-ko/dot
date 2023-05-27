@@ -34,8 +34,7 @@
 ;; (load custom-file t)
 
 (unless (boundp 'rko/init)
-  (push "~/.emacs.d/lisp" load-path)
-  (setq rko/init t))
+  (push "~/.emacs.d/lisp" load-path))
 
 (setq line-spacing nil)
 (setq inhibit-startup-screen t)
@@ -177,8 +176,8 @@
   :init (custom-set-variables '(zoom-size '(0.618 . 0.618)))
   :config (zoom-mode 1))
 
-(use-package vterm
-  :straight t)
+(use-package vterm :straight t)
+(use-package multi-vterm :straight t)
 
 ;; (use-package emojify
 ;;   :hook (erc-mode . emojify-mode)
@@ -194,16 +193,11 @@
   (doom-themes-visual-bell-config))
 
 ;; The quick brown fox jumped over the lazy dog
-(setq rko/font-face-height 86)
-(set-face-attribute 'default nil
-                    :font "Iosevka Term"
-                    :weight 'light
-                    :height rko/font-face-height)
-(set-face-attribute 'fixed-pitch nil
-                    :font "Iosevka Term"
-                    :weight 'light
-                    :height rko/font-face-height)
-(set-face-attribute 'variable-pitch nil
-                    :font "Iosevka Aile"
-                    :weight 'light
-                    :height rko/font-face-height)
+(setq rko/font-face-height 91)
+(defun rko/set-fonts ()
+  (dolist (x '(t nil))
+    (set-face-attribute 'default x :font "Iosevka Term" :weight 'regular :height rko/font-face-height)
+    (set-face-attribute 'fixed-pitch x :font "Iosevka Term" :weight 'regular :height rko/font-face-height)
+    (set-face-attribute 'variable-pitch x :font "Iosevka Aile" :weight 'regular :height rko/font-face-height)))
+(rko/set-fonts)
+(setq rko/init t)
