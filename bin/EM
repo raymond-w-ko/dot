@@ -1,4 +1,4 @@
 #!/bin/bash
 
 xrdb -merge .Xresources
-exec ~/emacs/bin/emacs --fg-daemon
+exec ~/emacs/bin/emacs --fg-daemon #--debug-init
