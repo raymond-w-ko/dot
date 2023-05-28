@@ -70,12 +70,24 @@
 
 (use-package diminish :straight t)
 
+(use-package undo-tree
+  :straight t
+  :diminish undo-tree-mode
+  :init
+  (setq undo-tree-visualizer-timestamps t)
+  :config
+  (global-undo-tree-mode))
+
 (use-package which-key
   :straight t
   :init (which-key-mode)
   :diminish which-key-mode
   :config
-  (setq which-key-idle-delay 1.0))
+  (setq which-key-idle-delay 1.0)
+  (setq which-key-popup-type 'minibuffer)
+  (setq which-key-side-window-location 'right)
+  (setq which-key-side-window-max-width 30)
+  (setq which-key-side-window-max-height 0.20))
 
 ;; devil
 (use-package devil
@@ -121,6 +133,12 @@
   :init
   (savehist-mode))
 
+(use-package projectile
+  :straight t
+  :config
+  (projectile-mode 1)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+
 ;; (use-package company
 ;;   :straight t
 ;;   :hook ((after-init . global-company-mode)))
@@ -140,6 +158,7 @@
         completion-category-overrides '((file (styles partial-completion)))))
 
 (use-package corfu
+  :disabled
   :straight t
   :custom
   (corfu-cycle t)
@@ -147,15 +166,49 @@
   :config
   (global-corfu-mode))
 
+(use-package spell-fu
+  :straight t
+  :ensure t)
+(use-package mono-complete
+  :straight t
+  :commands (mono-complete-mode)
+  :hook ((prog-mode text-mode org-mode) . mono-complete-mode)
+  :init
+  (custom-set-faces `(mono-complete-preview-face ((t :inherit font-lock-comment-face)) t))
+  :config
+  (require 'spell-fu)
+  (setq mono-complete-backends
+        (lambda (is-context)
+          (cond
+           (is-context
+            (let* ((result (list))
+                   (state (syntax-ppss))
+                   (is-string (nth 3 state))
+                   (is-comment (nth 4 state)))
+              (when (or is-string is-comment)
+                (push 'filesystem result))
+              (push 'capf result)
+              (push 'dabbrev result)
+              (push 'spell-fu result)
+              result))
+           (t
+            (list 'capf 'dabbrev 'filesystem 'spell-fu)))))
+  (setq mono-complete-fallback-command 'indent-for-tab-command)
+  (define-key mono-complete-mode-map (kbd "<tab>") 'mono-complete-expand-or-fallback)
+  ;; this is required for it to work
+  (setq mono-complete-evil-insert-mode-only nil))
+
 (use-package emacs
   :init
   (setq completion-cycle-threshold 3)
   (setq tab-always-indent 'complete))
 
+(use-pa)
+
 (use-package copilot
   :straight (:host github :repo "zerolfx/copilot.el" :files ("dist" "*.el"))
   :ensure t
-  :hook (prog-mode . copilot-mode)
+  ;; :hook (prog-mode . copilot-mode)
   :bind (("C-c M-f" . copilot-complete)
          :map copilot-completion-map
          ("C-g" . 'copilot-clear-overlay)
@@ -173,7 +226,7 @@
 (use-package zoom
   :straight t
   :diminish zoom-mode
-  :init (custom-set-variables '(zoom-size '(0.618 . 0.618)))
+  :init (custom-set-variables '(zoom-size '(100 . 0.618)))
   :config (zoom-mode 1))
 
 (use-package vterm :straight t)
