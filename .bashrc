@@ -64,6 +64,7 @@ if [[ -d  "/usr/lib/ccache/bin" ]]; then
 else
   prependpath "/usr/lib/ccache"
 fi
+prependpath "/usr/games"
 
 prependpath "/opt/mono/bin"
 prependpath "/opt/aws/bin"
