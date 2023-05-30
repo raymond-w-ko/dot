@@ -215,6 +215,7 @@
   :init (custom-set-variables '(zoom-size '(100 . 0.618)))
   :config (zoom-mode 1))
 
+(setq vterm-always-compile-module t)
 (use-package vterm :straight t)
 (use-package multi-vterm :straight t)
 
