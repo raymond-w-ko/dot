@@ -30,61 +30,58 @@ export GPG_TTY=$(tty)
 # export CCACHE_SLOPPINESS=pch_defines,time_macros
 
 appendpath () {
-    case ":$PATH:" in
-        *:"$1":*)
-            ;;
-        *)
-            PATH="${PATH:+$PATH:}$1"
-    esac
+  case ":$PATH:" in
+    *:"$1":*)
+      ;;
+    *)
+      if [[ -d "$1" ]]; then
+        PATH="${PATH:+$PATH:}$1"
+      fi
+  esac
 }
 prependpath () {
-    case ":$PATH:" in
-        *:"$1":*)
-            ;;
-        *)
-            PATH="$1${PATH:+:$PATH}"
-    esac
+  case ":$PATH:" in
+    *:"$1":*)
+      ;;
+    *)
+      if [[ -d "$1" ]]; then
+        # echo "$1"
+        PATH="$1${PATH:+:$PATH}"
+      fi
+  esac
 }
-if [[ $(uname -s) == CYGWIN* ]]; then
-  prependpath "/usr/lib/lapack"
-  prependpath "/sbin"
-  prependpath "/usr/sbin"
-  prependpath "/bin"
-  prependpath "/usr/bin"
-  prependpath "/usr/local/bin"
-  prependpath "$HOME/bin"
-  prependpath "$HOME/vim/bin"
-  prependpath "$HOME/nvim/bin"
+# higher priority path last, system default at the beginning
+# echo $PATH
+prependpath "/bin"
+prependpath "/sbin"
+prependpath "/usr/sbin"
+prependpath "/usr/bin"
+prependpath "/usr/local/sbin"
+prependpath "/usr/local/bin"
+prependpath "/usr/bin/core_perl"
+if [[ -d  "/usr/lib/ccache/bin" ]]; then
+  prependpath "/usr/lib/ccache/bin"
 else
-  prependpath "$HOME/src/neil"
-  prependpath "/opt/mono/bin"
-  prependpath "/opt/aws/bin"
-  prependpath "/usr/bin/core_perl"
-  prependpath "/sbin"
-  prependpath "/usr/sbin"
-  prependpath "/usr/local/sbin"
-  prependpath "/bin"
-  prependpath "/usr/bin"
-  prependpath "/usr/local/bin"
-  prependpath "/opt/local/bin"
-  if [[ -d  "/usr/lib/ccache/bin" ]]; then
-    prependpath "/usr/lib/ccache/bin" 
-  else
-    prependpath "/usr/lib/ccache" 
-  fi
-  prependpath "/usr/local/opt/node@8/bin"
-  prependpath "/opt/tastyworks"
-  prependpath "$HOME/npm-global/bin"
-  prependpath "$HOME/.config/yarn/global/node_modules/.bin"
-  prependpath "$HOME/.local/bin"
-  prependpath "$HOME/vim/bin"
-  prependpath "$HOME/nvim/bin"
-  prependpath "$HOME/emacs/bin"
-  prependpath "$HOME/go/bin"
-  prependpath "$HOME/dot/bin"
-  prependpath "$HOME/bin"
-  prependpath "$HOME/.nimble/bin"
+  prependpath "/usr/lib/ccache"
 fi
+
+prependpath "/opt/mono/bin"
+prependpath "/opt/aws/bin"
+prependpath "/opt/tastyworks"
+
+prependpath "$HOME/.config/yarn/global/node_modules/.bin"
+prependpath "$HOME/npm-global/bin"
+prependpath "$HOME/.nimble/bin"
+
+prependpath "$HOME/src/neil"
+prependpath "$HOME/.local/bin"
+prependpath "$HOME/vim/bin"
+prependpath "$HOME/nvim/bin"
+prependpath "$HOME/emacs/bin"
+prependpath "$HOME/go/bin"
+prependpath "$HOME/dot/bin"
+prependpath "$HOME/bin"
+
 unset appendpath
 unset prependpath
 
