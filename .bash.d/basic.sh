@@ -13,7 +13,7 @@ if [[ "$unameString" == 'Darwin' ]]; then
       alias lt='gls -lhtF'
       alias ll='gls -lhaF'
     else
-      export LSCOLORS=ExFxCxDxBxegedabagacad
+      # export LSCOLORS=ExFxCxDxBxegedabagacad
       alias ls='ls -G'
       alias l='ls -Glh'
       alias lt='ls -Glht'
@@ -38,13 +38,12 @@ else
 
     # fix ls colors especially for directories and files that are globally
     # readable and writeable, they are completely unreadable by default
-    if [ -r "$HOME/src/dircolors-solarized/dircolors.ansi-light" ]; then
-      eval `dircolors $HOME/src/dircolors-solarized/dircolors.ansi-light`
-      # export LS_COLORS="$LS_COLORS:ow=1;7;34:st=30;44:su=30;41"
-    else
-      eval `dircolors -b`
-    fi
-    # eval `dircolors -b`
+    # if [ -r "$HOME/src/dircolors-solarized/dircolors.ansi-light" ]; then
+    #   eval `dircolors $HOME/src/dircolors-solarized/dircolors.ansi-universal`
+    #   export LS_COLORS="$LS_COLORS:ow=1;7;34:st=30;44:su=30;41"
+    # else
+    #   eval `dircolors -b`
+    # fi
 fi
 
 if [[ -d $HOME/nvim ]]; then
