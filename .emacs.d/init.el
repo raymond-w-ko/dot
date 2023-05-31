@@ -1,3 +1,10 @@
+(cl-loop for file in '("/bin/zsh" "/bin/bash")
+         when (file-exists-p file)
+         do (progn
+              (setq shell-file-name file)
+              (cl-return)))
+(setenv "SHELL" shell-file-name)
+
 ;; package manager
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -216,7 +223,9 @@
   :config (zoom-mode 1))
 
 (setq vterm-always-compile-module t)
-(use-package vterm :straight t)
+(use-package vterm :straight t
+  :init
+  (setq vterm-shell shell-file-name))
 (use-package multi-vterm :straight t)
 
 ;; (use-package emojify
