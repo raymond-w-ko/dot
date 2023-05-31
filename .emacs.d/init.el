@@ -1,3 +1,4 @@
+(require 'cl-lib)
 (cl-loop for file in '("/bin/zsh" "/bin/bash")
          when (file-exists-p file)
          do (progn
@@ -65,13 +66,22 @@
 
 (use-package diminish :straight t)
 
+(defun rko/undo-tree-save-history (undo-tree-save-history &rest args)
+  (let ((message-log-max nil)
+        (inhibit-message t))
+    (apply undo-tree-save-history args)))
 (use-package undo-tree
   :straight t
   :diminish undo-tree-mode
   :init
   (setq undo-tree-visualizer-timestamps t)
+  (setq undo-tree-auto-save-history t)
+  (let ((undo-dir (expand-file-name "undo" user-emacs-directory)))
+    (make-directory undo-dir t)
+    (setq undo-tree-history-directory-alist `(("." . ,undo-dir))))
   :config
-  (global-undo-tree-mode))
+  (global-undo-tree-mode 1)
+  (advice-add 'undo-tree-save-history :around 'rko/undo-tree-save-history))
 
 (use-package which-key
   :straight t
@@ -236,17 +246,23 @@
 (use-package zenburn-theme :straight t :defer t)
 (use-package moe-theme :straight t :defer t)
 (use-package doom-themes
+  :disabled
   :straight t
   :config
   (load-theme 'doom-gruvbox-light t)
   (doom-themes-visual-bell-config))
 
+(use-package solarized-theme
+  :straight t
+  :config
+  (load-theme 'solarized-dark t))
+
 ;; The quick brown fox jumped over the lazy dog
-(setq rko/font-face-height 91)
+(setq rko/font-face-height (floor (* (/ 9.5 10.0) 96.0)))
 (defun rko/set-fonts ()
   (dolist (x '(t nil))
-    (set-face-attribute 'default x :font "Iosevka Term" :weight 'regular :height rko/font-face-height)
-    (set-face-attribute 'fixed-pitch x :font "Iosevka Term" :weight 'regular :height rko/font-face-height)
-    (set-face-attribute 'variable-pitch x :font "Iosevka Aile" :weight 'regular :height rko/font-face-height)))
+    (set-face-attribute 'default x :font "Iosevka Term" :weight 'medium :height rko/font-face-height)
+    (set-face-attribute 'fixed-pitch x :font "Iosevka Term" :weight 'medium :height rko/font-face-height)
+    (set-face-attribute 'variable-pitch x :font "Iosevka Aile" :weight 'medium :height rko/font-face-height)))
 (rko/set-fonts)
 (setq rko/init t)
