@@ -83,6 +83,13 @@
   (global-undo-tree-mode 1)
   (advice-add 'undo-tree-save-history :around 'rko/undo-tree-save-history))
 
+(use-package super-save
+  :straight t
+  :diminish super-save-mode
+  :config
+  (super-save-mode +1)
+  (setq super-save-auto-save-when-idle t))
+
 (use-package which-key
   :straight t
   :init (which-key-mode)
@@ -225,6 +232,10 @@
 
 (use-package magit
   :straight t)
+(use-package diff-hl
+  :straight t
+  :config
+  (global-diff-hl-mode))
 
 (use-package zoom
   :straight t
@@ -241,6 +252,25 @@
 ;; (use-package emojify
 ;;   :hook (erc-mode . emojify-mode)
 ;;   :commands emojify-mode)
+
+(use-package prism
+  :straight (el-patch :type git :host github :repo "alphapapa/prism.el"))
+
+(prism-set-colors :num 16
+  :desaturations (cl-loop for i from 0 below 16
+                          collect (* i 2.5))
+  :lightens (cl-loop for i from 0 below 16
+                     collect (* i 2.5))
+  :colors (list "dodgerblue" "medium sea green" "sandy brown")
+
+  :comments-fn
+  (lambda (color)
+    (prism-blend color
+                 (face-attribute 'font-lock-comment-face :foreground) 0.25))
+
+  :strings-fn
+  (lambda (color)
+    (prism-blend color "white" 0.5)))
 
 ;; theme
 (use-package zenburn-theme :straight t :defer t)
