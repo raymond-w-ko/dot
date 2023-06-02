@@ -54,7 +54,12 @@
 (set-fringe-mode 10)
 (electric-pair-mode 1)
 ;; (pixel-scroll-mode 1)
+(desktop-save-mode 1)
 (winner-mode 1)
+(recentf-mode 1)
+(setq history-length 64)
+(savehist-mode 1)
+;; (save-place-mode 1)
 
 (defun rko/print-url-in-messages (url &rest args)
   "Print URL in *Messages* buffer instead of browsing it."
