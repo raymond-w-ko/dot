@@ -183,17 +183,17 @@
   :config
   (global-corfu-mode))
 
-(use-package spell-fu
-  :straight t
-  :ensure t)
+(use-package spell-fu :straight t :ensure t)
 (use-package mono-complete
   :straight t
+  :ensure t
   :commands (mono-complete-mode)
   :hook ((prog-mode text-mode org-mode) . mono-complete-mode)
   :init
-  (custom-set-faces `(mono-complete-preview-face ((t :inherit font-lock-comment-face)) t))
-  :config
   (require 'spell-fu)
+  (setq mono-complete-debug-log 'stdout)
+  (setq mono-complete-backend-capf-complete-fn
+        nil)
   (setq mono-complete-backends
         (lambda (is-context)
           (cond
@@ -211,9 +211,12 @@
            (t
             (list 'capf 'dabbrev 'filesystem 'spell-fu)))))
   (setq mono-complete-fallback-command 'indent-for-tab-command)
-  (define-key mono-complete-mode-map (kbd "<tab>") 'mono-complete-expand-or-fallback)
   ;; this is required for it to work
-  (setq mono-complete-evil-insert-mode-only nil))
+  (setq mono-complete-evil-insert-mode-only nil)
+  (custom-set-faces `(mono-complete-preview-face ((t :inherit font-lock-comment-face)) t))
+  (setq completion-fail-discreetly t)
+  :config
+  (define-key mono-complete-mode-map (kbd "<tab>") 'mono-complete-expand-or-fallback))
 
 (use-package emacs
   :init
