@@ -280,6 +280,18 @@
   (lambda (color)
     (prism-blend color "white" 0.5)))
 
+(use-package dimmer
+  :straight t
+  :init
+  (setq dimmer-fraction 0.33)
+  :config
+  (dimmer-configure-which-key)
+  (dimmer-configure-magit)
+  (dimmer-configure-org)
+  (dimmer-configure-gnus)
+  (dimmer-configure-helm)
+  (dimmer-mode t))
+
 ;; theme
 (use-package zenburn-theme :straight t :defer t)
 (use-package moe-theme :straight t :defer t)
