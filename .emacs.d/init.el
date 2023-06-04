@@ -186,7 +186,7 @@
   :hook ((prog-mode text-mode org-mode) . mono-complete-mode)
   :init
   (require 'spell-fu)
-  (setq mono-complete-debug-log 'stdout)
+  (setq mono-complete-debug-log t)
   (setq mono-complete-backend-capf-complete-fn
         nil)
   (setq mono-complete-backends
@@ -305,7 +305,6 @@
   
   (use-package dimmer
     :straight t
-    :disabled
     :init
     (setq dimmer-fraction 0.33)
     :config
