@@ -9,3 +9,4 @@
 (make-directory user-emacs-directory t)
 (when (boundp 'native-comp-eln-load-path)
   (startup-redirect-eln-cache (expand-file-name "eln-cache" user-emacs-directory)))
+(setq custom-file (expand-file-name "rko-custom.el" "~/.emacs.d"))
