@@ -271,14 +271,6 @@
   :config
   (load-theme 'solarized-dark t))
 
-;; The quick brown fox jumped over the lazy dog
-(setq rko/font-face-height (floor (* (/ 9.5 10.0) 96.0)))
-(defun rko/set-fonts ()
-  (dolist (x '(t nil))
-    (set-face-attribute 'default x :font "Iosevka Term" :weight 'medium :height rko/font-face-height)
-    (set-face-attribute 'fixed-pitch x :font "Iosevka Term" :weight 'medium :height rko/font-face-height)
-    (set-face-attribute 'variable-pitch x :font "Iosevka Aile" :weight 'medium :height rko/font-face-height)))
-
 (defun rko/nop ()
   (prism-set-colors
     :save t
@@ -316,6 +308,5 @@
     (dimmer-mode t)))
 
 (setq rko/init t)
-(rko/set-fonts)
 (add-hook 'after-make-frame-functions #'rko/setup-post-frame-config)
 (load custom-file t)
