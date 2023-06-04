@@ -23,11 +23,6 @@
 (require 'straight-x)
 
 (use-package no-littering :straight t)
-(setq custom-file
-      (if (boundp 'server-socket-dir)
-          (expand-file-name "custom.el" server-socket-dir)
-        (expand-file-name (format "emacs-custom-%s.el" (user-uid)) temporary-file-directory)))
-;; (load custom-file t)
 
 (unless (boundp 'rko/init)
   (push "~/.emacs.d/lisp" load-path))
@@ -261,37 +256,6 @@
 ;;   :hook (erc-mode . emojify-mode)
 ;;   :commands emojify-mode)
 
-(use-package prism
-  :straight (el-patch :type git :host github :repo "alphapapa/prism.el"))
-
-(prism-set-colors :num 16
-  :desaturations (cl-loop for i from 0 below 16
-                          collect (* i 2.5))
-  :lightens (cl-loop for i from 0 below 16
-                     collect (* i 2.5))
-  :colors (list "dodgerblue" "medium sea green" "sandy brown")
-
-  :comments-fn
-  (lambda (color)
-    (prism-blend color
-                 (face-attribute 'font-lock-comment-face :foreground) 0.25))
-
-  :strings-fn
-  (lambda (color)
-    (prism-blend color "white" 0.5)))
-
-(use-package dimmer
-  :straight t
-  :init
-  (setq dimmer-fraction 0.33)
-  :config
-  (dimmer-configure-which-key)
-  (dimmer-configure-magit)
-  (dimmer-configure-org)
-  (dimmer-configure-gnus)
-  (dimmer-configure-helm)
-  (dimmer-mode t))
-
 ;; theme
 (use-package zenburn-theme :straight t :defer t)
 (use-package moe-theme :straight t :defer t)
@@ -314,5 +278,45 @@
     (set-face-attribute 'default x :font "Iosevka Term" :weight 'medium :height rko/font-face-height)
     (set-face-attribute 'fixed-pitch x :font "Iosevka Term" :weight 'medium :height rko/font-face-height)
     (set-face-attribute 'variable-pitch x :font "Iosevka Aile" :weight 'medium :height rko/font-face-height)))
-(rko/set-fonts)
+
+(defun rko/nop ()
+  (prism-set-colors
+    :save t
+    :num 16
+    :desaturations (cl-loop for i from 0 below 16
+                            collect (* i 2.5))
+    :lightens (cl-loop for i from 0 below 16
+                       collect (* i 2.5))
+    :colors (list "dodgerblue" "medium sea green" "sandy brown")
+
+    :comments-fn
+    (lambda (color)
+      (prism-blend color
+                   (face-attribute 'font-lock-comment-face :foreground) 0.25))
+
+    :strings-fn
+    (lambda (color)
+      (prism-blend color "white" 0.5))))
+
+(defun rko/setup-post-frame-config (&optional frame)
+  (use-package prism
+    :straight (el-patch :type git :host github :repo "alphapapa/prism.el")
+    :config)
+  
+  (use-package dimmer
+    :straight t
+    :disabled
+    :init
+    (setq dimmer-fraction 0.33)
+    :config
+    (dimmer-configure-which-key)
+    (dimmer-configure-magit)
+    (dimmer-configure-org)
+    (dimmer-configure-gnus)
+    (dimmer-configure-helm)
+    (dimmer-mode t)))
+
 (setq rko/init t)
+(rko/set-fonts)
+(add-hook 'after-make-frame-functions #'rko/setup-post-frame-config)
+(load custom-file t)
