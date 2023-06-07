@@ -1,3 +1,5 @@
+(load custom-file t)
+
 (require 'cl-lib)
 (cl-loop for file in '("/bin/zsh" "/bin/bash")
          when (file-exists-p file)
@@ -256,6 +258,37 @@
 ;;   :hook (erc-mode . emojify-mode)
 ;;   :commands emojify-mode)
 
+(use-package telephone-line
+  :straight t
+  :disabled
+  :init
+  (setq telephone-line-primary-left-separator 'telephone-line-cubed-left
+        telephone-line-secondary-left-separator 'telephone-line-cubed-hollow-left
+        telephone-line-primary-right-separator 'telephone-line-cubed-right
+        telephone-line-secondary-right-separator 'telephone-line-cubed-hollow-right)
+  (setq telephone-line-lhs
+        '((evil   . (telephone-line-evil-tag-segment))
+          (accent . (telephone-line-vc-segment
+                     telephone-line-erc-modified-channels-segment
+                     telephone-line-process-segment))
+          (nil    . (telephone-line-minor-mode-segment
+                     telephone-line-buffer-segment))))
+  (setq telephone-line-rhs
+        '((nil    . (telephone-line-misc-info-segment))
+          (accent . (telephone-line-major-mode-segment))
+          (evil   . (telephone-line-airline-position-segment))))
+  (setq telephone-line-height 18
+        telephone-line-evil-use-sort-tag t)
+  :config
+  (telephone-line-mode 1))
+
+(use-package smart-mode-line
+  :straight t
+  :init
+  (setq sml/theme 'respectful)
+  :config
+  (sml/setup))
+
 ;; theme
 (use-package zenburn-theme :straight t :defer t)
 (use-package moe-theme :straight t :defer t)
@@ -309,4 +342,3 @@
 
 (setq rko/init t)
 (add-hook 'after-make-frame-functions #'rko/setup-post-frame-config)
-(load custom-file t)
