@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (load custom-file t)
 
 (require 'cl-lib)
@@ -47,8 +49,9 @@
 
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+(menu-bar-mode -1)
 (blink-cursor-mode -1)
-(set-fringe-mode 10)
+(set-fringe-mode 8)
 (electric-pair-mode 1)
 ;; (pixel-scroll-mode 1)
 (desktop-save-mode 1)
@@ -67,6 +70,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package diminish :straight t)
+(use-package all-the-icons
+  :straight t
+  :if (display-graphic-p))
 
 (defun rko/undo-tree-save-history (undo-tree-save-history &rest args)
   (let ((message-log-max nil)
@@ -149,6 +155,10 @@
 
 (use-package projectile
   :straight t
+  :init
+  (setq projectile-project-search-path '("~/dot/.emacs.d/"
+                                         "~/src/"
+                                         "~/.cache/emacs/straight/repos/"))
   :config
   (projectile-mode 1)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
@@ -156,12 +166,6 @@
 ;; (use-package company
 ;;   :straight t
 ;;   :hook ((after-init . global-company-mode)))
-
-(use-package vertico
-  :straight t
-  :custom (vertico-cycle t)
-  :init
-  (vertico-mode))
 
 (use-package orderless
   :straight t
@@ -171,8 +175,77 @@
         completion-category-defaults nil
         completion-category-overrides '((file (styles partial-completion)))))
 
+(use-package consult
+  :straight t
+  :bind (;; C-c bindings in `mode-specific-map'
+         ("C-c M-x" . consult-mode-command)
+         ("C-c h" . consult-history)
+         ("C-c k" . consult-kmacro)
+         ("C-c m" . consult-man)
+         ("C-c i" . consult-info)
+         ([remap Info-search] . consult-info)
+         ;; C-x bindings in `ctl-x-map'
+         ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
+         ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
+         ("C-x 4 b" . consult-buffer-other-window) ;; orig. switch-to-buffer-other-window
+         ("C-x 5 b" . consult-buffer-other-frame)  ;; orig. switch-to-buffer-other-frame
+         ("C-x r b" . consult-bookmark)            ;; orig. bookmark-jump
+         ("C-x p b" . consult-project-buffer)      ;; orig. project-switch-to-buffer
+         ;; Custom M-# bindings for fast register access
+         ("M-#" . consult-register-load)
+         ("M-'" . consult-register-store)          ;; orig. abbrev-prefix-mark (unrelated)
+         ("C-M-#" . consult-register)
+         ;; Other custom bindings
+         ("M-y" . consult-yank-pop)                ;; orig. yank-pop
+         ;; M-g bindings in `goto-map'
+         ("M-g e" . consult-compile-error)
+         ("M-g f" . consult-flymake)               ;; Alternative: consult-flycheck
+         ("M-g g" . consult-goto-line)             ;; orig. goto-line
+         ("M-g M-g" . consult-goto-line)           ;; orig. goto-line
+         ("M-g o" . consult-outline)               ;; Alternative: consult-org-heading
+         ("M-g m" . consult-mark)
+         ("M-g k" . consult-global-mark)
+         ("M-g i" . consult-imenu)
+         ("M-g I" . consult-imenu-multi)
+         ;; M-s bindings in `search-map'
+         ("M-s d" . consult-find)
+         ("M-s D" . consult-locate)
+         ("M-s g" . consult-grep)
+         ("M-s G" . consult-git-grep)
+         ("M-s r" . consult-ripgrep)
+         ("M-s l" . consult-line)
+         ("M-s L" . consult-line-multi)
+         ("M-s k" . consult-keep-lines)
+         ("M-s u" . consult-focus-lines)
+         ;; Isearch integration
+         ("M-s e" . consult-isearch-history)
+         :map isearch-mode-map
+         ("M-e" . consult-isearch-history)         ;; orig. isearch-edit-string
+         ("M-s e" . consult-isearch-history)       ;; orig. isearch-edit-string
+         ("M-s l" . consult-line)                  ;; needed by consult-line to detect isearch
+         ("M-s L" . consult-line-multi)            ;; needed by consult-line to detect isearch
+         ;; Minibuffer history
+         :map minibuffer-local-map
+         ("M-s" . consult-history)                 ;; orig. next-matching-history-element
+         ("M-r" . consult-history))                ;; orig. previous-matching-history-element
+  :config
+  (setq consult-narrow-key "<"))
+
+(use-package vertico
+  :straight t
+  :custom (vertico-cycle t)
+  :init
+  (require 'consult)
+  (vertico-mode))
+
+(use-package marginalia
+  :straight t
+  :bind (:map minibuffer-local-map
+              ("M-A" . marginalia-cycle))
+  :init
+  (marginalia-mode))
+
 (use-package corfu
-  :disabled
   :straight t
   :custom
   (corfu-cycle t)
@@ -182,9 +255,8 @@
 
 (use-package spell-fu :straight t :ensure t)
 (use-package mono-complete
+  :disabled
   :straight t
-  :ensure t
-  :commands (mono-complete-mode)
   :hook ((prog-mode text-mode org-mode) . mono-complete-mode)
   :init
   (require 'spell-fu)
@@ -287,7 +359,65 @@
   :init
   (setq sml/theme 'respectful)
   :config
+  (add-to-list 'sml/replacer-regexp-list '("^~/dot/\\.emacs\\.d/" ":ED:"))
+  (add-to-list 'sml/replacer-regexp-list '("^~/src/" ":SRC:"))
   (sml/setup))
+
+(use-package centaur-tabs
+  :straight t
+  :init
+  (setq centaur-tabs-style "bar"
+        centaur-tabs-height 22
+        centaur-tabs-enable-key-bindings t
+        centaur-tabs-set-bar 'under
+        x-underline-at-descent-line t
+        centaur-tabs--buffer-show-groups nil
+        centaur-tabs-set-icons nil
+        centaur-tabs-set-modified-marker t
+        centaur-tabs-show-navigation-buttons nil
+        centaur-tabs-enable-ido-completion nil)
+  :config
+  (centaur-tabs-mode t)
+  (setq uniquify-separator "/")
+  (setq uniquify-buffer-name-style 'forward)
+  (centaur-tabs-headline-match)
+  (defun entaur-tabs-buffer-groups ()
+    "`centaur-tabs-buffer-groups' control buffers' group rules.
+Group centaur-tabs with mode if buffer is derived from `eshell-mode' `emacs-lisp-mode' `dired-mode' `org-mode' `magit-mode'.
+All buffer name start with * will group to \\"Emacs\\".
+Other buffer group by `centaur-tabs-get-group-name' with project name."
+    (list
+     (cond
+      ((or (string-equal "*" (substring (buffer-name) 0 1))
+           (memq major-mode '(magit-process-mode
+                              magit-status-mode
+                              magit-diff-mode
+                              magit-log-mode
+                              magit-file-mode
+                              magit-blob-mode
+                              magit-blame-mode
+                              )))
+       "Emacs")
+      ((derived-mode-p 'prog-mode)
+       "Editing")
+      ((derived-mode-p 'dired-mode)
+       "Dired")
+      ((memq major-mode '(helpful-mode
+                          help-mode))
+       "Help")
+      ((memq major-mode '(org-mode
+                          org-agenda-clockreport-mode
+                          org-src-mode
+                          org-agenda-mode
+                          org-beamer-mode
+                          org-indent-mode
+                          org-bullets-mode
+                          org-cdlatex-mode
+                          org-agenda-log-mode
+                          diary-mode))
+       "OrgMode")
+      (t
+       (centaur-tabs-get-group-name (current-buffer)))))))
 
 ;; theme
 (use-package zenburn-theme :straight t :defer t)
