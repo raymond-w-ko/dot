@@ -47,12 +47,21 @@
 
 (when (fboundp 'windmove-default-keybindings) (windmove-default-keybindings))
 
+(setq tab-bar-show t)
+(setq tab-bar-close-button-show nil)
+(setq tab-bar-tab-hints t)
+(setq tab-bar-new-tab-choice "*scratch*")
+(setq tab-bar-format '(tab-bar-format-history
+                       tab-bar-format-tabs
+                       tab-bar-separator))
+(tab-bar-mode 1)
+
+(setq scroll-margin 5)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
 (blink-cursor-mode -1)
 (set-fringe-mode 8)
-(setq scroll-margin 5)
 (electric-pair-mode 1)
 ;; (pixel-scroll-mode 1)
 ;; (desktop-save-mode 1)
@@ -118,8 +127,10 @@
 
 (use-package workgroups2
   :straight t
+  :init
+  (setq wg-use-default-session-file nil)
   :config
-  (workgroups-mode 1))
+  (workgroups-mode +1))
 
 ;; devil
 (use-package devil
@@ -324,7 +335,7 @@
 (use-package diff-hl
   :straight t
   :config
-  (global-diff-hl-mode))
+  (global-diff-hl-mode -1))
 
 (use-package zoom
   :straight t
@@ -506,7 +517,22 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
     :config
     (add-to-list 'sml/replacer-regexp-list '("^~/dot/\\.emacs\\.d/" ":ED:"))
     (add-to-list 'sml/replacer-regexp-list '("^~/src/" ":SRC:"))
-    (sml/setup)))
+    (sml/setup))
 
-(setq rko/init t)
+  (use-package git-gutter
+    :straight (git-gutter :type git :host github :repo "emacsorphanage/git-gutter")
+    :init
+    (custom-set-variables
+     '(git-gutter:modified-sign "  ")
+     '(git-gutter:added-sign "  ")
+     '(git-gutter:deleted-sign "  ")
+     '(git-gutter:update-interval 2))
+
+    (set-face-background 'git-gutter:modified "gold4")
+    (set-face-background 'git-gutter:added "green4")
+    (set-face-background 'git-gutter:deleted "red4")
+    :config
+    (global-git-gutter-mode +1)))
+
 (add-hook 'after-make-frame-functions #'rko/setup-post-frame-config)
+(setq rko/init t)
