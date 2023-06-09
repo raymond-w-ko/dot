@@ -52,6 +52,7 @@
 (menu-bar-mode -1)
 (blink-cursor-mode -1)
 (set-fringe-mode 8)
+(setq scroll-margin 5)
 (electric-pair-mode 1)
 ;; (pixel-scroll-mode 1)
 ;; (desktop-save-mode 1)
