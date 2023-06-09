@@ -43,6 +43,8 @@
 (setq global-auto-revert-non-file-buffers t)
 (global-auto-revert-mode 1)
 
+(global-unset-key (kbd "C-z"))
+(global-unset-key (kbd "C-x C-z"))
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 (when (fboundp 'windmove-default-keybindings) (windmove-default-keybindings))
@@ -471,6 +473,12 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
   (add-hook 'consult-after-jump-hook #'pulsar-reveal-entry))
 
 (use-package symbol-overlay
+  :init
+  (global-set-key (kbd "<f5>") 'symbol-overlay-put)
+  (global-set-key (kbd "M-n") 'symbol-overlay-switch-forward)
+  (global-set-key (kbd "M-p") 'symbol-overlay-switch-backward)
+  (global-set-key (kbd "<f7>") 'symbol-overlay-mode)
+  (global-set-key (kbd "<f8>") 'symbol-overlay-remove-all)
   :straight t)
 
 (defun rko/nop ()
