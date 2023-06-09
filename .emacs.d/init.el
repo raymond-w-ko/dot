@@ -246,7 +246,7 @@
   (marginalia-mode))
 
 (use-package corfu
-  :straight t
+  :straight (corfu :type git :host github :repo "raymond-w-ko/corfu")
   :custom
   (corfu-cycle t)
   (corfu-auto t)
@@ -363,7 +363,14 @@
   (add-to-list 'sml/replacer-regexp-list '("^~/src/" ":SRC:"))
   (sml/setup))
 
+(use-package idle-highlight
+  :straight t
+  :hook ((prog-mode text-mode) . idle-highlight-mode)
+  :init
+  (setq idle-highlight-idle-time 1.0))
+
 (use-package centaur-tabs
+  :disabled
   :straight t
   :init
   (setq centaur-tabs-style "bar"
@@ -375,12 +382,14 @@
         centaur-tabs-set-icons nil
         centaur-tabs-set-modified-marker t
         centaur-tabs-show-navigation-buttons nil
-        centaur-tabs-enable-ido-completion nil)
+        centaur-tabs-enable-ido-completion nil
+        centaur-tabs-adjust-buffer-order t)
   :config
   (centaur-tabs-mode t)
   (setq uniquify-separator "/")
   (setq uniquify-buffer-name-style 'forward)
   (centaur-tabs-headline-match)
+  (centaur-tabs-change-fonts (face-attribute 'default :font) 90)
   (defun entaur-tabs-buffer-groups ()
     "`centaur-tabs-buffer-groups' control buffers' group rules.
 Group centaur-tabs with mode if buffer is derived from `eshell-mode' `emacs-lisp-mode' `dired-mode' `org-mode' `magit-mode'.
@@ -455,7 +464,7 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
 
 (defun rko/setup-post-frame-config (&optional frame)
   (use-package prism
-    :straight (el-patch :type git :host github :repo "alphapapa/prism.el")
+    :straight (prism :type git :host github :repo "alphapapa/prism.el")
     :config)
   
   (use-package dimmer
