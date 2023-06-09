@@ -8,5 +8,6 @@
       url-history-file (expand-file-name "url/history" user-emacs-directory))
 (make-directory user-emacs-directory t)
 (when (boundp 'native-comp-eln-load-path)
+  (setq native-comp-async-report-warnings-errors nil)
   (startup-redirect-eln-cache (expand-file-name "eln-cache" user-emacs-directory)))
 (setq custom-file (expand-file-name "rko-custom.el" "~/.emacs.d"))

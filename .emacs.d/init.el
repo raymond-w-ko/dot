@@ -54,7 +54,7 @@
 (set-fringe-mode 8)
 (electric-pair-mode 1)
 ;; (pixel-scroll-mode 1)
-(desktop-save-mode 1)
+;; (desktop-save-mode 1)
 (winner-mode 1)
 (recentf-mode 1)
 (setq history-length 64)
@@ -108,6 +108,17 @@
   (setq which-key-side-window-location 'right)
   (setq which-key-side-window-max-width 30)
   (setq which-key-side-window-max-height 0.20))
+
+(use-package persp-mode
+  :disabled
+  :straight t
+  :config
+  (persp-mode -1))
+
+(use-package workgroups2
+  :straight t
+  :config
+  (workgroups-mode 1))
 
 ;; devil
 (use-package devil
@@ -354,16 +365,8 @@
   :config
   (telephone-line-mode 1))
 
-(use-package smart-mode-line
-  :straight t
-  :init
-  (setq sml/theme 'respectful)
-  :config
-  (add-to-list 'sml/replacer-regexp-list '("^~/dot/\\.emacs\\.d/" ":ED:"))
-  (add-to-list 'sml/replacer-regexp-list '("^~/src/" ":SRC:"))
-  (sml/setup))
-
 (use-package idle-highlight
+  :disabled
   :straight t
   :hook ((prog-mode text-mode) . idle-highlight-mode)
   :init
@@ -443,6 +446,21 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
   :config
   (load-theme 'solarized-dark t))
 
+(use-package pulsar
+  :straight t
+  :init
+  (setq pulsar-face 'pulsar-magenta)
+  (setq pulsar-pulse nil)
+  :config
+  (require 'pulsar)
+  (pulsar-global-mode 1)
+  (add-hook 'next-error-hook #'pulsar-pulse-line)
+  (add-hook 'consult-after-jump-hook #'pulsar-recenter-top)
+  (add-hook 'consult-after-jump-hook #'pulsar-reveal-entry))
+
+(use-package symbol-overlay
+  :straight t)
+
 (defun rko/nop ()
   (prism-set-colors
     :save t
@@ -468,6 +486,7 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
     :config)
   
   (use-package dimmer
+    :disabled
     :straight t
     :init
     (setq dimmer-fraction 0.33)
@@ -477,7 +496,16 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
     (dimmer-configure-org)
     (dimmer-configure-gnus)
     (dimmer-configure-helm)
-    (dimmer-mode t)))
+    (dimmer-mode t))
+
+  (use-package smart-mode-line
+    :straight t
+    :init
+    (setq sml/theme 'respectful)
+    :config
+    (add-to-list 'sml/replacer-regexp-list '("^~/dot/\\.emacs\\.d/" ":ED:"))
+    (add-to-list 'sml/replacer-regexp-list '("^~/src/" ":SRC:"))
+    (sml/setup)))
 
 (setq rko/init t)
 (add-hook 'after-make-frame-functions #'rko/setup-post-frame-config)
