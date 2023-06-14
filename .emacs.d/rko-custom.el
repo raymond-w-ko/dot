@@ -81,11 +81,16 @@
       (null-device . "/dev/null"))))
  '(custom-safe-themes
    '("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" default))
+ '(git-gutter:added-sign "  ")
+ '(git-gutter:deleted-sign "  ")
+ '(git-gutter:modified-sign "  ")
+ '(git-gutter:update-interval 2)
  '(prism-colors
    '("#1e90ff" "#40b474" "#f1ad73" "#3b9af7" "#52b47e" "#eebb8f" "#56a4f1" "#67b188" "#eec9a9" "#70afec" "#7baf92" "#efd6c1" "#88b9ea" "#8daf9c" "#f2e4d8" "#9fc4e8"))
  '(prism-comments-fn
-   '(lambda
-      (color)
+   '(closure
+        (t)
+        (color)
       (prism-blend color
                    (face-attribute 'font-lock-comment-face :foreground)
                    0.25)))
@@ -94,7 +99,7 @@
  '(prism-lightens
    '(0.0 2.5 5.0 7.5 10.0 12.5 15.0 17.5 20.0 22.5 25.0 27.5 30.0 32.5 35.0 37.5))
  '(prism-num-faces 16)
- '(prism-strings-fn '(lambda (color) (prism-blend color "white" 0.5)))
+ '(prism-strings-fn '(closure (t) (color) (prism-blend color "white" 0.5)))
  '(zoom-size '(100 . 0.618)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
