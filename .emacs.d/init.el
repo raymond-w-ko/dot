@@ -63,7 +63,7 @@
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
 (blink-cursor-mode -1)
-(set-fringe-mode 8)
+(set-fringe-mode 0)
 (electric-pair-mode 1)
 ;; (pixel-scroll-mode 1)
 ;; (desktop-save-mode 1)
@@ -271,8 +271,10 @@
   (marginalia-mode))
 
 (use-package corfu
-  :straight (corfu :type git :host github :repo "raymond-w-ko/corfu")
+  :straight (corfu :type git :host github :repo "minad/corfu"
+                   :fork (:host nil :repo "git@github.com:raymond-w-ko/corfu"))
   :custom
+  (corfu-count 8)
   (corfu-cycle t)
   (corfu-auto t)
   :config
