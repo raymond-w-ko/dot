@@ -561,5 +561,7 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
     :config
     (global-git-gutter-mode +1)))
 
-(add-hook 'after-make-frame-functions #'rko/setup-post-frame-config)
+(if (daemonp)
+    (add-hook 'after-make-frame-functions #'rko/setup-post-frame-config)
+  (rko/setup-post-frame-config))
 (setq rko/init t)
