@@ -458,14 +458,20 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
   (doom-themes-visual-bell-config))
 
 (use-package solarized-theme
+  :disabled
   :straight t
   :config
   (load-theme 'solarized-dark t))
 
+(use-package modus-themes
+  :straight t
+  :config
+  (load-theme 'modus-operandi-tinted :no-confirm))
+
 (use-package pulsar
   :straight t
   :init
-  (setq pulsar-face 'pulsar-magenta)
+  (setq pulsar-face 'pulsar-green)
   (setq pulsar-pulse nil)
   :config
   (require 'pulsar)
@@ -482,6 +488,26 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
   (global-set-key (kbd "<f7>") 'symbol-overlay-mode)
   (global-set-key (kbd "<f8>") 'symbol-overlay-remove-all)
   :straight t)
+
+(use-package smart-mode-line
+  :disabled
+  :straight t
+  :init
+  (setq sml/theme 'respectful)
+  :config
+  (add-to-list 'sml/replacer-regexp-list '("^~/dot/\\.emacs\\.d/" ":ED:"))
+  (add-to-list 'sml/replacer-regexp-list '("^~/src/" ":SRC:"))
+  :config
+  (sml/setup))
+
+(use-package nerd-icons
+  :straight t
+  :custom
+  (nerd-icons-install-fonts t))
+(use-package doom-modeline
+  :straight t
+  :config
+  (doom-modeline-mode 1))
 
 (defun rko/nop ()
   (prism-set-colors
@@ -519,15 +545,6 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
     (dimmer-configure-gnus)
     (dimmer-configure-helm)
     (dimmer-mode t))
-
-  (use-package smart-mode-line
-    :straight t
-    :init
-    (setq sml/theme 'respectful)
-    :config
-    (add-to-list 'sml/replacer-regexp-list '("^~/dot/\\.emacs\\.d/" ":ED:"))
-    (add-to-list 'sml/replacer-regexp-list '("^~/src/" ":SRC:"))
-    (sml/setup))
 
   (use-package git-gutter
     :straight (git-gutter :type git :host github :repo "emacsorphanage/git-gutter")
