@@ -24,13 +24,21 @@ unset appendpath
 
 source /etc/profile
 
+if [[ ! -f "$XDG_RUNTIME_DIR/ssh-agent.env" ]]; then
+  echo "killing existing ssh-agent"
+  ssh-agent -k
+else
+  echo "no existing ssh-agent"
+fi
 if [[ ! -z "$XDG_RUNTIME_DIR" ]]; then
   if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    echo "starting ssh-agent"
     ssh-agent > "$XDG_RUNTIME_DIR/ssh-agent.env"
   fi
-  if [[ ! -z "$SSH_AUTH_SOCK" ]]; then
-    eval "$(<"$XDG_RUNTIME_DIR/ssh-agent.env")"
-  fi
+  echo "importing ssh-agent vars"
+  eval "$(<"$XDG_RUNTIME_DIR/ssh-agent.env")"
+else
+  echo "no XDG_RUNTIME_DIR"
 fi
 
 # Path to your oh-my-zsh installation.
