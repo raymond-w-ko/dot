@@ -45,7 +45,7 @@
 
 (global-unset-key (kbd "C-z"))
 (global-unset-key (kbd "C-x C-z"))
-(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+;; (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 (when (fboundp 'windmove-default-keybindings) (windmove-default-keybindings))
 
@@ -134,7 +134,6 @@
   :config
   (workgroups-mode +1))
 
-;; devil
 (use-package devil
   :straight t
   :init
@@ -142,7 +141,22 @@
   (setq devil-prompt "\U0001F608 %t")
   :config
   (global-devil-mode)
-  (global-set-key (kbd "C-,") 'global-devil-mode))
+  (define-key devil-mode-map (kbd ".") #'devil)
+  (add-to-list 'devil-special-keys `(". ." . ,(devil-key-executor ".")))
+  (setq devil-translations '((", z" . "C-")
+			                       (". z" . "M-")
+			                       (", ," . ",")
+			                       (". ." . ".")
+			                       ("," . "C-")
+			                       ("." . "M-")))
+  nil)
+
+(use-package god-mode
+  :straight t
+  :config
+  ;; (god-mode)
+  ;; (global-set-key (kbd "<escape>") #'god-mode-all)
+  nil)
 
 (use-package lispy
   :straight t
@@ -513,32 +527,49 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
   :init
   (setq doom-modeline-project-detection 'projectile)
   (setq doom-modeline-minor-modes nil)
+  (setq doom-modeline-modal t)
+  (setq doom-modeline-modal-icon t)
   :config
   (doom-modeline-mode 1))
 
-(defun rko/nop ()
+(defun rko/setup-prism-for-dark-theme ()
+  (prism-set-colors :num 16
+    :desaturations (cl-loop for i from 0 below 16
+                            collect (* i 30))
+    :lightens (cl-loop for i from 0 below 16
+                       collect (* -1 i 10))
+    :colors (list "dodgerblue" "medium sea green" "sandy brown"))
+  nil)
+
+(defun rko/setup-prism-for-modus-theme ()
+  (setq prism-num-faces 16)
   (prism-set-colors
     :save t
-    :num 16
-    :desaturations (cl-loop for i from 0 below 16
-                            collect (* i 2.5))
-    :lightens (cl-loop for i from 0 below 16
-                       collect (* i 2.5))
-    :colors (list "dodgerblue" "medium sea green" "sandy brown")
-
-    :comments-fn
-    (lambda (color)
-      (prism-blend color
-                   (face-attribute 'font-lock-comment-face :foreground) 0.25))
-
-    :strings-fn
-    (lambda (color)
-      (prism-blend color "white" 0.5))))
+    :desaturations '(0) ; do not change---may lower the contrast ratio
+    :lightens '(0)      ; same
+    :colors (modus-themes-with-colors
+              (list fg-main
+                    magenta
+                    cyan-cooler
+                    magenta-cooler
+                    blue
+                    magenta-warmer
+                    cyan-warmer
+                    red-cooler
+                    green
+                    fg-main
+                    cyan
+                    yellow
+                    blue-warmer
+                    red-warmer
+                    green-cooler
+                    yellow-faint))))
 
 (defun rko/setup-post-frame-config (&optional frame)
   (use-package prism
     :straight (prism :type git :host github :repo "alphapapa/prism.el")
-    :config)
+    :config
+    (rko/setup-prism-for-modus-theme))
   
   (use-package dimmer
     :disabled
