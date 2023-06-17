@@ -504,8 +504,15 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
   :straight t
   :custom
   (nerd-icons-install-fonts t))
+
+(use-package minions
+  :straight t)
+
 (use-package doom-modeline
   :straight t
+  :init
+  (setq doom-modeline-project-detection 'projectile)
+  (setq doom-modeline-minor-modes nil)
   :config
   (doom-modeline-mode 1))
 
@@ -548,6 +555,7 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
 
   (use-package git-gutter
     :straight (git-gutter :type git :host github :repo "emacsorphanage/git-gutter")
+    :diminish t
     :init
     (custom-set-variables
      '(git-gutter:modified-sign "  ")
@@ -555,9 +563,9 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
      '(git-gutter:deleted-sign "  ")
      '(git-gutter:update-interval 2))
 
-    (set-face-background 'git-gutter:modified "gold4")
-    (set-face-background 'git-gutter:added "green4")
-    (set-face-background 'git-gutter:deleted "red4")
+    (set-face-background 'git-gutter:modified "gold3")
+    (set-face-background 'git-gutter:added "green3")
+    (set-face-background 'git-gutter:deleted "red3")
     :config
     (global-git-gutter-mode +1)))
 
