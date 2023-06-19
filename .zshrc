@@ -25,10 +25,8 @@ unset appendpath
 source /etc/profile
 
 if [[ ! -f "$XDG_RUNTIME_DIR/ssh-agent.env" ]]; then
-  echo "killing existing ssh-agent"
+  echo "attempting to kill existing ssh-agent"
   ssh-agent -k
-else
-  echo "no existing ssh-agent"
 fi
 if [[ ! -z "$XDG_RUNTIME_DIR" ]]; then
   if ! pgrep -u "$USER" ssh-agent > /dev/null; then
