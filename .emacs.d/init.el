@@ -478,9 +478,15 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
   (load-theme 'solarized-dark t))
 
 (use-package modus-themes
+  :disabled
   :straight t
   :config
   (load-theme 'modus-operandi-tinted :no-confirm))
+
+(use-package ef-themes
+  :straight t
+  :config
+  (load-theme 'ef-elea-light :no-confirm))
 
 (use-package pulsar
   :straight t
@@ -534,6 +540,7 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
 
 (defun rko/setup-prism-for-dark-theme ()
   (prism-set-colors :num 16
+    :save t
     :desaturations (cl-loop for i from 0 below 16
                             collect (* i 30))
     :lightens (cl-loop for i from 0 below 16
@@ -541,13 +548,15 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
     :colors (list "dodgerblue" "medium sea green" "sandy brown"))
   nil)
 
-(defun rko/setup-prism-for-modus-theme ()
+(defun rko/setup-prism-for-light-theme ()
+  (require 'prism)
   (setq prism-num-faces 16)
   (prism-set-colors
-    :save t
     :desaturations '(0) ; do not change---may lower the contrast ratio
     :lightens '(0)      ; same
-    :colors (modus-themes-with-colors
+    :comments-fn (lambda (color) (prism-blend color "black" 0.5))
+    :strings-fn (lambda (color) (prism-blend color "black" 0.5))
+    :colors (ef-themes-with-colors
               (list fg-main
                     magenta
                     cyan-cooler
@@ -569,7 +578,8 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
   (use-package prism
     :straight (prism :type git :host github :repo "alphapapa/prism.el")
     :config
-    (rko/setup-prism-for-modus-theme))
+    (require 'prism)
+    (rko/setup-prism-for-light-theme))
   
   (use-package dimmer
     :disabled
@@ -594,9 +604,10 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
      '(git-gutter:deleted-sign "  ")
      '(git-gutter:update-interval 2))
 
-    (set-face-background 'git-gutter:modified "gold3")
-    (set-face-background 'git-gutter:added "green3")
-    (set-face-background 'git-gutter:deleted "red3")
+    ;; (set-face-background 'git-gutter:modified "gold3")
+    ;; (set-face-background 'git-gutter:added "green3")
+    ;; (set-face-background 'git-gutter:deleted "red3")
+    
     :config
     (global-git-gutter-mode +1)))
 

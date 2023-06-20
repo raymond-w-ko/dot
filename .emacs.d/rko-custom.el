@@ -85,9 +85,13 @@
  '(git-gutter:deleted-sign "  ")
  '(git-gutter:modified-sign "  ")
  '(git-gutter:update-interval 2)
+ '(prism-colors
+   '("#221321" "#80308f" "#00677f" "#5032aa" "#375cc6" "#9f356a" "#3f6faf" "#b02440" "#00601f" "#221321" "#1f70af" "#9a501f" "#444fcf" "#d00000" "#007047" "#7f4f4a"))
+ '(prism-comments-fn '(closure (t) (color) (prism-blend color "black" 0.5)))
  '(prism-desaturations '(0))
  '(prism-lightens '(0))
  '(prism-num-faces 16)
+ '(prism-strings-fn '(closure (t) (color) (prism-blend color "black" 0.5)))
  '(zoom-size '(100 . 0.618)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
