@@ -1,32 +1,36 @@
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
+export LC_NUMERIC=en_US.UTF-8
+export LC_TIME=en_US.UTF-8
+export LC_COLLATE=en_US.UTF-8
+export LC_MONETARY=en_US.UTF-8
+export LC_MESSAGES=en_US.UTF-8
+export LC_PAPER=en_US.UTF-8
+export LC_NAME=en_US.UTF-8
+export LC_ADDRESS=en_US.UTF-8
+export LC_TELEPHONE=en_US.UTF-8
+export LC_MEASUREMENT=en_US.UTF-8
+export LC_IDENTIFICATION=en_US.UTF-8
 
 # ensure a consistent environment
-if grep -qE "(Microsoft|WSL)" /proc/version &> /dev/null ; then
-  true
-else
-  export PATH=
-fi
-# Append our default paths
-appendpath () {
-    case ":$PATH:" in
-        *:"$1":*)
-            ;;
-        *)
-            PATH="${PATH:+$PATH:}$1"
-    esac
-}
-appendpath '/usr/local/sbin'
-appendpath '/usr/local/bin'
-appendpath '/usr/bin'
-appendpath '/bin'
-unset appendpath
-
 source /etc/profile
+
+## tramp gets hung up on precmd(), unset some features
+if [[ "$TERM" == "dumb" ]]; then
+    unsetopt zle
+    unsetopt prompt_cr
+    unsetopt prompt_subst
+    unfunction precmd
+    unfunction preexec
+    PS1='$ '
+    return
+fi
 
 if [[ ! -f "$XDG_RUNTIME_DIR/ssh-agent.env" ]]; then
   echo "attempting to kill existing ssh-agent"
-  ssh-agent -k
+  pkill -u "$USER" ssh-agent
 fi
 if [[ ! -z "$XDG_RUNTIME_DIR" ]]; then
   if ! pgrep -u "$USER" ssh-agent > /dev/null; then

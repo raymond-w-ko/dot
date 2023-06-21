@@ -1,16 +1,29 @@
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
+export LC_NUMERIC=en_US.UTF-8
+export LC_TIME=en_US.UTF-8
+export LC_COLLATE=en_US.UTF-8
+export LC_MONETARY=en_US.UTF-8
+export LC_MESSAGES=en_US.UTF-8
+export LC_PAPER=en_US.UTF-8
+export LC_NAME=en_US.UTF-8
+export LC_ADDRESS=en_US.UTF-8
+export LC_TELEPHONE=en_US.UTF-8
+export LC_MEASUREMENT=en_US.UTF-8
+export LC_IDENTIFICATION=en_US.UTF-8
 
-export PROMPT_DIRTRIM=3
+# prevent confusing tramp ssh
+if [[ "$TERM" == "dumb" ]]; then
+    PS1='$ '
+    return
+fi
+
 # If not running interactively, don't do anything
 [[ "$-" != *i* ]] && return
 
-# if hash zsh 2>/dev/null; then
-#   if [[ -n $BASH ]]; then
-#     exec zsh
-#   fi
-# fi
+export PROMPT_DIRTRIM=3
 
 if [[ "$SHELL" == bash ]]; then
   # attempts to correct bad "cd" target
