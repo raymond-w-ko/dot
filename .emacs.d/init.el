@@ -301,8 +301,8 @@
          ("M-r" . consult-history)) ;; orig. previous-matching-history-element
   :init
   (setq consult-buffer-sources '(consult--source-hidden-buffer
-                                 my-consult--source-buffer
-                                 my-consult--source-local-buffer))
+                                 my-consult--source-local-buffer
+                                 my-consult--source-buffer))
   :config
   (setq consult-narrow-key "<"))
 
