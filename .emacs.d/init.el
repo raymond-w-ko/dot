@@ -558,8 +558,9 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
 
 (use-package nerd-icons
   :straight t
-  :custom
-  (nerd-icons-install-fonts t))
+  :config
+  (unless (file-exists-p "~/.local/share/fonts/NFM.ttf")
+    (nerd-icons-install-fonts t)))
 
 (use-package minions
   :straight t)
