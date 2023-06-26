@@ -351,8 +351,8 @@ sbscd() {
   cd "$remote_path"
 }
 
-stty -ixon # disable ctrl-s and ctrl-q
 if hash stty 2>/dev/null; then
+  stty -ixon # disable ctrl-s and ctrl-q
   stty stop undef
   stty start undef
   # breaks backspace in hidden password reading prompts
