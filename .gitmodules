@@ -28,3 +28,6 @@
 [submodule "src/tmux-gruvbox"]
 	path = src/tmux-gruvbox
 	url = https://github.com/egel/tmux-gruvbox.git
+[submodule "src/dtach"]
+	path = src/dtach
+	url = https://github.com/crigler/dtach.git
