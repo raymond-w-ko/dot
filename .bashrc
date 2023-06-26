@@ -352,12 +352,12 @@ sbscd() {
 }
 
 if hash stty 2>/dev/null; then
-  stty -ixon # disable ctrl-s and ctrl-q
+  stty sane
   stty stop undef
   stty start undef
   # breaks backspace in hidden password reading prompts
   # actually only if xterm backspace is set to generate ^H and not ^?
-  stty erase 
+  # stty erase 
 fi
 
 ulimit -c unlimited
