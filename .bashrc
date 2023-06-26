@@ -173,6 +173,7 @@ fe() {
 # aliases
 alias dot="cd $HOME/dot"
 alias SS="sudo systemctl"
+alias SSu="systemctl --user"
 alias sdr='screen -U -D -R'
 # covered by oh-my-zsh, but I do not want to type argument
 # alias ta='tmux attach-session -d'
