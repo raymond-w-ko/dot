@@ -1,8 +1,12 @@
 ;; -*- lexical-binding: t -*-
 
-(load custom-file t)
-
 (require 'cl-lib)
+
+(dolist (path '("rko-lisp" "rko-emacs-modules"))
+  (add-to-list 'load-path (concat "~/dot/.emacs.d/" path)))
+
+
+
 (cl-loop for file in '("/bin/zsh" "/bin/bash")
          when (file-exists-p file)
          do (progn
@@ -26,58 +30,60 @@
 (straight-use-package 'use-package)
 (require 'straight-x)
 
+(use-package ef-themes
+  :straight t
+  :init
+  (setq ef-themes-headings ; read the manual's entry or the doc string
+        '((0 variable-pitch light 1.9)
+          (1 variable-pitch light 1.8)
+          (2 variable-pitch regular 1.7)
+          (3 variable-pitch regular 1.6)
+          (4 variable-pitch regular 1.5)
+          (5 variable-pitch 1.4)      ; absence of weight means `bold'
+          (6 variable-pitch 1.3)
+          (7 variable-pitch 1.2)
+          (t variable-pitch 1.1)))
+  (setq ef-themes-mixed-fonts t
+        ef-themes-variable-pitch-ui t)
+  (setq ef-themes-region '(intense no-extend neutral))
+  (mapc #'disable-theme custom-enabled-themes)
+  :config
+  (ef-themes-select 'ef-elea-light))
+
+(load custom-file t)
+
 (use-package no-littering :straight t)
 
-(unless (boundp 'rko/init)
-  (push "~/.emacs.d/lisp" load-path))
+(require 'rko-emacs-builtin)
 
-(setq line-spacing nil)
-(setq inhibit-startup-screen t)
-(setq initial-buffer-choice t)
-(setq visible-bell t)
+(eval
+ `(use-package pcre
+    :straight (pcre :host github :repo "syohex/emacs-pcre"
+                    :pre-build ("make" ,rko-emacs-include-path-env-var "all")
+                    :files (:defaults "pcre.el" "pcre-core.so"))))
 
-(setq-default tab-width 2)
-(setq-default evil-shift-width tab-width)
-(setq-default indent-tabs-mode nil)
+(defun rko--test-pcre ()
+  (require 'pcre)
+  (let ((str "012-345-567"))
+    (when (pcre-string-match "\\A(\\d+)-(\\d+)-(\\d+)\\z" str)
+      (match-string 1 str)))
 
-(setq global-auto-revert-non-file-buffers t)
-(global-auto-revert-mode 1)
+  (with-temp-buffer
+    (insert "apple orange melon\n")
+    (insert "red blue green\n")
+    (insert "vim atom sublime\n")
+    (goto-char (point-min))
+    (let (matches)
+      (while (pcre-re-search-forward "^\\S+ ([^[:space:]]+)" nil t)
+        (push (match-string 1) matches))
+      (reverse matches)))
+  
+  nil)
 
-(global-unset-key (kbd "C-z"))
-(global-unset-key (kbd "C-x C-z"))
-;; (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+(pcre-string-match "[0-9]" "foo123bar")
 
-(when (fboundp 'windmove-default-keybindings) (windmove-default-keybindings))
-
-(setq tab-bar-show t)
-(setq tab-bar-close-button-show nil)
-(setq tab-bar-tab-hints t)
-(setq tab-bar-new-tab-choice "*scratch*")
-(setq tab-bar-format '(tab-bar-format-history
-                       tab-bar-format-tabs
-                       tab-bar-separator))
-(tab-bar-mode 1)
-
-(setq scroll-margin 5)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-(menu-bar-mode -1)
-(blink-cursor-mode -1)
-(set-fringe-mode 0)
-(electric-pair-mode 1)
-;; (pixel-scroll-mode 1)
-;; (desktop-save-mode 1)
-(winner-mode 1)
-(recentf-mode 1)
-(setq history-length 64)
-(savehist-mode 1)
-;; (save-place-mode 1)
-
-(defun rko/print-url-in-messages (url &rest args)
-  "Print URL in *Messages* buffer instead of browsing it."
-  (message "URL: %s" url))
-
-(setq browse-url-browser-function 'rko/print-url-in-messages)
+(require 'rko-emacs-undo)
+(require 'rko-emacs-keys)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -85,23 +91,6 @@
 (use-package all-the-icons
   :straight t
   :if (display-graphic-p))
-
-(defun rko/undo-tree-save-history (undo-tree-save-history &rest args)
-  (let ((message-log-max nil)
-        (inhibit-message t))
-    (apply undo-tree-save-history args)))
-(use-package undo-tree
-  :straight t
-  :diminish undo-tree-mode
-  :init
-  (setq undo-tree-visualizer-timestamps t)
-  (setq undo-tree-auto-save-history t)
-  (let ((undo-dir (expand-file-name "undo" user-emacs-directory)))
-    (make-directory undo-dir t)
-    (setq undo-tree-history-directory-alist `(("." . ,undo-dir))))
-  :config
-  (global-undo-tree-mode 1)
-  (advice-add 'undo-tree-save-history :around 'rko/undo-tree-save-history))
 
 (use-package super-save
   :straight t
@@ -133,59 +122,6 @@
   (setq wg-use-default-session-file nil)
   :config
   (workgroups-mode +1))
-
-(use-package devil
-  :straight t
-  :init
-  (setq devil-lighter " \U0001F608")
-  (setq devil-prompt "\U0001F608 %t")
-  :config
-  (global-devil-mode)
-  (define-key devil-mode-map (kbd ".") #'devil)
-  (add-to-list 'devil-special-keys `(". ." . ,(devil-key-executor ".")))
-  (setq devil-translations '((", z" . "C-")
-			                       (". z" . "M-")
-			                       (", ," . ",")
-			                       (". ." . ".")
-			                       ("," . "C-")
-			                       ("." . "M-")))
-  nil)
-
-(use-package god-mode
-  :straight t
-  :config
-  ;; (god-mode)
-  ;; (global-set-key (kbd "<escape>") #'god-mode-all)
-  nil)
-
-(use-package lispy
-  :straight t
-  :hook ((emacs-lisp-mode . (lambda () (lispy-mode 1)))))
-
-;; ace window
-(use-package ace-window
-  :disabled
-  :straight t
-  :bind
-  (("M-o" . ace-window))
-  :init
-  (setq aw-dispatch-always t)
-  :config
-  (ace-window-display-mode 1))
-
-(use-package avy
-  :straight t
-  :init
-  (setq avy-style 'words)
-  (setq avy-background t)
-  :bind (("C-:" . avy-goto-char-2))
-  :config
-  (avy-setup-default))
-
-(use-package avy-zap
-  :straight t
-  :bind (("M-z" . avy-zap-to-char-dwim)
-         ("M-Z" . avy-zap-up-to-char-dwim)))
 
 (use-package savehist
   :straight t
@@ -391,11 +327,18 @@
   :config
   (global-diff-hl-mode -1))
 
+;; zoom and vundo do not play well
 (use-package zoom
+  :disabled
   :straight t
   :diminish zoom-mode
-  :init (custom-set-variables '(zoom-size '(100 . 0.618)))
-  :config (zoom-mode 1))
+  :init
+  (custom-set-variables
+   '(zoom-size '(100 . 50))
+   '(zoom-ignored-major-modes '(vundo-mode))
+   '(zoom-ignored-buffer-names '(" *vundo tree*")))
+  :config
+  (zoom-mode 1))
 
 (setq vterm-always-compile-module t)
 (use-package vterm :straight t
@@ -497,32 +440,30 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
       (t
        (centaur-tabs-get-group-name (current-buffer)))))))
 
-;; theme
-(use-package zenburn-theme :straight t :defer t)
-(use-package moe-theme :straight t :defer t)
-(use-package doom-themes
-  :disabled
-  :straight t
-  :config
-  (load-theme 'doom-gruvbox-light t)
-  (doom-themes-visual-bell-config))
+(when (executable-find "dtach")
+  (use-package detached
+    :straight t
+    :init
+    (setq detached-degraded-commands '("^ls"))
+    (detached-init)
+    :bind (;; Replace `async-shell-command' with `detached-shell-command'
+           ([remap async-shell-command] . detached-shell-command)
+           ;; Replace `compile' with `detached-compile'
+           ([remap compile] . detached-compile)
+           ([remap recompile] . detached-compile-recompile)
+           ;; Replace built in completion of sessions with `consult'
+           ([remap detached-open-session] . detached-consult-session))
+    :custom ((detached-show-output-on-attach t)
+             (detached-terminal-data-command system-type))))
 
-(use-package solarized-theme
-  :disabled
-  :straight t
-  :config
-  (load-theme 'solarized-dark t))
+(connection-local-set-profile-variables
+ 'remote-detached
+ '((detached-shell-program . "/bin/bash")
+   (detached-session-directory . "~/dtach-sessions")
+   (detached-dtach-program . "dtach")))
 
-(use-package modus-themes
-  :disabled
-  :straight t
-  :config
-  (load-theme 'modus-operandi-tinted :no-confirm))
-
-(use-package ef-themes
-  :straight t
-  :config
-  (load-theme 'ef-elea-light :no-confirm))
+(connection-local-set-profiles
+ '(:application tramp :protocol "ssh") 'remote-detached)
 
 (use-package pulsar
   :straight t
@@ -561,6 +502,9 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
   :config
   (unless (file-exists-p "~/.local/share/fonts/NFM.ttf")
     (nerd-icons-install-fonts t)))
+(use-package nerd-icons-dired
+  :straight t
+  :hook ((dired-mode) . nerd-icons-dired-mode))
 
 (use-package minions
   :straight t)

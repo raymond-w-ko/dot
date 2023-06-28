@@ -4,10 +4,16 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(connection-local-criteria-alist
-   '(((:application tramp)
+   '(((:application tramp :protocol "ssh")
+      remote-detached)
+     ((:application tramp)
       tramp-connection-local-default-system-profile tramp-connection-local-default-shell-profile)))
  '(connection-local-profile-alist
-   '((tramp-connection-local-darwin-ps-profile
+   '((remote-detached
+      (detached-shell-program . "/bin/bash")
+      (detached-session-directory . "~/dtach-sessions")
+      (detached-dtach-program . "dtach"))
+     (tramp-connection-local-darwin-ps-profile
       (tramp-process-attributes-ps-args "-acxww" "-o" "pid,uid,user,gid,comm=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" "-o" "state=abcde" "-o" "ppid,pgid,sess,tty,tpgid,minflt,majflt,time,pri,nice,vsz,rss,etime,pcpu,pmem,args")
       (tramp-process-attributes-ps-format
        (pid . number)
@@ -92,7 +98,9 @@
  '(prism-lightens '(0))
  '(prism-num-faces 16)
  '(prism-strings-fn '(closure (t) (color) (prism-blend color "black" 0.5)))
- '(zoom-size '(100 . 0.618)))
+ '(zoom-ignored-buffer-names '(" *vundo tree*"))
+ '(zoom-ignored-major-modes '(vundo-mode))
+ '(zoom-size '(100 . 50)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -101,5 +109,8 @@
  '(default ((t (:slant normal :weight regular :height 90 :width normal :family "Iosevka Comfy"))))
  '(fixed-pitch ((t :inherit default)))
  '(fixed-pitch-serif ((t :inherit default :family "Iosevka Comfy Motion")))
+ '(hop-face-double-char-1 ((t (:inherit ef-themes-mark-delete))))
+ '(hop-face-double-char-2 ((t (:inherit ef-themes-mark-other))))
+ '(hop-face-single-char ((t (:inherit ef-themes-mark-select))))
  '(mono-complete-preview-face ((t :inherit font-lock-comment-face)))
- '(variable-pitch ((t (:family "Iosevka Comfy Wide Duo" :height 80)))))
+ '(variable-pitch ((t (:family "Iosevka Comfy Wide Duo" :height 100)))))
