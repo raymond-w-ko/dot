@@ -57,7 +57,12 @@
 (use-package hop
   :straight (hop :host github :repo "Animeshz/hop.el")
   :init
-  (setq hop-jump-keys "xqzbwgjinoartepvdchmsu")
+  (setq hop-jump-keys (concat "uoemk"
+                              "fhtns"
+                              "ir"
+                              "aljy"
+                              "cdvp"
+                              (reverse "zqxgwb")))
   :bind (("C-:" . hop-word)))
 
 (provide 'rko-emacs-keys)
