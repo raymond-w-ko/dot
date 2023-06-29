@@ -39,9 +39,9 @@
 (use-package vundo
   :straight t
   :init
-  (setq vundo-glyph-alist vundo-unicode-symbols)
   (setq vundo-compact-display nil)
   :config
+  (setq vundo-glyph-alist vundo-unicode-symbols)
   (global-set-key (kbd "C-x u") 'vundo))
 
 (provide 'rko-emacs-undo)

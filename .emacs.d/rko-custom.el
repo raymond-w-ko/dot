@@ -113,4 +113,4 @@
  '(hop-face-double-char-2 ((t (:inherit ef-themes-mark-other))))
  '(hop-face-single-char ((t (:inherit ef-themes-mark-select))))
  '(mono-complete-preview-face ((t :inherit font-lock-comment-face)))
- '(variable-pitch ((t (:family "Iosevka Comfy Wide Duo" :height 100)))))
+ '(variable-pitch ((t (:family "Iosevka Comfy Duo" :height 90)))))

@@ -31,8 +31,13 @@
 ;; (desktop-save-mode 1)
 (winner-mode 1)
 (recentf-mode 1)
+
 (setq history-length 256)
+(setq savehist-additional-variables '())
+(add-to-list 'savehist-additional-variables 'register-alist)
+(add-to-list 'savehist-additional-variables 'kill-ring)
 (savehist-mode 1)
+
 ;; (save-place-mode 1)
 
 (defun rko/print-url-in-messages (url &rest args)
@@ -40,5 +45,10 @@
   (message "URL: %s" url))
 
 (setq browse-url-browser-function 'rko/print-url-in-messages)
+
+(use-package emacs
+  :init
+  (setq completion-cycle-threshold 3)
+  (setq tab-always-indent 'complete))
 
 (provide 'rko-emacs-builtin)

@@ -89,3 +89,60 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
        "OrgMode")
       (t
        (centaur-tabs-get-group-name (current-buffer)))))))
+
+(use-package smart-mode-line
+  :disabled
+  :straight t
+  :init
+  (setq sml/theme 'respectful)
+  :config
+  (add-to-list 'sml/replacer-regexp-list '("^~/dot/\\.emacs\\.d/" ":ED:"))
+  (add-to-list 'sml/replacer-regexp-list '("^~/src/" ":SRC:"))
+  :config
+  (sml/setup))
+
+(use-package dimmer
+  :disabled
+  :straight t
+  :init
+  (setq dimmer-fraction 0.33)
+  :config
+  (dimmer-configure-which-key)
+  (dimmer-configure-magit)
+  (dimmer-configure-org)
+  (dimmer-configure-gnus)
+  (dimmer-configure-helm)
+  (dimmer-mode t))
+
+(use-package mono-complete
+  :disabled
+  :straight t
+  :hook ((prog-mode text-mode org-mode) . mono-complete-mode)
+  :init
+  (require 'spell-fu)
+  (setq mono-complete-debug-log t)
+  (setq mono-complete-backend-capf-complete-fn
+        nil)
+  (setq mono-complete-backends
+        (lambda (is-context)
+          (cond
+           (is-context
+            (let* ((result (list))
+                   (state (syntax-ppss))
+                   (is-string (nth 3 state))
+                   (is-comment (nth 4 state)))
+              (when (or is-string is-comment)
+                (push 'filesystem result))
+              (push 'capf result)
+              (push 'dabbrev result)
+              (push 'spell-fu result)
+              result))
+           (t
+            (list 'capf 'dabbrev 'filesystem 'spell-fu)))))
+  (setq mono-complete-fallback-command 'indent-for-tab-command)
+  ;; this is required for it to work
+  (setq mono-complete-evil-insert-mode-only nil)
+  (custom-set-faces `(mono-complete-preview-face ((t :inherit font-lock-comment-face)) t))
+  (setq completion-fail-discreetly t)
+  :config
+  (define-key mono-complete-mode-map (kbd "<tab>") 'mono-complete-expand-or-fallback))

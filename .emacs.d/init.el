@@ -4,9 +4,6 @@
 
 (dolist (path '("rko-lisp" "rko-emacs-modules"))
   (add-to-list 'load-path (concat "~/dot/.emacs.d/" path)))
-
-
-
 (cl-loop for file in '("/bin/zsh" "/bin/bash")
          when (file-exists-p file)
          do (progn
@@ -53,6 +50,7 @@
 (load custom-file t)
 
 (use-package no-littering :straight t)
+(use-package diminish :straight t)
 
 (require 'rko-emacs-builtin)
 
@@ -64,6 +62,7 @@
 
 (defun rko--test-pcre ()
   (require 'pcre)
+  
   (let ((str "012-345-567"))
     (when (pcre-string-match "\\A(\\d+)-(\\d+)-(\\d+)\\z" str)
       (match-string 1 str)))
@@ -79,15 +78,14 @@
       (reverse matches)))
   
   nil)
-
-(pcre-string-match "[0-9]" "foo123bar")
+(use-package spell-fu :straight t :ensure t)
 
 (require 'rko-emacs-undo)
 (require 'rko-emacs-keys)
+(require 'rko-emacs-project)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package diminish :straight t)
 (use-package all-the-icons
   :straight t
   :if (display-graphic-p))
@@ -109,38 +107,6 @@
   (setq which-key-side-window-location 'right)
   (setq which-key-side-window-max-width 30)
   (setq which-key-side-window-max-height 0.20))
-
-(use-package persp-mode
-  :disabled
-  :straight t
-  :config
-  (persp-mode -1))
-
-(use-package workgroups2
-  :straight t
-  :init
-  (setq wg-use-default-session-file nil)
-  :config
-  (workgroups-mode +1))
-
-(use-package savehist
-  :straight t
-  :init
-  (savehist-mode))
-
-(use-package projectile
-  :straight t
-  :init
-  (setq projectile-project-search-path '("~/dot/.emacs.d/"
-                                         "~/src/"
-                                         "~/.cache/emacs/straight/repos/"))
-  :config
-  (projectile-mode 1)
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
-
-;; (use-package company
-;;   :straight t
-;;   :hook ((after-init . global-company-mode)))
 
 (use-package orderless
   :straight t
@@ -266,45 +232,6 @@
   :config
   (global-corfu-mode))
 
-(use-package spell-fu :straight t :ensure t)
-(use-package mono-complete
-  :disabled
-  :straight t
-  :hook ((prog-mode text-mode org-mode) . mono-complete-mode)
-  :init
-  (require 'spell-fu)
-  (setq mono-complete-debug-log t)
-  (setq mono-complete-backend-capf-complete-fn
-        nil)
-  (setq mono-complete-backends
-        (lambda (is-context)
-          (cond
-           (is-context
-            (let* ((result (list))
-                   (state (syntax-ppss))
-                   (is-string (nth 3 state))
-                   (is-comment (nth 4 state)))
-              (when (or is-string is-comment)
-                (push 'filesystem result))
-              (push 'capf result)
-              (push 'dabbrev result)
-              (push 'spell-fu result)
-              result))
-           (t
-            (list 'capf 'dabbrev 'filesystem 'spell-fu)))))
-  (setq mono-complete-fallback-command 'indent-for-tab-command)
-  ;; this is required for it to work
-  (setq mono-complete-evil-insert-mode-only nil)
-  (custom-set-faces `(mono-complete-preview-face ((t :inherit font-lock-comment-face)) t))
-  (setq completion-fail-discreetly t)
-  :config
-  (define-key mono-complete-mode-map (kbd "<tab>") 'mono-complete-expand-or-fallback))
-
-(use-package emacs
-  :init
-  (setq completion-cycle-threshold 3)
-  (setq tab-always-indent 'complete))
-
 (use-package copilot
   :straight (:host github :repo "zerolfx/copilot.el" :files ("dist" "*.el"))
   :ensure t
@@ -392,19 +319,10 @@
   (global-set-key (kbd "<f8>") 'symbol-overlay-remove-all)
   :straight t)
 
-(use-package smart-mode-line
-  :disabled
-  :straight t
-  :init
-  (setq sml/theme 'respectful)
-  :config
-  (add-to-list 'sml/replacer-regexp-list '("^~/dot/\\.emacs\\.d/" ":ED:"))
-  (add-to-list 'sml/replacer-regexp-list '("^~/src/" ":SRC:"))
-  :config
-  (sml/setup))
-
 (use-package nerd-icons
   :straight t
+  :init
+  (setq nerd-icons-scale-factor 1.00)
   :config
   (unless (file-exists-p "~/.local/share/fonts/NFM.ttf")
     (nerd-icons-install-fonts t)))
@@ -418,8 +336,18 @@
 (use-package doom-modeline
   :straight t
   :init
-  (setq doom-modeline-project-detection 'projectile)
+  (setq doom-modeline-height 1)
+  (setq doom-modeline-time t)
+  (setq doom-modeline-time-icon t)
+  
+  (setq doom-modeline-project-detection 'project)
+  (setq doom-modeline-workspace-name t)
+  (setq doom-modeline-persp-name t)
+  
+  (setq doom-modeline-buffer-encoding nil)
+  (setq doom-modeline-icon t)
   (setq doom-modeline-minor-modes nil)
+  (setq doom-modeline-major-mode-icon t)
   (setq doom-modeline-modal t)
   (setq doom-modeline-modal-icon t)
   :config
@@ -468,19 +396,6 @@
     (require 'prism)
     (rko/setup-prism-for-light-theme))
   
-  (use-package dimmer
-    :disabled
-    :straight t
-    :init
-    (setq dimmer-fraction 0.33)
-    :config
-    (dimmer-configure-which-key)
-    (dimmer-configure-magit)
-    (dimmer-configure-org)
-    (dimmer-configure-gnus)
-    (dimmer-configure-helm)
-    (dimmer-mode t))
-
   (use-package git-gutter
     :straight (git-gutter :type git :host github :repo "emacsorphanage/git-gutter")
     :diminish t

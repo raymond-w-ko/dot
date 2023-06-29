@@ -27,6 +27,8 @@
 
 (use-package lispy
   :straight t
+  :bind (:map lispy-mode-map
+              ("." . nil)) 
   :hook ((emacs-lisp-mode . (lambda () (lispy-mode 1)))))
 
 ;; ace window
