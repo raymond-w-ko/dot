@@ -1,6 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
 (use-package projectile
+  :disabled
   :straight t
   :init
   (setq projectile-project-search-path '("~/dot/.emacs.d/"

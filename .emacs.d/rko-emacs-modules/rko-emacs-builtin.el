@@ -51,4 +51,7 @@
   (setq completion-cycle-threshold 3)
   (setq tab-always-indent 'complete))
 
+;; (use-package tramp :straight t :defer t)
+(use-package eglot :straight t :ensure t)
+
 (provide 'rko-emacs-builtin)

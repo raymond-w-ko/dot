@@ -43,6 +43,7 @@
   (ace-window-display-mode 1))
 
 (use-package avy
+  :disabled
   :straight t
   :init
   (setq avy-style 'words)
@@ -65,6 +66,7 @@
                               "aljy"
                               "cdvp"
                               (reverse "zqxgwb")))
-  :bind (("C-:" . hop-word)))
+  :bind (("C--" . hop-word)
+         ("M--" . hop-word)))
 
 (provide 'rko-emacs-keys)

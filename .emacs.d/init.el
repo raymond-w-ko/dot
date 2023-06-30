@@ -47,8 +47,8 @@
   :config
   (ef-themes-select 'ef-elea-light))
 
-(load custom-file t)
-
+(use-package dash :straight t :ensure t)
+(use-package f :straight t :ensure t)
 (use-package no-littering :straight t)
 (use-package diminish :straight t)
 
@@ -59,6 +59,8 @@
     :straight (pcre :host github :repo "syohex/emacs-pcre"
                     :pre-build ("make" ,rko-emacs-include-path-env-var "all")
                     :files (:defaults "pcre.el" "pcre-core.so"))))
+
+(load custom-file t)
 
 (defun rko--test-pcre ()
   (require 'pcre)
@@ -83,6 +85,7 @@
 (require 'rko-emacs-undo)
 (require 'rko-emacs-keys)
 (require 'rko-emacs-project)
+(require 'rko-emacs-modes)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -230,7 +233,17 @@
   (corfu-cycle t)
   (corfu-auto t)
   :config
-  (global-corfu-mode))
+  (require 'dash)
+  (require 'f)
+  (let* ((corfu-path (--some (and (string-match-p ".+/corfu$" it) it)
+                             load-path))
+         (corfu-extension-path (concat corfu-path "/extensions")))
+    (message corfu-extension-path)
+    (cl-assert (f-directory-p corfu-extension-path) "missing corfu extensions directory")
+    (add-to-list 'load-path corfu-extension-path))
+  (require 'corfu-info)
+  ;; (global-corfu-mode)
+  nil)
 
 (use-package copilot
   :straight (:host github :repo "zerolfx/copilot.el" :files ("dist" "*.el"))
