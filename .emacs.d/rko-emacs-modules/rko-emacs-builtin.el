@@ -6,6 +6,8 @@
 (setq-default indent-tabs-mode nil)
 
 (setq global-auto-revert-non-file-buffers t)
+(add-to-list 'global-auto-revert-ignore-modes 'buffer-menu-mode)
+(add-to-list 'global-auto-revert-ignore-modes 'Buffer-menu-mode)
 (global-auto-revert-mode 1)
 
 (global-unset-key (kbd "C-z"))
