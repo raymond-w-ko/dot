@@ -29,7 +29,8 @@
   :straight t
   :bind (:map lispy-mode-map
               ("." . nil)) 
-  :hook ((emacs-lisp-mode . (lambda () (lispy-mode 1)))))
+  :hook
+  (((emacs-lisp-mode clojure-mode clojurescript-mode clojurec-mode) . (lambda () (lispy-mode 1)))))
 
 ;; ace window
 (use-package ace-window

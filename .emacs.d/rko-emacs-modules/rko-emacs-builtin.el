@@ -1,6 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
 (setq-default tab-width 2)
+(setq js-indent-level 2)
 (setq-default evil-shift-width tab-width)
 (setq-default indent-tabs-mode nil)
 
@@ -50,6 +51,8 @@
   :init
   (setq completion-cycle-threshold 3)
   (setq tab-always-indent 'complete))
+
+(setq auto-revert-remote-files t)
 
 ;; (use-package tramp :straight t :defer t)
 (use-package eglot :straight t :ensure t)

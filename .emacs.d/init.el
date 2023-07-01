@@ -242,23 +242,35 @@
     (cl-assert (f-directory-p corfu-extension-path) "missing corfu extensions directory")
     (add-to-list 'load-path corfu-extension-path))
   (require 'corfu-info)
-  ;; (global-corfu-mode)
+  (global-corfu-mode)
   nil)
 
-(use-package copilot
-  :straight (:host github :repo "zerolfx/copilot.el" :files ("dist" "*.el"))
-  :ensure t
-  ;; :hook (prog-mode . copilot-mode)
-  :bind (("C-c M-f" . copilot-complete)
-         :map copilot-completion-map
-         ("C-g" . 'copilot-clear-overlay)
-         ("M-p" . 'copilot-previous-completion)
-         ("M-n" . 'copilot-next-completion)
-         ("<tab>" . 'copilot-accept-completion)
-         ("M-f" . 'copilot-accept-completion-by-word)
-         ("M-<return>" . 'copilot-accept-completion-by-line))
-  :config
-  (require 'copilot))
+(use-package cape
+  :straight t
+  :init
+  ;; (add-to-list 'completion-at-point-functions 'cape-dabbrev)
+  ;; (setq completion-at-point-functions
+  ;;       (delete 'cape-dabbrev completion-at-point-functions))
+  nil)
+
+  (use-package copilot
+    :straight (:host github :repo "zerolfx/copilot.el" :files ("dist" "*.el"))
+    :ensure t
+    :hook ((prog-mode . copilot-mode)
+           (git-commit-mode . copilot-mode))
+    :bind (("C-c M-f" . copilot-complete)
+           :map copilot-completion-map
+           ("C-g" . 'copilot-clear-overlay)
+           ("M-p" . 'copilot-previous-completion)
+           ("M-n" . 'copilot-next-completion)
+           ("<tab>" . 'copilot-accept-completion)
+           ("M-f" . 'copilot-accept-completion-by-word)
+           ("M-<return>" . 'copilot-accept-completion-by-line))
+    :init
+    (setq copilot-log-max 100000)
+    (setq copilot-log-messages nil)
+    :config
+    (require 'copilot))
 
 (use-package magit
   :straight t)
@@ -283,7 +295,9 @@
 (setq vterm-always-compile-module t)
 (use-package vterm :straight t
   :init
-  (setq vterm-shell shell-file-name))
+  (setq vterm-shell shell-file-name)
+  (setq vterm-tramp-shells '(("docker" "sh")
+                             ("ssh" "'zsh'")))
 (use-package multi-vterm :straight t)
 
 (when (executable-find "dtach")
