@@ -420,31 +420,27 @@
                     green-cooler
                     yellow-faint))))
 
-(defun rko/setup-post-frame-config (&optional frame)
-  (use-package prism
-    :straight (prism :type git :host github :repo "alphapapa/prism.el")
-    :config
-    (require 'prism)
-    (rko/setup-prism-for-light-theme))
+(use-package prism
+  :straight (prism :type git :host github :repo "alphapapa/prism.el")
+  :config
+  (require 'prism)
+  (rko/setup-prism-for-light-theme))
   
-  (use-package git-gutter
-    :straight (git-gutter :type git :host github :repo "emacsorphanage/git-gutter")
-    :diminish t
-    :init
-    (custom-set-variables
-     '(git-gutter:modified-sign "  ")
-     '(git-gutter:added-sign "  ")
-     '(git-gutter:deleted-sign "  ")
-     '(git-gutter:update-interval 2))
+(use-package git-gutter
+  :straight (git-gutter :type git :host github :repo "emacsorphanage/git-gutter")
+  :diminish t
+  :init
+  (custom-set-variables
+   '(git-gutter:modified-sign "  ")
+   '(git-gutter:added-sign "  ")
+   '(git-gutter:deleted-sign "  ")
+   '(git-gutter:update-interval 2))
 
-    ;; (set-face-background 'git-gutter:modified "gold3")
-    ;; (set-face-background 'git-gutter:added "green3")
-    ;; (set-face-background 'git-gutter:deleted "red3")
-    
-    :config
-    (global-git-gutter-mode +1)))
+  ;; (set-face-background 'git-gutter:modified "gold3")
+  ;; (set-face-background 'git-gutter:added "green3")
+  ;; (set-face-background 'git-gutter:deleted "red3")
+  
+  :config
+  (global-git-gutter-mode +1))
 
-(if (daemonp)
-    (add-hook 'after-make-frame-functions #'rko/setup-post-frame-config)
-  (rko/setup-post-frame-config))
-(setq rko/init t)
+(desktop-save-mode 1)

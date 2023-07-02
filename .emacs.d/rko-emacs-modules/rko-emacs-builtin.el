@@ -31,10 +31,9 @@
 
 (set-fringe-mode 0)
 (electric-pair-mode 1)
-;; (pixel-scroll-mode 1)
-;; (desktop-save-mode 1)
 (winner-mode 1)
 (recentf-mode 1)
+;; (pixel-scroll-mode 1)
 
 (setq history-length 256)
 (setq savehist-additional-variables '())
