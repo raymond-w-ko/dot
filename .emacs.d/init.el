@@ -297,7 +297,7 @@
   :init
   (setq vterm-shell shell-file-name)
   (setq vterm-tramp-shells '(("docker" "sh")
-                             ("ssh" "'zsh'")))
+                             ("ssh" "'zsh'"))))
 (use-package multi-vterm :straight t)
 
 (when (executable-find "dtach")
