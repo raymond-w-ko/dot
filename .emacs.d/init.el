@@ -444,4 +444,6 @@
   (global-git-gutter-mode +1))
 
 (setq desktop-save t)
+(setq desktop-load-locked-desktop t)
 (desktop-save-mode 1)
+(desktop-read)
