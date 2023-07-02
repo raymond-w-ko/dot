@@ -6,6 +6,8 @@
 (setq-default indent-tabs-mode nil)
 (setq completion-cycle-threshold 3)
 (setq tab-always-indent 'complete)
+;; is this a good idea?
+(setq enable-recursive-minibuffers t)
 
 (require 'autorevert)
 (setq global-auto-revert-non-file-buffers t)
