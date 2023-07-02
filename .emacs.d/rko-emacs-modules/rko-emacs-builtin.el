@@ -4,6 +4,8 @@
 (setq js-indent-level 2)
 (setq-default evil-shift-width tab-width)
 (setq-default indent-tabs-mode nil)
+(setq completion-cycle-threshold 3)
+(setq tab-always-indent 'complete)
 
 (require 'autorevert)
 (setq global-auto-revert-non-file-buffers t)
@@ -48,11 +50,6 @@
   (message "URL: %s" url))
 
 (setq browse-url-browser-function 'rko/print-url-in-messages)
-
-(use-package emacs
-  :init
-  (setq completion-cycle-threshold 3)
-  (setq tab-always-indent 'complete))
 
 (setq auto-revert-remote-files t)
 

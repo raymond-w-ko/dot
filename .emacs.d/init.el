@@ -443,7 +443,15 @@
   :config
   (global-git-gutter-mode +1))
 
+(defun rko/save-desktop ()
+  (interactive)
+  (message "Saving desktop...")
+  (desktop-save user-emacs-directory t))
+(defun rko/save-desktop-on-exit ()
+  (rko/save-desktop))
+(add-hook 'kill-emacs-hook #'rko/save-desktop-on-exit 100)
+(setq desktop-buffers-not-to-save "^$")
 (setq desktop-save t)
 (setq desktop-load-locked-desktop t)
-(desktop-save-mode 1)
-(desktop-read)
+(setq desktop-path `(,user-emacs-directory))
+;; (desktop-save-mode 1)
