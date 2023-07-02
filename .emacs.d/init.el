@@ -443,4 +443,5 @@
   :config
   (global-git-gutter-mode +1))
 
+(setq desktop-save t)
 (desktop-save-mode 1)
