@@ -1,5 +1,9 @@
 ;; -*- lexical-binding: t -*-
 
+(when (daemonp)
+  (princ "don't run emacs as a daemon\n" 'external-debugging-output)
+  (kill-emacs 1))
+
 (defvar rko-emacs--file-name-handler-alist file-name-handler-alist)
 (setq gc-cons-threshold most-positive-fixnum
       file-name-handler-alist nil)

@@ -1,5 +1,9 @@
 ;; -*- lexical-binding: t -*-
 
+(when (daemonp)
+  (princ "don't run emacs as a daemon\n" 'external-debugging-output)
+  (kill-emacs 1))
+
 (require 'cl-lib)
 
 (dolist (path '("rko-lisp" "rko-emacs-modules"))
