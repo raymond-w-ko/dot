@@ -25,6 +25,13 @@
   ;; (global-set-key (kbd "<escape>") #'god-mode-all)
   nil)
 
+(use-package paredit
+  :straight t
+  ;; :hook
+  ;; (((emacs-lisp-mode clojure-mode clojurescript-mode clojurec-mode) . paredit-mode))
+  :init
+  nil)
+
 (use-package lispy
   :straight t
   :bind (:map lispy-mode-map

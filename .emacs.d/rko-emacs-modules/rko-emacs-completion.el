@@ -154,7 +154,9 @@
   nil)
 
   (use-package copilot
-    :straight (:host github :repo "zerolfx/copilot.el" :files ("dist" "*.el"))
+    :straight (:type git :host github :repo "zerolfx/copilot.el"
+                     :fork (:host nil :repo "git@github.com:raymond-w-ko/copilot.el")
+                     :files ("dist" "*.el"))
     :ensure t
     :hook ((prog-mode . copilot-mode)
            (git-commit-mode . copilot-mode))
@@ -163,7 +165,8 @@
            ("C-g" . 'copilot-clear-overlay)
            ("M-p" . 'copilot-previous-completion)
            ("M-n" . 'copilot-next-completion)
-           ("<tab>" . 'copilot-accept-completion)
+           ("<tab>" . nil)
+           ("C-<tab>" . 'copilot-accept-completion)
            ("M-f" . 'copilot-accept-completion-by-word)
            ("M-<return>" . 'copilot-accept-completion-by-line))
     :init

@@ -33,7 +33,7 @@
 
 (transient-mark-mode 1)
 
-(set-fringe-mode 0)
+(fringe-mode 8)
 (electric-pair-mode 1)
 (winner-mode 1)
 (recentf-mode 1)

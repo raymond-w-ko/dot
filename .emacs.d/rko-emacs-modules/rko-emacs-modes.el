@@ -4,6 +4,11 @@
   :config
   (yas-global-mode 1))
 
+(use-package vlf
+  :straight t
+  :init
+  (require 'vlf-setup))
+
 (use-package markdown-mode :straight t)
 (use-package yaml-mode :straight t)
 
