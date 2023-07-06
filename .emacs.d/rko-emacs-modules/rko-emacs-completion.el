@@ -104,12 +104,36 @@
          :map minibuffer-local-map
          ("M-s" . consult-history) ;; orig. next-matching-history-element
          ("M-r" . consult-history)) ;; orig. previous-matching-history-element
+  ;; Enable automatic preview at point in the *Completions* buffer. This is
+  ;; relevant when you use the default completion UI.
+  :hook (completion-list-mode . consult-preview-at-point-mode)
   :init
   (setq consult-buffer-sources '(consult--source-hidden-buffer
                                  my-consult--source-local-buffer
                                  my-consult--source-buffer))
+  
+  (setq register-preview-delay 0.5
+        register-preview-function #'consult-register-format)
+  (advice-add #'register-preview :override #'consult-register-window)
+  
+  (setq xref-show-xrefs-function #'consult-xref
+        xref-show-definitions-function #'consult-xref)
   :config
-  (setq consult-narrow-key "<"))
+  (setq consult-narrow-key "<")
+
+  (setq consult-preview-key nil)
+
+  (consult-customize
+   consult-theme
+   consult-ripgrep consult-git-grep consult-grep
+   consult-bookmark consult-recent-file consult-xref
+   consult--source-bookmark consult--source-file-register
+   consult--source-recent-file consult--source-project-recent-file
+   :preview-key '("M-."
+                  :debounce 0.5 "<up>" "<down>"
+                  :debounce 1 any))
+  
+  nil)
 
 (use-package vertico
   :straight t

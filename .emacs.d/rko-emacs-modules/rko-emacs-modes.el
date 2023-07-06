@@ -25,6 +25,9 @@
   nil)
 
 (use-package clojure-mode :straight t)
-(use-package cider :straight t)
+(use-package cider :straight t
+  :init
+  (setq nrepl-use-ssh-fallback-for-remote-hosts t)
+  nil)
 
 (provide 'rko-emacs-modes)

@@ -1,5 +1,6 @@
 ;; -*- lexical-binding: t -*-
 
+(setq-default show-trailing-whitespace nil)
 (setq-default tab-width 2)
 (setq js-indent-level 2)
 (setq-default evil-shift-width tab-width)
@@ -11,9 +12,10 @@
 
 (require 'autorevert)
 (setq global-auto-revert-non-file-buffers t)
+(setq auto-revert-remote-files t)
 (add-to-list 'global-auto-revert-ignore-modes 'buffer-menu-mode)
 (add-to-list 'global-auto-revert-ignore-modes 'Buffer-menu-mode)
-(global-auto-revert-mode 1)
+;; (global-auto-revert-mode 1)
 
 (global-unset-key (kbd "C-z"))
 (global-unset-key (kbd "C-x C-z"))
@@ -53,9 +55,17 @@
 
 (setq browse-url-browser-function 'rko/print-url-in-messages)
 
-(setq auto-revert-remote-files t)
+(require 'xref)
+(setq xref-search-program 'ripgrep)
+(setf (alist-get 'ripgrep xref-search-program-alist)
+      "xargs -0 rg <C> --null -nH --no-heading --no-messages -e <R>")
 
-;; (use-package tramp :straight t :defer t)
-(use-package eglot :straight t :ensure t)
+(use-package tramp
+  :init
+  (setq tramp-verbose 2))
+
+(use-package eglot
+  :straight (eglot :type git :host github :repo "joaotavora/eglot")
+  :ensure t)
 
 (provide 'rko-emacs-builtin)
