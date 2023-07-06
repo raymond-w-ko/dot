@@ -24,6 +24,7 @@ if [[ "$TERM" == "dumb" ]]; then
     unsetopt prompt_subst
     # unfunction precmd
     # unfunction preexec
+    export PATH=$HOME/npm-global/bin:$HOME/go/bin:$HOME/bin:$HOME/dot/bin:$PATH
     PS1='$ '
     return
 fi
