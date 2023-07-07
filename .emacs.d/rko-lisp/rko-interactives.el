@@ -1,9 +1,16 @@
 ;; -*- lexical-binding: t -*-
 
+(require 'dash)
+
 (defun rko/tab-new ()
   (interactive)
-  
-  (tab-new)
+
+  (let* ((num-tabs (->> (frame-parameter (selected-frame) 'tabs)
+                        (length)))
+         (num-wins (length (window-list))))
+    (when (or (> num-tabs 1)
+              (> num-wins 1))
+      (tab-new)))
   
   (split-window-right)
   (split-window-right)
