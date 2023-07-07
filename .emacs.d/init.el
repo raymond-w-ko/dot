@@ -272,6 +272,8 @@
   :config
   (global-git-gutter-mode +1))
 
+(require 'rko-interactives)
+
 (defun rko/save-desktop ()
   (interactive)
   (message "Saving desktop...")
@@ -285,3 +287,5 @@
 (setq desktop-load-locked-desktop t)
 (setq desktop-path `(,user-emacs-directory))
 ;; (desktop-save-mode 1)
+
+(toggle-frame-maximized)
