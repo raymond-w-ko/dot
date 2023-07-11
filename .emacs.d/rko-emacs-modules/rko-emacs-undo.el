@@ -41,7 +41,12 @@
   :init
   (setq vundo-compact-display nil)
   :config
-  (setq vundo-glyph-alist vundo-unicode-symbols)
+  (setq vundo-glyph-alist '((selected-node . ?x)
+                            (node . ?o)
+                            (horizontal-stem . 9472)
+                            (vertical-stem . 9474)
+                            (branch . 9500)
+                            (last-branch . 9492)))
   (global-set-key (kbd "C-x u") 'vundo))
 
 (provide 'rko-emacs-undo)

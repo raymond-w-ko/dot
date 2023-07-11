@@ -35,15 +35,15 @@
   :straight t
   :init
   (setq ef-themes-headings ; read the manual's entry or the doc string
-        '((0 variable-pitch light 1.9)
-          (1 variable-pitch light 1.8)
-          (2 variable-pitch regular 1.7)
-          (3 variable-pitch regular 1.6)
-          (4 variable-pitch regular 1.5)
-          (5 variable-pitch 1.4)      ; absence of weight means `bold'
-          (6 variable-pitch 1.3)
-          (7 variable-pitch 1.2)
-          (t variable-pitch 1.1)))
+        '((0 variable-pitch light 1.6)
+          (1 variable-pitch light 1.5)
+          (2 variable-pitch regular 1.4)
+          (3 variable-pitch regular 1.3)
+          (4 variable-pitch regular 1.2)
+          (5 variable-pitch 1.1)      ; absence of weight means `bold'
+          (6 variable-pitch 1.0)
+          (7 variable-pitch 1.0)
+          (t variable-pitch 1.0)))
   (setq ef-themes-mixed-fonts t
         ef-themes-variable-pitch-ui t)
   (setq ef-themes-region '(intense no-extend neutral))
@@ -51,39 +51,24 @@
   :config
   (ef-themes-select 'ef-elea-light))
 
+;; pure utility packages
 (use-package dash :straight t :ensure t)
+(use-package s :straight t :ensure t)
 (use-package f :straight t :ensure t)
-(use-package no-littering :straight t)
-(use-package diminish :straight t)
-
-(require 'rko-emacs-builtin)
-
 (eval
  `(use-package pcre
     :straight (pcre :host github :repo "syohex/emacs-pcre"
                     :pre-build ("make" ,rko-emacs-include-path-env-var "all")
                     :files (:defaults "pcre.el" "pcre-core.so"))))
 
+(use-package no-littering :straight t)
+;; not necessary with modern modelines
+;; (use-package diminish :straight t)
+
+(require 'rko-emacs-builtin)
+
 (load custom-file t)
 
-(defun rko--test-pcre ()
-  (require 'pcre)
-  
-  (let ((str "012-345-567"))
-    (when (pcre-string-match "\\A(\\d+)-(\\d+)-(\\d+)\\z" str)
-      (match-string 1 str)))
-
-  (with-temp-buffer
-    (insert "apple orange melon\n")
-    (insert "red blue green\n")
-    (insert "vim atom sublime\n")
-    (goto-char (point-min))
-    (let (matches)
-      (while (pcre-re-search-forward "^\\S+ ([^[:space:]]+)" nil t)
-        (push (match-string 1) matches))
-      (reverse matches)))
-  
-  nil)
 (use-package spell-fu :straight t :ensure t)
 
 (require 'rko-emacs-undo)

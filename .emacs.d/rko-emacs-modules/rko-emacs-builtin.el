@@ -1,8 +1,11 @@
 ;; -*- lexical-binding: t -*-
 
 (setq-default show-trailing-whitespace nil)
+
+(setq standard-indent 2)
 (setq-default tab-width 2)
 (setq js-indent-level 2)
+(setq css-indent-offset 2)
 (setq-default evil-shift-width tab-width)
 (setq-default indent-tabs-mode nil)
 (setq completion-cycle-threshold 3)

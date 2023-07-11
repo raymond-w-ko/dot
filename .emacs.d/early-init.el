@@ -25,7 +25,7 @@
       line-spacing nil
       visible-bell t
       blink-cursor-mode -1
-      scroll-margin 5)
+      scroll-margin 3)
 
 (set-default-coding-systems 'utf-8)
 

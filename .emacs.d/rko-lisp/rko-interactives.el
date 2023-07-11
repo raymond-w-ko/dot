@@ -22,6 +22,8 @@
   
   (windmove-right)
   (split-window-below)
+
+  (windmove-left)
   
   (balance-windows))
 (keymap-global-set "C-x t 2" 'rko/tab-new)
