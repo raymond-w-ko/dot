@@ -13,16 +13,14 @@
       (tab-new)))
   
   (split-window-right)
-  (split-window-right)
-  
   (split-window-below)
-  
   (windmove-right)
-  (split-window-below)
   
-  (windmove-right)
+  ;; (split-window-right)
+  ;; (split-window-below)
+  ;; (windmove-right)
+  
   (split-window-below)
-
   (windmove-left)
   
   (balance-windows))
