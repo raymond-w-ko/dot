@@ -1,5 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
+(require 'f)
+
 (defvar wsl-clipboard-path-in-linux
   (concat "/mnt/c/Users/" (getenv "LOGNAME") "/clipboard.txt"))
 (defvar wsl-clipboard-copy-command
