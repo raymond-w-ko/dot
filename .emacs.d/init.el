@@ -66,6 +66,7 @@
 ;; (use-package diminish :straight t)
 
 (require 'rko-emacs-builtin)
+(require 'rko-emacs-clipboard)
 
 (load custom-file t)
 
