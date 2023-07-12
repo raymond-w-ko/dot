@@ -237,6 +237,7 @@
 
 (use-package prism
   :straight (prism :type git :host github :repo "alphapapa/prism.el")
+  :hook ((emacs-lisp-mode) . prism-mode)
   :config
   (require 'prism)
   (rko/setup-prism-for-light-theme))
