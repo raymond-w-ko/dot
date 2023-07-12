@@ -74,7 +74,6 @@
                               "aljy"
                               "cdvp"
                               (reverse "zqxgwb")))
-  :bind (("C--" . hop-word)
-         ("M--" . hop-word)))
+  :bind (("C-t" . hop-word)))
 
 (provide 'rko-emacs-keys)
