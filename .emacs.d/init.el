@@ -247,9 +247,9 @@
   :diminish t
   :init
   (custom-set-variables
-   '(git-gutter:modified-sign "  ")
-   '(git-gutter:added-sign "  ")
-   '(git-gutter:deleted-sign "  ")
+   '(git-gutter:modified-sign " ")
+   '(git-gutter:added-sign " ")
+   '(git-gutter:deleted-sign " ")
    '(git-gutter:update-interval 2))
 
   ;; (set-face-background 'git-gutter:modified "gold3")
