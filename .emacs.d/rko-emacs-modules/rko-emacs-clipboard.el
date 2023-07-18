@@ -13,12 +13,14 @@
   (interactive "r")
   (let ((x (buffer-substring start end)))
     (f-write-text x 'utf-8 wsl-clipboard-path-in-linux)
-    (shell-command wsl-clipboard-copy-command)))
+    (let ((default-directory "~"))
+      (shell-command wsl-clipboard-copy-command))))
 
 (defun wsl-paste ()
   (interactive)
-  (shell-command wsl-clipboard-paste-command)
-  (let ((clipboard (f-read-text wsl-clipboard-path-in-linux)))
+  (let ((default-directory "~"))
+    (shell-command wsl-clipboard-paste-command))
+  (let ((clipboard (f-read-text wsl-clipboard-path-in-linux 'utf-8-with-signature-dos)))
     (insert clipboard)))
 
 (provide 'rko-emacs-clipboard)
