@@ -211,29 +211,18 @@
 
 (defun rko/setup-prism-for-light-theme ()
   (require 'prism)
-  (setq prism-num-faces 16)
   (prism-set-colors
+    :num 8
     :desaturations '(0) ; do not change---may lower the contrast ratio
     :lightens '(0)      ; same
-    :comments-fn (lambda (color) (prism-blend color "black" 0.5))
-    :strings-fn (lambda (color) (prism-blend color "black" 0.5))
-    :colors (ef-themes-with-colors
-              (list fg-main
-                    magenta
-                    cyan-cooler
-                    magenta-cooler
-                    blue
-                    magenta-warmer
-                    cyan-warmer
-                    red-cooler
-                    green
-                    fg-main
-                    cyan
-                    yellow
-                    blue-warmer
-                    red-warmer
-                    green-cooler
-                    yellow-faint))))
+    :comments-fn (lambda (color) (prism-blend color "#ccc" 0.5))
+    :strings-fn (lambda (color) (prism-blend color "#ccc" 0.5))
+    :colors (list "#000000"
+                  "#477818"
+                  "#b63a28"
+                  "#4e43ba"
+                  "#ac286c"
+                  "#932ea9")))
 
 (use-package prism
   :straight (prism :type git :host github :repo "alphapapa/prism.el")
