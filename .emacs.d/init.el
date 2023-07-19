@@ -226,7 +226,7 @@
 
 (use-package prism
   :straight (prism :type git :host github :repo "alphapapa/prism.el")
-  :hook ((emacs-lisp-mode) . prism-mode)
+  :hook ((emacs-lisp-mode clojure-mode clojurescript-mode clojurec-mode) . prism-mode)
   :config
   (require 'prism)
   (rko/setup-prism-for-light-theme))

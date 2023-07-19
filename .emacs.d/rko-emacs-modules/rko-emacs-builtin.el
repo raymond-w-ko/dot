@@ -69,6 +69,8 @@
 
 (use-package eglot
   :straight (eglot :type git :host github :repo "joaotavora/eglot")
-  :ensure t)
+  :ensure t
+  :init
+  (setq eglot-connect-timeout 60))
 
 (provide 'rko-emacs-builtin)
