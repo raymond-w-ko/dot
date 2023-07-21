@@ -40,7 +40,7 @@
           (2 variable-pitch regular 1.4)
           (3 variable-pitch regular 1.3)
           (4 variable-pitch regular 1.2)
-          (5 variable-pitch 1.1)      ; absence of weight means `bold'
+          (5 variable-pitch 1.1)    ; absence of weight means `bold'
           (6 variable-pitch 1.0)
           (7 variable-pitch 1.0)
           (t variable-pitch 1.0)))
@@ -230,7 +230,7 @@
   :config
   (require 'prism)
   (rko/setup-prism-for-light-theme))
-  
+
 (use-package git-gutter
   :straight (git-gutter :type git :host github :repo "emacsorphanage/git-gutter")
   :diminish t

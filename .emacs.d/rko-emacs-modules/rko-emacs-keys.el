@@ -27,8 +27,8 @@
 
 (use-package paredit
   :straight t
-  ;; :hook
-  ;; (((emacs-lisp-mode clojure-mode clojurescript-mode clojurec-mode) . paredit-mode))
+  :hook
+  (((emacs-lisp-mode clojure-mode clojurescript-mode clojurec-mode) . enable-paredit-mode))
   :init
   nil)
 
@@ -36,8 +36,10 @@
   :straight t
   :bind (:map lispy-mode-map
               ("." . nil)) 
-  :hook
-  (((emacs-lisp-mode clojure-mode clojurescript-mode clojurec-mode) . (lambda () (lispy-mode 1)))))
+  ;; :hook
+  ;; (((emacs-lisp-mode clojure-mode clojurescript-mode clojurec-mode) . (lambda () (lispy-mode 1))))
+  :init
+  nil)
 
 ;; ace window
 (use-package ace-window

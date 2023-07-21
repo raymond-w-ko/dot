@@ -29,8 +29,9 @@
       (windmove-right)
       (rko/set-current-window-text-width target-width))
     (dotimes (_ n)
-      (windmove-left))))
       (split-window-below)
+      (windmove-left))))
+      
 (keymap-global-set "C-x t 2" 'rko/tab-new)
 
 (provide 'rko-interactives)
