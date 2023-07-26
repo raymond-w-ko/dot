@@ -1,6 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
 (use-package devil
+  :disabled
   :straight t
   :init
   (setq devil-lighter " \U0001F608")
@@ -56,6 +57,8 @@
   :straight (xah-fly-keys :host github :repo "xahlee/xah-fly-keys")
   :config
   (define-key xah-fly-command-map (kbd "RET") 'xah-end-of-line-or-block)
+  (define-key xah-fly-command-map (kbd "SPC f") 'consult-buffer)
+  (define-key xah-fly-command-map (kbd "SPC RET") 'save-buffer)
   (xah-fly-keys-set-layout "qwerty")
   (xah-fly-keys 1))
 
