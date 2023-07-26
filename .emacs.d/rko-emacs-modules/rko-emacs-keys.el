@@ -41,32 +41,6 @@
   :init
   nil)
 
-;; ace window
-(use-package ace-window
-  :disabled
-  :straight t
-  :bind
-  (("M-o" . ace-window))
-  :init
-  (setq aw-dispatch-always t)
-  :config
-  (ace-window-display-mode 1))
-
-(use-package avy
-  :disabled
-  :straight t
-  :init
-  (setq avy-style 'words)
-  (setq avy-background t)
-  :bind (("C-:" . avy-goto-char-2))
-  :config
-  (avy-setup-default))
-
-(use-package avy-zap
-  :straight t
-  :bind (("M-z" . avy-zap-to-char-dwim)
-         ("M-Z" . avy-zap-up-to-char-dwim)))
-
 (use-package hop
   :straight (hop :host github :repo "Animeshz/hop.el")
   :init
@@ -77,5 +51,12 @@
                               "cdvp"
                               (reverse "zqxgwb")))
   :bind (("C-t" . hop-word)))
+
+(use-package xah-fly-keys
+  :straight (xah-fly-keys :host github :repo "xahlee/xah-fly-keys")
+  :config
+  (define-key xah-fly-command-map (kbd "RET") 'xah-end-of-line-or-block)
+  (xah-fly-keys-set-layout "qwerty")
+  (xah-fly-keys 1))
 
 (provide 'rko-emacs-keys)

@@ -146,3 +146,59 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
   (setq completion-fail-discreetly t)
   :config
   (define-key mono-complete-mode-map (kbd "<tab>") 'mono-complete-expand-or-fallback))
+
+;; ace window
+(use-package ace-window
+  :disabled
+  :straight t
+  :bind
+  (("M-o" . ace-window))
+  :init
+  (setq aw-dispatch-always t)
+  :config
+  (ace-window-display-mode 1))
+
+(use-package avy
+  :disabled
+  :straight t
+  :init
+  (setq avy-style 'words)
+  (setq avy-background t)
+  :bind (("C-:" . avy-goto-char-2))
+  :config
+  (avy-setup-default))
+
+(use-package avy-zap
+  :disabled
+  :straight t
+  :bind (("M-z" . avy-zap-to-char-dwim)
+         ("M-Z" . avy-zap-up-to-char-dwim)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; ace window
+(use-package ace-window
+  :disabled
+  :straight t
+  :bind
+  (("M-o" . ace-window))
+  :init
+  (setq aw-dispatch-always t)
+  :config
+  (ace-window-display-mode 1))
+
+(use-package avy
+  :disabled
+  :straight t
+  :init
+  (setq avy-style 'words)
+  (setq avy-background t)
+  :bind (("C-:" . avy-goto-char-2))
+  :config
+  (avy-setup-default))
+
+(use-package avy-zap
+  :disabled
+  :straight t
+  :bind (("M-z" . avy-zap-to-char-dwim)
+         ("M-Z" . avy-zap-up-to-char-dwim)))
