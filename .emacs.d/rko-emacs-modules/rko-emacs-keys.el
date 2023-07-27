@@ -75,6 +75,8 @@
   (define-key xah-fly-command-map (kbd "SPC TAB RET") 'indent-sexp)
   (define-key xah-fly-command-map (kbd "C-t") 'hop-word)
   (define-key xah-fly-insert-map (kbd "C-t") 'hop-word)
+  (define-key xah-fly-command-map (kbd "SPC / m") 'magit)
+  
   (xah-fly-keys-set-layout "qwerty")
   (xah-fly-keys 1)
 
