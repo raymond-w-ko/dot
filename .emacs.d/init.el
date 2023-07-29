@@ -92,7 +92,7 @@
   (setq super-save-auto-save-when-idle t))
 
 (use-package magit
-  :straight t)
+  :straight (magit :host github :repo "magit/magit"))
 (use-package diff-hl
   :straight t
   :config
@@ -216,7 +216,7 @@
     :desaturations '(0) ; do not change---may lower the contrast ratio
     :lightens '(0)      ; same
     :comments-fn (lambda (color) (prism-blend color "#ccc" 0.5))
-    :strings-fn (lambda (color) (prism-blend color "#ccc" 0.5))
+    :strings-fn (lambda (color) (prism-blend color "#000" 0.33))
     :colors (list "#000000"
                   "#477818"
                   "#b63a28"
