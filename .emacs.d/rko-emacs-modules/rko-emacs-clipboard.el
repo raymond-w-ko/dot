@@ -21,6 +21,7 @@
   (let ((default-directory "~"))
     (shell-command wsl-clipboard-paste-command))
   (let ((clipboard (f-read-text wsl-clipboard-path-in-linux 'utf-8-with-signature-dos)))
-    (insert clipboard)))
+    ;; for some reason there is a trailing newline, which we don't want
+    (insert (substring-no-properties clipboard nil -1))))
 
 (provide 'rko-emacs-clipboard)

@@ -202,3 +202,16 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
   :straight t
   :bind (("M-z" . avy-zap-to-char-dwim)
          ("M-Z" . avy-zap-up-to-char-dwim)))
+
+;; zoom and vundo do not play well
+(use-package zoom
+  :disabled
+  :straight t
+  :diminish zoom-mode
+  :init
+  (custom-set-variables
+   '(zoom-size '(100 . 50))
+   '(zoom-ignored-major-modes '(vundo-mode))
+   '(zoom-ignored-buffer-names '(" *vundo tree*")))
+  :config
+  (zoom-mode 1))
