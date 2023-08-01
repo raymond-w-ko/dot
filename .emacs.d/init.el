@@ -92,7 +92,11 @@
   (setq super-save-auto-save-when-idle t))
 
 (use-package magit
-  :straight (magit :host github :repo "magit/magit"))
+  :straight (magit :host github :repo "magit/magit")
+  :init
+  nil
+  :config
+  nil)
 (use-package diff-hl
   :straight t
   :config
@@ -121,7 +125,8 @@
 
 (when (executable-find "dtach")
   (use-package detached
-    :straight t
+    :straight (detached :type git :host nil :repo "https://git.sr.ht/~niklaseklund/detached.el"
+                        :fork (:host nil :repo "git@github.com:raymond-w-ko/detached.el"))
     :init
     (setq detached-degraded-commands '("^ls"))
     (detached-init)
@@ -132,8 +137,7 @@
            ([remap recompile] . detached-compile-recompile)
            ;; Replace built in completion of sessions with `consult'
            ([remap detached-open-session] . detached-consult-session))
-    :custom ((detached-show-output-on-attach t)
-             (detached-terminal-data-command system-type))))
+    :custom ((detached-terminal-data-command system-type))))
 
 (connection-local-set-profile-variables
  'remote-detached

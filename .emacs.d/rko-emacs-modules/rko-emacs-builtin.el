@@ -14,7 +14,7 @@
 (setq enable-recursive-minibuffers t)
 
 (require 'autorevert)
-(setq global-auto-revert-non-file-buffers t)
+;; (setq global-auto-revert-non-file-buffers t)
 (setq auto-revert-remote-files t)
 (add-to-list 'global-auto-revert-ignore-modes 'buffer-menu-mode)
 (add-to-list 'global-auto-revert-ignore-modes 'Buffer-menu-mode)
