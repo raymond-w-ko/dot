@@ -108,7 +108,7 @@
   :init
   nil
   :config
-  nil)
+  (magit-auto-revert-mode -1))
 
 (use-package diff-hl
   :straight t
