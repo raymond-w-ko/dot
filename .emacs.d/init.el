@@ -80,6 +80,18 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(use-package buffer-move
+  :straight (buffer-move :host github :repo "lukhas/buffer-move")
+  :bind (("C-S-<up>" . buf-move-up)
+         ("C-S-<down>" . buf-move-down)
+         ("C-S-<left>" . buf-move-left)
+         ("C-S-<right>" . buf-move-right)
+
+         ("C-S-i" . buf-move-up)
+         ("C-S-k" . buf-move-down)
+         ("C-S-j" . buf-move-left)
+         ("C-S-l" . buf-move-right)))
+
 (use-package super-save
   :straight t
   :diminish super-save-mode
