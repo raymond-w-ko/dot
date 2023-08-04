@@ -68,7 +68,16 @@
   (define-key xah-fly-insert-map (kbd "M-k") 'windmove-down)
   (define-key xah-fly-insert-map (kbd "M-j") 'windmove-left)
   (define-key xah-fly-insert-map (kbd "M-l") 'windmove-right)
+
+  (define-key global-map (kbd "C-<tab>") nil)
+  (define-key global-map (kbd "C-S-<tab>") nil)
+  (define-key global-map (kbd "C-S-<iso-lefttab>") nil)
+  (define-key xah-fly-command-map (kbd "C-TAB") nil)
+  (define-key xah-fly-insert-map (kbd "C-TAB") nil)
+  (define-key xah-fly-command-map (kbd "C-S-TAB") nil)
+  (define-key xah-fly-insert-map (kbd "C-S-TAB") nil)
   
+  (define-key xah-fly-command-map (kbd "y") 'undo-fu-only-undo)
   (define-key xah-fly-command-map (kbd "RET") 'xah-end-of-line-or-block)
   (define-key xah-fly-command-map (kbd "SPC f") 'consult-buffer)
   (define-key xah-fly-command-map (kbd "SPC RET") 'save-buffer)

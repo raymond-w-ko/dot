@@ -87,10 +87,15 @@
          ("C-S-<left>" . buf-move-left)
          ("C-S-<right>" . buf-move-right)
 
-         ("C-S-i" . buf-move-up)
-         ("C-S-k" . buf-move-down)
-         ("C-S-j" . buf-move-left)
-         ("C-S-l" . buf-move-right)))
+         ;; ("C-S-i" . buf-move-up)
+         ;; ("C-S-k" . buf-move-down)
+         ;; ("C-S-j" . buf-move-left)
+         ;; ("C-S-l" . buf-move-right)
+
+         ("C-M-i" . buf-move-up)
+         ("C-M-k" . buf-move-down)
+         ("C-M-j" . buf-move-left)
+         ("C-M-l" . buf-move-right)))
 
 (use-package super-save
   :straight t
