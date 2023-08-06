@@ -91,6 +91,13 @@
  '(git-gutter:deleted-sign " ")
  '(git-gutter:modified-sign " ")
  '(git-gutter:update-interval 2)
+ '(safe-local-variable-values
+   '((eglot-server-programs
+      ((python-mode python-ts-mode)
+       "poetry" "run" "pyright-langserver" "--stdio"))
+     (eglot-server-programs
+      ((python-mode python-ts-mode)
+       "poetry" "run" "jedi-language-server"))))
  '(zoom-ignored-buffer-names '(" *vundo tree*"))
  '(zoom-ignored-major-modes '(vundo-mode))
  '(zoom-size '(100 . 50)))

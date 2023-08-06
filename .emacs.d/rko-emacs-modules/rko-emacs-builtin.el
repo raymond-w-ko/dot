@@ -8,10 +8,14 @@
 (setq css-indent-offset 2)
 (setq-default evil-shift-width tab-width)
 (setq-default indent-tabs-mode nil)
+
 (setq completion-cycle-threshold 3)
 (setq tab-always-indent 'complete)
+
 ;; is this a good idea?
 (setq enable-recursive-minibuffers t)
+
+(setq enable-remote-dir-locals t)
 
 (require 'autorevert)
 ;; (setq global-auto-revert-non-file-buffers t)

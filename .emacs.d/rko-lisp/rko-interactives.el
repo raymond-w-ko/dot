@@ -34,4 +34,26 @@
       
 (keymap-global-set "C-x t 2" 'rko/tab-new)
 
+(defun rko/yapf ()
+  "Run 'yapf' on the current region. Expects TRAMP and poetry"
+  (interactive)
+  (let* ((dir (project-root (project-current t)))
+         (file (file-relative-name (buffer-file-name) dir)))
+    (if (and dir
+             file
+             (s-ends-with? ".py" file t))
+        (progn
+          (message "in %s, running yapf on %s" dir file)
+          (save-buffer)
+          (let* ((p (point))
+                 (tmp-buffer (generate-new-buffer " *rko/yapf*"))
+                 (cmd (concat "poetry run yapf " file)))
+            (message "running shell command: %s" cmd)
+            (let ((default-directory dir))
+              (shell-command cmd tmp-buffer))
+            (replace-buffer-contents tmp-buffer)
+            (kill-buffer tmp-buffer)
+            (goto-char p)))
+      (error "not in a project, or not a Python file"))))
+
 (provide 'rko-interactives)
