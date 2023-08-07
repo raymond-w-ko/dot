@@ -73,7 +73,6 @@
 (use-package spell-fu :straight t :ensure t)
 
 (require 'rko-emacs-undo)
-(require 'rko-emacs-keys)
 (require 'rko-emacs-project)
 (require 'rko-emacs-modes)
 (require 'rko-emacs-completion)
@@ -159,6 +158,9 @@
   (rg-enable-default-bindings))
 
 (require 'rko-emacs-ui)
+;; load everything before modifying keys
+(require 'rko-emacs-keys)
+;; these are more like fancy macros, which may assume keys are setup
 (require 'rko-interactives)
 
 (defun rko/save-desktop ()

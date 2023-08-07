@@ -69,6 +69,11 @@
   (define-key xah-fly-insert-map (kbd "M-j") 'windmove-left)
   (define-key xah-fly-insert-map (kbd "M-l") 'windmove-right)
 
+  (define-key xah-fly-command-map (kbd "<f5>") 'tab-bar-switch-to-prev-tab)
+  (define-key xah-fly-command-map (kbd "<f6>") 'tab-bar-switch-to-next-tab)
+  (define-key xah-fly-insert-map (kbd "<f5>") 'tab-bar-switch-to-prev-tab)
+  (define-key xah-fly-insert-map (kbd "<f6>") 'tab-bar-switch-to-next-tab)
+
   (define-key global-map (kbd "C-<tab>") nil)
   (define-key global-map (kbd "C-S-<tab>") nil)
   (define-key global-map (kbd "C-S-<iso-lefttab>") nil)

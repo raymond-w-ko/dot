@@ -17,8 +17,9 @@
   (add-hook 'consult-after-jump-hook #'pulsar-reveal-entry))
 
 (use-package symbol-overlay
+  :disabled
   :init
-  (global-set-key (kbd "<f5>") 'symbol-overlay-put)
+  (global-set-key (kbd "M-i") 'symbol-overlay-put)
   (global-set-key (kbd "M-n") 'symbol-overlay-switch-forward)
   (global-set-key (kbd "M-p") 'symbol-overlay-switch-backward)
   (global-set-key (kbd "<f7>") 'symbol-overlay-mode)

@@ -190,8 +190,12 @@
          ("M-n" . 'copilot-next-completion)
          ("<tab>" . nil)
          ("C-<tab>" . 'copilot-accept-completion)
+         ("C-<iso-lefttab>" . 'copilot-accept-completion)
          ("M-f" . 'copilot-accept-completion-by-word)
-         ("M-<return>" . 'copilot-accept-completion-by-line))
+         ("M-<return>" . 'copilot-accept-completion-by-line)
+         :map global-map
+         ("C-<tab>" . 'copilot-accept-completion)
+         ("C-<iso-lefttab>" . 'copilot-accept-completion))
   :init
   (setq copilot-log-max 100000)
   (setq copilot-log-messages nil)
