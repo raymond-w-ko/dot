@@ -74,16 +74,32 @@
   (define-key xah-fly-insert-map (kbd "<f5>") 'tab-bar-switch-to-prev-tab)
   (define-key xah-fly-insert-map (kbd "<f6>") 'tab-bar-switch-to-next-tab)
 
-  (define-key global-map (kbd "C-<tab>") nil)
+  (define-key xah-fly-command-map (kbd "<f7>") 'project-switch-project)
+  (define-key xah-fly-command-map (kbd "<f8>") 'project-find-file)
+
+  (defun rko/maybe-accept-copilot-completion ()
+    (interactive)
+    (when (and (boundp 'copilot-mode) copilot-mode)
+      (call-interactively #'copilot-accept-completion)))
+
+  (define-key global-map (kbd "C-<tab>") 'rko/maybe-accept-copilot-completion)
   (define-key global-map (kbd "C-S-<tab>") nil)
   (define-key global-map (kbd "C-S-<iso-lefttab>") nil)
   (define-key xah-fly-command-map (kbd "C-TAB") nil)
   (define-key xah-fly-insert-map (kbd "C-TAB") nil)
   (define-key xah-fly-command-map (kbd "C-S-TAB") nil)
   (define-key xah-fly-insert-map (kbd "C-S-TAB") nil)
-  
+
+  (defun rko/xah-right-pinky ()
+    (interactive)
+    (cond
+     ((eq major-mode 'dired-mode)
+      (call-interactively #'dired-find-file))
+     (t
+      (call-interactively #'xah-end-of-line-or-block))))
+  (define-key xah-fly-command-map (kbd "RET") 'rko/xah-right-pinky)
+
   (define-key xah-fly-command-map (kbd "y") 'undo-fu-only-undo)
-  (define-key xah-fly-command-map (kbd "RET") 'xah-end-of-line-or-block)
   (define-key xah-fly-command-map (kbd "SPC f") 'consult-buffer)
   (define-key xah-fly-command-map (kbd "SPC RET") 'save-buffer)
   (define-key xah-fly-command-map (kbd "SPC TAB RET") 'indent-sexp)
