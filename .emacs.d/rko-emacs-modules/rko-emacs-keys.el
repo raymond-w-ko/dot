@@ -59,6 +59,9 @@
 (use-package xah-fly-keys
   :straight (xah-fly-keys :host github :repo "xahlee/xah-fly-keys")
   :config
+
+  (define-key xah-fly-insert-map (kbd "C-n") 'next-line)
+  
   (define-key xah-fly-command-map (kbd "M-i") 'windmove-up)
   (define-key xah-fly-command-map (kbd "M-k") 'windmove-down)
   (define-key xah-fly-command-map (kbd "M-j") 'windmove-left)
@@ -99,6 +102,7 @@
       (call-interactively #'xah-end-of-line-or-block))))
   (define-key xah-fly-command-map (kbd "RET") 'rko/xah-right-pinky)
 
+  (define-key xah-fly-command-map (kbd "\\") 'revert-buffer)
   (define-key xah-fly-command-map (kbd "y") 'undo-fu-only-undo)
   (define-key xah-fly-command-map (kbd "SPC f") 'consult-buffer)
   (define-key xah-fly-command-map (kbd "SPC RET") 'save-buffer)
