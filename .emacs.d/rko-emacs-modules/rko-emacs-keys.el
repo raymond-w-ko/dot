@@ -146,6 +146,11 @@
     (xah-fly-keys-catch-tty-ESC)
 
     (define-key key-translation-map (kbd "ESC") (kbd "<escape>")))
+
+  (defun rko/xah-fly-allow-copilot-p () xah-fly-insert-state-p)
+  (add-to-list 'copilot-enable-predicates 'rko/xah-fly-allow-copilot-p)
+  (add-to-list 'copilot-enable-display-predicates 'rko/xah-fly-allow-copilot-p)
+
   nil)
 
 (provide 'rko-emacs-keys)

@@ -200,14 +200,6 @@
   (setq copilot-log-max 100000)
   (setq copilot-log-messages nil)
   :config
-  (require 'copilot)
-  (when (boundp 'xah-fly-insert-state-p)
-    (defun rko/xah-fly-allow-copilot-p ()
-      xah-fly-insert-state-p)
-
-    (add-to-list 'copilot-enable-predicates 'rko/xah-fly-allow-copilot-p)
-    (add-to-list 'copilot-enable-display-predicates 'rko/xah-fly-allow-copilot-p))
-  
   nil)
 
 (provide 'rko-emacs-completion)

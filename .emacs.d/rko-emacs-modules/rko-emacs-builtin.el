@@ -71,6 +71,26 @@
   :init
   (setq tramp-verbose 2))
 
+(require 'custom)
+(require 'tramp)
+(require 'vagrant-tramp nil t)
+(require 'docker-tramp nil t)
+
+;; this generally fixes staging chunks over tramp in magit
+(defun rko/tramp-send-command--workaround-stty-icanon-bug (conn-vec orig-command &rest args)
+  "See: https://github.com/magit/magit/issues/4720"
+  (let ((command
+         (if (string= "stty -icrnl -icanon min 1 time 0" orig-command)
+             "stty -icrnl"
+           orig-command)))
+    (append (list conn-vec command) args)))
+
+(defun rko/tramp-send-command--workaround-stty-icanon-bug--filter-args (args)
+  (apply #'rko/tramp-send-command--workaround-stty-icanon-bug args))
+
+(advice-add 'tramp-send-command :filter-args
+            #'rko/tramp-send-command--workaround-stty-icanon-bug--filter-args)
+
 (use-package eglot
   :straight (eglot :type git :host github :repo "joaotavora/eglot")
   :ensure t
