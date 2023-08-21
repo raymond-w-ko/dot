@@ -86,13 +86,17 @@
     (when (and (boundp 'copilot-mode) copilot-mode)
       (call-interactively #'copilot-accept-completion)))
 
-  (define-key global-map (kbd "C-<tab>") 'rko/maybe-accept-copilot-completion)
+  (define-key global-map (kbd "C-SPC") 'rko/maybe-accept-copilot-completion)
+  (define-key global-map (kbd "C-<tab>") nil)
   (define-key global-map (kbd "C-S-<tab>") nil)
   (define-key global-map (kbd "C-S-<iso-lefttab>") nil)
   (define-key xah-fly-command-map (kbd "C-TAB") nil)
   (define-key xah-fly-insert-map (kbd "C-TAB") nil)
+  (define-key xah-fly-command-map (kbd "C-S-<iso-lefttab>") nil)
+  (define-key xah-fly-insert-map (kbd "C-S-<iso-lefttab>") nil)
   (define-key xah-fly-command-map (kbd "C-S-TAB") nil)
   (define-key xah-fly-insert-map (kbd "C-S-TAB") nil)
+  
 
   (defun rko/xah-right-pinky ()
     (interactive)

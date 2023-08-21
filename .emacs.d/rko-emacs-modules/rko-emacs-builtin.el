@@ -69,7 +69,10 @@
 
 (use-package tramp
   :init
-  (setq tramp-verbose 2)
+  (setq tramp-use-ssh-controlmaster-options t)
+  (setq tramp-ssh-controlmaster-options
+        "-o ControlMaster=auto -o ControlPath=tramp.%%C -o ControlPersist=24h")
+  (setq tramp-verbose 5)
   (setq tramp-histfile-override nil))
 
 (require 'custom)
