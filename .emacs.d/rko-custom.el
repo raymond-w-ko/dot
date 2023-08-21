@@ -3,13 +3,35 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(bmkp-last-as-first-bookmark-file "/home/rko/.cache/emacs/var/bmkp/current-bookmark.el")
  '(connection-local-criteria-alist
-   '(((:application tramp :protocol "ssh")
+   '(((:application tramp :protocol "adb")
+      tramp-adb-connection-local-default-shell-profile tramp-adb-connection-local-default-ps-profile)
+     ((:application rg :machine "oryxvac.local")
+      rg-vars-oryxvac.local)
+     ((:application tramp :protocol "ssh")
       remote-detached)
      ((:application tramp)
       tramp-connection-local-default-system-profile tramp-connection-local-default-shell-profile)))
  '(connection-local-profile-alist
-   '((remote-detached
+   '((tramp-adb-connection-local-default-ps-profile
+      (tramp-process-attributes-ps-args)
+      (tramp-process-attributes-ps-format
+       (user . string)
+       (pid . number)
+       (ppid . number)
+       (vsize . number)
+       (rss . number)
+       (wchan . string)
+       (pc . string)
+       (state . string)
+       (args)))
+     (tramp-adb-connection-local-default-shell-profile
+      (shell-file-name . "/system/bin/sh")
+      (shell-command-switch . "-c"))
+     (rg-vars-oryxvac.local
+      (rg-executable . "/bin/rg"))
+     (remote-detached
       (detached-shell-program . "/bin/bash")
       (detached-session-directory . "~/dtach-sessions")
       (detached-dtach-program . "dtach"))
