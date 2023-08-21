@@ -1,5 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
+(require 'bookmark+)
+
 (use-package projectile
   :disabled
   :straight t
