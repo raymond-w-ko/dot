@@ -154,6 +154,8 @@
   (add-to-list 'copilot-enable-predicates 'rko/xah-fly-allow-copilot-p)
   (add-to-list 'copilot-enable-display-predicates 'rko/xah-fly-allow-copilot-p)
 
+  (define-key xah-fly-command-map (kbd "C-S-n") 'rko/tab-new)
+
   nil)
 
 (provide 'rko-emacs-keys)

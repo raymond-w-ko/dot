@@ -33,7 +33,6 @@
       (windmove-left))))
       
 (keymap-global-set "C-x t 2" 'rko/tab-new)
-(define-key xah-fly-command-map (kbd "C-S-n") 'rko/tab-new)
 
 (defun rko/yapf ()
   "Run 'yapf' on the current region. Expects TRAMP and poetry"
