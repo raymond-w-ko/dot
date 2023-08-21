@@ -69,7 +69,8 @@
 
 (use-package tramp
   :init
-  (setq tramp-verbose 2))
+  (setq tramp-verbose 2)
+  (setq tramp-histfile-override nil))
 
 (require 'custom)
 (require 'tramp)
