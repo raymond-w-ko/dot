@@ -58,6 +58,7 @@
 
 (use-package xah-fly-keys
   :straight (xah-fly-keys :host github :repo "xahlee/xah-fly-keys")
+  :after (copilot)
   :config
 
   (define-key xah-fly-insert-map (kbd "C-n") 'next-line)
@@ -147,6 +148,8 @@
 
     (define-key key-translation-map (kbd "ESC") (kbd "<escape>")))
 
+  ;; should not be required since :after is used
+  ;; (require 'copilot)
   (defun rko/xah-fly-allow-copilot-p () xah-fly-insert-state-p)
   (add-to-list 'copilot-enable-predicates 'rko/xah-fly-allow-copilot-p)
   (add-to-list 'copilot-enable-display-predicates 'rko/xah-fly-allow-copilot-p)
