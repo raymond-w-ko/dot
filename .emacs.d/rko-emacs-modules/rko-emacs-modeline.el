@@ -37,7 +37,7 @@ or not."
   "Face for warning text in the modeline.")
 
 (defface rko/modeline-face-black
-  '((t :foreground "gray" :background "black"))
+  '((t :foreground "gray" :background "#888888"))
   "Face for noticeable text in the modeline.")
 
 (defface rko/modeline-face-green
@@ -97,10 +97,9 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
   (when-let ((proj (project-current)))
     (let* ((root (-> proj (project-root)))
            (file (file-relative-name buffer-file-name root)))
-      (concat "📁 "
-              (propertize (rko/modeline-just-last-path-segment root)
+      (concat "📁"
+              (propertize (concat " " (rko/modeline-just-last-path-segment root) " ")
                           'face 'rko/modeline-face-small)
-              " "
               (nerd-icons-icon-for-file file)
               " "
               file))))
@@ -109,9 +108,9 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
   (when (file-remote-p buffer-file-name)
     (let ((m (tramp-dissect-file-name buffer-file-name)))
       (when m
-        (concat "🌐 "
-                (propertize (tramp-file-name-host m) 'face 'rko/modeline-face-small)
-                " "
+        (concat "🌐"
+                (propertize (concat " "(tramp-file-name-host m) " ")
+                            'face 'rko/modeline-face-small)
                 (rko/modeline-project-buffer-name))))))
 
 (defvar-local rko/modeline-buffer-name
