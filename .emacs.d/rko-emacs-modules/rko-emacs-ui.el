@@ -59,7 +59,10 @@
   (setq doom-modeline-modal t)
   (setq doom-modeline-modal-icon t)
   :config
-  (doom-modeline-mode 1))
+  ;; (doom-modeline-mode -1)
+  nil)
+
+(require 'rko-emacs-modeline)
 
 (defun rko/setup-prism-for-dark-theme ()
   (prism-set-colors :num 16
