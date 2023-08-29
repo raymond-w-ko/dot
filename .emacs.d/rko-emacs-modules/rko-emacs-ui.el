@@ -74,6 +74,40 @@
     :colors (list "dodgerblue" "medium sea green" "sandy brown"))
   nil)
 
+(defvar rko/theme-based-prism-colors
+  (list "#000000"
+        "#477818"
+        "#b63a28"
+        "#4e43ba"
+        "#ac286c"
+        "#932ea9"))
+(defvar rko/rainbow-600-prism-colors
+ (list "#000000"
+       "#b85143"
+       "#8b6c27"
+       "#348037"
+       "#0077b2"
+       "#6167c9"
+       "#617388"
+       "#717171"))
+(defvar rko/rainbow-700-prism-colors
+  (list "#000000"
+        "#9c4438"
+        "#765b21"
+        "#2c6c2f"
+        "#006596"
+        "#5756a6"
+        "#526172"
+        "#5f5f5f"))
+(defvar rko/rainbow-800-prism-colors
+  (list "#000000"
+        "#7d372d"
+        "#60491b"
+        "#235726"
+        "#005179"
+        "#494582"
+        "#424d5b"
+        "#4c4c4c"))
 (defun rko/setup-prism-for-light-theme ()
   (require 'prism)
   (prism-set-colors
@@ -82,12 +116,7 @@
     :lightens '(0)      ; same
     :comments-fn (lambda (color) (prism-blend color "#ccc" 0.5))
     :strings-fn (lambda (color) (prism-blend color "#000" 0.33))
-    :colors (list "#000000"
-                  "#477818"
-                  "#b63a28"
-                  "#4e43ba"
-                  "#ac286c"
-                  "#932ea9")))
+    :colors rko/rainbow-700-prism-colors))
 
 (use-package prism
   :straight (prism :type git :host github :repo "alphapapa/prism.el")
