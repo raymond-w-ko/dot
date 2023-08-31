@@ -105,7 +105,8 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
               file))))
 
 (defun rko/modeline-tramp-buffer-name ()
-  (when (file-remote-p buffer-file-name)
+  (when (and (stringp buffer-file-name)
+             (file-remote-p buffer-file-name))
     (let ((m (tramp-dissect-file-name buffer-file-name)))
       (when m
         (concat "🌐"
@@ -117,7 +118,8 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
     '(:eval (or (rko/modeline-tramp-buffer-name)
                 (rko/modeline-project-buffer-name)
                 (buffer-file-name)
-                (buffer-name))))
+                (buffer-name)
+                " [no buffer name] ")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

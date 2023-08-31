@@ -99,6 +99,6 @@
   :straight (eglot :type git :host github :repo "joaotavora/eglot")
   :ensure t
   :init
-  (setq eglot-connect-timeout 60))
+  (setq eglot-connect-timeout 300))
 
 (provide 'rko-emacs-builtin)

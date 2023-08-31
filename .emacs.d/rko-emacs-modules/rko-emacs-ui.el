@@ -116,7 +116,7 @@
     :lightens '(0)      ; same
     :comments-fn (lambda (color) (prism-blend color "#ccc" 0.5))
     :strings-fn (lambda (color) (prism-blend color "#000" 0.33))
-    :colors rko/rainbow-700-prism-colors))
+    :colors rko/rainbow-600-prism-colors))
 
 (use-package prism
   :straight (prism :type git :host github :repo "alphapapa/prism.el")
