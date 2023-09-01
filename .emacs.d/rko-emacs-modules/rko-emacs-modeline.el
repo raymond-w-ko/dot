@@ -94,16 +94,17 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
     (substring p (1+ slash-index))))
 
 (defun rko/modeline-project-buffer-name ()
-  (when-let ((proj (project-current)))
-    (let* ((root (-> proj (project-root)))
-           (file (file-relative-name buffer-file-name root)))
+  (when-let* ((proj (project-current))
+              (root (project-root proj))
+              (file (when buffer-file-name
+                      (file-relative-name buffer-file-name root))))
       (when (and (stringp root) (stringp file))
         (concat "📁"
                 (propertize (concat " " (rko/modeline-just-last-path-segment root) " ")
                             'face 'rko/modeline-face-small)
                 (nerd-icons-icon-for-file file)
                 " "
-                file)))))
+                file))))
 
 (defun rko/modeline-tramp-buffer-name ()
   (when (and buffer-file-name
