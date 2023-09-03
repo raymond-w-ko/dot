@@ -109,6 +109,8 @@
 
 (use-package magit
   :straight (magit :host github :repo "magit/magit")
+  :bind (:map magit-status-mode-map
+              ("C-M-i" . nil))
   :init
   nil
   :config
