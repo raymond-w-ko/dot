@@ -31,18 +31,25 @@
 (straight-use-package 'use-package)
 (require 'straight-x)
 
+(use-package org
+  :straight t
+  :init
+  nil
+  :config
+  nil)
+
 (use-package ef-themes
   :straight t
   :init
   (setq ef-themes-headings ; read the manual's entry or the doc string
-        '((0 variable-pitch light 1.6)
-          (1 variable-pitch light 1.5)
-          (2 variable-pitch regular 1.4)
-          (3 variable-pitch regular 1.3)
-          (4 variable-pitch regular 1.2)
-          (5 variable-pitch 1.1)    ; absence of weight means `bold'
-          (6 variable-pitch 1.0)
-          (7 variable-pitch 1.0)
+        '((0 variable-pitch light 1.75)
+          (1 variable-pitch light 1.4)
+          (2 variable-pitch regular 1.2)
+          (3 variable-pitch regular 1.1)
+          (4 variable-pitch bold 1.0)
+          (5 variable-pitch semibold 1.0)
+          (6 variable-pitch regular 1.0)
+          (7 variable-pitch regular 1.0)
           (t variable-pitch 1.0)))
   (setq ef-themes-mixed-fonts t
         ef-themes-variable-pitch-ui t)

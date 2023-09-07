@@ -148,6 +148,15 @@
   :init
   (marginalia-mode))
 
+(defun rko/add-corfu-extension-dir-to-load-path ()
+  (require 'dash)
+  (require 'f)
+  (let* ((corfu-path (--some (and (string-match-p ".+/corfu$" it) it)
+                             load-path))
+         (corfu-extension-path (concat corfu-path "/extensions")))
+    (message corfu-extension-path)
+    (cl-assert (f-directory-p corfu-extension-path) "missing corfu extensions directory")
+    (add-to-list 'load-path corfu-extension-path)))
 (use-package corfu
   :straight (corfu :type git :host github :repo "minad/corfu"
                    :fork (:host nil :repo "git@github.com:raymond-w-ko/corfu"))
@@ -156,14 +165,7 @@
   (corfu-cycle t)
   (corfu-auto t)
   :config
-  (require 'dash)
-  (require 'f)
-  (let* ((corfu-path (--some (and (string-match-p ".+/corfu$" it) it)
-                             load-path))
-         (corfu-extension-path (concat corfu-path "/extensions")))
-    (message corfu-extension-path)
-    (cl-assert (f-directory-p corfu-extension-path) "missing corfu extensions directory")
-    (add-to-list 'load-path corfu-extension-path))
+  ;; (rko/add-corfu-extension-dir-to-load-path)
   (require 'corfu-info)
   (global-corfu-mode)
   nil)
@@ -192,8 +194,8 @@
          ("M-f" . 'copilot-accept-completion-by-word)
          ("M-<return>" . 'copilot-accept-completion-by-line))
   :init
-  (setq copilot-log-max 100000)
-  (setq copilot-log-messages nil)
+  (setq copilot-log-max 500000)
+  (setq copilot-idle-delay 0.5)
   :config
   nil)
 

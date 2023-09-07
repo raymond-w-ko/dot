@@ -72,7 +72,9 @@
   (setq tramp-use-ssh-controlmaster-options t)
   (setq tramp-ssh-controlmaster-options
         "-o ControlMaster=auto -o ControlPath=tramp.%%C -o ControlPersist=8h")
-  (setq tramp-verbose 5)
+  (setq tramp-verbose 3)
+  (setq vc-handled-backends '(Git SVN))
+  (setq remote-file-name-inhibit-locks t)
   (setq tramp-histfile-override nil))
 
 (require 'custom)

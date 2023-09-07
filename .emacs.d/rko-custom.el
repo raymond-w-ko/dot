@@ -128,7 +128,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:slant normal :weight regular :height 80 :width normal :family "Iosevka Comfy Wide"))))
+ '(default ((t (:slant normal :weight normal :width normal :height 80 :family "Iosevka Comfy Wide"))))
  '(fixed-pitch ((t :inherit default)))
  '(fixed-pitch-serif ((t :inherit default :family "Iosevka Comfy Motion")))
  '(hop-face-double-char-1 ((t (:inherit ef-themes-mark-delete))))
@@ -136,4 +136,4 @@
  '(hop-face-single-char ((t (:inherit ef-themes-mark-select))))
  '(italic ((t (:slant normal))))
  '(mono-complete-preview-face ((t :inherit font-lock-comment-face)))
- '(variable-pitch ((t (:family "Iosevka Comfy Duo" :height 90)))))
+ '(variable-pitch ((t (:slant normal :weight normal :width normal :height 90 :family "Iosevka Comfy Duo")))))
