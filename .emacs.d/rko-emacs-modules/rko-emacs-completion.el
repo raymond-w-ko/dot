@@ -194,6 +194,7 @@
          ("M-f" . 'copilot-accept-completion-by-word)
          ("M-<return>" . 'copilot-accept-completion-by-line))
   :init
+  (setq copilot-max-char 200000)
   (setq copilot-log-max 500000)
   (setq copilot-idle-delay 0.5)
   :config

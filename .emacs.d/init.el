@@ -101,6 +101,11 @@
          ("C-M-i" . buf-move-up)
          ("C-M-k" . buf-move-down)
          ("C-M-j" . buf-move-left)
+         ("C-M-l" . buf-move-right)
+         :map emacs-lisp-mode-map
+         ("C-M-i" . buf-move-up)
+         ("C-M-k" . buf-move-down)
+         ("C-M-j" . buf-move-left)
          ("C-M-l" . buf-move-right)))
 
 (use-package super-save
