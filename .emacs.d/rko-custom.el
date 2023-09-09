@@ -112,7 +112,7 @@
  '(git-gutter:added-sign " ")
  '(git-gutter:deleted-sign " ")
  '(git-gutter:modified-sign " ")
- '(git-gutter:update-interval 2)
+ '(git-gutter:update-interval 0)
  '(safe-local-variable-values
    '((eglot-server-programs
       ((python-mode python-ts-mode)

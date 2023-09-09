@@ -129,11 +129,12 @@
   :straight (git-gutter :type git :host github :repo "emacsorphanage/git-gutter")
   :diminish t
   :init
+  (add-to-list 'git-gutter:update-commands 'save-buffer)
   (custom-set-variables
    '(git-gutter:modified-sign " ")
    '(git-gutter:added-sign " ")
    '(git-gutter:deleted-sign " ")
-   '(git-gutter:update-interval 2))
+   '(git-gutter:update-interval 0))
 
   ;; (set-face-background 'git-gutter:modified "gold3")
   ;; (set-face-background 'git-gutter:added "green3")
