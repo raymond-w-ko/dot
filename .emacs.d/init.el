@@ -34,7 +34,7 @@
 (use-package org
   :straight t
   :init
-  nil
+  (setq org-hide-emphasis-markers t)
   :config
   nil)
 

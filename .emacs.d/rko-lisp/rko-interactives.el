@@ -7,7 +7,7 @@
          (delta (- w (window-width win))))
     (window-resize win delta t)))
 
-(defun rko/tab-new ()
+(defun rko/tab-new-old ()
   (interactive)
 
   (let* ((num-tabs (->> (frame-parameter (selected-frame) 'tabs)
@@ -31,6 +31,28 @@
     (dotimes (_ n)
       (split-window-below)
       (windmove-left))))
+
+(defun rko/tab-new (split-more)
+  (interactive "p")
+
+  (let* ((num-tabs (->> (frame-parameter (selected-frame) 'tabs)
+                        (length)))
+         (num-wins (length (window-list))))
+    (when (or (> num-tabs 1)
+              (> num-wins 1))
+      (tab-new)))
+
+  (let* ((n 3))
+    (when (not (= split-more 0))
+      (setq n (- n split-more)))
+    (dotimes (_ (1- n))
+      (split-window-right))
+    (dotimes (i n)
+      (split-window-below)
+      (when (< i (1- n))
+        (windmove-right))))
+  
+  (balance-windows))
       
 (keymap-global-set "C-x t 2" 'rko/tab-new)
 

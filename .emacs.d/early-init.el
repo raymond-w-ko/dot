@@ -24,8 +24,7 @@
       initial-buffer-choice t
       line-spacing nil
       visible-bell t
-      blink-cursor-mode -1
-      scroll-margin 2)
+      scroll-margin 0)
 
 (set-default-coding-systems 'utf-8)
 

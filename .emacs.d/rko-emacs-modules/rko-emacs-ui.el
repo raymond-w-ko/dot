@@ -129,7 +129,6 @@
   :straight (git-gutter :type git :host github :repo "emacsorphanage/git-gutter")
   :diminish t
   :init
-  (add-to-list 'git-gutter:update-commands 'save-buffer)
   (custom-set-variables
    '(git-gutter:modified-sign " ")
    '(git-gutter:added-sign " ")
@@ -141,6 +140,7 @@
   ;; (set-face-background 'git-gutter:deleted "red3")
   
   :config
+  (add-to-list 'git-gutter:update-commands 'save-buffer)
   (global-git-gutter-mode +1))
 
 (provide 'rko-emacs-ui)
