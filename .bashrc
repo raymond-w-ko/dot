@@ -113,6 +113,8 @@ if [[ "$SHELL" == bash ]]; then
 fi
 
 unset PYTHONHOME
+# https://stackoverflow.com/questions/64570510/why-does-pip3-want-to-create-a-kdewallet-after-installing-updating-packages-on-u
+export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 
 . ~/.bash.d/basic.sh
 
