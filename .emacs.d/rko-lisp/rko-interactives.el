@@ -32,7 +32,7 @@
       (split-window-below)
       (windmove-left))))
 
-(defun rko/tab-new (split-more)
+(defun rko/tab-new (universal-arg)
   (interactive "p")
 
   (let* ((num-tabs (->> (frame-parameter (selected-frame) 'tabs)
@@ -42,9 +42,14 @@
               (> num-wins 1))
       (tab-new)))
 
-  (let* ((n 3))
+  (let* ((n 2)
+         (split-more (if (< 0 universal-arg)
+                         (/ universal-arg 4)
+                       0)))
+    
     (when (not (= split-more 0))
-      (setq n (- n split-more)))
+      (setq n (+ n split-more)))
+    (message "(rko/tab-new: %s)" n)
     (dotimes (_ (1- n))
       (split-window-right))
     (dotimes (i n)

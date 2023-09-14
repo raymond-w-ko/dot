@@ -141,6 +141,6 @@
   
   :config
   (add-to-list 'git-gutter:update-commands 'save-buffer)
-  (global-git-gutter-mode +1))
+  (global-git-gutter-mode -1))
 
 (provide 'rko-emacs-ui)
