@@ -97,6 +97,14 @@
 (advice-add 'tramp-send-command :filter-args
             #'rko/tramp-send-command--workaround-stty-icanon-bug--filter-args)
 
+(use-package yasnippet
+  :straight (yasnippet :type git :host github :repo "joaotavora/yasnippet")
+  :ensure t
+  :init
+  (setq yas-overlay-priority 99)
+  :config
+  nil)
+
 (use-package eglot
   :straight (eglot :type git :host github :repo "joaotavora/eglot")
   :ensure t
