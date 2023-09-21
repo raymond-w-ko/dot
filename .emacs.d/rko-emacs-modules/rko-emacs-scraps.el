@@ -215,3 +215,87 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
    '(zoom-ignored-buffer-names '(" *vundo tree*")))
   :config
   (zoom-mode 1))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; keys
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package devil
+  :disabled
+  :straight t
+  :init
+  (setq devil-lighter " \U0001F608")
+  (setq devil-prompt "\U0001F608 %t")
+  :config
+  (global-devil-mode)
+  (define-key devil-mode-map (kbd ".") #'devil)
+  (add-to-list 'devil-special-keys `(". ." . ,(devil-key-executor ".")))
+  (setq devil-translations '((", z" . "C-")
+			                       (". z" . "M-")
+			                       (", ," . ",")
+			                       (". ." . ".")
+			                       ("," . "C-")
+			                       ("." . "M-")))
+  nil)
+
+(use-package god-mode
+  :disabled
+  :straight t
+  :config
+  ;; (god-mode)
+  ;; (global-set-key (kbd "<escape>") #'god-mode-all)
+  nil)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; project management
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package persp-mode
+  :disabled
+  :straight t
+  :config
+  (persp-mode -1))
+
+(use-package workgroups2
+  :disabled
+  :straight t
+  :init
+  (setq wg-use-default-session-file nil)
+  :config
+  (workgroups-mode +1))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; UI
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package symbol-overlay
+  :disabled
+  :init
+  (global-set-key (kbd "M-i") 'symbol-overlay-put)
+  (global-set-key (kbd "M-n") 'symbol-overlay-switch-forward)
+  (global-set-key (kbd "M-p") 'symbol-overlay-switch-backward)
+  (global-set-key (kbd "<f7>") 'symbol-overlay-mode)
+  (global-set-key (kbd "<f8>") 'symbol-overlay-remove-all)
+  :straight t)
+
+(use-package doom-modeline
+  :disabled
+  :straight t
+  :init
+  (setq doom-modeline-height 1)
+  (setq doom-modeline-time t)
+  (setq doom-modeline-time-icon t)
+  
+  (setq doom-modeline-project-detection 'project)
+  (setq doom-modeline-workspace-name t)
+  (setq doom-modeline-persp-name t)
+  
+  (setq doom-modeline-buffer-encoding nil)
+  (setq doom-modeline-icon t)
+  (setq doom-modeline-minor-modes nil)
+  (setq doom-modeline-major-mode-icon t)
+  (setq doom-modeline-modal t)
+  (setq doom-modeline-modal-icon t)
+  :config
+  ;; (doom-modeline-mode -1)
+  nil)

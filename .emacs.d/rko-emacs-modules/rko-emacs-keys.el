@@ -1,31 +1,5 @@
 ;; -*- lexical-binding: t -*-
 
-(use-package devil
-  :disabled
-  :straight t
-  :init
-  (setq devil-lighter " \U0001F608")
-  (setq devil-prompt "\U0001F608 %t")
-  :config
-  (global-devil-mode)
-  (define-key devil-mode-map (kbd ".") #'devil)
-  (add-to-list 'devil-special-keys `(". ." . ,(devil-key-executor ".")))
-  (setq devil-translations '((", z" . "C-")
-			                       (". z" . "M-")
-			                       (", ," . ",")
-			                       (". ." . ".")
-			                       ("," . "C-")
-			                       ("." . "M-")))
-  nil)
-
-(use-package god-mode
-  :disabled
-  :straight t
-  :config
-  ;; (god-mode)
-  ;; (global-set-key (kbd "<escape>") #'god-mode-all)
-  nil)
-
 (use-package paredit
   :straight t
   :hook

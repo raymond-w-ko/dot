@@ -16,16 +16,6 @@
   (add-hook 'consult-after-jump-hook #'pulsar-recenter-top)
   (add-hook 'consult-after-jump-hook #'pulsar-reveal-entry))
 
-(use-package symbol-overlay
-  :disabled
-  :init
-  (global-set-key (kbd "M-i") 'symbol-overlay-put)
-  (global-set-key (kbd "M-n") 'symbol-overlay-switch-forward)
-  (global-set-key (kbd "M-p") 'symbol-overlay-switch-backward)
-  (global-set-key (kbd "<f7>") 'symbol-overlay-mode)
-  (global-set-key (kbd "<f8>") 'symbol-overlay-remove-all)
-  :straight t)
-
 (use-package nerd-icons
   :straight t
   :init
@@ -40,27 +30,6 @@
 ;; minions is a a minor-mode menu for the mode line
 (use-package minions
   :straight t)
-
-(use-package doom-modeline
-  :straight t
-  :init
-  (setq doom-modeline-height 1)
-  (setq doom-modeline-time t)
-  (setq doom-modeline-time-icon t)
-  
-  (setq doom-modeline-project-detection 'project)
-  (setq doom-modeline-workspace-name t)
-  (setq doom-modeline-persp-name t)
-  
-  (setq doom-modeline-buffer-encoding nil)
-  (setq doom-modeline-icon t)
-  (setq doom-modeline-minor-modes nil)
-  (setq doom-modeline-major-mode-icon t)
-  (setq doom-modeline-modal t)
-  (setq doom-modeline-modal-icon t)
-  :config
-  ;; (doom-modeline-mode -1)
-  nil)
 
 (require 'rko-emacs-modeline)
 

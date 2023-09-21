@@ -1,4 +1,5 @@
 ;; -*- lexical-binding: t -*-
+(require 'rx)
 
 (setq-default show-trailing-whitespace nil)
 
@@ -55,6 +56,18 @@
 (savehist-mode 1)
 
 ;; (save-place-mode 1)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'dired)
+(require 'dired-x)
+
+(setq dired-omit-files (rx (or (seq bol "." eol)
+                               (seq bol (one-or-more nonl) "~" eol)
+                               (seq bol "#" (one-or-more nonl) "#" eol))))
+(add-hook 'dired-mode-hook 'dired-omit-mode)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun rko/print-url-in-messages (url &rest args)
   "Print URL in *Messages* buffer instead of browsing it."
