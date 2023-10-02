@@ -1,4 +1,5 @@
 ;; -*- lexical-binding: t -*-
+(require 'dash)
 
 ;; this is built-in to emacs 29
 (defun rko/mode-line-window-selected-p ()
@@ -86,8 +87,8 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
 (defvar-local rko/modeline-flycheck
     '(:eval
       (let* ((total-counts (flycheck-count-errors flycheck-current-errors))
-             (warning-pair (car total-counts))
-             (error-pair (car (cdr total-counts)))
+             (warning-pair (-some (lambda (x) (and (equal 'warning (car x)) x)) total-counts))
+             (error-pair (-some (lambda (x) (and (equal 'error (car x)) x)) total-counts))
              (error-count (cdr error-pair))
              (warning-count (cdr warning-pair)))
         (when (or error-count warning-count)
