@@ -1,5 +1,27 @@
 ;; -*- lexical-binding: t -*-
 
+(use-package buffer-move
+  :straight (buffer-move :host github :repo "lukhas/buffer-move")
+  :bind (("C-S-<up>" . buf-move-up)
+         ("C-S-<down>" . buf-move-down)
+         ("C-S-<left>" . buf-move-left)
+         ("C-S-<right>" . buf-move-right)
+
+         ;; ("C-S-i" . buf-move-up)
+         ;; ("C-S-k" . buf-move-down)
+         ;; ("C-S-j" . buf-move-left)
+         ;; ("C-S-l" . buf-move-right)
+
+         ("C-M-i" . buf-move-up)
+         ("C-M-k" . buf-move-down)
+         ("C-M-j" . buf-move-left)
+         ("C-M-l" . buf-move-right)
+         :map emacs-lisp-mode-map
+         ("C-M-i" . buf-move-up)
+         ("C-M-k" . buf-move-down)
+         ("C-M-j" . buf-move-left)
+         ("C-M-l" . buf-move-right)))
+
 (use-package paredit
   :straight t
   :hook

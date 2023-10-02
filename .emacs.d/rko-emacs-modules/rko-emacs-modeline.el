@@ -83,6 +83,19 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
                   (when note-count
                     (concat "📝" note-count " ")))))))
 
+(defvar-local rko/modeline-flycheck
+    '(:eval
+      (let* ((total-counts (flycheck-count-errors flycheck-current-errors))
+             (warning-pair (car total-counts))
+             (error-pair (car (cdr total-counts)))
+             (error-count (cdr error-pair))
+             (warning-count (cdr warning-pair)))
+        (when (or error-count warning-count)
+          (concat (when error-count
+                    (propertize (concat " " (prin1-to-string error-count) " ") 'face 'rko/modeline-face-error))
+                  (when warning-count
+                    (propertize (concat " " (prin1-to-string warning-count) " ") 'face 'rko/modeline-face-warning)))))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun rko/modeline-just-last-path-segment (p)
@@ -142,6 +155,7 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
 
 (dolist (x '(rko/modeline-major-mode
              rko/modeline-flymake
+             rko/modeline-flycheck
              rko/modeline-buffer-name
              rko/modeline-readonly
              rko/modeline-modified
@@ -155,6 +169,7 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
    rko/modeline-modified
    rko/modeline-major-mode
    rko/modeline-flymake
+   rko/modeline-flycheck
    rko/modeline-buffer-name
    "    "
    rko/modeline-builtin-misc))

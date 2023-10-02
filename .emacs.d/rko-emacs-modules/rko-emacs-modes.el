@@ -30,4 +30,19 @@
   (setq nrepl-use-ssh-fallback-for-remote-hosts t)
   nil)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package add-node-modules-path
+  :straight (add-node-modules-path :type git :host github :repo "codesuki/add-node-modules-path")
+  :init
+  (setq add-node-modules-path-command '("echo \"$(npm root)/.bin\""))
+  ;; :hook ((js-mode . add-node-modules-path))
+  :config
+  nil)
+
+(add-hook js-mode-hook #'flycheck-mode)
+(add-to-list 'eglot-server-programs `(js-mode . ("./node_modules/.bin/eslint-lsp" "--stdio")))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (provide 'rko-emacs-modes)
