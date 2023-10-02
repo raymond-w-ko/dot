@@ -106,18 +106,28 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
          (slash-index (or (rko/last-index-of "/" p) -1)))
     (substring p (1+ slash-index))))
 
+(setq-default rko/-cached-project-current nil)
+(defun rko/get-cached-project-current ()
+  ;; (make-local-variable 'rko/-cached-project-current)
+  (if (local-variable-p 'rko/-cached-project-current)
+      rko/-cached-project-current
+    (let ((proj (project-current)))
+      (setq-local rko/-cached-project-current proj)
+      rko/-cached-project-current)))
+(rko/get-cached-project-current)
+
 (defun rko/modeline-project-buffer-name ()
-  (when-let* ((proj (project-current))
+  (when-let* ((proj (rko/get-cached-project-current))
               (root (project-root proj))
               (file (when buffer-file-name
                       (file-relative-name buffer-file-name root))))
-      (when (and (stringp root) (stringp file))
-        (concat "📁"
-                (propertize (concat " " (rko/modeline-just-last-path-segment root) " ")
-                            'face 'rko/modeline-face-small)
-                (nerd-icons-icon-for-file file)
-                " "
-                file))))
+    (when (and (stringp root) (stringp file))
+      (concat "📁"
+              (propertize (concat " " (rko/modeline-just-last-path-segment root) " ")
+                          'face 'rko/modeline-face-small)
+              (nerd-icons-icon-for-file file)
+              " "
+              file))))
 
 (defun rko/modeline-tramp-buffer-name ()
   (when (and buffer-file-name
