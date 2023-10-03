@@ -61,3 +61,7 @@ tags
 # emacs
 /.emacs.d/straight/
 /.emacs.d/eln-cache/
+# emacs - flycheck - emacs-lisp + emacs-lisp-check-doc
+/.emacs.d/history
+/.emacs.d/lsp-bridge/
+/.emacs.d/recentf
