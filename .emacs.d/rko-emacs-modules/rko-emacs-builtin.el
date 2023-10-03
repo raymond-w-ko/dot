@@ -65,6 +65,17 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(use-package recentf
+  :init
+  (setq recentf-max-saved-items 10000
+        recentf-max-menu-items 5000)
+  (recentf-mode 1)
+  (unless (boundp 'rko/recentf-save-list-timer-initialized)
+    (defvar rko/recentf-save-list-timer-initialized t)
+    (run-at-time nil (* 5 60) 'recentf-save-list)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (require 'dired)
 (require 'dired-x)
 
