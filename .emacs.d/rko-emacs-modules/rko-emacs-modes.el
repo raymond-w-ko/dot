@@ -1,4 +1,11 @@
-;; -*- lexical-binding: t -*-
+;;; rko-emacs-modes.el --- programming modes customization -*- lexical-binding: t -*-
+
+;;; Commentary:
+
+;;; Code:
+
+(require 'f)
+(require 'eglot)
 
 (use-package yasnippet :straight t
   :config
@@ -13,7 +20,7 @@
 (use-package yaml-mode :straight t)
 
 (let* ((lsp-bridge-dir (concat (expand-file-name "~/src/") "lsp-bridge")))
-  (cl-assert (f-directory-p lsp-bridge-dir) "could not find lsp-bridge directory")
+  (cl-assert (file-directory-p lsp-bridge-dir) "could not find lsp-bridge directory")
   (add-to-list 'load-path lsp-bridge-dir)
   (let* ((ip-file (expand-file-name "lsp-bridge/remote_file/ip.txt" user-emacs-directory))
          (ip-file-dir (file-name-directory ip-file)))
@@ -40,9 +47,10 @@
   :config
   nil)
 
-(add-hook js-mode-hook #'flycheck-mode)
+;;(add-hook js-mode-hook #'flycheck-mode)
 (add-to-list 'eglot-server-programs `(js-mode . ("./node_modules/.bin/eslint-lsp" "--stdio")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (provide 'rko-emacs-modes)
+;;; rko-emacs-modes.el ends here

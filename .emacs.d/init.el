@@ -1,10 +1,17 @@
-;; -*- lexical-binding: t -*-
+;;; init.el --- main entry point -*- lexical-binding: t -*-
+;;; Commentary:
+
+;;; Code:
 
 (when (daemonp)
   (princ "don't run emacs as a daemon\n" 'external-debugging-output)
   (kill-emacs 1))
 
+(defvar rko-emacs-include-path-env-var)
+
 (require 'cl-lib)
+(require 'url-history)
+(setq url-history-file (expand-file-name "url/history" user-emacs-directory))
 
 (dolist (path '("rko-lisp" "rko-emacs-modules"))
   (add-to-list 'load-path (concat "~/dot/.emacs.d/" path)))
@@ -90,11 +97,14 @@
 ;; these are more like fancy macros, which may assume keys are setup
 (require 'rko-interactives)
 
+(require 'desktop)
 (defun rko/save-desktop ()
+  "Save the desktop."
   (interactive)
   (message "Saving desktop...")
   (desktop-save user-emacs-directory t))
 (defun rko/save-desktop-on-exit ()
+  "Save the desktop on exit."
   (rko/save-desktop))
 ;; (add-hook 'kill-emacs-hook #'rko/save-desktop-on-exit 100)
 (setq desktop-buffers-not-to-save "^$")
@@ -105,3 +115,6 @@
 ;; (desktop-save-mode 1)
 
 (toggle-frame-maximized)
+
+(provide 'init)
+;;; init.el ends here

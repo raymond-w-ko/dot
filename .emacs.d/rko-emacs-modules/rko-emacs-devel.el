@@ -42,7 +42,7 @@
 (use-package flycheck
   :straight t
   :init
-  nil
+  (setq flycheck-emacs-lisp-load-path 'inherit)
   :config
   (global-flycheck-mode +1))
 

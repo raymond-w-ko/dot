@@ -1,4 +1,6 @@
-;; -*- lexical-binding: t -*-
+;;; early-init.el --- pre main entry point -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 (when (daemonp)
   (princ "don't run emacs as a daemon\n" 'external-debugging-output)
@@ -32,14 +34,21 @@
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
 
+()
+
 ;; make emacs not store in a version controlled directory
-(setq user-emacs-directory (expand-file-name "~/.cache/emacs/")
-      url-history-file (expand-file-name "url/history" user-emacs-directory))
+(setq user-emacs-directory (expand-file-name "~/.cache/emacs/"))
 (make-directory user-emacs-directory t)
+
+(require 'comp)
 (when (boundp 'native-comp-eln-load-path)
   (setq native-comp-async-report-warnings-errors nil)
   (startup-redirect-eln-cache (expand-file-name "eln-cache" user-emacs-directory)))
 (setq custom-file (expand-file-name "rko-custom.el" "~/.emacs.d"))
 
-(setq rko-emacs-include-path-env-var
-      (concat "C_INCLUDE_PATH=" (expand-file-name "~/emacs/include")))
+(defvar rko-emacs-include-path-env-var
+      (concat "C_INCLUDE_PATH=" (expand-file-name "~/emacs/include"))
+      "The environment variable to set to include the Emacs include path.")
+
+(provide 'early-init)
+;;; early-init.el ends here
