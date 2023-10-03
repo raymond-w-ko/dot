@@ -1,5 +1,14 @@
-;; -*- lexical-binding: t -*-
+;;; rko-emacs-modeline --- my custom modeline -*- lexical-binding: t -*-
+;;; Commentary:
+
+;;; Code:
+
+(require 's)
 (require 'dash)
+(require 'project)
+(require 'tramp)
+(require 'flymake)
+(require 'nerd-icons)
 
 ;; this is built-in to emacs 29
 (defun rko/mode-line-window-selected-p ()
@@ -100,6 +109,7 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun rko/modeline-just-last-path-segment (p)
+  "Extracts the last path segment from P."
   (let* ((p (string-replace "\\" "/" p))
          (p (if (s-ends-with? "/" p)
                 (substring p 0 -1)
@@ -109,6 +119,8 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
 
 (setq-default rko/-cached-project-current nil)
 (defun rko/get-cached-project-current ()
+  "Gets the current project, caching it in a buffer-local variable.
+This fixes slowdowns in WSL when editing a file on the Windows side."
   ;; (make-local-variable 'rko/-cached-project-current)
   (if (local-variable-p 'rko/-cached-project-current)
       rko/-cached-project-current
@@ -118,6 +130,7 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
 (rko/get-cached-project-current)
 
 (defun rko/modeline-project-buffer-name ()
+  "Return an icon and string for the current buffer's project."
   (when-let* ((proj (rko/get-cached-project-current))
               (root (project-root proj))
               (file (when buffer-file-name
@@ -131,6 +144,7 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
               file))))
 
 (defun rko/modeline-tramp-buffer-name ()
+  "Return an icon and string for the current buffer's tramp connection."
   (when (and buffer-file-name
              (stringp buffer-file-name)
              (file-remote-p buffer-file-name))
@@ -186,3 +200,4 @@ TYPE is usually keyword `:error', `:warning' or `:note'."
    rko/modeline-builtin-misc))
 
 (provide 'rko-emacs-modeline)
+;;; rko-emacs-modeline.el ends here
