@@ -1,5 +1,11 @@
-;; -*- lexical-binding: t -*-
+;;; rko-emacs-builtin.el --- builtin feature customization -*- lexical-binding: t -*-
+;;; Commentary:
+
+;;; Code:
 (require 'rx)
+(require 'js)
+(require 'css-mode)
+(require 'savehist)
 
 (setq-default show-trailing-whitespace nil)
 
@@ -70,8 +76,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun rko/print-url-in-messages (url &rest args)
-  "Print URL in *Messages* buffer instead of browsing it."
-  (message "URL: %s" url))
+  "Print URL in *Messages* buffer instead of browsing it.
+ARGS is ignored as URL is just echoed to *Messages* buffer."
+  (message "URL: %s" url)
+  (message "URL args: %s" args))
 
 (setq browse-url-browser-function 'rko/print-url-in-messages)
 
@@ -82,13 +90,14 @@
 
 (use-package tramp
   :init
-  (setq tramp-use-ssh-controlmaster-options t)
-  (setq tramp-ssh-controlmaster-options
-        "-o ControlMaster=auto -o ControlPath=tramp.%%C -o ControlPersist=8h")
   (setq tramp-verbose 2)
   (setq vc-handled-backends '(Git SVN))
-  (setq remote-file-name-inhibit-locks t)
-  (setq tramp-histfile-override nil))
+  (setq remote-file-name-inhibit-locks t))
+(require 'tramp-sh)
+(setq tramp-use-ssh-controlmaster-options t)
+(setq tramp-ssh-controlmaster-options
+      "-o ControlMaster=auto -o ControlPath=tramp.%%C -o ControlPersist=8h")
+(setq tramp-histfile-override nil)
 
 (require 'custom)
 (require 'tramp)
@@ -97,7 +106,10 @@
 
 ;; this generally fixes staging chunks over tramp in magit
 (defun rko/tramp-send-command--workaround-stty-icanon-bug (conn-vec orig-command &rest args)
-  "See: https://github.com/magit/magit/issues/4720"
+  "See: https://github.com/magit/magit/issues/4720 for an explanation.
+CONN-VEC passes through.
+ORIG-COMMAND passes through.
+ARGS passes through."
   (let ((command
          (if (string= "stty -icrnl -icanon min 1 time 0" orig-command)
              "stty -icrnl"
@@ -105,6 +117,8 @@
     (append (list conn-vec command) args)))
 
 (defun rko/tramp-send-command--workaround-stty-icanon-bug--filter-args (args)
+  "Helper function for `rko/tramp-send-command--workaround-stty-icanon-bug'.
+ARGS passes through."
   (apply #'rko/tramp-send-command--workaround-stty-icanon-bug args))
 
 (advice-add 'tramp-send-command :filter-args
@@ -125,3 +139,4 @@
   (setq eglot-connect-timeout 300))
 
 (provide 'rko-emacs-builtin)
+;;; rko-emacs-builtin.el ends here
