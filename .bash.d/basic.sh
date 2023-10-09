@@ -20,7 +20,14 @@ if [[ "$unameString" == 'Darwin' ]]; then
       alias ll='ls -Glha'
     fi
 else
-    if hash exa 2>/dev/null; then
+    if hash eza 2>/dev/null; then
+      alias ls='eza --git-ignore'
+      alias la='eza -la'
+      alias ll='eza -la'
+      alias l='eza --git-ignore -l'
+      alias lt='eza --git-ignore -l --sort time'
+      alias lsi='eza --git-ignore -l --sort size'
+    elif hash exa 2>/dev/null; then
       alias ls='exa'
       alias la='exa -la'
       alias ll='exa -la'

@@ -78,6 +78,7 @@ else
   prependpath "/usr/lib/ccache"
 fi
 prependpath "/usr/games"
+prependpath "/usr/local/go/bin"
 
 prependpath "/opt/mono/bin"
 prependpath "/opt/aws/bin"
