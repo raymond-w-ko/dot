@@ -31,6 +31,8 @@
   ;; (global-lsp-bridge-mode)
   nil)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (use-package clojure-mode :straight t)
 (use-package cider :straight t
   :init
@@ -49,6 +51,11 @@
 
 ;;(add-hook js-mode-hook #'flycheck-mode)
 (add-to-list 'eglot-server-programs `(js-mode . ("./node_modules/.bin/eslint-lsp" "--stdio")))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package go-mode
+  :straight (go-mode :type git :host github :repo "dominikh/go-mode.el"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
