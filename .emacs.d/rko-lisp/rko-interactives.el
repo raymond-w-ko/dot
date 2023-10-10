@@ -50,21 +50,24 @@ UNIVERSAL-ARG: the prefix arg."
   "Run \\='yapf\\=' on the current region.  Expects TRAMP and poetry."
   (interactive)
   (let* ((dir (project-root (project-current t)))
-         (file (file-relative-name (buffer-file-name) dir)))
+         (file (file-relative-name (buffer-file-name) dir))
+         (ext (concat "." (file-name-extension file))))
     (if (and dir
              file
              (s-ends-with? ".py" file t))
         (progn
           (let ((default-directory dir))
             (let* ((p (point))
-                   (tmp-in-file (make-temp-name "yapf-"))
+                   (tmp-in-file (concat (make-temp-name "yapf-") ext))
                    (tmp-in-path (concat dir tmp-in-file ".py"))
                    (tmp-out-buffer (generate-new-buffer " *rko/yapf*"))
                    (cmd (concat "poetry run yapf " tmp-in-file)))
               (message "rko/yapf:\n  target dir: %s\n  orig: %s\n  in file: %s\n  cmd: %s"
                        dir file tmp-in-path cmd)
               (write-region nil nil tmp-in-file nil nil nil nil)
-              (let ((resize-mini-windows nil))
+              (let ((resize-mini-windows nil)
+                    (display-buffer-alist
+                     '(("\\*Shell Command Output\\*" display-buffer-same-window))))
                 (shell-command cmd tmp-out-buffer))
               (replace-buffer-contents tmp-out-buffer)
               (kill-buffer tmp-out-buffer)
@@ -83,24 +86,60 @@ UNIVERSAL-ARG: the prefix arg."
   (let* ((dir (project-root (project-current t)))
          (file (file-relative-name (buffer-file-name) dir))
          (ext (concat "." (file-name-extension file))))
-    (message "foo %s %s" ext (gethash ext rko/clang-format-allowed-exts))
     (if (and dir file (gethash ext rko/clang-format-allowed-exts))
         (progn
           (let ((default-directory dir))
             (let* ((p (point))
-                   (tmp-in-file (make-temp-name "clang-format-"))
+                   (tmp-in-file (concat (make-temp-name "clang-format-") ext))
                    (tmp-in-path (concat dir tmp-in-file ext))
                    (tmp-out-buffer (generate-new-buffer " *rko/clang-format*"))
                    (cmd (concat "clang-format " tmp-in-file)))
               (message "rko/clang-format:\n  target dir: %s\n  orig: %s\n  in file: %s\n  cmd: %s"
                        dir file tmp-in-path cmd)
               (write-region nil nil tmp-in-file nil nil nil nil)
-              (let ((resize-mini-windows nil))
+              (let ((resize-mini-windows nil)
+                    (display-buffer-alist
+                     '(("\\*Shell Command Output\\*" display-buffer-same-window))))
                 (shell-command cmd tmp-out-buffer))
               (replace-buffer-contents tmp-out-buffer)
               (kill-buffer tmp-out-buffer)
               (delete-file tmp-in-file)
               (goto-char p))))
+      (error "not in a project, or not a Python file: %s" ext))))
+
+(defvar rko/prettier-allowed-exts
+  (let ((h (make-hash-table :test 'equal)))
+    (mapc (lambda (x) (puthash x t h))
+          '(".js" ".jsx"))
+    h))
+(defun rko/prettier-format ()
+  "Run \\='prettier\\=' on the current region.  Expects TRAMP and poetry."
+  (interactive)
+  (let* ((dir (project-root (project-current t)))
+         (file (file-relative-name (buffer-file-name) dir))
+         (ext (concat "." (file-name-extension file))))
+    (if (and dir file (gethash ext rko/prettier-allowed-exts))
+        (progn
+          (let ((default-directory dir))
+            (let* ((p (point))
+                   (tmp-in-file (concat (make-temp-name "prettier-") ext))
+                   (tmp-in-path (concat dir tmp-in-file))
+                   (tmp-out-buffer (generate-new-buffer " *rko/prettier*"))
+                   (tmp-error-buffer (generate-new-buffer " *rko/prettier-error*"))
+                   (cmd (concat "~/npm-global/bin/prettier --no-color --log-level silent "
+                                tmp-in-file)))
+              (message "rko/prettier:\n  target dir: %s\n  orig: %s\n  in file: %s\n  cmd: %s"
+                       dir file tmp-in-path cmd)
+              (write-region nil nil tmp-in-file nil nil nil nil)
+              (let ((resize-mini-windows nil)
+                    (display-buffer-alist
+                     '(("\\*Shell Command Output\\*" display-buffer-same-window))))
+                (shell-command cmd tmp-out-buffer tmp-error-buffer))
+              (replace-buffer-contents tmp-out-buffer)
+              (kill-buffer tmp-out-buffer)
+              (delete-file tmp-in-file)
+              (goto-char p)
+              (balance-windows))))
       (error "not in a project, or not a Python file: %s" ext))))
 
 (provide 'rko-interactives)
