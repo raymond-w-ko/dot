@@ -178,14 +178,14 @@ function prompt_rko_setup {
     # on
     "${reset_color}on "
     # date and time
-    "%D{%a, %b %d %Y, %I:%M:%S %p} "
+    "%D{%a, %b %d %Y, %I:%M:%S %p}"
     "$NEWLINE"
     # version control
     '$(git_prompt_info)'
     '$(hg_prompt_info)'
     ' '
     # path
-    "%{$fg_bold[yellow]%}%~ "
+    "%{$fg_bold[yellow]%}%~"
     # arrow
     "${reset_color}$NEWLINE"
     " > "
