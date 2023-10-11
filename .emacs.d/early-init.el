@@ -26,7 +26,13 @@
       initial-buffer-choice t
       line-spacing nil
       visible-bell t
-      scroll-margin 0)
+      scroll-margin 0
+      backup-by-copying t
+      sentence-end-double-space nil
+      require-final-newline t
+      frame-inhibit-implied-resize t)
+;; buffer local variables
+(setq-default show-trailing-whitespace t)
 
 (set-default-coding-systems 'utf-8)
 
