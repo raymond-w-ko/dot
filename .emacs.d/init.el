@@ -75,7 +75,11 @@
                     :pre-build ("make" ,rko-emacs-include-path-env-var "all")
                     :files (:defaults "pcre.el" "pcre-core.so"))))
 
-(use-package no-littering :straight t)
+(use-package no-littering
+  :straight t
+  :demand t
+  :config
+  (no-littering-theme-backups))
 ;; not necessary with modern modelines
 ;; (use-package diminish :straight t)
 
