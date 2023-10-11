@@ -1,11 +1,14 @@
-;; -*- lexical-binding: t -*-
+;;; rko-emacs-devel --- setup packages for development -*- lexical-binding: t -*-
+;;; Commentary:
+
+;;; Code:
 
 (use-package super-save
   :straight t
   :diminish super-save-mode
   :config
   ;; At this point you can probably switch off the built-in auto-save-mode
-  ;; (unless you really care about its backups) 
+  ;; (unless you really care about its backups)
   (setq auto-save-default nil)
   (super-save-mode +1)
   ;; this may cause issues with tramp because of timers
@@ -25,13 +28,17 @@
   :config
   (global-diff-hl-mode -1))
 
-(setq vterm-always-compile-module t)
+
 (use-package vterm :straight t
   :init
+  (setq vterm-always-compile-module t)
   (setq vterm-shell shell-file-name)
   ;; hack to fix tramp heredoc issue that is preventing tmux from getting a tty
   (setq vterm-tramp-shells '(("docker" "sh")
-                             ("ssh" "'zsh'"))))
+                             ("ssh" "'zsh'")))
+  nil
+  :hook (vterm-mode . (lambda ()
+                        (setq-local show-trailing-whitespace nil))))
 (use-package multi-vterm :straight t)
 
 (use-package rg
@@ -88,3 +95,4 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (provide 'rko-emacs-devel)
+;;; rko-emacs-devel.el ends here
