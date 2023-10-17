@@ -193,6 +193,7 @@ alias y="$NICE_PROG yay"
 alias adu="sudo apt-get update && sudo apt-get dist-upgrade"
 alias fun="fusermount -u"
 alias npmreinstall="rm -rf node_modules/ && npm install"
+alias findrmemacsbackups="find . -type f -name '*~' -exec rm -i {} \;"
 
 if [[ -f "/usr/bin/backblaze-b2" ]]; then
   alias bbl=/usr/bin/backblaze-b2
