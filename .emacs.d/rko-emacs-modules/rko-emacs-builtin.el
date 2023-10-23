@@ -7,8 +7,6 @@
 (require 'css-mode)
 (require 'savehist)
 
-(setq-default show-trailing-whitespace nil)
-
 (setq standard-indent 2)
 (setq-default tab-width 2)
 (setq js-indent-level 2)
