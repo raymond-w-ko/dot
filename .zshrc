@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
@@ -36,17 +29,20 @@ if [[ "$TERM" == "dumb" ]]; then
     return
 fi
 
+source $HOME/.bashrc
+
 if [[ ! -f "$XDG_RUNTIME_DIR/ssh-agent.env" ]]; then
-  echo "attempting to kill existing ssh-agent"
+  # echo "attempting to kill existing ssh-agent"
   pkill -u "$USER" ssh-agent
 fi
+
 if [[ ! -z "$XDG_RUNTIME_DIR" ]]; then
   if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    echo "starting ssh-agent"
+    # echo "starting ssh-agent"
     ssh-agent > "$XDG_RUNTIME_DIR/ssh-agent.env"
   fi
-  echo "importing ssh-agent vars"
-  eval "$(<"$XDG_RUNTIME_DIR/ssh-agent.env")"
+  # echo "importing ssh-agent vars"
+  eval "$(<"$XDG_RUNTIME_DIR/ssh-agent.env")" &> /dev/null
 else
   echo "no XDG_RUNTIME_DIR"
 fi
@@ -203,9 +199,8 @@ function prompt_rko_setup {
   )
   PS1="${(j::)ps1}"
 }
-prompt_rko_setup
+# prompt_rko_setup
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
-source $HOME/.bashrc
 alias omzr="omz reload"
 source $HOME/dot/src/zsh-z/zsh-z.plugin.zsh
 alias c=z

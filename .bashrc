@@ -378,6 +378,20 @@ if [[ -f ~/.bashrc.local ]]; then
   source ~/.bashrc.local
 fi
 
+function rko_startup_fortune {
+  if hash tewisay 2>/dev/null; then
+    if hash fortune 2>/dev/null; then
+      TEWSISAY_VARIATIONS=("te" "teh" "tes" "tewat")
+      TEWI=${TEWSISAY_VARIATIONS[$(( $RANDOM % ${#TEWSISAY_VARIATIONS[@]} + 1 ))]}
+      fortune | perl -e'while(<>){$_ =~ s/\t/   /g; print;}' | tewisay -f $TEWI 2>/dev/null
+    fi
+  elif hash cowsay 2>/dev/null; then
+    if hash fortune 2>/dev/null; then
+      fortune | cowsay -W 70 2>/dev/null
+    fi
+  fi
+}
+
 if [[ ! -d /mnt/c/Windows && -z $DISPLAY && $(tty) == /dev/tty1 ]]; then
   # exec sway-nvidia
 
@@ -393,17 +407,6 @@ else
   if [[ "$unameString" == 'Darwin' ]]; then
     if hash docker-machine 2>/dev/null; then
       eval $(docker-machine env default)
-    fi
-  fi
-  if hash tewisay 2>/dev/null; then
-    if hash fortune 2>/dev/null; then
-      TEWSISAY_VARIATIONS=("te" "teh" "tes" "tewat")
-      TEWI=${TEWSISAY_VARIATIONS[$(( $RANDOM % ${#TEWSISAY_VARIATIONS[@]} + 1 ))]}
-      fortune | perl -e'while(<>){$_ =~ s/\t/   /g; print;}' | tewisay -f $TEWI 2>/dev/null
-    fi
-  elif hash cowsay 2>/dev/null; then
-    if hash fortune 2>/dev/null; then
-      fortune | cowsay -W 70 2>/dev/null
     fi
   fi
 fi
