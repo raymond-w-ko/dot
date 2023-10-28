@@ -29,8 +29,6 @@ if [[ "$TERM" == "dumb" ]]; then
     return
 fi
 
-source $HOME/.bashrc
-
 if [[ ! -f "$XDG_RUNTIME_DIR/ssh-agent.env" ]]; then
   # echo "attempting to kill existing ssh-agent"
   pkill -u "$USER" ssh-agent
@@ -200,6 +198,7 @@ function prompt_rko_setup {
   PS1="${(j::)ps1}"
 }
 # prompt_rko_setup
+source $HOME/.bashrc
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 alias omzr="omz reload"
 source $HOME/dot/src/zsh-z/zsh-z.plugin.zsh
