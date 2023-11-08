@@ -31,7 +31,7 @@ UNIVERSAL-ARG: the prefix arg."
          (split-more (if (< 0 universal-arg)
                          (/ universal-arg 4)
                        0)))
-    
+
     (when (not (= split-more 0))
       (setq n (+ n split-more)))
     (message "(rko/tab-new: %s)" n)
@@ -41,9 +41,9 @@ UNIVERSAL-ARG: the prefix arg."
       (split-window-below)
       (when (< i (1- n))
         (windmove-right))))
-  
+
   (balance-windows))
-      
+
 (keymap-global-set "C-x t 2" 'rko/tab-new)
 
 (defun rko/yapf ()
@@ -72,7 +72,8 @@ UNIVERSAL-ARG: the prefix arg."
               (replace-buffer-contents tmp-out-buffer)
               (kill-buffer tmp-out-buffer)
               (delete-file tmp-in-file)
-              (goto-char p))))
+              (goto-char p)))
+          (balance-windows))
       (error "not in a project, or not a Python file"))))
 
 (defvar rko/clang-format-allowed-exts
