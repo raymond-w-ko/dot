@@ -63,6 +63,7 @@ else
   alias v=vim
   alias vs='vim -S'
 fi
+alias ec="emacsclient"
 alias rmr="rm -r"
 alias rmri="rm -r -i"
 alias r="ranger"
