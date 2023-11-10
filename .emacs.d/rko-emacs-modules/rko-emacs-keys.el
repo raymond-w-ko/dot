@@ -1,4 +1,7 @@
-;; -*- lexical-binding: t -*-
+;;; rko-emacs-keys --  -*- lexical-binding: t -*-
+;;; Commentary:
+
+;;; Code:
 
 (use-package buffer-move
   :straight (buffer-move :host github :repo "lukhas/buffer-move")
@@ -41,12 +44,13 @@
 (use-package hop
   :straight (hop :host github :repo "Animeshz/hop.el")
   :init
+  (setq hop-all-windows nil)
   ;; (setq hop-jump-keys (concat "uoemk"
-                              ;; "fhtns"
-                              ;; "ir"
-                              ;; "aljy"
-                              ;; "cdvp"
-                              ;; (reverse "zqxgwb")))
+  ;; "fhtns"
+  ;; "ir"
+  ;; "aljy"
+  ;; "cdvp"
+  ;; (reverse "zqxgwb")))
   (setq hop-jump-keys "asdghklqwertyuiopzxcvbnmfj")
   ;; :bind (("C-t" . hop-word))
   :init
@@ -58,7 +62,7 @@
   :config
 
   (define-key xah-fly-insert-map (kbd "C-n") 'next-line)
-  
+
   (define-key xah-fly-command-map (kbd "M-i") 'windmove-up)
   (define-key xah-fly-command-map (kbd "M-k") 'windmove-down)
   (define-key xah-fly-command-map (kbd "M-j") 'windmove-left)
@@ -159,3 +163,4 @@
   nil)
 
 (provide 'rko-emacs-keys)
+;;; rko-emacs-keys.el ends here
