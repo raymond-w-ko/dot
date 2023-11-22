@@ -1,5 +1,7 @@
-;; -*- lexical-binding: t -*-
+;;; rko-emacs-completion --- -*- lexical-binding: t -*-
+;;; Commentary:
 
+;;; Code:
 (use-package which-key
   :straight t
   :init (which-key-mode)
@@ -196,8 +198,9 @@
   :init
   (setq copilot-max-char 200000)
   (setq copilot-log-max 500000)
-  (setq copilot-idle-delay 0.5)
+  (setq copilot-idle-delay 0.25)
   :config
   nil)
 
 (provide 'rko-emacs-completion)
+;;; rko-emacs-completion.el ends here

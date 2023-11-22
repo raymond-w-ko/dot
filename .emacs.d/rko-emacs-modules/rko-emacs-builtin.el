@@ -13,6 +13,14 @@
 (setq css-indent-offset 2)
 (setq-default evil-shift-width tab-width)
 (setq-default indent-tabs-mode nil)
+(defun rko/c-mode-common-case-fixer ()
+  "Fix case indentation in `c-mode-common-hook'."
+  (c-set-offset 'case-label '+))
+(add-hook 'c-mode-common-hook 'rko/c-mode-common-case-fixer)
+(defun rko/js-mode-case-fixer ()
+  "Fix case indentation in `js-mode-hook' to match prettier indentation."
+  (setq js-switch-indent-offset js-indent-level))
+(add-hook 'js-mode-hook 'rko/js-mode-case-fixer)
 
 (setq completion-cycle-threshold 3)
 (setq tab-always-indent 'complete)

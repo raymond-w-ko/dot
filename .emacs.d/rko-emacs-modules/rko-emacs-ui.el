@@ -1,5 +1,7 @@
-;; -*- lexical-binding: t -*-
+;;; rko-emacs-ui --- -*- lexical-binding: t -*-
+;;; Commentary:
 
+;;; Code:
 (use-package all-the-icons
   :straight t
   :if (display-graphic-p))
@@ -31,9 +33,54 @@
 (use-package minions
   :straight t)
 
+(use-package ligature
+  :straight (ligature :type git :host github :repo "mickeynp/ligature.el")
+  :config
+  ;; Enable the "www" ligature in every possible major mode
+  (ligature-set-ligatures 't '("www"))
+  ;; Enable traditional ligature support in eww-mode, if the
+  ;; `variable-pitch' face supports it
+  (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
+
+  ;; Enable all Cascadia Code ligatures in programming modes
+  ;; (ligature-set-ligatures
+  ;;  'prog-mode
+  ;;  '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
+  ;;    ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
+  ;;    "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
+  ;;    "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
+  ;;    "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
+  ;;    "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
+  ;;    "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
+  ;;    "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
+  ;;    ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
+  ;;    "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
+  ;;    "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
+  ;;    "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
+  ;;    "\\\\" "://"))
+
+  ;; Enable all JetBrains Mono ligatures in programming modes
+  (ligature-set-ligatures
+   'prog-mode
+   '("-|" "-~" "---" "-<<" "-<" "--" "->" "->>" "-->" "///" "/=" "/=="
+     "/>" "//" "/*" "*>" "***" "*/" "<-" "<<-" "<=>" "<=" "<|" "<||"
+     "<|||" "<|>" "<:" "<>" "<-<" "<<<" "<==" "<<=" "<=<" "<==>" "<-|"
+     "<<" "<~>" "<=|" "<~~" "<~" "<$>" "<$" "<+>" "<+" "</>" "</" "<*"
+     "<*>" "<->" "<!--" ":>" ":<" ":::" "::" ":?" ":?>" ":=" "::=" "=>>"
+     "==>" "=/=" "=!=" "=>" "===" "=:=" "==" "!==" "!!" "!=" ">]" ">:"
+     ">>-" ">>=" ">=>" ">>>" ">-" ">=" "&&&" "&&" "|||>" "||>" "|>" "|]"
+     "|}" "|=>" "|->" "|=" "||-" "|-" "||=" "||" ".." ".?" ".=" ".-" "..<"
+     "..." "+++" "+>" "++" "[||]" "[<" "[|" "{|" "??" "?." "?=" "?:" "##"
+     "###" "####" "#[" "#{" "#=" "#!" "#:" "#_(" "#_" "#?" "#(" ";;" "_|_"
+     "__" "~~" "~~>" "~>" "~-" "~@" "$>" "^=" "]#"))
+  ;; Enables ligature checks globally in all buffers. You can also do it
+  ;; per mode with `ligature-mode'.
+  (global-ligature-mode t))
+
 (require 'rko-emacs-modeline)
 
 (defun rko/setup-prism-for-dark-theme ()
+  "Set up prism for dark theme."
   (prism-set-colors :num 16
     :save t
     :desaturations (cl-loop for i from 0 below 16
@@ -78,6 +125,7 @@
         "#424d5b"
         "#4c4c4c"))
 (defun rko/setup-prism-for-light-theme ()
+  "Set up prism for light theme."
   (require 'prism)
   (prism-set-colors
     :num 8
@@ -107,9 +155,10 @@
   ;; (set-face-background 'git-gutter:modified "gold3")
   ;; (set-face-background 'git-gutter:added "green3")
   ;; (set-face-background 'git-gutter:deleted "red3")
-  
+
   :config
   (add-to-list 'git-gutter:update-commands 'save-buffer)
   (global-git-gutter-mode -1))
 
 (provide 'rko-emacs-ui)
+;;; rko-emacs-ui.el ends here

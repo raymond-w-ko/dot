@@ -40,8 +40,6 @@
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
 
-()
-
 ;; make emacs not store in a version controlled directory
 (setq user-emacs-directory (expand-file-name "~/.cache/emacs/"))
 (make-directory user-emacs-directory t)

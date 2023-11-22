@@ -3,7 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(bmkp-last-as-first-bookmark-file "/home/rko/.cache/emacs/var/bmkp/current-bookmark.el")
+ '(bmkp-last-as-first-bookmark-file "~/.cache/emacs/var/bmkp/current-bookmark.el")
  '(connection-local-criteria-alist
    '(((:application tramp :protocol "adb")
       tramp-adb-connection-local-default-shell-profile tramp-adb-connection-local-default-ps-profile)
