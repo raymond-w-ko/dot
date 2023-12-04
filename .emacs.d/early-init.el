@@ -30,7 +30,8 @@
       backup-by-copying t
       sentence-end-double-space nil
       require-final-newline t
-      frame-inhibit-implied-resize t)
+      frame-inhibit-implied-resize t
+      split-height-threshold 9001)
 ;; buffer local variables
 (setq-default show-trailing-whitespace t)
 
