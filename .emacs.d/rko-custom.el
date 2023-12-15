@@ -128,12 +128,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:slant normal :weight medium :width normal :height 100 :family "Fira Code"))))
+ '(default ((t (:slant normal :weight medium :width normal :height 100 :family "FiraCode Nerd Font"))))
  '(fixed-pitch ((t :inherit default)))
- '(fixed-pitch-serif ((t :inherit default :family "Fira Code")))
+ '(fixed-pitch-serif ((t :inherit default :family "FiraCode Nerd Font")))
  '(hop-face-double-char-1 ((t (:inherit ef-themes-mark-delete))))
  '(hop-face-double-char-2 ((t (:inherit ef-themes-mark-other))))
  '(hop-face-single-char ((t (:inherit ef-themes-mark-select))))
  '(italic ((t (:slant normal))))
  '(mono-complete-preview-face ((t :inherit font-lock-comment-face)))
- '(variable-pitch ((t (:slant normal :weight normal :width normal :height 90 :family "Fira Code")))))
+ '(variable-pitch ((t (:slant normal :weight normal :width normal :height 90 :family "FiraCode Nerd Font Propo")))))

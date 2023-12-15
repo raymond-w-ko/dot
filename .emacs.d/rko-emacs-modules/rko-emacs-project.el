@@ -1,5 +1,7 @@
-;; -*- lexical-binding: t -*-
+;; rko-emacs-project.el --- project packages -*- lexical-binding: t -*-
+;;; Commentary:
 
+;;; Code:
 (require 'bookmark+)
 
 (use-package projectile
@@ -15,3 +17,4 @@
 
 
 (provide 'rko-emacs-project)
+;;; rko-emacs-project.el ends here

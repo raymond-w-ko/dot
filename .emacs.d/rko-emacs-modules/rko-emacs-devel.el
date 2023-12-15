@@ -29,8 +29,14 @@
   (global-diff-hl-mode -1))
 
 
+(defun rko/setup-vterm-buffer-font ()
+  "Set the font of the current buffer to a fixed pitch font."
+  (set (make-local-variable 'buffer-face-mode-face) 'fixed-pitch)
+  (buffer-face-mode t))
+
 (use-package vterm :straight t
   :init
+  (add-hook 'vterm-mode-hook #'rko/setup-vterm-buffer-font)
   (setq vterm-always-compile-module t)
   (setq vterm-shell shell-file-name)
   ;; hack to fix tramp heredoc issue that is preventing tmux from getting a tty
