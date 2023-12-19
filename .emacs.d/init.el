@@ -63,7 +63,7 @@
   (setq ef-themes-region '(intense no-extend neutral))
   (mapc #'disable-theme custom-enabled-themes)
   :config
-  (ef-themes-select 'ef-elea-light))
+  (ef-themes-select 'ef-melissa-light))
 
 ;; pure utility packages
 (use-package dash :straight t :ensure t)
