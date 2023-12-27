@@ -27,32 +27,32 @@
   :config
   (bufferlo-mode 1))
 
-(defvar my-consult--source-buffer
-  `(:name "Other Buffers"
-          :narrow   ?b
-          :category buffer
-          :face     consult-buffer
-          :history  buffer-name-history
-          :state    ,#'consult--buffer-state
-          :items ,(lambda () (consult--buffer-query
-                              :predicate #'bufferlo-non-local-buffer-p
-                              :sort 'visibility
-                              :as #'buffer-name)))
-  "Non-local buffer candidate source for `consult-buffer'.")
+;; (defvar my-consult--source-buffer
+;;   `(:name "Other Buffers"
+;;           :narrow   ?b
+;;           :category buffer
+;;           :face     consult-buffer
+;;           :history  buffer-name-history
+;;           :state    ,#'consult--buffer-state
+;;           :items ,(lambda () (consult--buffer-query
+;;                               :predicate #'bufferlo-non-local-buffer-p
+;;                               :sort 'visibility
+;;                               :as #'buffer-name)))
+;;   "Non-local buffer candidate source for `consult-buffer'.")
 
-(defvar my-consult--source-local-buffer
-  `(:name "Local Buffers"
-          :narrow   ?l
-          :category buffer
-          :face     consult-buffer
-          :history  buffer-name-history
-          :state    ,#'consult--buffer-state
-          :default  t
-          :items ,(lambda () (consult--buffer-query
-                              :predicate #'bufferlo-local-buffer-p
-                              :sort 'visibility
-                              :as #'buffer-name)))
-  "Local buffer candidate source for `consult-buffer'.")
+;; (defvar my-consult--source-local-buffer
+;;   `(:name "Local Buffers"
+;;           :narrow   ?l
+;;           :category buffer
+;;           :face     consult-buffer
+;;           :history  buffer-name-history
+;;           :state    ,#'consult--buffer-state
+;;           :default  t
+;;           :items ,(lambda () (consult--buffer-query
+;;                               :predicate #'bufferlo-local-buffer-p
+;;                               :sort 'visibility
+;;                               :as #'buffer-name)))
+;;   "Local buffer candidate source for `consult-buffer'.")
 
 (use-package consult
   :straight t
@@ -114,11 +114,11 @@
   ;; (setq consult-buffer-sources '(consult--source-hidden-buffer
   ;;                                my-consult--source-local-buffer
   ;;                                my-consult--source-buffer))
-  
+
   (setq register-preview-delay 0.5
         register-preview-function #'consult-register-format)
   (advice-add #'register-preview :override #'consult-register-window)
-  
+
   (setq xref-show-xrefs-function #'consult-xref
         xref-show-definitions-function #'consult-xref)
   :config
@@ -133,7 +133,7 @@
    consult--source-bookmark consult--source-file-register
    consult--source-recent-file consult--source-project-recent-file
    :preview-key '(:debounce 0.5 "M-."))
-  
+
   nil)
 
 (use-package vertico
@@ -151,6 +151,7 @@
   (marginalia-mode))
 
 (defun rko/add-corfu-extension-dir-to-load-path ()
+  "Earlier version of corfu required the extensions dir to be added to \\='load-path\\='."
   (require 'dash)
   (require 'f)
   (let* ((corfu-path (--some (and (string-match-p ".+/corfu$" it) it)
