@@ -1,14 +1,14 @@
-;;; bookmark+-lit.el --- Bookmark highlighting for Bookmark+.
+;;; bookmark+-lit.el --- Bookmark highlighting for Bookmark+.   -*- lexical-binding:t -*-
 ;;
 ;; Filename: bookmark+-lit.el
 ;; Description: Bookmark highlighting for Bookmark+.
 ;; Author: Drew Adams
 ;; Maintainer: Drew Adams
-;; Copyright (C) 2010-2022, Drew Adams, all rights reserved.
+;; Copyright (C) 2010-2023, Drew Adams, all rights reserved.
 ;; Created: Wed Jun 23 07:49:32 2010 (-0700)
-;; Last-Updated: Sun Nov 27 13:09:00 2022 (-0800)
+;; Last-Updated: Thu Oct 26 15:09:05 2023 (-0700)
 ;;           By: dradams
-;;     Update #: 1071
+;;     Update #: 1091
 ;; URL: https://www.emacswiki.org/emacs/download/bookmark%2b-lit.el
 ;; Doc URL: https://www.emacswiki.org/emacs/BookmarkPlus
 ;; Keywords: bookmarks, highlighting, bookmark+
@@ -139,7 +139,6 @@
 ;;
 ;;  Non-interactive functions defined here:
 ;;
-;;    `bmkp--pop-to-buffer-same-window',
 ;;    `bmkp-a-bookmark-lighted-at-pos',
 ;;    `bmkp-a-bookmark-lighted-on-this-line',
 ;;    `bmkp-bookmark-data-from-record',
@@ -151,8 +150,10 @@
 ;;    `bmkp-lighted-alist-only', `bmkp-lighting-attribute',
 ;;    `bmkp-lighting-face', `bmkp-lighting-style',
 ;;    `bmkp-lighting-when', `bmkp-make/move-fringe' (Emacs 22+),
-;;    `bmkp-make/move-overlay-of-style', `bmkp-number-lighted',
-;;    `bmkp-overlay-of-bookmark', `bmkp-read-set-lighting-args',
+;;    `bmkp-make/move-overlay-of-style', `bmkp-make-obsolete',
+;;    `bmkp-number-lighted', `bmkp-overlay-of-bookmark',
+;;    `bmkp--pop-to-buffer-same-window',
+;;    `bmkp-read-set-lighting-args',
 ;;    `bmkp-set-lighting-for-bookmarks',
 ;;    `bmkp-this-buffer-lighted-alist-only',
 ;;    `bookmark-name-from-full-record', `bookmark-name-from-record'.
@@ -186,14 +187,26 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;
 
-(eval-when-compile (require 'cl)) ;; case (plus, for Emacs 20: push)
+(eval-when-compile (unless (require 'cl-lib nil t)
+                     (require 'cl)
+                     (defalias 'cl-case 'case)))
 
 (require 'bookmark)
 ;; bookmark-alist, bookmark-bmenu-bookmark, bookmark-completing-read, bmkp-get-bookmark,
 ;; bookmark-get-position, bookmark-handle-bookmark, bookmark-maybe-load-default-file,
 ;; bookmark-name-from-full-record, bookmark-name-from-record, bookmark-prop-get, bookmark-prop-set
 
-(require 'bookmark+-1) ;; bmkp-make-obsolete
+
+;; Just repeat definition of `bmkp-make-obsolete', to make requires less complicated.
+;;   (require 'bookmark+-1) ;; bmkp-make-obsolete
+;;
+;; Do this up front.  Emacs 23 made incompatible change to require all args.
+;;
+(defun bmkp-make-obsolete (obsolete-name current-name &optional when)
+  "Same as `make-obsolete', but usable also for Emacs prior to Emacs 23."
+  (if (< emacs-major-version 23)
+      (make-obsolete obsolete-name current-name)
+    (make-obsolete obsolete-name current-name when)))
 
 
 ;; Some general Renamings.
@@ -522,7 +535,7 @@ When called from Lisp, the arguments are passed to
               (and bmk-when   (format "%S" bmk-when)))
              '(MSG))))
   (bmkp-bmenu-barf-if-not-in-menu-list)
-  (bmkp-set-lighting-for-bookmark (bookmark-bmenu-bookmark) style face when 'MSG))
+  (bmkp-set-lighting-for-bookmark (bookmark-bmenu-bookmark) style face when msgp))
 
 ;;;###autoload (autoload 'bmkp-bmenu-set-lighting-for-marked "bookmark+")
 (defun bmkp-bmenu-set-lighting-for-marked (style face when &optional msgp) ; `H > +' in bookmark list
@@ -944,8 +957,7 @@ Non-interactively:
                  ;; See note in comments of `bmkp-light-bookmarks' - same considerations here.
                  ;; (let ((bmkp-jump-display-function  nil)) (bookmark-handle-bookmark bmk))
                  ;;
-                 (with-current-buffer (or (and buf  (get-buffer buf))
-                                          (current-buffer))
+                 (with-current-buffer (or (and buf  (get-buffer buf))  (current-buffer))
 
                    ;; POINTP is non-nil when `bmkp-light-bookmark' is called from
                    ;; `bookmark--jump-via'.
@@ -954,9 +966,7 @@ Non-interactively:
                    (when (and pos  (< pos (point-max)))
                      (let ((ov  (bmkp-make/move-overlay-of-style styl pos autonamedp bmk)))
                        (when ov         ; nil means `none' style.
-                         (let ((ovs  (if autonamedp
-                                         'bmkp-autonamed-overlays
-                                       'bmkp-non-autonamed-overlays)))
+                         (let ((ovs  (if autonamedp 'bmkp-autonamed-overlays 'bmkp-non-autonamed-overlays)))
                            (push ov (symbol-value ovs)))
                          (when (and (not (bmkp-lighted-p bmk))
                                     (> (setq nb-lit  (1+ nb-lit)) bmkp-light-threshold))
@@ -1163,7 +1173,7 @@ Prefix arg < 0:  non-autonamed bookmarks only.
                (current-prefix-arg '(bmkp-non-autonamed-overlays)))
          'MSG))
   (bmkp-light-bookmarks (bmkp-remove-if-not (lambda (bmk) (let ((pos  (bookmark-get-position bmk)))
-                                                            (and (>= pos start)  (<= pos end))))
+                                                       (and (>= pos start)  (<= pos end))))
                                             (bmkp-this-buffer-alist-only))
                         overlays-symbols msgp))
 
@@ -1246,22 +1256,18 @@ See `bmkp-next-lighted-this-buffer'."
   (bmkp-cycle-lighted-this-buffer (- n) nil startoverp))
 
 ;;;###autoload (autoload 'bmkp-next-lighted-this-buffer-repeat "bookmark+")
-(defun bmkp-next-lighted-this-buffer-repeat (arg) ; `C-x x C-down'
-  "Jump to the Nth next highlighted bookmark in the current buffer.
-This is a repeatable version of `bmkp-next-bookmark-this-buffer'.
-N defaults to 1, meaning the next one.
-Plain `C-u' means start over at the first one (and no repeat).
-
-When called form Lisp, ARG is the raw prefix arg."
-  (interactive "P")
+(defun bmkp-next-lighted-this-buffer-repeat () ; `C-x x C-down'
+  "Jump to the next highlighted bookmark in the current buffer.
+This is a repeatable version of `bmkp-next-bookmark-this-buffer'."
+  (interactive)
   (require 'repeat)
   (bmkp-repeat-command 'bmkp-next-lighted-this-buffer))
 
 ;;;###autoload (autoload 'bmkp-previous-lighted-this-buffer-repeat "bookmark+")
-(defun bmkp-previous-lighted-this-buffer-repeat (arg) ; `C-x x C-up'
-  "Jump to the Nth previous highlighted bookmark in the current buffer.
+(defun bmkp-previous-lighted-this-buffer-repeat () ; `C-x x C-up'
+  "Jump to the previous highlighted bookmark in the current buffer.
 See `bmkp-next-lighted-this-buffer-repeat'."
-  (interactive "P")
+  (interactive)
   (require 'repeat)
   (bmkp-repeat-command 'bmkp-previous-lighted-this-buffer))
 
@@ -1282,8 +1288,8 @@ point, and then use `\\[bmkp-describe-bookmark]' to describe one of them.
 
 When called from Lisp:
  Use POSITION, not point.
- DEFN corresponds to the prefix arg: non-nil means show show the
-   internal definition of the bookmark."
+ DEFN corresponds to the prefix arg: non-nil means show the internal
+  definition of the bookmark."
   (interactive (list (point) current-prefix-arg))
   (let ((bmk  (or (bmkp-a-bookmark-lighted-at-pos position 'FULL)
                   (bmkp-a-bookmark-lighted-on-this-line 'FULL))))
@@ -1343,10 +1349,7 @@ Returns:
 BOOKMARK's  `:when' condition is used to determine this.
 BOOKMARK is a bookmark name or a bookmark record."
   (setq bookmark  (bmkp-get-bookmark bookmark 'NOERROR))
-  (let ((this-bookmark       bookmark)
-        (this-bookmark-name  (bmkp-bookmark-name-from-record bookmark))
-        (when-sexp           (bmkp-lighting-when bookmark)))
-    (not (eq :no-light (eval when-sexp)))))
+  (and bookmark  (not (eq :no-light (eval (bmkp-lighting-when bookmark))))))
 
 (defun bmkp-lighting-face (bookmark)
   "`:face' specified by BOOKMARK's `lighting', or nil if no `:face' entry.
@@ -1407,7 +1410,7 @@ For Emacs 23+, if there is a highlighted bookmark at point, return a
   (or (if (> emacs-major-version 22) (bmkp-bookmarks-lighted-at-point) (bmkp-a-bookmark-lighted-at-pos))
       (bmkp-a-bookmark-lighted-on-this-line)))
 
-(defun bmkp-a-bookmark-lighted-on-this-line (&optional fullp msgp)
+(defun bmkp-a-bookmark-lighted-on-this-line (&optional fullp)
   "Return a bookmark highlighted on the current line or nil if none.
 The search for a highlighted bookmark moves left to bol from point,
  then right to eol from point.
@@ -1523,7 +1526,7 @@ If STYLE is `none' then:
     (when (and (< emacs-major-version 22)  (not (rassq style bmkp-light-styles-alist)))
       (message "Fringe styles not supported before Emacs 22 - changing to `line' style")
       (setq style 'line))
-    (case style
+    (cl-case style
       (region        (and (bmkp-region-bookmark-p bookmark)
                           (let ((end  (bmkp-get-end-position bookmark)))
                             (if (not ov)
