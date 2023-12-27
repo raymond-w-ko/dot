@@ -199,6 +199,9 @@
   (setq copilot-max-char 200000)
   (setq copilot-log-max 500000)
   (setq copilot-idle-delay 0.25)
+  (defun rko:copilot-buffer-setup ()
+    (setq copilot--indent-warning-printed-p t))
+  (add-hook 'copilot-mode-hook #'rko:copilot-buffer-setup)
   :config
   nil)
 
