@@ -1,6 +1,9 @@
-;; -*- lexical-binding: t -*-
+;; rko-emacs-undo --- -*- lexical-binding: t -*-
+;;; Commentary:
 
+;;; Code:
 (defun rko/undo-tree-save-history (undo-tree-save-history &rest args)
+  "Advice to silence undo-tree-save-history."
   (let ((message-log-max nil)
         (inhibit-message t))
     (apply undo-tree-save-history args)))
@@ -25,9 +28,7 @@
   (setq undo-strong-limit 100663296) ; 96mb.
   (setq undo-outer-limit 1006632960) ; 960mb.
   :config
-  (global-unset-key (kbd "C-z"))
-  (global-set-key (kbd "C-z")   'undo-fu-only-undo)
-  (global-set-key (kbd "C-S-z") 'undo-fu-only-redo))
+  nil)
 
 (use-package undo-fu-session
   :straight t
@@ -47,6 +48,7 @@
                             (vertical-stem . 9474)
                             (branch . 9500)
                             (last-branch . 9492)))
-  (global-set-key (kbd "C-x u") 'vundo))
+  nil)
 
 (provide 'rko-emacs-undo)
+;;; rko-emacs-undo.el ends here

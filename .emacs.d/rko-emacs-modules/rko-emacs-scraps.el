@@ -1,5 +1,7 @@
-;; -*- lexical-binding: t -*-
+;;; rko-emacs-scraps --- -*- lexical-binding: t -*-
+;;; Commentary:
 
+;;; Code:
 (use-package idle-highlight
   :disabled
   :straight t
@@ -285,11 +287,11 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
   (setq doom-modeline-height 1)
   (setq doom-modeline-time t)
   (setq doom-modeline-time-icon t)
-  
+
   (setq doom-modeline-project-detection 'project)
   (setq doom-modeline-workspace-name t)
   (setq doom-modeline-persp-name t)
-  
+
   (setq doom-modeline-buffer-encoding nil)
   (setq doom-modeline-icon t)
   (setq doom-modeline-minor-modes nil)
@@ -299,3 +301,26 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
   :config
   ;; (doom-modeline-mode -1)
   nil)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package paredit
+  :straight t
+  :hook
+  (((emacs-lisp-mode clojure-mode clojurescript-mode clojurec-mode) . enable-paredit-mode))
+  :init
+  nil)
+
+(use-package lispy
+  :straight t
+  :bind (:map lispy-mode-map
+              ("." . nil))
+  ;; :hook
+  ;; (((emacs-lisp-mode clojure-mode clojurescript-mode clojurec-mode) . (lambda () (lispy-mode 1))))
+  :init
+  nil)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(provide 'rko-emacs-scraps)
+;;; rko-emacs-scraps.el ends here

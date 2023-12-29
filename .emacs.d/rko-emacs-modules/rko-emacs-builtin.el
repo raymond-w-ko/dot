@@ -37,10 +37,6 @@
 (add-to-list 'global-auto-revert-ignore-modes 'Buffer-menu-mode)
 ;; (global-auto-revert-mode 1)
 
-(global-unset-key (kbd "C-z"))
-(global-unset-key (kbd "C-x C-z"))
-;; (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
-
 (when (fboundp 'windmove-default-keybindings) (windmove-default-keybindings))
 
 ;; tab-bar
