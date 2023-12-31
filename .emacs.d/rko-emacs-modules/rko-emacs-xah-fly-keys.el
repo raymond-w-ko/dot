@@ -81,7 +81,7 @@ It allows the user to just spam the key to get out of any situation."
 
   (xah-fly--define-keys
    xah-fly-command-map
-   '(("y" . undo-fu-only-undo)
+   '(("f" . undo-fu-only-undo)
      ("C-n" . next-line)))
 
   (xah-fly--define-keys
@@ -140,6 +140,7 @@ It allows the user to just spam the key to get out of any situation."
   "Switch to QWERTY xah-fly-keys."
   (interactive)
   (rko:reset-xah-fly-keys)
+  (xah-fly-define-keys)
   (xah-fly-keys-set-layout "qwerty")
   (xah-fly-keys 1)
   (rko:xah-fly-setup-common)
@@ -150,6 +151,7 @@ It allows the user to just spam the key to get out of any situation."
   "Switch to CC1 xah-fly-keys."
   (interactive)
   (rko:reset-xah-fly-keys)
+  (xah-fly-define-keys)
   (xah-fly-keys-set-layout "cc1")
   (xah-fly-keys 1)
   (rko:xah-fly-setup-common)
