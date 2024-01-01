@@ -15,7 +15,7 @@
 
 (dolist (path '("rko-lisp" "rko-emacs-modules"))
   (add-to-list 'load-path (concat "~/dot/.emacs.d/" path)))
-(cl-loop for file in '("/bin/zsh" "/bin/bash")
+(cl-loop for file in '("/usr/bin/bash" "/bin/bash")
          when (file-exists-p file)
          do (progn
               (setq shell-file-name file)
