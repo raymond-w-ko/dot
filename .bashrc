@@ -139,11 +139,11 @@ if hash stty 2>/dev/null; then
   # stty erase 
 fi
 
-if [[ -n "$DISPLAY" ]]; then
-  export GTK_IM_MODULE=ibus
-  export XMODIFIERS=@im=ibus
-  export QT_IM_MODULE=ibus
-fi
+# if [[ -n "$DISPLAY" ]]; then
+  # export GTK_IM_MODULE=ibus
+  # export XMODIFIERS=@im=ibus
+  # export QT_IM_MODULE=ibus
+# fi
 
 if [[ -f ~/.bashrc.local ]]; then
   source ~/.bashrc.local
@@ -181,9 +181,9 @@ else
     fi
   fi
   rko_startup_fortune
+  # unfortunately --no-header option is too new
   #if [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" && -z ${BASH_EXECUTION_STRING} ]]
   if [[ -f /usr/bin/fish && "$-" == *i* ]]; then
-    shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=''
     exec /usr/bin/fish $LOGIN_OPTION
   fi
   source $HOME/.bash.d/aliases.sh
