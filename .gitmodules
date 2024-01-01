@@ -22,3 +22,6 @@
 [submodule "src/dtach"]
 	path = src/dtach
 	url = https://github.com/crigler/dtach.git
+[submodule "fisher"]
+	path = fisher
+	url = https://github.com/jorgebucaran/fisher.git
