@@ -42,6 +42,14 @@ do_git_pull_simple ()
     fi
 }
 
+do_git_pull_simple_main ()
+{
+    if [ -e .git ]; then
+        git checkout main
+        git pull
+    fi
+}
+
 cd "$DIR/../.tmux/plugins/"
 pwd
 for dir in * ; do
@@ -50,18 +58,11 @@ for dir in * ; do
     eval $CMD
 done
 
-dir="$HOME/.oh-my-zsh/"
-CMD="(cd \"$dir\"; pwd ; do_git_pull_simple)&"
-eval $CMD
-
-dir="$HOME/dot/powerlevel10k/"
-CMD="(cd \"$dir\"; pwd ; do_git_pull_simple)&"
+dir="$HOME/dot/fisher/"
+CMD="(cd \"$dir\"; pwd ; do_git_pull_simple_main)&"
 eval $CMD
 
 dir="$HOME/dot/src/bash-z"
-CMD="(cd \"$dir\"; pwd ; do_git_pull_simple)&"
-eval $CMD
-dir="$HOME/dot/src/zsh-z"
 CMD="(cd \"$dir\"; pwd ; do_git_pull_simple)&"
 eval $CMD
 
