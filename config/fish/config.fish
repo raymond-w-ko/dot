@@ -8,6 +8,8 @@ end
 
 maybe_add_global_path /c/Users/$USER/.cargo/bin
 
+source $HOME/dot/fisher/functions/fisher.fish
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
     #eval (dircolors -c ~/dot/src/dircolors-solarized/dircolors.ansi-universal)
