@@ -105,7 +105,7 @@ fi
 # creep2 font
 if [[ ! -d $HOME/src/creep2 ]]; then
   git clone https://github.com/raymond-w-ko/creep2.git $HOME/src/creep2
-  
+
   mkdir -p "$HOME/.local/share/fonts"
   pushd "$HOME/.local/share/fonts"
   ln -s ../../../src/creep2
@@ -113,13 +113,13 @@ if [[ ! -d $HOME/src/creep2 ]]; then
 fi
 
 # neovim
-if [[ ! -d $HOME/src/neovim ]]; then
-  git clone https://github.com/raymond-w-ko/neovim.git $HOME/src/neovim
-  if [[ -f /home/rko/.has-full-github-access ]]; then
-    echo "setting ~/src/neovim origin to be SSH based"
-    ( cd $HOME/src/neovim && git remote set-url origin git@github.com:raymond-w-ko/neovim.git )
-  fi
-fi
+# if [[ ! -d $HOME/src/neovim ]]; then
+  # git clone https://github.com/raymond-w-ko/neovim.git $HOME/src/neovim
+  # if [[ -f /home/rko/.has-full-github-access ]]; then
+    # echo "setting ~/src/neovim origin to be SSH based"
+    # ( cd $HOME/src/neovim && git remote set-url origin git@github.com:raymond-w-ko/neovim.git )
+  # fi
+# fi
 
 mkdir -p $HOME/.local/share/nvim/backup
 mkdir -p $HOME/.local/share/nvim/swap
