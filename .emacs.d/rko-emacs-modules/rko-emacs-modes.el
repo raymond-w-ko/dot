@@ -27,8 +27,8 @@
     (make-directory ip-file-dir t)
     (unless (file-exists-p ip-file)
       (with-temp-buffer (write-file ip-file))))
-  (require 'lsp-bridge)
-  (global-lsp-bridge-mode)
+  ;; (require 'lsp-bridge)
+  ;; (global-lsp-bridge-mode)
   (cl-assert (file-directory-p lsp-bridge-dir) "could not find lsp-bridge directory")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

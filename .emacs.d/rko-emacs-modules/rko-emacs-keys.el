@@ -4,25 +4,6 @@
 ;;; Code:
 (require 'rko-lib)
 
-(defconst rko:dvorak-to-qwerty
-  '("1234567890[]',.pyfgcrl/=aoeuidhtns-;qjkxbmwvz" .
-    "1234567890-=qwertyuiop[]asdfghjkl;'zxcvbnm,./"))
-(defconst rko:qwerty-to-dvorak
-  (cons (cdr rko:dvorak-to-qwerty)
-        (car rko:dvorak-to-qwerty)))
-
-(defconst rko:dvorak-to-cc1
-  '("1234567890[]',.pyfgcrl/=aoeuidhtns-;qjkxbmwvz" .
-    "1234567890[]q.gwrylpjx/=muoezatds;,ikcv'nf-hb"))
-
-(defconst rko:xah-fly-cc1-layout
-  (let ((pairs '()))
-    (dotimes (i (length (car rko:dvorak-to-qwerty)))
-      (let ((dvorak (aref (car rko:dvorak-to-qwerty) i))
-            (cc1 (aref (cdr rko:dvorak-to-cc1) i)))
-        (push (cons (char-to-string dvorak) (char-to-string cc1)) pairs)))
-    (reverse pairs)))
-
 (use-package buffer-move
   :straight (buffer-move :host github :repo "lukhas/buffer-move"))
 
@@ -30,15 +11,7 @@
   :straight (hop :host github :repo "Animeshz/hop.el")
   :init
   (setq hop-all-windows nil)
-  ;; (setq hop-jump-keys (concat "uoemk"
-  ;; "fhtns"
-  ;; "ir"
-  ;; "aljy"
-  ;; "cdvp"
-  ;; (reverse "zqxgwb")))
-  (setq hop-jump-keys "asdghklqwertyuiopzxcvbnmfj")
-  ;; :bind (("C-t" . hop-word))
-  :init
+  ;; (setq hop-jump-keys "asdghklqwertyuiopzxcvbnmfj")
   nil)
 
 (use-package xah-fly-keys

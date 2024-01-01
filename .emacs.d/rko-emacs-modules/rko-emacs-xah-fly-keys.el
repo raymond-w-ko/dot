@@ -8,6 +8,8 @@
 (require 'xah-fly-keys)
 (require 'copilot)
 (require 'undo-fu)
+(require 'hop)
+(require 'rko-lib)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -145,6 +147,7 @@ It allows the user to just spam the key to get out of any situation."
   (xah-fly-keys 1)
   (rko:xah-fly-setup-common)
   (rko:xah-fly-setup-qwerty)
+  (setq hop-jump-keys rko:qwerty-hop-keys)
   nil)
 
 (defun rko:switch-to-xah-cc1 ()
@@ -156,6 +159,7 @@ It allows the user to just spam the key to get out of any situation."
   (xah-fly-keys 1)
   (rko:xah-fly-setup-common)
   (rko:xah-fly-setup-cc1)
+  (setq hop-jump-keys rko:cc1-hop-keys)
   nil)
 
 
