@@ -117,20 +117,6 @@ else
   export EDITOR=vim
 fi
 
-if [[ "$SHELL" == bash ]]; then
-    source ~/.bash.d/ps1.sh
-    # only for bash, not zsh
-		export PROMPT_DIRTRIM=3
-    # attempts to correct bad "cd" target
-    shopt -s cdspell
-    shopt -s checkwinsize
-    shopt -s cmdhist
-    shopt -s expand_aliases
-    shopt -s extglob
-    shopt -s histappend
-    shopt -s autocd 2>/dev/null
-fi
-
 if hash stty 2>/dev/null; then
   stty sane
   stty stop undef
@@ -185,7 +171,21 @@ else
   # unfortunately --no-header option is too new
   #if [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" && -z ${BASH_EXECUTION_STRING} ]]
   if [[ -f /usr/bin/fish && "$-" == *i* ]]; then
-    exec /usr/bin/fish $LOGIN_OPTION
+    exec /usr/bin/fish
   fi
   source $HOME/.bash.d/aliases.sh
+fi
+
+if [[ "$SHELL" == bash ]]; then
+    source ~/.bash.d/ps1.sh
+    # only for bash, not zsh
+		export PROMPT_DIRTRIM=3
+    # attempts to correct bad "cd" target
+    shopt -s cdspell
+    shopt -s checkwinsize
+    shopt -s cmdhist
+    shopt -s expand_aliases
+    shopt -s extglob
+    shopt -s histappend
+    shopt -s autocd 2>/dev/null
 fi

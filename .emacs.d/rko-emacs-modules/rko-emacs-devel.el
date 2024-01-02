@@ -41,7 +41,7 @@
   (setq vterm-shell shell-file-name)
   ;; hack to fix tramp heredoc issue that is preventing tmux from getting a tty
   (setq vterm-tramp-shells '(("docker" "sh")
-                             ("ssh" "'zsh'")))
+                             ("ssh" "'bash'")))
   nil
   :hook (vterm-mode . (lambda ()
                         (setq-local show-trailing-whitespace nil))))
