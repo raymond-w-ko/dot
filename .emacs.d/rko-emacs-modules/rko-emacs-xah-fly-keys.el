@@ -89,7 +89,7 @@ It allows the user to just spam the key to get out of any situation."
   (xah-fly--define-keys
    xah-fly-leader-key-map
    '(("u" . consult-buffer)
-     ("z m" . magit)))
+     ("z h" . magit)))
 
   nil)
 
