@@ -136,6 +136,10 @@ It allows the user to just spam the key to get out of any situation."
 
 (defun rko:xah-fly-setup-cc1 ()
   "Setup xah-fly-keys for CC1."
+
+  (define-key xah-fly-command-map (kbd "C-t") 'hop-word)
+  (define-key xah-fly-insert-map (kbd "C-t") 'hop-word)
+
   nil)
 
 (defun rko:switch-to-xah-qwerty ()
