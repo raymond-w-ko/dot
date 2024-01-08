@@ -171,7 +171,8 @@ else
   # unfortunately --no-header option is too new
   #if [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" && -z ${BASH_EXECUTION_STRING} ]]
   if [[ -f /usr/bin/fish && "$-" == *i* ]]; then
-    exec /usr/bin/fish
+    shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=''
+	  exec fish $LOGIN_OPTION
   fi
   source $HOME/.bash.d/aliases.sh
 fi
