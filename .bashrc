@@ -169,8 +169,8 @@ else
   fi
   rko_startup_fortune
   # unfortunately --no-header option is too new
-  #if [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" && -z ${BASH_EXECUTION_STRING} ]]
-  if [[ -f /usr/bin/fish && "$-" == *i* ]]; then
+  if [[ -z ${BASH_EXECUTION_STRING} ]]
+  then
     shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=''
 	  exec fish $LOGIN_OPTION
   fi
