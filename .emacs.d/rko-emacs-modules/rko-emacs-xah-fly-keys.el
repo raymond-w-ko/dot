@@ -79,17 +79,22 @@ It allows the user to just spam the key to get out of any situation."
   (xah-fly--define-keys
    xah-fly-command-map
    '(("<escape>" . rko:xah-fly-escape-key)
-     ("C-S-n" . rko/tab-new)))
+     ("C-S-n" . rko/tab-new)
+     ("C-n" . next-line)))
 
   (xah-fly--define-keys
    xah-fly-command-map
    '(("f" . undo-fu-only-undo)
-     ("C-n" . next-line)))
+     ("w" . tab-next)
+     ("_" . tab-previous)))
 
   (xah-fly--define-keys
    xah-fly-leader-key-map
    '(("u" . consult-buffer)
-     ("z h" . magit)))
+
+     ("z h" . magit)
+
+     ("c ." . project-find-file)))
 
   nil)
 
@@ -139,6 +144,11 @@ It allows the user to just spam the key to get out of any situation."
 
   (define-key xah-fly-command-map (kbd "C-t") 'hop-word)
   (define-key xah-fly-insert-map (kbd "C-t") 'hop-word)
+
+  (define-key xah-fly-command-map (kbd "C-M-p") 'buf-move-up)
+  (define-key xah-fly-command-map (kbd "C-M-d") 'buf-move-down)
+  (define-key xah-fly-command-map (kbd"C-M-t") 'buf-move-left)
+  (define-key xah-fly-command-map (kbd"C-M-s") 'buf-move-right)
 
   nil)
 
