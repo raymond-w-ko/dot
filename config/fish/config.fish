@@ -23,6 +23,7 @@ abbr -a -- gp 'git push'
 abbr -a -- gs 'git status'
 abbr -a -- gd 'git diff'
 abbr -a -- gc 'git commit'
+abbr -a -- gca 'git commit -a'
 abbr -a -- ga 'git add'
 abbr -a -- gl 'git pull'
 if command -q eza
