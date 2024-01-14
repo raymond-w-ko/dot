@@ -2,8 +2,12 @@
 # exists.
 #
 # if running bash
-if [ -n "${BASH_VERSION}" ]; then
-    if [ -f "${HOME}/.bashrc" ]; then
-        source "${HOME}/.bashrc"
-    fi
+if [ -n "${BASH_VERSION}" ]
+then
+  if [ -f "${HOME}/.bashrc" ]; then
+    source "${HOME}/.bashrc"
+  fi
+else
+  source /etc/profile
+  export PS1='sh $ '
 fi
