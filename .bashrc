@@ -19,7 +19,8 @@ source /etc/profile
 
 # prevent confusing tramp ssh
 if [[ "$TERM" == "dumb" ]]; then
-    PS1='$ '
+    PS1='dumb $ '
+    export PS1='dumb $ '
     return
 fi
 
