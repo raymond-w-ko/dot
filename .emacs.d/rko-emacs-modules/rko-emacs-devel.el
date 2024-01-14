@@ -71,7 +71,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(when (executable-find "dtach")
+(when (and nil (executable-find "dtach"))
   (use-package detached
     :straight (detached :type git :host nil :repo "https://git.sr.ht/~niklaseklund/detached.el"
                         :fork (:host nil :repo "git@github.com:raymond-w-ko/detached.el"))
@@ -89,14 +89,14 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(connection-local-set-profile-variables
- 'remote-detached
- '((detached-shell-program . "/bin/bash")
-   (detached-session-directory . "~/dtach-sessions")
-   (detached-dtach-program . "dtach")))
+;; (connection-local-set-profile-variables
+;;  'remote-detached
+;;  '((detached-shell-program . "/bin/bash")
+;;    (detached-session-directory . "~/dtach-sessions")
+;;    (detached-dtach-program . "dtach")))
 
-(connection-local-set-profiles
- '(:application tramp :protocol "ssh") 'remote-detached)
+;; (connection-local-set-profiles
+;;  '(:application tramp :protocol "ssh") 'remote-detached)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

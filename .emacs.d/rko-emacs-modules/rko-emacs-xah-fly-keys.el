@@ -145,6 +145,11 @@ It allows the user to just spam the key to get out of any situation."
   (define-key xah-fly-command-map (kbd "C-t") 'hop-word)
   (define-key xah-fly-insert-map (kbd "C-t") 'hop-word)
 
+  (define-key xah-fly-command-map (kbd "M-p") 'windmove-up)
+  (define-key xah-fly-command-map (kbd "M-d") 'windmove-down)
+  (define-key xah-fly-command-map (kbd "M-t") 'windmove-left)
+  (define-key xah-fly-command-map (kbd "M-s") 'windmove-right)
+
   (define-key xah-fly-command-map (kbd "C-M-p") 'buf-move-up)
   (define-key xah-fly-command-map (kbd "C-M-d") 'buf-move-down)
   (define-key xah-fly-command-map (kbd"C-M-t") 'buf-move-left)

@@ -94,22 +94,21 @@ ARGS is ignored as URL is just echoed to *Messages* buffer."
   (message "URL: %s" url)
   (message "URL args: %s" args))
 
-(setq browse-url-browser-function 'rko/print-url-in-messages)
+(setq browse-url-rowser-function 'rko/print-url-in-messages)
 
 (require 'xref)
 (setq xref-search-program 'ripgrep)
 (setf (alist-get 'ripgrep xref-search-program-alist)
       "xargs -0 rg <C> --null -nH --no-heading --no-messages -e <R>")
 
-(use-package tramp
-  :init
-  (setq tramp-verbose 2)
-  (setq vc-handled-backends '(Git SVN))
-  (setq remote-file-name-inhibit-locks t))
+(require 'tramp)
 (require 'tramp-sh)
+(setq tramp-verbose 4)
+(setq vc-handled-backends '(Git SVN))
+(setq remote-file-name-inhibit-locks nil)
 (setq tramp-use-ssh-controlmaster-options t)
-(setq tramp-ssh-controlmaster-options
-      "-o ControlMaster=auto -o ControlPath=tramp.%%C -o ControlPersist=8h")
+(setq tramp-ssh-controlmaster-options (concat "-o ControlPath=/tmp/ssh-ControlPath-%%r@%%h:%%p "
+                                              "-o ControlMaster=auto -o ControlPersist=yes"))
 (setq tramp-histfile-override nil)
 
 (require 'custom)
