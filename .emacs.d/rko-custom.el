@@ -29,6 +29,8 @@
  '(hop-face-double-char-1 ((t (:inherit dired-flagged))))
  '(hop-face-double-char-2 ((t (:inherit gnus-group-news-4-empty))))
  '(hop-face-single-char ((t (:inherit dired-flagge))))
+ '(show-paren-match ((t (:background "#000000" :foreground "#00ff00"))))
+ '(show-paren-match-expression ((t (:background "#000000" :foreground "#00ff00"))))
  '(italic ((t (:slant normal))))
  '(bold ((t (:weight medium))))
  '(mono-complete-preview-face ((t :inherit font-lock-comment-face)))

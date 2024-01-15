@@ -176,10 +176,12 @@
 (use-package cape
   :straight t
   :init
+  (setq cape-dabbrev-check-other-buffers t)
+  (setq cape-dabbrev-min-length 3)
   ;; (add-to-list 'completion-at-point-functions 'cape-dabbrev)
-  ;; (setq completion-at-point-functions
-  ;;       (delete 'cape-dabbrev completion-at-point-functions))
-  nil)
+  nil
+  :config
+  (setq-default completion-at-point-functions '(cape-dabbrev)))
 
 (use-package copilot
   :straight (:type git :host github :repo "zerolfx/copilot.el"
