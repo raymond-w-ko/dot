@@ -78,17 +78,6 @@
 
 (require 'rko-emacs-modeline)
 
-(defun rko/setup-prism-for-dark-theme ()
-  "Set up prism for dark theme."
-  (prism-set-colors :num 16
-    :save t
-    :desaturations (cl-loop for i from 0 below 16
-                            collect (* i 30))
-    :lightens (cl-loop for i from 0 below 16
-                       collect (* -1 i 10))
-    :colors (list "dodgerblue" "medium sea green" "sandy brown"))
-  nil)
-
 (defvar rko/theme-based-prism-colors
   (list "#000000"
         "#477818"
@@ -123,6 +112,7 @@
         "#494582"
         "#424d5b"
         "#4c4c4c"))
+
 (defun rko/setup-prism-for-light-theme ()
   "Set up prism for light theme."
   (require 'prism)
@@ -134,12 +124,38 @@
     :strings-fn (lambda (color) (prism-blend color "#000" 0.33))
     :colors rko/rainbow-600-prism-colors))
 
+(defun rko:setup-prism-for-solarized-theme ()
+  "Set up prism for light theme."
+  (interactive)
+  (require 'prism)
+  (require 'solarized-palettes)
+  (let* ((m solarized-selenized-dark-color-palette-alist)
+         (base-text-color (alist-get 'base0 m))
+         (dark-text-color (alist-get 'base00 m))
+         (colors (list (alist-get 'base0 m)
+                       (alist-get 'red m)
+                       (alist-get 'green m)
+                       (alist-get 'cyan m)
+                       (alist-get 'yellow m)
+                       (alist-get 'blue m)
+                       (alist-get 'orange m)
+                       (alist-get 'magenta m))))
+    (prism-set-colors
+      :num 8
+      :desaturations '(0) ; do not change---may lower the contrast ratio
+      :lightens '(0)      ; same
+      :comments-fn (lambda (color) (solarized-color-blend color base-text-color 0.7))
+      :strings-fn (lambda (color) (solarized-color-blend color dark-text-color 0.5))
+      :colors colors)))
+
 (use-package prism
   :straight (prism :type git :host github :repo "alphapapa/prism.el")
   :hook ((emacs-lisp-mode clojure-mode clojurescript-mode clojurec-mode) . prism-mode)
   :config
   (require 'prism)
-  (rko/setup-prism-for-light-theme))
+  ;; (rko/setup-prism-for-light-theme)
+  (rko:setup-prism-for-solarized-theme)
+  nil)
 
 (use-package git-gutter
   :straight (git-gutter :type git :host github :repo "emacsorphanage/git-gutter")

@@ -46,6 +46,7 @@
   nil)
 
 (use-package ef-themes
+  :disabled
   :straight t
   :init
   (setq ef-themes-headings ; read the manual's entry or the doc string
@@ -64,6 +65,18 @@
   (mapc #'disable-theme custom-enabled-themes)
   :config
   (ef-themes-select 'ef-melissa-light))
+
+(setq use-package-verbose t)
+(use-package solarized-theme
+  :straight (solarized-emacs :type git :host github :repo "bbatsov/solarized-emacs")
+  :ensure t
+  :init
+  (setq x-underline-at-descent-line t)
+  (setq solarized-use-less-bold t)
+  nil
+  :config
+  (load-theme 'solarized-selenized-dark t)
+  nil)
 
 ;; pure utility packages
 (use-package dash :straight t :ensure t)
