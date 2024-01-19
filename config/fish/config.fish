@@ -30,6 +30,7 @@ abbr -a -- gl 'git pull'
 abbr -a -- c 'z'
 abbr -a -- dot 'cd ~/dot'
 abbr -a -- y 'yay'
+abbr -a -- adu 'sudo apt dist-upgrade'
 
 abbr -a -- ta 'tmux attach -d -t'
 abbr -a -- ts 'tmux new -s'
