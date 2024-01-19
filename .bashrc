@@ -27,6 +27,10 @@ fi
 # If not running interactively, don't do anything
 [[ "$-" != *i* ]] && return
 
+if [[ -n "$BASH_VERSION" ]]; then
+    return
+fi
+
 export HISTSIZE=32768
 export HISTCONTROL=ignoreboth:erasedups
 
@@ -170,7 +174,7 @@ else
   fi
   rko_startup_fortune
   # unfortunately --no-header option is too new
-  if [[ -z ${BASH_EXECUTION_STRING} ]]
+  if [[ -z "$BASH_VERSION" ]]
   then
     shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=''
 	  exec fish $LOGIN_OPTION
