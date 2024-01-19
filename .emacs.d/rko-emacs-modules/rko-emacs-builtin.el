@@ -105,8 +105,9 @@ ARGS is ignored as URL is just echoed to *Messages* buffer."
 (require 'tramp-sh)
 (setq tramp-verbose 4)
 (setq vc-handled-backends '(Git SVN))
-(setq remote-file-name-inhibit-locks nil)
-(setq tramp-use-ssh-controlmaster-options t)
+(setq remote-file-name-inhibit-locks t) ;; disables 100+ remote gio processes
+;; t does not work well with eglot, causes failure to find shell prompt of /bin/sh ?
+(setq tramp-use-ssh-controlmaster-options nil)
 (setq tramp-ssh-controlmaster-options (concat "-o ControlPath=/tmp/ssh-ControlPath-%%r@%%h:%%p "
                                               "-o ControlMaster=auto -o ControlPersist=yes"))
 (setq tramp-histfile-override nil)
