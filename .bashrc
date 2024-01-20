@@ -27,9 +27,7 @@ fi
 # If not running interactively, don't do anything
 [[ "$-" != *i* ]] && return
 
-if [[ -n "$BASH_VERSION" ]]; then
-    return
-fi
+[[ -z "$BASH_VERSION" ]] && return
 
 export HISTSIZE=32768
 export HISTCONTROL=ignoreboth:erasedups
