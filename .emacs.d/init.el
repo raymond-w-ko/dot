@@ -82,11 +82,18 @@
 (use-package dash :straight t :ensure t)
 (use-package s :straight t :ensure t)
 (use-package f :straight t :ensure t)
-(eval
- `(use-package pcre
-    :straight (pcre :host github :repo "syohex/emacs-pcre"
-                    :pre-build ("make" ,rko-emacs-include-path-env-var "all")
-                    :files (:defaults "pcre.el" "pcre-core.so"))))
+(if (eq system-type 'windows-nt)
+    (eval
+     `(use-package pcre
+        :straight (pcre :host github :repo "syohex/emacs-pcre"
+                        :pre-build (("make" ,rko-emacs-include-path-env-var "all")
+                                    ("cp" "pcre-core.so" "pcre-core.dll"))
+                        :files (:defaults "pcre.el" "pcre-core.dll"))))
+  (eval
+   `(use-package pcre
+      :straight (pcre :host github :repo "syohex/emacs-pcre"
+                      :pre-build ("make" ,rko-emacs-include-path-env-var "all")
+                      :files (:defaults "pcre.el" "pcre-core.so")))))
 
 (use-package no-littering
   :straight t
