@@ -23,7 +23,7 @@
   :init
   (setq nerd-icons-scale-factor 1.00)
   :config
-  (when (and (not (equal system-type 'window-nt))
+  (when (and (not (equal system-type 'windows-nt))
              (not (file-exists-p "~/.local/share/fonts/NFM.ttf")))
     (nerd-icons-install-fonts t)))
 (use-package nerd-icons-dired
