@@ -76,6 +76,8 @@ It allows the user to just spam the key to get out of any situation."
   (global-set-key (kbd "C-z") #'undo-fu-only-undo)
   (global-set-key (kbd "C-S-z") #'undo-fu-only-redo)
 
+  (global-set-key (kbd "M-v") #'scroll-down)
+
   (xah-fly--define-keys
    xah-fly-command-map
    '(("<escape>" . rko:xah-fly-escape-key)
