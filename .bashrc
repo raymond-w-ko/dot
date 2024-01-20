@@ -18,11 +18,9 @@ export LANG=en_US.UTF-8
 source /etc/profile
 
 # prevent confusing tramp ssh
-if [[ "$TERM" == "dumb" ]]; then
-    PS1='dumb $ '
-    export PS1='dumb $ '
-    return
-fi
+
+PS1='dumb $ '
+export PS1='dumb $ '
 
 # If not running interactively, don't do anything
 [[ "$-" != *i* ]] && return
