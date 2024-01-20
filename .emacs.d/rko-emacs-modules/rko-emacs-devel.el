@@ -28,24 +28,27 @@
   :config
   (global-diff-hl-mode -1))
 
+(when (not (equal system-type 'windows-nt))
+  (defun rko:setup-vterm-buffer-font ()
+    "Set the font of the current buffer to a fixed pitch font."
+    (set (make-local-variable 'buffer-face-mode-face) 'fixed-pitch)
+    (buffer-face-mode t))
 
-(defun rko/setup-vterm-buffer-font ()
-  "Set the font of the current buffer to a fixed pitch font."
-  (set (make-local-variable 'buffer-face-mode-face) 'fixed-pitch)
-  (buffer-face-mode t))
+  (use-package vterm :straight t
+    :init
+    (add-hook 'vterm-mode-hook #'rko:setup-vterm-buffer-font)
+    (setq vterm-always-compile-module t)
+    (setq vterm-shell shell-file-name)
+    ;; hack to fix tramp heredoc issue that is preventing tmux from getting a tty
+    (setq vterm-tramp-shells '(("docker" "sh")
+                               ("ssh" "'bash'")))
+    nil
+    :hook (vterm-mode . (lambda ()
+                          (setq-local show-trailing-whitespace nil))))
 
-(use-package vterm :straight t
-  :init
-  (add-hook 'vterm-mode-hook #'rko/setup-vterm-buffer-font)
-  (setq vterm-always-compile-module t)
-  (setq vterm-shell shell-file-name)
-  ;; hack to fix tramp heredoc issue that is preventing tmux from getting a tty
-  (setq vterm-tramp-shells '(("docker" "sh")
-                             ("ssh" "'bash'")))
-  nil
-  :hook (vterm-mode . (lambda ()
-                        (setq-local show-trailing-whitespace nil))))
-(use-package multi-vterm :straight t)
+  (use-package multi-vterm :straight t)
+
+  nil)
 
 (use-package rg
   :straight (rg :host github :repo "dajva/rg.el")
