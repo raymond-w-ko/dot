@@ -19,8 +19,8 @@ source /etc/profile
 
 # prevent confusing tramp ssh
 
-PS1='dumb $ '
-export PS1='dumb $ '
+PS1='bashrc $ '
+export PS1='bashrc $ '
 
 # If not running interactively, don't do anything
 [[ "$-" != *i* ]] && return
