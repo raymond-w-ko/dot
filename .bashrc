@@ -172,7 +172,7 @@ else
   fi
   rko_startup_fortune
   # unfortunately --no-header option is too new
-  if [[ -z "$BASH_VERSION" ]]
+  if [[ -n "$BASH_VERSION" ]]
   then
     shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=''
 	  exec fish $LOGIN_OPTION
@@ -180,7 +180,7 @@ else
   source $HOME/.bash.d/aliases.sh
 fi
 
-if [[ "$SHELL" == bash ]]; then
+if [[ "$SHELL" == */bash ]]; then
     source ~/.bash.d/ps1.sh
     # only for bash, not zsh
 		export PROMPT_DIRTRIM=3
