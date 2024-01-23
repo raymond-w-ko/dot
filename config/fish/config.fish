@@ -44,7 +44,10 @@ abbr -a -- .... 'cd ../../..'
 if command -q eza
     abbr -a -- l 'eza -l'
     abbr -a -- e 'eza -l'
-    abbr -a -- ea 'eza -l'
+
+    abbr -a -- ll 'eza -la'
+    abbr -a -- ee 'eza -la'
+    abbr -a -- ea 'eza -la'
 else
     abbr -a -- l 'ls -l'
     abbr -a -- e 'ls -l'
