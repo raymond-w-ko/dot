@@ -41,7 +41,6 @@
 ;; this hopefully fixes too many open pipes on windows-nt
 (use-package async
   :straight t
-  :defer 5
   :init
   (setq async-bytecomp-allowed-packages '(all))
   :config
