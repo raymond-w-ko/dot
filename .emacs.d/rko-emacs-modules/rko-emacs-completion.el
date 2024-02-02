@@ -184,10 +184,10 @@
   (setq-default completion-at-point-functions '(cape-dabbrev)))
 
 (use-package copilot
+  :after (jsonrpc)
   :straight (:type git :host github :repo "zerolfx/copilot.el"
                    :fork (:host nil :repo "git@github.com:raymond-w-ko/copilot.el")
                    :files ("dist" "*.el"))
-  :ensure t
   :hook ((prog-mode . copilot-mode)
          (git-commit-mode . copilot-mode))
   :bind (("C-c M-f" . copilot-complete)

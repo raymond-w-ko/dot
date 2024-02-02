@@ -145,11 +145,17 @@ ARGS passes through."
   :config
   nil)
 
+(use-package jsonrpc
+  :straight t)
+
+;; built-in for emacs 29 works better?
 (use-package eglot
   :straight (eglot :type git :host github :repo "joaotavora/eglot")
-  :ensure t
+  :after (jsonrpc)
   :init
-  (setq eglot-connect-timeout 300))
+  (setq eglot-sync-connect 15)
+  (setq eglot-connect-timeout 300)
+  nil)
 
 (provide 'rko-emacs-builtin)
 ;;; rko-emacs-builtin.el ends here

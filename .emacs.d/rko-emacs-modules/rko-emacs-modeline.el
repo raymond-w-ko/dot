@@ -194,7 +194,7 @@ This fixes slowdowns in WSL when editing a file on the Windows side."
    rko/modeline-modified
    rko/modeline-major-mode
    rko/modeline-flymake
-   rko/modeline-flycheck
+   ;; rko/modeline-flycheck
    rko/modeline-buffer-name
    "    "
    rko/modeline-builtin-misc))

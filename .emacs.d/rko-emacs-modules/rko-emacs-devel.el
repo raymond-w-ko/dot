@@ -56,6 +56,7 @@
   (rg-enable-default-bindings))
 
 (use-package flycheck
+  :disabled
   :straight t
   :init
   (setq flycheck-emacs-lisp-load-path 'inherit)
@@ -63,6 +64,7 @@
   (global-flycheck-mode +1))
 
 (use-package flycheck-eglot
+  :disabled
   :after (flycheck eglot)
   :straight (flycheck-eglot :host github :repo "intramurz/flycheck-eglot")
   :init
