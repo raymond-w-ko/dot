@@ -31,6 +31,42 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(progn
+  (defun rko:xah-fly-keys-escape ()
+    (interactive)
+    (when (region-active-p)
+      (deactivate-mark))
+    (when (active-minibuffer-window)
+      (abort-recursive-edit)))
+
+  (define-key xah-fly-command-map (kbd "<escape>") 'rko:xah-fly-keys-escape))
+
+(progn
+  (defvar rko:xah-fly-keys-fast-keyseq-timeout 200)
+
+  (defun rko:xah-fly-keys-tty-ESC-filter (map)
+    (if (and (equal (this-single-command-keys) [?\e])
+             (sit-for (/ rko:xah-fly-keys-fast-keyseq-timeout 1000.0)))
+        [escape] map))
+
+  (defun rko:xah-fly-keys-lookup-key (map key)
+    (catch 'found
+      (map-keymap (lambda (k b) (if (equal key k) (throw 'found b))) map)))
+
+  (defun rko:xah-fly-keys-catch-tty-ESC ()
+    "Setup key mappings of current terminal to turn a tty's ESC into
+`escape'."
+    (when (memq (terminal-live-p (frame-terminal)) '(t pc))
+      (let ((esc-binding (rko:xah-fly-keys-lookup-key input-decode-map ?\e)))
+        (define-key input-decode-map
+          [?\e] `(menu-item "" ,esc-binding :filter rko:xah-fly-keys-tty-ESC-filter)))))
+
+  (rko:xah-fly-keys-catch-tty-ESC)
+
+  (define-key key-translation-map (kbd "ESC") (kbd "<escape>")))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (defun rko:reset-xah-fly-keys ()
   "Reset xah-fly-keys by recreating internal keymaps and redefining all keys.
 
@@ -53,15 +89,6 @@ It needs to act as Enter some of times in some major modes for convenience."
   "Predicate to determine if copilot should be enabled."
   xah-fly-insert-state-p)
 
-(defun rko:xah-fly-escape-key ()
-  "Escape key for xah-fly-keys that allow you to deactivate mark and abort edit.
-It allows the user to just spam the key to get out of any situation."
-  (interactive)
-  (when (region-active-p)
-    (deactivate-mark))
-  (when (active-minibuffer-window)
-    (abort-recursive-edit)))
-
 (defun rko:xah-fly-setup-common ()
   "Setup common keys for both QWERTY and CC1."
 
@@ -80,7 +107,7 @@ It allows the user to just spam the key to get out of any situation."
 
   (xah-fly--define-keys
    xah-fly-command-map
-   '(("<escape>" . rko:xah-fly-escape-key)
+   '(("<escape>" . rko:xah-fly-keys-escape)
      ("C-S-n" . rko/tab-new)
      ("C-n" . next-line)))
 
