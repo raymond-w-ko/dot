@@ -19,6 +19,9 @@ if status is-interactive
     #eval (dircolors -c ~/dot/src/dircolors-solarized/dircolors.ansi-universal)
 end
 
+abbr -a -- g 'git'
+abbr -a -- gcfxd 'git clean -fxd'
+abbr -a -- gsw 'git switch'
 abbr -a -- gp 'git push'
 abbr -a -- gs 'git status'
 abbr -a -- gd 'git diff'
