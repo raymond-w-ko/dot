@@ -54,6 +54,10 @@ or not."
   '((t :foreground "black" :background "green"))
   "Face for noticeable text in the modeline.")
 
+(defface rko/modeline-face-none
+  '((t :foreground "black"))
+  "Normal face for the modeline.")
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; (setq mode-line-format nil)
@@ -164,6 +168,11 @@ This fixes slowdowns in WSL when editing a file on the Windows side."
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defvar-local rko/modeline-xah-fly-mode
+    '(:eval (if (and (boundp 'xah-fly-insert-state-p) xah-fly-insert-state-p)
+                (propertize " INS " 'face 'rko/modeline-face-green)
+             (propertize " CMD " 'face 'rko/modeline-face-none))))
+
 (defvar-local rko/modeline-readonly
     '(:eval (when buffer-read-only
               (propertize " 🔒 " 'face 'rko/modeline-face-black))))
@@ -182,6 +191,7 @@ This fixes slowdowns in WSL when editing a file on the Windows side."
              rko/modeline-flymake
              rko/modeline-flycheck
              rko/modeline-buffer-name
+             rko/modeline-xah-fly-mode
              rko/modeline-readonly
              rko/modeline-modified
              rko/modeline-builtin-misc))
@@ -190,6 +200,7 @@ This fixes slowdowns in WSL when editing a file on the Windows side."
 (setq-default
  mode-line-format
  '(" %e "
+   rko/modeline-xah-fly-mode
    rko/modeline-readonly
    rko/modeline-modified
    rko/modeline-major-mode
