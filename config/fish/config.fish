@@ -29,6 +29,7 @@ abbr -a -- gc 'git commit'
 abbr -a -- gca 'git commit -a'
 abbr -a -- ga 'git add'
 abbr -a -- gl 'git pull'
+abbr -a -- gf 'git fetch'
 
 abbr -a -- c 'z'
 abbr -a -- dot 'cd ~/dot'
