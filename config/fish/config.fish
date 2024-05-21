@@ -46,13 +46,22 @@ abbr -a -- ... 'cd ../..'
 abbr -a -- .... 'cd ../../..'
 
 if command -q eza
-    abbr -a -- l 'eza -l'
-    abbr -a -- e 'eza -l'
+  abbr -a -- l 'eza -l'
+  abbr -a -- e 'eza -l'
 
-    abbr -a -- ll 'eza -la'
-    abbr -a -- ee 'eza -la'
-    abbr -a -- ea 'eza -la'
+  abbr -a -- ll 'eza -la'
+  abbr -a -- ee 'eza -la'
+  abbr -a -- ea 'eza -la'
 else
-    abbr -a -- l 'ls -l'
-    abbr -a -- e 'ls -l'
+  abbr -a -- l 'ls -l --color=auto'
+  abbr -a -- e 'ls -l --color=auto'
+end
+
+if command -q nvim
+  abbr -a -- v 'nvim'
+  abbr -a -- vim 'nvim'
+else if command -q nvim
+  abbr -a -- v 'vim'
+else
+  abbr -a -- v 'nano'
 end
