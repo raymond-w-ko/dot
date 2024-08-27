@@ -10,7 +10,7 @@ if !has('gui_running') && &term =~ '^\%(screen\|tmux\)'
 endif
 syntax on
 set termguicolors
-set background=dark
+set background=light
 colorscheme selenized
 
 filetype off
