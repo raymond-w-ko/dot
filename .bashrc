@@ -133,6 +133,21 @@ fi
   # export QT_IM_MODULE=ibus
 # fi
 
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/rko/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/rko/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/rko/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/rko/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
 if [[ -f ~/.bashrc.local ]]; then
   source ~/.bashrc.local
 fi
