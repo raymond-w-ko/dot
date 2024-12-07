@@ -1,6 +1,6 @@
 {
   "fennel.vim": { "branch": "master", "commit": "30b9beabad2c4f09b9b284caf5cd5666b6b4dc89" },
-  "lazy.nvim": { "branch": "main", "commit": "56ead98e05bb37a4ec28930a54d836d033cf00f2" },
+  "lazy.nvim": { "branch": "main", "commit": "014d1d6d78df4e58f962158e6e00261d8632612c" },
   "lush.nvim": { "branch": "main", "commit": "45a79ec4acb5af783a6a29673a999ce37f00497e" },
   "nfnl": { "branch": "main", "commit": "dc3d2772b60df2ce96816c5a3de84c116028cf31" },
   "no-neck-pain.nvim": { "branch": "main", "commit": "2a786bf7130cce20449885fb799f3c7f4ce93595" },
