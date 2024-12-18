@@ -1,9 +1,9 @@
 {
   "fennel.vim": { "branch": "master", "commit": "30b9beabad2c4f09b9b284caf5cd5666b6b4dc89" },
-  "lazy.nvim": { "branch": "main", "commit": "014d1d6d78df4e58f962158e6e00261d8632612c" },
+  "lazy.nvim": { "branch": "main", "commit": "7e6c863bc7563efbdd757a310d17ebc95166cef3" },
   "lush.nvim": { "branch": "main", "commit": "45a79ec4acb5af783a6a29673a999ce37f00497e" },
-  "nfnl": { "branch": "main", "commit": "dc3d2772b60df2ce96816c5a3de84c116028cf31" },
-  "no-neck-pain.nvim": { "branch": "main", "commit": "2a786bf7130cce20449885fb799f3c7f4ce93595" },
+  "nfnl": { "branch": "main", "commit": "b65c4cf17d4e5c9b80d8c8ab33a6774a6c64e1c2" },
+  "no-neck-pain.nvim": { "branch": "main", "commit": "5d91f31a2d583a367df97a4654be028fbe13f2d2" },
   "nvim-autopairs": { "branch": "master", "commit": "b464658e9b880f463b9f7e6ccddd93fb0013f559" },
   "plenary.nvim": { "branch": "master", "commit": "2d9b06177a975543726ce5c73fca176cedbffe9d" },
   "selenized.nvim": { "branch": "main", "commit": "6f31b954da7e15190c2af1d550ce2f22bf675d97" },
