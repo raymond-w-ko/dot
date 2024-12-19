@@ -5,4 +5,16 @@ local function _1_()
   vim.o["background"] = "light"
   return vim.cmd("colorscheme selenized")
 end
-return {uu.tx("Olical/nfnl", {priority = 9001, ft = {"fennel"}}), uu.tx("bakpakin/fennel.vim"), uu.tx("shortcuts/no-neck-pain.nvim"), uu.tx("loganswartz/selenized.nvim", {dependencies = {"rktjmp/lush.nvim"}, config = _1_}), uu.tx("windwp/nvim-autopairs", {event = "InsertEnter", config = true}), uu.tx("nvim-telescope/telescope.nvim", {dependencies = {"nvim-lua/plenary.nvim"}, keys = {{"<leader>ff", "<cmd>Telescope find_files<cr>"}}, tag = "0.1.8"})}
+local function _2_()
+  local MiniPairs = require("mini.pairs")
+  return MiniPairs.setup()
+end
+local function _3_()
+  local leap = require("leap")
+  return leap.create_default_mappings()
+end
+local function _4_()
+  local flit = require("flit")
+  return flit.setup()
+end
+return {uu.tx("Olical/nfnl", {priority = 9001, ft = {"fennel"}}), uu.tx("bakpakin/fennel.vim"), uu.tx("loganswartz/selenized.nvim", {dependencies = {"rktjmp/lush.nvim"}, config = _1_}), uu.tx("echasnovski/mini.pairs", {config = _2_, version = false}), uu.tx("nvim-telescope/telescope.nvim", {dependencies = {"nvim-lua/plenary.nvim"}, keys = {{"<leader>ff", "<cmd>Telescope find_files<cr>"}}, tag = "0.1.8"}), uu.tx("ggandor/leap.nvim", {dependencies = {"tpope/vim-repeat"}, config = _3_}), uu.tx("ggandor/flit.nvim", {dependencies = {"ggandor/leap.nvim"}, config = _4_})}

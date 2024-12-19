@@ -2,7 +2,8 @@
 
 [(uu.tx :Olical/nfnl {:priority 9001 :ft ["fennel"]})
  (uu.tx :bakpakin/fennel.vim)
- (uu.tx :shortcuts/no-neck-pain.nvim)
+ ;; conflicts with nmap S
+ ; (uu.tx :shortcuts/no-neck-pain.nvim)
 
  (uu.tx :loganswartz/selenized.nvim
         {:dependencies [:rktjmp/lush.nvim]
@@ -11,11 +12,26 @@
                    (tset vim.o :background "light")
                    (vim.cmd "colorscheme selenized"))})
 
- (uu.tx "windwp/nvim-autopairs"
-        {:event "InsertEnter"
-         :config true})
+ ;; does not work by default for Lisp languages
+ ; (uu.tx "windwp/nvim-autopairs" {:event "InsertEnter" :config true})
+ (uu.tx "echasnovski/mini.pairs" {:version false
+                                  :config (fn []
+                                            (local MiniPairs (require "mini.pairs"))
+                                            (MiniPairs.setup))})
 
  (uu.tx :nvim-telescope/telescope.nvim
         {:dependencies [:nvim-lua/plenary.nvim]
          :keys [["<leader>ff" "<cmd>Telescope find_files<cr>"]]
-         :tag "0.1.8"})]
+         :tag "0.1.8"})
+ 
+ (uu.tx :ggandor/leap.nvim
+        {:dependencies [:tpope/vim-repeat]
+         :config (fn []
+                   (local leap (require "leap"))
+                   (leap.create_default_mappings))})
+ 
+ (uu.tx :ggandor/flit.nvim
+        {:dependencies [:ggandor/leap.nvim]
+         :config (fn []
+                   (local flit (require "flit"))
+                   (flit.setup))})]
