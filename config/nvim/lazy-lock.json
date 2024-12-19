@@ -6,7 +6,6 @@
   "lush.nvim": { "branch": "main", "commit": "45a79ec4acb5af783a6a29673a999ce37f00497e" },
   "mini.pairs": { "branch": "main", "commit": "7e834c5937d95364cc1740e20d673afe2d034cdb" },
   "nfnl": { "branch": "main", "commit": "b65c4cf17d4e5c9b80d8c8ab33a6774a6c64e1c2" },
-  "no-neck-pain.nvim": { "branch": "main", "commit": "5d91f31a2d583a367df97a4654be028fbe13f2d2" },
   "plenary.nvim": { "branch": "master", "commit": "2d9b06177a975543726ce5c73fca176cedbffe9d" },
   "selenized.nvim": { "branch": "main", "commit": "6f31b954da7e15190c2af1d550ce2f22bf675d97" },
   "telescope.nvim": { "branch": "master", "commit": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026" },
