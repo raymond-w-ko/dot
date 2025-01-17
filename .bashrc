@@ -133,9 +133,9 @@ fi
   # export QT_IM_MODULE=ibus
 # fi
 
-if [[ -f ~/src/emsdk/emsdk_env.sh ]]; then
-  EMSDK_QUIET=1 source ~/src/emsdk/emsdk_env.sh
-fi
+# if [[ -f ~/src/emsdk/emsdk_env.sh ]]; then
+#   EMSDK_QUIET=1 source ~/src/emsdk/emsdk_env.sh
+# fi
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
