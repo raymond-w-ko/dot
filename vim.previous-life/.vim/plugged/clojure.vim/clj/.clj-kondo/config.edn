@@ -1,2 +1,0 @@
-{:lint-as {vim.test/defpredicates clojure.core/def
-           vim.test/defsyntaxtest clojure.core/def}}

@@ -1,3 +1,0 @@
-StatusLine white black
-
-; vim: ft=colortemplate
