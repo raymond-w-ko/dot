@@ -14,13 +14,6 @@ maybe_add_global_path /c/Users/$USER/.cargo/bin
 
 source $HOME/dot/fisher/functions/fisher.fish
 
-#>>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-if test -f ~/miniconda3/bin/conda
-  eval ~/miniconda3/bin/conda "shell.fish" "hook" $argv | source
-end
-# <<< conda initialize <<<
-
 if status is-interactive
     # Commands to run in interactive sessions can go here
     #eval (dircolors -c ~/dot/src/dircolors-solarized/dircolors.ansi-universal)
