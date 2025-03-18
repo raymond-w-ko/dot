@@ -10,6 +10,7 @@ function maybe_add_global_path
     end
 end
 
+maybe_add_global_path $HOME/.cargo/bin
 maybe_add_global_path /c/Users/$USER/.cargo/bin
 
 source $HOME/dot/fisher/functions/fisher.fish
