@@ -37,6 +37,7 @@ abbr -a -- c 'z'
 abbr -a -- dot 'cd ~/dot'
 abbr -a -- y 'yay'
 abbr -a -- adu 'sudo apt update && sudo apt dist-upgrade'
+abbr -a -- afu 'sudo apt update && sudo apt full-upgrade'
 
 abbr -a -- ta 'tmux attach -d -t'
 abbr -a -- ts 'tmux new -s'
