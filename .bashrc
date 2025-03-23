@@ -192,7 +192,9 @@ else
   if [[ -n "$BASH_VERSION" ]]
   then
     shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=''
-	  exec fish $LOGIN_OPTION
+    if hash fish 2>/dev/null; then
+      exec fish $LOGIN_OPTION
+    fi
   fi
   source $HOME/.bash.d/aliases.sh
 fi
