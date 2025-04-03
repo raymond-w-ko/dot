@@ -6,12 +6,37 @@ set fish_greeting
 
 function maybe_add_global_path
     if test -d $argv
+        # this adds to the beginning of the path, and uses global $fish_user_paths
         fish_add_path -g $argv
     end
 end
 
-maybe_add_global_path $HOME/.cargo/bin
-maybe_add_global_path /c/Users/$USER/.cargo/bin
+maybe_add_global_path /bin
+maybe_add_global_path /sbin
+maybe_add_global_path /usr/sbin
+maybe_add_global_path /usr/bin
+maybe_add_global_path /usr/local/sbin
+maybe_add_global_path /usr/local/bin
+if test -d /usr/lib/ccache/bin
+    maybe_add_global_path /usr/lib/ccache/bin
+else
+    maybe_add_global_path /usr/lib/ccache
+end
+maybe_add_global_path /usr/local/go/bin
+maybe_add_global_path /opt/mono/bin
+maybe_add_global_path /opt/aws/bin
+maybe_add_global_path /opt/tastyworks
+
+maybe_add_global_path $HOME/.config/yarn/global/node_modules/.bin
+maybe_add_global_path $HOME/npm-global/bin
+maybe_add_global_path $HOME/.nimble/bin
+
+maybe_add_global_path $HOME/src/neil
+maybe_add_global_path $HOME/.local/bin
+maybe_add_global_path $HOME/vim/bin
+maybe_add_global_path $HOME/nvim/bin
+maybe_add_global_path $HOME/emacs/bin
+maybe_add_global_path $HOME/go/bin
 
 source $HOME/dot/fisher/functions/fisher.fish
 
