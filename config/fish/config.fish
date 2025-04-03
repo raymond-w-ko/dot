@@ -38,6 +38,9 @@ maybe_add_global_path $HOME/nvim/bin
 maybe_add_global_path $HOME/emacs/bin
 maybe_add_global_path $HOME/go/bin
 
+maybe_add_global_path $HOME/dot/bin
+maybe_add_global_path $HOME/bin
+
 source $HOME/dot/fisher/functions/fisher.fish
 
 if status is-interactive
