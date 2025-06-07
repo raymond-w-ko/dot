@@ -113,12 +113,12 @@ PS1_LINE2='$(get_git_branch_for_ps1) $(get_python_venv_for_ps1) \w'
 # \h is the hostname up to the first '.'.
 # \$? is the return code of the previously executed command.
 # \\$ displays a '$' for a regular user or a '#' for the root user, followed by a space.
-PS1_LINE3='\u @ \h (ret: $?) \$ '
+PS1_LINE3='\u @ \h (ret: $?)'
 
 # Combine the lines into the final PS1 string.
 # Using \\n ensures that a literal backslash-n is part of the PS1 string value,
 # which Bash then interprets as a newline when displaying the prompt.
-export PS1="  ${PS1_LINE1}\\n  ${PS1_LINE2}\\n${PS1_LINE3}"
+export PS1="\\n${PS1_LINE2} ${PS1_LINE3}\\n❯ "
 
 # Optional: If you use __git_ps1, you might want to enable some of its features.
 # export GIT_PS1_SHOWDIRTYSTATE=1
