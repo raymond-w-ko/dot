@@ -34,4 +34,14 @@
         {:dependencies [:ggandor/leap.nvim]
          :config (fn []
                    (local flit (require "flit"))
-                   (flit.setup))})]
+                   (flit.setup))})
+
+ (uu.tx :nvim-lualine/lualine.nvim
+        {:dependencies [:loganswartz/selenized.nvim
+                        :nvim-tree/nvim-web-devicons]
+         :config (fn []
+                   (local lualine (require "lualine"))
+                   (lualine.setup {:theme "selenized"}))})
+ ]
+
+
