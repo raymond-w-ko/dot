@@ -91,8 +91,11 @@ end
 if command -q nvim
   abbr -a -- v 'nvim'
   abbr -a -- vim 'nvim'
-else if command -q nvim
+  set -gx EDITOR nvim
+else if command -q vim
   abbr -a -- v 'vim'
+  set -gx EDITOR vim
 else
   abbr -a -- v 'nano'
+  set -gx EDITOR nano
 end
