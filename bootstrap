@@ -48,7 +48,12 @@ IFS=$'\n'
 
 FIND=find
 if [ $(uname) == 'Darwin' ]; then
-  FIND=/usr/local/bin/gfind
+  FIND=/opt/homebrew/bin/gfind
+fi
+
+if ! command -v "$FIND" &> /dev/null || [ ! -x "$FIND" ]; then
+  echo "Error: '$FIND' not found or not executable"
+  exit 1
 fi
 
 pwd
