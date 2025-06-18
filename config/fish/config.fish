@@ -28,6 +28,13 @@ maybe_add_global_path /opt/mono/bin
 maybe_add_global_path /opt/aws/bin
 maybe_add_global_path /opt/tastyworks
 
+maybe_add_global_path /opt/homebrew/opt/node@22/bin
+set -gx LDFLAGS "-L/opt/homebrew/opt/node@22/lib"
+set -gx CPPFLAGS "-I/opt/homebrew/opt/node@22/include"
+
+maybe_add_global_path /opt/homebrew/opt/openjdk@21/bin
+set -gx CPPFLAGS "-I/opt/homebrew/opt/openjdk@21/include"
+
 maybe_add_global_path $HOME/.config/yarn/global/node_modules/.bin
 maybe_add_global_path $HOME/npm-global/bin
 maybe_add_global_path $HOME/.nimble/bin
