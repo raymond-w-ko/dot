@@ -15,6 +15,7 @@ maybe_add_global_path /bin
 maybe_add_global_path /sbin
 maybe_add_global_path /usr/sbin
 maybe_add_global_path /usr/bin
+maybe_add_global_path /opt/homebrew/bin
 maybe_add_global_path /usr/local/sbin
 maybe_add_global_path /usr/local/bin
 if test -d /usr/lib/ccache/bin
