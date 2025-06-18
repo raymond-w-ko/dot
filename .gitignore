@@ -47,6 +47,9 @@ tags
 /.vifm/vifm-help.txt
 /.vifm/vifminfo
 
+# this bakes in HOME into the PATH, cannot be versioned consider Linux vs macOS
+/config/fish/fish_variables
+
 /config/mc/hotlist
 
 /config/ranger/bookmarks
