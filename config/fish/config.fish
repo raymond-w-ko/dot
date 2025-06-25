@@ -44,7 +44,12 @@ maybe_add_global_path $HOME/.local/bin
 maybe_add_global_path $HOME/vim/bin
 maybe_add_global_path $HOME/nvim/bin
 maybe_add_global_path $HOME/emacs/bin
+
 maybe_add_global_path $HOME/go/bin
+
+set -gx GOPATH "$HOME/gopath"
+mkdir -p $GOPATH
+maybe_add_global_path $HOME/gopath/bin
 
 maybe_add_global_path $HOME/dot/bin
 maybe_add_global_path $HOME/bin
