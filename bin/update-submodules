@@ -74,10 +74,6 @@ dir="$HOME/dot/src/selenized"
 CMD="(cd \"$dir\"; pwd ; do_git_pull_simple)&"
 eval $CMD
 
-dir="$HOME/dot/src/kitty-gruvbox-theme"
-CMD="(cd \"$dir\"; pwd ; do_git_pull_simple)&"
-eval $CMD
-
 dir="$HOME/dot/src/tmux-gruvbox"
 CMD="(cd \"$dir\"; pwd ; do_git_pull_simple)&"
 eval $CMD
