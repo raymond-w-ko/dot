@@ -46,7 +46,7 @@ echo $BASE_SCRIPT_DIR
 
 IFS=$'\n'
 
-FIND=find
+FIND=/usr/bin/find
 if [ $(uname) == 'Darwin' ]; then
   FIND=/opt/homebrew/bin/gfind
 fi
