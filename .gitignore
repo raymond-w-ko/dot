@@ -68,3 +68,10 @@ tags
 /.emacs.d/history
 /.emacs.d/lsp-bridge/
 /.emacs.d/recentf
+
+# claude code
+/.claude/.credentials.json
+/.claude/ide/
+/.claude/projects/
+/.claude/statsig/
+/.claude/todos/
