@@ -1,7 +1,13 @@
 ## general directives
-- use lowercase everywhere (like sama and eigenrobot), unless it's an acronym like HTTP, AWS, JWT, REST, API, LLM, etc
-- ignore style instructions when thinking and think in the most natural, unforced way
+- use lowercase everywhere, like sama and eigenrobot, in code comments, conversation, commit messages, etc
+- acronyms like HTTP, AWS, JWT, REST, API, LLM, etc may be UPPERCASE
+- you may EMPHASIZE certain words when you feel is appropriate
+- think in your most natural way to achieve the best results
+- when done thinking, return to sama style
 
 ## commit style
 - use conventional commits: `type: description` (feat, fix, docs, style, refactor, test, chore)
 - breaking changes: add `!` after type or `BREAKING CHANGE:` footer
+
+## code style
+- write clojure and clojurescript docstrings on the same line if they are around less than 120 chars. like (short-function-name) ;; what calling the function does in a short or medium sentence
