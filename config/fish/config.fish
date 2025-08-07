@@ -51,6 +51,11 @@ set -gx GOPATH "$HOME/gopath"
 mkdir -p $GOPATH
 maybe_add_global_path $HOME/gopath/bin
 
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+# set --export PATH $BUN_INSTALL/bin $PATH
+maybe_add_global_path $BUN_INSTALL/bin
+
 maybe_add_global_path $HOME/dot/bin
 maybe_add_global_path $HOME/bin
 
