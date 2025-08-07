@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/dotfiles/util.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] fnl/dotfiles/util.fnl
 local fun = require("dotfiles.vendor.fun")
 local function autoload(name)
   local res = {["aniseed/autoload-enabled?"] = true, ["aniseed/autoload-module"] = false}
