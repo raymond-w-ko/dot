@@ -9,6 +9,7 @@
 - use conventional commits: `type: description` (feat, fix, docs, style, refactor, test, chore)
 - you may use conventional commit extensions like `deps: ...`
 - breaking changes: add `!` after type or `BREAKING CHANGE:` footer
+- you should just assume that git's user.name and user.email is setup correctly, and commit as if you are the current user
 
 # code style
 - write clojure and clojurescript docstrings on the same line if they are around less than 120 chars. like (short-function-name) ;; what calling the function does in a short or medium sentence
