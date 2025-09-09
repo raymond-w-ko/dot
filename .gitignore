@@ -76,3 +76,10 @@ tags
 /.claude/statsig/
 /.claude/todos/
 /.claude/shell-snapshots/
+
+# openai codex
+/.codex/log/*
+/.codex/config.toml # workspace dirs are put here so it cannot be versioned
+/.codex/*.json
+/.codex/*.jsonl
+/.codex/sessions/*
