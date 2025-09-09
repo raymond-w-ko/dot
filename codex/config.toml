@@ -2,18 +2,15 @@ model_reasoning_effort = "high"
 model_reasoning_summary = "detailed"
 file_opener = "none"
 show_raw_agent_reasoning = true
+# A more relaxed policy is workspace-write. When specified, the current working directory for the Codex task will be writable (as well as $TMPDIR on macOS). Note that the CLI defaults to using the directory where it was spawned as cwd, though this can be overridden using --cwd/-C.
+sandbox_mode = "workspace-write"
+approval_policy = "on-request"   # The model decides when to escalate
 
 [tools]
 web_search = true
 
-sandbox_mode = "workspace-write"
-approval_policy = "on-request"   # The model decides when to escalate the approval
-
 # Extra settings that only apply when `sandbox = "workspace-write"`.
 [sandbox_workspace_write]
-# Allow the command being run inside the sandbox to make outbound network
-# requests. Disabled by default.
-# Stop getting prompted when your tests running want to access the internet or when its trying to curl outside documentation.
 network_access = true
 # Permanently allow writes to global caches:
 writable_roots = [
@@ -28,5 +25,5 @@ writable_roots = [
 ]
 
 [shell_environment_policy]
-inherit = "all"                # This is the default value. Inherit all environment variables.
+inherit = "all"
 ignore_default_excludes = true # Do not ignore any environment variables by default, allows it to see shit like tokens, which if you are running tests and it needs variables you will want.
