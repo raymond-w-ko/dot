@@ -78,6 +78,7 @@ tags
 /.claude/shell-snapshots/
 
 # openai codex
+/.codex/config.toml
 /.codex/log/*
 /.codex/config.toml # workspace dirs are put here so it cannot be versioned
 /.codex/*.json
