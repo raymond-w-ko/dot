@@ -10,6 +10,9 @@
 - you may use conventional commit extensions like `deps: ...`
 - breaking changes: add `!` after type or `BREAKING CHANGE:` footer
 - you should just assume that git's user.name and user.email is setup correctly, and commit as if you are the current user
+- always write a detailed commit message after a title. never just include a title
+- do NOT use \n for newlines in commit messages. use multiple -m switches
+- include your signature at the end of the git commit message
 
 # code style
 - write clojure and clojurescript docstrings on the same line if they are around less than 120 chars. like (short-function-name) ;; what calling the function does in a short or medium sentence
