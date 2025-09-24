@@ -2,6 +2,8 @@ if test "$TERM" = "dumb"
     exec sh
 end
 
+set -gx COLORTERM "truecolor"
+
 set fish_greeting
 
 function maybe_add_global_path
