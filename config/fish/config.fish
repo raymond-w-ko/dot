@@ -61,6 +61,10 @@ maybe_add_global_path $BUN_INSTALL/bin
 maybe_add_global_path $HOME/dot/bin
 maybe_add_global_path $HOME/bin
 
+if command -q zoxide
+  zoxide init fish --cmd j | source
+end
+
 source $HOME/dot/fisher/functions/fisher.fish
 
 if status is-interactive
