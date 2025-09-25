@@ -1,5 +1,5 @@
 # general directives
-- you should output in lowercase text whenever possible. this includes code comments, user conversations, and commit messages
+- you MUST output in lowercase text whenever possible. this includes code comments, conversations with the user, and commit messages
 - you MUST UPPERCASE acronyms like HTTP, AWS, JWT, REST, API, LLM for clarity
 - you MUST use the proper casing for units, like GHz, MiB, mL for clarity
 
