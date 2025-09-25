@@ -48,7 +48,6 @@ maybe_add_global_path $HOME/nvim/bin
 maybe_add_global_path $HOME/emacs/bin
 
 maybe_add_global_path $HOME/go/bin
-
 set -gx GOPATH "$HOME/gopath"
 mkdir -p $GOPATH
 maybe_add_global_path $HOME/gopath/bin
@@ -57,6 +56,10 @@ maybe_add_global_path $HOME/gopath/bin
 set --export BUN_INSTALL "$HOME/.bun"
 # set --export PATH $BUN_INSTALL/bin $PATH
 maybe_add_global_path $BUN_INSTALL/bin
+
+# zig (for ghostty)
+maybe_add_global_path $HOME/zig-x86_64-linux-0.14.1
+maybe_add_global_path $HOME/zig-aarch64-linux-0.14.1
 
 maybe_add_global_path $HOME/dot/bin
 maybe_add_global_path $HOME/bin
