@@ -1,0 +1,11 @@
+auto-update = off
+font-family = Iosevka
+font-size = 11
+window-padding-x = 8
+window-padding-y = 8
+
+theme = Gruvbox Light
+
+gtk-titlebar = true
+window-theme = ghostty
+gtk-custom-css = ghostty.css
