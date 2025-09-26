@@ -14,4 +14,8 @@ gtk-titlebar = true
 window-theme = ghostty
 gtk-custom-css = ghostty.css
 
+bell-features=audio,attention,title
+bell-audio-path=~/bell.mp3
+bell-audio-volume=1.0
+
 keybind = shift+enter=text:\n
