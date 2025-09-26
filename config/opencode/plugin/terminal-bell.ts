@@ -6,6 +6,9 @@ export const TerminalBell: Plugin = async ({ project, client, $, directory, work
       if (event.type === "session.idle") {
         await Bun.write(Bun.stdout, "\x07")
       }
+    },
+    "permission.ask": async (input, output) => {
+      await Bun.write(Bun.stdout, "\x07")
     }
   }
 }
