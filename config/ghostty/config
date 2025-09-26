@@ -1,11 +1,17 @@
 auto-update = off
 font-family = Iosevka
 font-size = 11
+font-feature = -dlig
+
 window-padding-x = 8
 window-padding-y = 8
+window-width = 180
+window-height = 45
 
 theme = Gruvbox Light
 
 gtk-titlebar = true
 window-theme = ghostty
 gtk-custom-css = ghostty.css
+
+keybind = shift+enter=text:\n
