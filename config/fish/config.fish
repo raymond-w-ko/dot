@@ -99,6 +99,9 @@ abbr -a -- ts 'tmux new -s'
 abbr -a -- tl 'tmux list-sessions'
 abbr -a -- us 'update-submodules'
 
+abbr -a -- oc 'opencode'
+abbr -a -- cdx 'codex'
+
 abbr -a -- .. 'cd ..'
 abbr -a -- ... 'cd ../..'
 abbr -a -- .... 'cd ../../..'
