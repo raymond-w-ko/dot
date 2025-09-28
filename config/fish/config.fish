@@ -70,6 +70,10 @@ end
 
 source $HOME/dot/fisher/functions/fisher.fish
 
+if test -f $HOME/dot/config/fish/local.config.fish
+  source $HOME/dot/config/fish/local.config.fish
+end
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
     #eval (dircolors -c ~/dot/src/dircolors-solarized/dircolors.ansi-universal)

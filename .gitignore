@@ -49,6 +49,7 @@ tags
 
 # this bakes in HOME into the PATH, cannot be versioned consider Linux vs macOS
 /config/fish/fish_variables
+/config/fish/local.config.fish
 
 /config/mc/hotlist
 
