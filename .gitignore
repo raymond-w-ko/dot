@@ -62,6 +62,8 @@ tags
 
 /config/lazygit/state.yml
 
+/config/ghostty/config.local
+
 # emacs
 /.emacs.d/straight/
 /.emacs.d/eln-cache/

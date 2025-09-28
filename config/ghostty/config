@@ -1,10 +1,9 @@
 auto-update = off
 font-family = Iosevka
-font-size = 11
 font-feature = -dlig
 
-window-padding-x = 8
-window-padding-y = 8
+window-padding-x = 6
+window-padding-y = 6
 window-width = 180
 window-height = 45
 
@@ -18,4 +17,9 @@ bell-features=audio,attention,title
 bell-audio-path=~/bell.mp3
 bell-audio-volume=1.0
 
+cursor-opacity = 0.67
+cursor-style-blink = true
+
 keybind = shift+enter=text:\n
+
+config-file = config.local
