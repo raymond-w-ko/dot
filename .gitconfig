@@ -34,8 +34,10 @@
 [alias]
 	co = checkout
 	br = branch
+  ci = commit
 	cp = cherry-pick
   sw = switch
+  st = status
   undo = reset --soft HEAD^
 
 	lg = log --graph --full-history --pretty=format:"%h%x09%ar%x09%d%x20%s"
