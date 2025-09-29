@@ -21,5 +21,8 @@ cursor-opacity = 0.67
 cursor-style-blink = true
 
 keybind = shift+enter=text:\n
+keybind = performable:ctrl+c=copy_to_clipboard
+keybind = ctrl+shift+c=copy_to_clipboard
+keybind = ctrl+v=paste_from_clipboard
 
 config-file = config.local
