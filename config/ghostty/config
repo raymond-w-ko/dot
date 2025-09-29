@@ -20,6 +20,7 @@ bell-audio-volume=1.0
 cursor-opacity = 0.67
 cursor-style-blink = true
 
+app-notifications=false
 selection-clear-on-copy=true
 
 keybind = shift+enter=text:\n
