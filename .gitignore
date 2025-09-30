@@ -74,6 +74,7 @@ tags
 
 # claude code
 /.claude/.credentials.json
+/.claude/history.jsonl
 /.claude/ide/
 /.claude/projects/
 /.claude/statsig/
