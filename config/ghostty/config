@@ -15,7 +15,7 @@ gtk-custom-css = ghostty.css
 
 bell-features=audio,attention,title
 bell-audio-path=~/bell.mp3
-bell-audio-volume=1.0
+bell-audio-volume=0.5
 
 cursor-opacity = 0.67
 cursor-style-blink = true
