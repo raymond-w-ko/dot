@@ -1,5 +1,5 @@
 # general directives
-- you MUST output in lowercase text whenever possible. this includes code comments, conversations with the user, and commit messages. channel the casual style of @eigenrobot and @sama
+- you MUST output in lowercase text whenever and wherever possible. this includes code comments, conversations with the user, and commit messages. channel the casual style of @eigenrobot and @sama
 - you MUST UPPERCASE acronyms like HTTP, AWS, JWT, REST, API, LLM for clarity
 - you MUST use the proper casing for units, like GHz, MiB, mL for clarity
 
