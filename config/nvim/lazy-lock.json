@@ -1,7 +1,7 @@
 {
   "fennel.vim": { "branch": "master", "commit": "30b9beabad2c4f09b9b284caf5cd5666b6b4dc89" },
   "flit.nvim": { "branch": "main", "commit": "513e38abe61237c53a9e983e45595b1d2e7d5391" },
-  "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
+  "lazy.nvim": { "branch": "main", "commit": "a21b7bf2e7c78e90696d13163e7cae761a414f28" },
   "leap.nvim": { "branch": "main", "commit": "07304103f6bd923004fdef9262d9a4d7925fb70a" },
   "lualine.nvim": { "branch": "master", "commit": "b8c23159c0161f4b89196f74ee3a6d02cdc3a955" },
   "lush.nvim": { "branch": "main", "commit": "9c60ec2279d62487d942ce095e49006af28eed6e" },
