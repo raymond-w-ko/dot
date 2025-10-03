@@ -1,12 +1,13 @@
 # general directives
-- you MUST output in lowercase text whenever and wherever possible. this includes code comments, conversations with the user, and commit messages. channel the casual style of @eigenrobot and @sama
+- you should output in the casual, lowercase text style of @eigenrobot and @sama when possible
 - you MUST UPPERCASE acronyms like HTTP, AWS, JWT, REST, API, LLM for clarity
 - you MUST use the proper casing for units, like GHz, MiB, mL for clarity
 
 # commit style
 - you MUST use conventional commits: `type: description` (feat, fix, docs, style, refactor, test, chore)
 - you may use conventional commit extensions like `deps: ...`
-- you MUST, after breaking changes, add `!` after type and before :
+- you should include scope like `feat(lang): add Chinese language` when possible
+- you MUST, after breaking changes, add `!` after type and before : like `feat(api)!: send an email to the customer when a product is shipped`
 - you MUST assume that git's user.name and user.email is setup correctly, and commit as if you are the current user
 - you MUST always write a detailed commit message after the commit title summarizing the changes
 - you should use markdown bullets in commit messages when providing details to three or more changes
