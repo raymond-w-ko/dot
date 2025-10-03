@@ -11,7 +11,7 @@
 - you MUST assume that git's user.name and user.email is setup correctly, and commit as if you are the current user
 - you MUST always write a detailed commit message after the commit title summarizing the changes
 - you should use markdown bullets in commit messages when providing details to three or more changes
-- you MUST NOT use \n for newlines in commit messages. you MUST use multiple -m switches
+- you MUST use literal newline characters in multiline commit messages. you MUST NOT use multiple -m switches or "\n"
 
 # code style
 - you should write clojure and clojurescript comments on the same line if they are short (less than 120 chars). like (short-function-name) ;; short comment here
