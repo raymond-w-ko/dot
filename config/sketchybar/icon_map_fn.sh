@@ -153,7 +153,7 @@ function icon_map() {
   "Final Cut Pro")
     icon_result=":final_cut_pro:"
     ;;
-  "Chromium" | "Google Chrome" | "Google Chrome Canary")
+  "Chromium" | "Google Chrome" | "Google Chrome Canary" | "Helium")
     icon_result=":google_chrome:"
     ;;
   "GitHub Desktop")
