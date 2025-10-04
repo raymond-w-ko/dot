@@ -87,6 +87,19 @@ sketchybar --add item battery right \
                   background.color=0x00000000 \
                   script="$CONFIG_DIR/scripts/battery.sh" \
            --subscribe battery system_woke power_source_change
+                  
+# Volume
+sketchybar --add item volume right \
+           --set volume background.color=0x00000000 \
+                        script="$CONFIG_DIR/scripts/volume.sh" \
+           --subscribe volume volume_change
+
+# Memory
+sketchybar --add item memory right \
+           --set memory update_freq=2 \
+                  icon=􀫦 \
+                  background.color=0x00000000 \
+                  script="$CONFIG_DIR/scripts/memory.sh"
 
 # CPU
 sketchybar --add item cpu right \
@@ -94,12 +107,6 @@ sketchybar --add item cpu right \
                   icon=􀧓 \
                   background.color=0x00000000 \
                   script="$CONFIG_DIR/scripts/cpu.sh"
-                  
-# Volume
-sketchybar --add item volume right \
-           --set volume background.color=0x00000000 \
-                       script="$CONFIG_DIR/scripts/volume.sh" \
-           --subscribe volume volume_change
 
 # Force all scripts to run the first time
 sketchybar --update
