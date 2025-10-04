@@ -6,8 +6,8 @@ source "$CONFIG_DIR/colors.sh"
 sketchybar --bar position=top \
            height=32 \
            blur_radius=40 \
-           y_offset=4 \
-           margin=8 \
+           y_offset=2 \
+           margin=4 \
            corner_radius=12 \
            padding_left=0 \
            padding_right=0 \
@@ -94,19 +94,26 @@ sketchybar --add item volume right \
                         script="$CONFIG_DIR/scripts/volume.sh" \
            --subscribe volume volume_change
 
+# Disk
+sketchybar --add item disk right \
+           --set disk update_freq=60 \
+                  icon=􀨪 \
+                  background.color=0x00000000 \
+                  script="$CONFIG_DIR/scripts/disk.sh"
+
 # Memory
 sketchybar --add item memory right \
-           --set memory update_freq=2 \
+           --set memory update_freq=60 \
                   icon=􀫦 \
                   background.color=0x00000000 \
                   script="$CONFIG_DIR/scripts/memory.sh"
 
-# CPU
-sketchybar --add item cpu right \
-           --set cpu update_freq=2 \
-                  icon=􀧓 \
-                  background.color=0x00000000 \
-                  script="$CONFIG_DIR/scripts/cpu.sh"
+# # CPU
+# sketchybar --add item cpu right \
+#            --set cpu update_freq=60 \
+#                   icon=􀧓 \
+#                   background.color=0x00000000 \
+#                   script="$CONFIG_DIR/scripts/cpu.sh"
 
 # Force all scripts to run the first time
 sketchybar --update
