@@ -6,11 +6,11 @@ source "$CONFIG_DIR/colors.sh"
 sketchybar --bar position=top \
            height=32 \
            blur_radius=40 \
-           y_offset=0 \
-           margin=0 \
+           y_offset=4 \
+           margin=12 \
            corner_radius=12 \
            padding_left=0 \
-           padding_right= \
+           padding_right=0 \
            color=0x20000000 \
            border_color=0x20FFFFFF \
            border_width=1 \
