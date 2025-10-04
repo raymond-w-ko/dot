@@ -16,7 +16,7 @@ else
 fi
 
 # Load all icons on startup
-for sid in $(aerospace list-workspaces --all); do
+for sid in "Y U I O P B N M"; do
   apps=$(aerospace list-windows --workspace "$sid" | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}')
 
   if [ "${apps}" != "" ]; then
