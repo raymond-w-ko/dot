@@ -19,7 +19,11 @@ fi
 for sid in $(aerospace list-workspaces --all); do
   apps=$(aerospace list-windows --workspace "$sid" | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}')
 
-  sketchybar --set space.$sid drawing=on
+  if [ "${apps}" != "" ]; then
+    sketchybar --set space.$sid drawing=on
+  else
+    sketchybar --set space.$sid drawing=off
+  fi
 
   icon_strip=" "
   if [ "${apps}" != "" ]; then
