@@ -1,7 +1,7 @@
 # You can use it to add commands that run after AeroSpace startup.
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
-    'exec-and-forget sketchybar',
+    'exec-and-forget /opt/homebrew/bin/sketchybar',
 ]
 
 # Notify Sketchybar about workspace change
