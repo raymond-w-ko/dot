@@ -1,5 +1,5 @@
 auto-update = off
-font-family = Iosevka Term Medium
+font-family = Iosevka Term
 font-feature = -dlig
 
 window-padding-x = 6
@@ -7,7 +7,7 @@ window-padding-y = 6
 window-width = 180
 window-height = 45
 
-theme = Gruvbox Light
+theme = Selenized Dark
 
 gtk-titlebar = true
 window-theme = ghostty
