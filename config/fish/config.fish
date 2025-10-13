@@ -68,6 +68,7 @@ maybe_add_global_path $HOME/bin
 
 if command -q zoxide
   zoxide init fish --cmd j | source
+  abbr -a -- cd '__zoxide_z'
 end
 
 source $HOME/dot/fisher/functions/fisher.fish
