@@ -69,6 +69,9 @@ maybe_add_global_path $HOME/bin
 if command -q zoxide
   zoxide init fish --cmd j | source
   abbr -a -- cd '__zoxide_z'
+  set CD '__zoxide_z'
+else
+  set CD 'cd'
 end
 
 source $HOME/dot/fisher/functions/fisher.fish
@@ -96,7 +99,7 @@ abbr -a -- gf 'git fetch'
 abbr -a -- gfa 'git fetch --all'
 
 abbr -a -- c 'z'
-abbr -a -- dot 'cd ~/dot'
+abbr -a -- dot "$CD ~/dot"
 abbr -a -- y 'yay'
 abbr -a -- adu 'sudo apt update && sudo apt dist-upgrade'
 abbr -a -- afu 'sudo apt update && sudo apt full-upgrade'
@@ -110,9 +113,9 @@ abbr -a -- oc 'opencode'
 abbr -a -- occ 'opencode -c'
 abbr -a -- cdx 'codex'
 
-abbr -a -- .. 'cd ..'
-abbr -a -- ... 'cd ../..'
-abbr -a -- .... 'cd ../../..'
+abbr -a -- .. "$CD .."
+abbr -a -- ... "$CD ../.."
+abbr -a -- .... "$CD ../../.."
 
 if command -q eza
   abbr -a -- l 'eza -l'
