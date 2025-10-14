@@ -4,5 +4,40 @@
   "theme": "selenized-dark",
   "tui": {
     "scroll_speed": 3
-  }
+  },
+  "provider": {
+    "opencode": {
+      "models": {
+        "gpt-5-high": {
+          "id": "gpt-5",
+          "options": {
+            "reasoningEffort": "high",
+            "textVerbosity": "low",
+            "reasoningSummary": "auto",
+          },
+        },
+        "gpt-5-low": {
+          "id": "gpt-5",
+          "options": {
+            "reasoningEffort": "low",
+            "textVerbosity": "low",
+            "reasoningSummary": "auto",
+          },
+        },
+      },
+    },
+    "anthropic": {
+      "models": {
+        "sonnet-4-5-thinker": {
+          "id": "claude-sonnet-4-5-20250929",
+          "options": {
+            "thinking": {
+              "type": "enabled",
+              "budgetTokens": 16000,
+            },
+          },
+        },
+      },
+    },
+  },
 }
