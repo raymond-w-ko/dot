@@ -21,7 +21,7 @@
 
  (uu.tx :nvim-telescope/telescope.nvim
         {:dependencies [:nvim-lua/plenary.nvim]
-         :keys [["<leader>ff" "<cmd>Telescope find_files<cr>"]]
+         :keys [["<C-p>" "<cmd>Telescope find_files<cr>"]]
          :tag "0.1.8"})
  
  (uu.tx :ggandor/leap.nvim
