@@ -60,8 +60,8 @@ maybe_add_global_path $BUN_INSTALL/bin
 # zig (for ghostty)
 maybe_add_global_path $HOME/zig-x86_64-linux-0.14.1
 maybe_add_global_path $HOME/zig-aarch64-linux-0.14.1
-maybe_add_global_path $HOME/zig-x86_64-linux-0.15.1
-maybe_add_global_path $HOME/zig-aarch64-linux-0.15.1
+maybe_add_global_path $HOME/zig-x86_64-linux-0.15.2
+maybe_add_global_path $HOME/zig-aarch64-linux-0.15.2
 
 maybe_add_global_path $HOME/dot/bin
 maybe_add_global_path $HOME/bin
