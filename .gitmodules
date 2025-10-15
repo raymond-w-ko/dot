@@ -22,3 +22,6 @@
 [submodule "fisher"]
 	path = fisher
 	url = https://github.com/jorgebucaran/fisher.git
+[submodule ".tmux/plugins/catppuccin"]
+	path = .tmux/plugins/catppuccin
+	url = https://github.com/catppuccin/tmux.git
