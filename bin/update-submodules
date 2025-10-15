@@ -4,86 +4,103 @@ DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 set -e
 
-do_git_pull ()
+COLOR_DIR="\033[1;36m"
+COLOR_BRANCH="\033[1;32m"
+COLOR_RESET="\033[0m"
+
+update_path ()
 {
-    if [ -e .git ]; then
-        has_develop=`git branch | grep develop | wc -l`
-        if [ "$has_develop" -gt 0 ]; then
-            CMD="git checkout develop"
-            echo $CMD
-            $CMD
-        else
-            CMD="git checkout master"
-            echo $CMD
-            $CMD
+    local target="$1"
+
+    if [ ! -d "$target" ]; then
+        return
+    fi
+
+    pushd "$target" >/dev/null
+    update_repo
+    popd >/dev/null
+}
+
+choose_branch ()
+{
+    local branch
+    for branch in main master develop; do
+        if git show-ref --verify --quiet "refs/heads/$branch"; then
+            echo "$branch"
+            return 0
         fi
 
-        has_upstream=`git remote -v | grep -v ^origin | wc -l`
-        if [ "$has_upstream" -gt 0 ]; then
-            CMD="git pull"
-            echo $CMD
-            $CMD
-            CMD="git pull upstream master"
-            echo $CMD
-            $CMD
-        else
-            CMD="git pull"
-            echo $CMD
-            $CMD
+        if git show-ref --verify --quiet "refs/remotes/origin/$branch"; then
+            echo "$branch"
+            return 0
         fi
+    done
+
+    branch=$(git symbolic-ref --short HEAD 2>/dev/null || true)
+    if [ -n "$branch" ] && [ "$branch" != "HEAD" ]; then
+        echo "$branch"
+        return 0
     fi
+
+    branch=$(git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null || true)
+    if [ -n "$branch" ]; then
+        echo "$branch"
+        return 0
+    fi
+
+    return 1
 }
 
-do_git_pull_simple ()
+checkout_branch ()
 {
-    if [ -e .git ]; then
-        git checkout master
-        git pull
+    local branch="$1"
+
+    if git show-ref --verify --quiet "refs/heads/$branch"; then
+        git checkout "$branch"
+        return 0
     fi
+
+    if git show-ref --verify --quiet "refs/remotes/origin/$branch"; then
+        git checkout -B "$branch" "origin/$branch"
+        return 0
+    fi
+
+    echo "Unable to find branch $branch" >&2
+    return 1
 }
 
-do_git_pull_simple_main ()
+update_repo ()
 {
-    if [ -e .git ]; then
-        git checkout main
-        git pull
+    if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+        return
+    fi
+
+    local branch repo_dir
+
+    branch=$(choose_branch) || return
+    repo_dir=$(pwd)
+
+    printf "%b%s%b %b%s%b\n" "$COLOR_DIR" "$repo_dir" "$COLOR_RESET" "$COLOR_BRANCH" "$branch" "$COLOR_RESET"
+
+    checkout_branch "$branch"
+    git pull
+
+    if git remote | grep -qx upstream; then
+        git pull upstream "$branch"
     fi
 }
 
-cd "$DIR/../.tmux/plugins/"
-pwd
-for dir in * ; do
-    test -d "$dir" || continue
-    CMD="(cd \"$dir\"; pwd ; do_git_pull_simple)&"
-    eval $CMD
-done
+plugins_dir="$DIR/../.tmux/plugins"
+if [ -d "$plugins_dir" ]; then
+    for dir in "$plugins_dir"/*; do
+        [ -d "$dir" ] || continue
+        update_path "$dir"
+    done
+fi
 
-dir="$HOME/dot/fisher/"
-CMD="(cd \"$dir\"; pwd ; do_git_pull_simple_main)&"
-eval $CMD
-
-dir="$HOME/dot/src/bash-z"
-CMD="(cd \"$dir\"; pwd ; do_git_pull_simple)&"
-eval $CMD
-
-dir="$HOME/dot/src/dircolors-solarized"
-CMD="(cd \"$dir\"; pwd ; do_git_pull_simple)&"
-eval $CMD
-
-dir="$HOME/dot/src/selenized"
-CMD="(cd \"$dir\"; pwd ; do_git_pull_simple)&"
-eval $CMD
-
-dir="$HOME/dot/src/tmux-gruvbox"
-CMD="(cd \"$dir\"; pwd ; do_git_pull_simple)&"
-eval $CMD
-
-dir="$HOME/dot/src/dtach"
-CMD="(cd \"$dir\"; pwd ; do_git_pull_simple)&"
-eval $CMD
-
-set +e
-for job in `jobs -p`
-do
-    wait $job
-done
+update_path "$HOME/dot/fisher/"
+update_path "$HOME/dot/src/bash-z"
+update_path "$HOME/dot/src/dircolors-solarized"
+update_path "$HOME/dot/src/selenized"
+update_path "$HOME/dot/src/tmux-gruvbox"
+update_path "$HOME/dot/src/dtach"
