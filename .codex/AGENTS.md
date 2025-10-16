@@ -15,8 +15,8 @@
 - You should include scope like `feat(lang): add Chinese language` when possible
 - You MUST, after breaking changes, add `!` after type and before : like `feat(api)!: send an email to the customer when a product is shipped`
 - You MUST always write a detailed commit message after the commit title summarizing the changes
-- Never use escaped newline sequences like `\n` in commit bodies or documentation—escaped characters are not processed correctly, so always insert literal newlines instead
-- You should use markdown bullets in commit messages when providing details to three or more changes. Bullets must be appended using literal newline characters like:
+- Never use escaped newline sequences like `\n` in commit bodies or documentation—escaped characters are not processed correctly, so always insert real newlines instead
+- You should use markdown bullets in commit messages when providing details to three or more changes. Bullets must be appended using real newline characters and the commit should use no more than two `-m` switches, like:
 ```
 git commit -m "feat(scope): title" -m "- bullet 1
 - bullet 2
