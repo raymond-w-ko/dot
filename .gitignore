@@ -66,6 +66,7 @@ tags
 /config/ghostty/config
 /config/ghostty/config.local
 /config/ghostty/config.local.ghostty
+/config/ghostty/local.config.ghostty
 
 # emacs
 /.emacs.d/straight/

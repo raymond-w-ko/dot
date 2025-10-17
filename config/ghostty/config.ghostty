@@ -16,11 +16,12 @@ bell-audio-path=~/bell.mp3
 bell-audio-volume=1.0
 
 cursor-opacity = 1.0
-cursor-style = block
+cursor-style = underline
 cursor-style-blink = true
-cursor-color = #000000
-cursor-text = #00ff00
+cursor-color = #00ff00
+cursor-text = #000000
 
+shell-integration-features=no-cursor
 app-notifications=false
 selection-clear-on-copy=true
 
@@ -29,4 +30,4 @@ keybind = performable:ctrl+c=copy_to_clipboard
 keybind = ctrl+shift+c=copy_to_clipboard
 keybind = ctrl+v=paste_from_clipboard
 
-config-file = config.local.ghostty
+config-file = local.config.ghostty
