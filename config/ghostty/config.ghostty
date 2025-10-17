@@ -15,8 +15,11 @@ bell-features=audio,attention,title
 bell-audio-path=~/bell.mp3
 bell-audio-volume=1.0
 
-cursor-opacity = 0.67
+cursor-opacity = 1.0
+cursor-style = block
 cursor-style-blink = true
+cursor-color = #000000
+cursor-text = #00ff00
 
 app-notifications=false
 selection-clear-on-copy=true
