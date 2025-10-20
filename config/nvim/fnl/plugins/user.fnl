@@ -9,7 +9,7 @@
         {:dependencies [:rktjmp/lush.nvim]
          :config (fn []
                    (tset _G.vim.g :selenized_variant "normal")
-                   (tset _G.vim.o :background "dark")
+                   (tset _G.vim.o :background "light")
                    (vim.cmd "colorscheme selenized"))})
 
  ;; does not work by default for Lisp languages

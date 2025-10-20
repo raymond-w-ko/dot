@@ -2,7 +2,7 @@
 local uu = require("dotfiles.util")
 local function _1_()
   _G.vim.g["selenized_variant"] = "normal"
-  _G.vim.o["background"] = "dark"
+  _G.vim.o["background"] = "light"
   return vim.cmd("colorscheme selenized")
 end
 local function _2_()

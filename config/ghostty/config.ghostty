@@ -5,7 +5,7 @@ window-padding-y = 6
 window-width = 180
 window-height = 45
 
-theme = Selenized Dark
+theme = Selenized Light
 
 gtk-titlebar = true
 window-theme = ghostty
@@ -26,8 +26,5 @@ app-notifications=false
 selection-clear-on-copy=true
 
 keybind = shift+enter=text:\n
-keybind = performable:ctrl+c=copy_to_clipboard
-keybind = ctrl+shift+c=copy_to_clipboard
-keybind = ctrl+v=paste_from_clipboard
 
 config-file = local.config.ghostty
