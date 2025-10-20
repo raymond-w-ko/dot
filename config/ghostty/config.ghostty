@@ -8,7 +8,7 @@ window-height = 45
 theme = Selenized Light
 
 gtk-titlebar = true
-window-theme = ghostty
+window-theme = auto
 gtk-custom-css = ghostty.css
 
 bell-features=audio,attention,title
@@ -16,7 +16,7 @@ bell-audio-path=~/bell.mp3
 bell-audio-volume=1.0
 
 cursor-opacity = 1.0
-cursor-style = bar
+cursor-style = block
 cursor-style-blink = false
 cursor-color = #00ff00
 cursor-text = #000000
