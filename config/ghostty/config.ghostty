@@ -16,8 +16,8 @@ bell-audio-path=~/bell.mp3
 bell-audio-volume=1.0
 
 cursor-opacity = 1.0
-cursor-style = underline
-cursor-style-blink = true
+cursor-style = bar
+cursor-style-blink = false
 cursor-color = #00ff00
 cursor-text = #000000
 
