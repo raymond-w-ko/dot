@@ -26,16 +26,10 @@
  
  (uu.tx :ggandor/leap.nvim
         {:dependencies [:tpope/vim-repeat]
-         :config (fn []
-                   (local leap (require "leap"))
-                   (leap.create_default_mappings))})
+         :keys [{1 "s" 2 "<Plug>(leap-forward)" :mode ["n" "x" "o"]}
+                {1 "S" 2 "<Plug>(leap-backward)" :mode ["n" "x" "o"]}
+                {1 "gs" 2 "<Plug>(leap-from-window)" :mode "n"}]})
  
- (uu.tx :ggandor/flit.nvim
-        {:dependencies [:ggandor/leap.nvim]
-         :config (fn []
-                   (local flit (require "flit"))
-                   (flit.setup))})
-
  (uu.tx :nvim-lualine/lualine.nvim
         {:dependencies [:loganswartz/selenized.nvim
                         :nvim-tree/nvim-web-devicons]
