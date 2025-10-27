@@ -11,13 +11,13 @@
 )
 
 (defalias
-  l_shorcuts  (layer-toggle shortcuts)
-  l_sys1      (layer-toggle qwerty)
-  l_sys2      (layer-toggle qwerty)
-  l_num       (layer-toggle qwerty)
+  l_cmd  (layer-toggle cmd)
+  l_sys1 (layer-toggle sys1)
+  l_sys2 (layer-toggle sys2)
+  l_num  (layer-toggle num)
 
-  f (tap-hold $tap-time $hold-time      f @l_shorcuts)
-  j (tap-hold $tap-time $hold-time      j @l_shorcuts)
+  f (tap-hold $tap-time $hold-time      f @l_cmd)
+  j (tap-hold $tap-time $hold-time      j @l_cmd)
   d (tap-hold $tap-time $hold-time      d @l_sys1)
   k (tap-hold $tap-time $hold-time      k @l_sys1)
   s (tap-hold $tap-time $hold-time      s @l_sys2)
@@ -44,8 +44,6 @@
 )
 
 (deflayer qwerty
-  ;; everything is exactly the same, only the f-row is changed.
-  ;; you can of course change any of the other mappings.
   esc  🔅   🔆   ✗    ✗    ✗    lrld ◀◀   ▶⏸   ▶▶   🔇   🔉   🔊
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    @w   @e   @r   t    y    @u   @i   @o   p    [    ]    \
@@ -54,13 +52,47 @@
   fn   lctl lalt lmet           spc       rmet ralt ▲    ▼    ◀    ▶
 )
 
-(deflayer shortcuts
-  ;; everything is exactly the same, only the f-row is changed.
-  ;; you can of course change any of the other mappings.
+(deflayer cmd
   esc  🔅   🔆   ✗    ✗    ✗    lrld ◀◀   ▶⏸   ▶▶   🔇   🔉   🔊
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  ✗    ✗    ✗    ✗    ✗    ✗    ✗    ▲    bspc ✗    [    ]    \
+  tab  ✗    ✗    ✗    ✗    ✗    ✗    M-c  ▲    bspc M-v  [    ]    \
   ✗    ✗    ✗    ✗    ✗    ✗    ✗    ◀    ▼    ▶    ret  '         ret
+  lsft ✗    ✗    ✗    ✗    ✗    ✗    ✗    ✗    ✗    ✗              rsft
+  fn   lctl lalt lmet           spc       rmet ralt ▲    ▼    ◀    ▶
+)
+
+(deflayer sys1
+  esc  🔅   🔆   ✗    ✗    ✗    lrld ◀◀   ▶⏸   ▶▶   🔇   🔉   🔊
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  ✗    ✗    ✗    ✗    ✗    ✗    ✗    ✗    ✗    ✗    [    ]    \
+  ✗    S-1  S-2  S-3  S-4  S-5  S-6  S-7  S-8  S-9  S-0  '         ret
+  lsft ✗    ✗    ✗    ✗    ✗    ✗    ✗    ✗    [    ]              rsft
+  fn   lctl lalt lmet           spc       rmet ralt ▲    ▼    ◀    ▶
+)
+
+(deflayer sys2
+  esc  🔅   🔆   ✗    ✗    ✗    lrld ◀◀   ▶⏸   ▶▶   🔇   🔉   🔊
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  ✗    ✗    ✗    ✗    ✗    ✗    ✗    ✗    ✗    ✗    [    ]    \
+  ✗    ✗    ✗    ✗    ✗    ✗    ✗    ✗    ✗    ✗    ✗    '         ret
+  lsft ✗    ✗    ✗    ✗    ✗    ✗    ✗    ✗    ✗    ✗              rsft
+  fn   lctl lalt lmet           spc       rmet ralt ▲    ▼    ◀    ▶
+)
+
+(deflayer num
+  esc  🔅   🔆   ✗    ✗    ✗    lrld ◀◀   ▶⏸   ▶▶   🔇   🔉   🔊
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  ✗    ✗    ✗    ✗    ✗    ✗    7    8    9    0    [    ]    \
+  ✗    ✗    ✗    ✗    ✗    ✗    ✗    4    5    6    .    '         ret
+  lsft ✗    ✗    ✗    ✗    ✗    ✗    1    2    3    ✗              rsft
+  fn   lctl lalt lmet           spc       rmet ralt ▲    ▼    ◀    ▶
+)
+
+(deflayer nop
+  esc  🔅   🔆   ✗    ✗    ✗    lrld ◀◀   ▶⏸   ▶▶   🔇   🔉   🔊
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  ✗    ✗    ✗    ✗    ✗    ✗    ✗    ✗    ✗    ✗    [    ]    \
+  ✗    ✗    ✗    ✗    ✗    ✗    ✗    ✗    ✗    ✗    ✗    '         ret
   lsft ✗    ✗    ✗    ✗    ✗    ✗    ✗    ✗    ✗    ✗              rsft
   fn   lctl lalt lmet           spc       rmet ralt ▲    ▼    ◀    ▶
 )
