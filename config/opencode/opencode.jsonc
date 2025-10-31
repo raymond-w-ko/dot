@@ -29,7 +29,7 @@
     "anthropic": {
       "models": {
         "sonnet-4-5-thinker": {
-          "id": "claude-sonnet-4-5-20250929",
+          "id": "claude-sonnet-4-5",
           "options": {
             "thinking": {
               "type": "enabled",
