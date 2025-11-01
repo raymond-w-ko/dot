@@ -1,0 +1,45 @@
+(defcfg 
+process-unmapped-keys no )
+
+(defvar 
+tap-time 200 hold-time 200 hold-time-slow 300 )
+
+(defalias 
+l_cmd (layer-toggle cmd )
+l_sys1 (layer-toggle sys1 )
+l_sys2 (layer-toggle sys2 )
+l_num (layer-toggle num )
+f (tap-hold $tap-time $hold-time f @l_cmd )
+j (tap-hold $tap-time $hold-time j @l_cmd )
+d (tap-hold $tap-time $hold-time d @l_sys1 )
+k (tap-hold $tap-time $hold-time k @l_sys1 )
+s (tap-hold $tap-time $hold-time s @l_sys2 )
+l (tap-hold $tap-time $hold-time l @l_sys2 )
+a (tap-hold $tap-time $hold-time-slow a @l_num )
+scln (tap-hold $tap-time $hold-time-slow scln @l_num )
+w (tap-hold $tap-time $hold-time-slow w lctl )
+e (tap-hold $tap-time $hold-time e lalt )
+r (tap-hold $tap-time $hold-time r lmet )
+o (tap-hold $tap-time $hold-time-slow o lctl )
+i (tap-hold $tap-time $hold-time i lalt )
+u (tap-hold $tap-time $hold-time u lmet )
+)
+
+(defsrc 
+f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12 tab q w e r t y u i o p lbrc rbrc bksl grv 1 2 3 4 5 6 7 8 9 0 - = bspc caps a s d f g h j k l scln apos ret lsft z x c v b n m comm . / rsft lctl lalt lmet spc rmet ralt up down left right )
+
+(deflayer 
+base f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12 tab q @w @e @r t y @u @i @o p lbrc rbrc bksl grv 1 2 3 4 5 6 7 8 9 0 - = bspc caps @a @s @d @f g h @j @k @l @scln apos ret lsft z x c v b n m comm . / rsft lctl lalt lmet spc rmet ralt up down left right )
+
+(deflayer 
+cmd • • • • • • • • • • • • • • • • • • • • up • • • • • • • • • • • • • • • • • • • • • • • • • • left down right • • • • • • • • • • • • • • • • • • • • • • • • • )
+
+(deflayer 
+sys1 • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • )
+
+(deflayer 
+sys2 • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • )
+
+(deflayer 
+num • • • • • • • • • • • • • • • • • • • 7 8 9 0 • • • • • • • • • • • • • • • • • • • • • • • • 4 5 6 kp. • • • • • • • • • 1 2 3 • • • • • • • • • • • • )
+
