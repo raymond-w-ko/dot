@@ -14,7 +14,7 @@ export const NotificationPlugin: Plugin = async () => ({
 
 function ding(message: string) {
   return Promise.all([
-    Bun.$`notify-send -t 5000 'opencode' '${message}'`,
+    // Bun.$`notify-send -t 5000 'opencode' '${message}'`,
     Bun.write(Bun.stdout, "\x07"),
   ]);
 }
