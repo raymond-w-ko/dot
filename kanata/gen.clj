@@ -9,17 +9,42 @@
   (cond
     (keyword? x) x
     (number? x) (keyword (str x))
+    (symbol? x) (let [ns* (namespace x)]
+                  (if (not= ns* "at")
+                    (keyword (name x))
+                    (keyword x)))
     :else (keyword x)))
 
-(defmacro ->hash [xs]
+(defmacro ->hash [xs]  
   `(->> ~xs
         (map safe-keyword)
         (partition-all 2)
         (map vec)
         (into {})))
 
+(defmacro tap-hold*
+  ([alias-name hold-time x y]
+   (let [hold-time* (keyword (case hold-time
+                               :normal '$hold-time
+                               :slow '$hold-time-slow))]
+     `[~alias-name (list :tap-hold :$tap-time ~hold-time* ~x ~y)]))
+  ([hold-time x y]
+   (let [hold-time* (keyword (case hold-time
+                               :normal '$hold-time
+                               :slow '$hold-time-slow))]
+     `[~x (list :tap-hold :$tap-time ~hold-time* ~x ~y)])))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (defn ->symbols [xs]
   (mapv safe-keyword xs))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(def *env (atom nil))
+(defn is-laptop? []
+  (assert @*env)
+  (str/includes? @*env "laptop"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -35,6 +60,81 @@
                lsft z x c v b n m comm . / rsft
                fn lctl lalt lmet spc rmet ralt up down left right]))
 
+(defn copy []
+  (cond
+    (str/starts-with? @*env "macos.") :M-c
+    (str/starts-with? @*env "windows.") :C-c
+    :else nop))
+
+(defn paste []
+  (cond
+    (str/starts-with? @*env "macos.") :M-v
+    (str/starts-with? @*env "windows.") :C-v
+    :else nop))
+
+(defn screenshot-area []
+  (cond
+    (str/starts-with? @*env "macos.") :C-M-S-4
+    (str/starts-with? @*env "windows.") :M-S-s
+    :else nop))
+
+(defn next-tab [] :C-tab)
+(defn previous-tab [] :C-S-tab)
+
+(defn outdent-line []
+  (cond
+    (str/starts-with? @*env "macos.") :M-lbrc
+    (str/starts-with? @*env "windows.") :C-lbrc
+    :else nop))
+
+(defn indent-line []
+  (cond
+    (str/starts-with? @*env "macos.") :M-rbrc
+    (str/starts-with? @*env "windows.") :C-rbrc
+    :else nop))
+
+(defn cycle-app-windows []
+  (cond
+    (str/starts-with? @*env "macos.") :M-grv
+    (str/starts-with? @*env "windows.") :M-grv ;; there is no equivalent for M-grv on Windows
+    :else nop))
+
+(defn start-of-paragraph [] :A-lbrc)
+(defn end-of-paragraph [] :A-rbrc)
+(defn select-to-start-of-paragraph [] :A-S-lbrc)
+(defn select-to-end-of-paragraph [] :A-S-rbrc)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn gen-aliases-data []
+  (assert @*env)
+  `[:l_shortcut (layer-toggle shortcut)
+    :l_sym1 (layer-toggle sym1)
+    :l_misc (layer-toggle misc)
+    :l_num (layer-toggle num)
+
+    ~@(tap-hold* :normal :f :at/l_shortcut)
+    ~@(tap-hold* :normal :j :at/l_shortcut)
+    ~@(tap-hold* :normal :d :at/l_sym1)
+    ~@(tap-hold* :normal :k :at/l_sym1)
+    ~@(tap-hold* :normal :s :at/l_misc)
+    ~@(tap-hold* :normal :l :at/l_misc)
+    ~@(tap-hold* :slow :a :at/l_num)
+    ~@(tap-hold* :slow :scln :at/l_num)
+
+    ~@(tap-hold* :slow :w :lctl)
+    ~@(tap-hold* :normal :e :lalt)
+    ~@(tap-hold* :normal :r :lmet)
+
+    ~@(tap-hold* :slow :o :lctl)
+    ~@(tap-hold* :normal :i :lalt)
+    ~@(tap-hold* :normal :u :lmet)
+    
+    ~@(tap-hold* :d_h :normal :del :home)
+    ~@(tap-hold* :p_e :normal (outdent-line) :end)])
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (def fn-to-action-keys
   (->hash '[f1 brup f2 brdown
             f7 prev f8 pp f9 next
@@ -43,19 +143,66 @@
 (def qwerty-to-base-layer
   (->hash '[w :at/w e :at/e r :at/r
             u :at/u o :at/o i :at/i
-            
+
             a :at/a s :at/s d :at/d f :at/f
             j :at/j k :at/k l :at/l scln :at/scln]))
 
-(def qwerty-to-cmd-layer
-  (->hash '[i up
+(defn gen-qwerty-to-shortcut-layer []
+  (->hash `[i up
             j left
             k down
             l right
-            
-            scln ret
             o bspc
-            q tab]))
+            scln ret
+
+            u ~(copy)
+            p ~(paste)
+
+            q tab
+            w esc
+            e ~(previous-tab)
+            r ~(next-tab)
+            a ~(cycle-app-windows)
+            s :at/d_h
+            d :at/p_e
+            f ~(indent-line)
+            g ~(screenshot-area)]))
+
+(defn gen-qwerty-to-misc-layer []
+  (->hash `[e ~(end-of-paragraph)
+            r ~(select-to-end-of-paragraph)
+            d ~(start-of-paragraph)
+            f ~(select-to-start-of-paragraph)
+            v ~(copy)
+            t ~(paste)]))
+
+(def qwerty-to-symbol-layer
+  (->hash '[q S-1 ;; !
+            w XX  ;; TODO
+            e S-3 ;; #
+            r S-4 ;; $
+            t S-5 ;; %
+            y S-6 ;; ^
+            u S-7 ;; &
+            i S-8 ;; *
+            o S-9 ;; (
+            p S-0 ;; )
+            a grv ;; `
+            s S-2 ;; @
+            d -   ;; -
+            f bksl    ;; \
+            g S-bksl  ;; |
+            ;; h
+            j S-scln  ;; :
+            k scln    ;; ;
+            l lbrc    ;; [
+            scln rbrc ;; ]
+
+            m S-=    ;; +
+            comm =   ;; =
+            . S-lbrc ;; {
+            / S-rbrc ;; }
+            ]))
 
 (def qwerty-to-numbers
   (->hash '[m 1
@@ -72,41 +219,10 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defmacro tap-hold* [hold-time x y]
-  (let [hold-time* (keyword (case hold-time
-                              :normal '$hold-time
-                              :slow '$hold-time-slow))]
-    `[~x (list :tap-hold :$tap-time ~hold-time* ~x ~y)]))
-
-(def aliases
-  `[:l_cmd (layer-toggle cmd)
-    :l_sys1 (layer-toggle sys1)
-    :l_sys2 (layer-toggle sys2)
-    :l_num (layer-toggle num)
-
-    ~@(tap-hold* :normal :f :at/l_cmd)
-    ~@(tap-hold* :normal :j :at/l_cmd)
-    ~@(tap-hold* :normal :d :at/l_sys1)
-    ~@(tap-hold* :normal :k :at/l_sys1)
-    ~@(tap-hold* :normal :s :at/l_sys2)
-    ~@(tap-hold* :normal :l :at/l_sys2)
-    ~@(tap-hold* :slow :a :at/l_num)
-    ~@(tap-hold* :slow :scln :at/l_num)
-
-    ~@(tap-hold* :slow :w :lctl)
-    ~@(tap-hold* :normal :e :lalt)
-    ~@(tap-hold* :normal :r :lmet)
-
-    ~@(tap-hold* :slow :o :lctl)
-    ~@(tap-hold* :normal :i :lalt)
-    ~@(tap-hold* :normal :u :lmet)])
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (defn align-spaces [n]
   (apply str (repeat (max 1 (- 6 n)) " ")))
 
-(defn append-form [env buffer form]
+(defn append-form [buffer form]
   (let [*lines (atom [])
         write-comment! (fn [x]
                          (let [{:keys [comment]} (meta x)]
@@ -139,8 +255,9 @@
     (f 0 form)
     (into buffer @*lines)))
 
-(defn gen-vars [{:as args :keys [env]}]
-  (let [form `(defvar tap-time ~(case env
+(defn gen-vars [{:as args :keys []}]
+  (let [env @*env
+        form `(defvar tap-time ~(case env
                                   "macos.laptop" 200
                                   "windows.alice" 200
                                   200)
@@ -150,73 +267,84 @@
                              200)
                 hold-time-slow ~(case env
                                   "macos.laptop" 300
-                                  "windows.alice" 300
-                                  300))]
-    (update args :buffer (partial append-form env) form)))
+                                  "windows.alice" 250
+                                  250))]
+    (update args :buffer append-form form)))
 
-(defn gen-aliases [{:as args :keys [env]}]
-  (let [form `(defalias ~@aliases)]
-    (update args :buffer (partial append-form env) form)))
+(defn gen-aliases [{:as args :keys []}]
+  (let [form `(defalias ~@(gen-aliases-data))]
+    (update args :buffer append-form form)))
 
-(defn gen-src-keys [{:as args :keys [env]}]
+(defn gen-src-keys [{:as args :keys []}]
   (let [form (reduce (fn [acc key]
                        (cond
-                         (and (= key :fn) (not= env "macos.laptop")) acc
+                         (and (= key :fn) (not (is-laptop?))) acc
                          :else (conj acc key)))
                      [] src-keys)
         form `(defsrc ~@form)]
-    (update args :buffer (partial append-form env) form)))
+    (update args :buffer append-form form)))
 
-(defn compute-dst-key [env layer src-key]
+(defn compute-dst-key [layer src-key]
   (case layer
     :base (cond
             (contains? qwerty-to-base-layer src-key) (get qwerty-to-base-layer src-key)
             :else src-key)
-    :cmd (cond
-           (contains? qwerty-to-cmd-layer src-key) (get qwerty-to-cmd-layer src-key)
-           :else nop)
+    :shortcut (let [m (gen-qwerty-to-shortcut-layer)]
+                (cond
+                  (contains? m src-key) (get m src-key)
+                  :else nop))
+    :sym1 (cond
+            (contains? qwerty-to-symbol-layer src-key) (get qwerty-to-symbol-layer src-key)
+            :else nop)
+    :misc (let [m (gen-qwerty-to-misc-layer)]
+            (cond
+              (contains? m src-key) (get m src-key)
+              :else nop))
     :num (cond
            (contains? qwerty-to-numbers src-key) (get qwerty-to-numbers src-key)
            :else nop)
     ;; else
     nop))
 
-(defn gen-layer [{:as args :keys [env]} layer]
+(defn gen-layer [{:as args :keys []} layer]
   (let [rf (fn [acc src-key]
              (cond
-               (and (= src-key :fn) (not= env "macos.laptop")) acc
-               :else (let [dst-key (compute-dst-key env layer src-key)
+               (and (= src-key :fn) (not (is-laptop?))) acc
+               :else (let [dst-key (compute-dst-key layer src-key)
                            dst-key (if (symbol? dst-key)
                                      (with-meta dst-key {:comment (str src-key)})
                                      dst-key)]
                        (into acc [dst-key]))))
         form (reduce rf [] src-keys)
         form `(deflayer ~layer ~@form)]
-    (println form)
-    (update args :buffer (partial append-form env) form)))
+    ;; (println form)
+    (update args :buffer append-form form)))
 
-(defn gen-cfg [{:as args :keys [env]}]
+(defn gen-cfg [{:as args :keys []}]
+  (assert @*env)
   (-> args
-      (update :buffer (partial append-form env) '(defcfg process-unmapped-keys no))
+      (update :buffer append-form '(defcfg process-unmapped-keys no))
       (gen-vars)
       (gen-aliases)
       (gen-src-keys)
       (gen-layer :base)
-      (gen-layer :cmd)
-      (gen-layer :sys1)
-      (gen-layer :sys2)
+      (gen-layer :shortcut)
+      (gen-layer :sym1)
+      (gen-layer :misc)
       (gen-layer :num)))
 
-(defn write-kbd [{:as args :keys [buffer env]}]
-  (with-open [f (io/writer (str env ".kbd"))]
+(defn write-kbd [{:as args :keys [buffer]}]
+  (with-open [f (io/writer (str @*env ".kbd"))]
     (doseq [chunk buffer]
       (.write f chunk)))
   args)
 
-(-> {:buffer [] :env "windows.alice"}
+(reset! *env "windows.alice")
+(-> {:buffer []}
     (gen-cfg)
     (write-kbd))
 
-(-> {:buffer [] :env "macos.laptop"}
+(reset! *env "macos.laptop")
+(-> {:buffer []}
     (gen-cfg)
     (write-kbd))

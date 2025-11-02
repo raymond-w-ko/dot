@@ -5,16 +5,16 @@ process-unmapped-keys no )
 tap-time 200 hold-time 200 hold-time-slow 300 )
 
 (defalias 
-l_cmd (layer-toggle cmd )
-l_sys1 (layer-toggle sys1 )
-l_sys2 (layer-toggle sys2 )
+l_shortcut (layer-toggle shortcut )
+l_sym1 (layer-toggle sym1 )
+l_misc (layer-toggle misc )
 l_num (layer-toggle num )
-f (tap-hold $tap-time $hold-time f @l_cmd )
-j (tap-hold $tap-time $hold-time j @l_cmd )
-d (tap-hold $tap-time $hold-time d @l_sys1 )
-k (tap-hold $tap-time $hold-time k @l_sys1 )
-s (tap-hold $tap-time $hold-time s @l_sys2 )
-l (tap-hold $tap-time $hold-time l @l_sys2 )
+f (tap-hold $tap-time $hold-time f @l_shortcut )
+j (tap-hold $tap-time $hold-time j @l_shortcut )
+d (tap-hold $tap-time $hold-time d @l_sym1 )
+k (tap-hold $tap-time $hold-time k @l_sym1 )
+s (tap-hold $tap-time $hold-time s @l_misc )
+l (tap-hold $tap-time $hold-time l @l_misc )
 a (tap-hold $tap-time $hold-time-slow a @l_num )
 scln (tap-hold $tap-time $hold-time-slow scln @l_num )
 w (tap-hold $tap-time $hold-time-slow w lctl )
@@ -23,6 +23,8 @@ r (tap-hold $tap-time $hold-time r lmet )
 o (tap-hold $tap-time $hold-time-slow o lctl )
 i (tap-hold $tap-time $hold-time i lalt )
 u (tap-hold $tap-time $hold-time u lmet )
+d_h (tap-hold $tap-time $hold-time del home )
+p_e (tap-hold $tap-time $hold-time M-lbrc end )
 )
 
 (defsrc 
@@ -32,13 +34,13 @@ f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12 tab q w e r t y u i o p lbrc rbrc bksl gr
 base f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12 tab q @w @e @r t y @u @i @o p lbrc rbrc bksl grv 1 2 3 4 5 6 7 8 9 0 - = bspc caps @a @s @d @f g h @j @k @l @scln apos ret lsft z x c v b n m comm . / rsft fn lctl lalt lmet spc rmet ralt up down left right )
 
 (deflayer 
-cmd • • • • • • • • • • • • • • • • • • • • up • • • • • • • • • • • • • • • • • • • • • • • • • • left down right • • • • • • • • • • • • • • • • • • • • • • • • • • )
+shortcut • • • • • • • • • • • • • tab esc C-S-tab C-tab • • M-c up bspc M-v • • • • • • • • • • • • • • • • • • M-grv @d_h @p_e M-rbrc C-M-S-4 • left down right ret • • • • • • • • • • • • • • • • • • • • • • • • • )
 
 (deflayer 
-sys1 • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • )
+sym1 • • • • • • • • • • • • • S-1 XX S-3 S-4 S-5 S-6 S-7 S-8 S-9 S-0 • • • • • • • • • • • • • • • • • • grv S-2 - bksl S-bksl • S-scln scln lbrc rbrc • • • • • • • • • S-= = S-lbrc S-rbrc • • • • • • • • • • • • )
 
 (deflayer 
-sys2 • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • )
+misc • • • • • • • • • • • • • • • A-rbrc A-S-rbrc M-v • • • • • • • • • • • • • • • • • • • • • • • • • A-lbrc A-S-lbrc • • • • • • • • • • • • M-c • • • • • • • • • • • • • • • • • • )
 
 (deflayer 
 num • • • • • • • • • • • • • • • • • • • 7 8 9 0 • • • • • • • • • • • • • • • • • • • • • • • • 4 5 6 kp. • • • • • • • • • 1 2 3 • • • • • • • • • • • • • )
