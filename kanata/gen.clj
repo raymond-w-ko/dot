@@ -138,7 +138,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (def fn-to-action-keys
-  (->hash '[f1 brup f2 brdown
+  (->hash '[f1 brdown f2 brup
             f6 lrld
             f7 prev f8 pp f9 next
             f10 mute f11 vold f12 volu]))
