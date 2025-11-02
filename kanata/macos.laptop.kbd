@@ -2,7 +2,7 @@
 process-unmapped-keys no )
 
 (defvar 
-tap-time 200 hold-time 200 hold-time-slow 300 )
+tap-time 200 hold-time 200 hold-time-slow 225 )
 
 (defalias 
 l_shortcut (layer-toggle shortcut )
@@ -17,9 +17,11 @@ s (tap-hold $tap-time $hold-time s @l_misc )
 l (tap-hold $tap-time $hold-time l @l_misc )
 a (tap-hold $tap-time $hold-time-slow a @l_num )
 scln (tap-hold $tap-time $hold-time-slow scln @l_num )
+q (tap-hold $tap-time $hold-time-slow q lsft )
 w (tap-hold $tap-time $hold-time-slow w lctl )
 e (tap-hold $tap-time $hold-time e lalt )
 r (tap-hold $tap-time $hold-time r lmet )
+p (tap-hold $tap-time $hold-time p lsft )
 o (tap-hold $tap-time $hold-time-slow o lctl )
 i (tap-hold $tap-time $hold-time i lalt )
 u (tap-hold $tap-time $hold-time u lmet )
@@ -31,7 +33,7 @@ p_e (tap-hold $tap-time $hold-time M-lbrc end )
 f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12 tab q w e r t y u i o p lbrc rbrc bksl grv 1 2 3 4 5 6 7 8 9 0 - = bspc caps a s d f g h j k l scln apos ret lsft z x c v b n m comm . / rsft fn lctl lalt lmet spc rmet ralt up down left right )
 
 (deflayer 
-base f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12 tab q @w @e @r t y @u @i @o p lbrc rbrc bksl grv 1 2 3 4 5 6 7 8 9 0 - = bspc caps @a @s @d @f g h @j @k @l @scln apos ret lsft z x c v b n m comm . / rsft fn lctl lalt lmet spc rmet ralt up down left right )
+base f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12 tab @q @w @e @r t y @u @i @o @p lbrc rbrc bksl grv 1 2 3 4 5 6 7 8 9 0 - = bspc caps @a @s @d @f g h @j @k @l @scln apos ret lsft z x c v b n m comm . / rsft fn lctl lalt lmet spc rmet ralt up down left right )
 
 (deflayer 
 shortcut • • • • • • • • • • • • • tab esc C-S-tab C-tab • • M-c up bspc M-v • • • • • • • • • • • • • • • • • • M-grv @d_h @p_e M-rbrc C-M-S-4 • left down right ret • • • • • • • • • • • • • • • • • • • • • • • • • )

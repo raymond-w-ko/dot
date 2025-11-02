@@ -121,11 +121,13 @@
     ~@(tap-hold* :normal :l :at/l_misc)
     ~@(tap-hold* :slow :a :at/l_num)
     ~@(tap-hold* :slow :scln :at/l_num)
-
+    
+    ~@(tap-hold* :slow :q :lsft)
     ~@(tap-hold* :slow :w :lctl)
     ~@(tap-hold* :normal :e :lalt)
     ~@(tap-hold* :normal :r :lmet)
-
+    
+    ~@(tap-hold* :normal :p :lsft)
     ~@(tap-hold* :slow :o :lctl)
     ~@(tap-hold* :normal :i :lalt)
     ~@(tap-hold* :normal :u :lmet)
@@ -141,8 +143,8 @@
             f10 mute f11 vold f12 volu]))
 
 (def qwerty-to-base-layer
-  (->hash '[w :at/w e :at/e r :at/r
-            u :at/u o :at/o i :at/i
+  (->hash '[q :at/q w :at/w e :at/e r :at/r
+            u :at/u o :at/o i :at/i p :at/p
 
             a :at/a s :at/s d :at/d f :at/f
             j :at/j k :at/k l :at/l scln :at/scln]))
@@ -266,9 +268,9 @@
                              "windows.alice" 200
                              200)
                 hold-time-slow ~(case env
-                                  "macos.laptop" 300
-                                  "windows.alice" 250
-                                  250))]
+                                  "macos.laptop" 225
+                                  "windows.alice" 225
+                                  225))]
     (update args :buffer append-form form)))
 
 (defn gen-aliases [{:as args :keys []}]
