@@ -327,7 +327,9 @@
 (defn gen-cfg [{:as args :keys []}]
   (assert @*env)
   (-> args
-      (update :buffer append-form '(defcfg process-unmapped-keys no))
+      (update :buffer append-form '(defcfg
+                                     process-unmapped-keys no
+                                     log-layer-changes no))
       (gen-vars)
       (gen-aliases)
       (gen-src-keys)
