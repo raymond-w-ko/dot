@@ -33,7 +33,7 @@ p_e (tap-hold $tap-time $hold-time C-lbrc end )
 f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12 tab q w e r t y u i o p lbrc rbrc bksl grv 1 2 3 4 5 6 7 8 9 0 - = bspc caps a s d f g h j k l scln apos ret lsft z x c v b n m comm . / rsft lctl lalt lmet spc rmet ralt up down left right )
 
 (deflayer 
-base f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12 tab @q @w @e @r t y @u @i @o @p lbrc rbrc bksl grv 1 2 3 4 5 6 7 8 9 0 - = bspc caps @a @s @d @f g h @j @k @l @scln apos ret lsft z x c v b n m comm . / rsft lctl lalt lmet spc rmet ralt up down left right )
+base brup brdown f3 f4 f5 lrld prev pp next mute vold volu tab @q @w @e @r t y @u @i @o @p lbrc rbrc bksl grv 1 2 3 4 5 6 7 8 9 0 - = bspc caps @a @s @d @f g h @j @k @l @scln apos ret lsft z x c v b n m comm . / rsft lctl lalt lmet spc rmet ralt up down left right )
 
 (deflayer 
 shortcut • • • • • • • • • • • • • tab esc C-S-tab C-tab • • C-c up bspc C-v • • • • • • • • • • • • • • • • • • M-grv @d_h @p_e C-rbrc M-S-s • left down right ret • • • • • • • • • • • • • • • • • • • • • • • • )

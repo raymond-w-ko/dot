@@ -139,6 +139,7 @@
 
 (def fn-to-action-keys
   (->hash '[f1 brup f2 brdown
+            f6 lrld
             f7 prev f8 pp f9 next
             f10 mute f11 vold f12 volu]))
 
@@ -289,6 +290,7 @@
 (defn compute-dst-key [layer src-key]
   (case layer
     :base (cond
+            (contains? fn-to-action-keys src-key) (get fn-to-action-keys src-key)
             (contains? qwerty-to-base-layer src-key) (get qwerty-to-base-layer src-key)
             :else src-key)
     :shortcut (let [m (gen-qwerty-to-shortcut-layer)]
