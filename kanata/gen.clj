@@ -42,9 +42,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (def *env (atom nil))
-(defn is-laptop? []
-  (assert @*env)
-  (str/includes? @*env "laptop"))
+(defn is-laptop? [] (str/includes? @*env "laptop"))
+(defn is-windows? [] (str/includes? @*env "windows"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -258,6 +257,14 @@
     (f 0 form)
     (into buffer @*lines)))
 
+(defn gen-cfg [{:as args :keys []}]
+  (let [form `(defcfg
+                process-unmapped-keys no
+                log-layer-changes no
+                ~@(when (is-windows?) '(tray-icon kanata.ico
+                                        icon-match-layer-name no)))]
+    (update args :buffer append-form form)))
+
 (defn gen-vars [{:as args :keys []}]
   (let [env @*env
         form `(defvar tap-time ~(case env
@@ -324,12 +331,16 @@
     ;; (println form)
     (update args :buffer append-form form)))
 
-(defn gen-cfg [{:as args :keys []}]
+(defn write-kbd [{:as args :keys [buffer]}]
+  (with-open [f (io/writer (str @*env ".kbd"))]
+    (doseq [chunk buffer]
+      (.write f chunk)))
+  args)
+
+(defn gen-kbd [{:as args :keys []}]
   (assert @*env)
   (-> args
-      (update :buffer append-form '(defcfg
-                                     process-unmapped-keys no
-                                     log-layer-changes no))
+      (gen-cfg)
       (gen-vars)
       (gen-aliases)
       (gen-src-keys)
@@ -337,20 +348,13 @@
       (gen-layer :shortcut)
       (gen-layer :sym1)
       (gen-layer :misc)
-      (gen-layer :num)))
-
-(defn write-kbd [{:as args :keys [buffer]}]
-  (with-open [f (io/writer (str @*env ".kbd"))]
-    (doseq [chunk buffer]
-      (.write f chunk)))
-  args)
+      (gen-layer :num)
+      (write-kbd)))
 
 (reset! *env "windows.alice")
 (-> {:buffer []}
-    (gen-cfg)
-    (write-kbd))
+    (gen-kbd))
 
 (reset! *env "macos.laptop")
 (-> {:buffer []}
-    (gen-cfg)
-    (write-kbd))
+    (gen-kbd))

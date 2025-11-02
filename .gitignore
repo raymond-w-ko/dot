@@ -62,6 +62,8 @@ tags
 
 /config/lazygit/state.yml
 
+/kanata/*.exe
+
 # symlink for backwards compatibility
 /config/ghostty/config
 /config/ghostty/config.local

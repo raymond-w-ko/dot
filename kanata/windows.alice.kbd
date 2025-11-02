@@ -1,5 +1,5 @@
 (defcfg 
-process-unmapped-keys no log-layer-changes no )
+process-unmapped-keys no log-layer-changes no tray-icon kanata.ico icon-match-layer-name no )
 
 (defvar 
 tap-time 200 hold-time 200 hold-time-slow 225 )
