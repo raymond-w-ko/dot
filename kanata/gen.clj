@@ -22,17 +22,29 @@
         (map vec)
         (into {})))
 
-(defmacro tap-hold*
-  ([alias-name hold-time x y]
+(defn tap-hold*
+  ([fn* alias-name hold-time x y]
    (let [hold-time* (keyword (case hold-time
                                :normal '$hold-time
                                :slow '$hold-time-slow))]
-     `[~alias-name (list :tap-hold :$tap-time ~hold-time* ~x ~y)]))
-  ([hold-time x y]
+     `[~alias-name (list ~fn* :$tap-time ~hold-time* ~x ~y)]))
+  ([fn* hold-time x y]
    (let [hold-time* (keyword (case hold-time
                                :normal '$hold-time
                                :slow '$hold-time-slow))]
-     `[~x (list :tap-hold :$tap-time ~hold-time* ~x ~y)])))
+     `[~x (list ~fn* :$tap-time ~hold-time* ~x ~y)])))
+
+(defmacro tap-hold
+  ([alias-name hold-time x y] (tap-hold* :tap-hold alias-name hold-time x y))
+  ([hold-time x y] (tap-hold* :tap-hold hold-time x y)))
+
+(defmacro tap-hold-press
+  ([alias-name hold-time x y] (tap-hold* :tap-hold-press alias-name hold-time x y))
+  ([hold-time x y] (tap-hold* :tap-hold-press hold-time x y)))
+
+(defmacro tap-hold-release
+  ([alias-name hold-time x y] (tap-hold* :tap-hold-release alias-name hold-time x y))
+  ([hold-time x y] (tap-hold* :tap-hold-release hold-time x y)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -112,27 +124,28 @@
     :l_misc (layer-toggle misc)
     :l_num (layer-toggle num)
 
-    ~@(tap-hold* :normal :f :at/l_shortcut)
-    ~@(tap-hold* :normal :j :at/l_shortcut)
-    ~@(tap-hold* :normal :d :at/l_sym1)
-    ~@(tap-hold* :normal :k :at/l_sym1)
-    ~@(tap-hold* :normal :s :at/l_misc)
-    ~@(tap-hold* :normal :l :at/l_misc)
-    ~@(tap-hold* :slow :a :at/l_num)
-    ~@(tap-hold* :slow :scln :at/l_num)
+    ~@(tap-hold :normal :f :at/l_shortcut)
+    ~@(tap-hold :normal :j :at/l_shortcut)
+    ~@(tap-hold :normal :d :at/l_sym1)
+    ~@(tap-hold :normal :k :at/l_sym1)
+    ~@(tap-hold :normal :s :at/l_misc)
+    ~@(tap-hold :normal :l :at/l_misc)
+    ~@(tap-hold :slow :a :at/l_num)
+    ~@(tap-hold :slow :scln :at/l_num)
     
-    ~@(tap-hold* :slow :q :lsft)
-    ~@(tap-hold* :slow :w :lctl)
-    ~@(tap-hold* :normal :e :lalt)
-    ~@(tap-hold* :normal :r :lmet)
-    
-    ~@(tap-hold* :normal :p :lsft)
-    ~@(tap-hold* :slow :o :lctl)
-    ~@(tap-hold* :normal :i :lalt)
-    ~@(tap-hold* :normal :u :lmet)
-    
-    ~@(tap-hold* :d_h :normal :del :home)
-    ~@(tap-hold* :p_e :normal (outdent-line) :end)])
+    ~@(tap-hold :slow :w :lctl)
+    ~@(tap-hold :normal :e :lalt)
+    ~@(tap-hold :normal :r :lmet)
+
+    ~@(tap-hold :slow :o :lctl)
+    ~@(tap-hold :normal :i :lalt)
+    ~@(tap-hold :normal :u :lmet)
+
+    ~@(tap-hold-press :slow :q :lsft)
+    ~@(tap-hold-press :slow :p :rsft)
+
+    ~@(tap-hold :d_h :normal :del :home)
+    ~@(tap-hold :p_e :normal (outdent-line) :end)])
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
