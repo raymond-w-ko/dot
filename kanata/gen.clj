@@ -240,8 +240,9 @@
             l lbrc    ;; [
             scln rbrc ;; ]
 
-            c S-apos
-            v apos
+            z S-grv  ;; ~
+            c S-apos ;; " (double quote)
+            v apos   ;; ' (single quote)
             m S-=    ;; +
             comm =   ;; =
             . S-lbrc ;; {
