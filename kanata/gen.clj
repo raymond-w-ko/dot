@@ -62,8 +62,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (def nop (keyword "•"))
-(def layer-switch-key :f1)
-(def live-reload-key :f6)
+(def layer-switch-key :ins)
+(def live-reload-key :rmet)
 
 (def src-keys
   "These are keys that might get remapped to different keys.
