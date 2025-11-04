@@ -32,23 +32,23 @@ p_e (tap-hold $tap-time $hold-time M-lbrc end )
 )
 
 (defsrc 
-f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12 tab q w e r t y u i o p lbrc rbrc bksl grv 1 2 3 4 5 6 7 8 9 0 min = bspc caps a s d f g h j k l scln apos ret lsft z x c v b n m comm . / rsft fn lctl lalt lmet spc rmet ralt up down left right )
+f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12 ins tab q w e r t y u i o p lbrc rbrc bksl grv 1 2 3 4 5 6 7 8 9 0 min = bspc caps a s d f g h j k l scln apos ret lsft z x c v b n m comm . / rsft fn lctl lalt lmet spc rmet ralt up down left right )
 
 (deflayer 
-base brdown brup f3 f4 f5 f6 prev pp next mute vold volu • @q @w @e @r t y @u @i @o @p • • • grv 1 2 3 4 5 6 7 8 9 0 • • • lsft @a @s @d @f g h @j @k @l @scln rsft • lsft z x c v b n m comm . / rsft fn lctl lalt lmet spc lrld ralt up down left right )
+base @l_gaming brup f3 f4 f5 lrld prev pp next mute vold volu ins • @q @w @e @r t y @u @i @o @p • • • grv 1 2 3 4 5 6 7 8 9 0 • • • lsft @a @s @d @f g h @j @k @l @scln rsft • lsft z x c v b n m comm . / rsft fn lctl lalt lmet spc rmet ralt up down left right )
 
 (deflayer 
-gaming f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12 tab q w e r t y u i o p lbrc rbrc bksl grv 1 2 3 4 5 6 7 8 9 0 min = bspc esc a s d f g h j k l scln apos ret lsft z x c v b n m comm . / rsft fn lctl lalt lmet spc lrld ralt up down left right )
+gaming @l_base f2 f3 f4 f5 lrld f7 f8 f9 f10 f11 f12 ins tab q w e r t y u i o p lbrc rbrc bksl grv 1 2 3 4 5 6 7 8 9 0 min = bspc esc a s d f g h j k l scln apos ret lsft z x c v b n m comm . / rsft fn lctl lalt lmet spc rmet ralt up down left right )
 
 (deflayer 
-shortcut • • • • • • • • • • • • • tab esc C-S-tab C-tab • • M-c up bspc M-v • • • • • • • • • • • • • • • • • • M-grv @d_h @p_e M-rbrc C-M-S-4 • left down right ret • • • • • • • • • • • • • • • • • • • • • • • • • )
+shortcut • • • • • • • • • • • • • • tab esc C-S-tab C-tab • • M-c up bspc M-v • • • • • • • • • • • • • • • • • • M-grv @d_h @p_e M-rbrc C-M-S-4 • left down right ret • • • • • • • • • • • • • • • • • • • • • • • • • )
 
 (deflayer 
-sym1 • • • • • • • • • • • • • S-1 S-2 S-3 S-4 S-5 S-6 S-7 S-8 S-9 S-0 • • • • • • • • • • • • • • • • • • grv S-min min bksl S-bksl • S-scln scln lbrc rbrc • • • • • S-apos apos • • S-= = S-lbrc S-rbrc • • • • • • • • • • • • )
+sym1 • • • • • • • • • • • • • • S-1 S-2 S-3 S-4 S-5 S-6 S-7 S-8 S-9 S-0 • • • • • • • • • • • • • • • • • • grv S-min min bksl S-bksl • S-scln scln lbrc rbrc • • • • • S-apos apos • • S-= = S-lbrc S-rbrc • • • • • • • • • • • • )
 
 (deflayer 
-misc • • • • • • • • • • • • • • • A-rbrc A-S-rbrc M-v • • • • • • • • • • • • • • • • • • • • • • • • • A-lbrc A-S-lbrc • • • • • • • • • • • • M-c • • • • • • • • • • • • • • • • • • )
+misc • • • • • • • • • • • • • • • • A-rbrc A-S-rbrc M-v • • • • • • • • • • • • • • • • • • • • • • • • • A-lbrc A-S-lbrc • • • • • • • • • • • • M-c • • • • • • • • • • • • • • • • • • )
 
 (deflayer 
-num • • • • • • • • • • • • • • • • • • • 7 8 9 0 • • • • • • • • • • • • • • • • • • • • • • • • 4 5 6 kp. • • • • • • • • • 1 2 3 • • • • • • • • • • • • • )
+num • • • • • • • • • • • • • • • • • • • • 7 8 9 0 • • • • • • • • • • • • • • • • • • • • • • • • 4 5 6 kp. • • • • • • • • • 1 2 3 • • • • • • • • • • • • • )
 

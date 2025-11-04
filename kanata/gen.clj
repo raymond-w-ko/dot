@@ -57,18 +57,27 @@
 
 (def *env (atom nil))
 (defn is-laptop? [] (str/includes? @*env "laptop"))
+(defn is-macos? [] (str/includes? @*env "macos"))
 (defn is-windows? [] (str/includes? @*env "windows"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (def nop (keyword "•"))
-(def layer-switch-key :ins)
-(def live-reload-key :rmet)
+(defn layer-switch-key []
+  (cond
+    (is-macos?) :f1
+    (is-windows?) :ins
+    :else nop))
+(defn live-reload-key []
+  (cond
+    (is-macos?) :f6
+    (is-windows?) :rmet
+    :else nop))
 
 (def src-keys
   "These are keys that might get remapped to different keys.
    At the very least, they are intercepted by kanata."
-  (->symbols '[f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12
+  (->symbols '[f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12 ins
                tab q w e r t y u i o p lbrc rbrc bksl
                grv 1 2 3 4 5 6 7 8 9 0 min = bspc
                caps a s d f g h j k l scln apos ret
@@ -334,13 +343,13 @@
 (defn compute-dst-key [layer src-key]
   (case layer
     :gaming (cond
-              (= src-key live-reload-key) :lrld
-              (= src-key layer-switch-key) :at/l_base
+              (= src-key (live-reload-key)) :lrld
+              (= src-key (layer-switch-key)) :at/l_base
               (= src-key :caps) :esc ;; i detest the caps lock key
               :else src-key)
     :base (cond
-            (= src-key live-reload-key) :lrld
-            (= src-key layer-switch-key) :at/l_gaming
+            (= src-key (live-reload-key)) :lrld
+            (= src-key (layer-switch-key)) :at/l_gaming
             (and is-strict (contains? banned-keys-when-strict src-key)) nop
             (and (is-laptop?) (contains? fn-to-action-keys src-key)) (get fn-to-action-keys src-key)
             (contains? qwerty-to-base-layer src-key) (get qwerty-to-base-layer src-key)
