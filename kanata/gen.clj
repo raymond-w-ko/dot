@@ -26,12 +26,14 @@
   ([fn* alias-name hold-time x y]
    (let [hold-time* (keyword (case hold-time
                                :normal '$hold-time
-                               :slow '$hold-time-slow))]
+                               :slow '$hold-time-slow
+                               :glacial '$hold-time-glacial))]
      `[~alias-name (list ~fn* :$tap-time ~hold-time* ~x ~y)]))
   ([fn* hold-time x y]
    (let [hold-time* (keyword (case hold-time
                                :normal '$hold-time
-                               :slow '$hold-time-slow))]
+                               :slow '$hold-time-slow
+                               :glacial '$hold-time-glacial))]
      `[~x (list ~fn* :$tap-time ~hold-time* ~x ~y)])))
 
 (defmacro tap-hold
@@ -60,16 +62,26 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (def nop (keyword "•"))
+(def layer-switch-key :f1)
+(def live-reload-key :f6)
 
 (def src-keys
   "These are keys that might get remapped to different keys.
    At the very least, they are intercepted by kanata."
   (->symbols '[f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12
                tab q w e r t y u i o p lbrc rbrc bksl
-               grv 1 2 3 4 5 6 7 8 9 0 - = bspc
+               grv 1 2 3 4 5 6 7 8 9 0 min = bspc
                caps a s d f g h j k l scln apos ret
                lsft z x c v b n m comm . / rsft
                fn lctl lalt lmet spc rmet ralt up down left right]))
+
+;; if true, traditional keys that require finger movement will be ignored
+;; this means keys outside the standard 32 keys will be ignored
+(def is-strict true)
+
+(def banned-keys-when-strict
+  (->> (->symbols '[tab min = bspc lbrc rbrc bksl ret])
+       (set)))
 
 (defn copy []
   (cond
@@ -119,7 +131,9 @@
 
 (defn gen-aliases-data []
   (assert @*env)
-  `[:l_shortcut (layer-toggle shortcut)
+  `[:l_base (layer-switch base)
+    :l_gaming (layer-switch gaming)
+    :l_shortcut (layer-toggle shortcut)
     :l_sym1 (layer-toggle sym1)
     :l_misc (layer-toggle misc)
     :l_num (layer-toggle num)
@@ -137,12 +151,13 @@
     ~@(tap-hold :normal :e :lalt)
     ~@(tap-hold :normal :r :lmet)
 
-    ~@(tap-hold :slow :o :lctl)
-    ~@(tap-hold :normal :i :lalt)
-    ~@(tap-hold :normal :u :lmet)
+    ~@(tap-hold :slow :o :rctl)
+    ~@(tap-hold :normal :i :ralt)
+    ~@(tap-hold :normal :u :rmet)
 
-    ~@(tap-hold-press :slow :q :lsft)
-    ~@(tap-hold-press :slow :p :rsft)
+    ;; this does not work out in practice because the pinky is not fast enough
+    ~@(tap-hold :glacial :q :lsft)
+    ~@(tap-hold :glacial :p :rsft)
 
     ~@(tap-hold :d_h :normal :del :home)
     ~@(tap-hold :p_e :normal (outdent-line) :end)])
@@ -151,13 +166,15 @@
 
 (def fn-to-action-keys
   (->hash '[f1 brdown f2 brup
-            f6 lrld
             f7 prev f8 pp f9 next
             f10 mute f11 vold f12 volu]))
 
 (def qwerty-to-base-layer
-  (->hash '[q :at/q w :at/w e :at/e r :at/r
-            u :at/u o :at/o i :at/i p :at/p
+  (->hash '[caps lsft apos rsft
+            q :at/q p :at/p
+            
+            w :at/w e :at/e r :at/r
+            u :at/u o :at/o i :at/i
 
             a :at/a s :at/s d :at/d f :at/f
             j :at/j k :at/k l :at/l scln :at/scln]))
@@ -192,19 +209,20 @@
             t ~(paste)]))
 
 (def qwerty-to-symbol-layer
-  (->hash '[q S-1 ;; !
-            w XX  ;; TODO
-            e S-3 ;; #
-            r S-4 ;; $
-            t S-5 ;; %
-            y S-6 ;; ^
-            u S-7 ;; &
-            i S-8 ;; *
-            o S-9 ;; (
-            p S-0 ;; )
-            a grv ;; `
-            s S-2 ;; @
-            d -   ;; -
+  (->hash '[q S-1   ;; !
+            w S-2   ;; @
+            e S-3   ;; #
+            r S-4   ;; $
+            t S-5   ;; %
+            y S-6   ;; ^
+            u S-7   ;; &
+            i S-8   ;; *
+            o S-9   ;; (
+            p S-0   ;; )
+
+            a grv   ;; `
+            s S-min ;; @
+            d min   ;; -
             f bksl    ;; \
             g S-bksl  ;; |
             ;; h
@@ -213,6 +231,8 @@
             l lbrc    ;; [
             scln rbrc ;; ]
 
+            c S-apos
+            v apos
             m S-=    ;; +
             comm =   ;; =
             . S-lbrc ;; {
@@ -274,8 +294,8 @@
   (let [form `(defcfg
                 process-unmapped-keys no
                 log-layer-changes no
-                ~@(when (is-windows?) '(tray-icon kanata.ico
-                                        icon-match-layer-name no)))]
+                ~@(when (is-windows?) '[tray-icon kanata.ico
+                                        icon-match-layer-name no]))]
     (update args :buffer append-form form)))
 
 (defn gen-vars [{:as args :keys []}]
@@ -291,7 +311,11 @@
                 hold-time-slow ~(case env
                                   "macos.laptop" 225
                                   "windows.alice" 225
-                                  225))]
+                                  225)
+                hold-time-glacial ~(case env
+                                     "macos.laptop" 333
+                                     "windows.alice" 333
+                                     333))]
     (update args :buffer append-form form)))
 
 (defn gen-aliases [{:as args :keys []}]
@@ -309,8 +333,16 @@
 
 (defn compute-dst-key [layer src-key]
   (case layer
+    :gaming (cond
+              (= src-key live-reload-key) :lrld
+              (= src-key layer-switch-key) :at/l_base
+              (= src-key :caps) :esc ;; i detest the caps lock key
+              :else src-key)
     :base (cond
-            (contains? fn-to-action-keys src-key) (get fn-to-action-keys src-key)
+            (= src-key live-reload-key) :lrld
+            (= src-key layer-switch-key) :at/l_gaming
+            (and is-strict (contains? banned-keys-when-strict src-key)) nop
+            (and (is-laptop?) (contains? fn-to-action-keys src-key)) (get fn-to-action-keys src-key)
             (contains? qwerty-to-base-layer src-key) (get qwerty-to-base-layer src-key)
             :else src-key)
     :shortcut (let [m (gen-qwerty-to-shortcut-layer)]
@@ -358,6 +390,7 @@
       (gen-aliases)
       (gen-src-keys)
       (gen-layer :base)
+      (gen-layer :gaming)
       (gen-layer :shortcut)
       (gen-layer :sym1)
       (gen-layer :misc)
