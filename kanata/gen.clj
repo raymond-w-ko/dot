@@ -92,6 +92,12 @@
   (->> (->symbols '[min = bspc lbrc rbrc bksl ret])
        (set)))
 
+(defn primary-mod []
+  (cond
+    (str/starts-with? @*env "macos.") :lmet
+    (str/starts-with? @*env "windows.") :lctl
+    :else nop))
+
 (defn copy []
   (cond
     (str/starts-with? @*env "macos.") :M-c
@@ -147,6 +153,8 @@
     :l_misc (layer-toggle misc)
     :l_num (layer-toggle num)
 
+    ~@(tap-hold :slow :spc (primary-mod))
+
     ~@(tap-hold :normal :f :at/l_shortcut)
     ~@(tap-hold :normal :j :at/l_shortcut)
     ~@(tap-hold :normal :d :at/l_sym1)
@@ -186,7 +194,10 @@
             u :at/u o :at/o i :at/i
 
             a :at/a s :at/s d :at/d f :at/f
-            j :at/j k :at/k l :at/l scln :at/scln]))
+            j :at/j k :at/k l :at/l scln :at/scln
+            
+            spc :at/spc
+            lsft lsft]))
 
 (defn gen-qwerty-to-shortcut-layer []
   (->hash `[i up
@@ -207,7 +218,10 @@
             s :at/d_h
             d :at/p_e
             f ~(indent-line)
-            g ~(screenshot-area)]))
+            g ~(screenshot-area)
+            
+            spc lmet
+            lsft lsft]))
 
 (defn gen-qwerty-to-misc-layer []
   (->hash `[e ~(end-of-paragraph)
@@ -215,7 +229,10 @@
             d ~(start-of-paragraph)
             f ~(select-to-start-of-paragraph)
             v ~(copy)
-            t ~(paste)]))
+            t ~(paste)
+            
+            spc lmet
+            lsft lsft]))
 
 (def qwerty-to-symbol-layer
   (->hash '[q S-1   ;; !
@@ -247,7 +264,9 @@
             comm =   ;; =
             . S-lbrc ;; {
             / S-rbrc ;; }
-            ]))
+
+            spc lmet
+            lsft lsft]))
 
 (def qwerty-to-numbers
   (->hash '[m 1
@@ -261,7 +280,10 @@
             o 9
             p 0
             scln kp.
-            h bspc]))
+            h bspc
+            
+            spc lmet
+            lsft lsft]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
