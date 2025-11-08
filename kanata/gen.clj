@@ -89,7 +89,7 @@
 (def is-strict true)
 
 (def banned-keys-when-strict
-  (->> (->symbols '[tab min = bspc lbrc rbrc bksl ret])
+  (->> (->symbols '[min = bspc lbrc rbrc bksl ret])
        (set)))
 
 (defn copy []
@@ -162,7 +162,7 @@
 
     ~@(tap-hold :slow :o :rctl)
     ~@(tap-hold :normal :i :ralt)
-    ~@(tap-hold :normal :u :rmet)
+    ~@(tap-hold :slow :u :rmet) ;; this get's wrongly triggered with 'could'
 
     ;; this does not work out in practice because the pinky is not fast enough
     ~@(tap-hold :glacial :q :lsft)
