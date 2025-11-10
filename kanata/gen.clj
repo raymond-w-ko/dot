@@ -89,13 +89,19 @@
 (def is-strict true)
 
 (def banned-keys-when-strict
-  (->> (->symbols '[min = bspc lbrc rbrc bksl ret])
+  (->> (->symbols '[min = lbrc rbrc bksl ret])
        (set)))
 
 (defn primary-mod []
   (cond
     (str/starts-with? @*env "macos.") :lmet
     (str/starts-with? @*env "windows.") :lctl
+    :else nop))
+
+(defn delete-word []
+  (cond
+    (str/starts-with? @*env "macos.") :A-bspc
+    (str/starts-with? @*env "windows.") :C-bspc
     :else nop))
 
 (defn copy []
@@ -204,7 +210,7 @@
             j left
             k down
             l right
-            o bspc
+            o ~(delete-word)
             scln ret
 
             q tab
