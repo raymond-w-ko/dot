@@ -42,7 +42,7 @@ base f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12 @l_gaming tab @q @w @e @r t y @u @i 
 gaming f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12 @l_base tab q w e r t y u i o p lbrc rbrc bksl grv 1 2 3 4 5 6 7 8 9 0 min = bspc esc a s d f g h j k l scln apos ret lsft z x c v b n m comm . / rsft lctl lalt lmet spc lrld ralt up down left right )
 
 (deflayer 
-shortcut • • • • • • • • • • • • • • tab esc C-S-tab C-tab • • C-c up bspc C-v • • • • • • • • • • • • • • • • • • M-grv @d_h @p_e C-rbrc M-S-s • left down right ret • • lsft • • • • • • • • • • • • • • lmet • • • • • • )
+shortcut • • • • • • • • • • • • • • tab esc C-S-tab C-tab • • • up bspc • • • • • • • • • • • • • • • • • • • M-grv @d_h @p_e C-rbrc M-S-s • left down right ret • • lsft • • • • • • • • • • • • • • lmet • • • • • • )
 
 (deflayer 
 sym1 • • • • • • • • • • • • • • S-1 S-2 S-3 S-4 S-5 S-6 S-7 S-8 S-9 S-0 • • • • • • • • • • • • • • • • • • grv S-min min bksl S-bksl • S-scln scln lbrc rbrc • • lsft S-grv • S-apos apos • • S-= = S-lbrc S-rbrc • • • • lmet • • • • • • )
@@ -51,5 +51,5 @@ sym1 • • • • • • • • • • • • • • S-1 S-2 S-3 S-4 S-5
 misc • • • • • • • • • • • • • • • • A-rbrc A-S-rbrc C-v • • • • • • • • • • • • • • • • • • • • • • • • • A-lbrc A-S-lbrc • • • • • • • • lsft • • • C-c • • • • • • • • • • lmet • • • • • • )
 
 (deflayer 
-num • • • • • • • • • • • • • • • • • • • • 7 8 9 0 • • • • • • • • • • • • • • • • • • • • • • • bspc 4 5 6 kp. • • lsft • • • • • • 1 2 3 • • • • • lmet • • • • • • )
+num • • • • • • • • • • • • • • • • • • • • 7 8 9 0 • • • • • • • • • • • • • • • • • • • • • • • bspc 4 5 6 kp. • • lsft • • • • • • 1 2 3 ret • • • • lmet • • • • • • )
 

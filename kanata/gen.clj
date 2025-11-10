@@ -207,16 +207,13 @@
             o bspc
             scln ret
 
-            u ~(copy)
-            p ~(paste)
-
             q tab
             w esc
             e ~(previous-tab)
             r ~(next-tab)
             a ~(cycle-app-windows)
-            s :at/d_h
-            d :at/p_e
+            s :at/d_h ;; delete (tap) / home (hold) 
+            d :at/p_e ;; outdent (tap) / end (hold)
             f ~(indent-line)
             g ~(screenshot-area)
             
@@ -281,6 +278,7 @@
             p 0
             scln kp.
             h bspc
+            / ret
             
             spc lmet
             lsft lsft]))
