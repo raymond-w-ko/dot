@@ -339,13 +339,13 @@
   (let [env @*env
         form `(defvar
                 tap-time ~(case env
-                            250)
+                            225)
                 hold-time ~(case env
-                             250)
+                             225)
                 hold-time-slow ~(case env
-                                  300)
+                                  275)
                 hold-time-glacial ~(case env
-                                     350))]
+                                     325))]
     (update args :buffer append-form form)))
 
 (defn gen-aliases [{:as args :keys []}]

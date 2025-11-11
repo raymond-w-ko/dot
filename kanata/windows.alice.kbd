@@ -2,7 +2,7 @@
 process-unmapped-keys no log-layer-changes no tray-icon kanata.ico icon-match-layer-name no )
 
 (defvar 
-tap-time 250 hold-time 250 hold-time-slow 300 hold-time-glacial 350 )
+tap-time 225 hold-time 225 hold-time-slow 275 hold-time-glacial 325 )
 
 (defalias 
 l_base (layer-switch base )
