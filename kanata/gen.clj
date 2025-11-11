@@ -337,22 +337,15 @@
 
 (defn gen-vars [{:as args :keys []}]
   (let [env @*env
-        form `(defvar tap-time ~(case env
-                                  "macos.laptop" 200
-                                  "windows.alice" 200
-                                  200)
+        form `(defvar
+                tap-time ~(case env
+                            250)
                 hold-time ~(case env
-                             "macos.laptop" 200
-                             "windows.alice" 200
-                             200)
+                             250)
                 hold-time-slow ~(case env
-                                  "macos.laptop" 225
-                                  "windows.alice" 225
-                                  225)
+                                  300)
                 hold-time-glacial ~(case env
-                                     "macos.laptop" 333
-                                     "windows.alice" 333
-                                     333))]
+                                     350))]
     (update args :buffer append-form form)))
 
 (defn gen-aliases [{:as args :keys []}]

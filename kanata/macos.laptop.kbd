@@ -2,7 +2,7 @@
 process-unmapped-keys no log-layer-changes no )
 
 (defvar 
-tap-time 200 hold-time 200 hold-time-slow 225 hold-time-glacial 333 )
+tap-time 250 hold-time 250 hold-time-slow 300 hold-time-glacial 350 )
 
 (defalias 
 l_base (layer-switch base )
