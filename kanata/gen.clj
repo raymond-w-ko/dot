@@ -159,7 +159,7 @@
     :l_misc (layer-toggle misc)
     :l_num (layer-toggle num)
 
-    ~@(tap-hold :slow :spc (primary-mod))
+    ~@(tap-hold :normal :spc (primary-mod))
 
     ~@(tap-hold :normal :f :at/l_shortcut)
     ~@(tap-hold :normal :j :at/l_shortcut)
