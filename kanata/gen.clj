@@ -203,7 +203,7 @@
             j :at/j k :at/k l :at/l scln :at/scln
             
             spc :at/spc
-            lsft lsft]))
+            rsft rsft]))
 
 (defn gen-qwerty-to-shortcut-layer []
   (->hash `[i up
@@ -224,7 +224,7 @@
             g ~(screenshot-area)
             
             spc lmet
-            lsft lsft]))
+            rsft rsft]))
 
 (defn gen-qwerty-to-misc-layer []
   (->hash `[e ~(end-of-paragraph)
@@ -235,7 +235,7 @@
             t ~(paste)
             
             spc lmet
-            lsft lsft]))
+            rsft rsft]))
 
 (def qwerty-to-symbol-layer
   (->hash '[q S-1   ;; !
@@ -269,7 +269,7 @@
             / S-rbrc ;; }
 
             spc lmet
-            lsft lsft]))
+            rsft rsft]))
 
 (def qwerty-to-numbers
   (->hash '[m 1
@@ -287,7 +287,7 @@
             / ret
             
             spc lmet
-            lsft lsft]))
+            rsft rsft]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
