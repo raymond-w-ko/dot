@@ -50,6 +50,13 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defmacro one-shot-press
+  ([action] `[(list :one-shot-press ':$one-shot-time ~action)]))
+(defmacro one-shot-release
+  ([action] `[(list :one-shot-release ':$one-shot-time ~action)]))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (defn ->symbols [xs]
   (mapv safe-keyword xs))
 
@@ -159,6 +166,8 @@
     :l_misc (layer-toggle misc)
     :l_num (layer-toggle num)
 
+    :os_rsft ~@(one-shot-release :rsft)
+
     ~@(tap-hold :normal :spc (primary-mod))
 
     ~@(tap-hold :normal :f :at/l_shortcut)
@@ -203,7 +212,7 @@
             j :at/j k :at/k l :at/l scln :at/scln
             
             spc :at/spc
-            rsft rsft]))
+            rsft :at/os_rsft]))
 
 (defn gen-qwerty-to-shortcut-layer []
   (->hash `[i up
@@ -224,7 +233,7 @@
             g ~(screenshot-area)
             
             spc lmet
-            rsft rsft]))
+            rsft :at/os_rsft]))
 
 (defn gen-qwerty-to-misc-layer []
   (->hash `[e ~(end-of-paragraph)
@@ -235,7 +244,7 @@
             t ~(paste)
             
             spc lmet
-            rsft rsft]))
+            rsft :at/os_rsft]))
 
 (def qwerty-to-symbol-layer
   (->hash '[q S-1   ;; !
@@ -269,7 +278,7 @@
             / S-rbrc ;; }
 
             spc lmet
-            rsft rsft]))
+            rsft :at/os_rsft]))
 
 (def qwerty-to-numbers
   (->hash '[m 1
@@ -287,7 +296,7 @@
             / ret
             
             spc lmet
-            rsft rsft]))
+            rsft :at/os_rsft]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -338,6 +347,8 @@
 (defn gen-vars [{:as args :keys []}]
   (let [env @*env
         form `(defvar
+                one-shot-time ~(case env
+                                 500)
                 tap-time ~(case env
                             225)
                 hold-time ~(case env
