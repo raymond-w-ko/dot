@@ -12,6 +12,7 @@ model_reasoning_effort = "high"
 [features]
 streamable_shell = true          # enable the streamable exec tool
 web_search_request = true        # allow the model to request web searches
+enable_experimental_windows_sandbox = true
 
 # Extra settings that only apply when `sandbox = "workspace-write"`.
 [sandbox_workspace_write]
