@@ -10,13 +10,11 @@
 - Quote any git paths containing brackets or parentheses (e.g., `src/app/[candidate]/**`) when staging or committing so the shell does not treat them as globs or subshells.
 - When running `git rebase`, avoid opening editors—export `GIT_EDITOR=:` and `GIT_SEQUENCE_EDITOR=:` (or pass `--no-edit`) so the default messages are used automatically.
 - Never amend commits unless you have explicit written approval in the task thread.
-- You MUST use conventional commits: `type: description` (feat, fix, docs, style, refactor, test, chore)
-- You may use conventional commit extensions like `deps: ...`
-- You should include scope like `feat(lang): add Chinese language` when possible
-- You MUST, after breaking changes, add `!` after type and before : like `feat(api)!: send an email to the customer when a product is shipped`
-- You MUST always write a detailed commit message after the commit title summarizing the changes
-- Never use escaped newline sequences like `\n` in commit bodies or documentation—escaped characters are not processed correctly, so always insert real newlines instead
-- You should use markdown bullets in commit messages when providing details to three or more changes. Bullets must be appended using real newline characters and the commit should use no more than two `-m` switches, like:
+
+- Always use conventional commits: `type: description` (feat, fix, docs, style, refactor, test, chore). Extensions like `deps: ...` is allowed. Include a scope like `feat(lang): add zh handling` when possible. After breaking changes, add `!` after type and before : like `feat(api)!: send an email to the customer when a product is shipped`.
+- Always write a detailed commit message after the commit title summarizing the changes.
+- Never use escaped newline sequences like `\n` in commit bodies or documentation—escaped characters are not processed correctly, so always insert real newlines instead.
+- Use markdown bullets in commit messages when providing details to three or more changes. Bullets must be appended using real newline characters and the commit should use no more than two `-m` switches, like:
 ```
 git commit -m "feat(scope): title" -m "- bullet 1
 - bullet 2
