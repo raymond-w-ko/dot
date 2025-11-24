@@ -9,8 +9,9 @@ sandbox_mode = "workspace-write"
 approval_policy = "on-request"   # The model decides when to escalate
 model_reasoning_effort = "high"
 
-[tools]
-web_search = true
+[features]
+streamable_shell = true          # enable the streamable exec tool
+web_search_request = true        # allow the model to request web searches
 
 # Extra settings that only apply when `sandbox = "workspace-write"`.
 [sandbox_workspace_write]
@@ -31,3 +32,7 @@ writable_roots = [
 [shell_environment_policy]
 inherit = "all"
 ignore_default_excludes = true # Do not ignore any environment variables by default, allows it to see shit like tokens, which if you are running tests and it needs variables you will want.
+
+[notice]
+"hide_gpt-5.1-codex-max_migration_prompt" = true
+hide_full_access_warning = true
