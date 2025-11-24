@@ -3,7 +3,8 @@
   "autoupdate": false,
   "theme": "everforest",
   "permission": {
-    "doom_loop": "ask"
+    "doom_loop": "ask",
+    "external_directory": "ask",
   },
   "provider": {
     "opencode": {
