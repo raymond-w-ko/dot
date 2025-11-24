@@ -3,21 +3,22 @@
   "autoupdate": false,
   "theme": "everforest",
   "permission": {
-    "doom_loop": "ask"
+    "doom_loop": "ask",
+    "external_directory": "ask",
   },
   "provider": {
     "opencode": {
       "models": {
-        "gpt-5-high": {
-          "id": "gpt-5",
+        "gpt-5.1-high": {
+          "id": "gpt-5.1",
           "options": {
             "reasoningEffort": "high",
             "textVerbosity": "low",
             "reasoningSummary": "auto",
           },
         },
-        "gpt-5-low": {
-          "id": "gpt-5",
+        "gpt-5.1-low": {
+          "id": "gpt-5.1",
           "options": {
             "reasoningEffort": "low",
             "textVerbosity": "low",

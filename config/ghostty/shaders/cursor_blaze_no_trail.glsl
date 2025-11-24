@@ -109,7 +109,7 @@ const vec4 TRAIL_COLOR_ACCENT = vec4(1.0, 0., 0., 1.0);
 // const vec4 TRAIL_COLOR_ACCENT = vec4(0.0, 0.424, 1.0, 1.0);
 const vec4 CURRENT_CURSOR_COLOR = TRAIL_COLOR;
 const vec4 PREVIOUS_CURSOR_COLOR = TRAIL_COLOR;
-const float DURATION = 0.3;
+const float DURATION = 0.1;
 
 void mainImage(out vec4 fragColor, in vec2 fragCoord)
 {
@@ -127,7 +127,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
     vec4 previousCursor = vec4(normalize(iPreviousCursor.xy, 1.), normalize(iPreviousCursor.zw, 0.));
 
     //When drawing a parellelogram between cursors for the trail i need to determine where to start at the top-left or top-right vertex of the cursor
-    float vertexFactor = determineStartVertexFactor(currentCursor.xy, previousCursor.xy);
+    float vertexkactor = determineStartVertexFactor(currentCursor.xy, previousCursor.xy);
     float invertedVertexFactor = 1.0 - vertexFactor;
 
     //Set every vertex of my parellogram
