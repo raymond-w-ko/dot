@@ -214,6 +214,9 @@
             spc :at/spc
             rsft :at/os_rsft]))
 
+(def qwerty-to-game-layer
+  (->hash '[caps lctrl]))
+
 (defn gen-qwerty-to-shortcut-layer []
   (->hash `[i up
             j left
@@ -377,7 +380,7 @@
     :gaming (cond
               (= src-key (live-reload-key)) :lrld
               (= src-key (layer-switch-key)) :at/l_base
-              (= src-key :caps) :esc ;; i detest the caps lock key
+              (contains? qwerty-to-game-layer src-key) (get qwerty-to-game-layer src-key)
               :else src-key)
     :base (cond
             (= src-key (live-reload-key)) :lrld
