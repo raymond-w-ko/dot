@@ -165,7 +165,8 @@
     :l_sym1 (layer-toggle sym1)
     :l_misc (layer-toggle misc)
     :l_num (layer-toggle num)
-
+    :l_fn (layer-toggle fn)
+  
     :os_rsft ~@(one-shot-release :rsft)
 
     ~@(tap-hold :normal :spc (primary-mod))
@@ -178,6 +179,8 @@
     ~@(tap-hold :normal :l :at/l_misc)
     ~@(tap-hold :slow :a :at/l_num)
     ~@(tap-hold :slow :scln :at/l_num)
+
+    ~@(tap-hold :normal :g :at/l_fn)
     
     ~@(tap-hold :slow :w :lctl)
     ~@(tap-hold :normal :e :lalt)
@@ -208,7 +211,7 @@
             w :at/w e :at/e r :at/r
             u :at/u o :at/o i :at/i
 
-            a :at/a s :at/s d :at/d f :at/f
+            a :at/a s :at/s d :at/d f :at/f g :at/g
             j :at/j k :at/k l :at/l scln :at/scln
             
             spc :at/spc
@@ -235,7 +238,7 @@
             f ~(indent-line)
             g ~(screenshot-area)
             
-            spc lmet
+            spc :at/spc
             rsft :at/os_rsft]))
 
 (defn gen-qwerty-to-misc-layer []
@@ -246,7 +249,7 @@
             v ~(copy)
             t ~(paste)
             
-            spc lmet
+            spc :at/spc
             rsft :at/os_rsft]))
 
 (def qwerty-to-symbol-layer
@@ -280,7 +283,7 @@
             . S-lbrc ;; {
             / S-rbrc ;; }
 
-            spc lmet
+            spc :at/spc
             rsft :at/os_rsft]))
 
 (def qwerty-to-numbers
@@ -298,7 +301,24 @@
             h bspc
             / ret
             
-            spc lmet
+            spc :at/spc
+            rsft :at/os_rsft]))
+
+(def qwerty-to-fns
+  (->hash '[m f1
+            comm f2
+            . f3
+            j f4
+            k f5
+            l f6
+            u f7
+            i f8
+            o f9
+            p f10
+            scln f11
+            / f12
+
+            spc :at/spc
             rsft :at/os_rsft]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -314,7 +334,7 @@
                              (swap! *lines conj (str (align-spaces (count (name x)))
                                                      ";; " comment
                                                      "\n")))))
-        write-symbol! (fn [level x*]
+        write-symbol! (fn [_level x*]
                         (let [x (name x*)
                               y (namespace x*)]
                           (when y
@@ -403,6 +423,9 @@
     :num (cond
            (contains? qwerty-to-numbers src-key) (get qwerty-to-numbers src-key)
            :else nop)
+    :fn (cond
+          (contains? qwerty-to-fns src-key) (get qwerty-to-fns src-key)
+          :else nop)
     ;; else
     nop))
 
@@ -439,6 +462,7 @@
       (gen-layer :sym1)
       (gen-layer :misc)
       (gen-layer :num)
+      (gen-layer :fn)
       (write-kbd)))
 
 (reset! *env "windows.alice")
