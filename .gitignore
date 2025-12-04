@@ -88,6 +88,7 @@ tags
 /.claude/statsig/
 /.claude/todos/
 /.claude/shell-snapshots/
+/.claude/file-history/
 
 # openai codex
 /.codex/config.toml
