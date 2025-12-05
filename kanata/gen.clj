@@ -93,7 +93,7 @@
 
 ;; if true, traditional keys that require finger movement will be ignored
 ;; this means keys outside the standard 32 keys will be ignored
-(def is-strict true)
+(def is-strict false)
 
 (def banned-keys-when-strict
   (->> (->symbols '[min = lbrc rbrc bksl ret])
