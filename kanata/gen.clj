@@ -212,8 +212,8 @@
             w :at/w e :at/e r :at/r
             u :at/u o :at/o i :at/i
 
-            a :at/a s :at/s d :at/d f :at/f g :at/g
-            j :at/j k :at/k l :at/l scln :at/scln h :at/h
+            a :at/a s :at/s d :at/d f :at/f g :at/g h :at/h
+            j :at/j k :at/k l :at/l scln :at/scln
             
             spc :at/spc
             rsft :at/os_rsft]))
