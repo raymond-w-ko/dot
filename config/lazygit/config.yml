@@ -1,26 +1,24 @@
 gui:
-  theme:
-    lightTheme: true
-    activeBorderColor:
-      - '#e78284'
-      - bold
-    inactiveBorderColor:
-      - '#a5adce'
-    optionsTextColor:
-      - '#8caaee'
-    selectedLineBgColor:
-      - '#ccaaaa'
-    cherryPickedCommitBgColor:
-      - '#51576d'
-    cherryPickedCommitFgColor:
-      - '#e78284'
-    unstagedChangesColor:
-      - '#e78284'
-    defaultFgColor:
-      - '#000000'
-    searchingActiveBorderColor:
-      - '#e5c890'
-
   authorColors:
-    '*': '#babbf1'
-    'Raymond W. Ko': '#ff0000'
+    '*': '#7287fd'
+  theme:
+    activeBorderColor:
+    - '#40a02b'
+    - bold
+    cherryPickedCommitBgColor:
+    - '#bcc0cc'
+    cherryPickedCommitFgColor:
+    - '#40a02b'
+    defaultFgColor:
+    - '#4c4f69'
+    inactiveBorderColor:
+    - '#6c6f85'
+    lightTheme: true
+    optionsTextColor:
+    - '#1e66f5'
+    searchingActiveBorderColor:
+    - '#df8e1d'
+    selectedLineBgColor:
+    - '#ccd0da'
+    unstagedChangesColor:
+    - '#d20f39'
