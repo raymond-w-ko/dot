@@ -101,6 +101,8 @@ abbr -a -- gl 'git pull'
 abbr -a -- gf 'git fetch'
 abbr -a -- gfa 'git fetch --all'
 
+abbr -a -- lg 'lazygit'
+
 abbr -a -- c 'z'
 abbr -a -- dot "$CD ~/dot"
 abbr -a -- y 'yay'
