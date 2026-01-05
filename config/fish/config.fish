@@ -116,8 +116,8 @@ abbr -a -- us 'update-submodules'
 
 abbr -a -- oc 'opencode'
 abbr -a -- occ 'opencode -c'
-abbr -a -- cx 'codex'
-abbr -a -- cy 'claude --dangerously-skip-permissions'
+abbr -a -- yc 'claude --dangerously-skip-permissions'
+abbr -a -- yx 'codex --yolo'
 
 abbr -a -- .. "$CD .."
 abbr -a -- ... "$CD ../.."
