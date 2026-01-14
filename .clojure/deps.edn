@@ -9,44 +9,35 @@
 ;; For all attributes other than :paths, these config files are merged left to right.
 ;; Only the last :paths is kept and others are dropped.
 
-{
-  ;; Paths
-  ;;   Directories in the current project to include in the classpath
+{;; Paths
+ ;;   Directories in the current project to include in the classpath
 
-  ;; :paths ["src"]
+ ;; :paths ["src"]
 
-  ;; External dependencies
- 
-  ;; :deps {
-  ;;   org.clojure/clojure {:mvn/version "1.10.3"}
-  ;; }
+ ;; External dependencies
+ ;; :deps {
+ ;;   org.clojure/clojure {:mvn/version "1.10.3"}
+ ;; }
 
-  ;; Aliases
-	;;   resolve-deps aliases (-R) affect dependency resolution, options:
-	;;     :extra-deps - specifies extra deps to add to :deps
-	;;     :override-deps - specifies a coordinate to use instead of that in :deps
-	;;     :default-deps - specifies a coordinate to use for a lib if one isn't found
-	;;   make-classpath aliases (-C) affect the classpath generation, options:
-	;;     :extra-paths - vector of additional paths to add to the classpath
-	;;     :classpath-overrides - map of lib to path that overrides the result of resolving deps
+ ;; Aliases
+ ;;   resolve-deps aliases (-R) affect dependency resolution, options:
+ ;;     :extra-deps - specifies extra deps to add to :deps
+ ;;     :override-deps - specifies a coordinate to use instead of that in :deps
+ ;;     :default-deps - specifies a coordinate to use for a lib if one isn't found
+ ;;   make-classpath aliases (-C) affect the classpath generation, options:
+ ;;     :extra-paths - vector of additional paths to add to the classpath
+ ;;     :classpath-overrides - map of lib to path that overrides the result of resolving deps
 
-  ;; :aliases {
-  ;;   :deps {:extra-deps {org.clojure/tools.deps.alpha {:mvn/version "0.12.1135"}}}
-  ;;   :test {:extra-paths ["test"]}
-  ;; }
+ ;; :aliases {
+ ;;   :deps {:extra-deps {org.clojure/tools.deps.alpha {:mvn/version "0.12.1135"}}}
+ ;;   :test {:extra-paths ["test"]}
+ ;; }
 
-  ;; Provider attributes
+ ;; Provider attributes
 
-  ;; :mvn/repos {
-  ;;   "central" {:url "https://repo1.maven.org/maven2/"}
-  ;;   "clojars" {:url "https://repo.clojars.org/"}
-  ;; }
-  :aliases
-  {:mcp
-   {:deps {org.slf4j/slf4j-nop {:mvn/version "2.0.16"} ;; Required for stdio server
-           com.bhauman/clojure-mcp {:git/url "https://github.com/bhauman/clojure-mcp.git"
-                                    :git/tag "v0.1.10-alpha"
-                                    :git/sha "8bd96c3"}}
-    :exec-fn clojure-mcp.main/start-mcp-server
-    :exec-args {:port 7888}}}
-}
+ ;; :mvn/repos {
+ ;;   "central" {:url "https://repo1.maven.org/maven2/"}
+ ;;   "clojars" {:url "https://repo.clojars.org/"}
+ ;; }
+ :aliases
+ {}}
