@@ -27,6 +27,8 @@ export PS1='bashrc $ '
 
 [[ -z "$BASH_VERSION" ]] && return
 
+shopt -s extglob
+
 export HISTSIZE=32768
 export HISTCONTROL=ignoreboth:erasedups
 
