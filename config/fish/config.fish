@@ -64,6 +64,7 @@ maybe_add_global_path $HOME/zig-x86_64-linux-0.15.2
 maybe_add_global_path $HOME/zig-aarch64-linux-0.15.2
 
 maybe_add_global_path $HOME/dot/bin
+maybe_add_global_path $HOME/subvox/bin
 maybe_add_global_path $HOME/bin
 
 if command -q zoxide
