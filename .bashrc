@@ -22,12 +22,13 @@ source /etc/profile
 PS1='bashrc $ '
 export PS1='bashrc $ '
 
+shopt -s extglob
+
 # If not running interactively, don't do anything
 [[ "$-" != *i* ]] && return
 
 [[ -z "$BASH_VERSION" ]] && return
 
-shopt -s extglob
 
 export HISTSIZE=32768
 export HISTCONTROL=ignoreboth:erasedups
