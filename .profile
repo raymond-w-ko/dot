@@ -8,3 +8,4 @@ then
     source "$HOME/.bashrc"
   fi
 fi
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
