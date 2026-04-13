@@ -3,6 +3,7 @@
 	autocrlf = false
 	# LF line endings for the win!
 	eol = lf
+	pager = delta
 [user]
 	name = Raymond W. Ko
 	email = raymond.w.ko@gmail.com
@@ -40,6 +41,15 @@
   st = status
   undo = reset --soft HEAD^
 
+  # `git log` with patches shown with difftastic.
+  dl = -c diff.external=difft log -p --ext-diff
+
+  # Show the most recent commit with difftastic.
+  ds = -c diff.external=difft show --ext-diff
+
+  # `git diff` with difftastic.
+  dft = -c diff.external=difft diff
+
 	lg = log --graph --full-history --pretty=format:"%h%x09%ar%x09%d%x20%s"
 	lga = log --graph --full-history --all --pretty=format:"%h%x09%ar%x09%d%x20%s"
 	lg4 = log --abbrev-commit --decorate --format=format:'%C(yellow)%h%C(reset) - %C(bold green)%ai %C(yellow)%ar %C(reset) %C(reset)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
@@ -63,3 +73,16 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	dark = true
+[merge]
+	conflictStyle = zdiff3
