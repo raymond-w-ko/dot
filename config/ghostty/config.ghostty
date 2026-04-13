@@ -5,10 +5,11 @@ window-padding-y = 6
 window-width = 180
 window-height = 45
 
-theme = Selenized Light
+theme = Soft Server
 
-gtk-titlebar = true
+gtk-titlebar = false
 window-theme = auto
+macos-titlebar-style = tabs
 gtk-custom-css = ghostty.css
 
 bell-features=audio,attention,title
@@ -19,16 +20,16 @@ cursor-opacity = 1.0
 cursor-style = block
 cursor-style-blink = false
 cursor-color = #000000
-cursor-text = #00ff00
-cursor-opacity = 0.33
+cursor-text = #ffffff
+cursor-opacity = 1.0
 
 shell-integration-features=no-cursor
 app-notifications=false
 selection-clear-on-copy=true
 
 # custom-shader = shaders/cursor_blaze_no_trail.glsl
-custom-shader = shaders/cursor_smear.glsl
+# custom-shader = shaders/cursor_smear.glsl
 
 keybind = shift+enter=text:\n
 
-config-file = local.config.ghostty
+config-file = config-local.ghostty
