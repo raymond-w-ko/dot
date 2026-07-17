@@ -121,6 +121,8 @@ abbr -a -- oc 'opencode'
 abbr -a -- occ 'opencode -c'
 abbr -a -- c 'claude --dangerously-skip-permissions'
 abbr -a -- x 'codex --yolo'
+abbr -a -- i 'pi.sh'
+abbr -a -- ir 'pi.sh --resume'
 
 abbr -a -- .. "$CD .."
 abbr -a -- ... "$CD ../.."
