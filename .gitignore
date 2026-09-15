@@ -6,6 +6,7 @@
 # general
 .git
 /.gnupg/random_seed
+/.gnupg/sshcontrol
 
 # this is what .git gets temporarily renamed to
 ..git
