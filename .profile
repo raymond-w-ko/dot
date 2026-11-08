@@ -2,6 +2,8 @@ source /etc/profile
 export PS1='profile $ '
 PS1='profile $ '
 
+export PATH="$HOME/.local/bin:$PATH"
+
 if [ -n "BASH_VERSION" ]
 then
   if [ -f "$HOME/.bashrc" ]; then

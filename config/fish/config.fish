@@ -82,15 +82,7 @@ if test -f $HOME/dot/config/fish/local.config.fish
 end
 
 if status is-interactive
-    function __rko_apply_fish_theme --on-variable fish_terminal_color_theme
-        # Use dark colors until the terminal reports its background.
-        set -l color_theme dark
-        if test "$fish_terminal_color_theme" = light
-            set color_theme light
-        end
-        fish_config theme choose base16-default --color-theme=$color_theme
-    end
-    __rko_apply_fish_theme
+    fish_config theme choose mono-lace
     # Commands to run in interactive sessions can go here
     #eval (dircolors -c ~/dot/src/dircolors-solarized/dircolors.ansi-universal)
 end
@@ -164,3 +156,6 @@ end
 # >>> grok installer >>>
 fish_add_path $HOME/.grok/bin
 # <<< grok installer <<<
+
+# opencode
+fish_add_path /home/rko/.opencode/bin
