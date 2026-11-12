@@ -159,3 +159,6 @@ fish_add_path $HOME/.grok/bin
 
 # opencode
 fish_add_path /home/rko/.opencode/bin
+
+# starship
+source (path dirname (status filename))/starship.fish
